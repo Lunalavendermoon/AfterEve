@@ -8,6 +8,7 @@ public class Enemy_Chase : IEnemyStates
 
     private float chaseTimer;
 
+    // Time to wait between attacks
     private float attackCooldown;
     private float attackTimer;
 
@@ -26,7 +27,7 @@ public class Enemy_Chase : IEnemyStates
     public void EnterState(EnemyBase enemy)
     {
         chaseTimer = 0f;
-        attackTimer = attackCooldown;
+        attackTimer = 0f;
     }
 
     public void UpdateState(EnemyBase enemy)
@@ -48,8 +49,7 @@ public class Enemy_Chase : IEnemyStates
 
             if (attackTimer >= attackCooldown)
             {
-                enemy.Attack(PlayerController.instance.transform);
-                attackTimer = 0f;
+                enemy.ChangeState(new Enemy_Attack());
             }
         }
     }

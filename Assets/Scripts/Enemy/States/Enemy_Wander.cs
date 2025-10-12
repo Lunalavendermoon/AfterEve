@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class Enemy_Wander :  IEnemyStates
 {
     private float wanderTime;
-    private float elapsedTime;
     private float wanderRadius;
 
     public Enemy_Wander(float wanderDuration, float wanderRadius)
@@ -22,10 +21,10 @@ public class Enemy_Wander :  IEnemyStates
 
     public void EnterState(EnemyBase enemy)
     {
-        elapsedTime = 0f;
-        
+
 
     }
+    
     public void UpdateState(EnemyBase enemy)
     {
         getRandomWanderPoint(enemy);

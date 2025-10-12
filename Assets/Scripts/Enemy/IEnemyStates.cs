@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IEnemyStates : MonoBehaviour
+public interface IEnemyStates
 {
     public void EnterState(EnemyBase enemy);
     public void UpdateState(EnemyBase enemy);

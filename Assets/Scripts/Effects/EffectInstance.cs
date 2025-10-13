@@ -1,0 +1,59 @@
+using UnityEngine;
+
+public class EffectInstance
+{
+    public EffectScriptableObject effect;
+
+    float timer;
+
+    // nextTriggerTime & triggerInterval are only used for Incremental effects
+    float nextTriggerTime;
+
+    float triggerInterval;
+
+    public EffectInstance(EffectScriptableObject eff)
+    {
+        effect = eff;
+        this.triggerInterval = 1f;
+        timer = eff.effectDuration;
+        nextTriggerTime = eff.effectDuration;
+    }
+
+    public EffectInstance(EffectScriptableObject eff, float triggerInterval)
+    {
+        effect = eff;
+        this.triggerInterval = triggerInterval;
+        timer = eff.effectDuration;
+        nextTriggerTime = eff.effectDuration;
+    }
+
+    public void subtractTime(float delta_t)
+    {
+        timer -= delta_t;
+    }
+
+    public bool isExpired()
+    {
+        return timer <= 0f;
+    }
+
+    // might be a bit dodgy implementation...
+    // currently, relies on the effect manager to remember to call isNextTrigger() every frame
+    // to check if Incremental effect has triggered and to make this class
+    // set the timestamp for the next trigger
+    public bool isNextTrigger()
+    {
+        if (effect.effectApplication != EffectScriptableObject.Application.Incremental)
+        {
+            return false;
+        }
+
+        bool ret = false;
+        if (timer <= nextTriggerTime)
+        {
+            ret = true;
+            nextTriggerTime -= triggerInterval;
+        }
+        return ret;
+    }
+}

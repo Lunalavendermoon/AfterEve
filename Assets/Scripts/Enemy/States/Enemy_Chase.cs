@@ -56,7 +56,7 @@ public class Enemy_Chase : IEnemyStates
 
     void getChasePoint(EnemyBase enemy)
     {
-        enemy.Pathfinding(PlayerController.instance.transform.position);
+        enemy.Pathfinding(PlayerController.instance.transform);
     }
     
     public void ExitState(EnemyBase enemy)

@@ -73,8 +73,8 @@ public class PlayerController : MonoBehaviour
                 transform.position = currentPosition;
                 break;
             case PlayerState.Dash:
-                float dashMultiplyer = (dashDuration - (Time.time - dashStartTime)) / (dashDuration/2);
-                transform.position += speed * dashPower * dashMultiplyer * Time.deltaTime * dashDirection;
+                float dashMultiplier = (dashDuration - (Time.time - dashStartTime)) / (dashDuration/2);
+                transform.position += speed * dashPower * dashMultiplier * Time.deltaTime * dashDirection;
                 break;
         }
     }
@@ -83,14 +83,6 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = playerInput.Player.Horizontal.ReadValue<float>();
         verticalInput = playerInput.Player.Vertical.ReadValue<float>();
-
-        // start dash
-        if (playerInput.Player.Dash.triggered && currentState != PlayerState.Dash)
-        {
-            dashStartTime = Time.time;
-            dashDirection = new Vector3(horizontalInput, verticalInput, 0);
-            currentState = PlayerState.Dash;
-        }
     }
 
     void UpdateState()
@@ -107,6 +99,12 @@ public class PlayerController : MonoBehaviour
                 if (horizontalInput == 0 && verticalInput == 0)
                 {
                     currentState = PlayerState.Idle;
+                }
+                if (playerInput.Player.Dash.triggered)
+                {
+                    dashStartTime = Time.time;
+                    dashDirection = new Vector3(horizontalInput, verticalInput, 0);
+                    currentState = PlayerState.Dash;
                 }
                 break;
             case PlayerState.Dash:

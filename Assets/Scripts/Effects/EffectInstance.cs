@@ -14,17 +14,13 @@ public class EffectInstance
     public EffectInstance(EffectScriptableObject eff)
     {
         effect = eff;
-        this.triggerInterval = 1f;
         timer = eff.effectDuration;
         nextTriggerTime = eff.effectDuration;
-    }
 
-    public EffectInstance(EffectScriptableObject eff, float triggerInterval)
-    {
-        effect = eff;
-        this.triggerInterval = triggerInterval;
-        timer = eff.effectDuration;
-        nextTriggerTime = eff.effectDuration;
+        if (eff.isIncremental)
+        {
+            triggerInterval = eff.incrementInterval;
+        }
     }
 
     public void subtractTime(float delta_t)
@@ -34,7 +30,7 @@ public class EffectInstance
 
     public bool isExpired()
     {
-        return timer <= 0f;
+        return !effect.isPermanent && timer <= 0f;
     }
 
     // might be a bit dodgy implementation...
@@ -43,7 +39,7 @@ public class EffectInstance
     // set the timestamp for the next trigger
     public bool isNextTrigger()
     {
-        if (effect.effectApplication != EffectScriptableObject.Application.Incremental)
+        if (!effect.isIncremental)
         {
             return false;
         }

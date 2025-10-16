@@ -68,4 +68,6 @@ public class EffectScriptableObject : ScriptableObject
     // time to wait between effect changes
     // only used for incremental effects
     public float incrementInterval;
+
+    public bool isDebuff;
 }

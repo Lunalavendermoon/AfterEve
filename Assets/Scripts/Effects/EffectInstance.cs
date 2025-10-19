@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EffectInstance
 {
-    public EffectScriptableObject effect;
+    public Effects effect;
 
     float timer;
 
@@ -11,7 +11,7 @@ public class EffectInstance
 
     float triggerInterval;
 
-    public EffectInstance(EffectScriptableObject eff)
+    public EffectInstance(Effects eff)
     {
         effect = eff;
         timer = eff.effectDuration;

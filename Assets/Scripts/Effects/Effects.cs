@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EffectScriptableObject", menuName = "Scriptable Objects/EffectScriptableObject")]
-public class EffectScriptableObject : ScriptableObject
+public class Effects : ScriptableObject
 {
     // the stat affected by the effect
     public enum Stat

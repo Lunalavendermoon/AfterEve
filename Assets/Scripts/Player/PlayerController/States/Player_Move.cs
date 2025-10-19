@@ -16,8 +16,6 @@ public class Player_Move : IPlayerState
 
     public void UpdateState(PlayerController player)
     {
-        
-
         Vector3 currentPosition = new Vector3();
         currentPosition.x += 5 * player.horizontalInput * player.playerAttributes.speed * Time.deltaTime;
         currentPosition.y += 5 * player.verticalInput * player.playerAttributes.speed * Time.deltaTime;

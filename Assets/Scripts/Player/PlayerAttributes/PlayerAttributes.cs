@@ -32,21 +32,20 @@ public class PlayerAttributes : ScriptableObject
     // Player Formulas
 
     // Damange received from enemy Calculation
-    public int BasicDamage(int baseDamage)
+    public int DamageCalculation(int baseDamage, EnemyAttributes.DamageType damageType)
     {
-        return (int)(baseDamage * (1 - ((float) basicDefence / ( basicDefence + 100))) - shield);
-    }
+        switch (damageType)
+        {
+            case EnemyAttributes.DamageType.Basic:
+                return (int)(baseDamage * (1 - ((float)basicDefence / (basicDefence + 100))) - shield);
+            case EnemyAttributes.DamageType.Spiritual:
+                return (int)(baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100))) - shield);
+            case EnemyAttributes.DamageType.Mixed:
+                return (int)(0.5 * baseDamage * (1 - ((float)basicDefence / (basicDefence + 100)))) + (int)(0.5 * baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100)))) - shield;
+        }
 
-    public int SpiritualDamage(int baseDamage)
-    {
-        return (int) (baseDamage * (1 - ((float) spiritualDefense / ( spiritualDefense + 100))) - shield);
+        return 0;
     }
-
-    public int MixedDamage(int baseDamage)
-    {
-        return (int)(0.5 * baseDamage * (1 - ((float) basicDefence / ( basicDefence + 100)))) + (int)(0.5 * baseDamage * (1 - ((float) spiritualDefense / (spiritualDefense + 100)))) - shield;
-    }
-
 
     // Ability Multiplier Damage Calculation
     public int AbilityMultiplierDamage(int abilityBaseDamage)

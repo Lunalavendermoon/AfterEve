@@ -35,9 +35,17 @@ public class Player_Dash : IPlayerState
         player.transform.position += 5 * player.playerAttributes.speed * dashPower * deceleration * Time.deltaTime * dashDirection;
 
         // allow movement as well
-        Vector3 currentPosition = player.transform.position;
+        Vector3 currentPosition = new Vector3();
         currentPosition.x += 5 * player.horizontalInput * player.playerAttributes.speed * Time.deltaTime;
         currentPosition.y += 5 * player.verticalInput * player.playerAttributes.speed * Time.deltaTime;
+
+        if (player.horizontalInput > 0 && player.verticalInput > 0)
+        {
+            currentPosition.x *= 1 / (float)Math.Sqrt(2);
+            currentPosition.y *= 1 / (float)Math.Sqrt(2);
+        }
+
+        currentPosition += player.transform.position;
         player.transform.position = currentPosition;
     }
     

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 // Manages the effects present on a single entity (player/enemy)
 public class EffectManager : MonoBehaviour
 {
@@ -129,6 +130,25 @@ public class EffectManager : MonoBehaviour
         // TODO do timer stuff?
         // maybe? increase the value of incremental EffectInstances by checking if eff.isNextTrigger() is true
         // after calling eff.subtractTime(t)
+
+        float time_elapsed=Time.deltaTime;
+
+        for(int i =effectTimers.Count - 1; i >= 0; i--)
+        {
+            EffectInstance ei = effectTimers[i];
+            ei.subtractTime(time_elapsed);
+            if (ei.isExpired())
+            {
+                RemoveEffect(ei);
+            }
+            else if (ei.isNextTrigger())
+            {
+                //TODO apply incremental effect
+                
+            }
+        }
+
+
     }
 
     public float GetTotalBuff(Tuple<Effects.Stat, Effects.Application> effect)

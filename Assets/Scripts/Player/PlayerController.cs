@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
 
 
     // player attributes
-    public float speed = 5f;
+    public PlayerAttributes playerAttributes;
 
     // dashing mechanisms
-    public float dashPower = 2f;
+    public float dashPower = 1.05f;
     public float dashDuration = .001f;
     public float dashStartTime;
     public Vector3 dashDirection;
@@ -67,14 +67,11 @@ public class PlayerController : MonoBehaviour
                 // i don't know yet
                 break;
             case PlayerState.Move:
-                Vector3 currentPosition = transform.position;
-                currentPosition.x += horizontalInput * speed * Time.deltaTime;
-                currentPosition.y += verticalInput * speed * Time.deltaTime;
-                transform.position = currentPosition;
+                UpdateMove();
                 break;
             case PlayerState.Dash:
-                float dashMultiplier = (dashDuration - (Time.time - dashStartTime)) / (dashDuration/2);
-                transform.position += speed * dashPower * dashMultiplier * Time.deltaTime * dashDirection;
+                UpdateMove();
+                UpdateDash();
                 break;
         }
     }
@@ -114,5 +111,19 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    void UpdateMove()
+    {
+        Vector3 currentPosition = transform.position;
+        currentPosition.x += horizontalInput * playerAttributes.speed * Time.deltaTime;
+        currentPosition.y += verticalInput * playerAttributes.speed * Time.deltaTime;
+        transform.position = currentPosition;
+    }
+    
+    void UpdateDash()
+    {
+        float dashMultiplier = (playerAttributes.speed + dashDuration - (Time.time - dashStartTime)) / (dashDuration/2);
+        transform.position += playerAttributes.speed * dashPower * dashMultiplier * Time.deltaTime * dashDirection;
     }
 }

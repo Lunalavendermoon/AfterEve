@@ -2,10 +2,10 @@ using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class OldPlayerController : MonoBehaviour
 {
     // make into singleton
-    public static PlayerController instance;
+    public static OldPlayerController instance;
 
     private void Awake()
     {
@@ -36,9 +36,9 @@ public class PlayerController : MonoBehaviour
     public float dashStartTime;
     public Vector3 dashDirection;
 
+    // state machine
     public PlayerState currentState;
 
-    
 
     void OnEnable()
     {
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         playerInput.Disable();
     }
+
 
     void Start()
     {
@@ -74,6 +75,11 @@ public class PlayerController : MonoBehaviour
                 UpdateDash();
                 break;
         }
+
+        if(playerInput.Player.Attack.IsPressed())
+        {
+            
+        }
     }
 
     void HandleInput()
@@ -97,12 +103,7 @@ public class PlayerController : MonoBehaviour
                 {
                     currentState = PlayerState.Idle;
                 }
-                if (playerInput.Player.Dash.triggered)
-                {
-                    dashStartTime = Time.time;
-                    dashDirection = new Vector3(horizontalInput, verticalInput, 0);
-                    currentState = PlayerState.Dash;
-                }
+                if (playerInput.Player.Dash.triggered) StartDash();
                 break;
             case PlayerState.Dash:
                 if (Time.time > dashStartTime + dashDuration)
@@ -120,10 +121,17 @@ public class PlayerController : MonoBehaviour
         currentPosition.y += verticalInput * playerAttributes.speed * Time.deltaTime;
         transform.position = currentPosition;
     }
+
+    void StartDash()
+    {
+        dashStartTime = Time.time;
+        dashDirection = new Vector3(horizontalInput, verticalInput, 0);
+        currentState = PlayerState.Dash;
+    }
     
     void UpdateDash()
     {
-        float dashMultiplier = (playerAttributes.speed + dashDuration - (Time.time - dashStartTime)) / (dashDuration/2);
+        float dashMultiplier = (dashDuration - (Time.time - dashStartTime)) / (dashDuration/2);
         transform.position += playerAttributes.speed * dashPower * dashMultiplier * Time.deltaTime * dashDirection;
     }
 }

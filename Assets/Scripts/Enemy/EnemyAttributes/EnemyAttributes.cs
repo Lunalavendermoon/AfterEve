@@ -14,9 +14,13 @@ public class EnemyAttributes : ScriptableObject
         Mixed
     }
     public DamageType damageType;
+    public int attackRadius;
+    public float attackRate;
 
     [Header("Defense")]
+
     public int hitPoints;
+    public int weight;
 
     public int basicDefense;
     public int spiritualDefense;
@@ -24,7 +28,7 @@ public class EnemyAttributes : ScriptableObject
     [Header("Movement")]
     public float speed;
 
-    [Header("Effects")]
+    [Header("Status Effects")]
     public float resistance;
 
     // Enemy Formulas

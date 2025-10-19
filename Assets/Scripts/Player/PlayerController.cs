@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
 
     // player attributes
-    public PlayerAttributes playerAttributes;
+    public float speed = 5f;
 
     // dashing mechanisms
     public float dashPower = 2f;
@@ -68,13 +68,13 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Move:
                 Vector3 currentPosition = transform.position;
-                currentPosition.x += horizontalInput * playerAttributes.speed * Time.deltaTime;
-                currentPosition.y += verticalInput * playerAttributes.speed * Time.deltaTime;
+                currentPosition.x += horizontalInput * speed * Time.deltaTime;
+                currentPosition.y += verticalInput * speed * Time.deltaTime;
                 transform.position = currentPosition;
                 break;
             case PlayerState.Dash:
                 float dashMultiplier = (dashDuration - (Time.time - dashStartTime)) / (dashDuration/2);
-                transform.position += playerAttributes.speed * dashPower * dashMultiplier * Time.deltaTime * dashDirection;
+                transform.position += speed * dashPower * dashMultiplier * Time.deltaTime * dashDirection;
                 break;
         }
     }
@@ -94,16 +94,18 @@ public class PlayerController : MonoBehaviour
                 {
                     currentState = PlayerState.Move;
                 }
-                if (playerInput.Player.Dash.triggered) StartDash();
-                
                 break;
             case PlayerState.Move:
                 if (horizontalInput == 0 && verticalInput == 0)
                 {
                     currentState = PlayerState.Idle;
                 }
-                if (playerInput.Player.Dash.triggered) StartDash();
-
+                if (playerInput.Player.Dash.triggered)
+                {
+                    dashStartTime = Time.time;
+                    dashDirection = new Vector3(horizontalInput, verticalInput, 0);
+                    currentState = PlayerState.Dash;
+                }
                 break;
             case PlayerState.Dash:
                 if (Time.time > dashStartTime + dashDuration)
@@ -112,12 +114,5 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
-    }
-
-    void StartDash()
-    {
-        dashStartTime = Time.time;
-        dashDirection = new Vector3(horizontalInput, verticalInput, 0);
-        currentState = PlayerState.Dash;
     }
 }

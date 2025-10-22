@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         currentState.CheckState(this);
         currentState.UpdateState(this);
         HandleRotationInput();
+        HandleShootInput();
     }
 
     public void ChangeState(IPlayerState newState)
@@ -69,6 +70,14 @@ public class PlayerController : MonoBehaviour
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    }
+
+    void HandleShootInput ()
+    {
+        if(Input.GetButton("Fire1"))
+        {
+            PlayerGun.Instance.Shoot();
         }
     }
 }

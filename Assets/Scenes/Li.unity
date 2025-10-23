@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 1958279699}
   - component: {fileID: 1958279698}
   - component: {fileID: 1958279702}
+  - component: {fileID: 1958279703}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -465,6 +466,21 @@ MonoBehaviour:
   horizontalInput: 0
   verticalInput: 0
   playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
+--- !u!114 &1958279703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958279696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5536f5e380b9f8b4abee668430326c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGun
+  firingPoint: {fileID: 0}
+  projectilePrefab: {fileID: 6863573353313981101, guid: 709faae610094f645a22d737154f1784, type: 3}
+  firingSpeed: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

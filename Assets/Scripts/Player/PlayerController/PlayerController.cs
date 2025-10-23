@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAttributes playerAttributes;
 
     // state machine
-    IPlayerState currentState;
+    public IPlayerState currentState;
 
     void Start()
     {

@@ -17,10 +17,12 @@ public class EffectInstance
         timer = eff.effectDuration;
         nextTriggerTime = eff.effectDuration;
 
+        /**
         if (eff.isIncremental)
         {
             triggerInterval = eff.incrementInterval;
         }
+        **/
     }
 
     public void subtractTime(float delta_t)
@@ -39,10 +41,12 @@ public class EffectInstance
     // set the timestamp for the next trigger
     public bool isNextTrigger()
     {
+        /**
         if (!effect.isIncremental)
         {
             return false;
         }
+        **/
 
         bool ret = false;
         if (timer <= nextTriggerTime)

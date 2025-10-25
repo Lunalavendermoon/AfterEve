@@ -31,12 +31,23 @@ public class EffectManager : MonoBehaviour
         Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
 
         bool existingEffect = effectStacks.ContainsKey(key);
+
         if (app == Effects.Application.Disable &&
-            existingEffect)
+            existingEffect && !effect.isPermanent)
         {
             // disable is a special case that can't stack
-            return;
+            // instead, if the current debuff has a longer duration than the currently active debuff,
+            // increase the duration of the active debuff to simulate the act of applying a new disable debuff
+            foreach (EffectInstance ei in effectTimers)
+            {
+                if (ei.effect.effectStat == stat)
+                {
+                    ei.timer = Mathf.Max(ei.timer, effect.effectDuration);
+                    return;
+                }
+            }
         }
+        
         EffectInstance eff = new EffectInstance(effect);
 
         if (existingEffect)
@@ -71,12 +82,12 @@ public class EffectManager : MonoBehaviour
             }
         }
 
-        if (!effect.isPermanent)
-        {
-            effectTimers.Add(eff);
-        } else
+        if (effect.isPermanent)
         {
             permanentEffects.Add(eff);
+        } else
+        {
+            effectTimers.Add(eff);
         }
 
         ApplyEffects();
@@ -86,9 +97,13 @@ public class EffectManager : MonoBehaviour
     // b/c this method makes use of ReferenceEquals
     public void RemoveEffect(EffectInstance ei)
     {
-        // TODO: if effect is permanent, we should remove from permanentTimers instead of effectTimers
-
-        effectTimers.Remove(ei);
+        if (ei.effect.isPermanent)
+        {
+            permanentEffects.Remove(ei);
+        } else
+        {
+            effectTimers.Remove(ei);
+        }
 
         Effects effect = ei.effect;
 
@@ -161,6 +176,10 @@ public class EffectManager : MonoBehaviour
         // TODO we need to reset player stats to base before applying
         // not sure if Effect already does that, if it does then ignore this comment :D
 
+        // iterate through all stats and modify them one-by-one!
+        // this is the easiest way but kind of inefficient
+        // because some combinations of stat and application will never exist (ex. Defense and Disable)
+        // if this impacts performance, i'll fix it to skip over the impossible cases
         Effects.Stat[] stats = (Effects.Stat[])Enum.GetValues(typeof(Effects.Stat));
         Effects.Application[] applications = (Effects.Application[])Enum.GetValues(typeof(Effects.Application));
 
@@ -174,19 +193,19 @@ public class EffectManager : MonoBehaviour
             {
                 Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
 
-                if (buffs.ContainsKey(key))
+                List<Effects> buffList;
+                if (buffs.TryGetValue(key, out buffList))
                 {
-                    foreach (Effects eff in buffs[key])
+                    foreach (Effects eff in buffList)
                     {
                         eff.ApplyEffect();
                     }
                 }
-                if (debuffs.ContainsKey(key))
+
+                SortedSet<Effects> debuffSet;
+                if (debuffs.TryGetValue(key, out debuffSet))
                 {
-                    foreach (Effects eff in debuffs[key])
-                    {
-                        eff.ApplyEffect();
-                    }
+                    debuffSet.Min.ApplyEffect();
                 }
             }
         }

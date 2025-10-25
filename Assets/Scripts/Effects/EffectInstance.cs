@@ -4,7 +4,7 @@ public class EffectInstance
 {
     public Effects effect;
 
-    float timer;
+    public float timer;
 
     // nextTriggerTime & triggerInterval are only used for Incremental effects
     float nextTriggerTime;

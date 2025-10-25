@@ -21,4 +21,13 @@ public class Bleed_Effect : Multiplier_Effects
         incrementInterval = timeBetweenIncrements;
     }
 
+    public override bool IsIncremental()
+    {
+        return true;
+    }
+
+    public override float GetIncrementDuration()
+    {
+        return incrementInterval;
+    }
 }

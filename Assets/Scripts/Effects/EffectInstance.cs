@@ -9,7 +9,7 @@ public class EffectInstance
     // nextTriggerTime & triggerInterval are only used for Incremental effects
     float nextTriggerTime;
 
-    float triggerInterval;
+    readonly float triggerInterval;
 
     public EffectInstance(Effects eff)
     {
@@ -17,43 +17,41 @@ public class EffectInstance
         timer = eff.effectDuration;
         nextTriggerTime = eff.effectDuration;
 
-        /**
-        if (eff.isIncremental)
+        if (eff.IsIncremental())
         {
-            triggerInterval = eff.incrementInterval;
+            triggerInterval = eff.GetIncrementDuration();
         }
-        **/
     }
 
-    public void subtractTime(float delta_t)
+    public void SubtractTime(float delta_t)
     {
         timer -= delta_t;
     }
 
-    public bool isExpired()
+    public bool IsExpired()
     {
         return !effect.isPermanent && timer <= 0f;
     }
 
     // might be a bit dodgy implementation...
-    // currently, relies on the effect manager to remember to call isNextTrigger() every frame
+    // currently, relies on the effect manager to remember to call IsNextTrigger() every frame
     // to check if Incremental effect has triggered and to make this class
     // set the timestamp for the next trigger
-    public bool isNextTrigger()
+    public bool IsNextTrigger()
     {
-        /**
-        if (!effect.isIncremental)
+        if (!effect.IsIncremental())
         {
             return false;
         }
-        **/
+        return timer <= nextTriggerTime;
+    }
 
-        bool ret = false;
-        if (timer <= nextTriggerTime)
+    public void DecrementTriggerTime()
+    {
+        if (!effect.IsIncremental())
         {
-            ret = true;
-            nextTriggerTime -= triggerInterval;
+            return;
         }
-        return ret;
+        nextTriggerTime -= triggerInterval;
     }
 }

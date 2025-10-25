@@ -15,7 +15,8 @@ public abstract class Effects
         Luck,
         Shield,
         Knockback,
-        Reverse
+        Reverse,
+        Movement
     }
 
     // how the effect is applied
@@ -75,4 +76,14 @@ public abstract class Effects
 
     // should be called every frame by the EffectsManager when in effect
     public abstract void ApplyEffect();
+
+    public virtual bool IsIncremental()
+    {
+        return false;
+    }
+
+    public virtual float GetIncrementDuration()
+    {
+        return 0f;
+    }
 }

@@ -7,24 +7,22 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour
 {
     // only store effects that can time out
-    List<EffectInstance> effectTimers = new();
+    readonly List<EffectInstance> effectTimers = new();
 
-    // stores number of stack of each effect
-    public Dictionary<Effects.Stat, int> effectStacks = new();
+    // only store effects that never time out (like tarot effects)
+    readonly List<EffectInstance> permanentEffects = new();
+
+    // stores every single effect that's currently active
+    public Dictionary<Tuple<Effects.Stat, Effects.Application>, List<Effects>> effectStacks = new();
 
     // only used for buffs that are not Disable-type
-    // stores the sum of all effect modifiers for a given stat
+    // stores the all buff modifiers for a given stat
     // contains a pair: the stat to modify, and how to modify it (additive, flat, percentage)
-    public Dictionary<Tuple<Effects.Stat, Effects.Application>, float> buffValues = new();
+    public Dictionary<Tuple<Effects.Stat, Effects.Application>, List<Effects>> buffs = new();
 
     // only used for debuffs that are not Disable-type
     // stores all the debuffs of a given type, sorted in decreasing order of magnitude
     public Dictionary<Tuple<Effects.Stat, Effects.Application>, SortedSet<Effects>> debuffs = new();
-
-    public bool HasEffect(Effects.Stat stat)
-    {
-        return effectStacks.ContainsKey(stat);
-    }
 
     public void AddEffect(Effects effect)
     {
@@ -32,7 +30,7 @@ public class EffectManager : MonoBehaviour
         Effects.Application app = effect.effectApplication;
         Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
 
-        bool existingEffect = HasEffect(stat);
+        bool existingEffect = effectStacks.ContainsKey(key);
         if (app == Effects.Application.Disable &&
             existingEffect)
         {
@@ -50,13 +48,13 @@ public class EffectManager : MonoBehaviour
             }
             else
             {
-                effectStacks[stat]++;
-                buffValues[key] += effect.effectRate;
+                effectStacks[key].Add(effect);
+                buffs[key].Add(effect);
             }
         }
         else
         {
-            effectStacks[stat] = 1;
+            effectStacks[key] = new() { effect };
             if (effect.isDebuff)
             {
                 debuffs[key] = new(new DebuffComparer())
@@ -68,7 +66,7 @@ public class EffectManager : MonoBehaviour
             {
                 if (app != Effects.Application.Disable)
                 {
-                    buffValues[key] = effect.effectRate;
+                    buffs[key] = new List<Effects>() { effect };
                 }
             }
         }
@@ -76,13 +74,20 @@ public class EffectManager : MonoBehaviour
         if (!effect.isPermanent)
         {
             effectTimers.Add(eff);
+        } else
+        {
+            permanentEffects.Add(eff);
         }
+
+        ApplyEffects();
     }
 
     // Requires that the instance of EffectInstance is the same one that is stored in this EffectManager's collections
     // b/c this method makes use of ReferenceEquals
     public void RemoveEffect(EffectInstance ei)
     {
+        // TODO: if effect is permanent, we should remove from permanentTimers instead of effectTimers
+
         effectTimers.Remove(ei);
 
         Effects effect = ei.effect;
@@ -98,28 +103,28 @@ public class EffectManager : MonoBehaviour
             if (debuffs[key].Count == 0)
             {
                 // this effect no longer exists
-                effectStacks[stat] = 0;
+                effectStacks.Remove(key);
                 debuffs.Remove(key);
             }
         }
         else
         {
-            effectStacks[stat]--;
+            effectStacks[key].Remove(effect);
 
-            if (effectStacks[stat] == 0)
+            if (effectStacks[key].Count == 0)
             {
                 // this effect no longer exists
-                effectStacks.Remove(stat);
+                effectStacks.Remove(key);
                 if (app != Effects.Application.Disable)
                 {
-                    buffValues.Remove(key);
+                    buffs.Remove(key);
                 }
             }
             else
             {
-                if (buffValues.ContainsKey(key))
+                if (buffs.ContainsKey(key))
                 {
-                    buffValues[key] -= effect.effectRate;
+                    buffs[key].Remove(effect);
                 }
             }
         }
@@ -127,77 +132,86 @@ public class EffectManager : MonoBehaviour
 
     void Update()
     {
-        // TODO do timer stuff?
-        // maybe? increase the value of incremental EffectInstances by checking if eff.isNextTrigger() is true
-        // after calling eff.subtractTime(t)
-
-        float time_elapsed=Time.deltaTime;
+        float time_elapsed = Time.deltaTime;
+        bool reapply_effects = false;
 
         for(int i =effectTimers.Count - 1; i >= 0; i--)
         {
             EffectInstance ei = effectTimers[i];
-            ei.subtractTime(time_elapsed);
-            if (ei.isExpired())
+            ei.SubtractTime(time_elapsed);
+            if (ei.IsExpired())
             {
                 RemoveEffect(ei);
+                reapply_effects = true;
             }
-            else if (ei.isNextTrigger())
+            else if (ei.IsNextTrigger())
             {
-                //TODO apply incremental effect
-                
+                reapply_effects = true;
             }
         }
 
-
-    }
-
-    public float GetTotalBuff(Tuple<Effects.Stat, Effects.Application> effect)
-    {
-        switch (effect.Item2)
+        if (reapply_effects)
         {
-            case Effects.Application.Additive:
-            case Effects.Application.Flat:
-                return buffValues.ContainsKey(effect) ? buffValues[effect] : 0f;
-            case Effects.Application.Multiplier:
-                return buffValues.ContainsKey(effect) ? buffValues[effect] : 1f;
-            default:
-                return 0f;
+            ApplyEffects();
         }
     }
 
-    public float GetTotalDebuff(Tuple<Effects.Stat, Effects.Application> effect)
+    public void ApplyEffects()
     {
-        // Assming that debuffs are either negative (flat/additive) or between 0-1 (percentage reduction),
-        // we should use Min instead of Max to find the debuff with the largest reduction value
-        switch (effect.Item2)
+        // TODO we need to reset player stats to base before applying
+        // not sure if Effect already does that, if it does then ignore this comment :D
+
+        Effects.Stat[] stats = (Effects.Stat[])Enum.GetValues(typeof(Effects.Stat));
+        Effects.Application[] applications = (Effects.Application[])Enum.GetValues(typeof(Effects.Application));
+
+        List<Effects.Application> ordered = new() {
+            Effects.Application.Additive, Effects.Application.Multiplier, Effects.Application.Flat };
+
+        // apply all additive, multiplier, and flat effects
+        foreach (Effects.Stat stat in stats)
         {
-            case Effects.Application.Additive:
-            case Effects.Application.Flat:
-                return debuffs.ContainsKey(effect) ? debuffs[effect].Min.effectRate : 0f;
-            case Effects.Application.Multiplier:
-                return debuffs.ContainsKey(effect) ? debuffs[effect].Min.effectRate : 1f;
-            default:
-                return 0f;
+            foreach (Effects.Application app in ordered)
+            {
+                Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
+
+                if (buffs.ContainsKey(key))
+                {
+                    foreach (Effects eff in buffs[key])
+                    {
+                        eff.ApplyEffect();
+                    }
+                }
+                if (debuffs.ContainsKey(key))
+                {
+                    foreach (Effects eff in debuffs[key])
+                    {
+                        eff.ApplyEffect();
+                    }
+                }
+            }
         }
-    }
 
-    public float ModifyStat(Effects.Stat stat, float baseValue)
-    {
-        // TODO: ensure baseStat doesn't go out of legal bounds (maybe Mathf.Clamp it)
-        // large Additive-type debuffs could easily tip a positive stat into negative territory
+        // apply all other effects
+        foreach (Effects.Stat stat in stats)
+        {
+            foreach (Effects.Application app in applications)
+            {
+                if (ordered.Contains(app))
+                {
+                    // already applied these in the previous loop!
+                    continue;
+                }
 
-        // additive
-        baseValue += GetTotalBuff(Tuple.Create(stat, Effects.Application.Additive));
-        baseValue += GetTotalDebuff(Tuple.Create(stat, Effects.Application.Additive));
+                Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
 
-        // multiplier
-        baseValue *= GetTotalBuff(Tuple.Create(stat, Effects.Application.Multiplier));
-        baseValue *= GetTotalDebuff(Tuple.Create(stat, Effects.Application.Multiplier));
-
-        // flat
-        baseValue += GetTotalBuff(Tuple.Create(stat, Effects.Application.Flat));
-        baseValue += GetTotalDebuff(Tuple.Create(stat, Effects.Application.Flat));
-
-        return baseValue;
+                if (effectStacks.ContainsKey(key))
+                {
+                    foreach (Effects eff in effectStacks[key])
+                    {
+                        eff.ApplyEffect();
+                    }
+                }
+            }
+        }
     }
 }

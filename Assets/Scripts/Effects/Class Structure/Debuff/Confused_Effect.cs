@@ -14,6 +14,7 @@ public class Confused_Effect : Effects
         effectStat = Stat.Reverse;
         isDebuff = true;
         player = PlayerController.instance;
+        effectApplication = Application.Disable;
     }
 
     public override void ApplyEffect()

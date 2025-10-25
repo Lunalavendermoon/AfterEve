@@ -12,5 +12,6 @@ public class Shield_Effect : Flat_Effects
     {
         effectStat = Stat.Shield;
         isDebuff = false;
+        effectApplication = Application.Flat;
     }
 }

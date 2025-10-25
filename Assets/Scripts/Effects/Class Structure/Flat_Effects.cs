@@ -5,7 +5,6 @@ public abstract class Flat_Effects : Effects
     // the flat amount the effect is altered
     protected Flat_Effects(PlayerAttributes attributes, float duration, int effectFlat) : base(attributes, duration)
     {
-        effectApplication = Application.Flat;
         effectRate = effectFlat;
     }
 

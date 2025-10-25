@@ -9,7 +9,7 @@ public class Confused_Effect : Effects
     /// </summary>
     /// <param name="attributes"> player attributes </param>
     /// <param name="duration"> duration of time (seconds) the effect lasts for </param>
-    public Confused_Effect(PlayerAttributes modifiedAttributes, float duration) : base(modifiedAttributes, duration)
+    public Confused_Effect(float duration) : base(duration)
     {
         effectStat = Stat.Reverse;
         isDebuff = true;
@@ -17,7 +17,7 @@ public class Confused_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect()
+    public override void ApplyEffect(PlayerAttributes _)
     {
         player.horizontalInput *= -1;
         player.verticalInput *= -1;

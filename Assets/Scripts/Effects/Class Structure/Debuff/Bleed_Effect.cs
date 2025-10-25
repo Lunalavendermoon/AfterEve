@@ -10,7 +10,7 @@ public class Bleed_Effect : Multiplier_Effects
     /// <param name="duration"> duration of time (seconds) the effect lasts for </param>
     /// <param name="healthDecreasePercent"> lose this percent of HP each increment </param>
     /// <param name="timeBetweenIncrements"> time between each increment </param>
-    public Bleed_Effect(PlayerAttributes attributes, float duration, float effectMultiplier, float timeBetweenIncrements) : base(attributes, duration, effectMultiplier)
+    public Bleed_Effect(float duration, float effectMultiplier, float timeBetweenIncrements) : base(duration, effectMultiplier)
     {
         // facts
         effectStat = Stat.HP;

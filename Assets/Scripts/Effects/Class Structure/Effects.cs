@@ -45,8 +45,6 @@ public abstract class Effects
         Other
     }
 
-    public PlayerAttributes playerAttributes;
-
     // stat effected
     public Stat effectStat;
 
@@ -66,16 +64,15 @@ public abstract class Effects
     // true = debuff, false = buff
     public bool isDebuff;
 
-    public Effects(PlayerAttributes modifiedAttributes, float duration)
+    public Effects(float duration)
     {
-        playerAttributes = modifiedAttributes;
         effectDuration = duration;
 
         if (duration < 0) isPermanent = true;
     }
 
     // should be called every frame by the EffectsManager when in effect
-    public abstract void ApplyEffect();
+    public abstract void ApplyEffect(PlayerAttributes playerAttributes);
 
     public virtual bool IsIncremental()
     {

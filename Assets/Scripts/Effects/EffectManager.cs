@@ -24,6 +24,12 @@ public class EffectManager : MonoBehaviour
     // stores all the debuffs of a given type, sorted in decreasing order of magnitude
     public Dictionary<Tuple<Effects.Stat, Effects.Application>, SortedSet<Effects>> debuffs = new();
 
+    // constant, storing the base attribute values
+    public PlayerAttributes basePlayerAttributes;
+
+    // changes during runtime based on the effects the player currently has
+    public PlayerAttributes effectPlayerAttributes;
+
     public void AddEffect(Effects effect)
     {
         Effects.Stat stat = effect.effectStat;
@@ -173,8 +179,8 @@ public class EffectManager : MonoBehaviour
 
     public void ApplyEffects()
     {
-        // TODO we need to reset player stats to base before applying
-        // not sure if Effect already does that, if it does then ignore this comment :D
+        // make a copy of base attributes that we can modify!
+        effectPlayerAttributes = Instantiate(basePlayerAttributes);
 
         // iterate through all stats and modify them one-by-one!
         // this is the easiest way but kind of inefficient
@@ -198,14 +204,14 @@ public class EffectManager : MonoBehaviour
                 {
                     foreach (Effects eff in buffList)
                     {
-                        eff.ApplyEffect();
+                        eff.ApplyEffect(effectPlayerAttributes);
                     }
                 }
 
                 SortedSet<Effects> debuffSet;
                 if (debuffs.TryGetValue(key, out debuffSet))
                 {
-                    debuffSet.Min.ApplyEffect();
+                    debuffSet.Min.ApplyEffect(effectPlayerAttributes);
                 }
             }
         }
@@ -227,7 +233,7 @@ public class EffectManager : MonoBehaviour
                 {
                     foreach (Effects eff in effectStacks[key])
                     {
-                        eff.ApplyEffect();
+                        eff.ApplyEffect(effectPlayerAttributes);
                     }
                 }
             }

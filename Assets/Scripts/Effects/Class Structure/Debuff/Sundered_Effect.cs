@@ -9,7 +9,7 @@ public class Sundered_Effect : Multiplier_Effects
     /// <param name="attributes"> player attributes </param>
     /// <param name="duration"> duration of time (seconds) the effect lasts for </param>
     /// <param name="defenseDecreasePercent"> lose this percent of Basic Defense </param>
-    public Sundered_Effect(PlayerAttributes attributes, float duration, float effectMultiplier, float defenseDecreasePercent) : base(attributes, duration, effectMultiplier)
+    public Sundered_Effect(float duration, float effectMultiplier, float defenseDecreasePercent) : base(duration, effectMultiplier)
     {
         // facts
         effectStat = Stat.BasicDefense;

@@ -11,14 +11,14 @@ public abstract class Multiplier_Effects : Effects
     public float incrementInterval;
     private float startTime;
 
-    protected Multiplier_Effects(PlayerAttributes attributes, float duration, float effectMultiplier) : base(attributes, duration)
+    protected Multiplier_Effects(float duration, float effectMultiplier) : base(duration)
     {
         effectApplication = Application.Multiplier;
         startTime = Time.time;
         effectRate = effectMultiplier;
     }
 
-    public override void ApplyEffect()
+    public override void ApplyEffect(PlayerAttributes playerAttributes)
     {
         if (isIncremental && Time.time - startTime > incrementInterval)
         {

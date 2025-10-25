@@ -10,7 +10,7 @@ public class Paralyze_Effect : Effects
     /// </summary>
     /// <param name="modifiedAttributes"></param>
     /// <param name="duration"></param>
-    public Paralyze_Effect(PlayerAttributes modifiedAttributes, float duration) : base(modifiedAttributes, duration)
+    public Paralyze_Effect(float duration) : base(duration)
     {
         effectStat = Stat.Movement;
         isDebuff = true;
@@ -19,7 +19,7 @@ public class Paralyze_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect()
+    public override void ApplyEffect(PlayerAttributes _)
     {
         player.currentState = idle; 
     }

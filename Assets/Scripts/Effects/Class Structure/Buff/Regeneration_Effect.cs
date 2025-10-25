@@ -8,7 +8,7 @@ public class Regeneration_Effect : Multiplier_Effects
     /// <param name="attributes"></param>
     /// <param name="duration"></param>
     /// <param name="effectMultiplier"></param>
-    public Regeneration_Effect(PlayerAttributes attributes, float duration, float effectMultiplier) : base(attributes, duration, effectMultiplier)
+    public Regeneration_Effect(float duration, float effectMultiplier) : base(duration, effectMultiplier)
     {
         effectStat = Stat.HP;
         isDebuff = false;

@@ -91,7 +91,8 @@ public class EffectManager : MonoBehaviour
         if (effect.isPermanent)
         {
             permanentEffects.Add(eff);
-        } else
+        }
+        else
         {
             effectTimers.Add(eff);
         }
@@ -104,7 +105,8 @@ public class EffectManager : MonoBehaviour
         if (ei.effect.isPermanent)
         {
             permanentEffects.Remove(ei);
-        } else
+        }
+        else
         {
             effectTimers.Remove(ei);
         }
@@ -181,48 +183,36 @@ public class EffectManager : MonoBehaviour
         List<Effects.Application> ordered = new() {
             Effects.Application.Additive, Effects.Application.Multiplier, Effects.Application.Flat };
 
-        // apply all additive, multiplier, and flat effects
         foreach (Effects.Stat stat in stats)
         {
             foreach (Effects.Application app in ordered)
             {
                 Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
 
-                List<Effects> buffList;
-                if (buffs.TryGetValue(key, out buffList))
+                if (app == Effects.Application.Additive || app == Effects.Application.Multiplier ||
+                    app == Effects.Application.Flat)
                 {
-                    foreach (Effects eff in buffList)
+                    if (buffs.TryGetValue(key, out List<Effects> buffList))
                     {
-                        eff.ApplyEffect(effectPlayerAttributes);
+                        foreach (Effects eff in buffList)
+                        {
+                            eff.ApplyEffect(effectPlayerAttributes);
+                        }
+                    }
+
+                    if (debuffs.TryGetValue(key, out SortedSet<Effects> debuffSet))
+                    {
+                        debuffSet.Min.ApplyEffect(effectPlayerAttributes);
                     }
                 }
-
-                SortedSet<Effects> debuffSet;
-                if (debuffs.TryGetValue(key, out debuffSet))
+                else
                 {
-                    debuffSet.Min.ApplyEffect(effectPlayerAttributes);
-                }
-            }
-        }
-
-        // apply all other effects
-        foreach (Effects.Stat stat in stats)
-        {
-            foreach (Effects.Application app in applications)
-            {
-                if (ordered.Contains(app))
-                {
-                    // already applied these in the previous loop!
-                    continue;
-                }
-
-                Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
-
-                if (effectStacks.ContainsKey(key))
-                {
-                    foreach (Effects eff in effectStacks[key])
+                    if (effectStacks.TryGetValue(key, out List<Effects> effects))
                     {
-                        eff.ApplyEffect(effectPlayerAttributes);
+                        foreach (Effects eff in effects)
+                        {
+                            eff.ApplyEffect(effectPlayerAttributes);
+                        }
                     }
                 }
             }

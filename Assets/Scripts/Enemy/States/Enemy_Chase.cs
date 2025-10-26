@@ -43,7 +43,8 @@ public class Enemy_Chase : IEnemyStates
             {
                 enemy.ChangeState(new Enemy_Idle());
             }
-        } else
+        }
+        else
         {
             chaseTimer = 0f;
 

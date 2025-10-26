@@ -14,6 +14,5 @@ public class Regeneration_Effect : Multiplier_Effects
         isDebuff = false;
         isIncremental = true;
         incrementInterval = 1;
-        effectApplication = Application.Flat;
     }
 }

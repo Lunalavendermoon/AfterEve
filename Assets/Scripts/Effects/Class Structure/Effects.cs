@@ -22,6 +22,9 @@ public abstract class Effects
     // how the effect is applied
     public enum Application
     {
+        // Note: please don't reorder Additive, Multiplier, and Float!
+        // this is the other of operations used to apply all the effects onto the entity
+
         // applies flat number over the duration before all other bonuses
         Additive,
 

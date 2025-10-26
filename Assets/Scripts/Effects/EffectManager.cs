@@ -95,8 +95,6 @@ public class EffectManager : MonoBehaviour
         {
             effectTimers.Add(eff);
         }
-
-        ApplyEffects();
     }
 
     // Requires that the instance of EffectInstance is the same one that is stored in this EffectManager's collections
@@ -154,7 +152,6 @@ public class EffectManager : MonoBehaviour
     void Update()
     {
         float time_elapsed = Time.deltaTime;
-        bool reapply_effects = false;
 
         for(int i =effectTimers.Count - 1; i >= 0; i--)
         {
@@ -163,18 +160,10 @@ public class EffectManager : MonoBehaviour
             if (ei.IsExpired())
             {
                 RemoveEffect(ei);
-                reapply_effects = true;
-            }
-            else if (ei.IsNextTrigger())
-            {
-                reapply_effects = true;
             }
         }
 
-        if (reapply_effects)
-        {
-            ApplyEffects();
-        }
+        ApplyEffects();
     }
 
     public void ApplyEffects()

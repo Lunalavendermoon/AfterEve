@@ -31,6 +31,9 @@ public class EnemyAttributes : ScriptableObject
     [Header("Status Effects")]
     public float resistance;
 
+    [Header("Detection")]
+    public float detection_radius;
+
     // Enemy Formulas
 
     // Damage received from player Calculation

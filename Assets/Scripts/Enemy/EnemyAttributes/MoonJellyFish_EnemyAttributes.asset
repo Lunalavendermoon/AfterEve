@@ -22,3 +22,4 @@ MonoBehaviour:
   spiritualDefense: 1
   speed: 2
   resistance: 0
+  detection_radius: 3

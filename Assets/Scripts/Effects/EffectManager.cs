@@ -30,6 +30,41 @@ public class EffectManager : MonoBehaviour
     // changes during runtime based on the effects the player currently has
     public PlayerAttributes effectPlayerAttributes;
 
+    // DONT USE THIS! IT'S ONLY FOR TESTING PURPOSES TO ADD A DUMMY EFFECT!!
+    public void AddEffectTest(string effect)
+    {
+        switch (effect)
+        {
+            case "paralyze":
+                Debug.Log("Apply paralyze effect");
+                AddEffect(new Paralyze_Effect(5f));
+                break;
+            case "def flat":
+                Debug.Log("Apply Defense Flat effect");
+                AddEffect(new Fortified_Flat_Effect(5f, 5));
+                break;
+            case "def mult":
+                Debug.Log("Apply Defense Multiplier effect");
+                AddEffect(new Fortified_Effect(5f, 1.5f));
+                break;
+            case "def add":
+                Debug.Log("Apply Defense Additive effect");
+                AddEffect(new Fortified_Additive_Effect(5f, 5));
+                break;
+            case "regen":
+                Debug.Log("Apply Regeneration effect");
+                AddEffect(new Regeneration_Effect(5f, 0.2f));
+                break;
+            case "bleed":
+                Debug.Log("Apply Bleed effect");
+                AddEffect(new Bleed_Effect(5f, 0.1f, 1f));
+                break;
+            default:
+                Debug.Log(effect + " is not a valid effect");
+                break;
+        }
+    }
+
     public void AddEffect(Effects effect)
     {
         Effects.Stat stat = effect.effectStat;
@@ -180,12 +215,9 @@ public class EffectManager : MonoBehaviour
         Effects.Stat[] stats = (Effects.Stat[])Enum.GetValues(typeof(Effects.Stat));
         Effects.Application[] applications = (Effects.Application[])Enum.GetValues(typeof(Effects.Application));
 
-        List<Effects.Application> ordered = new() {
-            Effects.Application.Additive, Effects.Application.Multiplier, Effects.Application.Flat };
-
         foreach (Effects.Stat stat in stats)
         {
-            foreach (Effects.Application app in ordered)
+            foreach (Effects.Application app in applications)
             {
                 Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
 
@@ -217,5 +249,7 @@ public class EffectManager : MonoBehaviour
                 }
             }
         }
+
+        // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefence);
     }
 }

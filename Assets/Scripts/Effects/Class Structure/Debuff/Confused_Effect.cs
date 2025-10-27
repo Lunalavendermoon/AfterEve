@@ -7,7 +7,6 @@ public class Confused_Effect : Effects
     /// <summary>
     /// Player’s movement is reversed
     /// </summary>
-    /// <param name="attributes"> player attributes </param>
     /// <param name="duration"> duration of time (seconds) the effect lasts for </param>
     public Confused_Effect(float duration) : base(duration)
     {

@@ -9,46 +9,69 @@ public abstract class Multiplier_Effects : Effects
     // time to wait between effect changes
     // only used for incremental effects
     public float incrementInterval;
-    private float startTime;
+
+    // makes sure incremental effect always triggers when first applied
+    // only used for incremental effects
+    protected bool initialApplication = true;
+
+    protected float startTime;
+
+    private float totalRate;
 
     protected Multiplier_Effects(float duration, float effectMultiplier) : base(duration)
     {
         effectApplication = Application.Multiplier;
         startTime = Time.time;
         effectRate = effectMultiplier;
+        totalRate = effectRate;
+
+        // if the subclass sets incremental = true, this will be overwritten
+        isIncremental = false;
+        incrementInterval = 0f;
     }
 
     public override void ApplyEffect(PlayerAttributes playerAttributes)
     {
-        if (isIncremental && Time.time - startTime > incrementInterval)
+        if (isIncremental && (Time.time - startTime > incrementInterval || initialApplication))
         {
-            effectRate *= effectRate;
+            totalRate *= effectRate;
             startTime = Time.time;
+            initialApplication = false;
         }
 
         switch (effectStat)
         {
             case Stat.HP:
-                playerAttributes.hitPoints = (int)(playerAttributes.hitPoints * effectRate);
+                playerAttributes.hitPoints = (int)(playerAttributes.hitPoints * totalRate);
                 break;
             case Stat.Speed:
-                playerAttributes.speed *= effectRate;
+                playerAttributes.speed *= totalRate;
                 break;
             case Stat.Damage:
                 // TODO incorporate weapon
                 break;
             case Stat.BasicDefense:
-                playerAttributes.basicDefence = (int)(playerAttributes.basicDefence * effectRate);
+                playerAttributes.basicDefence = (int)(playerAttributes.basicDefence * totalRate);
                 break;
             case Stat.SpiritualDefense:
-                playerAttributes.spiritualDefense = (int)(playerAttributes.spiritualDefense * effectRate);
+                playerAttributes.spiritualDefense = (int)(playerAttributes.spiritualDefense * totalRate);
                 break;
             case Stat.StaminaRegeneration:
-                playerAttributes.staminaRegeneration *= effectRate;
+                playerAttributes.staminaRegeneration *= totalRate;
                 break;
             case Stat.Luck:
-                playerAttributes.luck *= effectRate;
+                playerAttributes.luck *= totalRate;
                 break;
         }
+    }
+    
+    public override bool IsIncremental()
+    {
+        return isIncremental;
+    }
+
+    public override float GetIncrementDuration()
+    {
+        return incrementInterval;
     }
 }

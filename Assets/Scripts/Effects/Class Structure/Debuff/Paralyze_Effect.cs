@@ -8,7 +8,6 @@ public class Paralyze_Effect : Effects
     /// <summary>
     /// Unable to move, dash, or attack
     /// </summary>
-    /// <param name="modifiedAttributes"></param>
     /// <param name="duration"></param>
     public Paralyze_Effect(float duration) : base(duration)
     {
@@ -21,6 +20,6 @@ public class Paralyze_Effect : Effects
 
     public override void ApplyEffect(PlayerAttributes _)
     {
-        player.currentState = idle; 
+        player.currentState = idle;
     }
 }

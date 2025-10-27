@@ -32,26 +32,4 @@ public class EffectInstance
     {
         return !effect.isPermanent && timer <= 0f;
     }
-
-    // might be a bit dodgy implementation...
-    // currently, relies on the effect manager to remember to call IsNextTrigger() every frame
-    // to check if Incremental effect has triggered and to make this class
-    // set the timestamp for the next trigger
-    public bool IsNextTrigger()
-    {
-        if (!effect.IsIncremental())
-        {
-            return false;
-        }
-        return timer <= nextTriggerTime;
-    }
-
-    public void DecrementTriggerTime()
-    {
-        if (!effect.IsIncremental())
-        {
-            return;
-        }
-        nextTriggerTime -= triggerInterval;
-    }
 }

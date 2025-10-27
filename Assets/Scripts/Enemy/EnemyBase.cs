@@ -18,7 +18,6 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        
         current_enemy_state= default_enemy_state;
     }
 
@@ -27,7 +26,8 @@ public abstract class EnemyBase : MonoBehaviour
     {
         agent.speed = speed;
         current_enemy_state?.UpdateState(this);
-        
+        Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
+
     }
 
 

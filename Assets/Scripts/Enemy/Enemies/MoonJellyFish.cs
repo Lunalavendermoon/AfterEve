@@ -1,5 +1,9 @@
 using UnityEngine;
 
+
+/*    MoonJellyFish Enemy Class
+    Inherits from EnemyBase and initializes attributes from EnemyAttributes ScriptableObject
+*/
 public class MoonJellyFish : EnemyBase
 {
     public EnemyAttributes enemyAttributes;
@@ -13,26 +17,21 @@ public class MoonJellyFish : EnemyBase
         attackRange = enemyAttributes.attackRadius;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.speed = speed;
-    }
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+        default_enemy_state = new Enemy_Wander(10f, 3f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 
     public override void Attack(Transform target)
     {
+        //TODO
+
 
     }
 
     public override void Die()
     {
+        //TODO
     }
 
 }

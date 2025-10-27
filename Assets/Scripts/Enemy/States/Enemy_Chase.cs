@@ -8,6 +8,8 @@ public class Enemy_Chase : IEnemyStates
 
     private float chaseTimer;
 
+    
+
     // Time to wait between attacks
     private float attackCooldown;
     private float attackTimer;

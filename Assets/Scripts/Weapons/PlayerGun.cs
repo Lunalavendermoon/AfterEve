@@ -15,6 +15,8 @@ public class PlayerGun : MonoBehaviour
 
     private float lastTimeShot = 0;
 
+    public PlayerAttributes playerAttributes;
+
     void Awake()
     {
         Instance = GetComponent<PlayerGun>();

@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttributes
   weaponDamage: 100
   abilityMultiplier: 1
+  attackPerSec: 2
+  Ammo: 10
+  reloadSpeed: 2
+  bullets: 1
+  bulletSpread: 1
+  angle: 0
   hitPoints: 1000
   basicDefence: 10
   spiritualDefense: 5

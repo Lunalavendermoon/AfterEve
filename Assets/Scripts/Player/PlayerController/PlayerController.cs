@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -33,10 +34,16 @@ public class PlayerController : MonoBehaviour
     // state machine
     public IPlayerState currentState;
 
+    //for weapon ammo system
+    private int currentBullets;
+    private float lastReload;
+    public float reloadTime;
+
     void Start()
     {
         currentState = new Player_Idle();
         currentState.EnterState(this);
+        currentBullets = playerAttributes.Ammo;
     }
 
     void Update()
@@ -73,11 +80,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void HandleShootInput ()
+    void HandleShootInput()
     {
-        if(Input.GetButton("Fire1"))
+        if(currentBullets != 0)
         {
-            PlayerGun.Instance.Shoot();
+            if(playerInput.Player.Attack.triggered)
+            {
+                PlayerGun.Instance.Shoot();
+                currentBullets--;
+            }
+
+        } else
+        {
+            Reload();
+        }
+    }
+
+    Boolean currentlyReloading = false;
+
+    void Reload()
+    {
+        if (!currentlyReloading)
+        {
+            currentlyReloading = true;
+            lastReload = Time.time;
+        }
+        else
+        {
+            if(Time.time - lastReload >= reloadTime)
+            {
+                currentlyReloading = false;
+                currentBullets = playerAttributes.Ammo;
+            }
         }
     }
 }

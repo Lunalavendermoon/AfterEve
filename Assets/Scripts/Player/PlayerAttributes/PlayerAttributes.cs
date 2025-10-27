@@ -8,6 +8,12 @@ public class PlayerAttributes : ScriptableObject
     [Header("Attack")]
     public int weaponDamage;
     public float abilityMultiplier;
+    public float attackPerSec;
+    public int Ammo;
+    public float reloadSpeed;
+    public int bullets;
+    public int bulletSpread;
+    public int angle;
 
     [Header("Defense")]
     public int hitPoints;

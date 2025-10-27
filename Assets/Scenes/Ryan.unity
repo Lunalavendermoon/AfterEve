@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 223876607}
   - component: {fileID: 223876606}
   - component: {fileID: 223876605}
+  - component: {fileID: 223876608}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -211,6 +212,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &223876608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223876604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &948304289
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +542,7 @@ MonoBehaviour:
   firingPoint: {fileID: 948304290}
   projectilePrefab: {fileID: 6863573353313981101, guid: 709faae610094f645a22d737154f1784, type: 3}
   firingSpeed: 0.2
+  playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
 --- !u!1 &1392157266
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +578,7 @@ MonoBehaviour:
   horizontalInput: 0
   verticalInput: 0
   playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
+  reloadTime: 2
 --- !u!65 &1392157268
 BoxCollider:
   m_ObjectHideFlags: 0

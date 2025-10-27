@@ -67,11 +67,16 @@ public abstract class Effects
     // true = debuff, false = buff
     public bool isDebuff;
 
+    // used to compare unique debuff instances in the case that their effectRates are equal
+    public float timeStamp;
+
     public Effects(float duration)
     {
         effectDuration = duration;
 
         if (duration < 0) isPermanent = true;
+
+        timeStamp = Time.time;
     }
 
     // should be called every frame by the EffectsManager when in effect

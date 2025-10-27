@@ -59,6 +59,14 @@ public class EffectManager : MonoBehaviour
                 Debug.Log("Apply Bleed effect");
                 AddEffect(new Bleed_Effect(5f, 0.1f, 1f));
                 break;
+            case "sunder big":
+                Debug.Log("Apply Sundered debuff (large magnitude)");
+                AddEffect(new Sundered_Effect(5f, 0.5f));
+                break;
+            case "sunder small":
+                Debug.Log("Apply Sundered debuff (small magnitude)");
+                AddEffect(new Sundered_Effect(5f, 0.8f));
+                break;
             default:
                 Debug.Log(effect + " is not a valid effect");
                 break;
@@ -250,6 +258,6 @@ public class EffectManager : MonoBehaviour
             }
         }
 
-        // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefence);
+        Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefence);
     }
 }

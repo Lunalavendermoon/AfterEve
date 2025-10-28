@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Confused_Effect : Effects
 {
-    PlayerController player;
-
     /// <summary>
     /// Player’s movement is reversed
     /// </summary>
@@ -12,13 +10,11 @@ public class Confused_Effect : Effects
     {
         effectStat = Stat.Reverse;
         isDebuff = true;
-        player = PlayerController.instance;
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect(PlayerAttributes _)
+    public override void ApplyEffect(PlayerAttributes playerAttributes)
     {
-        player.horizontalInput *= -1;
-        player.verticalInput *= -1;
+        playerAttributes.speed *= -1;
     }
 }

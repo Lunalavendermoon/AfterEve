@@ -48,14 +48,20 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // handle input
-        horizontalInput = playerInput.Player.Horizontal.ReadValue<float>();
-        verticalInput = playerInput.Player.Vertical.ReadValue<float>();
+        if (playerAttributes.isParalyzed)
+        {
+            currentState = new Player_Idle();
+        } else
+        {
+            // handle input
+            horizontalInput = playerInput.Player.Horizontal.ReadValue<float>();
+            verticalInput = playerInput.Player.Vertical.ReadValue<float>();
 
-        currentState.CheckState(this);
-        currentState.UpdateState(this);
-        HandleRotationInput();
-        HandleShootInput();
+            currentState.CheckState(this);
+            currentState.UpdateState(this);
+            HandleRotationInput();
+            HandleShootInput();
+        }
     }
 
     public void ChangeState(IPlayerState newState)

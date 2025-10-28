@@ -30,7 +30,7 @@ public class EffectManager : MonoBehaviour
     // changes during runtime based on the effects the player currently has
     public PlayerAttributes effectPlayerAttributes;
 
-    // DONT USE THIS! IT'S ONLY FOR TESTING PURPOSES TO ADD A DUMMY EFFECT!!
+    // ONLY FOR TESTING PURPOSES TO ADD A DUMMY EFFECT!!
     public void AddEffectTest(string effect)
     {
         switch (effect)
@@ -66,6 +66,14 @@ public class EffectManager : MonoBehaviour
             case "sunder small":
                 Debug.Log("Apply Sundered debuff (small magnitude)");
                 AddEffect(new Sundered_Effect(5f, 0.8f));
+                break;
+            case "confused":
+                Debug.Log("Apply Confused effect");
+                AddEffect(new Confused_Effect(5f));
+                break;
+            case "slow":
+                Debug.Log("Apply Slow effect");
+                AddEffect(new Slow_Effect(5f, 0.8f));
                 break;
             default:
                 Debug.Log(effect + " is not a valid effect");
@@ -209,6 +217,9 @@ public class EffectManager : MonoBehaviour
         }
 
         ApplyEffects();
+
+        // sync up attributes w/ the player controller
+        PlayerController.instance.playerAttributes = effectPlayerAttributes;
     }
 
     public void ApplyEffects()
@@ -259,6 +270,6 @@ public class EffectManager : MonoBehaviour
         }
 
         // just for testing, comment this out if needed
-        Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefence);
+        // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefence);
     }
 }

@@ -1,20 +1,21 @@
 using UnityEngine;
 
-public class Paralyze_Effect : Effects
+public class Knockback_Effect : Effects
 {
     /// <summary>
     /// Unable to move, dash, or attack
     /// </summary>
     /// <param name="duration"></param>
-    public Paralyze_Effect(float duration) : base(duration)
+    public Knockback_Effect(float duration) : base(duration)
     {
-        effectStat = Stat.Movement;
+        effectStat = Stat.Knockback;
         isDebuff = true;
         effectApplication = Application.Disable;
     }
 
     public override void ApplyEffect(PlayerAttributes playerAttributes)
     {
-        playerAttributes.isParalyzed = true;
+        // TODO make sure knockback triggers when enemy attacks player
+        playerAttributes.hasKnockback = true;
     }
 }

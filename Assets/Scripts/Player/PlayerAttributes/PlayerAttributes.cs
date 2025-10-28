@@ -25,14 +25,17 @@ public class PlayerAttributes : ScriptableObject
     public float speed;
     public float totalStamina;
     public float staminaRegeneration;
+    public bool isParalyzed;
 
     [Header("Spiritual Vision")]
     public float totalSpiritualVision;
     public float spiritualVisionRegeneration;
+    public bool isBlind;
 
     [Header("Other")]
     public float luck;
     public float trustworthiness;
+    public bool hasKnockback;
 
 
     // Player Formulas

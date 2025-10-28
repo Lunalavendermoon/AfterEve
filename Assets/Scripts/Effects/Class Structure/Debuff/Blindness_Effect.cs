@@ -1,20 +1,21 @@
 using UnityEngine;
 
-public class Paralyze_Effect : Effects
+public class Blindness_Effect : Effects
 {
     /// <summary>
     /// Unable to move, dash, or attack
     /// </summary>
     /// <param name="duration"></param>
-    public Paralyze_Effect(float duration) : base(duration)
+    public Blindness_Effect(float duration) : base(duration)
     {
-        effectStat = Stat.Movement;
+        effectStat = Stat.SpiritualVision;
         isDebuff = true;
         effectApplication = Application.Disable;
     }
 
     public override void ApplyEffect(PlayerAttributes playerAttributes)
     {
-        playerAttributes.isParalyzed = true;
+        // TODO disable spiritual vision when isBlind is true
+        playerAttributes.isBlind = true;
     }
 }

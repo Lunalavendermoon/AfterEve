@@ -8,6 +8,7 @@ public abstract class Effects
         HP,
         Speed,
         Damage,
+        DamageTaken,
         BasicDefense,
         SpiritualDefense,
         SpiritualVision,
@@ -16,7 +17,8 @@ public abstract class Effects
         Shield,
         Knockback,
         Reverse,
-        Movement
+        Movement,
+        Haste
     }
 
     // how the effect is applied

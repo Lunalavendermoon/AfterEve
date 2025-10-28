@@ -2,6 +2,20 @@ using UnityEngine;
 
 public abstract class Flat_Effects : Effects
 {
+    // applies an effect multiple times over a duration
+    // (i.e. "Slow: Reduce Speed by a percentage per second")
+    public bool isIncremental;
+
+    // time to wait between effect changes
+    // only used for incremental effects
+    public float incrementInterval;
+
+    // makes sure incremental effect always triggers when first applied
+    // only used for incremental effects
+    protected bool initialApplication = true;
+
+    protected float startTime;
+
     // the flat amount the effect is altered
     protected Flat_Effects(float duration, int effectFlat) : base(duration)
     {
@@ -22,6 +36,7 @@ public abstract class Flat_Effects : Effects
                 break;
             case Stat.Damage:
                 // TODO incorporate weapon
+                playerAttributes.damageDealtMultiplier += effectRate;
                 break;
             case Stat.BasicDefense:
                 playerAttributes.basicDefence += (int)effectRate;

@@ -14,12 +14,16 @@ public class PlayerAttributes : ScriptableObject
     public int bullets;
     public int bulletSpread;
     public int angle;
+    public float damageDealtMultiplier;
+    public bool ignoreBasicDef;
+    public bool ignoreSpiritualDef;
 
     [Header("Defense")]
     public int hitPoints;
     public int basicDefence;
     public int spiritualDefense;
     public int shield;
+    public float damageTakenMultiplier;
 
     [Header("Movement")]
     public float speed;
@@ -31,6 +35,7 @@ public class PlayerAttributes : ScriptableObject
     public float totalSpiritualVision;
     public float spiritualVisionRegeneration;
     public bool isBlind;
+    public bool isEnlightened;
 
     [Header("Other")]
     public float luck;
@@ -43,23 +48,28 @@ public class PlayerAttributes : ScriptableObject
     // Damange received from enemy Calculation
     public int DamageCalculation(int baseDamage, EnemyAttributes.DamageType damageType)
     {
+        int damageTaken = 0;
+
         switch (damageType)
         {
             case EnemyAttributes.DamageType.Basic:
-                return (int)(baseDamage * (1 - ((float)basicDefence / (basicDefence + 100))) - shield);
+                damageTaken = (int)(baseDamage * (1 - ((float)basicDefence / (basicDefence + 100))) - shield);
+                break;
             case EnemyAttributes.DamageType.Spiritual:
-                return (int)(baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100))) - shield);
+                damageTaken = (int)(baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100))) - shield);
+                break;
             case EnemyAttributes.DamageType.Mixed:
-                return (int)(0.5 * baseDamage * (1 - ((float)basicDefence / (basicDefence + 100)))) + (int)(0.5 * baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100)))) - shield;
+                damageTaken = (int)(0.5 * baseDamage * (1 - ((float)basicDefence / (basicDefence + 100)))) + (int)(0.5 * baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100)))) - shield;
+                break;
         }
 
-        return 0;
+        return (int)(damageTaken * damageTakenMultiplier);
     }
 
     // Ability Multiplier Damage Calculation
     public int AbilityMultiplierDamage(int abilityBaseDamage)
     {
-        return (int)(abilityBaseDamage * abilityMultiplier + 1);
+        return (int)(abilityBaseDamage * abilityMultiplier * damageDealtMultiplier + 1);
     }
 
 

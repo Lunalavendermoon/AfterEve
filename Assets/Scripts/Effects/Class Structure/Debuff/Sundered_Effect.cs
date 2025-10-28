@@ -1,6 +1,3 @@
-using NUnit.Framework;
-using UnityEngine;
-
 public class Sundered_Effect : Multiplier_Effects
 {
     /// <summary>

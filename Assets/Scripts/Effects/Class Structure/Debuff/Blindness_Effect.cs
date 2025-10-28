@@ -1,9 +1,7 @@
-using UnityEngine;
-
 public class Blindness_Effect : Effects
 {
     /// <summary>
-    /// Unable to move, dash, or attack
+    /// Unable to use Spiritual Vision, visibility is limited to a small space around the player
     /// </summary>
     /// <param name="duration"></param>
     public Blindness_Effect(float duration) : base(duration)

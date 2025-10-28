@@ -3,7 +3,7 @@ using UnityEngine;
 public class Knockback_Effect : Effects
 {
     /// <summary>
-    /// Unable to move, dash, or attack
+    /// Knocked back away from the source of damage
     /// </summary>
     /// <param name="duration"></param>
     public Knockback_Effect(float duration) : base(duration)

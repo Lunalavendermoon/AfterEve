@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Fortified_Effect : Multiplier_Effects
 {
     /// <summary>

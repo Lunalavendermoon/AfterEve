@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class Regeneration_Effect : Multiplier_Effects
 {

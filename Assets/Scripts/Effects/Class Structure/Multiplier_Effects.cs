@@ -49,6 +49,10 @@ public abstract class Multiplier_Effects : Effects
                 break;
             case Stat.Damage:
                 // TODO incorporate weapon
+                playerAttributes.damageDealtMultiplier *= totalRate;
+                break;
+            case Stat.DamageTaken:
+                playerAttributes.damageTakenMultiplier *= totalRate;
                 break;
             case Stat.BasicDefense:
                 playerAttributes.basicDefence = (int)(playerAttributes.basicDefence * totalRate);

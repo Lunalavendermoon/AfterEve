@@ -24,10 +24,14 @@ MonoBehaviour:
   basicDefence: 10
   spiritualDefense: 5
   shield: 0
+  damageTakenMultiplier: 1
   speed: 1
   totalStamina: 1
   staminaRegeneration: 1
+  isParalyzed: 0
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1
+  isBlind: 0
   luck: 1
   trustworthiness: 1
+  hasKnockback: 0

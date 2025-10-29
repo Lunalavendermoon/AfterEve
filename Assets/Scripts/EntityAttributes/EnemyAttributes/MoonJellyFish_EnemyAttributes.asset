@@ -12,14 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac10b445ec25ac4c8e961716e1777ee, type: 3}
   m_Name: MoonJellyFish_EnemyAttributes
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttributes
-  enemyDamage: 15
+  damage: 15
+  damageDealtBonus: 0
+  ignoreBasicDef: 0
+  ignoreSpiritualDef: 0
+  hitPoints: 200
+  basicDefense: 2
+  spiritualDefense: 1
+  damageTakenBonus: 0
+  speed: 2
+  isParalyzed: 0
+  isConfused: 0
+  resistance: 0
+  isBlind: 0
+  hasKnockback: 0
   damageType: 0
   attackRadius: 2
   attackRate: 0.5
-  hitPoints: 200
   weight: 1
-  basicDefense: 2
-  spiritualDefense: 1
-  speed: 2
-  resistance: 0
   detection_radius: 3

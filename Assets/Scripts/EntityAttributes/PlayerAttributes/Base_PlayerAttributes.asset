@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: Base_PlayerAttributes
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttributes
   damage: 100
-  damageDealtMultiplier: 1
+  damageDealtBonus: 0
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0
   hitPoints: 1000
-  basicDefence: 10
+  basicDefense: 10
   spiritualDefense: 5
-  resistance: 0
-  damageTakenMultiplier: 1
+  damageTakenBonus: 0
   speed: 1
+  isParalyzed: 0
+  isConfused: 0
+  resistance: 0
+  isBlind: 0
+  hasKnockback: 0
   abilityMultiplier: 1
   attackPerSec: 2
   Ammo: 10
@@ -32,11 +36,8 @@ MonoBehaviour:
   shield: 0
   totalStamina: 1
   staminaRegeneration: 1
-  isParalyzed: 0
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1
-  isBlind: 0
   isEnlightened: 0
   luck: 1
   trustworthiness: 1
-  hasKnockback: 0

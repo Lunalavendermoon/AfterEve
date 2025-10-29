@@ -60,9 +60,6 @@ public abstract class Flat_Effects : Effects
             case Stat.Luck:
                 playerAttributes.luck += effectRate;
                 return;
-            case Stat.Shield:
-                playerAttributes.shield += (int)effectRate;
-                return;
         }
         // if effectStat wasn't one of the above (or it was Stat.Damage), this method gets called
         ApplyEffect(playerAttributes);

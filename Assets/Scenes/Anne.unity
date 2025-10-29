@@ -203,7 +203,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:
@@ -336,7 +336,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:
@@ -469,7 +469,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:
@@ -602,7 +602,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:
@@ -871,7 +871,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:
@@ -1004,7 +1004,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:
@@ -1137,7 +1137,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:
@@ -1406,7 +1406,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:
@@ -2057,9 +2057,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1177986718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4b3d33e8f1d14fd5861b9d10855af3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1371d5ae6859446deab03350293ac183, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EffectManager
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEffectManager
   basePlayerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
   effectPlayerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
 --- !u!1 &1186219878
@@ -2512,7 +2512,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:
@@ -2921,7 +2921,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1177986724}
-        m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerEffectManager, Assembly-CSharp
         m_MethodName: AddEffectTest
         m_Mode: 5
         m_Arguments:

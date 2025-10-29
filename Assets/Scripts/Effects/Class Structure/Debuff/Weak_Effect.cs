@@ -4,7 +4,7 @@ public class Weak_Effect : Multiplier_Effects
     /// Damage from all source is multiplied by a %
     /// </summary>
     /// <param name="duration"> duration of time (seconds) the effect lasts for </param>
-    /// <param name="defenseDecreasePercent"> take this percent of extra damage (must be > 1) </param>
+    /// <param name="effectMultiplier"> take this percent of extra damage (ex. take 40% extra dmg -> effectMultiplier value is 0.4f) </param>
     public Weak_Effect(float duration, float effectMultiplier) : base(duration, effectMultiplier)
     {
         // facts

@@ -4,7 +4,8 @@ using UnityEngine;
 
 
 // Manages the effects present on a single entity (player/enemy)
-public class EffectManager : MonoBehaviour
+// Don't use this directly! Instead, use the children classes PlayerEffectManager or EnemyEffectManager :)
+public abstract class EffectManager : MonoBehaviour
 {
     // only store effects that can time out
     readonly List<EffectInstance> effectTimers = new();
@@ -23,12 +24,6 @@ public class EffectManager : MonoBehaviour
     // only used for debuffs that are not Disable-type
     // stores all the debuffs of a given type, sorted in decreasing order of magnitude
     public Dictionary<Tuple<Effects.Stat, Effects.Application>, SortedSet<Effects>> debuffs = new();
-
-    // constant, storing the base attribute values
-    public PlayerAttributes basePlayerAttributes;
-
-    // changes during runtime based on the effects the player currently has
-    public PlayerAttributes effectPlayerAttributes;
 
     // ONLY FOR TESTING PURPOSES TO ADD A DUMMY EFFECT!!
     public void AddEffectTest(string effect)
@@ -104,7 +99,7 @@ public class EffectManager : MonoBehaviour
                 }
             }
         }
-        
+
         EffectInstance eff = new EffectInstance(effect);
 
         if (existingEffect)
@@ -206,7 +201,7 @@ public class EffectManager : MonoBehaviour
     {
         float time_elapsed = Time.deltaTime;
 
-        for(int i =effectTimers.Count - 1; i >= 0; i--)
+        for (int i = effectTimers.Count - 1; i >= 0; i--)
         {
             EffectInstance ei = effectTimers[i];
             ei.SubtractTime(time_elapsed);
@@ -217,16 +212,12 @@ public class EffectManager : MonoBehaviour
         }
 
         ApplyEffects();
-
-        // sync up attributes w/ the player controller
-        PlayerController.instance.playerAttributes = effectPlayerAttributes;
     }
 
-    public void ApplyEffects()
-    {
-        // make a copy of base attributes that we can modify!
-        effectPlayerAttributes = Instantiate(basePlayerAttributes);
+    public abstract void ApplyEffects();
 
+    public void ApplyEffectsHelper(Action<Effects> applyEffect)
+    {
         // iterate through all stats and modify them one-by-one!
         // this is the easiest way but kind of inefficient
         // because some combinations of stat and application will never exist (ex. Defense and Disable)
@@ -247,13 +238,13 @@ public class EffectManager : MonoBehaviour
                     {
                         foreach (Effects eff in buffList)
                         {
-                            eff.ApplyEffect(effectPlayerAttributes);
+                            applyEffect(eff);
                         }
                     }
 
                     if (debuffs.TryGetValue(key, out SortedSet<Effects> debuffSet))
                     {
-                        debuffSet.Min.ApplyEffect(effectPlayerAttributes);
+                        applyEffect(debuffSet.Min);
                     }
                 }
                 else
@@ -262,7 +253,7 @@ public class EffectManager : MonoBehaviour
                     {
                         foreach (Effects eff in effects)
                         {
-                            eff.ApplyEffect(effectPlayerAttributes);
+                            applyEffect(eff);
                         }
                     }
                 }
@@ -270,6 +261,6 @@ public class EffectManager : MonoBehaviour
         }
 
         // just for testing, comment this out if needed
-        // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefence);
+        // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefense);
     }
 }

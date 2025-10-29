@@ -1,12 +1,11 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerAttributes", menuName = "Scriptable Objects/PlayerAttributes")]
-public class PlayerAttributes : ScriptableObject
+public class PlayerAttributes : EntityAttributes
 {
     // Player Attributes
 
-    [Header("Attack")]
-    public int weaponDamage;
+    [Header("Player Attack")]
     public float abilityMultiplier;
     public float attackPerSec;
     public int Ammo;
@@ -14,22 +13,13 @@ public class PlayerAttributes : ScriptableObject
     public int bullets;
     public int bulletSpread;
     public int angle;
-    public float damageDealtMultiplier;
-    public bool ignoreBasicDef;
-    public bool ignoreSpiritualDef;
 
-    [Header("Defense")]
-    public int hitPoints;
-    public int basicDefence;
-    public int spiritualDefense;
+    [Header("Player Defense")]
     public int shield;
-    public float damageTakenMultiplier;
 
-    [Header("Movement")]
-    public float speed;
+    [Header("Player Movement")]
     public float totalStamina;
     public float staminaRegeneration;
-    public bool isParalyzed;
 
     [Header("Spiritual Vision")]
     public float totalSpiritualVision;
@@ -37,7 +27,7 @@ public class PlayerAttributes : ScriptableObject
     public bool isBlind;
     public bool isEnlightened;
 
-    [Header("Other")]
+    [Header("Player Other")]
     public float luck;
     public float trustworthiness;
     public bool hasKnockback;
@@ -53,23 +43,23 @@ public class PlayerAttributes : ScriptableObject
         switch (damageType)
         {
             case EnemyAttributes.DamageType.Basic:
-                damageTaken = (int)(baseDamage * (1 - ((float)basicDefence / (basicDefence + 100))) - shield);
+                damageTaken = (int)(baseDamage * (1 - ((float)basicDefense / (basicDefense + 100))) - shield);
                 break;
             case EnemyAttributes.DamageType.Spiritual:
                 damageTaken = (int)(baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100))) - shield);
                 break;
             case EnemyAttributes.DamageType.Mixed:
-                damageTaken = (int)(0.5 * baseDamage * (1 - ((float)basicDefence / (basicDefence + 100)))) + (int)(0.5 * baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100)))) - shield;
+                damageTaken = (int)(0.5 * baseDamage * (1 - ((float)basicDefense / (basicDefense + 100)))) + (int)(0.5 * baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100)))) - shield;
                 break;
         }
 
-        return (int)(damageTaken * damageTakenMultiplier);
+        return (int)(damageTaken * (1f + damageTakenBonus));
     }
 
     // Ability Multiplier Damage Calculation
     public int AbilityMultiplierDamage(int abilityBaseDamage)
     {
-        return (int)(abilityBaseDamage * abilityMultiplier * damageDealtMultiplier + 1);
+        return (int)(abilityBaseDamage * abilityMultiplier * (1f + damageDealtBonus) + 1);
     }
 
 

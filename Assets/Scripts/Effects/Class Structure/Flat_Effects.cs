@@ -36,10 +36,10 @@ public abstract class Flat_Effects : Effects
                 break;
             case Stat.Damage:
                 // TODO incorporate weapon
-                playerAttributes.damageDealtMultiplier += effectRate;
+                playerAttributes.damageDealtBonus += effectRate;
                 break;
             case Stat.BasicDefense:
-                playerAttributes.basicDefence += (int)effectRate;
+                playerAttributes.basicDefense += (int)effectRate;
                 break;
             case Stat.SpiritualDefense:
                 playerAttributes.spiritualDefense += (int)effectRate;

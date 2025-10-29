@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7e50a9f73ddcb4bbdc67de9fe34a45, type: 3}
   m_Name: Base_PlayerAttributes
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttributes
-  weaponDamage: 100
+  damage: 100
+  damageDealtMultiplier: 1
+  ignoreBasicDef: 0
+  ignoreSpiritualDef: 0
+  hitPoints: 1000
+  basicDefence: 10
+  spiritualDefense: 5
+  resistance: 0
+  damageTakenMultiplier: 1
+  speed: 1
   abilityMultiplier: 1
   attackPerSec: 2
   Ammo: 10
@@ -20,18 +29,14 @@ MonoBehaviour:
   bullets: 1
   bulletSpread: 1
   angle: 0
-  hitPoints: 1000
-  basicDefence: 10
-  spiritualDefense: 5
   shield: 0
-  damageTakenMultiplier: 1
-  speed: 1
   totalStamina: 1
   staminaRegeneration: 1
   isParalyzed: 0
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1
   isBlind: 0
+  isEnlightened: 0
   luck: 1
   trustworthiness: 1
   hasKnockback: 0

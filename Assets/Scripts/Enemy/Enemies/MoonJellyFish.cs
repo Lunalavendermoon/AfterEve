@@ -11,7 +11,7 @@ public class MoonJellyFish : EnemyBase
     void Awake()
     {
         health = enemyAttributes.hitPoints;
-        damage = enemyAttributes.enemyDamage;
+        damage = enemyAttributes.damage;
         speed = enemyAttributes.speed;
         visibleRange = enemyAttributes.detection_radius;
         attackRange = enemyAttributes.attackRadius;

@@ -16,5 +16,6 @@ public class Confused_Effect : Effects
     public override void ApplyEffect(PlayerAttributes playerAttributes)
     {
         playerAttributes.speed *= -1;
+        playerAttributes.isConfused = true;
     }
 }

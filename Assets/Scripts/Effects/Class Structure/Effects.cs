@@ -94,7 +94,7 @@ public abstract class Effects
 
     // since enemy isn't a singleton, we need to pass in the specific enemy entity in order to interact with its controller
     // not sure if the enemy field will be used, but including it here as an optional argument just in case we do
-    public virtual void ApplyEnemyEffect(EnemyAttributes enemyAttributes, GameObject enemy = null)
+    public virtual void ApplyEnemyEffect(EnemyAttributes enemyAttributes, EnemyBase enemy)
     {
         ApplyEffect(enemyAttributes);
     }

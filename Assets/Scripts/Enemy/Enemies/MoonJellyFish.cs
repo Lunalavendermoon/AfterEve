@@ -6,8 +6,6 @@ using UnityEngine;
 */
 public class MoonJellyFish : EnemyBase
 {
-    public EnemyAttributes enemyAttributes;
-
     void Awake()
     {
         health = enemyAttributes.hitPoints;

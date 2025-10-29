@@ -13,8 +13,8 @@ public class Corrode_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect(PlayerAttributes playerAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes)
     {
-        playerAttributes.ignoreSpiritualDef = true;
+        entityAttributes.ignoreSpiritualDef = true;
     }
 }

@@ -16,7 +16,7 @@ public abstract class Effects
         Luck,
         Shield,
         Knockback,
-        Reverse,
+        Confused,
         Movement,
         Haste
     }
@@ -82,7 +82,22 @@ public abstract class Effects
     }
 
     // should be called every frame by the EffectsManager when in effect
-    public abstract void ApplyEffect(PlayerAttributes playerAttributes);
+    public abstract void ApplyEffect(EntityAttributes entityAttributes);
+
+    // by default, an effect does the same thing when applied to a player or an enemy
+    // override these to change effect behavior!
+
+    public virtual void ApplyPlayerEffect(PlayerAttributes playerAttributes)
+    {
+        ApplyEffect(playerAttributes);
+    }
+
+    // since enemy isn't a singleton, we need to pass in the specific enemy entity in order to interact with its controller
+    // not sure if the enemy field will be used, but including it here as an optional argument just in case we do
+    public virtual void ApplyEnemyEffect(EnemyAttributes enemyAttributes, GameObject enemy = null)
+    {
+        ApplyEffect(enemyAttributes);
+    }
 
     public virtual bool IsIncremental()
     {

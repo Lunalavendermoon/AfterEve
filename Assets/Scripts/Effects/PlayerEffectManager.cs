@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerEffectManager : EffectManager
 {
     // constant, storing the base attribute values
@@ -9,7 +11,10 @@ public class PlayerEffectManager : EffectManager
     public override void ApplyEffects()
     {
         effectPlayerAttributes = Instantiate(basePlayerAttributes);
-        ApplyEffectsHelper((effect) => { effect.ApplyEffect(effectPlayerAttributes); });
+        ApplyEffectsHelper((effect) => { effect.ApplyPlayerEffect(effectPlayerAttributes); });
         PlayerController.instance.playerAttributes = effectPlayerAttributes;
+
+        // just for testing, comment this out if needed
+        // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefense);
     }
 }

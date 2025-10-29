@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public abstract class EnemyBase : MonoBehaviour
 {
+    public EnemyAttributes enemyAttributes;
+
     // Enemy attributes
     public int health;
     public int damage;
@@ -25,9 +27,18 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void Update()
     {
         agent.speed = speed;
-        current_enemy_state?.UpdateState(this);
-        Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
 
+        if (enemyAttributes.isParalyzed)
+        {
+            // enemy can't do anything if it's paralyzed
+            current_enemy_state = new Enemy_Idle();
+        }
+        else
+        {
+            current_enemy_state?.UpdateState(this);
+        }
+        
+        Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
     }
 
 

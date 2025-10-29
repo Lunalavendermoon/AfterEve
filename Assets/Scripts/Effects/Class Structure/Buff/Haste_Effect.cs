@@ -6,7 +6,7 @@ public class Haste_Effect : Effects
     float stamRate;
 
     /// <summary>
-    /// Increase Speed and Stamina Regeneration
+    /// Increase Speed and Stamina Regeneration - player variant with stamina regen
     /// </summary>
     /// <param name="duration"></param>
     /// <param name="speedMultiplier"></param>
@@ -20,9 +20,27 @@ public class Haste_Effect : Effects
         stamRate = staminaMultiplier;
     }
 
-    public override void ApplyEffect(PlayerAttributes playerAttributes)
+    /// <summary>
+    /// Increase Speed - enemy variant with no stamina regen
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="speedMultiplier"></param>
+    public Haste_Effect(float duration, float speedMultiplier) : base(duration)
     {
-        playerAttributes.speed *= speedRate;
+        effectStat = Stat.Haste;
+        isDebuff = false;
+
+        speedRate = speedMultiplier;
+    }
+
+    public override void ApplyEffect(EntityAttributes entityAttributes)
+    {
+        entityAttributes.speed *= speedRate;
+    }
+
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
+    {
         playerAttributes.staminaRegeneration *= stamRate;
+        ApplyEffect(playerAttributes);
     }
 }

@@ -259,8 +259,5 @@ public abstract class EffectManager : MonoBehaviour
                 }
             }
         }
-
-        // just for testing, comment this out if needed
-        // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefense);
     }
 }

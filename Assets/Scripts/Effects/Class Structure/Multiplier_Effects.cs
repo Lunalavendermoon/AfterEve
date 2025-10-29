@@ -30,7 +30,7 @@ public abstract class Multiplier_Effects : Effects
         incrementInterval = 0f;
     }
 
-    public override void ApplyEffect(PlayerAttributes playerAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes)
     {
         if (isIncremental && (Time.time - startTime > incrementInterval || initialApplication))
         {
@@ -42,31 +42,42 @@ public abstract class Multiplier_Effects : Effects
         switch (effectStat)
         {
             case Stat.HP:
-                playerAttributes.hitPoints = (int)(playerAttributes.hitPoints * totalRate);
+                entityAttributes.hitPoints = (int)(entityAttributes.hitPoints * totalRate);
                 break;
             case Stat.Speed:
-                playerAttributes.speed *= totalRate;
+                entityAttributes.speed *= totalRate;
                 break;
             case Stat.Damage:
-                // TODO incorporate weapon
-                playerAttributes.damageDealtBonus *= totalRate;
+                entityAttributes.damageDealtBonus *= totalRate;
                 break;
             case Stat.DamageTaken:
-                playerAttributes.damageTakenBonus *= totalRate;
+                entityAttributes.damageTakenBonus *= totalRate;
                 break;
             case Stat.BasicDefense:
-                playerAttributes.basicDefense = (int)(playerAttributes.basicDefense * totalRate);
+                entityAttributes.basicDefense = (int)(entityAttributes.basicDefense * totalRate);
                 break;
             case Stat.SpiritualDefense:
-                playerAttributes.spiritualDefense = (int)(playerAttributes.spiritualDefense * totalRate);
+                entityAttributes.spiritualDefense = (int)(entityAttributes.spiritualDefense * totalRate);
+                break;
+        }
+    }
+
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
+    {
+        switch (effectStat)
+        {
+            case Stat.Damage:
+                // TODO incorporate weapon
+                // don't return here! we also want to modify damageDealtBonus by calling the catch-all method ApplyEffect
                 break;
             case Stat.StaminaRegeneration:
                 playerAttributes.staminaRegeneration *= totalRate;
-                break;
+                return;
             case Stat.Luck:
                 playerAttributes.luck *= totalRate;
-                break;
+                return;
         }
+        ApplyEffect(playerAttributes);
     }
     
     public override bool IsIncremental()

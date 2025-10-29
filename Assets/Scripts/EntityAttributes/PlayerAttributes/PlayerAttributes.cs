@@ -24,13 +24,11 @@ public class PlayerAttributes : EntityAttributes
     [Header("Spiritual Vision")]
     public float totalSpiritualVision;
     public float spiritualVisionRegeneration;
-    public bool isBlind;
     public bool isEnlightened;
 
     [Header("Player Other")]
     public float luck;
     public float trustworthiness;
-    public bool hasKnockback;
 
 
     // Player Formulas

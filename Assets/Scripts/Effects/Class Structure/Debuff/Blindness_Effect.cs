@@ -1,7 +1,8 @@
 public class Blindness_Effect : Effects
 {
     /// <summary>
-    /// Unable to use Spiritual Vision, visibility is limited to a small space around the player
+    /// Player is unable to use Spiritual Vision, visibility is limited to a small space around the player,
+    /// Enemy behaves as if player is not within its vision
     /// </summary>
     /// <param name="duration"></param>
     public Blindness_Effect(float duration) : base(duration)
@@ -11,9 +12,8 @@ public class Blindness_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect(PlayerAttributes playerAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes)
     {
-        // TODO disable spiritual vision when isBlind is true
-        playerAttributes.isBlind = true;
+        entityAttributes.isBlind = true;
     }
 }

@@ -21,4 +21,6 @@ public class EntityAttributes : ScriptableObject
 
     [Header("Other")]
     public float resistance;
+    public bool isBlind;
+    public bool hasKnockback;
 }

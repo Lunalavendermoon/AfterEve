@@ -24,35 +24,47 @@ public abstract class Flat_Effects : Effects
         // set it to Additive to apply the effect before multipliers, set it to Flat to apply it after multipliers
     }
 
-    public override void ApplyEffect(PlayerAttributes playerAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes)
     {
         switch (effectStat)
         {
             case Stat.HP:
-                playerAttributes.hitPoints += (int)effectRate;
+                entityAttributes.hitPoints += (int)effectRate;
                 break;
             case Stat.Speed:
-                playerAttributes.speed += effectRate;
+                entityAttributes.speed += effectRate;
                 break;
             case Stat.Damage:
-                // TODO incorporate weapon
-                playerAttributes.damageDealtBonus += effectRate;
+                entityAttributes.damageDealtBonus += effectRate;
                 break;
             case Stat.BasicDefense:
-                playerAttributes.basicDefense += (int)effectRate;
+                entityAttributes.basicDefense += (int)effectRate;
                 break;
             case Stat.SpiritualDefense:
-                playerAttributes.spiritualDefense += (int)effectRate;
+                entityAttributes.spiritualDefense += (int)effectRate;
+                break;
+        }
+    }
+
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
+    {
+        switch (effectStat)
+        {
+            case Stat.Damage:
+                // TODO incorporate weapon
+                // don't return here! we also want to modify damageDealtBonus by calling the catch-all method ApplyEffect
                 break;
             case Stat.StaminaRegeneration:
                 playerAttributes.staminaRegeneration += effectRate;
-                break;
+                return;
             case Stat.Luck:
                 playerAttributes.luck += effectRate;
-                break;
+                return;
             case Stat.Shield:
                 playerAttributes.shield += (int)effectRate;
-                break;
+                return;
         }
+        // if effectStat wasn't one of the above (or it was Stat.Damage), this method gets called
+        ApplyEffect(playerAttributes);
     }
 }

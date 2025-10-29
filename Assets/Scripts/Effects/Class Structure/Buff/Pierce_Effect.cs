@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Pierce_Effect : Effects
 {
     /// <summary>
@@ -13,8 +11,8 @@ public class Pierce_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect(PlayerAttributes playerAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes)
     {
-        playerAttributes.ignoreBasicDef = true;
+        entityAttributes.ignoreBasicDef = true;
     }
 }

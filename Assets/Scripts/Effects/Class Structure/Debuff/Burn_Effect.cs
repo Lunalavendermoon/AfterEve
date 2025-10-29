@@ -21,7 +21,7 @@ public class Burn_Effect : Flat_Effects
         incrementInterval = timeBetweenIncrements;
     }
 
-    public override void ApplyEffect(PlayerAttributes playerAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes)
     {
         if (Time.time - startTime > incrementInterval || initialApplication)
         {

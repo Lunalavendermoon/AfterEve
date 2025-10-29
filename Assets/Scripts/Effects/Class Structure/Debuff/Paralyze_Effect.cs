@@ -13,8 +13,8 @@ public class Paralyze_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect(PlayerAttributes playerAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes)
     {
-        playerAttributes.isParalyzed = true;
+        entityAttributes.isParalyzed = true;
     }
 }

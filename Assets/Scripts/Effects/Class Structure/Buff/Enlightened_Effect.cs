@@ -13,7 +13,12 @@ public class Enlightened_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect(PlayerAttributes playerAttributes)
+    public override void ApplyEffect(EntityAttributes _)
+    {
+        // player-exclusive effect
+    }
+
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
     {
         playerAttributes.isEnlightened = true;
     }

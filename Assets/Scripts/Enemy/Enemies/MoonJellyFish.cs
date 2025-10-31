@@ -23,6 +23,8 @@ public class MoonJellyFish : EnemyBase
     public override void Attack(Transform target)
     {
         //TODO
+        PlayerController.instance.playerAttributes.hitPoints-=damage;
+        
 
 
     }

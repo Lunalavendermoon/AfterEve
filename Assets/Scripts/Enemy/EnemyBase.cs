@@ -38,7 +38,7 @@ public abstract class EnemyBase : MonoBehaviour
             current_enemy_state?.UpdateState(this);
         }
         
-        Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
+        //Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
     }
 
 
@@ -53,6 +53,12 @@ public abstract class EnemyBase : MonoBehaviour
         return distance <= visibleRange;
     }
 
+    public virtual bool InAttackRange(Transform target)
+    {
+        float distance = Vector3.Distance(transform.position, target.position);
+        return distance <= attackRange;
+    }
+
     public virtual void ChangeState(IEnemyStates new_state)
     {
         current_enemy_state?.ExitState(this);
@@ -64,6 +70,10 @@ public abstract class EnemyBase : MonoBehaviour
     {
         health -= amount;
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
     public virtual void Pathfinding(Transform target)

@@ -5,6 +5,7 @@ public class Enemy_Wander :  IEnemyStates
 {
     private float wanderTime;
     private float wanderRadius;
+    private float wanderTimer;
 
     public Enemy_Wander(float wanderDuration, float wanderRadius)
     {
@@ -14,20 +15,27 @@ public class Enemy_Wander :  IEnemyStates
 
     public Enemy_Wander() 
     {
-        wanderTime = 10f;
-        this.wanderRadius = 3f;
+        wanderTime = 3f;
+        this.wanderRadius = 15f;
     }
 
 
     public void EnterState(EnemyBase enemy)
     {
-
+        wanderTimer = 0f;
+        getRandomWanderPoint(enemy);
 
     }
     
     public void UpdateState(EnemyBase enemy)
     {
-        getRandomWanderPoint(enemy);
+        wanderTimer += Time.deltaTime;
+        if (wanderTimer >= wanderTime)
+        {
+            getRandomWanderPoint(enemy);
+            wanderTimer = 0f;
+        }
+
         if (enemy.InRange(PlayerController.instance.transform))
         {
             enemy.ChangeState(new Enemy_Chase());

@@ -14,7 +14,13 @@ public class Enemy_Attack : IEnemyStates
 
     public void UpdateState(EnemyBase enemy)
     {
+        if (!enemy.InAttackRange(PlayerController.instance.transform))
+        {
+            enemy.ChangeState(new Enemy_Chase());
+            return;
+        }
         enemy.Attack(PlayerController.instance.transform);
+
         enemy.ChangeState(new Enemy_Chase());
     }
     

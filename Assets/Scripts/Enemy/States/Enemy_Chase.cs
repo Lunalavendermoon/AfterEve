@@ -50,7 +50,7 @@ public class Enemy_Chase : IEnemyStates
         {
             chaseTimer = 0f;
 
-            if (attackTimer >= attackCooldown)
+            if (attackTimer >= attackCooldown && enemy.InAttackRange(PlayerController.instance.transform))
             {
                 enemy.ChangeState(new Enemy_Attack());
             }

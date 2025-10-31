@@ -12,7 +12,7 @@ public class Enemy_Idle :  IEnemyStates
 
     public Enemy_Idle() 
     {
-        idleTime = 5f;
+        idleTime = 2f;
     }
 
 
@@ -24,17 +24,22 @@ public class Enemy_Idle :  IEnemyStates
     }
     public void UpdateState(EnemyBase enemy)
     {
+        Debug.Log(elapsedTime);
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= idleTime)
         {
             
             enemy.ChangeState(new Enemy_Wander());
         }
+        if (enemy.InRange(PlayerController.instance.transform))
+        {
+            enemy.ChangeState(new Enemy_Chase());
+        }
 
 
     }
     public void ExitState(EnemyBase enemy)
     {
-        
+        enemy.speed = enemy.enemyAttributes.speed;
     }
 }

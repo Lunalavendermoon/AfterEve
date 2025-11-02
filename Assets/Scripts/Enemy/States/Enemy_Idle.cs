@@ -24,7 +24,7 @@ public class Enemy_Idle :  IEnemyStates
     }
     public void UpdateState(EnemyBase enemy)
     {
-        Debug.Log(elapsedTime);
+
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= idleTime)
         {

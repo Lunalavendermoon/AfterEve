@@ -6,6 +6,8 @@ using UnityEngine;
 */
 public class MoonJellyFish : EnemyBase
 {
+    [SerializeField] private float wanderRadius = 7.5f;
+    [SerializeField] private float wanderTime = 3f;
     void Awake()
     {
         health = enemyAttributes.hitPoints;
@@ -15,19 +17,27 @@ public class MoonJellyFish : EnemyBase
         attackRange = enemyAttributes.attackRadius;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.speed = speed;
-        default_enemy_state = new Enemy_Wander(10f, 3f);
+        default_enemy_state = new Enemy_Wander(wanderRadius, wanderTime);
+
+        attackCooldown = enemyAttributes.attackRate;
+
     }
 
   
 
     public override void Attack(Transform target)
     {
-        //TODO
-        PlayerController.instance.playerAttributes.hitPoints-=damage;
-        
 
 
+
+        // Enable hitbox for a short window
+        EnableAttack();
+        // Trigger animation 
+        // animator.SetTrigger("Attack");
+        Invoke(nameof(DisableAttack), 0.3f); // 0.3 is temp 
     }
+
+    
 
     public override void Die()
     {

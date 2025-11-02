@@ -12,15 +12,24 @@ public abstract class EnemyBase : MonoBehaviour
     public float speed;
     public float attackRange;
     public float visibleRange;
+    public float attackCooldown;
+
+    //Pathfinding agent
     public NavMeshAgent agent;
+    
+    //Helper variables
+    public GameObject attackHitbox;
     public IEnemyStates default_enemy_state;
-    protected IEnemyStates current_enemy_state; 
+    protected IEnemyStates current_enemy_state;
+    public bool isAttacking = false;
+
+    public float attack_timer = 2.0f;
 
     //Initializing agent and its default state
     public virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        current_enemy_state= default_enemy_state;
+        current_enemy_state = default_enemy_state;
     }
 
 
@@ -37,14 +46,14 @@ public abstract class EnemyBase : MonoBehaviour
         {
             current_enemy_state?.UpdateState(this);
         }
-        
+
         //Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
     }
 
 
     // Actions
     public abstract void Attack(Transform target);
-    
+
     public abstract void Die();
 
     public virtual bool InRange(Transform target)
@@ -64,6 +73,7 @@ public abstract class EnemyBase : MonoBehaviour
         current_enemy_state?.ExitState(this);
         current_enemy_state = new_state;
         current_enemy_state?.EnterState(this);
+        Debug.Log($"{gameObject.name} changed to state: {current_enemy_state?.GetType().Name}");
     }
 
     public virtual void TakeDamage(int amount)
@@ -79,5 +89,17 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void Pathfinding(Transform target)
     {
         agent.SetDestination(target.position);
+    }
+
+    public virtual void EnableAttack()
+    {
+        attackHitbox.SetActive(true);
+        isAttacking = true;
+
+    }
+    public virtual void DisableAttack()
+    {
+        attackHitbox.SetActive(false);
+        isAttacking = false;
     }
 }

@@ -3,33 +3,26 @@ using UnityEngine.AI;
 
 public class Enemy_Chase : IEnemyStates
 {
-    // Time to keep chasing the player after player is out of range
-    private float chaseDuration;
-
-    private float chaseTimer;
-
-    
 
     // Time to wait between attacks
     private float attackCooldown;
     private float attackTimer;
 
-    public Enemy_Chase(float chaseDuration, float attackCooldown)
+    public Enemy_Chase( float attackCooldown)
     {
-        this.chaseDuration = chaseDuration;
         this.attackCooldown = attackCooldown;
     }
 
     public Enemy_Chase()
     {
-        chaseDuration = 3f;
         attackCooldown = 2f;
     }
 
     public void EnterState(EnemyBase enemy)
     {
-        chaseTimer = 0f;
+        
         attackTimer = 0f;
+        enemy.agent.isStopped = false;
     }
 
     public void UpdateState(EnemyBase enemy)
@@ -38,23 +31,11 @@ public class Enemy_Chase : IEnemyStates
 
         attackTimer += Time.deltaTime;
 
-        if (!enemy.InRange(PlayerController.instance.transform))
+        if (enemy.InAttackRange(PlayerController.instance.transform))
         {
-            chaseTimer += Time.deltaTime;
-            if (chaseTimer >= chaseDuration)
-            {
-                enemy.ChangeState(new Enemy_Idle());
-            }
+           enemy.ChangeState(new Enemy_Attack());
         }
-        else
-        {
-            chaseTimer = 0f;
-
-            if (attackTimer >= attackCooldown && enemy.InAttackRange(PlayerController.instance.transform))
-            {
-                enemy.ChangeState(new Enemy_Attack());
-            }
-        }
+        
     }
 
     void getChasePoint(EnemyBase enemy)

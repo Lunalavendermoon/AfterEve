@@ -16,19 +16,21 @@ public class Enemy_Attack : IEnemyStates
     public void UpdateState(EnemyBase enemy)
     {
         Transform target = PlayerController.instance.transform;
+        if (enemy.isAttacking) return; // already attacking
+
         if (!enemy.InAttackRange(PlayerController.instance.transform))
         {
             enemy.ChangeState(new Enemy_Chase());
             return;
         }
 
-        if (enemy.isAttacking) return; // already attacking
+        
 
         if (enemy.attack_timer > 0 )
         {
             Vector3 dir = (target.position - enemy.transform.position).normalized;
             
-            
+            Debug.Log("Start turning towards player in Attack State");
             if (dir.sqrMagnitude > 0.001f)
             {
                 

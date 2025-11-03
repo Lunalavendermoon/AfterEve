@@ -23,7 +23,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected IEnemyStates current_enemy_state;
     public bool isAttacking = false;
 
-    public float attack_timer = 2.0f;
+    public float attack_timer = 1.0f;
 
     //Initializing agent and its default state
     public virtual void Start()

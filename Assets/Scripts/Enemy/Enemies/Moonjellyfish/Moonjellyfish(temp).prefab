@@ -185,10 +185,13 @@ MonoBehaviour:
   speed: 0
   attackRange: 0
   visibleRange: 0
-  agent: {fileID: 0}
   attackCooldown: 0
+  agent: {fileID: 0}
   attackHitbox: {fileID: 3385193953142855512}
+  isAttacking: 0
   attack_timer: 0
+  wanderRadius: 7.5
+  wanderTime: 3
 --- !u!1 &3253119458078143902
 GameObject:
   m_ObjectHideFlags: 0

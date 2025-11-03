@@ -8,16 +8,19 @@ public class DebuffComparer : IComparer<Effects>
         if (x == null) return -1;
         if (y == null) return 1;
 
-        int cmp = x.effectRate.CompareTo(y.effectRate);
-        if (cmp == 0)
+        if (ReferenceEquals(x, y))
         {
-            // if we return 0, the comparator will consider two Effects w/ the same effectRate identical even if they're separate instances
-            // this causes problems when we try to add two Effects with the same effectRate to the same set
-            // i.e. the second Effect won't be added to the set at all
-
-            // therefore: if the two Effects are separate instances, tiebreak arbitrarily to make sure they're not equal
-            return ReferenceEquals(x, y) ? cmp : x.timeStamp.CompareTo(y.timeStamp);
+            return 0;
         }
-        return cmp;
+
+        int cmp = x.effectRate.CompareTo(y.effectRate);
+        
+        // if we return 0, the comparator will consider two Effects w/ the same effectRate identical even if they're separate instances
+        // this causes problems when we try to add two Effects with the same effectRate to the same set
+        // i.e. the second Effect won't be added to the set at all
+
+        // therefore: if the two Effects are separate instances, tiebreak arbitrarily to make sure they're not equal
+
+        return cmp == 0 ? x.timeStamp.CompareTo(y.timeStamp) : cmp;
     }
 }

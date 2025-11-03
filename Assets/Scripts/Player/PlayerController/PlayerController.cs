@@ -1,4 +1,5 @@
 using System;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -34,16 +35,21 @@ public class PlayerController : MonoBehaviour
     // state machine
     public IPlayerState currentState;
 
-    //for weapon ammo system
+    //weapon
     private int currentBullets;
     private float lastReload;
-    public float reloadTime;
+
+    //spiritual vision
+    private float currentSpiritualVision;
+    private float spiritualVisionTimer;
+    private Boolean inSpiritualVision;
 
     void Start()
     {
         currentState = new Player_Idle();
         currentState.EnterState(this);
         currentBullets = playerAttributes.Ammo;
+        currentSpiritualVision = playerAttributes.totalSpiritualVision;
     }
 
     void Update()
@@ -61,6 +67,7 @@ public class PlayerController : MonoBehaviour
             currentState.UpdateState(this);
             HandleRotationInput();
             HandleShootInput();
+            HandleSpiritualVision();
         }
     }
 
@@ -113,11 +120,39 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if(Time.time - lastReload >= reloadTime)
+            if(Time.time - lastReload >= playerAttributes.reloadSpeed)
             {
                 currentlyReloading = false;
                 currentBullets = playerAttributes.Ammo;
             }
         }
+    }
+
+    void HandleSpiritualVision()
+    {
+        spiritualVisionTimer = Time.time;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            inSpiritualVision = true;
+        }
+        if (inSpiritualVision)
+        {
+            currentSpiritualVision -= (Time.time - spiritualVisionTimer);
+            if (currentSpiritualVision <= 0)
+            {
+                currentSpiritualVision = 0;
+                inSpiritualVision = false;
+            }
+        } else
+        {
+            if (!(currentSpiritualVision >= playerAttributes.totalSpiritualVision))
+            {
+                currentSpiritualVision += playerAttributes.spiritualVisionRegeneration * (Time.time - spiritualVisionTimer);
+            } else
+            {
+                currentSpiritualVision = playerAttributes.totalSpiritualVision;
+            }
+        }
+
     }
 }

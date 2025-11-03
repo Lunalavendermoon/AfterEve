@@ -28,11 +28,10 @@ MonoBehaviour:
   hasKnockback: 0
   abilityMultiplier: 1
   attackPerSec: 2
-  Ammo: 10
+  Ammo: 100
   reloadSpeed: 2
-  bullets: 1
-  bulletSpread: 1
-  angle: 0
+  bullets: 4
+  bulletSpread: 0
   shield: 0
   totalStamina: 1
   staminaRegeneration: 1

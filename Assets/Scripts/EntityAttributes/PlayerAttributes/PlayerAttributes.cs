@@ -11,8 +11,7 @@ public class PlayerAttributes : EntityAttributes
     public int Ammo;
     public float reloadSpeed;
     public int bullets;
-    public int bulletSpread;
-    public int angle;
+    public float bulletSpread;
 
     [Header("Player Defense")]
     public int shield;

@@ -8,8 +8,7 @@ public class PlayerGun : MonoBehaviour
     [SerializeField]
     GameObject projectilePrefab;
 
-    [SerializeField]
-    float firingSpeed;
+    private float firingSpeed;
 
     public static PlayerGun Instance;
 
@@ -24,9 +23,16 @@ public class PlayerGun : MonoBehaviour
 
     public void Shoot()
     {
+        firingSpeed = 1/playerAttributes.attackPerSec;
         if(lastTimeShot + firingSpeed <= Time.time)
         {
-            Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+            int currentAngle = (playerAttributes.bullets - 1) * 5;
+            for (int i = 0; i < playerAttributes.bullets; i++)
+            {
+                Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-playerAttributes.bulletSpread, playerAttributes.bulletSpread)) * firingPoint.rotation);
+                currentAngle -= 10;
+            }
+            
             lastTimeShot = Time.time;
         }
         

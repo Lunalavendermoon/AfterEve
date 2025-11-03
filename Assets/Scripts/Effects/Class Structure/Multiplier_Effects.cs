@@ -32,13 +32,6 @@ public abstract class Multiplier_Effects : Effects
 
     public override void ApplyEffect(EntityAttributes entityAttributes)
     {
-        if (isIncremental && (Time.time - startTime > incrementInterval || initialApplication))
-        {
-            totalRate *= effectRate;
-            startTime = Time.time;
-            initialApplication = false;
-        }
-
         switch (effectStat)
         {
             case Stat.HP:
@@ -60,6 +53,8 @@ public abstract class Multiplier_Effects : Effects
                 entityAttributes.spiritualDefense = (int)(entityAttributes.spiritualDefense * totalRate);
                 break;
         }
+        
+        CompoundTotalEffect();
     }
 
     public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
@@ -69,15 +64,31 @@ public abstract class Multiplier_Effects : Effects
             case Stat.Damage:
                 // TODO incorporate weapon
                 // don't return here! we also want to modify damageDealtBonus by calling the catch-all method ApplyEffect
-                break;
+                ApplyEffect(playerAttributes);
+                return;
             case Stat.StaminaRegeneration:
                 playerAttributes.staminaRegeneration *= totalRate;
-                return;
+                break;
             case Stat.Luck:
                 playerAttributes.luck *= totalRate;
+                break;
+            default:
+                ApplyEffect(playerAttributes);
                 return;
         }
-        ApplyEffect(playerAttributes);
+
+        CompoundTotalEffect();
+    }
+
+    // increase the total effect rate, which will be used on the next trigger
+    protected void CompoundTotalEffect()
+    {
+        if (isIncremental && (Time.time - startTime > incrementInterval || initialApplication))
+        {
+            totalRate *= effectRate;
+            startTime = Time.time;
+            initialApplication = false;
+        }
     }
     
     public override bool IsIncremental()

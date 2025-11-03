@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-public class DebuffComparer : IComparer<Effects>
+public class DebuffComparer : IComparer<EffectInstance>
 {
-    public int Compare(Effects x, Effects y)
+    public int Compare(EffectInstance x, EffectInstance y)
     {
         if (x == null && y == null) return 0;
         if (x == null) return -1;
@@ -13,7 +13,7 @@ public class DebuffComparer : IComparer<Effects>
             return 0;
         }
 
-        int cmp = x.effectRate.CompareTo(y.effectRate);
+        int cmp = x.effect.effectRate.CompareTo(y.effect.effectRate);
         
         // if we return 0, the comparator will consider two Effects w/ the same effectRate identical even if they're separate instances
         // this causes problems when we try to add two Effects with the same effectRate to the same set
@@ -21,6 +21,6 @@ public class DebuffComparer : IComparer<Effects>
 
         // therefore: if the two Effects are separate instances, tiebreak arbitrarily to make sure they're not equal
 
-        return cmp == 0 ? x.timeStamp.CompareTo(y.timeStamp) : cmp;
+        return cmp == 0 ? x.effectId.CompareTo(y.effectId) : cmp;
     }
 }

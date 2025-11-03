@@ -62,7 +62,7 @@ public class Mystic_MirrorScript : EnemyBase
         );
 
         transform.position = newPos;
-        if (Vector3.Distance(transform.position, target.position) <= attackRange)
+        if (Vector3.Distance(transform.position, player.position) <= attackRange)
         {
 
             Debug.Log("Applying Confusion Effect to Player");

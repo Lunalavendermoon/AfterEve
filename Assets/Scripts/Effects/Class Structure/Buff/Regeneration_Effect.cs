@@ -6,8 +6,8 @@ public class Regeneration_Effect : Multiplier_Effects
     /// HP regenerate by a percentage per second
     /// </summary>
     /// <param name="duration"></param>
-    /// <param name="effectMultiplier"></param>
-    public Regeneration_Effect(float duration, float effectMultiplier) : base(duration, effectMultiplier)
+    /// <param name="effectMultiplyAdditive"></param>
+    public Regeneration_Effect(float duration, float effectMultiplyAdditive) : base(duration, effectMultiplyAdditive)
     {
         effectStat = Stat.HP;
         isDebuff = false;

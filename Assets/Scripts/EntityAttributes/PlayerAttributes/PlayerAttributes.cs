@@ -6,7 +6,7 @@ public class PlayerAttributes : EntityAttributes
     // Player Attributes
 
     [Header("Player Attack")]
-    public float abilityMultiplier;
+    public float abilityMultiplyAdditive;
     public float attackPerSec;
     public int Ammo;
     public float reloadSpeed;
@@ -53,10 +53,10 @@ public class PlayerAttributes : EntityAttributes
         return (int)(damageTaken * (1f + damageTakenBonus));
     }
 
-    // Ability Multiplier Damage Calculation
-    public int AbilityMultiplierDamage(int abilityBaseDamage)
+    // Ability MultiplyAdditive Damage Calculation
+    public int AbilityMultiplyAdditiveDamage(int abilityBaseDamage)
     {
-        return (int)(abilityBaseDamage * abilityMultiplier * (1f + damageDealtBonus) + 1);
+        return (int)(abilityBaseDamage * abilityMultiplyAdditive * (1f + damageDealtBonus) + 1);
     }
 
 

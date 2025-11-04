@@ -4,8 +4,8 @@ public class Strength_Effect : Multiplier_Effects
     /// Damage of all types increase by a %
     /// </summary>
     /// <param name="duration"></param>
-    /// <param name="effectMultiplier"></param>
-    public Strength_Effect(float duration, float effectMultiplier) : base(duration, effectMultiplier)
+    /// <param name="effectMultiplyAdditive"></param>
+    public Strength_Effect(float duration, float effectMultiplyAdditive) : base(duration, effectMultiplyAdditive)
     {
         effectStat = Stat.Damage;
         isDebuff = false;

@@ -4,8 +4,8 @@ public class Weak_Effect : Multiplier_Effects
     /// Damage from all source is multiplied by a %
     /// </summary>
     /// <param name="duration"> duration of time (seconds) the effect lasts for </param>
-    /// <param name="effectMultiplier"> take this percent of extra damage (ex. take 40% extra dmg -> effectMultiplier value is 0.4f) </param>
-    public Weak_Effect(float duration, float effectMultiplier) : base(duration, effectMultiplier)
+    /// <param name="effectMultiplyAdditive"> take this percent of extra damage (ex. take 40% extra dmg -> effectMultiplyAdditive value is 0.4f) </param>
+    public Weak_Effect(float duration, float effectMultiplyAdditive) : base(duration, effectMultiplyAdditive)
     {
         // facts
         effectStat = Stat.BasicDefense;
@@ -13,6 +13,6 @@ public class Weak_Effect : Multiplier_Effects
         isIncremental = false;
 
         // store as a negative value so that DebuffComparer works properly
-        effectRate = -effectMultiplier;
+        effectRate = -effectMultiplyAdditive;
     }
 }

@@ -16,13 +16,11 @@ public abstract class Multiplier_Effects : Effects
 
     protected float startTime;
 
-    private float totalRate;
-
-    protected Multiplier_Effects(float duration, float effectMultiplier) : base(duration)
+    protected Multiplier_Effects(float duration, float effectMultiplyAdditive) : base(duration)
     {
-        effectApplication = Application.Multiplier;
+        effectApplication = Application.MultiplyAdditive;
         startTime = Time.time;
-        effectRate = effectMultiplier;
+        effectRate = effectMultiplyAdditive;
         totalRate = effectRate;
 
         // if the subclass sets incremental = true, this will be overwritten
@@ -81,7 +79,7 @@ public abstract class Multiplier_Effects : Effects
     }
 
     // increase the total effect rate, which will be used on the next trigger
-    protected void CompoundTotalEffect()
+    public void CompoundTotalEffect()
     {
         if (isIncremental && (Time.time - startTime > incrementInterval || initialApplication))
         {

@@ -28,11 +28,11 @@ public class OldEffects : ScriptableObject
         // applies a percentage over the duration
         // (i.e. "Strength: Damage of all types increase by a %")
         // applied after Additive but before Flat
-        Multiplier,
+        MultiplyAdditive,
 
         // applies flat number over the duration
         // (i.e. "Shield: Shield is increased by a flat number")
-        // applied after Additive and Multiplier
+        // applied after Additive and MultiplyAdditive
         Flat,
 
         // completely disable/ignore an ability/stat 

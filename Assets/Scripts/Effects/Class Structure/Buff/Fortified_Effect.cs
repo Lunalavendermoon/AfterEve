@@ -4,8 +4,8 @@ public class Fortified_Effect : Multiplier_Effects
     /// Basic Defense is increased by a %
     /// </summary>
     /// <param name="duration"></param>
-    /// <param name="effectMultiplier"></param>
-    public Fortified_Effect(float duration, float effectMultiplier) : base(duration, effectMultiplier)
+    /// <param name="effectMultiplyAdditive"></param>
+    public Fortified_Effect(float duration, float effectMultiplyAdditive) : base(duration, effectMultiplyAdditive)
     {
         effectStat = Stat.BasicDefense;
         isDebuff = false;

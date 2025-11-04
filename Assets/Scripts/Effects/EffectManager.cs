@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -14,7 +15,7 @@ public abstract class EffectManager : MonoBehaviour
     readonly List<EffectInstance> permanentEffects = new();
 
     // stores every single effect that's currently active
-    public Dictionary<Tuple<Effects.Stat, Effects.Application>, List<EffectInstance>> effectStacks = new();
+    public Dictionary<Tuple<Effects.Stat, Effects.Application, bool>, List<EffectInstance>> effectStacks = new();
 
     // only used for buffs that are not Disable-type
     // stores the all buff modifiers for a given stat
@@ -85,8 +86,9 @@ public abstract class EffectManager : MonoBehaviour
         Effects.Stat stat = effect.effectStat;
         Effects.Application app = effect.effectApplication;
         Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
+        Tuple<Effects.Stat, Effects.Application, bool> key3 = Tuple.Create(stat, app, effect.isDebuff);
 
-        bool existingEffect = effectStacks.ContainsKey(key);
+        bool existingEffect = effectStacks.ContainsKey(key3);
 
         if (app == Effects.Application.Disable &&
             existingEffect && !effect.isPermanent)
@@ -106,32 +108,32 @@ public abstract class EffectManager : MonoBehaviour
 
         EffectInstance eff = new EffectInstance(effect, effectCount++);
 
-        if (existingEffect)
+        if (app != Effects.Application.Disable)
         {
-            if (effect.isDebuff)
+            if (existingEffect)
             {
-                // debuffs can't stack, no need to increment effectStacks
-                debuffs[key].Add(eff);
-            }
-            else
-            {
-                effectStacks[key].Add(eff);
-                buffs[key].Add(eff);
-            }
-        }
-        else
-        {
-            effectStacks[key] = new() { eff };
-            if (effect.isDebuff)
-            {
-                debuffs[key] = new(new DebuffComparer())
+                if (effect.isDebuff)
                 {
-                    eff
-                };
+                    // debuffs can't stack, no need to increment effectStacks
+                    debuffs[key].Add(eff);
+                }
+                else
+                {
+                    effectStacks[key3].Add(eff);
+                    buffs[key].Add(eff);
+                }
             }
             else
             {
-                if (app != Effects.Application.Disable)
+                effectStacks[key3] = new() { eff };
+                if (effect.isDebuff)
+                {
+                    debuffs[key] = new(new DebuffComparer())
+                    {
+                        eff
+                    };
+                }
+                else
                 {
                     buffs[key] = new() { eff };
                 }
@@ -166,6 +168,7 @@ public abstract class EffectManager : MonoBehaviour
         Effects.Stat stat = effect.effectStat;
         Effects.Application app = effect.effectApplication;
         Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
+        Tuple<Effects.Stat, Effects.Application, bool> key3 = Tuple.Create(stat, app, effect.isDebuff);
 
         if (effect.isDebuff)
         {
@@ -174,18 +177,18 @@ public abstract class EffectManager : MonoBehaviour
             if (debuffs[key].Count == 0)
             {
                 // this effect no longer exists
-                effectStacks.Remove(key);
+                effectStacks.Remove(key3);
                 debuffs.Remove(key);
             }
         }
         else
         {
-            effectStacks[key].Remove(ei);
+            effectStacks[key3].Remove(ei);
 
-            if (effectStacks[key].Count == 0)
+            if (effectStacks[key3].Count == 0)
             {
                 // this effect no longer exists
-                effectStacks.Remove(key);
+                effectStacks.Remove(key3);
                 if (app != Effects.Application.Disable)
                 {
                     buffs.Remove(key);
@@ -257,9 +260,40 @@ public abstract class EffectManager : MonoBehaviour
                         applyEffect(debuffSet.Min.effect);
                     }
                 }
+                else if (app == Effects.Application.MultiplyAdditive)
+                {
+                    float totalEffect = 1f;
+                    if (buffs.TryGetValue(key, out List<EffectInstance> buffList))
+                    {
+                        foreach (EffectInstance eff in buffList)
+                        {
+                            Multiplier_Effects effect = (Multiplier_Effects)eff.effect;
+                            totalEffect += effect.totalRate - 1f;
+                            effect.CompoundTotalEffect();
+                        }
+                    }
+
+                    if (debuffs.TryGetValue(key, out SortedSet<EffectInstance> debuffSet))
+                    {
+                        Multiplier_Effects effect = (Multiplier_Effects)debuffSet.Min.effect;
+                        totalEffect += effect.totalRate - 1f;
+                        effect.CompoundTotalEffect();
+                    }
+
+                    Multiplier_Effects dummy = new Multiplier_Dummy_Effects(totalEffect, stat);
+                    applyEffect(dummy);
+                }
                 else
                 {
-                    if (effectStacks.TryGetValue(key, out List<EffectInstance> effects))
+                    List<EffectInstance> effects;
+                    if (effectStacks.TryGetValue(Tuple.Create(stat, app, true), out effects))
+                    {
+                        foreach (EffectInstance eff in effects)
+                        {
+                            applyEffect(eff.effect);
+                        }
+                    }
+                    if (effectStacks.TryGetValue(Tuple.Create(stat, app, false), out effects))
                     {
                         foreach (EffectInstance eff in effects)
                         {

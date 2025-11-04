@@ -20,6 +20,7 @@ public abstract class Flat_Effects : Effects
     protected Flat_Effects(float duration, int effectFlat) : base(duration)
     {
         effectRate = effectFlat;
+        totalRate = effectRate;
         // set effectApplication for each child class separately
         // set it to Additive to apply the effect before multipliers, set it to Flat to apply it after multipliers
     }

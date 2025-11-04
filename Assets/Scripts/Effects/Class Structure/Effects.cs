@@ -24,11 +24,16 @@ public abstract class Effects
     // how the effect is applied
     public enum Application
     {
-        // Note: please don't reorder Additive, Multiplier, and Float!
+        // Note: please don't reorder the effect applications!
         // this is the other of operations used to apply all the effects onto the entity
 
         // applies flat number over the duration before all other bonuses
         Additive,
+
+        // applies a percentage over the duration -- all percentages are SUMMED UP
+        // (i.e. "Strength: Damage of all types increase by a %")
+        // applied after Additive but before Flat
+        MultiplyAdditive,
 
         // applies a percentage over the duration
         // (i.e. "Strength: Damage of all types increase by a %")
@@ -37,7 +42,7 @@ public abstract class Effects
 
         // applies flat number over the duration
         // (i.e. "Shield: Shield is increased by a flat number")
-        // applied after Additive and Multiplier
+        // applied after Additive and MultiplyAdditive
         Flat,
 
         // completely disable/ignore an ability/stat 
@@ -58,6 +63,7 @@ public abstract class Effects
 
     // the amount of flat or multiplier applied
     public float effectRate;
+    public float totalRate;
 
     // permanent effect (i.e. tarot buffs)
     public bool isPermanent = false;

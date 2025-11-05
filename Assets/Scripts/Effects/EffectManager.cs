@@ -74,6 +74,10 @@ public abstract class EffectManager : MonoBehaviour
                 Debug.Log("Apply Slow effect");
                 AddEffect(new Slow_Effect(5f, 0.8f));
                 break;
+            case "burn":
+                Debug.Log("Apply Burn effect");
+                AddEffect(new Burn_Effect(5f, 200, 1f));
+                break;
             default:
                 Debug.Log(effect + " is not a valid effect");
                 break;

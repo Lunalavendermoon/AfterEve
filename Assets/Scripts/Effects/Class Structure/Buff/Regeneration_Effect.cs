@@ -13,6 +13,8 @@ public class Regeneration_Effect : Multiplier_Effects
         isDebuff = false;
         isIncremental = true;
         incrementInterval = 1;
+
+        effectApplication = Application.Multiplier;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)

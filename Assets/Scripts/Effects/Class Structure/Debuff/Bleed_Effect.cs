@@ -20,6 +20,8 @@ public class Bleed_Effect : Multiplier_Effects
 
         // numbers that we're not sure of yet/couuld be changed?
         incrementInterval = timeBetweenIncrements;
+
+        effectApplication = Application.Multiplier;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)

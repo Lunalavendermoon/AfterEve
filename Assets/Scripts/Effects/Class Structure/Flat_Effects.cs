@@ -25,7 +25,7 @@ public abstract class Flat_Effects : Effects
         // set it to Additive to apply the effect before multipliers, set it to Flat to apply it after multipliers
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes, bool increment = false)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)
     {
         switch (effectStat)
         {
@@ -47,7 +47,7 @@ public abstract class Flat_Effects : Effects
         }
     }
 
-    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment = false)
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)
     {
         switch (effectStat)
         {
@@ -63,6 +63,6 @@ public abstract class Flat_Effects : Effects
                 return;
         }
         // if effectStat wasn't one of the above (or it was Stat.Damage), this method gets called
-        ApplyEffect(playerAttributes);
+        ApplyEffect(playerAttributes, increment);
     }
 }

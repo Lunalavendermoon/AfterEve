@@ -15,6 +15,6 @@ public class PlayerEffectManager : EffectManager
         PlayerController.instance.playerAttributes = effectPlayerAttributes;
 
         // just for testing, comment this out if needed
-        Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefense);
+        // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefense);
     }
 }

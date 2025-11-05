@@ -13,12 +13,22 @@ public class Burn_Effect : Flat_Effects
     {
         // facts
         effectStat = Stat.HP;
-        effectApplication = Application.Other;
+        effectApplication = Application.Flat;
         isDebuff = true;
         isIncremental = true;
 
         // numbers that we're not sure of yet/couuld be changed?
         incrementInterval = timeBetweenIncrements;
+    }
+
+    public override bool IsIncremental()
+    {
+        return true;
+    }
+
+    public override float GetIncrementDuration()
+    {
+        return incrementInterval;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)

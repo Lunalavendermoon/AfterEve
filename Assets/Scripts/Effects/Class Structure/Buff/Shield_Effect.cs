@@ -12,7 +12,7 @@ public class Shield_Effect : Flat_Effects
         effectApplication = Application.Flat;
     }
 
-    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool _)
     {
         // unlike other flat effects, we only want to apply the shield a single time
         if (initialApplication)

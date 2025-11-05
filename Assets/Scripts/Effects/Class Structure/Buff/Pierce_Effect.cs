@@ -11,7 +11,7 @@ public class Pierce_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool _)
     {
         entityAttributes.ignoreBasicDef = true;
     }

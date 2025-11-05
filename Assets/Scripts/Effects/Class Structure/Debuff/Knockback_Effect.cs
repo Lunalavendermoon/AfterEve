@@ -13,7 +13,7 @@ public class Knockback_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool _)
     {
         // TODO make sure knockback triggers when enemy attacks player
         entityAttributes.hasKnockback = true;

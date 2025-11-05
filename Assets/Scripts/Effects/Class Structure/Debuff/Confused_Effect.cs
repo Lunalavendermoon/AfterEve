@@ -13,12 +13,12 @@ public class Confused_Effect : Effects
         effectApplication = Application.Disable;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool _ = false)
     {
         entityAttributes.isConfused = true;
     }
 
-    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool _)
     {
         playerAttributes.speed *= -1;
         ApplyEffect(playerAttributes);

@@ -22,14 +22,13 @@ public class Bleed_Effect : Multiplier_Effects
         incrementInterval = timeBetweenIncrements;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)
     {
-        if (Time.time - startTime > incrementInterval || initialApplication)
+        if (increment)
         {
             // TODO: deal damage to the player
             float bleedDmg = entityAttributes.hitPoints * effectRate;
             Debug.Log("Bleed amount: " + bleedDmg);
-            startTime = Time.time;
             initialApplication = false;
         }
     }

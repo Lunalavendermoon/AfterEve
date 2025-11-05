@@ -15,14 +15,13 @@ public class Regeneration_Effect : Multiplier_Effects
         incrementInterval = 1;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)
     {
-        if (Time.time - startTime > incrementInterval || initialApplication)
+        if (increment)
         {
             // TODO: recover HP to the target entity
             float regenAmount = entityAttributes.hitPoints * effectRate;
             Debug.Log("Regenerated amount: " + regenAmount);
-            startTime = Time.time;
             initialApplication = false;
         }
     }

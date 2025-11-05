@@ -14,12 +14,9 @@ public abstract class Multiplier_Effects : Effects
     // only used for incremental effects
     protected bool initialApplication = true;
 
-    protected float startTime;
-
     protected Multiplier_Effects(float duration, float effectMultiplyAdditive) : base(duration)
     {
         effectApplication = Application.MultiplyAdditive;
-        startTime = Time.time;
         effectRate = effectMultiplyAdditive;
         totalRate = effectRate;
 
@@ -28,7 +25,7 @@ public abstract class Multiplier_Effects : Effects
         incrementInterval = 0f;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)
     {
         switch (effectStat)
         {
@@ -52,17 +49,20 @@ public abstract class Multiplier_Effects : Effects
                 break;
         }
         
-        CompoundTotalEffect();
+        if (increment)
+        {
+            CompoundTotalEffect();
+        }
     }
 
-    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)
     {
         switch (effectStat)
         {
             case Stat.Damage:
                 // TODO incorporate weapon
                 // don't return here! we also want to modify damageDealtBonus by calling the catch-all method ApplyEffect
-                ApplyEffect(playerAttributes);
+                ApplyEffect(playerAttributes, increment);
                 return;
             case Stat.StaminaRegeneration:
                 playerAttributes.staminaRegeneration *= totalRate;
@@ -71,22 +71,21 @@ public abstract class Multiplier_Effects : Effects
                 playerAttributes.luck *= totalRate;
                 break;
             default:
-                ApplyEffect(playerAttributes);
+                ApplyEffect(playerAttributes, increment);
                 return;
         }
 
-        CompoundTotalEffect();
+        if (increment)
+        {
+            CompoundTotalEffect();
+        }
     }
 
     // increase the total effect rate, which will be used on the next trigger
     public void CompoundTotalEffect()
     {
-        if (isIncremental && (Time.time - startTime > incrementInterval || initialApplication))
-        {
-            totalRate *= effectRate;
-            startTime = Time.time;
-            initialApplication = false;
-        }
+        totalRate *= effectRate;
+        initialApplication = false;
     }
     
     public override bool IsIncremental()

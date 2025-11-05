@@ -11,7 +11,7 @@ public class EnemyEffectManager : EffectManager
     public override void ApplyEffects()
     {
         effectEnemyAttributes = Instantiate(baseEnemyAttributes);
-        ApplyEffectsHelper((effect) => { effect.ApplyEnemyEffect(effectEnemyAttributes, enemy); });
+        ApplyEffectsHelper((effect, increment) => { effect.ApplyEnemyEffect(effectEnemyAttributes, enemy, increment); });
         enemy.enemyAttributes = effectEnemyAttributes;
     }
 }

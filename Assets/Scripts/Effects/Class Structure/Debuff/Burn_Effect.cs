@@ -21,13 +21,12 @@ public class Burn_Effect : Flat_Effects
         incrementInterval = timeBetweenIncrements;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)
     {
-        if (Time.time - startTime > incrementInterval || initialApplication)
+        if (increment)
         {
             // TODO: deal damage to the player
             Debug.Log("Burn amount: " + effectRate);
-            startTime = Time.time;
             initialApplication = false;
         }
     }

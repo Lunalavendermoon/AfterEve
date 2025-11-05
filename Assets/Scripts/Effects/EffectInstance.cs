@@ -55,7 +55,7 @@ public class EffectInstance
 
     public void DecrementTriggerTime()
     {
-        if (effect.IsIncremental())
+        if (IsNextTrigger())
         {
             nextTriggerTime -= triggerInterval;
             initialApplication = false;

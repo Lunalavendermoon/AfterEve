@@ -33,12 +33,12 @@ public class Haste_Effect : Effects
         speedRate = speedMultiplyAdditive;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool _ = false)
     {
         entityAttributes.speed *= speedRate;
     }
 
-    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool _)
     {
         playerAttributes.staminaRegeneration *= stamRate;
         ApplyEffect(playerAttributes);

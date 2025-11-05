@@ -25,7 +25,7 @@ public abstract class Flat_Effects : Effects
         // set it to Additive to apply the effect before multipliers, set it to Flat to apply it after multipliers
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes)
+    public override void ApplyEffect(EntityAttributes entityAttributes, bool increment = false)
     {
         switch (effectStat)
         {
@@ -47,7 +47,7 @@ public abstract class Flat_Effects : Effects
         }
     }
 
-    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes)
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment = false)
     {
         switch (effectStat)
         {

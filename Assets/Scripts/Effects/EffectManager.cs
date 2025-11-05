@@ -17,12 +17,11 @@ public abstract class EffectManager : MonoBehaviour
     // stores every single effect that's currently active
     public Dictionary<Tuple<Effects.Stat, Effects.Application, bool>, List<EffectInstance>> effectStacks = new();
 
-    // only used for buffs that are not Disable-type
     // stores the all buff modifiers for a given stat
     // contains a pair: the stat to modify, and how to modify it (additive, flat, percentage)
     public Dictionary<Tuple<Effects.Stat, Effects.Application>, List<EffectInstance>> buffs = new();
 
-    // only used for debuffs that are not Disable-type
+    // only used for debuffs that are NOT Disable-type
     // stores all the debuffs of a given type, sorted in decreasing order of magnitude
     public Dictionary<Tuple<Effects.Stat, Effects.Application>, SortedSet<EffectInstance>> debuffs = new();
 
@@ -108,35 +107,37 @@ public abstract class EffectManager : MonoBehaviour
 
         EffectInstance eff = new EffectInstance(effect, effectCount++);
 
-        if (app != Effects.Application.Disable)
+        if (existingEffect)
         {
-            if (existingEffect)
+            effectStacks[key3].Add(eff);
+            if (effect.isDebuff)
             {
-                if (effect.isDebuff)
+                if (effect.effectApplication != Effects.Application.Disable)
                 {
-                    // debuffs can't stack, no need to increment effectStacks
                     debuffs[key].Add(eff);
-                }
-                else
-                {
-                    effectStacks[key3].Add(eff);
-                    buffs[key].Add(eff);
                 }
             }
             else
             {
-                effectStacks[key3] = new() { eff };
-                if (effect.isDebuff)
+                buffs[key].Add(eff);
+            }
+        }
+        else
+        {
+            effectStacks[key3] = new() { eff };
+            if (effect.isDebuff)
+            {
+                if (effect.effectApplication != Effects.Application.Disable)
                 {
                     debuffs[key] = new(new DebuffComparer())
                     {
                         eff
                     };
                 }
-                else
-                {
-                    buffs[key] = new() { eff };
-                }
+            }
+            else
+            {
+                buffs[key] = new() { eff };
             }
         }
 
@@ -148,6 +149,8 @@ public abstract class EffectManager : MonoBehaviour
         {
             effectTimers.Add(eff);
         }
+
+        ApplyEffects();
     }
 
     // Requires that the instance of EffectInstance is the same one that is stored in this EffectManager's collections
@@ -172,9 +175,13 @@ public abstract class EffectManager : MonoBehaviour
 
         if (effect.isDebuff)
         {
-            debuffs[key].Remove(ei);
+            effectStacks[key3].Remove(ei);
+            if (effect.effectApplication != Effects.Application.Disable)
+            {
+                debuffs[key].Remove(ei);
+            }
 
-            if (debuffs[key].Count == 0)
+            if (effectStacks[key3].Count == 0)
             {
                 // this effect no longer exists
                 effectStacks.Remove(key3);
@@ -184,22 +191,13 @@ public abstract class EffectManager : MonoBehaviour
         else
         {
             effectStacks[key3].Remove(ei);
+            buffs[key].Remove(ei);
 
             if (effectStacks[key3].Count == 0)
             {
                 // this effect no longer exists
                 effectStacks.Remove(key3);
-                if (app != Effects.Application.Disable)
-                {
-                    buffs.Remove(key);
-                }
-            }
-            else
-            {
-                if (buffs.ContainsKey(key))
-                {
-                    buffs[key].Remove(ei);
-                }
+                buffs.Remove(key);
             }
         }
     }
@@ -208,7 +206,7 @@ public abstract class EffectManager : MonoBehaviour
     {
         float time_elapsed = Time.deltaTime;
 
-        // bool makeUpdate = false;
+        bool makeUpdate = false;
 
         for (int i = effectTimers.Count - 1; i >= 0; i--)
         {
@@ -217,19 +215,37 @@ public abstract class EffectManager : MonoBehaviour
             if (ei.IsExpired())
             {
                 RemoveEffect(ei);
+                makeUpdate = true;
             }
-            // else if (ei.IsNextTrigger())
-            // {
-            //     makeUpdate = true;
-            // }
+            else if (ei.IsNextTrigger())
+            {
+                if (ei.effect.isDebuff)
+                {
+                    Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(ei.effect.effectStat, ei.effect.effectApplication);
+                    if (debuffs.TryGetValue(key, out SortedSet<EffectInstance> effs))
+                    {
+                        if (!ReferenceEquals(effs.Min, ei))
+                        {
+                            ei.DecrementTriggerTime();
+                            // TODO (not sure if necessary, check w/ design team?):
+                            // increase value of incremental effects in the background even if they're not the active "maximum" debuff
+                            continue;
+                        }
+                    }
+                }
+                makeUpdate = true;
+            }
         }
 
-        ApplyEffects();
+        if (makeUpdate)
+        {
+            ApplyEffects();
+        }
     }
 
     public abstract void ApplyEffects();
 
-    public void ApplyEffectsHelper(Action<Effects> applyEffect)
+    public void ApplyEffectsHelper(Action<Effects, bool> applyEffect)
     {
         // iterate through all stats and modify them one-by-one!
         // this is the easiest way but kind of inefficient
@@ -251,13 +267,16 @@ public abstract class EffectManager : MonoBehaviour
                     {
                         foreach (EffectInstance eff in buffList)
                         {
-                            applyEffect(eff.effect);
+                            applyEffect(eff.effect, eff.IsNextTrigger());
+                            eff.DecrementTriggerTime();
                         }
                     }
 
                     if (debuffs.TryGetValue(key, out SortedSet<EffectInstance> debuffSet))
                     {
-                        applyEffect(debuffSet.Min.effect);
+                        EffectInstance debuff = debuffSet.Min;
+                        applyEffect(debuff.effect, debuff.IsNextTrigger());
+                        debuff.DecrementTriggerTime();
                     }
                 }
                 else if (app == Effects.Application.MultiplyAdditive)
@@ -269,19 +288,28 @@ public abstract class EffectManager : MonoBehaviour
                         {
                             Multiplier_Effects effect = (Multiplier_Effects)eff.effect;
                             totalEffect += effect.totalRate - 1f;
-                            effect.CompoundTotalEffect();
+                            if (eff.IsNextTrigger())
+                            {
+                                effect.CompoundTotalEffect();
+                                eff.DecrementTriggerTime();
+                            }
                         }
                     }
 
                     if (debuffs.TryGetValue(key, out SortedSet<EffectInstance> debuffSet))
                     {
-                        Multiplier_Effects effect = (Multiplier_Effects)debuffSet.Min.effect;
+                        EffectInstance debuff = debuffSet.Min;
+                        Multiplier_Effects effect = (Multiplier_Effects)debuff.effect;
                         totalEffect += effect.totalRate - 1f;
-                        effect.CompoundTotalEffect();
+                        if (debuff.IsNextTrigger())
+                        {
+                            effect.CompoundTotalEffect();
+                            debuff.DecrementTriggerTime();
+                        }
                     }
 
                     Multiplier_Effects dummy = new Multiplier_Dummy_Effects(totalEffect, stat);
-                    applyEffect(dummy);
+                    applyEffect(dummy, false);
                 }
                 else
                 {
@@ -290,14 +318,14 @@ public abstract class EffectManager : MonoBehaviour
                     {
                         foreach (EffectInstance eff in effects)
                         {
-                            applyEffect(eff.effect);
+                            applyEffect(eff.effect, false);
                         }
                     }
                     if (effectStacks.TryGetValue(Tuple.Create(stat, app, false), out effects))
                     {
                         foreach (EffectInstance eff in effects)
                         {
-                            applyEffect(eff.effect);
+                            applyEffect(eff.effect, false);
                         }
                     }
                 }

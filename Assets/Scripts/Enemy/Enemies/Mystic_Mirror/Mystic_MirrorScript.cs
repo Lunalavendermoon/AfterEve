@@ -28,10 +28,6 @@ public class Mystic_MirrorScript : EnemyBase
 
 
 
-    public override void Die()
-    {
-        //TODO
-    }
     private IEnumerator TeleportAttack(Transform target)
     {
         float totalDuration = 5f;

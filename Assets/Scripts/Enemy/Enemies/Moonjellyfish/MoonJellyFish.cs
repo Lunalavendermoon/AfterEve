@@ -39,9 +39,5 @@ public class MoonJellyFish : EnemyBase
 
     
 
-    public override void Die()
-    {
-        //TODO
-    }
 
 }

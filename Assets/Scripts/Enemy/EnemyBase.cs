@@ -54,7 +54,10 @@ public abstract class EnemyBase : MonoBehaviour
     // Actions
     public abstract void Attack(Transform target);
 
-    public abstract void Die();
+    public virtual void Die()
+    {
+        Destroy(gameObject);
+    }
 
     public virtual bool InRange(Transform target)
     {

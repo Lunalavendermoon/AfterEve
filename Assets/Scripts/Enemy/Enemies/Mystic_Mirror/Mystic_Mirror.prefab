@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 4218060253700215088}
   - component: {fileID: 3020317258078534519}
   - component: {fileID: -2365211166818180694}
+  - component: {fileID: 8498034460939174043}
   - component: {fileID: -2973820917525509810}
   - component: {fileID: 397431353751238334}
   m_Layer: 0
@@ -249,6 +250,18 @@ MonoBehaviour:
   attackHitbox: {fileID: 0}
   isAttacking: 0
   attack_timer: 1
+--- !u!114 &8498034460939174043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214233007585310572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326ab77e06900db41b2a2b60c5297994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHit
 --- !u!195 &-2973820917525509810
 NavMeshAgent:
   m_ObjectHideFlags: 0

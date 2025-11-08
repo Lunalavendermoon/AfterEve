@@ -1,13 +1,12 @@
-using System.Collections;
 using UnityEngine;
 
-public class knightOfBlades : EnemyBase
+public class KnightofShields_script : EnemyBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashDuration = 1f;
+
     void Awake()
     {
         health = enemyAttributes.hitPoints;
@@ -24,38 +23,12 @@ public class knightOfBlades : EnemyBase
     }
 
 
-
     public override void Attack(Transform target)
     {
-        
-        StartCoroutine(DashAttack());
-    }
-
-
-
-
-
-    private IEnumerator DashAttack()
-    {
-        // Enable hitbox for duration of dash
         EnableAttack();
-
-        float elapsed = 0f;
-
-        Vector3 dashDirection = transform.forward; 
-        Debug.Log("Dashing in direction: " + dashDirection);
-        while (elapsed < dashDuration)
-        {
-            // Move enemy forward
-            transform.position += dashDirection * dashSpeed * Time.deltaTime;
-
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        // Disable hitbox after dash
-        DisableAttack();
-
+        // Trigger animation 
+        // animator.SetTrigger("Attack");
+        Invoke(nameof(DisableAttack), 0.5f);
 
     }
 }

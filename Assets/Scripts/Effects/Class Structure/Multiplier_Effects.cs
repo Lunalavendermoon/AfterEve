@@ -61,8 +61,9 @@ public abstract class Multiplier_Effects : Effects
         {
             case Stat.Damage:
                 // TODO incorporate weapon
-                // don't return here! we also want to modify damageDealtBonus by calling the catch-all method ApplyEffect
+                // we also want to modify damageDealtBonus by calling the catch-all method ApplyEffect
                 ApplyEffect(playerAttributes, increment);
+                // we need to return here to avoid potentially calling CompoundTotalEffect() twice!
                 return;
             case Stat.StaminaRegeneration:
                 playerAttributes.staminaRegeneration *= totalRate;
@@ -73,9 +74,12 @@ public abstract class Multiplier_Effects : Effects
             case Stat.FireRate:
                 playerAttributes.attackPerSec *= totalRate;
                 break;
+            case Stat.AmmoCapacity:
+                playerAttributes.Ammo = (int)(playerAttributes.Ammo * totalRate);
+                break;
             default:
                 ApplyEffect(playerAttributes, increment);
-                return;     
+                return;
         }
 
         if (increment)

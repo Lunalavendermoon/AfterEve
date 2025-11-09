@@ -8,6 +8,4 @@ public class FireRate_Effect : Multiplier_Effects
         isDebuff = false;
         isIncremental = false;
     }
-
-    
 }

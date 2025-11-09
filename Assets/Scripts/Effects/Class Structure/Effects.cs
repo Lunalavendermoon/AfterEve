@@ -18,7 +18,10 @@ public abstract class Effects
         Knockback,
         Confused,
         Movement,
-        Haste
+        Haste,
+        FireRate,
+        BulletBounce,
+        AmmoCapacity
     }
 
     // how the effect is applied

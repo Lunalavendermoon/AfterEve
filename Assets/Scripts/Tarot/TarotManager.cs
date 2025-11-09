@@ -23,5 +23,23 @@ public class TarotManager : MonoBehaviour
         tarotCard.ApplyCard(this);
     }
 
+    public void RemoveCard(TarotCard tarotCard)
+    {
+        if (tarotCard is Present_TarotCard)
+        {
+            if (presentTarot.Remove((Present_TarotCard)tarotCard))
+            {
+                tarotCard.RemoveCard(this);
+            }
+        }
+    }
 
+    void Start()
+    {
+
+        foreach (Present_TarotCard present in presentTarot)
+        {
+            Debug.Log("name: " + present.name + " quantity: " + present.quantity);
+        }
+    }
 }

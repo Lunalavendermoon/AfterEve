@@ -70,9 +70,12 @@ public abstract class Multiplier_Effects : Effects
             case Stat.Luck:
                 playerAttributes.luck *= totalRate;
                 break;
+            case Stat.FireRate:
+                playerAttributes.attackPerSec *= totalRate;
+                break;
             default:
                 ApplyEffect(playerAttributes, increment);
-                return;
+                return;     
         }
 
         if (increment)

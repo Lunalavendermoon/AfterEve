@@ -45,8 +45,8 @@ public class Projectile : MonoBehaviour
         else if (other.gameObject.GetComponent<EnemyBase>())
         {
             EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
-            enemy.TakeDamage(PlayerController.instance.playerAttributes.damage);
             OnEnemyHit.Invoke(enemy);
+            enemy.TakeDamage(PlayerController.instance.playerAttributes.damage);
             Destroy(this.gameObject);
         }
         else

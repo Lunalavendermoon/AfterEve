@@ -6,6 +6,10 @@ public class Present_TarotCard : TarotCard
 {
     public List<Effects> effects;
 
+    public Present_TarotCard(string s, int q) : base(s, q)
+    {
+    }
+
     public override void ApplyCard(TarotManager tarotManager)
     {
         foreach (Effects e in effects)
@@ -16,6 +20,9 @@ public class Present_TarotCard : TarotCard
 
     public override void RemoveCard(TarotManager tarotManager)
     {
-        throw new System.NotImplementedException();
+        foreach(Effects e in effects)
+        {
+            
+        }
     }
 }

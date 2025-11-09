@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class TarotCard
+public abstract class TarotCard : MonoBehaviour
 {
     public string name;
     public int quantity;

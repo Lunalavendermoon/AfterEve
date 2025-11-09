@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class Empress_Present : MonoBehaviour
+public class Empress_Present : Present_TarotCard
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Empress_Present(string s, int q) : base(s, q)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

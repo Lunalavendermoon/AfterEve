@@ -796,7 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshRotator
   surfaceplane: {fileID: 990495323}
   navMeshSurface: {fileID: 708371215}
-  Enemy: {fileID: 1710929130042634915, guid: f896eeca2f38e14429920c03791edbdc, type: 3}
+  Enemy: {fileID: 1710929130042634915, guid: 754001af4b5aa7f4eb28cfb43aee0757, type: 3}
 --- !u!1 &1649979606
 GameObject:
   m_ObjectHideFlags: 0

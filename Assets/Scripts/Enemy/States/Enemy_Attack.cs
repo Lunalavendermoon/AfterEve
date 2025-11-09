@@ -30,7 +30,7 @@ public class Enemy_Attack : IEnemyStates
         {
             Vector3 dir = (target.position - enemy.transform.position).normalized;
             
-            Debug.Log("Start turning towards player in Attack State");
+            
             if (dir.sqrMagnitude > 0.001f)
             {
                 

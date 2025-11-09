@@ -16,9 +16,12 @@ public class PlayerGun : MonoBehaviour
 
     public PlayerAttributes playerAttributes;
 
+    public Effects bulletEffect;
+
     void Awake()
     {
         Instance = GetComponent<PlayerGun>();
+        bulletEffect = null;
     }
 
     public void Shoot()
@@ -29,7 +32,9 @@ public class PlayerGun : MonoBehaviour
             int currentAngle = (playerAttributes.bullets - 1) * 5;
             for (int i = 0; i < playerAttributes.bullets; i++)
             {
-                Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-playerAttributes.bulletSpread, playerAttributes.bulletSpread)) * firingPoint.rotation);
+                GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-playerAttributes.bulletSpread, playerAttributes.bulletSpread)) * firingPoint.rotation);
+                projectile.GetComponent<Projectile>().setBulletBounce(playerAttributes.bulletBounces);
+                projectile.GetComponent<Projectile>().setBulletEffect(bulletEffect);
                 currentAngle -= 10;
             }
             
@@ -37,4 +42,15 @@ public class PlayerGun : MonoBehaviour
         }
         
     }
+
+    public void setBulletBounce(int n)
+    {
+        playerAttributes.bulletBounces = n;
+    }
+
+    public void setEffect(Effects effect)
+    {
+        bulletEffect = effect;
+    }
+
 }

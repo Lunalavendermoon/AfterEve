@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Explosive
   - Teleporter
+  - Wall
   layers:
   - Default
   - TransparentFX

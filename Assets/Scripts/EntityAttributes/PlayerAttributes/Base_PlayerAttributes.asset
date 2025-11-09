@@ -26,12 +26,14 @@ MonoBehaviour:
   resistance: 0
   isBlind: 0
   hasKnockback: 0
-  abilityMultiplier: 1
+  abilityMultiplyAdditive: 0
   attackPerSec: 2
-  Ammo: 100
+  Ammo: 10
   reloadSpeed: 2
-  bullets: 4
+  bullets: 1
   bulletSpread: 0
+  hasBulletBounce: 1
+  bulletBounces: 3
   shield: 0
   totalStamina: 1
   staminaRegeneration: 1

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Projectile : MonoBehaviour
 {
@@ -12,6 +13,20 @@ public class Projectile : MonoBehaviour
     private float maxProjectileDistance;
 
     public static event Action<EnemyBase> OnEnemyHit;
+
+    private int bulletBounces;
+
+    private Effects bulletEffect;
+
+    public void setBulletBounce(int n)
+    {
+        bulletBounces = n;
+    }
+
+    public void setBulletEffect(Effects bulletEffect)
+    {
+        this.bulletEffect = bulletEffect;
+    }
 
     void Start()
     {
@@ -47,11 +62,37 @@ public class Projectile : MonoBehaviour
             EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
             OnEnemyHit.Invoke(enemy);
             enemy.TakeDamage(PlayerController.instance.playerAttributes.damage);
+            if (enemy.GetComponent<EffectManager>()) {
+                if(!(bulletEffect == null))
+                    enemy.GetComponent<EffectManager>().AddEffect(bulletEffect);
+            }
+            
             Destroy(this.gameObject);
         }
         else
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("collision");
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("collision detected");
+            if (bulletBounces > 0)
+            {
+                Debug.Log("redirecting");
+                Vector3 surfaceNormal = collision.contacts[0].normal;
+                Vector3 reflectedDirection = Vector3.Reflect(transform.forward, surfaceNormal);
+                transform.forward = reflectedDirection.normalized;
+                bulletBounces--;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

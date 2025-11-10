@@ -13,6 +13,7 @@ public class PlayerAttributes : EntityAttributes
     public int bullets;
     public float bulletSpread;
     public bool hasBulletBounce;
+    public int bulletBounces;
 
     [Header("Player Defense")]
     public int shield;

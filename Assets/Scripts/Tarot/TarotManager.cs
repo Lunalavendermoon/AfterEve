@@ -14,11 +14,17 @@ public class TarotManager : MonoBehaviour
 
     List<Present_TarotCard> presentTarot = new List<Present_TarotCard>();
 
+    List<Future_TarotCard> futureTarot = new List<Future_TarotCard>();
+
     public void AddCard(TarotCard tarotCard)
     {
         if (tarotCard is Present_TarotCard)
         {
             presentTarot.Add((Present_TarotCard)tarotCard);
+        }
+        else if (tarotCard is Future_TarotCard)
+        {
+            futureTarot.Add((Future_TarotCard)tarotCard);
         }
         tarotCard.ApplyCard(this);
     }
@@ -28,6 +34,13 @@ public class TarotManager : MonoBehaviour
         if (tarotCard is Present_TarotCard)
         {
             if (presentTarot.Remove((Present_TarotCard)tarotCard))
+            {
+                tarotCard.RemoveCard(this);
+            }
+        }
+        else if (tarotCard is Future_TarotCard)
+        {
+            if (futureTarot.Remove((Future_TarotCard)tarotCard))
             {
                 tarotCard.RemoveCard(this);
             }

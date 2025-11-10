@@ -18,8 +18,8 @@ TagManager:
   - BulletPassable
   - SpiritOnly
   - VoidHole
-  - 
-  - 
+  - Ground
+  - Obstacle
   - 
   - 
   - 

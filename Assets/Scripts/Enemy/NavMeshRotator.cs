@@ -18,10 +18,10 @@ public class NavMeshRotator : MonoBehaviour
 
     void Start()
     {
-        BuildNav();
+        
       
         //Temp - Enemy Spawn to test
-        Enemy= Instantiate(Enemy, new Vector3(0, 0, 19), Quaternion.identity);
+        Enemy= Instantiate(Enemy, new Vector3(0, 0, 19),Quaternion.Euler(new Vector3(0,0,0)));
 
     }
 

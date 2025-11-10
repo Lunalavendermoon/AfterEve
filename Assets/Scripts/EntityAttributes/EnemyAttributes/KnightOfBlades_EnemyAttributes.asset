@@ -20,14 +20,14 @@ MonoBehaviour:
   basicDefense: 5
   spiritualDefense: 2
   damageTakenBonus: 0
-  speed: 1
+  speed: 2
   isParalyzed: 0
   isConfused: 0
   resistance: 0
   isBlind: 0
   hasKnockback: 0
   damageType: 0
-  attackRadius: 10
+  attackRadius: 2
   attackRate: 5
   weight: 5
   detection_radius: 10

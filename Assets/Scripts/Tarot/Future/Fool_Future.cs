@@ -16,14 +16,15 @@ public class Fool_Future : Future_TarotCard
     {
     }
 
-    void OnEnable()
+    public override void ApplyCard(TarotManager tarotManager)
     {
         // TODO add card listener
     }
 
-    void OnDisable()
+    public override void CompleteQuest()
     {
         // TODO remove card listener
+        RewardPlayer();
     }
 
     private void OnCardObtained()
@@ -39,5 +40,8 @@ public class Fool_Future : Future_TarotCard
     public override void RewardPlayer()
     {
         // TODO give player 50 coins
+
+        // Fool card doesn't use Future_Reward, so we have to manually call RemoveCard() here
+        RemoveCard();
     }
 }

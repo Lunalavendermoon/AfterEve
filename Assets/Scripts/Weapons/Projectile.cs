@@ -61,7 +61,9 @@ public class Projectile : MonoBehaviour
         {
             EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
             OnEnemyHit.Invoke(enemy);
-            enemy.TakeDamage(PlayerController.instance.playerAttributes.damage);
+            // TODO change to DamageType.Spiritual if player is dealing spiritual damage
+            enemy.TakeDamage(PlayerController.instance.playerAttributes.damage,
+                new DamageInstance(DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic));
             if (enemy.GetComponent<EffectManager>()) {
                 if(!(bulletEffect == null))
                     enemy.GetComponent<EffectManager>().AddEffect(bulletEffect);

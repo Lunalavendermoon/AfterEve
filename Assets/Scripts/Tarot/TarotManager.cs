@@ -38,13 +38,14 @@ public class TarotManager : MonoBehaviour
                 tarotCard.RemoveCard(this);
             }
         }
-        else if (tarotCard is Future_TarotCard)
-        {
-            if (futureTarot.Remove((Future_TarotCard)tarotCard))
-            {
-                tarotCard.RemoveCard(this);
-            }
-        }
+        // I don't think we need this? bc Future cards remove themselves automatically
+        // else if (tarotCard is Future_TarotCard)
+        // {
+        //     if (futureTarot.Remove((Future_TarotCard)tarotCard))
+        //     {
+        //         tarotCard.RemoveCard(this);
+        //     }
+        // }
     }
 
     void Start()

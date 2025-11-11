@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,6 +6,8 @@ using UnityEngine.AI;
 public abstract class EnemyBase : MonoBehaviour
 {
     public EnemyAttributes enemyAttributes;
+
+    public EnemyEffectManager enemyEffectManager;
 
     // Enemy attributes
     public int health;
@@ -24,6 +27,9 @@ public abstract class EnemyBase : MonoBehaviour
     public bool isAttacking = false;
 
     public float attack_timer = 1.0f;
+
+    // event for enemy dying
+    public static event Action<DamageInstance, EnemyBase> OnEnemyDeath;
 
     //Initializing agent and its default state
     public virtual void Start()
@@ -79,12 +85,13 @@ public abstract class EnemyBase : MonoBehaviour
         Debug.Log($"{gameObject.name} changed to state: {current_enemy_state?.GetType().Name}");
     }
 
-    public virtual void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount, DamageInstance dmgInstance)
     {
         health -= amount;
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
         if (health <= 0)
         {
+            OnEnemyDeath.Invoke(dmgInstance, this);
             Die();
         }
     }

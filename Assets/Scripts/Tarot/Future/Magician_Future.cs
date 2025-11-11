@@ -1,54 +1,41 @@
 public class Magician_Future : Future_TarotCard
 {
-    int currentRoomSkillCount = 0;
+    int roomSkillCount = 0;
 
-    int currentTotalSkillCount = 0;
+    int totalSkillCount = 0;
 
-    public const int roomSkillCount = 4;
-    public const int totalSkillCount = 15;
+    public const int roomSkillGoal = 4;
+    public const int totalSkillGoal = 15;
 
     public Magician_Future(string s, int q) : base(s, q)
     {
-        reward = new Magician_Reward();
+        reward = new Magician_Reward(this);
     }
 
-    void OnEnable()
+    public override void ApplyCard(TarotManager tarotManager)
     {
         // TODO add listener
     }
 
-    void OnDisable()
+    public override void CompleteQuest()
     {
         // TODO remove listener
+        RewardPlayer();
     }
 
     private void OnRoomChange()
     {
-        currentRoomSkillCount = 0;
+        roomSkillCount = 0;
     }
 
     private void OnSkillUse()
     {
-        ++currentRoomSkillCount;
-        ++currentTotalSkillCount;
+        ++roomSkillCount;
+        ++totalSkillCount;
 
-        // prevents reward from triggering twice due to a single skill use
-        bool giveReward = false;
-
-        if (currentRoomSkillCount >= roomSkillCount)
+        if (roomSkillCount >= roomSkillGoal || totalSkillCount >= totalSkillGoal)
         {
-            currentRoomSkillCount = 0;
-            giveReward = true;
-        }
-        if (currentTotalSkillCount >= totalSkillCount)
-        {
-            currentTotalSkillCount = 0;
-            giveReward = true;
-        }
-
-        if (giveReward)
-        {
-            RewardPlayer();
+            CompleteQuest();
         }
     }
 }

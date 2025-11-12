@@ -33,8 +33,8 @@ public class Enemy_Attack : IEnemyStates
             
             if (dir.sqrMagnitude > 0.001f)
             {
-                
-                Quaternion lookRotation = Quaternion.LookRotation(dir);
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                Quaternion lookRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
                 enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 5f);
             }
             enemy.attack_timer -= Time.deltaTime;

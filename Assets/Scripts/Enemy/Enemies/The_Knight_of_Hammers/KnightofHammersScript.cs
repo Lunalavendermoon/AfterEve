@@ -5,7 +5,7 @@ public class KnightofHammersScript : EnemyBase
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;
-
+    public LayerMask playerLayer;
     [SerializeField] int jumpCount = 3;                   // Number of jumps
     [SerializeField] float jumpDistance = 3f;             // Max distance per jump
     [SerializeField] float jumpDuration = 1f;           // Time per jump
@@ -18,8 +18,7 @@ public class KnightofHammersScript : EnemyBase
         speed = enemyAttributes.speed;
         visibleRange = enemyAttributes.detection_radius;
         attackRange = enemyAttributes.attackRadius;
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.speed = speed;
+
         default_enemy_state = new Enemy_Wander(wanderRadius, wanderTime);
 
         attackCooldown = enemyAttributes.attackRate;
@@ -62,7 +61,7 @@ public class KnightofHammersScript : EnemyBase
             float elapsed = 0f;
             while (elapsed < jumpDuration)
             {
-                Debug.Log("Jumping towards: " + targetPos);
+                
                 elapsed += Time.deltaTime;
                 float t = elapsed / jumpDuration;
 
@@ -74,17 +73,18 @@ public class KnightofHammersScript : EnemyBase
             }
 
             
-            transform.position = targetPos;
+            
 
             // Damage area 
-            Collider[] hits = Physics.OverlapSphere(transform.position, hitRadius);
+
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, hitRadius,3);
+            
             foreach (var hit in hits)
             {
-                if (hit.CompareTag("Player"))
-                {
+           
                     // Deal damage here
                     Debug.Log("Hit player with landing impact!");
-                }
+                
             }
 
             

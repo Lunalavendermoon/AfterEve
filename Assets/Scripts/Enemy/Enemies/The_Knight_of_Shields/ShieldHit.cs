@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ShieldHit : MonoBehaviour
 {
-   public void OnTriggerEnter(Collider other)
+   public void OnTriggerEnter2D(Collider2D other)
     {
         Projectile projectile = other.GetComponent<Projectile>();
         if (projectile != null)

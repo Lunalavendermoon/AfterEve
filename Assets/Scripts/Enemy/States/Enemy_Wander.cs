@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -56,8 +57,15 @@ public class Enemy_Wander :  IEnemyStates
     {
         Vector3 randomDirection = Random.insideUnitSphere * wanderRadius;
         randomDirection += enemy.transform.position;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randomDirection, out navHit, wanderRadius, -1);
-        enemy.agent.SetDestination(navHit.position);
+
+        // Find the nearest valid node on the A* GridGraph
+        NNInfo nearestNode = AstarPath.active.GetNearest(randomDirection, NNConstraint.Default);
+
+        // Ensure the node is walkable
+        if (nearestNode.node != null && nearestNode.node.Walkable)
+        {
+            Vector3 targetPosition = nearestNode.position;
+            enemy.Pathfinding(targetPosition);
+        }
     }
 }

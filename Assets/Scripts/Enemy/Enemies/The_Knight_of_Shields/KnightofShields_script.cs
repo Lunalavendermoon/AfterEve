@@ -14,8 +14,7 @@ public class KnightofShields_script : EnemyBase
         speed = enemyAttributes.speed;
         visibleRange = enemyAttributes.detection_radius;
         attackRange = enemyAttributes.attackRadius;
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.speed = speed;
+
         default_enemy_state = new Enemy_Wander(wanderRadius, wanderTime);
 
         attackCooldown = enemyAttributes.attackRate;

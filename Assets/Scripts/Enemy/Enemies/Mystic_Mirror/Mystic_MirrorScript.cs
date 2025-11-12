@@ -11,10 +11,9 @@ public class Mystic_MirrorScript : EnemyBase
         speed = enemyAttributes.speed;
         visibleRange = enemyAttributes.detection_radius;
         attackRange = enemyAttributes.attackRadius;
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.speed = speed;
+
         default_enemy_state = new Enemy_Chase();
-        agent.stoppingDistance = 5f;
+        agent.endReachedDistance = 5f;
         attackCooldown = enemyAttributes.attackRate;
 
     }
@@ -49,7 +48,7 @@ public class Mystic_MirrorScript : EnemyBase
 
     private void TeleportNearPlayer(Transform player)
     {
-        // Similar to wander code
+        
         Vector2 randomOffset = Random.insideUnitCircle * 5f;
         Vector3 newPos = new Vector3(
             player.position.x + randomOffset.x,

@@ -1,4 +1,6 @@
+using Pathfinding;
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,8 +20,9 @@ public abstract class EnemyBase : MonoBehaviour
     public float attackCooldown;
 
     //Pathfinding agent
-    public NavMeshAgent agent;
-    
+    public AIPath agent;
+    public AIDestinationSetter destinationSetter;
+
     //Helper variables
     public GameObject attackHitbox;
     public IEnemyStates default_enemy_state;
@@ -31,17 +34,20 @@ public abstract class EnemyBase : MonoBehaviour
     // event for enemy dying
     public static event Action<DamageInstance, EnemyBase> OnEnemyDeath;
 
+    private Transform tempTarget; // Temporary target for pathfinding to a position
+
     //Initializing agent and its default state
     public virtual void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
         current_enemy_state = default_enemy_state;
     }
 
 
     public virtual void Update()
     {
-        agent.speed = speed;
+        agent.maxSpeed = speed;
 
         if (enemyAttributes.isParalyzed)
         {
@@ -98,7 +104,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void Pathfinding(Transform target)
     {
-        agent.SetDestination(target.position);
+        destinationSetter.target = target;
     }
 
     public virtual void EnableAttack()
@@ -112,4 +118,21 @@ public abstract class EnemyBase : MonoBehaviour
         attackHitbox.SetActive(false);
         isAttacking = false;
     }
+
+    public virtual void Pathfinding(Vector3 targetPosition)
+    {
+        if (destinationSetter == null) return;
+
+        // Create a temporary GameObject internally
+        if (tempTarget == null)
+        {
+            GameObject go = new GameObject($"{gameObject.name}_TempTarget");
+            tempTarget = go.transform;
+        }
+
+        tempTarget.position = targetPosition;
+        destinationSetter.target = tempTarget;
+    }
+
+    
 }

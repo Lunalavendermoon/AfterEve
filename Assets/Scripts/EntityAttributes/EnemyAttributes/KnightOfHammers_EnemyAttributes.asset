@@ -27,7 +27,7 @@ MonoBehaviour:
   isBlind: 0
   hasKnockback: 0
   damageType: 0
-  attackRadius: 10
+  attackRadius: 5
   attackRate: 2
   weight: 5
   detection_radius: 10

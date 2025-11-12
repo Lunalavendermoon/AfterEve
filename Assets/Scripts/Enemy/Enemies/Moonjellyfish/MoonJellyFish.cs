@@ -15,8 +15,7 @@ public class MoonJellyFish : EnemyBase
         speed = enemyAttributes.speed;
         visibleRange = enemyAttributes.detection_radius;
         attackRange = enemyAttributes.attackRadius;
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.speed = speed;
+        agent.maxSpeed = speed;
         default_enemy_state = new Enemy_Wander(wanderRadius, wanderTime);
 
         attackCooldown = enemyAttributes.attackRate;

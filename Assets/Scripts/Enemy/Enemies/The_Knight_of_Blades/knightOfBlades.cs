@@ -15,8 +15,7 @@ public class knightOfBlades : EnemyBase
         speed = enemyAttributes.speed;
         visibleRange = enemyAttributes.detection_radius;
         attackRange = enemyAttributes.attackRadius;
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.speed = speed;
+
         default_enemy_state = new Enemy_Wander(wanderRadius, wanderTime);
 
         attackCooldown = enemyAttributes.attackRate;
@@ -42,8 +41,8 @@ public class knightOfBlades : EnemyBase
 
         float elapsed = 0f;
 
-        Vector3 dashDirection = transform.forward; 
-        Debug.Log("Dashing in direction: " + dashDirection);
+        Vector3 dashDirection = transform.up; 
+
         while (elapsed < dashDuration)
         {
             // Move enemy forward

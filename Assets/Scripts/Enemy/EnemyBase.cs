@@ -91,13 +91,14 @@ public abstract class EnemyBase : MonoBehaviour
         Debug.Log($"{gameObject.name} changed to state: {current_enemy_state?.GetType().Name}");
     }
 
-    public virtual void TakeDamage(int amount, DamageInstance dmgInstance)
+    public virtual void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
         health -= amount;
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
         if (health <= 0)
         {
-            OnEnemyDeath.Invoke(dmgInstance, this);
+            // TODO: factor in enemy damage-reduction
+            OnEnemyDeath.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
             Die();
         }
     }

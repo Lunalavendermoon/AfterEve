@@ -19,9 +19,14 @@ public class DamageInstance
     public DamageSource damageSource;
     public DamageType damageType;
 
-    public DamageInstance(DamageSource damageSource, DamageType damageType)
+    public int beforeReduction;
+    public int afterReduction;
+
+    public DamageInstance(DamageSource damageSource, DamageType damageType, int beforeReduction, int afterReduction)
     {
         this.damageSource = damageSource;
         this.damageType = damageType;
+        this.beforeReduction = beforeReduction;
+        this.afterReduction = afterReduction;
     }
 }

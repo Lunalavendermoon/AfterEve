@@ -1,0 +1,50 @@
+public class Empress_Future : Future_TarotCard
+{
+    public const double healPercentGoal = 2f;
+    public const int roomGoal = 4;
+
+    private double healCount = 0f;
+    private int roomCount = 0;
+
+    public Empress_Future(string s, int q) : base(s, q)
+    {
+        reward = new Empress_Reward(this);
+    }
+
+    public override void ApplyCard(TarotManager tarotManager)
+    {
+        PlayerController.OnHealed += OnPlayerHeal;
+        // TODO add room change listener
+    }
+
+    protected override void RemoveListeners()
+    {
+        PlayerController.OnHealed -= OnPlayerHeal;
+        // TODO remove room change listener
+    }
+
+    private void OnPlayerHeal(int amount)
+    {
+        PlayerAttributes attr = PlayerController.instance.playerAttributes;
+        healCount += (double)amount / attr.maxHitPoints;
+
+        if (healCount >= healPercentGoal)
+        {
+            CompleteQuest();
+        }
+    }
+
+    private void OnRoomChange()
+    {
+        PlayerAttributes attr = PlayerController.instance.playerAttributes;
+        if (((double)attr.hitPoints) / attr.maxHitPoints >= 0.8f)
+        {
+            ++roomCount;
+
+            if (roomCount >= roomGoal)
+            {
+                CompleteQuest();
+            }
+        }
+    }
+}

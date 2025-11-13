@@ -14,13 +14,12 @@ public class Magician_Future : Future_TarotCard
 
     public override void ApplyCard(TarotManager tarotManager)
     {
-        // TODO add listener
+        // TODO add room change listener
     }
 
-    public override void CompleteQuest()
+    protected override void RemoveListeners()
     {
-        // TODO remove listener
-        RewardPlayer();
+        // TODO remove room change listener
     }
 
     private void OnRoomChange()

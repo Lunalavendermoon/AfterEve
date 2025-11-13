@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerEffectManager : EffectManager
@@ -7,6 +8,14 @@ public class PlayerEffectManager : EffectManager
 
     // changes during runtime based on the effects the player currently has
     public PlayerAttributes effectPlayerAttributes;
+
+    public static event Action OnEffectAdded;
+
+    public override void AddEffect(Effects effect)
+    {
+        OnEffectAdded.Invoke();
+        base.AddEffect(effect);
+    }
 
     public override void ApplyEffects()
     {

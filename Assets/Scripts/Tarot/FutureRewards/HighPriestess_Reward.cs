@@ -6,15 +6,9 @@ public class HighPriestess_Reward : Future_Reward
     {
     }
 
-    public override void TriggerSkill()
+    protected override void TriggerSkillBehavior()
     {
-        if (IsOnCooldown())
-        {
-            return;
-        }
         // TODO
         Debug.Log("Triggered High Priestess skill");
-
-        DecrementSkillUses();
     }
 }

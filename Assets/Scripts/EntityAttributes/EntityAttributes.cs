@@ -7,8 +7,9 @@ public class EntityAttributes : ScriptableObject
     public float damageDealtBonus;
     public bool ignoreBasicDef;
     public bool ignoreSpiritualDef;
-    
+
     [Header("Defense")]
+    public int maxHitPoints;
     public int hitPoints;
     public int basicDefense;
     public int spiritualDefense;

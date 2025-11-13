@@ -21,10 +21,9 @@ public class Fool_Future : Future_TarotCard
         // TODO add card listener
     }
 
-    public override void CompleteQuest()
+    protected override void RemoveListeners()
     {
         // TODO remove card listener
-        RewardPlayer();
     }
 
     private void OnCardObtained()
@@ -33,11 +32,11 @@ public class Fool_Future : Future_TarotCard
         if (cardCount >= cardsNeededForReward)
         {
             cardCount = 0;
-            RewardPlayer();
+            CompleteQuest();
         }
     }
 
-    public override void RewardPlayer()
+    protected override void RewardPlayer()
     {
         // TODO give player 50 coins
 

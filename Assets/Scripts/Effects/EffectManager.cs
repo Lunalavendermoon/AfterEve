@@ -84,7 +84,7 @@ public abstract class EffectManager : MonoBehaviour
         }
     }
 
-    public void AddEffect(Effects effect)
+    public virtual void AddEffect(Effects effect)
     {
         Effects.Stat stat = effect.effectStat;
         Effects.Application app = effect.effectApplication;

@@ -22,11 +22,14 @@ public class DamageInstance
     public int beforeReduction;
     public int afterReduction;
 
-    public DamageInstance(DamageSource damageSource, DamageType damageType, int beforeReduction, int afterReduction)
+    public bool hitWeakPoint;
+
+    public DamageInstance(DamageSource damageSource, DamageType damageType, int beforeReduction, int afterReduction, bool hitWeakPoint = false)
     {
         this.damageSource = damageSource;
         this.damageType = damageType;
         this.beforeReduction = beforeReduction;
         this.afterReduction = afterReduction;
+        this.hitWeakPoint = hitWeakPoint;
     }
 }

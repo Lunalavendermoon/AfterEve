@@ -9,8 +9,12 @@ public class Player_Dash : IPlayerState
     public Vector3 dashDirection;
 
 
+    public static event Action OnDash;
+
+
     public void EnterState(PlayerController player)
     {
+        OnDash.Invoke();
         dashStartTime = Time.time;
 
         if (player.horizontalInput > 0 && player.verticalInput > 0)

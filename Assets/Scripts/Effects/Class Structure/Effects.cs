@@ -14,7 +14,6 @@ public abstract class Effects
         SpiritualVision,
         StaminaRegeneration,
         Luck,
-        Shield,
         Knockback,
         Confused,
         Movement,
@@ -44,7 +43,6 @@ public abstract class Effects
         Multiplier,
 
         // applies flat number over the duration
-        // (i.e. "Shield: Shield is increased by a flat number")
         // applied after Additive and MultiplyAdditive
         Flat,
 

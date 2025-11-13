@@ -98,6 +98,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (health <= 0)
         {
             // TODO: factor in enemy damage-reduction
+            // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack
             OnEnemyDeath.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
             Die();
         }

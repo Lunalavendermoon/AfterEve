@@ -10,9 +10,18 @@ public abstract class Future_TarotCard : TarotCard
     {
     }
 
-    public abstract void CompleteQuest();
+    /// <summary>
+    /// Removes Future-card quest listeners and gives the player a skill reward.
+    /// </summary>
+    public void CompleteQuest()
+    {
+        RemoveListeners();
+        RewardPlayer();
+    }
 
-    public virtual void RewardPlayer()
+    protected abstract void RemoveListeners();
+
+    protected virtual void RewardPlayer()
     {
         // TODO give reward to player
     }

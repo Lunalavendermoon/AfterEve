@@ -44,6 +44,12 @@ public class PlayerController : MonoBehaviour
     private float spiritualVisionTimer;
     private Boolean inSpiritualVision;
 
+    // events
+    public static event Action<DamageInstance> OnDamageTaken;
+    public static event Action<int> OnHealed;
+    public static event Action<int> OnShielded;
+    public static event Action<bool> OnSpiritualVisionChange;
+
     void Start()
     {
         currentState = new Player_Idle();
@@ -134,6 +140,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             inSpiritualVision = true;
+            OnSpiritualVisionChange.Invoke(true);
         }
         if (inSpiritualVision)
         {
@@ -142,17 +149,45 @@ public class PlayerController : MonoBehaviour
             {
                 currentSpiritualVision = 0;
                 inSpiritualVision = false;
+                OnSpiritualVisionChange.Invoke(false);
             }
-        } else
+        }
+        else
         {
             if (!(currentSpiritualVision >= playerAttributes.totalSpiritualVision))
             {
                 currentSpiritualVision += playerAttributes.spiritualVisionRegeneration * (Time.time - spiritualVisionTimer);
-            } else
+            }
+            else
             {
                 currentSpiritualVision = playerAttributes.totalSpiritualVision;
             }
         }
 
+    }
+
+    public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
+    {
+        // TODO factor in damage reduction as well
+        playerAttributes.hitPoints -= amount;
+        Debug.Log($"Player took {amount} damage, remaining health: {playerAttributes.hitPoints}");
+        OnDamageTaken.Invoke(new DamageInstance(damageSource, damageType, amount, amount));
+        if (playerAttributes.hitPoints <= 0)
+        {
+            // TODO: player died
+        }
+    }
+    
+    public void Heal(int amount)
+    {
+        playerAttributes.hitPoints = Math.Clamp(playerAttributes.hitPoints + amount, 0, playerAttributes.maxHitPoints);
+        // includes overflow healing in calculation :3
+        OnHealed.Invoke(amount);
+    }
+    
+    public void GainShield(int amount)
+    {
+        playerAttributes.shield += amount;
+        OnShielded.Invoke(amount);
     }
 }

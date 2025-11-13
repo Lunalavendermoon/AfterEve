@@ -18,7 +18,18 @@ public abstract class Future_Reward
         lastUseTime = Time.time - 1f;
     }
 
-    public abstract void TriggerSkill();
+    public void TriggerSkill()
+    {
+        if (IsOnCooldown())
+        {
+            return;
+        }
+
+        TriggerSkillBehavior();
+        DecrementSkillUses();
+    }
+
+    protected abstract void TriggerSkillBehavior();
 
     public bool IsOnCooldown()
     {
@@ -32,12 +43,7 @@ public abstract class Future_Reward
 
         if (usesLeft == 0)
         {
-            SignalRewardFinished();
+            OnRewardFinished.Invoke();
         }
-    }
-
-    public void SignalRewardFinished()
-    {
-        OnRewardFinished.Invoke();
     }
 }

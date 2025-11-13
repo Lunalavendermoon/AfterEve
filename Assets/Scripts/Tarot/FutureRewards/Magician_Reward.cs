@@ -6,13 +6,9 @@ public class Magician_Reward : Future_Reward
     {
     }
 
-    public override void TriggerSkill()
+    protected override void TriggerSkillBehavior()
     {
-        // don't need to check for cooldown because the skill has only 1 use
-
         // TODO
         Debug.Log("Triggered Magician skill");
-
-        DecrementSkillUses();
     }
 }

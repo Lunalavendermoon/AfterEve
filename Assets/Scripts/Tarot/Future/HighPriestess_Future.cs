@@ -18,7 +18,7 @@ public class HighPriestess_Future : Future_TarotCard
         EnemyBase.OnEnemyDeath += OnEnemyDeathTarot;
     }
 
-    public override void CompleteQuest()
+    protected override void RemoveListeners()
     {
         EnemyBase.OnEnemyDeath -= OnEnemyDeathTarot;
         RewardPlayer();

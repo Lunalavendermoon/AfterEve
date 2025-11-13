@@ -3,12 +3,15 @@ public class Empress_Future : Future_TarotCard
     public const double healPercentGoal = 2f;
     public const int roomGoal = 4;
 
+    private int maxHp;
+
     private double healCount = 0f;
     private int roomCount = 0;
 
     public Empress_Future(string s, int q) : base(s, q)
     {
         reward = new Empress_Reward(this);
+        maxHp = PlayerController.instance.playerAttributes.maxHitPoints;
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -25,8 +28,7 @@ public class Empress_Future : Future_TarotCard
 
     private void OnPlayerHeal(int amount)
     {
-        PlayerAttributes attr = PlayerController.instance.playerAttributes;
-        healCount += (double)amount / attr.maxHitPoints;
+        healCount += (double)amount / maxHp;
 
         if (healCount >= healPercentGoal)
         {

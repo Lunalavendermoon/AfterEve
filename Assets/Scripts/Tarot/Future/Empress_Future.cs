@@ -11,19 +11,19 @@ public class Empress_Future : Future_TarotCard
     public Empress_Future(string s, int q) : base(s, q)
     {
         reward = new Empress_Reward(this);
-        maxHp = PlayerController.instance.playerAttributes.maxHitPoints;
     }
 
     public override void ApplyCard(TarotManager tarotManager)
     {
         PlayerController.OnHealed += OnPlayerHeal;
-        // TODO add room change listener
+        maxHp = PlayerController.instance.playerAttributes.maxHitPoints;
+        // TODO add finish combat room listener
     }
 
     protected override void RemoveListeners()
     {
         PlayerController.OnHealed -= OnPlayerHeal;
-        // TODO remove room change listener
+        // TODO remove finish combat room listener
     }
 
     private void OnPlayerHeal(int amount)

@@ -7,14 +7,14 @@ public class Mystic_MirrorScript : EnemyBase
     void Awake()
     {
         health = enemyAttributes.hitPoints;
-        damage = enemyAttributes.damage;
+        //damage = enemyAttributes.damage;
         speed = enemyAttributes.speed;
-        visibleRange = enemyAttributes.detection_radius;
-        attackRange = enemyAttributes.attackRadius;
+        //visibleRange = enemyAttributes.detection_radius;
+        //attackRange = enemyAttributes.attackRadius;
 
         default_enemy_state = new Enemy_Chase();
         agent.endReachedDistance = 5f;
-        attackCooldown = enemyAttributes.attackRate;
+        //attackCooldown = enemyAttributes.attackRate;
 
     }
 
@@ -57,7 +57,7 @@ public class Mystic_MirrorScript : EnemyBase
         );
 
         transform.position = newPos;
-        if (Vector3.Distance(transform.position, player.position) <= attackRange)
+        if (Vector3.Distance(transform.position, player.position) <= enemyAttributes.attackRadius)
         {
 
             Debug.Log("Applying Confusion Effect to Player");

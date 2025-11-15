@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc1fc96927bed84796d944aa5dd82cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnerScript
-  Enemy: {fileID: 8214233007585310572, guid: bf05398b7b92347478de14ef1f262821, type: 3}
+  Enemy: {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
 --- !u!1 &2093864095
 GameObject:
   m_ObjectHideFlags: 0

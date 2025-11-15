@@ -7,17 +7,19 @@ using UnityEngine.AI;
 
 public abstract class EnemyBase : MonoBehaviour
 {
+    public EnemyAttributes baseEnemyAttributes;
+
     public EnemyAttributes enemyAttributes;
 
     public EnemyEffectManager enemyEffectManager;
 
     // Enemy attributes
     public int health;
-    public int damage;
+    //public int damage;
     public float speed;
-    public float attackRange;
-    public float visibleRange;
-    public float attackCooldown;
+    //public float attackRange;
+    //public float visibleRange;
+    //public float attackCooldown;
 
     //Pathfinding agent
     public AIPath agent;
@@ -29,7 +31,13 @@ public abstract class EnemyBase : MonoBehaviour
     protected IEnemyStates current_enemy_state;
     public bool isAttacking = false;
 
+    //Drops
+    public GameObject Drop;
+
     public float attack_timer = 1.0f;
+
+    // event for enemy dying
+    public static event Action<DamageInstance, EnemyBase> OnEnemyDamageTaken;
 
     // event for enemy dying
     public static event Action<DamageInstance, EnemyBase> OnEnemyDeath;
@@ -68,19 +76,20 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void Die()
     {
+        Instantiate(Drop, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
     public virtual bool InRange(Transform target)
     {
         float distance = Vector3.Distance(transform.position, target.position);
-        return distance <= visibleRange;
+        return distance <= enemyAttributes.detection_radius;
     }
 
     public virtual bool InAttackRange(Transform target)
     {
         float distance = Vector3.Distance(transform.position, target.position);
-        return distance <= attackRange;
+        return distance <= enemyAttributes.attackRadius;
     }
 
     public virtual void ChangeState(IEnemyStates new_state)
@@ -93,9 +102,10 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
-        health -= amount;
-        Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
-        if (health <= 0)
+        health -= amount*(1-(enemyAttributes.basicDefense/(enemyAttributes.basicDefense+100)));
+        
+        OnEnemyDamageTaken.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
+        if (enemyAttributes.hitPoints <= 0)
         {
             // TODO: factor in enemy damage-reduction
             // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack

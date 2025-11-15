@@ -20,7 +20,7 @@ public class MeleeAttackHitboxScript : MonoBehaviour
 
             //PlayerController.instance.playerAttributes.TakeDamage(enemy.damage);
             hasDealtDamage = true;
-            Debug.Log("Player hit for " + enemy.damage);
+            Debug.Log("Player hit for " + enemy.enemyAttributes.damage);
             enemy.DisableAttack();
         }
     }

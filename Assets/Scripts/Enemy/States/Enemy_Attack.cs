@@ -42,7 +42,7 @@ public class Enemy_Attack : IEnemyStates
         }
         enemy.Attack(PlayerController.instance.transform);
 
-        enemy.attack_timer = enemy.attackCooldown;
+        enemy.attack_timer = enemy.enemyAttributes.attackRate;
     }
     
     public void ExitState(EnemyBase enemy)

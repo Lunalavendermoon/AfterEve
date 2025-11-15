@@ -11,14 +11,15 @@ public class MoonJellyFish : EnemyBase
     void Awake()
     {
         health = enemyAttributes.hitPoints;
-        damage = enemyAttributes.damage;
+        //damage = enemyAttributes.damage;
         speed = enemyAttributes.speed;
-        visibleRange = enemyAttributes.detection_radius;
-        attackRange = enemyAttributes.attackRadius;
-        agent.maxSpeed = speed;
+        //visibleRange = enemyAttributes.detection_radius;
+        //attackRange = enemyAttributes.attackRadius;
+        enemyAttributes = Instantiate(baseEnemyAttributes);
+        
         default_enemy_state = new Enemy_Wander(wanderRadius, wanderTime);
 
-        attackCooldown = enemyAttributes.attackRate;
+        //attackCooldown = enemyAttributes.attackRate;
 
     }
 

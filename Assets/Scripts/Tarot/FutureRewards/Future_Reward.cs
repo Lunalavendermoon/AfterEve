@@ -43,7 +43,7 @@ public abstract class Future_Reward
 
         if (usesLeft == 0)
         {
-            OnRewardFinished.Invoke();
+            OnRewardFinished?.Invoke();
         }
     }
 }

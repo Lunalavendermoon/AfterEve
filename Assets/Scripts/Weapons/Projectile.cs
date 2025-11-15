@@ -60,7 +60,7 @@ public class Projectile : MonoBehaviour
         else if (other.gameObject.GetComponent<EnemyBase>())
         {
             EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
-            OnEnemyHit.Invoke(enemy);
+            OnEnemyHit?.Invoke(enemy);
             // TODO change to DamageType.Spiritual if player is dealing spiritual damage
             enemy.TakeDamage(PlayerController.instance.playerAttributes.damage,
                 DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);

@@ -13,7 +13,7 @@ public class PlayerEffectManager : EffectManager
 
     public override void AddEffect(Effects effect)
     {
-        OnEffectAdded.Invoke();
+        OnEffectAdded?.Invoke();
         base.AddEffect(effect);
     }
 

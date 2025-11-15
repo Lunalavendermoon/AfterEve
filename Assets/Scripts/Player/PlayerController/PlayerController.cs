@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             inSpiritualVision = true;
-            OnSpiritualVisionChange.Invoke(true);
+            OnSpiritualVisionChange?.Invoke(true);
         }
         if (inSpiritualVision)
         {
@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
             {
                 currentSpiritualVision = 0;
                 inSpiritualVision = false;
-                OnSpiritualVisionChange.Invoke(false);
+                OnSpiritualVisionChange?.Invoke(false);
             }
         }
         else
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
         // TODO factor in damage reduction as well
         playerAttributes.hitPoints -= amount;
         Debug.Log($"Player took {amount} damage, remaining health: {playerAttributes.hitPoints}");
-        OnDamageTaken.Invoke(new DamageInstance(damageSource, damageType, amount, amount));
+        OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, amount, amount));
         if (playerAttributes.hitPoints <= 0)
         {
             // TODO: player died
@@ -182,12 +182,12 @@ public class PlayerController : MonoBehaviour
     {
         playerAttributes.hitPoints = Math.Clamp(playerAttributes.hitPoints + amount, 0, playerAttributes.maxHitPoints);
         // includes overflow healing in calculation :3
-        OnHealed.Invoke(amount);
+        OnHealed?.Invoke(amount);
     }
     
     public void GainShield(int amount)
     {
         playerAttributes.shield += amount;
-        OnShielded.Invoke(amount);
+        OnShielded?.Invoke(amount);
     }
 }

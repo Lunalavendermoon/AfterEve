@@ -104,12 +104,12 @@ public abstract class EnemyBase : MonoBehaviour
     {
         health -= amount*(1-(enemyAttributes.basicDefense/(enemyAttributes.basicDefense+100)));
         
-        OnEnemyDamageTaken.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
+        OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
         if (enemyAttributes.hitPoints <= 0)
         {
             // TODO: factor in enemy damage-reduction
             // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack
-            OnEnemyDeath.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
+            OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
             Die();
         }
     }

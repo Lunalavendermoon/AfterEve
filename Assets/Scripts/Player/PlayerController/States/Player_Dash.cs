@@ -14,7 +14,7 @@ public class Player_Dash : IPlayerState
 
     public void EnterState(PlayerController player)
     {
-        OnDash.Invoke();
+        OnDash?.Invoke();
         dashStartTime = Time.time;
 
         if (player.horizontalInput > 0 && player.verticalInput > 0)

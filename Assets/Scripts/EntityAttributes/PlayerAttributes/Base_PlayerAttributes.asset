@@ -35,6 +35,7 @@ MonoBehaviour:
   bulletSpread: 0
   hasBulletBounce: 1
   bulletBounces: 3
+  bulletPierces: 1
   shield: 0
   totalStamina: 1
   staminaRegeneration: 1

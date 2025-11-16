@@ -18,10 +18,16 @@ public class Projectile : MonoBehaviour
 
     private Effects bulletEffect;
 
+    private int bulletPiercing;
+
+    private int enemiesPierced;
+
     public void setBulletBounce(int n)
     {
         bulletBounces = n;
     }
+
+    public void setBulletPiercing(int n) { bulletPiercing = n; }
 
     public void setBulletEffect(Effects bulletEffect)
     {
@@ -31,6 +37,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         firingPoint = transform.position;
+        enemiesPierced = 0;
     }
 
     // Update is called once per frame
@@ -68,8 +75,11 @@ public class Projectile : MonoBehaviour
                 if(!(bulletEffect == null))
                     enemy.GetComponent<EffectManager>().AddEffect(bulletEffect);
             }
-            
-            Destroy(this.gameObject);
+            enemiesPierced++;
+            if (enemiesPierced == bulletPiercing)
+            {
+                Destroy(this.gameObject);
+            }
         }
         else
         {

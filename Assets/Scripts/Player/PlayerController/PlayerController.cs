@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     // state machine
     public IPlayerState currentState;
+    public IRotationState currentRotationState;
 
     //weapon
     private int currentBullets;
@@ -54,6 +55,8 @@ public class PlayerController : MonoBehaviour
     {
         currentState = new Player_Idle();
         currentState.EnterState(this);
+        currentRotationState = new RotationState_N();
+        currentRotationState.EnterState(this);
         currentBullets = playerAttributes.Ammo;
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
     }
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
             currentState.CheckState(this);
             currentState.UpdateState(this);
-            HandleRotationInput();
+            currentRotationState.UpdateState(this);
             HandleShootInput();
             HandleSpiritualVision();
         }
@@ -84,7 +87,13 @@ public class PlayerController : MonoBehaviour
         currentState.EnterState(this);
     }
 
-    void HandleRotationInput()
+    public void ChangeRotationState(IRotationState newState)
+    {
+        currentRotationState = newState;
+        currentRotationState.EnterState(this);
+    }
+
+    float GetRawMouseAngle()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.forward, transform.position);
@@ -93,9 +102,41 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 hitPoint = ray.GetPoint(distance);
             Vector3 direction = hitPoint - transform.position;
-
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            return (angle + 360) % 360;
+        }
+        return -1f;
+    }
+
+    public void CheckRotationTransition()
+    {
+        float rawAngle = GetRawMouseAngle();
+        if (rawAngle == -1f) return;
+
+        float fixedAngleStep = 360f / 8f;
+        int index = Mathf.RoundToInt(rawAngle / fixedAngleStep) % 8;
+
+        IRotationState nextState = GetStateForIndex(index);
+
+        if (nextState.GetType() != currentRotationState.GetType())
+        {
+            ChangeRotationState(nextState);
+        }
+    }
+
+    IRotationState GetStateForIndex(int index)
+    {
+        switch (index)
+        {
+            case 0: return new RotationState_E();   
+            case 1: return new RotationState_NE();  
+            case 2: return new RotationState_N();   
+            case 3: return new RotationState_NW();  
+            case 4: return new RotationState_W();   
+            case 5: return new RotationState_SW();  
+            case 6: return new RotationState_S();   
+            case 7: return new RotationState_SE();  
+            default: return currentRotationState;
         }
     }
 

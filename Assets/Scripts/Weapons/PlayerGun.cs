@@ -35,6 +35,7 @@ public class PlayerGun : MonoBehaviour
                 GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-playerAttributes.bulletSpread, playerAttributes.bulletSpread)) * firingPoint.rotation);
                 projectile.GetComponent<Projectile>().setBulletBounce(playerAttributes.bulletBounces);
                 projectile.GetComponent<Projectile>().setBulletEffect(bulletEffect);
+                projectile.GetComponent<Projectile>().setBulletPiercing(playerAttributes.bulletPierces);
                 currentAngle -= 10;
             }
             
@@ -47,6 +48,8 @@ public class PlayerGun : MonoBehaviour
     {
         playerAttributes.bulletBounces = n;
     }
+
+    public void setBulletPierces(int n) { playerAttributes.bulletPierces = n; }
 
     public void setEffect(Effects effect)
     {

@@ -7,8 +7,9 @@ public class Fool_Present : Present_TarotCard
 {
     EnemyBase lastEnemy;
 
-    public Fool_Present(string s, int q) : base(s, q)
+    public Fool_Present(int q) : base(q)
     {
+        name = "Fool_Present";
         lastEnemy = null;
         effects.Add(new FireRate_Effect(-1, 1.2f));
     }

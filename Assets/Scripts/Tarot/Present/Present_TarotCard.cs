@@ -6,23 +6,28 @@ public class Present_TarotCard : TarotCard
 {
     public List<Effects> effects;
 
-    public Present_TarotCard(string s, int q) : base(s, q)
+    public Present_TarotCard(int q) : base(q)
     {
+        
     }
 
     public override void ApplyCard(TarotManager tarotManager)
     {
-        foreach (Effects e in effects)
-        {
-            tarotManager.effectManager.AddEffect(e);
+        if (effects != null) { 
+            foreach (Effects e in effects)
+            {
+                tarotManager.effectManager.AddEffect(e);
+            }
         }
     }
 
     public override void RemoveCard(TarotManager tarotManager)
     {
-        foreach(Effects e in effects)
-        {
-            
+        if (effects != null) { 
+            foreach (Effects e in effects)
+            {
+                
+            }
         }
     }
 }

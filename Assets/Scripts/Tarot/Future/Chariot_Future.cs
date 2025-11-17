@@ -11,8 +11,9 @@ public class Chariot_Future : Future_TarotCard
 
     private bool countDist = true;
 
-    public Chariot_Future(string s, int q) : base(s, q)
+    public Chariot_Future(int q) : base(q)
     {
+        name = "Chariot_Future";
         reward = new Chariot_Reward(this);
     }
 

@@ -11,8 +11,9 @@ public class Hierophant_Future : Future_TarotCard
 
     private double startTime;
 
-    public Hierophant_Future(string s, int q) : base(s, q)
+    public Hierophant_Future(int q) : base(q)
     {
+        name = "Hierophant_Future";
         reward = new Hierophant_Reward(this);
     }
 

@@ -5,8 +5,9 @@ public class Hermit_Future : Future_TarotCard
     public const int weakPointGoal = 5;
     private int weakPointCount = 0;
 
-    public Hermit_Future(string s, int q) : base(s, q)
+    public Hermit_Future(int q) : base(q)
     {
+        name = "Hermit_Future";
         reward = new Hermit_Reward(this);
     }
 

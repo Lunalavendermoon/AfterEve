@@ -5,8 +5,9 @@ public class Lovers_Future : Future_TarotCard
     public const int spendGoal = 40;
     private int spendCount = 0;
 
-    public Lovers_Future(string s, int q) : base(s, q)
+    public Lovers_Future(int q) : base(q)
     {
+        name = "Lovers_Future";
         reward = new Lovers_Reward(this);
     }
 

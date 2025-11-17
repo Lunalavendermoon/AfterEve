@@ -6,8 +6,9 @@ public class Emperor_Future : Future_TarotCard
     private int attackRoomCount = 0;
     private int damageCount = 0;
 
-    public Emperor_Future(string s, int q) : base(s, q)
+    public Emperor_Future(int q) : base(q)
     {
+        name = "Emperor_Future";
         reward = new Emperor_Reward(this);
     }
 

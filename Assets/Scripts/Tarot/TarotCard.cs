@@ -5,9 +5,8 @@ public abstract class TarotCard : MonoBehaviour
     public new string name;
     public int quantity;
 
-    public TarotCard(string s, int q)
+    public TarotCard(int q)
     {
-        name = s;
         quantity = q;
     }
 

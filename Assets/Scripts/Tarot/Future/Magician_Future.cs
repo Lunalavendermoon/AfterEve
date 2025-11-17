@@ -7,8 +7,9 @@ public class Magician_Future : Future_TarotCard
     public const int roomSkillGoal = 4;
     public const int totalSkillGoal = 15;
 
-    public Magician_Future(string s, int q) : base(s, q)
+    public Magician_Future(int q) : base(q)
     {
+        name = "Magician_Future";
         reward = new Magician_Reward(this);
     }
 

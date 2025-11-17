@@ -8,8 +8,9 @@ public class Empress_Future : Future_TarotCard
     private double healCount = 0f;
     private int roomCount = 0;
 
-    public Empress_Future(string s, int q) : base(s, q)
+    public Empress_Future(int q) : base(q)
     {
+        name = "Empress_Future";
         reward = new Empress_Reward(this);
     }
 

@@ -4,8 +4,9 @@ public class Strength_Future : Future_TarotCard
 {
     public const int effectGoal = 3;
 
-    public Strength_Future(string s, int q) : base(s, q)
+    public Strength_Future(int q) : base(q)
     {
+        name = "Strength_Future";
         reward = new Strength_Reward(this);
     }
 

@@ -1,8 +1,13 @@
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TarotManager : MonoBehaviour
 {
+    // for temp display
+    public TMP_Text text;
+
     public static TarotManager instance;
 
     private void Awake()
@@ -10,11 +15,11 @@ public class TarotManager : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    public EffectManager effectManager = PlayerController.instance.gameObject.GetComponent<EffectManager>();
+    public EffectManager effectManager;
 
-    List<Present_TarotCard> presentTarot = new List<Present_TarotCard>();
+    [SerializeField] List<Present_TarotCard> presentTarot = new List<Present_TarotCard>();
 
-    List<Future_TarotCard> futureTarot = new List<Future_TarotCard>();
+    [SerializeField] List<Future_TarotCard> futureTarot = new List<Future_TarotCard>();
 
     public void AddCard(TarotCard tarotCard)
     {
@@ -27,6 +32,7 @@ public class TarotManager : MonoBehaviour
             futureTarot.Add((Future_TarotCard)tarotCard);
         }
         tarotCard.ApplyCard(this);
+        DisplayCards();
     }
 
     public void RemoveCard(TarotCard tarotCard)
@@ -46,14 +52,28 @@ public class TarotManager : MonoBehaviour
         //         tarotCard.RemoveCard(this);
         //     }
         // }
+        DisplayCards();
+    }
+
+    public void DisplayCards()
+    {
+        string s = "Present: ";
+        
+        foreach (TarotCard present in presentTarot)
+        {
+            s += present.name + " ";
+        }
+        s += "\nFuture: ";
+        foreach (TarotCard future in futureTarot)
+        {
+            s += future.name + " ";
+        }
+        text.text = s;
     }
 
     void Start()
     {
-
-        foreach (Present_TarotCard present in presentTarot)
-        {
-            Debug.Log("name: " + present.name + " quantity: " + present.quantity);
-        }
+        AddCard(new Chariot_Future(1));
+        AddCard(new Empress_Present(1));
     }
 }

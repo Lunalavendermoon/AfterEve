@@ -12,8 +12,9 @@ public class Fool_Future : Future_TarotCard
 
     public const int foolCoinRewardAmount = 50;
 
-    public Fool_Future(string s, int q) : base(s, q)
+    public Fool_Future(int q) : base(q)
     {
+        name = "Fpol_Future";
     }
 
     public override void ApplyCard(TarotManager tarotManager)

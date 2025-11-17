@@ -6,8 +6,9 @@ public abstract class Future_TarotCard : TarotCard
 {
     protected Future_Reward reward = null;
 
-    public Future_TarotCard(string s, int q) : base(s, q)
+    public Future_TarotCard(int q) : base(q)
     {
+
     }
 
     /// <summary>

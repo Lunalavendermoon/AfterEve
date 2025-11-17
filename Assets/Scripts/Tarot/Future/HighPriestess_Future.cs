@@ -8,8 +8,9 @@ public class HighPriestess_Future : Future_TarotCard
     public const int spiritualGoal = 10;
     public const int debuffGoal = 10;
 
-    public HighPriestess_Future(string s, int q) : base(s, q)
+    public HighPriestess_Future(int q) : base(q)
     {
+        name = "HighPriestess_Future";
         reward = new HighPriestess_Reward(this);
     }
 

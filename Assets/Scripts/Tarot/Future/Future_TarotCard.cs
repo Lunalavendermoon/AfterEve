@@ -6,6 +6,8 @@ public abstract class Future_TarotCard : TarotCard
 {
     protected Future_Reward reward = null;
 
+    public bool questCompleted = false;
+
     public Future_TarotCard(int q) : base(q)
     {
 
@@ -16,6 +18,7 @@ public abstract class Future_TarotCard : TarotCard
     /// </summary>
     public void CompleteQuest()
     {
+        questCompleted = true;
         RemoveListeners();
         RewardPlayer();
     }

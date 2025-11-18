@@ -53,7 +53,7 @@ public class Player_Dash : IPlayerState
         currentPosition += player.transform.position;
         player.transform.position = currentPosition;
 
-        OnDisplaced.Invoke();
+        OnDisplaced?.Invoke();
     }
     
     public void ExitState(PlayerController player)

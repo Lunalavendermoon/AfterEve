@@ -30,7 +30,7 @@ public class Player_Move : IPlayerState
         currentPosition += player.transform.position;
         player.transform.position = currentPosition;
 
-        OnDisplaced.Invoke();
+        OnDisplaced?.Invoke();
     }
     
     public void ExitState(PlayerController player)

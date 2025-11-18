@@ -27,8 +27,8 @@ public class Chariot_Future : Future_TarotCard
     protected override void RemoveListeners()
     {
         Player_Dash.OnDash -= OnDash;
-        Player_Dash.OnDisplaced += OnMove;
-        Player_Move.OnDisplaced += OnMove;
+        Player_Dash.OnDisplaced -= OnMove;
+        Player_Move.OnDisplaced -= OnMove;
         // TODO remove room change listener
     }
 

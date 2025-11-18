@@ -56,6 +56,7 @@ public class TarotManager : MonoBehaviour
     }
 
     // Just for testing so that the future card quests update in real-time :o
+    // Not super optimal, dont use this in the final version LOL
     public void Update()
     {
         DisplayCards();
@@ -72,7 +73,8 @@ public class TarotManager : MonoBehaviour
         s += "\nFuture: ";
         foreach (TarotCard future in futureTarot)
         {
-            s += future.name + " " + ((Future_TarotCard)future).GetQuestText() + "\n";
+            s += future.name + " " + ((Future_TarotCard)future).GetQuestText() +
+                (((Future_TarotCard)future).questCompleted ? " - DONE" : "") + "\n";
         }
         text.text = s;
     }

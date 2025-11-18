@@ -50,4 +50,10 @@ public class Empress_Future : Future_TarotCard
             }
         }
     }
+
+    public override string GetQuestText()
+    {
+        return $"heal {(int)(healCount * 100)}/{(int)(healPercentGoal * 100)}% Max HP " +
+                    $"OR end {roomCount}/{roomGoal} combat rooms at 80% or more health";
+    }
 }

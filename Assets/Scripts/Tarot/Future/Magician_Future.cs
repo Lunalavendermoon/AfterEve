@@ -38,4 +38,10 @@ public class Magician_Future : Future_TarotCard
             CompleteQuest();
         }
     }
+
+    public override string GetQuestText()
+    {
+        return $"use skills {roomSkillCount}/{roomSkillGoal} times in one room " +
+                $"OR use skills {totalSkillCount}/{totalSkillGoal} times";
+    }
 }

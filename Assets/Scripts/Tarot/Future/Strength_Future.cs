@@ -28,4 +28,9 @@ public class Strength_Future : Future_TarotCard
             CompleteQuest();
         }
     }
+
+    public override string GetQuestText()
+    {
+        return $"have total of {effectGoal} debuffs or buffs at the same time";
+    }
 }

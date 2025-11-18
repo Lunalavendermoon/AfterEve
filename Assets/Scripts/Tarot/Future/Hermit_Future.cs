@@ -32,4 +32,9 @@ public class Hermit_Future : Future_TarotCard
             }
         }
     }
+
+    public override string GetQuestText()
+    {
+        return $"kill {weakPointCount}/{weakPointGoal} enemies by hitting weak point";
+    }
 }

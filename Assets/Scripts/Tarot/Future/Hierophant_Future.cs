@@ -53,4 +53,10 @@ public class Hierophant_Future : Future_TarotCard
             CompleteQuest();
         }
     }
+
+    public override string GetQuestText()
+    {
+        return $"use spiritual vision for more than {(int)visionCount}/{(int)visionGoal} " +
+                $"OR generate {shieldCount}/{shieldGoal} shield";
+    }
 }

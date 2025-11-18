@@ -10,6 +10,7 @@ public class Player_Dash : IPlayerState
 
 
     public static event Action OnDash;
+    public static event Action OnDisplaced;
 
 
     public void EnterState(PlayerController player)
@@ -51,6 +52,8 @@ public class Player_Dash : IPlayerState
 
         currentPosition += player.transform.position;
         player.transform.position = currentPosition;
+
+        OnDisplaced.Invoke();
     }
     
     public void ExitState(PlayerController player)

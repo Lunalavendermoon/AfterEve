@@ -8,7 +8,7 @@ public class Fool_Future : Future_TarotCard
 {
     private int cardCount = 0;
 
-    public const int cardsNeededForReward = 5;
+    public const int cardGoal = 5;
 
     public const int foolCoinRewardAmount = 50;
 
@@ -30,7 +30,7 @@ public class Fool_Future : Future_TarotCard
     private void OnCardObtained()
     {
         ++cardCount;
-        if (cardCount >= cardsNeededForReward)
+        if (cardCount >= cardGoal)
         {
             cardCount = 0;
             CompleteQuest();
@@ -43,5 +43,10 @@ public class Fool_Future : Future_TarotCard
 
         // Fool card doesn't use Future_Reward, so we have to manually call RemoveCard() here
         RemoveCard();
+    }
+
+    public override string GetQuestText()
+    {
+        return $"obtain {cardCount}/{cardGoal} cards";
     }
 }

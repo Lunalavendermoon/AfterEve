@@ -40,4 +40,6 @@ public abstract class Future_TarotCard : TarotCard
     {
         RemoveCard();
     }
+
+    public abstract string GetQuestText();
 }

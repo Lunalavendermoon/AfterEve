@@ -44,4 +44,9 @@ public class Emperor_Future : Future_TarotCard
     {
         attackRoomCount = 0;
     }
+
+    public override string GetQuestText()
+    {
+        return $"receive {attackRoomCount}/{attackRoomGoal} in one room OR take {damageCount}/{damageGoal} enemy dmg";
+    }
 }

@@ -5,11 +5,9 @@ public class Chariot_Future : Future_TarotCard
     public const double distGoal = 200f;
     public const int dashGoal = 40;
 
-    private Vector2 oldPos;
+    private Vector3 oldPos;
     private double distCount = 0f;
     private double dashCount = 0;
-
-    private bool countDist = true;
 
     public Chariot_Future(int q) : base(q)
     {
@@ -21,29 +19,23 @@ public class Chariot_Future : Future_TarotCard
     {
         oldPos = PlayerController.instance.gameObject.transform.position;
         Player_Dash.OnDash += OnDash;
-        // TODO movement listener
-        // TODO room change listener
+        Player_Dash.OnDisplaced += OnMove;
+        Player_Move.OnDisplaced += OnMove;
+        // TODO add room change listener (need to reset oldPos)
     }
 
     protected override void RemoveListeners()
     {
-        countDist = false;
         Player_Dash.OnDash -= OnDash;
-        // TODO movement listener
-        // TODO room change listener
+        Player_Dash.OnDisplaced += OnMove;
+        Player_Move.OnDisplaced += OnMove;
+        // TODO remove room change listener
     }
 
-    void Update()
+    void OnMove()
     {
-        if (!countDist)
-        {
-            return;
-        }
-        // For now, considers any player displacement to be "traveling"
-        // i.e. if player is knocked back by enemy, it still counts
-        // we can refine this in the future if needed
-        Vector2 newPos = PlayerController.instance.gameObject.transform.position;
-        distCount += Vector2.Distance(oldPos, newPos);
+        Vector3 newPos = PlayerController.instance.gameObject.transform.position;
+        distCount += Vector3.Distance(oldPos, newPos);
         oldPos = newPos;
 
         if (distCount >= distGoal)
@@ -54,12 +46,16 @@ public class Chariot_Future : Future_TarotCard
 
     private void OnDash()
     {
-        Debug.Log("Super sigma");
         ++dashCount;
 
         if (dashCount >= dashGoal)
         {
             CompleteQuest();
         }
+    }
+
+    public override string GetQuestText()
+    {
+        return $"travel {(int)distCount}/{(int)distGoal} units OR dash {dashCount}/{dashGoal} times";
     }
 }

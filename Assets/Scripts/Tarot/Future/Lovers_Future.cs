@@ -29,4 +29,9 @@ public class Lovers_Future : Future_TarotCard
             CompleteQuest();
         }
     }
+
+    public override string GetQuestText()
+    {
+        return $"spend {spendCount}/{spendGoal} or more gold at a merchant";
+    }
 }

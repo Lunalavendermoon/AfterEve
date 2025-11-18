@@ -42,4 +42,10 @@ public class HighPriestess_Future : Future_TarotCard
             CompleteQuest();
         }
     }
+
+    public override string GetQuestText()
+    {
+        return $"kill {debuffCount}/{debuffGoal} enemies using spiritual damage " +
+                $"OR kill {debuffCount}/{debuffGoal} debuffed enemies";
+    }
 }

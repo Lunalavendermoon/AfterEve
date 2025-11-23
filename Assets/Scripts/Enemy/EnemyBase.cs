@@ -108,14 +108,13 @@ public abstract class EnemyBase : MonoBehaviour
         int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
         health -= damageAfterReduction;
         
-        OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
+        OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
         // Damage numbers
         ShowFloatingText(damageAfterReduction);
         if (enemyAttributes.hitPoints <= 0 || health <=0)
         {
-            // TODO: factor in enemy damage-reduction
             // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack
-            OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
+            OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
             Die();
         }
     }

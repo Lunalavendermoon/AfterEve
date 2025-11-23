@@ -1,6 +1,7 @@
 using Pathfinding;
 using System;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,8 @@ public abstract class EnemyBase : MonoBehaviour
     public EnemyAttributes enemyAttributes;
 
     public EnemyEffectManager enemyEffectManager;
+
+    public GameObject floatingTextPrefab;
 
     // Enemy attributes
     public int health;
@@ -76,7 +79,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void Die()
     {
-        Instantiate(Drop, transform.position, Quaternion.identity);
+        
         Destroy(gameObject);
     }
 
@@ -102,15 +105,28 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
-        health -= amount*(1-(enemyAttributes.basicDefense/(enemyAttributes.basicDefense+100)));
+        int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
+        health -= damageAfterReduction;
         
         OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
-        if (enemyAttributes.hitPoints <= 0)
+        // Damage numbers
+        ShowFloatingText(damageAfterReduction);
+        if (enemyAttributes.hitPoints <= 0 || health <=0)
         {
             // TODO: factor in enemy damage-reduction
             // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack
             OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
             Die();
+        }
+    }
+
+    private void ShowFloatingText(int damageAfterReduction)
+    {
+        if(floatingTextPrefab != null)
+        {
+            GameObject floatingText = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, transform);
+            floatingText.GetComponentInChildren<TextMeshPro>().text= damageAfterReduction.ToString();
+
         }
     }
 

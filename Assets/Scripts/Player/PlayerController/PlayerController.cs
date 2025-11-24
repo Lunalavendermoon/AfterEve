@@ -50,11 +50,12 @@ public class PlayerController : MonoBehaviour
     public static event Action<int> OnHealed;
     public static event Action<int> OnShielded;
     public static event Action<bool> OnSpiritualVisionChange;
+    public static event Action<IPlayerState> OnPlayerStateChange;
 
     void Start()
     {
-        currentState = new Player_Idle();
         currentState.EnterState(this);
+        OnPlayerStateChange?.Invoke(currentState);
         currentRotationState = new RotationState_N();
         currentRotationState.EnterState(this);
         currentBullets = playerAttributes.Ammo;
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour
         currentState.ExitState(this);
         currentState = newState;
         currentState.EnterState(this);
+        OnPlayerStateChange?.Invoke(newState);
     }
 
     public void ChangeRotationState(IRotationState newState)

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Present_TarotCard : TarotCard
 {
     public List<Effects> effects;
+    public int level;
 
     public Present_TarotCard(int q) : base(q)
     {
-        
+        level = q-1;
+        if(level > 4) level = 4;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

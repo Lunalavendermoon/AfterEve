@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     private float maxProjectileDistance;
 
     public static event Action<EnemyBase> OnEnemyHit;
+    private int damage;
 
     private int bulletBounces;
 
@@ -38,6 +39,7 @@ public class Projectile : MonoBehaviour
     {
         firingPoint = transform.position;
         enemiesPierced = 0;
+        damage = PlayerController.instance.playerAttributes.damage;
     }
 
     // Update is called once per frame
@@ -69,7 +71,7 @@ public class Projectile : MonoBehaviour
             EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
             OnEnemyHit?.Invoke(enemy);
             // TODO change to DamageType.Spiritual if player is dealing spiritual damage
-            enemy.TakeDamage(PlayerController.instance.playerAttributes.damage,
+            enemy.TakeDamage(damage,
                 DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
             if (enemy.GetComponent<EffectManager>()) {
                 if(!(bulletEffect == null))
@@ -100,6 +102,7 @@ public class Projectile : MonoBehaviour
                 Vector3 reflectedDirection = Vector3.Reflect(transform.forward, surfaceNormal);
                 transform.forward = reflectedDirection.normalized;
                 bulletBounces--;
+                damage -= (int) (damage * PlayerController.instance.playerAttributes.bulletBounceDmgDecrease);
             }
             else
             {

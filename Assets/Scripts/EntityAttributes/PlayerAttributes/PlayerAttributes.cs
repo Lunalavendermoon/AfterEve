@@ -14,6 +14,7 @@ public class PlayerAttributes : EntityAttributes
     public float bulletSpread;
     public bool hasBulletBounce;
     public int bulletBounces;
+    public float bulletBounceDmgDecrease;
     public int bulletPierces;
 
     [Header("Player Defense")]

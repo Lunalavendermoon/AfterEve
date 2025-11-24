@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // make into singleton
     public static PlayerController instance;
+    public HealthBarScript healthBar;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
         currentRotationState.EnterState(this);
         currentBullets = playerAttributes.Ammo;
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
+        healthBar.setMaxHealth(playerAttributes.maxHitPoints);
     }
 
     void Update()

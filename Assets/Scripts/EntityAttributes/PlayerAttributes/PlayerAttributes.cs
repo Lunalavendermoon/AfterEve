@@ -18,6 +18,7 @@ public class PlayerAttributes : EntityAttributes
 
     [Header("Player Defense")]
     public int shield;
+    public int hitCountShield;
 
     [Header("Player Movement")]
     public float totalStamina;

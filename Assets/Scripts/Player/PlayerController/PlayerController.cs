@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
     private float spiritualVisionTimer;
     private Boolean inSpiritualVision;
 
+    // future card skill
+    // private Future_Reward futureSkill = null;
+    // for testing purposes only
+    public Future_Reward futureSkill = new Chariot_Reward(null);
+
     // events
     public static event Action<DamageInstance> OnDamageTaken;
     public static event Action<int> OnHealed;
@@ -79,6 +84,7 @@ public class PlayerController : MonoBehaviour
             currentRotationState.UpdateState(this);
             HandleShootInput();
             HandleSpiritualVision();
+            HandleFutureSkillInput();
         }
     }
 
@@ -209,11 +215,39 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void HandleFutureSkillInput()
+    {
+        // TODO - Skill not showing up as a valid input
+        // if (playerInput.Player.Skill.triggered)
+        // {
+        if (playerInput.Player.Attack.triggered)
+        {
+            futureSkill?.TriggerSkill();
+        }
+        // }
+    }
+
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
     {
+        if (playerAttributes.hitCountShield > 0)
+        {
+            --playerAttributes.hitCountShield;
+            // player hp/shield takes no damage, but trigger OnDamageTaken to broadcast that player was attacked
+            OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, 0, 0));
+            Debug.Log($"Player absorbed attack that would have dealt {amount} damage, remaining hit counts: {playerAttributes.hitCountShield}");
+            return;
+        }
         // TODO factor in damage reduction as well
-        playerAttributes.hitPoints -= amount;
-        Debug.Log($"Player took {amount} damage, remaining health: {playerAttributes.hitPoints}");
+        int amountAfterShield = amount - playerAttributes.shield;
+        if (amountAfterShield > 0)
+        {
+            playerAttributes.shield = 0;
+            playerAttributes.hitPoints -= amountAfterShield;
+        } else
+        {
+            playerAttributes.shield -= amount;
+        }
+        Debug.Log($"Player took {amount} damage, remaining health: {playerAttributes.hitPoints}, shield: {playerAttributes.shield}");
         OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, amount, amount));
         if (playerAttributes.hitPoints <= 0)
         {
@@ -232,5 +266,10 @@ public class PlayerController : MonoBehaviour
     {
         playerAttributes.shield += amount;
         OnShielded?.Invoke(amount);
+    }
+
+    public void GainHitCountShield(int amount)
+    {
+        playerAttributes.hitCountShield += amount;
     }
 }

@@ -20,7 +20,8 @@ public abstract class Effects
         Haste,
         FireRate,
         BulletBounce,
-        AmmoCapacity
+        AmmoCapacity,
+        HitCountShield
     }
 
     // how the effect is applied

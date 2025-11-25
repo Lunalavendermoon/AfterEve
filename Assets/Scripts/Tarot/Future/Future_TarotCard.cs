@@ -36,6 +36,8 @@ public abstract class Future_TarotCard : TarotCard
         if (reward != null)
         {
             // TODO remove skill from player's skill slot
+            // this works for 1 skill slot but not multiple...
+            PlayerController.instance.futureSkill = null;
         }
     }
 

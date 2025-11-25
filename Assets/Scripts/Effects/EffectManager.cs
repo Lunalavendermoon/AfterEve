@@ -84,7 +84,7 @@ public abstract class EffectManager : MonoBehaviour
         }
     }
 
-    public virtual void AddEffect(Effects effect)
+    public virtual EffectInstance AddEffect(Effects effect)
     {
         Effects.Stat stat = effect.effectStat;
         Effects.Application app = effect.effectApplication;
@@ -94,19 +94,23 @@ public abstract class EffectManager : MonoBehaviour
         bool existingEffect = effectStacks.ContainsKey(key3);
 
         if (app == Effects.Application.Disable &&
-            existingEffect && !effect.isPermanent)
+            existingEffect)
         {
             // disable is a special case that can't stack
             // instead, if the current debuff has a longer duration than the currently active debuff,
             // increase the duration of the active debuff to simulate the act of applying a new disable debuff
-            foreach (EffectInstance ei in effectTimers)
+            if (!effect.isPermanent)
             {
-                if (ei.effect.effectStat == stat)
+                foreach (EffectInstance ei in effectTimers)
                 {
-                    ei.timer = Mathf.Max(ei.timer, effect.effectDuration);
-                    return;
+                    if (ei.effect.effectStat == stat)
+                    {
+                        ei.timer = Mathf.Max(ei.timer, effect.effectDuration);
+                        break;
+                    }
                 }
             }
+            return null;
         }
 
         EffectInstance eff = new EffectInstance(effect, effectCount++);
@@ -155,11 +159,12 @@ public abstract class EffectManager : MonoBehaviour
         }
 
         ApplyEffects();
+        return eff;
     }
 
     // Requires that the instance of EffectInstance is the same one that is stored in this EffectManager's collections
     // b/c this method makes use of ReferenceEquals
-    public void RemoveEffect(EffectInstance ei)
+    public virtual void RemoveEffect(EffectInstance ei)
     {
         if (ei.effect.isPermanent)
         {

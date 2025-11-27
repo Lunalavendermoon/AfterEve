@@ -323,9 +323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34764622aab6cd40bb6bb684b628a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  healthBar: {fileID: 0}
   horizontalInput: 0
   verticalInput: 0
   playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
+  playerFuturePrefab: {fileID: 0}
 --- !u!114 &1177986724
 MonoBehaviour:
   m_ObjectHideFlags: 0

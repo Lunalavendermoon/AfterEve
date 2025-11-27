@@ -81,7 +81,7 @@ public abstract class Effects
     {
         effectDuration = duration;
 
-        if (duration < 0) isPermanent = true;
+        if (duration <= 0) isPermanent = true;
     }
 
     // should be called every frame by the EffectsManager when in effect

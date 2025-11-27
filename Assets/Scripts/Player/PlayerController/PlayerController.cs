@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     // player attributes
     public PlayerAttributes playerAttributes;
+    public PlayerFuturePrefab playerFuturePrefab;
 
     // state machine
     public IPlayerState currentState;
@@ -48,8 +49,9 @@ public class PlayerController : MonoBehaviour
 
     // future card skill
     // private Future_Reward futureSkill = null;
+
     // for testing purposes only
-    public Future_Reward futureSkill = new Chariot_Reward(null);
+    public Future_Reward futureSkill = new HighPriestess_Reward(null);
 
     // events
     public static event Action<DamageInstance> OnDamageTaken;
@@ -219,12 +221,10 @@ public class PlayerController : MonoBehaviour
     {
         // TODO - Skill not showing up as a valid input
         // if (playerInput.Player.Skill.triggered)
-        // {
         if (playerInput.Player.Attack.triggered)
         {
             futureSkill?.TriggerSkill();
         }
-        // }
     }
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
@@ -271,5 +271,20 @@ public class PlayerController : MonoBehaviour
     public void GainHitCountShield(int amount)
     {
         playerAttributes.hitCountShield += amount;
+    }
+
+    public void SpawnFuturePrefab(Future_Reward.FuturePrefabs targetPrefab, float duration)
+    {
+        GameObject inst = null;
+        switch (targetPrefab)
+        {
+            case Future_Reward.FuturePrefabs.HighPriestessZone:
+                inst = Instantiate(playerFuturePrefab.HighPriestessZone, transform.position, Quaternion.identity);
+                break;
+        }
+        if (duration > 0f && inst != null)
+        {
+            Destroy(inst, duration);
+        }
     }
 }

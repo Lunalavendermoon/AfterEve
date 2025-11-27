@@ -3,6 +3,11 @@ using UnityEngine;
 
 public abstract class Future_Reward
 {
+    public enum FuturePrefabs
+    {
+        HighPriestessZone
+    }
+
     public int usesLeft;
     public float cooldown;
     public float lastUseTime;

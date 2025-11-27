@@ -4,18 +4,22 @@ public abstract class InteractableEntity : MonoBehaviour
 {
     private bool playerInRange = false;
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Entered");
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Player Entered");
             playerInRange = true;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("Exited");
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Player Exited");
             playerInRange = false;
         }
     }

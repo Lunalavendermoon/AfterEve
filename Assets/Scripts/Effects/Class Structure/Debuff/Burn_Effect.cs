@@ -31,11 +31,23 @@ public class Burn_Effect : Flat_Effects
         return incrementInterval;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)
     {
         if (increment)
         {
-            // TODO: deal damage to the player
+            PlayerController.instance.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Basic);
+
+            Debug.Log("Burn amount: " + effectRate);
+            initialApplication = false;
+        }
+    }
+
+    public override void ApplyEnemyEffect(EnemyAttributes enemyAttributes, EnemyBase enemy, bool increment)
+    {   
+        if (increment)
+        {
+            enemy.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Basic);
+
             Debug.Log("Burn amount: " + effectRate);
             initialApplication = false;
         }

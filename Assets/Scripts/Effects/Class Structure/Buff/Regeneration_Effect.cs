@@ -17,12 +17,25 @@ public class Regeneration_Effect : Multiplier_Effects
         effectApplication = Application.Multiplier;
     }
 
-    public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)
     {
         if (increment)
         {
-            // TODO: recover HP to the target entity
-            float regenAmount = entityAttributes.hitPoints * effectRate;
+            int regenAmount = (int)(playerAttributes.hitPoints * effectRate);
+            PlayerController.instance.Heal(regenAmount);
+
+            Debug.Log("Regenerated amount: " + regenAmount);
+            initialApplication = false;
+        }
+    }
+
+    public override void ApplyEnemyEffect(EnemyAttributes enemyAttributes, EnemyBase enemy, bool increment)
+    {
+        if (increment)
+        {
+            int regenAmount = (int)(enemyAttributes.hitPoints * effectRate);
+            enemy.Heal(regenAmount);
+
             Debug.Log("Regenerated amount: " + regenAmount);
             initialApplication = false;
         }

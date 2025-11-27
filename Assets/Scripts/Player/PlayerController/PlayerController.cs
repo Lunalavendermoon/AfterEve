@@ -219,9 +219,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleFutureSkillInput()
     {
-        // TODO - Skill not showing up as a valid input
-        // if (playerInput.Player.Skill.triggered)
-        if (playerInput.Player.Attack.triggered)
+        if (playerInput.Player.Skill.triggered)
         {
             futureSkill?.TriggerSkill();
         }

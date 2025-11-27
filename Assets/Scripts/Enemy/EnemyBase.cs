@@ -114,6 +114,11 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        enemyAttributes.hitPoints = Math.Clamp(enemyAttributes.hitPoints + amount, 0, enemyAttributes.maxHitPoints);
+    }
+
     public virtual void Pathfinding(Transform target)
     {
         destinationSetter.target = target;

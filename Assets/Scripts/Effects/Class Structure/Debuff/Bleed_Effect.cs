@@ -26,10 +26,27 @@ public class Bleed_Effect : Multiplier_Effects
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)
     {
+    }
+
+    public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)
+    {
         if (increment)
         {
-            // TODO: deal damage to the player
-            float bleedDmg = entityAttributes.hitPoints * effectRate;
+            int bleedDmg = (int)(playerAttributes.hitPoints * effectRate);
+            PlayerController.instance.TakeDamage(bleedDmg, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Basic);
+
+            Debug.Log("Bleed amount: " + bleedDmg);
+            initialApplication = false;
+        }
+    }
+
+    public override void ApplyEnemyEffect(EnemyAttributes enemyAttributes, EnemyBase enemy, bool increment)
+    {   
+        if (increment)
+        {
+            int bleedDmg = (int)(enemyAttributes.hitPoints * effectRate);
+            enemy.TakeDamage(bleedDmg, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Basic);
+
             Debug.Log("Bleed amount: " + bleedDmg);
             initialApplication = false;
         }

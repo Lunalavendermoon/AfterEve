@@ -5,7 +5,8 @@ public abstract class Future_Reward
 {
     public enum FuturePrefabs
     {
-        HighPriestessZone
+        HighPriestessZone,
+        StrengthZone
     }
 
     public int usesLeft;

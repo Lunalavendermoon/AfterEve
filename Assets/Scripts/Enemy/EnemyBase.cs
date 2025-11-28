@@ -105,6 +105,7 @@ public abstract class EnemyBase : MonoBehaviour
         health -= amount*(1-(enemyAttributes.basicDefense/(enemyAttributes.basicDefense+100)));
         
         OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
+        Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
         if (enemyAttributes.hitPoints <= 0)
         {
             // TODO: factor in enemy damage-reduction

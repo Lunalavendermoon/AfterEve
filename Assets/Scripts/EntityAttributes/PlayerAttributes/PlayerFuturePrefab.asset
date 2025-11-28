@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0114a102212714446aaa2a362735810c, type: 3}
   m_Name: PlayerFuturePrefab
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFuturePrefab
-  EmpressFutureZone: {fileID: 5159541312179504949, guid: 8e0e2f1c4886a4e72b9d1bf80c9e00d0, type: 3}
+  HighPriestessZone: {fileID: 5159541312179504949, guid: 8e0e2f1c4886a4e72b9d1bf80c9e00d0, type: 3}
+  StrengthZone: {fileID: 1394977243712117514, guid: 7ab4459823c8747a39a451298aa99e23, type: 3}

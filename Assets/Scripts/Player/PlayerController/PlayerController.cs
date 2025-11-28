@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     // private Future_Reward futureSkill = null;
 
     // for testing purposes only
-    public Future_Reward futureSkill = new HighPriestess_Reward(null);
+    public Future_Reward futureSkill = new Strength_Reward(null);
 
     // events
     public static event Action<DamageInstance> OnDamageTaken;
@@ -278,6 +278,10 @@ public class PlayerController : MonoBehaviour
         {
             case Future_Reward.FuturePrefabs.HighPriestessZone:
                 inst = Instantiate(playerFuturePrefab.HighPriestessZone, transform.position, Quaternion.identity);
+                break;
+            case Future_Reward.FuturePrefabs.StrengthZone:
+                // TODO: maybe detect player's mouse position and spawn at the click location
+                inst = Instantiate(playerFuturePrefab.StrengthZone, transform.position, Quaternion.identity);
                 break;
         }
         if (duration > 0f && inst != null)

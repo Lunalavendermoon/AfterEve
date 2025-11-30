@@ -1,6 +1,7 @@
 using Pathfinding;
 using System;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -44,6 +45,14 @@ public abstract class EnemyBase : MonoBehaviour
 
     private Transform tempTarget; // Temporary target for pathfinding to a position
 
+    public GameObject floatingTextPrefab;
+
+    public Chest_base chest;
+    public EnemySpawnerScript spawner;
+
+    public float luck = 1f;
+    public bool elite = false;
+
     //Initializing agent and its default state
     public virtual void Start()
     {
@@ -76,7 +85,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void Die()
     {
-        Instantiate(Drop, transform.position, Quaternion.identity);
+        EnemyItemDrops.ItemDrop(luck, elite, chest);
+        spawner.numberOfEnemies--;
+        spawner.checkRevealChest();
         Destroy(gameObject);
     }
 
@@ -102,15 +113,19 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
-        health -= amount*(1-(enemyAttributes.basicDefense/(enemyAttributes.basicDefense+100)));
-        
+        int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
+        health -= damageAfterReduction;
+
         OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
+
+        // Damage numbers
+        ShowFloatingText(damageAfterReduction);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
-        if (enemyAttributes.hitPoints <= 0)
+        if (enemyAttributes.hitPoints <= 0 || health<=0)
         {
             // TODO: factor in enemy damage-reduction
             // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack
-            OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
+            OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
             Die();
         }
     }
@@ -137,6 +152,16 @@ public abstract class EnemyBase : MonoBehaviour
         isAttacking = false;
     }
 
+    private void ShowFloatingText(int damageAfterReduction)
+    {
+        if (floatingTextPrefab != null)
+        {
+            Debug.Log("Showing floating text for damage: " + damageAfterReduction);
+            GameObject floatingText = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, transform);
+            floatingText.GetComponentInChildren<TextMeshPro>().text = damageAfterReduction.ToString();
+
+        }
+    }
     public virtual void Pathfinding(Vector3 targetPosition)
     {
         if (destinationSetter == null) return;

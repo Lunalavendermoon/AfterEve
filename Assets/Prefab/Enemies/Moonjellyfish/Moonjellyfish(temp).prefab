@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4867966037313945444}
   - component: {fileID: 2341878997991670800}
   - component: {fileID: 7631987195092300849}
+  - component: {fileID: 3553563749180926273}
   m_Layer: 0
   m_Name: Moonjellyfish(temp)
   m_TagString: Enemy
@@ -229,6 +230,11 @@ MonoBehaviour:
   isAttacking: 0
   Drop: {fileID: 0}
   attack_timer: 0
+  floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
+  chest: {fileID: 0}
+  spawner: {fileID: 0}
+  luck: 1
+  elite: 0
   wanderRadius: 7.5
   wanderTime: 3
 --- !u!114 &426535317270850610
@@ -330,6 +336,19 @@ MonoBehaviour:
   enemy: {fileID: 7347425688799341433}
   baseEnemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
   effectEnemyAttributes: {fileID: 0}
+--- !u!114 &3553563749180926273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710929130042634915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9230303d23f485a45b0f7e84c2459d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TakeDamageScript
+  enemyBase: {fileID: 0}
 --- !u!1 &3385193953142855512
 GameObject:
   m_ObjectHideFlags: 0

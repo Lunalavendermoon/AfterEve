@@ -116,7 +116,7 @@ public abstract class EnemyBase : MonoBehaviour
         int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
         health -= damageAfterReduction;
 
-        OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, amount), this);
+        OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
 
         // Damage numbers
         ShowFloatingText(damageAfterReduction);

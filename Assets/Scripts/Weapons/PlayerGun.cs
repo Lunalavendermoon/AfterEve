@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
@@ -16,12 +17,12 @@ public class PlayerGun : MonoBehaviour
 
     public PlayerAttributes playerAttributes;
 
-    public Effects bulletEffect;
+    public List<Effects> bulletEffects;
 
     void Awake()
     {
         Instance = GetComponent<PlayerGun>();
-        bulletEffect = null;
+        bulletEffects = new List<Effects>();
     }
 
     public void Shoot()
@@ -34,7 +35,10 @@ public class PlayerGun : MonoBehaviour
             {
                 GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-playerAttributes.bulletSpread, playerAttributes.bulletSpread)) * firingPoint.rotation);
                 projectile.GetComponent<Projectile>().setBulletBounce(playerAttributes.bulletBounces);
-                projectile.GetComponent<Projectile>().setBulletEffect(bulletEffect);
+                foreach (Effects effect in bulletEffects)
+                {
+                    projectile.GetComponent<Projectile>().setBulletEffect(effect);
+                }
                 projectile.GetComponent<Projectile>().setBulletPiercing(playerAttributes.bulletPierces);
                 currentAngle -= 10;
             }
@@ -51,9 +55,14 @@ public class PlayerGun : MonoBehaviour
 
     public void setBulletPierces(int n) { playerAttributes.bulletPierces = n; }
 
-    public void setEffect(Effects effect)
+    public void AddEffect(Effects effect)
     {
-        bulletEffect = effect;
+        bulletEffects.Add(effect);
+    }
+
+    public void RemoveEffect(Effects effect)
+    {
+        bulletEffects.Remove(effect);
     }
 
 }

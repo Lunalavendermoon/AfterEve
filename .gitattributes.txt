@@ -1,0 +1,5 @@
+*.bundle text eol=lf
+*.dylib  -text
+*.so     -text
+*.a      -text
+*.dll    -text

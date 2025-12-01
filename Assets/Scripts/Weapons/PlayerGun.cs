@@ -48,12 +48,12 @@ public class PlayerGun : MonoBehaviour
         
     }
 
-    public void setBulletBounce(int n)
+    public void SetBulletBounce(int n)
     {
         playerAttributes.bulletBounces = n;
     }
 
-    public void setBulletPierces(int n) { playerAttributes.bulletPierces = n; }
+    public void SetBulletPierces(int n) { playerAttributes.bulletPierces = n; }
 
     public void AddEffect(Effects effect)
     {

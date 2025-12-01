@@ -17,7 +17,7 @@ public class Emperor_Present : Present_TarotCard
         effects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
         effects.Add(new AmmoCapacity_Effect(-1, ammoCapaciityIncrease[level]));
         effects.Add(new Fortified_Additive_Effect(-1, basicDefenseIncrease[level]));
-        effects.Add(new Knockback_Effect(-1));
+        effects.Add(new Knockback_Effect(-1)); // TODO set Knockback a specific amount?
     }
 
     void OnEnable()

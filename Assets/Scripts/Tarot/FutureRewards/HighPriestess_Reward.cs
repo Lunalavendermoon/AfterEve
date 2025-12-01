@@ -3,7 +3,7 @@ using UnityEngine;
 public class HighPriestess_Reward : Future_Reward
 {
     const float zoneDuration = 10f;
-    public HighPriestess_Reward(Future_TarotCard card) : base(50, 1f, card)
+    public HighPriestess_Reward(Future_TarotCard card) : base(5, 20f, card)
     {
     }
 

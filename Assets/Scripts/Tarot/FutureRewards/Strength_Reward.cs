@@ -5,7 +5,7 @@ public class Strength_Reward : Future_Reward
     const float zoneDuration = 5f;
     const float maxZoneDistance = 5f;
 
-    public Strength_Reward(Future_TarotCard card) : base(50, 1f, card)
+    public Strength_Reward(Future_TarotCard card) : base(3, 5f, card)
     {
     }
 

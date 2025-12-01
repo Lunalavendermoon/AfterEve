@@ -274,17 +274,30 @@ public class PlayerController : MonoBehaviour
         playerAttributes.hitCountShield += amount;
     }
 
-    public void SpawnFuturePrefab(Future_Reward.FuturePrefabs targetPrefab, float duration)
+    public void SpawnFuturePrefab(Future_Reward.FuturePrefabs targetPrefab, float duration,
+                                    bool hasCustomPos = false, float x = 0f, float y = 0f, float z = 0f)
     {
         GameObject inst = null;
+
+        Vector3 position;
+        if (hasCustomPos)
+        {
+            position = new Vector3(x, y, z);
+        }
+        else
+        {
+            position = transform.position;
+        }
+
+        Debug.Log($"Spawning at {position}");
+
         switch (targetPrefab)
         {
             case Future_Reward.FuturePrefabs.HighPriestessZone:
-                inst = Instantiate(playerFuturePrefab.HighPriestessZone, transform.position, Quaternion.identity);
+                inst = Instantiate(playerFuturePrefab.HighPriestessZone, position, Quaternion.identity);
                 break;
             case Future_Reward.FuturePrefabs.StrengthZone:
-                // TODO: maybe detect player's mouse position and spawn at the click location
-                inst = Instantiate(playerFuturePrefab.StrengthZone, transform.position, Quaternion.identity);
+                inst = Instantiate(playerFuturePrefab.StrengthZone, position, Quaternion.identity);
                 break;
         }
         if (duration > 0f && inst != null)

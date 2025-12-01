@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Strength_Zone : MonoBehaviour
@@ -61,8 +62,23 @@ public class Strength_Zone : MonoBehaviour
         {
             PlayerController.instance.TakeDamage(rawDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
         }
-        foreach (EnemyBase enemy in enemiesInside) {
+        // handles dealing dmg to enemies, takes into account enemies dying mid-loop & causing enemiesInside to shrink
+        // TODO: might not handle enemies spawning mid-loop correctly
+        // will need to change this code if any enemies spawn new enemies upon taking damage/dying
+        int i = enemiesInside.Count - 1;
+        while (i >= 0) {
+            int prevLen = enemiesInside.Count;
+            EnemyBase enemy = enemiesInside[i];
             enemy.TakeDamage(rawDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+            if (enemiesInside.Count != prevLen)
+            {
+                // decrement i according to length of the new list
+                i = enemiesInside.Count - (prevLen - i);
+            } else
+            {
+                // decrement i like a normal pointer
+                --i;
+            }
         }
     }
 }

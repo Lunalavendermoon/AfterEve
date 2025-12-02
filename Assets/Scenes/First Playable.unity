@@ -1923,6 +1923,7 @@ MonoBehaviour:
   chest: {fileID: 2138837948}
   Enemy: {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
   numberOfEnemies: 0
+  enemies: []
 --- !u!1 &2093864095
 GameObject:
   m_ObjectHideFlags: 0

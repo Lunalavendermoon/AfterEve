@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: PlayerFuturePrefab
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFuturePrefab
   HighPriestessZone: {fileID: 5159541312179504949, guid: 8e0e2f1c4886a4e72b9d1bf80c9e00d0, type: 3}
+  EmpressPulse: {fileID: 297153201300601196, guid: 67c7ed2ce162c4f64af89ccf1159e78a, type: 3}
   StrengthZone: {fileID: 1394977243712117514, guid: 7ab4459823c8747a39a451298aa99e23, type: 3}

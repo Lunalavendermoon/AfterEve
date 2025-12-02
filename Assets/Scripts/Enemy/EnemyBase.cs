@@ -86,8 +86,7 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void Die()
     {
         EnemyItemDrops.ItemDrop(luck, elite, chest);
-        spawner.numberOfEnemies--;
-        spawner.checkRevealChest();
+        spawner.EnemyDie(this);
         Destroy(gameObject);
     }
 
@@ -132,6 +131,7 @@ public abstract class EnemyBase : MonoBehaviour
     public void Heal(int amount)
     {
         health = Math.Clamp(health + amount, 0, enemyAttributes.maxHitPoints);
+        Debug.Log($"{gameObject.name} healed {amount}, current health: {health}");
     }
 
     public virtual void Pathfinding(Transform target)

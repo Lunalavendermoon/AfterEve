@@ -6,6 +6,7 @@ public abstract class Future_Reward
     public enum FuturePrefabs
     {
         HighPriestessZone,
+        EmpressPulse,
         StrengthZone
     }
 

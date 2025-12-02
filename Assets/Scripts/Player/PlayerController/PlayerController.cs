@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     // private Future_Reward futureSkill = null;
 
     // for testing purposes only
-    public Future_Reward futureSkill = new Strength_Reward(null);
+    public Future_Reward futureSkill = new Empress_Reward(null);
 
     // events
     public static event Action<DamageInstance> OnDamageTaken;
@@ -262,6 +262,7 @@ public class PlayerController : MonoBehaviour
     public void Heal(int amount)
     {
         health = Math.Clamp(health + amount, 0, playerAttributes.maxHitPoints);
+        Debug.Log($"Player healed {amount}, current health: {health}");
         // includes overflow healing in calculation :3
         OnHealed?.Invoke(amount);
     }
@@ -292,12 +293,13 @@ public class PlayerController : MonoBehaviour
             position = transform.position;
         }
 
-        Debug.Log($"Spawning at {position}");
-
         switch (targetPrefab)
         {
             case Future_Reward.FuturePrefabs.HighPriestessZone:
                 inst = Instantiate(playerFuturePrefab.HighPriestessZone, position, Quaternion.identity);
+                break;
+            case Future_Reward.FuturePrefabs.EmpressPulse:
+                inst = Instantiate(playerFuturePrefab.EmpressPulse, transform);
                 break;
             case Future_Reward.FuturePrefabs.StrengthZone:
                 inst = Instantiate(playerFuturePrefab.StrengthZone, position, Quaternion.identity);

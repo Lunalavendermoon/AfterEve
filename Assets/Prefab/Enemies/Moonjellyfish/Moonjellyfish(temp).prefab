@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoonJellyFish
   baseEnemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
   enemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
-  enemyEffectManager: {fileID: 0}
+  enemyEffectManager: {fileID: 7631987195092300849}
   health: 0
   speed: 0
   agent: {fileID: 4867966037313945444}
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
   enemy: {fileID: 7347425688799341433}
   baseEnemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
-  effectEnemyAttributes: {fileID: 0}
+  effectEnemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
 --- !u!114 &3553563749180926273
 MonoBehaviour:
   m_ObjectHideFlags: 0

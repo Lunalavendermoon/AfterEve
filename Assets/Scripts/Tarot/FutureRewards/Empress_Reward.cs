@@ -3,6 +3,7 @@ using UnityEngine;
 public class Empress_Reward : Future_Reward
 {
     const float healPercent = 0.5f;
+    const float pulseDuration = 3f;
 
     public Empress_Reward(Future_TarotCard card) : base(5, 5f, card)
     {
@@ -12,6 +13,6 @@ public class Empress_Reward : Future_Reward
     {
         Debug.Log("Triggered Empress skill");
         PlayerController.instance.Heal((int)(PlayerController.instance.playerAttributes.maxHitPoints * healPercent));
-        // TODO generate a pulse for 3s that knocks back enemies from the center
+        PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.EmpressPulse, pulseDuration);
     }
 }

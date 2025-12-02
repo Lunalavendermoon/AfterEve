@@ -10,7 +10,7 @@ public class MoonJellyFish : EnemyBase
     [SerializeField] private float wanderTime = 3f;
     void Awake()
     {
-        health = enemyAttributes.hitPoints;
+        health = enemyAttributes.maxHitPoints;
         //damage = enemyAttributes.damage;
         speed = enemyAttributes.speed;
         //visibleRange = enemyAttributes.detection_radius;

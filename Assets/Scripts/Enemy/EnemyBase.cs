@@ -121,9 +121,8 @@ public abstract class EnemyBase : MonoBehaviour
         // Damage numbers
         ShowFloatingText(damageAfterReduction);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
-        if (enemyAttributes.hitPoints <= 0 || health<=0)
+        if (health<=0)
         {
-            // TODO: factor in enemy damage-reduction
             // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack
             OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
             Die();
@@ -132,7 +131,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public void Heal(int amount)
     {
-        enemyAttributes.hitPoints = Math.Clamp(enemyAttributes.hitPoints + amount, 0, enemyAttributes.maxHitPoints);
+        health = Math.Clamp(health + amount, 0, enemyAttributes.maxHitPoints);
     }
 
     public virtual void Pathfinding(Transform target)

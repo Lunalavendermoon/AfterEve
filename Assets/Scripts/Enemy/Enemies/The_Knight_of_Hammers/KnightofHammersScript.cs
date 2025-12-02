@@ -13,7 +13,7 @@ public class KnightofHammersScript : EnemyBase
     [SerializeField] float jumpHeight = 1.5f;
     void Awake()
     {
-        health = enemyAttributes.hitPoints;
+        health = enemyAttributes.maxHitPoints;
         //damage = enemyAttributes.damage;
         speed = enemyAttributes.speed;
         //visibleRange = enemyAttributes.detection_radius;

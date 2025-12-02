@@ -30,7 +30,7 @@ public abstract class Multiplier_Effects : Effects
         switch (effectStat)
         {
             case Stat.HP:
-                entityAttributes.hitPoints = (int)(entityAttributes.hitPoints * totalRate);
+                entityAttributes.maxHitPoints = (int)(entityAttributes.maxHitPoints * totalRate);
                 break;
             case Stat.Speed:
                 entityAttributes.speed *= totalRate;

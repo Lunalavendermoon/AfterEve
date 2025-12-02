@@ -30,7 +30,7 @@ public abstract class Flat_Effects : Effects
         switch (effectStat)
         {
             case Stat.HP:
-                entityAttributes.hitPoints += (int)effectRate;
+                entityAttributes.maxHitPoints += (int)effectRate;
                 break;
             case Stat.Speed:
                 entityAttributes.speed += effectRate;

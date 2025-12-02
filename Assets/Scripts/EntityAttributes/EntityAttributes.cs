@@ -10,7 +10,6 @@ public class EntityAttributes : ScriptableObject
 
     [Header("Defense")]
     public int maxHitPoints;
-    public int hitPoints;
     public int basicDefense;
     public int spiritualDefense;
     public float damageTakenBonus;

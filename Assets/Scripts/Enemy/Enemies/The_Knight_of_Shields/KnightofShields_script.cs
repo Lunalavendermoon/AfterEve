@@ -9,7 +9,7 @@ public class KnightofShields_script : EnemyBase
 
     void Awake()
     {
-        health = enemyAttributes.hitPoints;
+        health = enemyAttributes.maxHitPoints;
         //damage = enemyAttributes.damage;
         speed = enemyAttributes.speed;
         //visibleRange = enemyAttributes.detection_radius;

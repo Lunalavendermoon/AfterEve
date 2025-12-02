@@ -10,7 +10,7 @@ public class knightOfBlades : EnemyBase
     [SerializeField] private float dashDuration = 1f;
     void Awake()
     {
-        health = enemyAttributes.hitPoints;
+        health = enemyAttributes.maxHitPoints;
         //damage = enemyAttributes.damage;
         speed = enemyAttributes.speed;
         //visibleRange = enemyAttributes.detection_radius;

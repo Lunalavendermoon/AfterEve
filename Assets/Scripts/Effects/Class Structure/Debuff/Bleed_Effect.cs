@@ -32,7 +32,7 @@ public class Bleed_Effect : Multiplier_Effects
     {
         if (increment)
         {
-            int bleedDmg = (int)(playerAttributes.hitPoints * effectRate);
+            int bleedDmg = (int)(playerAttributes.maxHitPoints * effectRate);
             PlayerController.instance.TakeDamage(bleedDmg, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Basic);
 
             Debug.Log("Bleed amount: " + bleedDmg);
@@ -44,7 +44,7 @@ public class Bleed_Effect : Multiplier_Effects
     {   
         if (increment)
         {
-            int bleedDmg = (int)(enemyAttributes.hitPoints * effectRate);
+            int bleedDmg = (int)(enemyAttributes.maxHitPoints * effectRate);
             enemy.TakeDamage(bleedDmg, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Basic);
 
             Debug.Log("Bleed amount: " + bleedDmg);

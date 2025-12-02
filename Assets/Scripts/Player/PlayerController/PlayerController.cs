@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // player attributes
+    public int health;
     public PlayerAttributes playerAttributes;
     public PlayerFuturePrefab playerFuturePrefab;
 
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
         currentBullets = playerAttributes.Ammo;
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
         healthBar.setMaxHealth(playerAttributes.maxHitPoints);
+        health = playerAttributes.maxHitPoints;
     }
 
     void Update()
@@ -243,22 +245,23 @@ public class PlayerController : MonoBehaviour
         if (amountAfterShield > 0)
         {
             playerAttributes.shield = 0;
-            playerAttributes.hitPoints -= amountAfterShield;
+            health -= amountAfterShield;
         } else
         {
             playerAttributes.shield -= amount;
         }
-        Debug.Log($"Player took {amount} damage, remaining health: {playerAttributes.hitPoints}, shield: {playerAttributes.shield}");
+        Debug.Log($"Player took {amount} damage, remaining health: {health}, shield: {playerAttributes.shield}");
         OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, amount, amount));
-        if (playerAttributes.hitPoints <= 0)
+        if (health <= 0)
         {
             // TODO: player died
+            Debug.Log("Player health reached 0");
         }
     }
     
     public void Heal(int amount)
     {
-        playerAttributes.hitPoints = Math.Clamp(playerAttributes.hitPoints + amount, 0, playerAttributes.maxHitPoints);
+        health = Math.Clamp(health + amount, 0, playerAttributes.maxHitPoints);
         // includes overflow healing in calculation :3
         OnHealed?.Invoke(amount);
     }

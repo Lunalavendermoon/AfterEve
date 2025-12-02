@@ -27,6 +27,17 @@ public class PlayerGun : MonoBehaviour
 
     public void Shoot()
     {
+        ShootDamage(playerAttributes.damage);
+    }
+
+    public void ShootMagicianCoin()
+    {
+        ShootDamage(playerAttributes.damage * Magician_Reward.damageMultiplier);
+    }
+
+    void ShootDamage(int damage)
+    {
+        
         firingSpeed = 1/playerAttributes.attackPerSec;
         if(lastTimeShot + firingSpeed <= Time.time)
         {
@@ -35,6 +46,7 @@ public class PlayerGun : MonoBehaviour
             {
                 GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-playerAttributes.bulletSpread, playerAttributes.bulletSpread)) * firingPoint.rotation);
                 projectile.GetComponent<Projectile>().setBulletBounce(playerAttributes.bulletBounces);
+                projectile.GetComponent<Projectile>().setProjectileDamage(damage);
                 foreach (Effects effect in bulletEffects)
                 {
                     projectile.GetComponent<Projectile>().setBulletEffect(effect);
@@ -45,7 +57,6 @@ public class PlayerGun : MonoBehaviour
             
             lastTimeShot = Time.time;
         }
-        
     }
 
     public void SetBulletBounce(int n)

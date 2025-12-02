@@ -26,15 +26,12 @@ public class Empress_Present : Present_TarotCard
         if(random < healProbability[level] * 100)
         {
             // round down
-            int newHealth = PlayerController.instance.health + (int) (PlayerController.instance.playerAttributes.maxHitPoints * healPercent[level]);
+            int healAmount = (int)(PlayerController.instance.playerAttributes.maxHitPoints * healPercent[level]);
+            int newHealth = PlayerController.instance.GetHealth() + healAmount;
+                PlayerController.instance.Heal(healAmount);
             if(newHealth > PlayerController.instance.playerAttributes.maxHitPoints)
             {
-                PlayerController.instance.health = PlayerController.instance.playerAttributes.maxHitPoints;
-                enemy.TakeDamage(newHealth - PlayerController.instance.playerAttributes.maxHitPoints, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
-            }
-            else
-            {
-                PlayerController.instance.health = newHealth;
+                enemy.TakeDamage(healAmount, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
             }
         }
     }

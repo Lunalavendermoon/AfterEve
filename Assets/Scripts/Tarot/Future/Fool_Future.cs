@@ -39,7 +39,8 @@ public class Fool_Future : Future_TarotCard
 
     protected override void RewardPlayer()
     {
-        // TODO give player 50 coins
+        Debug.Log("Automatically trigger Fool reward, gain 50 coins");
+        PlayerController.instance.ChangeCoins(foolCoinRewardAmount);
 
         // Fool card doesn't use Future_Reward, so we have to manually call RemoveCard() here
         RemoveCard();

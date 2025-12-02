@@ -39,7 +39,7 @@ public class Empress_Future : Future_TarotCard
 
     private void OnRoomChange()
     {
-        if (((double)PlayerController.instance.health) / PlayerController.instance.playerAttributes.maxHitPoints >= 0.8f)
+        if (((double)PlayerController.instance.GetHealth()) / PlayerController.instance.playerAttributes.maxHitPoints >= 0.8f)
         {
             ++roomCount;
 

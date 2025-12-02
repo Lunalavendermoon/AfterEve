@@ -31,9 +31,13 @@ public class PlayerController : MonoBehaviour
     }
 
     // player attributes
-    public int health;
+    int health;
+    // public int coins = 0;
+    // TODO - delete this in final, this is for testing only:
+    int coins = 5;
     public PlayerAttributes playerAttributes;
     public PlayerFuturePrefab playerFuturePrefab;
+    public bool magicianSkillActive = false;
 
     // state machine
     public IPlayerState currentState;
@@ -60,6 +64,7 @@ public class PlayerController : MonoBehaviour
     public static event Action<int> OnShielded;
     public static event Action<bool> OnSpiritualVisionChange;
     public static event Action<IPlayerState> OnPlayerStateChange;
+    public static event Action OnCoinsDecrease;
 
     void Start()
     {
@@ -161,7 +166,15 @@ public class PlayerController : MonoBehaviour
         {
             if(playerInput.Player.Attack.triggered)
             {
-                PlayerGun.Instance.Shoot();
+                if (magicianSkillActive)
+                {
+                    PlayerGun.Instance.ShootMagicianCoin();
+                    ChangeCoins(-Magician_Reward.coinsPerShot);
+                }
+                else
+                {
+                    PlayerGun.Instance.Shoot();
+                }
                 currentBullets--;
             }
 
@@ -266,6 +279,11 @@ public class PlayerController : MonoBehaviour
         // includes overflow healing in calculation :3
         OnHealed?.Invoke(amount);
     }
+
+    public int GetHealth()
+    {
+        return health;
+    }
     
     public void GainShield(int amount)
     {
@@ -276,6 +294,20 @@ public class PlayerController : MonoBehaviour
     public void GainHitCountShield(int amount)
     {
         playerAttributes.hitCountShield += amount;
+    }
+
+    public void ChangeCoins(int amount)
+    {
+        coins += amount;
+        if (amount < 0)
+        {
+            OnCoinsDecrease?.Invoke();
+        }
+    }
+
+    public int GetCoins()
+    {
+        return coins;
     }
 
     public void SpawnFuturePrefab(Future_Reward.FuturePrefabs targetPrefab, float duration,

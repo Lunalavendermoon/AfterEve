@@ -13,6 +13,13 @@ public class Projectile : MonoBehaviour
     private Effects bulletEffect;
     private int bulletPiercing;
     private int enemiesPierced;
+
+    private int projectileDamage;
+
+    public void setProjectileDamage(int n)
+    {
+        projectileDamage = n;
+    }
     public void setBulletBounce(int n)
     {
         bulletBounces = n;
@@ -53,8 +60,7 @@ public class Projectile : MonoBehaviour
             EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
             OnEnemyHit?.Invoke(enemy);
             // TODO change to DamageType.Spiritual if player is dealing spiritual damage
-            enemy.TakeDamage(PlayerController.instance.playerAttributes.damage,
-                DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+            enemy.TakeDamage(projectileDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
             if (enemy.GetComponent<EffectManager>())
             {
                 if (!(bulletEffect == null))

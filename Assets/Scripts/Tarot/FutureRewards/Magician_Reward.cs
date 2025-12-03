@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Magician_Reward : Future_Reward
@@ -5,6 +6,8 @@ public class Magician_Reward : Future_Reward
     public static int coinsPerShot = 5;
 
     public static int damageMultiplier = 2;
+
+    public static float skillDuration = 5f;
 
     public Magician_Reward(Future_TarotCard card) : base(3, 10f, card)
     {
@@ -14,6 +17,8 @@ public class Magician_Reward : Future_Reward
     {
         // TODO start a 5-second timer and call EndMagicianSkill() at the end
         Debug.Log("Triggered Magician skill");
+
+        PlayerController.instance.SetMagicianSkill(true);
 
         PlayerController.OnCoinsDecrease += OnCoinDecrease;
     }
@@ -28,9 +33,9 @@ public class Magician_Reward : Future_Reward
 
     void EndMagicianSkill()
     {
-        if (PlayerController.instance.magicianSkillActive)
+        if (PlayerController.instance.IsMagicianSkillActive())
         {
-            PlayerController.instance.magicianSkillActive = false;
+            PlayerController.instance.SetMagicianSkill(false);
             PlayerController.OnCoinsDecrease -= OnCoinDecrease;
         }
     }

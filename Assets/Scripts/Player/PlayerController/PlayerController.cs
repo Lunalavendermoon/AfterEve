@@ -37,7 +37,8 @@ public class PlayerController : MonoBehaviour
     int coins = 5;
     public PlayerAttributes playerAttributes;
     public PlayerFuturePrefab playerFuturePrefab;
-    public bool magicianSkillActive = false;
+    private bool magicianSkillActive = false;
+    private float magicianSkillTimer;
 
     // state machine
     public IPlayerState currentState;
@@ -81,6 +82,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // decrement timer for active skills (if any)
+        if (magicianSkillActive)
+        {
+            magicianSkillTimer -= Time.deltaTime;
+            if (magicianSkillTimer <= 0f)
+            {
+                SetMagicianSkill(false);
+            }
+        }
+
         if (playerAttributes.isParalyzed)
         {
             currentState = new Player_Idle();
@@ -182,6 +193,20 @@ public class PlayerController : MonoBehaviour
         {
             Reload();
         }
+    }
+
+    public void SetMagicianSkill(bool activated)
+    {
+        magicianSkillActive = activated;
+        if (magicianSkillActive)
+        {
+            magicianSkillTimer = Magician_Reward.skillDuration;
+        }
+    }
+
+    public bool IsMagicianSkillActive()
+    {
+        return magicianSkillActive;
     }
 
     Boolean currentlyReloading = false;

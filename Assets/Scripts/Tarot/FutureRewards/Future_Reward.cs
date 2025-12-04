@@ -7,6 +7,7 @@ public abstract class Future_Reward
     {
         HighPriestessZone,
         EmpressPulse,
+        LoverSummon,
         StrengthZone
     }
 

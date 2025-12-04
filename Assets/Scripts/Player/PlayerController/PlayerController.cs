@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     // private Future_Reward futureSkill = null;
 
     // for testing purposes only
-    public Future_Reward futureSkill = new Empress_Reward(null);
+    public Future_Reward futureSkill = new Emperor_Reward(null);
 
     // events
     public static event Action<DamageInstance> OnDamageTaken;
@@ -360,6 +360,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case Future_Reward.FuturePrefabs.StrengthZone:
                 inst = Instantiate(playerFuturePrefab.StrengthZone, position, Quaternion.identity);
+                break;
+            case Future_Reward.FuturePrefabs.LoverSummon:
+                inst = Instantiate(playerFuturePrefab.LoverSummon, position, Quaternion.identity);
                 break;
         }
         if (duration > 0f && inst != null)

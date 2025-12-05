@@ -15,4 +15,9 @@ public class Empress_Reward : Future_Reward
         PlayerController.instance.Heal((int)(PlayerController.instance.playerAttributes.maxHitPoints * healPercent));
         PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.EmpressPulse, pulseDuration);
     }
+
+    public override string GetName()
+    {
+        return "Empress Skill";
+    }
 }

@@ -1,6 +1,8 @@
 using System;
 using UnityEditorInternal;
+using TMPro;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,9 +34,7 @@ public class PlayerController : MonoBehaviour
 
     // player attributes
     int health;
-    // public int coins = 0;
-    // TODO - delete this in final, this is for testing only:
-    int coins = 5;
+    int coins = 100; // TODO - set to 0 in final version, this is for testing only
     public PlayerAttributes playerAttributes;
     public PlayerFuturePrefab playerFuturePrefab;
     private bool magicianSkillActive = false;
@@ -54,10 +54,7 @@ public class PlayerController : MonoBehaviour
     private Boolean inSpiritualVision;
 
     // future card skill
-    // private Future_Reward futureSkill = null;
-
-    // for testing purposes only
-    public Future_Reward futureSkill = new Emperor_Reward(null);
+    public Future_Reward futureSkill = null;
 
     // events
     public static event Action<DamageInstance> OnDamageTaken;
@@ -66,6 +63,9 @@ public class PlayerController : MonoBehaviour
     public static event Action<bool> OnSpiritualVisionChange;
     public static event Action<IPlayerState> OnPlayerStateChange;
     public static event Action OnCoinsDecrease;
+
+    // FOR TESTING ONLY!
+    public TMP_Text skillText;
 
     void Start()
     {
@@ -107,6 +107,64 @@ public class PlayerController : MonoBehaviour
             HandleShootInput();
             HandleSpiritualVision();
             HandleFutureSkillInput();
+        }
+        skillText.text = BuildSkillDisplayString();
+    }
+
+    string BuildSkillDisplayString()
+    {
+        string s = "Coins: " + coins;
+        s += "\nFuture skill: ";
+        if (futureSkill == null)
+        {
+            s += "none";
+            return s;
+        }
+        else
+        {
+            s += futureSkill.GetName();
+        }
+        s += "\n";
+        if (futureSkill.IsOnCooldown())
+        {
+            s += "Cooldown: " + (int)(futureSkill.cooldown - Time.time + futureSkill.lastUseTime);
+        } else
+        {
+            s += "Press E to use skill!";
+        }
+        s += "\nRemaining skill uses: " + futureSkill.usesLeft;
+        return s;
+    }
+
+    // TODO: FOR TESTING ONLY - delete in final!
+    public void SetFutureSkill(string skill)
+    {
+        switch (skill)
+        {
+            case "chariot":
+                futureSkill = new Chariot_Reward(null);
+                return;
+            case "emperor":
+                futureSkill = new Emperor_Reward(null);
+                return;
+            case "empress":
+                futureSkill = new Empress_Reward(null);
+                return;
+            case "hierophant":
+                futureSkill = new Hierophant_Reward(null);
+                return;
+            case "highpriestess":
+                futureSkill = new HighPriestess_Reward(null);
+                return;
+            case "lovers":
+                futureSkill = new Lovers_Reward(null);
+                return;
+            case "magician":
+                futureSkill = new Magician_Reward(null);
+                return;
+            case "strength":
+                futureSkill = new Strength_Reward(null);
+                return;
         }
     }
 

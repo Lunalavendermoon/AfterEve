@@ -17,4 +17,9 @@ public class Chariot_Reward : Future_Reward
         em.AddEffect(new Haste_Effect(duration, hasteAmount));
         em.AddEffect(new Strength_Effect(duration, strengthAmount));
     }
+
+    public override string GetName()
+    {
+        return "Chariot Skill";
+    }
 }

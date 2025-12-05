@@ -39,4 +39,9 @@ public class Magician_Reward : Future_Reward
             PlayerController.OnCoinsDecrease -= OnCoinDecrease;
         }
     }
+
+    public override string GetName()
+    {
+        return "Magician Skill";
+    }
 }

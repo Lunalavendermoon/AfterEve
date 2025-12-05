@@ -61,7 +61,10 @@ public abstract class Future_Reward
         if (usesLeft == 0)
         {
             Debug.Log("Skill is completely used!");
+            PlayerController.instance.futureSkill = null; // TODO delete this -- just for testing
             OnRewardFinished?.Invoke();
         }
     }
+
+    public abstract string GetName();
 }

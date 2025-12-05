@@ -17,4 +17,9 @@ public class Hierophant_Reward : Future_Reward
             new HitCountShield_Effect(shieldAmount, shieldDuration)
         );
     }
+
+    public override string GetName()
+    {
+        return "Hierophant Skill";
+    }
 }

@@ -11,4 +11,9 @@ public class Hermit_Reward : Future_Reward
         // TODO
         Debug.Log("Triggered Hermit skill");
     }
+
+    public override string GetName()
+    {
+        return "Hermit Skill";
+    }
 }

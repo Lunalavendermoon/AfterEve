@@ -13,4 +13,9 @@ public class Lovers_Reward : Future_Reward
         Debug.Log("Triggered Lovers skill");
         PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.LoverSummon, duration);
     }
+
+    public override string GetName()
+    {
+        return "Lovers Skill";
+    }
 }

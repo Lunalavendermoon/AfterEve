@@ -20,4 +20,9 @@ public class Emperor_Reward : Future_Reward
             enemy.enemyEffectManager.AddEffect(new Paralyze_Effect(paralyzeDuration));
         }
     }
+
+    public override string GetName()
+    {
+        return "Emperor Skill";
+    }
 }

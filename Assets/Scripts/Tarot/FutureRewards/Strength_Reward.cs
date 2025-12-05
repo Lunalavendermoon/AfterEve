@@ -25,4 +25,9 @@ public class Strength_Reward : Future_Reward
 
         PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.StrengthZone, zoneDuration, true, zonePos.x, zonePos.y, zonePos.z);
     }
+
+    public override string GetName()
+    {
+        return "Strength Skill";
+    }
 }

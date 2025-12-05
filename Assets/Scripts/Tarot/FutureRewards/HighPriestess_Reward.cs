@@ -12,4 +12,9 @@ public class HighPriestess_Reward : Future_Reward
         Debug.Log("Triggered High Priestess skill");
         PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.HighPriestessZone, zoneDuration);
     }
+
+    public override string GetName()
+    {
+        return "HighPriestess Skill";
+    }
 }

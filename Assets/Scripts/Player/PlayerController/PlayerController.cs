@@ -108,7 +108,10 @@ public class PlayerController : MonoBehaviour
             HandleSpiritualVision();
             HandleFutureSkillInput();
         }
-        skillText.text = BuildSkillDisplayString();
+        if (skillText != null)
+        {
+            skillText.text = BuildSkillDisplayString();
+        }
     }
 
     string BuildSkillDisplayString()

@@ -4,6 +4,8 @@ using UnityEngine;
 public class Player_Move : IPlayerState
 {
     public static event Action OnDisplaced;
+
+    public static int speedCoefficient = 5;
     public void EnterState(PlayerController player)
     {
         
@@ -18,8 +20,8 @@ public class Player_Move : IPlayerState
     public void UpdateState(PlayerController player)
     {
         Vector3 currentPosition = new Vector3();
-        currentPosition.x += 5 * player.horizontalInput * player.playerAttributes.speed * Time.deltaTime;
-        currentPosition.y += 5 * player.verticalInput * player.playerAttributes.speed * Time.deltaTime;
+        currentPosition.x += speedCoefficient * player.horizontalInput * player.playerAttributes.speed * Time.deltaTime;
+        currentPosition.y += speedCoefficient * player.verticalInput * player.playerAttributes.speed * Time.deltaTime;
 
         if (player.horizontalInput > 0 && player.verticalInput > 0)
         {

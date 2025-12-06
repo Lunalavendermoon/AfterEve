@@ -14,6 +14,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     public EnemyEffectManager enemyEffectManager;
 
+    public Chest_base chest;
+    public EnemySpawnerScript spawner;
+
     // Enemy attributes
     public int health;
     //public int damage;
@@ -47,8 +50,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public GameObject floatingTextPrefab;
 
-    public Chest_base chest;
-    public EnemySpawnerScript spawner;
+
 
     public float luck = 1f;
     public bool elite = false;
@@ -85,7 +87,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void Die()
     {
-        EnemyItemDrops.ItemDrop(luck, elite, chest);
+        EnemyItemDrops.ItemDrop(PlayerController.instance.playerAttributes.luck, elite, chest);
         spawner.EnemyDie(this);
         Destroy(gameObject);
     }

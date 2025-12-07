@@ -1,5 +1,4 @@
 using System;
-using UnityEditorInternal;
 using TMPro;
 using UnityEngine;
 using Unity.VisualScripting;
@@ -9,7 +8,6 @@ public class PlayerController : MonoBehaviour
     // make into singleton
     public static PlayerController instance;
     public HealthBarScript healthBar;
-
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -21,6 +19,9 @@ public class PlayerController : MonoBehaviour
     public PlayerInput playerInput;
     public float horizontalInput;
     public float verticalInput;
+
+    // Player movement speed (exposed for designer control)
+    public int speed;
 
     void OnEnable()
     {
@@ -112,6 +113,7 @@ public class PlayerController : MonoBehaviour
         {
             skillText.text = BuildSkillDisplayString();
         }
+        Player_Move.speedCoefficient = speed;
     }
 
     string BuildSkillDisplayString()

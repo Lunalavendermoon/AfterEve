@@ -22,7 +22,7 @@ TagManager:
   - VoidHole
   - Ground
   - Obstacle
-  - 
+  - Portal
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: player
+    uniqueID: 3295744717
     locked: 0
   m_RenderingLayers:
   - Default

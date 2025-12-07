@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     // For picking random existing tiles
     private List<Vector2Int> occupiedCells = new List<Vector2Int>();
 
+
+    public SpawnBehavior spawnBehavior;
+    public GameObject portal;
     // Grid directions (x => world X, y => world Y)
     private readonly Vector2Int[] dirGrid =
     {
@@ -27,6 +30,11 @@ public class GameManager : MonoBehaviour
         new Vector2Int( 0,-1 )  // down  (-Y)
     };
 
+    private void Start()
+    {
+        LoadMap();
+    }
+
     // ============================================================
     // PUBLIC – call from your UI button
     // ============================================================
@@ -34,15 +42,6 @@ public class GameManager : MonoBehaviour
     {
         ClearMap();
         GenerateAndPlace();
-
-        // log all positions from occupiedCells
-        for (int i = 0; i < occupiedCells.Count; i++)
-        {
-            Vector2Int cell = occupiedCells[i];
-            GameObject instance = gridToInstance[cell];
-            Vector3 pos = instance.transform.position;
-            Debug.Log("Tile " + i + " at logical cell " + cell + " positioned at " + pos);
-        }
     }
 
     // ============================================================
@@ -163,6 +162,69 @@ public class GameManager : MonoBehaviour
             gridToInstance[newCell] = newInstance;
             occupiedCells.Add(newCell);
         }
+        // move the portal on a random edge of the last placed tile that is not touched by another tile
+        Vector2Int lastCell = occupiedCells[occupiedCells.Count - 1];
+        List<int> freeDirIndicesForPortal = new List<int>();
+        for (int d = 0; d < dirGrid.Length; d++)
+        {
+            Vector2Int neighborCell = lastCell + dirGrid[d];
+            if (!gridToInstance.ContainsKey(neighborCell))
+                freeDirIndicesForPortal.Add(d);
+        }
+        if (freeDirIndicesForPortal.Count > 0)
+        {
+            int dirIndex = freeDirIndicesForPortal[Random.Range(0, freeDirIndicesForPortal.Count)];
+            Vector2Int dir = dirGrid[dirIndex];
+            GameObject lastInstance = gridToInstance[lastCell];
+            // Get render sizes (world units)
+            Vector3 lastSize = GetSpriteSize(lastInstance);
+            Vector3 portalSize = GetSpriteSize(portal);
+            Vector3 lastPos = lastInstance.transform.position;
+
+            // Place the portal fully INSIDE the bounds of the last tile, near the chosen free edge.
+            // Compute offset so that the portal's sprite bounds never extend past the tile's bounds:
+            // offset distance = tileHalf - portalHalf along the chosen axis.
+            Vector3 offset = Vector3.zero;
+            const float margin = 0f; // optional inner margin if needed
+            if (dir.x == 1)        // near right edge, inside
+            {
+                float dist = (lastSize.x * 0.5f) - (portalSize.x * 0.5f) - margin;
+                offset = new Vector3(dist, 0f, 0f);
+            }
+            else if (dir.x == -1)  // near left edge, inside
+            {
+                float dist = (lastSize.x * 0.5f) - (portalSize.x * 0.5f) - margin;
+                offset = new Vector3(-dist, 0f, 0f);
+            }
+            else if (dir.y == 1)   // near top edge, inside
+            {
+                float dist = (lastSize.y * 0.5f) - (portalSize.y * 0.5f) - margin;
+                offset = new Vector3(0f, dist, 0f);
+            }
+            else if (dir.y == -1)  // near bottom edge, inside
+            {
+                float dist = (lastSize.y * 0.5f) - (portalSize.y * 0.5f) - margin;
+                offset = new Vector3(0f, -dist, 0f);
+            }
+
+            // Clamp offset components in case portal is larger than tile; ensure stays centered inside
+            // If portal larger, center it in tile to avoid protrusion
+            if (portalSize.x > lastSize.x)
+            {
+                offset.x = 0f;
+            }
+            if (portalSize.y > lastSize.y)
+            {
+                offset.y = 0f;
+            }
+
+            Vector3 portalPosition = lastPos + offset;
+            // Force same Z for portal
+            portalPosition.z = 0f;
+            portal.transform.position = portalPosition;
+        }
+
+        spawnBehavior.Respawn();
     }
 
     // ============================================================

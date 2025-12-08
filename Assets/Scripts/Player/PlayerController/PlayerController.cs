@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using Unity.VisualScripting;
+using FMOD.Studio;
 
 public class PlayerController : MonoBehaviour
 {
@@ -68,6 +69,9 @@ public class PlayerController : MonoBehaviour
     // FOR TESTING ONLY!
     public TMP_Text skillText;
 
+    //audio
+    private EventInstance playerFootsteps;
+
     void Start()
     {
         currentState = new Player_Idle();
@@ -79,6 +83,7 @@ public class PlayerController : MonoBehaviour
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
         healthBar.setMaxHealth(playerAttributes.maxHitPoints);
         health = playerAttributes.maxHitPoints;
+        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);
     }
 
     void Update()
@@ -114,6 +119,7 @@ public class PlayerController : MonoBehaviour
             skillText.text = BuildSkillDisplayString();
         }
         Player_Move.speedCoefficient = speed;
+        UpdateSound();
     }
 
     string BuildSkillDisplayString()
@@ -250,6 +256,7 @@ public class PlayerController : MonoBehaviour
                     PlayerGun.Instance.Shoot();
                 }
                 currentBullets--;
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.gunshot, this.transform.position);
             }
 
         } else
@@ -432,5 +439,28 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(inst, duration);
         }
+    }
+
+    private void UpdateSound()
+    {
+        if (IsMoving())
+        {
+            PLAYBACK_STATE playbackState;
+            playerFootsteps.getPlaybackState(out playbackState);
+            if(playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                playerFootsteps.start();
+            }
+        } else
+        {
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
+    public bool IsMoving()
+    {
+        float horizontalValue = playerInput.Player.Horizontal.ReadValue<float>();
+        float verticalValue = playerInput.Player.Vertical.ReadValue<float>();
+        return Mathf.Abs(horizontalValue) > 0.01f || Mathf.Abs(verticalValue) > 0.01f;
     }
 }

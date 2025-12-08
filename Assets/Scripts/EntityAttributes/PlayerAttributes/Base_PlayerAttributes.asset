@@ -17,7 +17,6 @@ MonoBehaviour:
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0
   maxHitPoints: 1000
-  hitPoints: 1000
   basicDefense: 10
   spiritualDefense: 5
   damageTakenBonus: 0
@@ -35,8 +34,10 @@ MonoBehaviour:
   bulletSpread: 0
   hasBulletBounce: 1
   bulletBounces: 3
+  bulletBounceDmgDecrease: 0
   bulletPierces: 1
   shield: 0
+  hitCountShield: 0
   totalStamina: 1
   staminaRegeneration: 1
   totalSpiritualVision: 5

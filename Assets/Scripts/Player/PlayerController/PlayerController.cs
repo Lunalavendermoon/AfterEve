@@ -72,6 +72,9 @@ public class PlayerController : MonoBehaviour
     //audio
     private EventInstance playerFootsteps;
 
+    //sprite
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
         currentState = new Player_Idle();
@@ -84,6 +87,7 @@ public class PlayerController : MonoBehaviour
         healthBar.setMaxHealth(playerAttributes.maxHitPoints);
         health = playerAttributes.maxHitPoints;
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -191,6 +195,18 @@ public class PlayerController : MonoBehaviour
     {
         currentRotationState = newState;
         currentRotationState.EnterState(this);
+        float z = transform.eulerAngles.z;
+
+        if (Mathf.Abs(z - 135f) < 0.1f ||
+            Mathf.Abs(z - 225f) < 0.1f ||
+            Mathf.Abs(z - 180f) < 0.1f)
+        {
+            spriteRenderer.flipY = true;
+        }
+        else
+        {
+            spriteRenderer.flipY = false;
+        }
     }
 
     float GetRawMouseAngle()

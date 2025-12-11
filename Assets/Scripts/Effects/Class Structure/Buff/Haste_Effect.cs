@@ -18,6 +18,8 @@ public class Haste_Effect : Effects
 
         speedRate = speedMultiplyAdditive;
         stamRate = staminaMultiplyAdditive;
+
+        iconType = IconType.BuffSpeed;
     }
 
     /// <summary>
@@ -31,6 +33,8 @@ public class Haste_Effect : Effects
         isDebuff = false;
 
         speedRate = speedMultiplyAdditive;
+
+        iconType = IconType.BuffSpeed;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool _ = false)

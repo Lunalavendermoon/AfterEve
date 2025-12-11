@@ -9,5 +9,7 @@ public class Strength_Effect : Multiplier_Effects
     {
         effectStat = Stat.Damage;
         isDebuff = false;
+
+        iconType = IconType.BuffStrength;
     }
 }

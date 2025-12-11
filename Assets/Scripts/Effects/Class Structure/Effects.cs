@@ -57,6 +57,15 @@ public abstract class Effects
         Other
     }
 
+    public enum IconType
+    {
+        None,
+        BuffDefense,
+        BuffSpeed,
+        BuffRegen,
+        BuffStrength
+    }
+
     // stat effected
     public Stat effectStat;
 
@@ -76,6 +85,8 @@ public abstract class Effects
 
     // true = debuff, false = buff
     public bool isDebuff;
+
+    public IconType iconType = IconType.None;
 
     public Effects(float duration)
     {

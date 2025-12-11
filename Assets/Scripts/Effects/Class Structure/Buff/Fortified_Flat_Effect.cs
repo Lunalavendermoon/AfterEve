@@ -12,5 +12,6 @@ public class Fortified_Flat_Effect : Flat_Effects
         effectStat = Stat.BasicDefense;
         isDebuff = false;
         effectApplication = Application.Flat;
+        iconType = IconType.BuffDefense;
     }
 }

@@ -52,6 +52,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   horizontalInput: 0
   verticalInput: 0
+  speed: 0
   playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
   playerFuturePrefab: {fileID: 11400000, guid: 2eefe8d2e31024d42a45671b33503a31, type: 2}
   skillText: {fileID: 0}
@@ -84,6 +85,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEffectManager
   basePlayerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
   effectPlayerAttributes: {fileID: 11400000, guid: b0efa864b07d5d44ab9c1bfc43df7537, type: 2}
+  genericEffectIcon: {fileID: 3195862853416397274, guid: d369fe64b3ca844acac4066962ae7070, type: 3}
+  effectIcons: {fileID: 11400000, guid: d77d395db21444d8e8a9627cc4f4b6c7, type: 2}
+  effectIconDisplay: {fileID: 4855613505102881871, guid: 88776e5addf7c4027b05b68b26b31498, type: 3}
 --- !u!212 &7676417823161034668
 SpriteRenderer:
   m_ObjectHideFlags: 0

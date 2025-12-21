@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
     //sprite
     private SpriteRenderer spriteRenderer;
 
+    // interactions
+    public InteractableEntity currentInteractable;
+
     void Start()
     {
         currentState = new Player_Idle();
@@ -124,6 +127,7 @@ public class PlayerController : MonoBehaviour
         }
         Player_Move.speedCoefficient = speed;
         UpdateSound();
+        HandleInteractInput(); // might need to check if in combat later
     }
 
     string BuildSkillDisplayString()
@@ -478,5 +482,13 @@ public class PlayerController : MonoBehaviour
         float horizontalValue = playerInput.Player.Horizontal.ReadValue<float>();
         float verticalValue = playerInput.Player.Vertical.ReadValue<float>();
         return Mathf.Abs(horizontalValue) > 0.01f || Mathf.Abs(verticalValue) > 0.01f;
+    }
+
+    private void HandleInteractInput()
+    {
+        if (playerInput.Player.Interact.triggered && currentInteractable != null)
+        {
+            currentInteractable.TriggerInteraction();
+        }
     }
 }

@@ -1,0 +1,31 @@
+﻿title: TestScript
+---
+This is an example of a Yarn Spinner script. Write your dialogue here!
+
+===
+title: Start
+---
+<<set_portrait YarnManager Cyrus Default>>
+Cyrus: I am Cyrus.
+<<set_portrait YarnManager HatsuneMiku Happy>>
+Hatsune Miku: Hello Cyrus, I am Hatsune Miku!
+<<set_portrait YarnManager Cyrus Default>>
+Cyrus: HATSUNE MIKU?!
+<<jump End>>
+===
+
+title: End
+---
+<<set_portrait YarnManager HatsuneMiku Sad>>
+Hatsune Miku: Maybe After Eve was the friends we made along the way.
+Hatsune Miku: I must go now, goodbye.
+<<set_portrait YarnManager Cyrus Default>>
+Cyrus: Thank you Hatsune Miku.
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: Back_To_Game
+---
+<<start_controls YarnManager>>
+===

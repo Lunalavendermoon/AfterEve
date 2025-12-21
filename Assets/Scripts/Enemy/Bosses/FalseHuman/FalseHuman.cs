@@ -1,0 +1,114 @@
+using NUnit.Framework;
+using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
+
+public class FalseHuman : BossBehaviourBase
+{
+    bool isInvulnerable = false;
+    int shieldHealth = 200;
+    public LargeProjectile largeProjectile;
+    
+
+    private void Awake()
+    {
+        cooldown_time = 3f;
+        default_enemy_state = new Boss_Attack(5);
+        attackProbalities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f,0f };
+
+    }
+    public override void Movement()
+    {
+        // move towards player
+        Pathfinding(PlayerController.instance.transform);
+    }
+    public override void Attack1()
+    {
+        //Shoots 3 rounds of projectiles, consisting 5, 7, and 9 projectiles respectivly,
+        //each with randomized path using Cubic Bezier curve (set the init player position as the destination).
+        //Each dealing 30 spiritual dmg. 2 seconds between rounds.
+        //After finishing this attack, waits 3 seconds before using another attack.
+        attackProbalities = new float[5] { 0.0f, 33.3f, 33.30f, 33.30f, 0f };
+        cooldown_time = 3f;
+    }
+    public override void Attack2()
+    {
+        //Summons a Knight of Blades, a Knight of Shields, and a Knight of Hammers(see enemy sheet).
+        //After finishing this attack, waits 5 seconds before using another attack.
+
+        attackProbalities = new float[5] { 33.3f, 0.0f, 33.30f, 33.30f, 0f };
+        cooldown_time = 5f;
+
+    }
+    public override void Attack3()
+    {
+        //Shoots out 3 emotion capsules in random position on the map,
+        //capsules stay stationary on the map
+        //and can be activated into a stationary shield of 2 units radius
+        //upon recieving spiritual damage from the player.
+        //After 5 seconds send out a emotion shock wave that deal 600 spiritual dmg
+        //and applies a Blindness and 20% Weak debuff for 7 seconds to the player
+        //if the player is not inside a activated shield.
+        //After the wave, each activated capsule deals 1000 dmg to the boss.
+        //After finishing this attack, waits 7 seconds before using another attack.
+        attackProbalities = new float[5] { 33.30f, 33.3f, 0f, 33.30f, 0f };
+        cooldown_time = 7f;
+    }
+    public override void Attack4()
+    {
+        //Shoots out a large projectile with 1000 init health.
+        //The projectile follows the player at a speed of 1 for ten seconds, then the projectile permanant gain 400% Haste buff.
+        //If not destroyed by the time it hits the player, it deals the remaining projectile health as spiritual dmg to the player.
+        Instantiate(largeProjectile);
+        attackProbalities = new float[5] { 33.30f, 33.3f, 33.30f, 0f, 0f };
+        cooldown_time = 10f;
+    }
+
+    public override void Attack5()
+    {
+        //Gain a shield at the beginning of the battle preventing
+        //all physical dmg to the boss that blocks 200 spiritual damage and has the same defense as the boss. 
+        //The boss does not use this skill other than once at the start of the battle.
+        isInvulnerable = true;
+    }
+
+
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    {
+        int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
+        if (isInvulnerable)
+        {
+            if (dmgType == DamageInstance.DamageType.Spiritual)
+            {
+                shieldHealth -= damageAfterReduction;
+                ShowFloatingText(damageAfterReduction);
+                if (shieldHealth <= 0)
+                {
+                    isInvulnerable = false;
+                    Debug.Log($"{gameObject.name}'s shield has been broken!");
+                }
+                return;
+            }
+            Debug.Log($"{gameObject.name} is invulnerable and took no damage.");
+            ShowFloatingText(0);
+
+            return;
+        }
+        health -= damageAfterReduction;
+
+        //OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
+
+        // Damage numbers
+        ShowFloatingText(damageAfterReduction);
+        Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
+        if (health <= 0)
+        {
+            // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack
+            //OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
+            Die();
+        }
+    }
+
+
+}

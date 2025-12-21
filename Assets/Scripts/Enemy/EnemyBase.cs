@@ -49,6 +49,7 @@ public abstract class EnemyBase : MonoBehaviour
     private Transform tempTarget; // Temporary target for pathfinding to a position
 
     public GameObject floatingTextPrefab;
+    public bool givesRewards = true; // no rewards if spawned by boss
 
 
 
@@ -87,8 +88,11 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void Die()
     {
-        EnemyItemDrops.ItemDrop(PlayerController.instance.playerAttributes.luck, elite, chest);
-        spawner.EnemyDie(this);
+        if (givesRewards)
+        {
+            EnemyItemDrops.ItemDrop(PlayerController.instance.playerAttributes.luck, elite, chest);
+            spawner.EnemyDie(this);
+        }
         Destroy(gameObject);
     }
 

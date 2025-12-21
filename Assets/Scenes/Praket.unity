@@ -437,9 +437,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34764622aab6cd40bb6bb684b628a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  healthBar: {fileID: 0}
   horizontalInput: 0
   verticalInput: 0
+  speed: 0
   playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
+  playerFuturePrefab: {fileID: 0}
+  skillText: {fileID: 0}
 --- !u!4 &544049435
 Transform:
   m_ObjectHideFlags: 0
@@ -1163,7 +1167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc1fc96927bed84796d944aa5dd82cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnerScript
+  chest: {fileID: 0}
   Enemy: {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
+  numberOfEnemies: 0
+  enemyList: []
+  enemies: []
 --- !u!1 &2093864095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,6 +1280,63 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: -0.5}
   m_TimeToStationary: 0.5
+--- !u!1001 &4721846712333563261
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779392189449618882, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439078935783777668, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_Name
+      value: DerangedFalseHuman
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1283,3 +1348,4 @@ SceneRoots:
   - {fileID: 544049435}
   - {fileID: 2093864097}
   - {fileID: 1778775224}
+  - {fileID: 4721846712333563261}

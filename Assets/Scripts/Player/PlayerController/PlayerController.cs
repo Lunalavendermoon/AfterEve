@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
     //sprite
     private SpriteRenderer spriteRenderer;
 
+    //clone
+    public GameObject clonePrefab;
+
     void Start()
     {
         currentState = new Player_Idle();
@@ -124,6 +127,11 @@ public class PlayerController : MonoBehaviour
         }
         Player_Move.speedCoefficient = speed;
         UpdateSound();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            CreateClone();
+        }
     }
 
     string BuildSkillDisplayString()
@@ -479,4 +487,9 @@ public class PlayerController : MonoBehaviour
         float verticalValue = playerInput.Player.Vertical.ReadValue<float>();
         return Mathf.Abs(horizontalValue) > 0.01f || Mathf.Abs(verticalValue) > 0.01f;
     }
+
+    public void CreateClone() {
+        Instantiate(clonePrefab, new Vector3(transform.position.x+0.5f, transform.position.y, transform.position.z), Quaternion.identity);
+    }
+
 }

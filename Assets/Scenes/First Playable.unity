@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: skillText
       value: 
       objectReference: {fileID: 1952294024}
+    - target: {fileID: 74224113456060425, guid: bfeb22aaf22f7c94282e039927f4ec43, type: 3}
+      propertyPath: clonePrefab
+      value: 
+      objectReference: {fileID: 6129751107627094636, guid: cc7b3df6b62206141bb27b7f6b3856e4, type: 3}
     - target: {fileID: 1941564512637690296, guid: bfeb22aaf22f7c94282e039927f4ec43, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.29546225

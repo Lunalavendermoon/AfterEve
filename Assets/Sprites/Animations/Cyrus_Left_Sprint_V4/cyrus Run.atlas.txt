@@ -1,0 +1,107 @@
+cyrus Run.png
+size:3889,3458
+filter:Linear,Linear
+scale:0.75
+Background
+bounds:2,1429,2027,3602
+rotate:90
+Bangs L
+bounds:3642,396,192,430
+offsets:0,23,192,453
+Bangs MR
+bounds:3229,423,411,403
+offsets:0,70,411,473
+CoatBackHem
+bounds:2,470,915,957
+CoatHem L
+bounds:3606,1797,276,1037
+CoatHem R
+bounds:2050,941,486,1181
+rotate:90
+DbleLidLine L
+bounds:3229,404,89,17
+DbleLidLine R
+bounds:3606,1434,108,29
+EyeWhite L
+bounds:3787,293,101,45
+rotate:90
+EyeWhite R
+bounds:3407,50,125,58
+offsets:0,1,130,59
+Eyebrow L
+bounds:2,6,121,33
+offsets:0,0,121,59
+Eyebrow R
+bounds:856,311,157,51
+offsets:0,0,157,59
+rotate:90
+Feet L
+bounds:3606,1465,330,242
+rotate:90
+Feet R
+bounds:3606,1465,330,242
+rotate:90
+Hand L
+bounds:919,258,519,1105
+rotate:90
+Hand R
+bounds:2522,31,242,443
+rotate:90
+Head
+bounds:3233,828,545,599
+Heel L
+bounds:2967,3,399,291
+rotate:90
+Heel R
+bounds:2967,3,399,291
+rotate:90
+Iris L
+bounds:3593,59,55,49
+Iris R
+bounds:3534,58,57,50
+LowerArm L
+bounds:3260,110,284,525
+rotate:90
+LowerArm R
+bounds:2026,2,271,494
+rotate:90
+LowerEyeline L
+bounds:2026,698,79,20
+rotate:90
+LowerEyeline R
+bounds:3850,1697,98,32
+rotate:90
+LowerLeg L
+bounds:2026,275,320,929
+rotate:90
+LowerLeg R
+bounds:2050,597,342,959
+rotate:90
+SideEyeline L
+bounds:856,278,33,31
+offsets:0,0,33,32
+SideEyeline R
+bounds:3716,1429,33,34
+Thigh L
+bounds:3606,2836,281,620
+Thigh R
+bounds:856,10,246,599
+rotate:90
+UpperArm L
+bounds:3011,404,216,535
+UpperArm R
+bounds:1457,31,225,559
+offsets:0,0,225,563
+rotate:90
+UpperBody
+bounds:919,779,648,1129
+rotate:90
+UpperCoat R
+bounds:2,41,427,852
+offsets:0,9,427,861
+rotate:90
+UpperEyeline L
+bounds:2957,477,118,41
+rotate:90
+UpperEyeline R
+bounds:3260,52,145,56

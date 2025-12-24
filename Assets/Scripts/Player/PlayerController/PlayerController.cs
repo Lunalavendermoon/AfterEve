@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviour
     //audio
     private EventInstance playerFootsteps;
 
-    //sprite
-    private SpriteRenderer spriteRenderer;
+    //animations
+    public PlayerAnimation playerAnimation;
 
     //clone
     public GameObject clonePrefab;
@@ -90,7 +90,6 @@ public class PlayerController : MonoBehaviour
         healthBar.setMaxHealth(playerAttributes.maxHitPoints);
         health = playerAttributes.maxHitPoints;
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -209,11 +208,11 @@ public class PlayerController : MonoBehaviour
             Mathf.Abs(z - 225f) < 0.1f ||
             Mathf.Abs(z - 180f) < 0.1f)
         {
-            spriteRenderer.flipY = true;
+            playerAnimation.SetY(-1);
         }
         else
         {
-            spriteRenderer.flipY = false;
+            playerAnimation.SetY(1);
         }
     }
 

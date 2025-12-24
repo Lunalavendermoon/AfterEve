@@ -8,7 +8,7 @@ public class Player_Move : IPlayerState
     public static int speedCoefficient = 5;
     public void EnterState(PlayerController player)
     {
-        
+        player.playerAnimation.playRunAnimation();
     }
 
     public void CheckState(PlayerController player)

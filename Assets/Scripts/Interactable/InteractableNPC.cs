@@ -4,7 +4,7 @@ public class InteractableNPC : InteractableEntity
 {
     public override void TriggerInteraction()
     {
-        // TODO add actual dialogue/shop
-        Debug.Log("NPC interaction triggered");
+        PlayerController.instance.playerInput.Disable();
+        runner.StartDialogue(yarnSpinnerNode);
     }
 }

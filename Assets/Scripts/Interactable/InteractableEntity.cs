@@ -1,14 +1,26 @@
 using UnityEngine;
+using Yarn.Unity;
 
 public abstract class InteractableEntity : MonoBehaviour
 {
-    private bool playerInRange = false;
+    public string yarnSpinnerNode; // the yarn spinner node to trigger on interaction
+
+    protected DialogueRunner runner;
+
+    private void Awake()
+    {
+        runner = FindAnyObjectByType<DialogueRunner>();
+
+        if (runner == null)
+            Debug.LogError("No DialogueRunner found in the scene!");
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
+            if (PlayerController.instance.currentInteractable == null)
+                PlayerController.instance.currentInteractable = this;
         }
     }
 
@@ -16,17 +28,8 @@ public abstract class InteractableEntity : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
-        }
-    }
-
-    void Update()
-    {
-        if (playerInRange && PlayerController.instance.playerInput.Player.Interact.triggered)
-        {
-            // might need to use raycast. currently interaction can trigger through walls
-            // or make sure the trigger isn't going through the wall lol
-            TriggerInteraction();
+            if (PlayerController.instance.currentInteractable == this)
+                PlayerController.instance.currentInteractable = null;
         }
     }
 

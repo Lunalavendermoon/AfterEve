@@ -29,3 +29,38 @@ title: Back_To_Game
 ---
 <<start_controls YarnManager>>
 ===
+
+title: NPC_Repeated
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: This is some repeatable dialogue.
+Cyrus: Crazy? I was crazy once. They put me in a room. A rubber room with rats. And rats make me crazy.
+Cyrus: Crazy?
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: NPC_1
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Nice to meet you random NPC. This is the first time we met.
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: NPC_2
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Hello random NPC. We meet again.
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: NPC_onetime
+---
+<<set_portrait YarnManager HatsuneMiku Happy>>
+Hatsune Miku: It's me Hatsune Miku.
+Hatsune Miku: I will disappear now.
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===

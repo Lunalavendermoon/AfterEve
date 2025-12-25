@@ -4096,6 +4096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableNPC
   yarnSpinnerNode: Start
+  nextInteractionNode: 
 --- !u!61 &1976071340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4804,6 +4805,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1738210171677050190, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0000009536743
+      objectReference: {fileID: 0}
     - target: {fileID: 3374542171336715253, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4923,6 +4928,46 @@ PrefabInstance:
     - target: {fileID: 6779206356963617677, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458641219672159748, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458641219672159748, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458641219672159748, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458641219672159748, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458641219672159748, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458641219672159748, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491443449715159455, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491443449715159455, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491443449715159455, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491443449715159455, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

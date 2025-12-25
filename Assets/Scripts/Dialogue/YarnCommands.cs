@@ -4,7 +4,7 @@ using Yarn.Unity;
 public class YarnCommands : MonoBehaviour
 {
     [YarnCommand("set_portrait")]
-    public void SetPortraitInYarnSpinner(string characterName, string spriteName)
+    public void SetPortraitInYarnSpinner(string characterName, string spriteName = "Default")
     {
         PortraitManager.instance.SetPortrait(characterName, spriteName);
     }

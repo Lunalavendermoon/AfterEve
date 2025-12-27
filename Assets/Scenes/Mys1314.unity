@@ -367,6 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339492557}
   - component: {fileID: 339492556}
+  - component: {fileID: 339492558}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -400,6 +401,7 @@ MonoBehaviour:
   tileCount: 4
   spawnBehavior: {fileID: 992737824}
   portal: {fileID: 648313552}
+  narrativeRoomManager: {fileID: 339492558}
 --- !u!4 &339492557
 Transform:
   m_ObjectHideFlags: 0
@@ -415,6 +417,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &339492558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339492555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459d00d578be042c190829d9518c6ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeRoomManager
+  narrativeRooms: {fileID: 11400000, guid: 37786544a2d62484aad1613c23518489, type: 2}
+  portal: {fileID: 648313552}
 --- !u!1 &455064219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1080,10 @@ PrefabInstance:
       propertyPath: map
       value: 
       objectReference: {fileID: 885288046}
+    - target: {fileID: 5023722080373265747, guid: 68a666e515724a94ea3b2ddd940e99de, type: 3}
+      propertyPath: speed
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8117179754507706082, guid: 68a666e515724a94ea3b2ddd940e99de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

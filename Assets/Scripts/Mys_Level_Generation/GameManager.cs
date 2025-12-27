@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     public Transform mapRoot;
 
     [Header("Generation")]
-    [Min(1)] public int tileCount = 4;   // typically 3–4 tiles
+    [Min(1)] public int tileCount = 4;   // typically 3ï¿½4 tiles
 
     // Logical map: grid coord instance already in the scene
     private Dictionary<Vector2Int, GameObject> gridToInstance =
@@ -30,13 +31,17 @@ public class GameManager : MonoBehaviour
         new Vector2Int( 0,-1 )  // down  (-Y)
     };
 
+    [Header("Narrative Room Helper")]
+    public NarrativeRoomManager narrativeRoomManager;
+
     private void Start()
     {
+        narrativeRoomManager.StartNewCycle(); // TODO: call this whenever player starts a new run
         LoadMap();
     }
 
     // ============================================================
-    // PUBLIC – call from your UI button
+    // PUBLIC ï¿½ call from your UI button
     // ============================================================
     public void LoadMap()
     {
@@ -57,6 +62,13 @@ public class GameManager : MonoBehaviour
 
         gridToInstance.Clear();
         occupiedCells.Clear();
+
+        narrativeRoomManager.StartNewRoom();
+        if (narrativeRoomManager.TrySpawnNarrativeRoom(mapRoot))
+        {
+            spawnBehavior.Respawn();
+            return;
+        }
 
         // ---------- 1. Spawn FIRST tile at origin ----------
         Vector2Int startCell = Vector2Int.zero;

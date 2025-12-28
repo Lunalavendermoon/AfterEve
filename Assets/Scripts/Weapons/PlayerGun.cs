@@ -25,19 +25,20 @@ public class PlayerGun : MonoBehaviour
         bulletEffects = new List<Effects>();
     }
 
-    public void Shoot()
+    public bool Shoot()
     {
-        ShootDamage(playerAttributes.damage);
+        return ShootDamage(playerAttributes.damage);
     }
 
-    public void ShootMagicianCoin()
+    public bool ShootMagicianCoin()
     {
-        ShootDamage(playerAttributes.damage * Magician_Reward.damageMultiplier);
+        return ShootDamage(playerAttributes.damage * Magician_Reward.damageMultiplier);
     }
 
-    void ShootDamage(int damage)
-    {
-        
+    // Returns whether the shot was fired
+    // Clones projectile and sets projectile stats
+    bool ShootDamage(int damage)
+    {   
         firingSpeed = 1/playerAttributes.attackPerSec;
         if(lastTimeShot + firingSpeed <= Time.time)
         {
@@ -56,7 +57,9 @@ public class PlayerGun : MonoBehaviour
             }
             
             lastTimeShot = Time.time;
+            return true;
         }
+        return false;
     }
 
     public void SetBulletBounce(int n)
@@ -75,5 +78,4 @@ public class PlayerGun : MonoBehaviour
     {
         bulletEffects.Remove(effect);
     }
-
 }

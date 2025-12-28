@@ -12,7 +12,7 @@ public class SingleNarrativeRoom : ScriptableObject
     }
     public NodeType nodeType;
     public int roomCount;
-    public int cycleCount;
+    public int pathCount;
     public GameObject roomPrefab;
     public GameObject itemPrefab;
     public GameObject portalLocation;

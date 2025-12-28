@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         narrativeRoomManager.StartNewCycle(); // TODO: call this whenever player starts a new run
+        narrativeRoomManager.StartNewNarrativePath(); // TODO: call this whenever player starts a new narrative path
         LoadMap();
     }
 

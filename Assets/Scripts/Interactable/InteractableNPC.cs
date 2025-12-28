@@ -17,7 +17,6 @@ public class InteractableNPC : InteractableEntity
         string targetNode = firstInteraction ? yarnSpinnerNode : nextInteractionNode;
 
         PlayerController.instance.playerInput.Disable();
-        Debug.Log($"Start dialogue {targetNode}");
         runner.StartDialogue(targetNode);
         firstInteraction = false;
     }

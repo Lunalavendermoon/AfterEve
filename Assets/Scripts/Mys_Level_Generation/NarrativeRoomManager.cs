@@ -19,7 +19,6 @@ public class NarrativeRoomManager : MonoBehaviour
 
     public void StartNewCycle()
     {
-        Debug.Log($"STARTED NEW CYCLE, furthest room so far {furthestRoom}, room count {roomCount}");
         furthestRoom = Math.Max(furthestRoom, roomCount);
         roomCount = 0;
     }
@@ -34,8 +33,6 @@ public class NarrativeRoomManager : MonoBehaviour
     // Otherwise, do nothing and return false.
     public bool TrySpawnNarrativeRoom(Transform mapRoot)
     {
-        Debug.Log($"furthest room so far {furthestRoom}, room count {roomCount}");
-
         // O(N) search... surely we won't have more than like 1000 narrative rooms right *copium*
         foreach (SingleNarrativeRoom room in narrativeRooms.rooms)
         {

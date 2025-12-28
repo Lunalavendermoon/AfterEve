@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            CreateClone();
+            CreateClone(1, 1, 1);
         }
         HandleInteractInput(); // might need to check if in combat later
     }
@@ -497,8 +497,9 @@ public class PlayerController : MonoBehaviour
         return Mathf.Abs(horizontalValue) > 0.01f || Mathf.Abs(verticalValue) > 0.01f;
     }
 
-    public void CreateClone() {
-        Instantiate(clonePrefab, new Vector3(transform.position.x+0.5f, transform.position.y, transform.position.z), Quaternion.identity);
+    public void CreateClone(float a, float b, float c) {
+        GameObject clone = Instantiate(clonePrefab, new Vector3(transform.position.x+0.5f, transform.position.y, transform.position.z), Quaternion.identity);
+        clone.GetComponent<MimicPlayer>().SetDamage(a, b, c);
     }
 
 

@@ -56,6 +56,14 @@ public abstract class EnemyBase : MonoBehaviour
     public float luck = 1f;
     public bool elite = false;
 
+    //lovers clone
+    float marked = 1;
+
+    public void Mark(float f)
+    {
+        marked = f;
+    }
+
     //Initializing agent and its default state
     public virtual void Start()
     {
@@ -118,6 +126,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
+
+        amount = (int) (amount * marked);
+
         int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
         health -= damageAfterReduction;
 

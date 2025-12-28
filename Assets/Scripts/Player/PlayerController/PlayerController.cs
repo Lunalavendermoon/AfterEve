@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     //weapon
     private int currentBullets;
     private float lastReload;
+    private float fireRate;
+    private float fireTime;
 
     //spiritual vision
     private float currentSpiritualVision;
@@ -94,6 +96,8 @@ public class PlayerController : MonoBehaviour
         health = playerAttributes.maxHitPoints;
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        fireRate = 1f / playerAttributes.attackPerSec;
+        fireTime = Time.time;
     }
 
     void Update()
@@ -272,7 +276,7 @@ public class PlayerController : MonoBehaviour
     {
         if(currentBullets != 0)
         {
-            if(playerInput.Player.Attack.triggered)
+            if(playerInput.Player.Attack.IsPressed() && Time.time - fireTime >= fireRate)
             {
                 if (magicianSkillActive)
                 {
@@ -283,6 +287,7 @@ public class PlayerController : MonoBehaviour
                 {
                     PlayerGun.Instance.Shoot();
                 }
+                fireTime = Time.time;
                 currentBullets--;
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.gunshot, this.transform.position);
             }

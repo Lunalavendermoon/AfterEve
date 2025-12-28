@@ -64,3 +64,27 @@ Hatsune Miku: I will disappear now.
 <<clear_portrait YarnManager>>
 <<jump Back_To_Game>>
 ===
+
+title: Loop1Node1
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Eve/Monster introduction node
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: Loop1Node1_Alt
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Eve/Monster introduction alternate
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: Loop1Node2
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Eve Worldbuilding node
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===

@@ -17,6 +17,7 @@ public abstract class InteractableEntity : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Player entered");
         if (other.CompareTag("Player"))
         {
             if (PlayerController.instance.currentInteractable == null)
@@ -26,6 +27,7 @@ public abstract class InteractableEntity : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("Player exited");
         if (other.CompareTag("Player"))
         {
             if (PlayerController.instance.currentInteractable == this)

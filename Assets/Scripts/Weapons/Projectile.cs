@@ -16,16 +16,16 @@ public class Projectile : MonoBehaviour
 
     private int projectileDamage;
 
-    public void setProjectileDamage(int n)
+    public void SetProjectileDamage(int n)
     {
         projectileDamage = n;
     }
-    public void setBulletBounce(int n)
+    public void SetBulletBounce(int n)
     {
         bulletBounces = n;
     }
-    public void setBulletPiercing(int n) { bulletPiercing = n; }
-    public void setBulletEffect(Effects bulletEffect)
+    public void SetBulletPiercing(int n) { bulletPiercing = n; }
+    public void SetBulletEffect(Effects bulletEffect)
     {
         this.bulletEffect = bulletEffect;
     }

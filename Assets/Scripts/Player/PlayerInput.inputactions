@@ -43,9 +43,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact",
+                    "name": "Spritual Vision",
                     "type": "Button",
-                    "id": "767095f0-82ff-4b02-b11a-daac22580ce5",
+                    "id": "0d12fa86-545d-40df-9f9d-1b4ded60dc55",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -55,6 +55,15 @@
                     "name": "Skill",
                     "type": "Button",
                     "id": "35b16274-3677-48ff-8bf6-f64958d33843",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "767095f0-82ff-4b02-b11a-daac22580ce5",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -235,6 +244,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Skill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78febd00-99a7-4cb4-bd82-392d4023db3d",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spritual Vision",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

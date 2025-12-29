@@ -85,19 +85,30 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        // movement state machine
         currentState = new Player_Idle();
         currentState.EnterState(this);
         OnPlayerStateChange?.Invoke(currentState);
+
+        // rotation state machine
         currentRotationState = new RotationState_N();
         currentRotationState.EnterState(this);
+
+        // weapon
         currentBullets = playerAttributes.Ammo;
+        fireRate = 1f / playerAttributes.attackPerSec;
+        fireTime = Time.time;
+
+        // attributes
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
         healthBar.setMaxHealth(playerAttributes.maxHitPoints);
         health = playerAttributes.maxHitPoints;
+
+        // audio
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);
+
+        //
         spriteRenderer = GetComponent<SpriteRenderer>();
-        fireRate = 1f / playerAttributes.attackPerSec;
-        fireTime = Time.time;
     }
 
     void Update()
@@ -334,7 +345,7 @@ public class PlayerController : MonoBehaviour
     void HandleSpiritualVision()
     {
         spiritualVisionTimer = Time.time;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (playerInput.Player.SpritualVision.IsPressed())
         {
             inSpiritualVision = true;
             OnSpiritualVisionChange?.Invoke(true);

@@ -18,6 +18,6 @@ public class Lovers_Summon : MonoBehaviour
         destinationSetter.target = PlayerController.instance.transform;
 
         // TODO modify max speed dynamically as player's speed stat changes?
-        agent.maxSpeed = Player_Move.speedCoefficient * PlayerController.instance.playerAttributes.speed;
+        agent.maxSpeed = IPlayerState.speedCoefficient * PlayerController.instance.playerAttributes.speed;
     }
 }

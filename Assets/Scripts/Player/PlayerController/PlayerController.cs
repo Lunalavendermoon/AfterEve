@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
         {
             skillText.text = BuildSkillDisplayString();
         }
-        Player_Move.speedCoefficient = speed;
+        IPlayerState.speedCoefficient = speed;
         UpdateSound();
 
         if (Input.GetKeyDown(KeyCode.Q))

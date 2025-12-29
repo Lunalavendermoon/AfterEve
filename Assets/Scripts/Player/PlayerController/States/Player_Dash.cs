@@ -18,7 +18,7 @@ public class Player_Dash : IPlayerState
         OnDash?.Invoke();
         dashStartTime = Time.time;
 
-        if (player.horizontalInput > 0 && player.verticalInput > 0)
+        if (player.horizontalInput != 0 && player.verticalInput != 0)
         {
             dashDirection = new Vector3(player.horizontalInput / (float) Math.Sqrt(2), player.verticalInput / (float) Math.Sqrt(2), 0);
         }
@@ -26,6 +26,8 @@ public class Player_Dash : IPlayerState
         {
             dashDirection = new Vector3(player.horizontalInput, player.verticalInput, 0);
         }   
+
+        Debug.Log("dash direction: " + dashDirection);
     }
 
     public void CheckState(PlayerController player)
@@ -37,14 +39,15 @@ public class Player_Dash : IPlayerState
     {
         float deceleration = dashDuration - (Time.time - dashStartTime);
         deceleration *= deceleration;
-        player.transform.position += 5 * player.playerAttributes.speed * dashPower * deceleration * Time.deltaTime * dashDirection;
+        player.transform.position += IPlayerState.speedCoefficient * player.playerAttributes.speed * dashPower * deceleration * Time.deltaTime * dashDirection;
+        Debug.Log("speed: " + player.playerAttributes.speed + " dash power: " + dashPower + " deceleration: " + deceleration);
 
         // allow movement as well
         Vector3 currentPosition = new Vector3();
-        currentPosition.x += 5 * player.horizontalInput * player.playerAttributes.speed * Time.deltaTime;
-        currentPosition.y += 5 * player.verticalInput * player.playerAttributes.speed * Time.deltaTime;
+        currentPosition.x += IPlayerState.speedCoefficient * player.horizontalInput * player.playerAttributes.speed * Time.deltaTime;
+        currentPosition.y += IPlayerState.speedCoefficient * player.verticalInput * player.playerAttributes.speed * Time.deltaTime;
 
-        if (player.horizontalInput > 0 && player.verticalInput > 0)
+        if (player.horizontalInput != 0 && player.verticalInput != 0)
         {
             currentPosition.x *= 1 / (float)Math.Sqrt(2);
             currentPosition.y *= 1 / (float)Math.Sqrt(2);

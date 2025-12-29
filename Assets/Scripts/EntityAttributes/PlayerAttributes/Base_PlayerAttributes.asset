@@ -20,7 +20,7 @@ MonoBehaviour:
   basicDefense: 10
   spiritualDefense: 5
   damageTakenBonus: 0
-  speed: 1
+  speed: 3
   isParalyzed: 0
   isConfused: 0
   resistance: 0
@@ -40,6 +40,8 @@ MonoBehaviour:
   hitCountShield: 0
   totalStamina: 1
   staminaRegeneration: 1
+  dashDuration: 0.1
+  dashCooldown: 3
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1
   isEnlightened: 0

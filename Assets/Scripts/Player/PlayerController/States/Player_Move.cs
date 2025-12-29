@@ -6,7 +6,7 @@ public class Player_Move : IPlayerState
     public static event Action OnDisplaced;
 
     public static int speedCoefficient = 5;
-    public void EnterState(PlayerController player)
+    public void EnterState(PlayerController player, PlayerAttributes playerAttributes)
     {
         
     }

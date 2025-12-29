@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class Player_Dash : IPlayerState
 {
+
+    public PlayerAttributes playerAttributes;
     public float dashPower = 5f;
-    public float dashDuration = 0.75f;
+    public float dashDuration;
     public float dashStartTime;
     public Vector3 dashDirection;
 
@@ -12,11 +14,15 @@ public class Player_Dash : IPlayerState
     public static event Action OnDash;
     public static event Action OnDisplaced;
 
-
-    public void EnterState(PlayerController player)
+    public void EnterState(PlayerController player, PlayerAttributes playerAttributes)
     {
+        this.playerAttributes = playerAttributes;
+        dashDuration = playerAttributes.dashDuration;
+        // TODO: add dash cooldown
+
         OnDash?.Invoke();
         dashStartTime = Time.time;
+        PlayerUtilityUI.Instance.triggerDashUsedUI();
 
         if (player.horizontalInput > 0 && player.verticalInput > 0)
         {

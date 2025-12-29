@@ -3,7 +3,7 @@ using UnityEngine.XR;
 
 public class Player_Idle : IPlayerState
 {
-    public void EnterState(PlayerController player)
+    public void EnterState(PlayerController player, PlayerAttributes playerAttributes)
     {
 
     }

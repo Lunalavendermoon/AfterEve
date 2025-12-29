@@ -81,13 +81,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         currentState = new Player_Idle();
-        currentState.EnterState(this);
+        currentState.EnterState(this, playerAttributes);
         OnPlayerStateChange?.Invoke(currentState);
         currentRotationState = new RotationState_N();
         currentRotationState.EnterState(this);
 
         currentAmmo = playerAttributes.Ammo;
-        AmmoUI.Instance.initializeAmmoUI();
+        AttackUI.Instance.initializeAmmoUI();
 
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
         healthBar.setMaxHealth(playerAttributes.maxHitPoints);
@@ -111,19 +111,23 @@ public class PlayerController : MonoBehaviour
         if (playerAttributes.isParalyzed)
         {
             currentState = new Player_Idle();
-        } else
+        }
+        else
         {
             // handle input
             horizontalInput = playerInput.Player.Horizontal.ReadValue<float>();
             verticalInput = playerInput.Player.Vertical.ReadValue<float>();
 
+            // handle player state
             currentState.CheckState(this);
             currentState.UpdateState(this);
             currentRotationState.UpdateState(this);
+
             HandleShootInput();
             HandleSpiritualVision();
             HandleFutureSkillInput();
         }
+
         if (skillText != null)
         {
             skillText.text = BuildSkillDisplayString();
@@ -198,7 +202,7 @@ public class PlayerController : MonoBehaviour
     {
         currentState.ExitState(this);
         currentState = newState;
-        currentState.EnterState(this);
+        currentState.EnterState(this, playerAttributes);
         OnPlayerStateChange?.Invoke(newState);
     }
 
@@ -287,7 +291,7 @@ public class PlayerController : MonoBehaviour
                 // Only decrease ammo and play gunshot sfx if shot was fired (not in cooldown)
                 if(shotFired)
                 {
-                    AmmoUI.Instance.greyNextAmmo(currentAmmo);
+                    AttackUI.Instance.greyNextAmmo(currentAmmo);
                     currentAmmo--;
                     AudioManager.instance.PlayOneShot(FMODEvents.instance.gunshot, this.transform.position);
                 }
@@ -319,7 +323,7 @@ public class PlayerController : MonoBehaviour
 
     void Reload()
     {
-        AmmoUI.Instance.runAmmoReloadAnimation();
+        AttackUI.Instance.runAmmoReloadAnimation();
         if (!currentlyReloading)
         {
             currentlyReloading = true;
@@ -330,7 +334,7 @@ public class PlayerController : MonoBehaviour
             if(Time.time - lastReload >= playerAttributes.reloadSpeed)
             {
                 currentlyReloading = false;
-                AmmoUI.Instance.resetAmmoUI();
+                AttackUI.Instance.resetAmmoUI();
                 currentAmmo = playerAttributes.Ammo;
             }
         }

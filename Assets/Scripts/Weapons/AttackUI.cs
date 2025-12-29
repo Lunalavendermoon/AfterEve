@@ -2,30 +2,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class AmmoUI : MonoBehaviour
+public class AttackUI : MonoBehaviour
 {
+
+    //Singleton
+    public static AttackUI Instance;
     public PlayerAttributes playerAttributes;
 
 
     [SerializeField] private GameObject ammoIconFolder;
     [SerializeField] private Image[] ammoIcons;
 
+
     [SerializeField] private GameObject player; //for getting player's rotation
     [SerializeField] private Transform attackDirectionIndicator;
     [SerializeField] private Transform attackPivotCenter;
 
-    [SerializeField] private Image reloadCircleImage;
 
-    // TODO: rename script to combatUI or smth
-    
-    //Singleton
-    public static AmmoUI Instance;
+    [SerializeField] private Image reloadCircleImage;
 
     private int totalAmmo;
 
+
+
     void Awake()
     {
-        Instance = GetComponent<AmmoUI>();
+        Instance = GetComponent<AttackUI>();
         reloadCircleImage.fillAmount = 1f;
 
         // Populate references to each ammo UI icon
@@ -40,17 +42,21 @@ public class AmmoUI : MonoBehaviour
         attackDirectionIndicator.transform.parent = attackPivotCenter;
     }
 
+    // Every frame - update attack direction indicator rotation
     void Update()
     {
-        // Update attack direction indicator rotation
         Vector3 targetAngleVector = Input.mousePosition - Camera.main.WorldToScreenPoint(player.transform.position);
         float targetAngle = Mathf.Atan2(targetAngleVector.y, targetAngleVector.x) * Mathf.Rad2Deg;
 
         attackPivotCenter.rotation = Quaternion.AngleAxis(targetAngle - 90, Vector3.forward);
     }
 
+
+
+    /*Ammo UI Functions*/
     public void initializeAmmoUI()
     {
+        // TODO: if needed - update to dynamically create ammo icons based on weapon type (?)
         for(int i = 0; i < totalAmmo; i++)
         {
             ammoIcons[i].gameObject.SetActive(true);
@@ -70,6 +76,11 @@ public class AmmoUI : MonoBehaviour
         }
     }
 
+
+
+
+
+    /*Reload Animation Functions*/
     public void runAmmoReloadAnimation()
     {
         StartCoroutine(reloadAnimationCoroutine());

@@ -28,7 +28,7 @@ MonoBehaviour:
   hasKnockback: 0
   abilityMultiplyAdditive: 0
   attackPerSec: 2
-  Ammo: 10
+  Ammo: 3
   reloadSpeed: 2
   bullets: 1
   bulletSpread: 0

@@ -319,6 +319,7 @@ public class PlayerController : MonoBehaviour
 
     void Reload()
     {
+        AmmoUI.Instance.runAmmoReloadAnimation();
         if (!currentlyReloading)
         {
             currentlyReloading = true;

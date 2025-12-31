@@ -1,7 +1,9 @@
 using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static EnemySpawnerScript;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class FalseHuman : BossBehaviourBase
@@ -9,13 +11,15 @@ public class FalseHuman : BossBehaviourBase
     bool isInvulnerable = false;
     int shieldHealth = 200;
     public LargeProjectile largeProjectile;
-    
+    public List<EnemyEntry> knightsList = new();
+    public EmotionCapsule emotionCapsule;
 
     private void Awake()
     {
         cooldown_time = 3f;
         default_enemy_state = new Boss_Attack(5);
         attackProbalities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f,0f };
+        Debug.Log("Boss Start");
 
     }
     public override void Movement()
@@ -38,6 +42,8 @@ public class FalseHuman : BossBehaviourBase
         //After finishing this attack, waits 5 seconds before using another attack.
 
         attackProbalities = new float[5] { 33.3f, 0.0f, 33.30f, 33.30f, 0f };
+        SpawnKnights();
+
         cooldown_time = 5f;
 
     }
@@ -53,6 +59,13 @@ public class FalseHuman : BossBehaviourBase
         //After the wave, each activated capsule deals 1000 dmg to the boss.
         //After finishing this attack, waits 7 seconds before using another attack.
         attackProbalities = new float[5] { 33.30f, 33.3f, 0f, 33.30f, 0f };
+        for (int i = 0; i < 3; i++)
+        {
+            Vector2 random = Random.insideUnitCircle;
+
+
+            Instantiate(emotionCapsule, new Vector3(random.x*3f,random.y*3f,0.0f), Quaternion.Euler(new Vector3(0, 0, 0)));
+        }
         cooldown_time = 7f;
     }
     public override void Attack4()
@@ -61,6 +74,7 @@ public class FalseHuman : BossBehaviourBase
         //The projectile follows the player at a speed of 1 for ten seconds, then the projectile permanant gain 400% Haste buff.
         //If not destroyed by the time it hits the player, it deals the remaining projectile health as spiritual dmg to the player.
         Instantiate(largeProjectile);
+        Debug.Log("Large projectile launched.");
         attackProbalities = new float[5] { 33.30f, 33.3f, 33.30f, 0f, 0f };
         cooldown_time = 10f;
     }
@@ -70,7 +84,9 @@ public class FalseHuman : BossBehaviourBase
         //Gain a shield at the beginning of the battle preventing
         //all physical dmg to the boss that blocks 200 spiritual damage and has the same defense as the boss. 
         //The boss does not use this skill other than once at the start of the battle.
+        Debug.Log("attack 5");
         isInvulnerable = true;
+        cooldown_time = 5f;
     }
 
 
@@ -110,5 +126,28 @@ public class FalseHuman : BossBehaviourBase
         }
     }
 
+
+    void SpawnKnights()
+    {
+        foreach (var entry in knightsList)
+        {
+            if (entry.enemyPrefab == null || entry.spawnPoint == null)
+            {
+                Debug.LogWarning("EnemyEntry has missing prefab or spawn point.");
+                continue;
+            }
+
+            GameObject enemyObj = Instantiate(
+                entry.enemyPrefab,
+                entry.spawnPoint.position,
+                Quaternion.Euler(new Vector3(0, 0, 0)
+            ));
+
+            EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
+            enemy.chest = null;
+            enemy.spawner = null;
+            enemy.givesRewards = false;
+        }
+    }
 
 }

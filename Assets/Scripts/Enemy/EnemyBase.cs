@@ -70,6 +70,7 @@ public abstract class EnemyBase : MonoBehaviour
         agent = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
         current_enemy_state = default_enemy_state;
+        current_enemy_state.EnterState(this);
     }
 
 

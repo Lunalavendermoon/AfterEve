@@ -14,6 +14,7 @@ public class Boss_Cooldown : IBossStates
     public void EnterState(BossBehaviourBase boss)
     {
         boss.Movement();
+        Debug.Log("Boss starts cooldown");
     }
 
     public void UpdateState(BossBehaviourBase boss)
@@ -25,6 +26,7 @@ public class Boss_Cooldown : IBossStates
 
             boss.ChangeState(new Boss_Attack(boss.ChooseAttack()));
         }
+        Debug.Log("Boss cooldown time: "+ cooldown_time);
 
     }
 

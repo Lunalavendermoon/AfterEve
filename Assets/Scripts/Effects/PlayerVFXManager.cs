@@ -18,6 +18,7 @@ public class PlayerVFXManager : MonoBehaviour
     **/
     [SerializeField] GameObject[] effects;
     [SerializeField] private float fadeTime = 0.5f;
+    private bool[] vfxStates;
 
     //speed
     private Material speedRing;
@@ -64,22 +65,6 @@ public class PlayerVFXManager : MonoBehaviour
 
     //luck
     [SerializeField] private Slider luckSlider;
-
-    public static PlayerVFXManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        Instance = this;
-
-        //TODO: Does this need to be DDoL?
-        // DontDestroyOnLoad(this.gameObject);
-    }
     
     void Start()
     {
@@ -98,141 +83,154 @@ public class PlayerVFXManager : MonoBehaviour
         blessAuraOff = blessAuraF.GetFloat("_Y_Offset");
 
         enlightenEye = effects[5].transform.Find("Eye").GetComponent<SpriteRenderer>().material;
-
+        vfxStates = new bool[effects.Length];
 
         foreach (GameObject obj in effects)
         {
             obj.SetActive(false);
         }
-    }
-
-    //DEBUG
-    private bool toggle = false;
-    public enum Effect
-    {
-        speed,
-        regen,
-        strength,
-        fortify,
-        bless,
-        enlighten,
-        luck,
-        none
-    };
-
-    public Effect currentState = Effect.none;
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P) && !toggle)
+        for (int i = 0; i < effects.Length; i++)
         {
-            switch (currentState)
-            {
-                case Effect.speed:
-                    EnableSpeed();
-                    break;
-                case Effect.regen:
-                    EnableRegen();
-                    break;
-                case Effect.strength:
-                    EnableStrength();
-                    break;
-                case Effect.fortify:
-                    EnableFortify();
-                    break;
-                case Effect.bless:
-                    EnableBless();
-                    break;
-                case Effect.enlighten:
-                    EnableEnlighten();
-                    break;
-                case Effect.luck:
-                    EnableLuck();
-                    break;
-            }
-            toggle = !toggle;
-        }
-        else if (Input.GetKeyDown(KeyCode.P))
-        {
-            switch (currentState)
-            {
-                case Effect.speed:
-                    DisableSpeed();
-                    break;
-                case Effect.regen:
-                    DisableRegen();
-                    break;
-                case Effect.strength:
-                    DisableStrength();
-                    break;
-                case Effect.fortify:
-                    DisableFortify();
-                    break;
-                case Effect.bless:
-                    DisableBless();
-                    break;
-                case Effect.enlighten:
-                    EnableEnlighten();
-                    break;
-                case Effect.luck:
-                    DisableLuck();
-                    break;
-            }
-            toggle = !toggle;
-        }
-
-        if (Input.GetKeyDown(KeyCode.O) && currentState == Effect.luck)
-        {
-            DecreaseLuckValue(0.25f);
+            vfxStates[i] = false;
         }
     }
+
+    //TODO: remove debugging code
+    // //-----------------------------------DEBUG - START -----------------------------------
+    // private bool toggle = false;
+    // public enum Effect
+    // {
+    //     speed,
+    //     regen,
+    //     strength,
+    //     fortify,
+    //     bless,
+    //     enlighten,
+    //     luck,
+    //     none
+    // };
+
+    // public Effect currentState = Effect.none;
+
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.P))
+    //     {
+    //         switch (currentState)
+    //         {
+    //             case Effect.speed:
+    //                 EnableSpeed();
+    //                 break;
+    //             case Effect.regen:
+    //                 EnableRegen();
+    //                 break;
+    //             case Effect.strength:
+    //                 EnableStrength();
+    //                 break;
+    //             case Effect.fortify:
+    //                 EnableFortify();
+    //                 break;
+    //             case Effect.bless:
+    //                 EnableBless();
+    //                 break;
+    //             case Effect.enlighten:
+    //                 EnableEnlighten();
+    //                 break;
+    //             case Effect.luck:
+    //                 EnableLuck();
+    //                 break;
+    //         }
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.O))
+    //     {
+    //         switch (currentState)
+    //         {
+    //             case Effect.speed:
+    //                 DisableSpeed();
+    //                 break;
+    //             case Effect.regen:
+    //                 DisableRegen();
+    //                 break;
+    //             case Effect.strength:
+    //                 DisableStrength();
+    //                 break;
+    //             case Effect.fortify:
+    //                 DisableFortify();
+    //                 break;
+    //             case Effect.bless:
+    //                 DisableBless();
+    //                 break;
+    //             case Effect.enlighten:
+    //                 EnableEnlighten();
+    //                 break;
+    //             case Effect.luck:
+    //                 DisableLuck();
+    //                 break;
+    //         }
+    //     }
+    // }
+    //  //-----------------------------------DEBUG - END -----------------------------------
 
     //-----------------------------------SPEED-----------------------------------
     //manually enable/disable speed
     public void EnableSpeed()
     {
+        if (vfxStates[0]) return;
+
         if (speedPartRoutine != null) StopCoroutine(speedPartRoutine);
         if (speedRingRoutine != null) StopCoroutine(speedRingRoutine);
         effects[0].SetActive(true);
         speedVFX.Play();
         speedRingRoutine = StartCoroutine(FadeInRing(speedRing));
+        vfxStates[0] = true;
     }
 
     public void DisableSpeed()
     {
-       speedPartRoutine = StartCoroutine(DisableVFX(0));
-       StartCoroutine(FadeOutRing(speedRing, speedRI));
+        if (!vfxStates[0]) return;
+        speedPartRoutine = StartCoroutine(DisableVFX(0));
+        StartCoroutine(FadeOutRing(speedRing, speedRI));
+        vfxStates[0] = false;
     }
 
     //-----------------------------------REGEN-----------------------------------
     public void EnableRegen()
     {
+        if (vfxStates[1]) return;
         if (regenPartRoutine != null) StopCoroutine(regenPartRoutine);
         effects[1].SetActive(true);
         regenVFX.Play();
+        vfxStates[1] = true;
     }
 
     public void DisableRegen()
     {
-       regenPartRoutine = StartCoroutine(DisableVFX(1));
+        if (!vfxStates[1]) return;
+        regenPartRoutine = StartCoroutine(DisableVFX(1));
+        vfxStates[1] = false;
     }
 
     //-----------------------------------STRENGTH-----------------------------------
     public void EnableStrength()
     {
+        if (vfxStates[2]) return;
         if (strengthPartRoutine != null) StopCoroutine(strengthPartRoutine);
         effects[2].SetActive(true);
         strengthVFX.Play();
+        vfxStates[2] = true;
     }
 
     public void DisableStrength()
     {
-       strengthPartRoutine = StartCoroutine(DisableVFX(2));
+        if (!vfxStates[2]) return;
+        strengthPartRoutine = StartCoroutine(DisableVFX(2));
+        vfxStates[2] = false;
     }
 
     //-----------------------------------FORTIFY-----------------------------------
     public void EnableFortify()
     {
+        if (vfxStates[3]) return;
         if (fortifyPartRoutine != null) StopCoroutine(fortifyPartRoutine);
 
         if (fortifyAuraRoutine != null) StopCoroutine(fortifyAuraRoutine);
@@ -242,17 +240,21 @@ public class PlayerVFXManager : MonoBehaviour
         fortifyVFX.Play();
         fortifyRingRoutine = StartCoroutine(FadeInRing(fortifyRing));
         fortifyAuraRoutine = StartCoroutine(FadeInAura(fortifyAuraF, fortifyAuraB, fortifyAuraOff));
+        vfxStates[3] = true;
     }
     public void DisableFortify()
     {
+        if (!vfxStates[3]) return;
         fortifyPartRoutine = StartCoroutine(DisableVFX(3));
         fortifyRingRoutine = StartCoroutine(FadeOutRing(fortifyRing, fortifyRI));
         fortifyAuraRoutine = StartCoroutine(FadeOutAura(fortifyAuraF, fortifyAuraB, fortifyAuraOff));
+        vfxStates[3] = false;
     }
 
     //-----------------------------------BLESS-----------------------------------
     public void EnableBless()
     {
+        if (vfxStates[4]) return;
         if (blessPartRoutine != null) StopCoroutine(blessPartRoutine);
 
         if (blessAuraRoutine != null) StopCoroutine(blessAuraRoutine);
@@ -262,16 +264,19 @@ public class PlayerVFXManager : MonoBehaviour
         blessVFX.Play();
         blessRingRoutine = StartCoroutine(FadeInRing(blessRing));
         blessAuraRoutine = StartCoroutine(FadeInAura(blessAuraF, blessAuraB, blessAuraOff));
+        vfxStates[4] = true;
     }
 
     public void DisableBless()
     {
+        if (!vfxStates[4]) return;
         if (blessAuraRoutine != null) StopCoroutine(blessAuraRoutine);
         if (blessRingRoutine != null) StopCoroutine(blessRingRoutine);
 
         blessPartRoutine = StartCoroutine(DisableVFX(4));
         blessRingRoutine = StartCoroutine(FadeOutRing(blessRing, blessRI));
         blessAuraRoutine = StartCoroutine(FadeOutAura(blessAuraF, blessAuraB, blessAuraOff));
+        vfxStates[4] = false;
     }
 
     //-----------------------------------ENLIGHTEN-----------------------------------

@@ -10,5 +10,6 @@ public class Lucky_Effect : Flat_Effects
         effectStat = Stat.Luck;
         isDebuff = false;
         effectApplication = Application.Flat;
+        hasVfx = true;
     }
 }

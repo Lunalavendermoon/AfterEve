@@ -9,5 +9,6 @@ public class Blessed_Effect : Multiplier_Effects
     {
         effectStat = Stat.SpiritualDefense;
         isDebuff = false;
+        hasVfx = true;
     }
 }

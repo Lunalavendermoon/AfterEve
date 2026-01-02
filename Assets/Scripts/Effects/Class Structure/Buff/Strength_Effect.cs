@@ -11,5 +11,6 @@ public class Strength_Effect : Multiplier_Effects
         isDebuff = false;
 
         iconType = IconType.BuffStrength;
+        hasVfx = true;
     }
 }

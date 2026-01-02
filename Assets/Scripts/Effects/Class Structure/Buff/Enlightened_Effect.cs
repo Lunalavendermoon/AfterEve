@@ -11,6 +11,7 @@ public class Enlightened_Effect : Effects
         effectStat = Stat.SpiritualVision;
         isDebuff = false;
         effectApplication = Application.Disable;
+        hasVfx = true;
     }
 
     public override void ApplyEffect(EntityAttributes _e, bool _)

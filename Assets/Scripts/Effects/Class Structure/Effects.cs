@@ -86,6 +86,9 @@ public abstract class Effects
     // true = debuff, false = buff
     public bool isDebuff;
 
+    //True if has vfx, false ow
+    public bool hasVfx;
+
     public IconType iconType = IconType.None;
 
     public Effects(float duration)

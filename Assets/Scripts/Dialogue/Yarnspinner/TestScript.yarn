@@ -88,3 +88,11 @@ Cyrus: Eve Worldbuilding node
 <<clear_portrait YarnManager>>
 <<jump Back_To_Game>>
 ===
+
+title: Loop1Node5
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Shop tutorial node
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===

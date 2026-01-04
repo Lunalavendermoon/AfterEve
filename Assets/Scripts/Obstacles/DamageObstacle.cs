@@ -2,26 +2,23 @@ using UnityEngine;
 
 public class DamageObstacle : MonoBehaviour
 {
-    [SerializeField] private ObstacleData data;
+    public int baseDamage = 2; //arbitrary???
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Entity entity = other.GetComponent<Entity>();
-        if (entity == null || data == null) return;
-
-        ApplyDamage(entity);
-    }
-
-    private void ApplyDamage(Entity entity)
-    {
-        EntityAttributes targetAttr = entity.Attributes;
-        if (targetAttr == null) return;
-
-        int finalDamage = data.CalculateDamageTo(targetAttr);
-
-        if (finalDamage > 0)
+        // Player
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player != null)
         {
-            entity.TakeDamage(finalDamage);
+            player.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Basic);
+            return;
+        }
+
+        // Enemy
+        EnemyBase enemy = other.GetComponent<EnemyBase>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(baseDamage);
         }
     }
 }

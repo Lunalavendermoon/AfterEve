@@ -2,24 +2,25 @@ using UnityEngine;
 
 public class FreezeObstacle : MonoBehaviour
 {
-    [SerializeField] private ObstacleData data;
+    public float freezeDuration = 2f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Entity entity = other.GetComponent<Entity>();
-        if (entity == null || data == null) return;
+        // Player
+        PlayerEffectManager playerEffects = other.GetComponent<PlayerEffectManager>();
 
-        ApplyFreeze(entity);
-    }
+        if (playerEffects != null)
+        {
+            playerEffects.AddEffect(new Paralyze_Effect(freezeDuration));
+            return;
+        }
 
-    private void ApplyFreeze(Entity entity)
-    {
-        EntityAttributes targetAttr = entity.Attributes;
-        if (targetAttr == null) return;
+        // Enemy
+        EnemyEffectManager enemyEffects = other.GetComponent<EnemyEffectManager>();
 
-        float duration = data.CalculateFreezeDuration(targetAttr);
-        if (duration <= 0f) return;
-
-        entity.ApplyFreeze(duration);
+        if (enemyEffects != null)
+        {
+            enemyEffects.AddEffect(new Paralyze_Effect(freezeDuration));
+        }
     }
 }

@@ -34,11 +34,11 @@ public class ShopManager : MonoBehaviour
     {
         if (enabled)
         {
-            PlayerController.instance.playerInput.Disable();
+            PlayerController.instance.DisablePlayerInput();
         }
         else
         {
-            PlayerController.instance.playerInput.Enable();
+            PlayerController.instance.EnablePlayerInput();
         }
 
         shopUi.SetActive(enabled);

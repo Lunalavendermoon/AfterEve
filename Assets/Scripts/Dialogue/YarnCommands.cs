@@ -19,6 +19,6 @@ public class YarnCommands : MonoBehaviour
     [YarnCommand("start_controls")] // used to restart player controls after dialogue
     public void StartControls()
     {
-        PlayerController.instance.playerInput.Enable();
+        PlayerController.instance.EnablePlayerInput();
     }
 }

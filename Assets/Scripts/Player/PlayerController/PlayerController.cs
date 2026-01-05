@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     // user input system
     public PlayerInput playerInput;
+    bool inputEnabled;
     public float horizontalInput;
     public float verticalInput;
 
@@ -26,12 +27,24 @@ public class PlayerController : MonoBehaviour
 
     void OnEnable()
     {
-        playerInput.Enable();
+        EnablePlayerInput();
     }
 
     void OnDisable()
     {
+        DisablePlayerInput();
+    }
+
+    public void EnablePlayerInput()
+    {
+        playerInput.Enable();
+        inputEnabled = true;
+    }
+
+    public void DisablePlayerInput()
+    {
         playerInput.Disable();
+        inputEnabled = false;
     }
 
     // player attributes
@@ -134,7 +147,12 @@ public class PlayerController : MonoBehaviour
 
             currentState.CheckState(this);
             currentState.UpdateState(this);
-            currentRotationState.UpdateState(this);
+            // check if player movement is enabled before rotating the player
+            // this prevents the sprite from rotating while player is interacting with UI/dialogue
+            if (inputEnabled)
+            {
+                currentRotationState.UpdateState(this);
+            }
             HandleShootInput();
             HandleSpiritualVision();
             HandleFutureSkillInput();

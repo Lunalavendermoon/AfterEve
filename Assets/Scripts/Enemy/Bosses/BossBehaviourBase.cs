@@ -62,6 +62,7 @@ public abstract class BossBehaviourBase : MonoBehaviour
         destinationSetter = GetComponent<AIDestinationSetter>();
         current_enemy_state = default_enemy_state;
         current_enemy_state.EnterState(this);
+        isAttacking = false;
     }
 
     // Update is called once per frame
@@ -143,7 +144,7 @@ public abstract class BossBehaviourBase : MonoBehaviour
 
     public virtual int ChooseAttack()
     {
-        return 4;
+        return 1;
     }
 
 

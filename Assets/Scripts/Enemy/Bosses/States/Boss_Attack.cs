@@ -37,12 +37,16 @@ public class Boss_Attack : IBossStates
                 break;
         }
 
-        boss.ChangeState(new Boss_Cooldown(boss.cooldown_time));
-        Debug.Log("Boss change to cooldown");
+        
     }
 
     public void UpdateState(BossBehaviourBase boss)
     {
+        if (!boss.isAttacking)
+        {
+            boss.ChangeState(new Boss_Cooldown(boss.cooldown_time));
+            Debug.Log("Boss change to cooldown");
+        }
     }
 
     public void ExitState(BossBehaviourBase boss)

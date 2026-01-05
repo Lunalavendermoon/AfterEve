@@ -18,7 +18,7 @@ public class DamageObstacle : MonoBehaviour
         EnemyBase enemy = other.GetComponent<EnemyBase>();
         if (enemy != null)
         {
-            enemy.TakeDamage(baseDamage);
+            enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Basic);
         }
     }
 }

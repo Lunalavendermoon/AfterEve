@@ -6,7 +6,8 @@ public class DamageInstance
     {
         Player,
         Enemy,
-        Effect
+        Effect,
+        Environment
     }
 
     public enum DamageType

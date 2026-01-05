@@ -29,7 +29,7 @@ public class SpiritualDamageWall : MonoBehaviour
         EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
         if (enemy != null && dealsDamage)
         {
-            enemy.TakeDamage(baseDamage);
+            enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual);
         }
     }
 
@@ -49,7 +49,7 @@ public class SpiritualDamageWall : MonoBehaviour
         }
 
         // damage player if true
-        if (dealsDamage && !attrs.isEnlightend)
+        if (dealsDamage && !attrs.isEnlightened)
         {
             player.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual);
         }

@@ -5,11 +5,13 @@ public class Player_Dash : IPlayerState
 {
 
     public PlayerAttributes playerAttributes;
-    public float dashPower = 5f;
+    public float dashPower = 6f;
     public float dashDuration;
-    public float dashStartTime;
+    public static float dashStartTime;
     public Vector3 dashDirection;
+    public float dashCooldown;
 
+    public static bool dashActive;
 
     public static event Action OnDash;
     public static event Action OnDisplaced;
@@ -18,8 +20,17 @@ public class Player_Dash : IPlayerState
     {
         this.playerAttributes = playerAttributes;
         dashDuration = playerAttributes.dashDuration;
-        // TODO: add dash cooldown
+        dashCooldown = playerAttributes.dashCooldown;
 
+        // Prevent dashing during cooldown
+        Debug.Log("time since last dash: " + (Time.time - dashStartTime));
+        Debug.Log("total time between dashes required: " + (dashDuration + dashCooldown));
+        if(dashStartTime != 0 && Time.time - dashStartTime < dashDuration + dashCooldown) {
+            Debug.Log("Failed to dash - dash in cooldown");
+            return;
+        }
+
+        dashActive = true;
         OnDash?.Invoke();
         dashStartTime = Time.time;
         PlayerUtilityUI.Instance.triggerDashUsedUI();
@@ -36,11 +47,15 @@ public class Player_Dash : IPlayerState
 
     public void CheckState(PlayerController player)
     {
-        if (Time.time - dashStartTime > dashDuration) player.ChangeState(new Player_Idle());
+        if (Time.time - dashStartTime > dashDuration) {
+            dashActive = false;
+            player.ChangeState(new Player_Idle());
+        }
     }
 
     public void UpdateState(PlayerController player)
     {
+        if(!dashActive) return;
         float deceleration = dashDuration - (Time.time - dashStartTime);
         deceleration *= deceleration;
         player.transform.position += 5 * player.playerAttributes.speed * dashPower * deceleration * Time.deltaTime * dashDirection;

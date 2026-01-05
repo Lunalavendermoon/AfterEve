@@ -1519,7 +1519,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -1538,6 +1538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBarScript
   slider: {fileID: 339139157}
+  maxHealth: 0
 --- !u!1 &348060813
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,7 +40,7 @@ MonoBehaviour:
   hitCountShield: 0
   totalStamina: 1
   staminaRegeneration: 1
-  dashDuration: 0.1
+  dashDuration: 0.3
   dashCooldown: 3
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1

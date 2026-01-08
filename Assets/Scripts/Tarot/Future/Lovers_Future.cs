@@ -13,12 +13,12 @@ public class Lovers_Future : Future_TarotCard
 
     public override void ApplyCard(TarotManager tarotManager)
     {
-        // TODO add coin spent at merchant listener
+        PlayerController.OnCoinsSpentAtShop += OnGoldSpentAtMerchant;
     }
 
     protected override void RemoveListeners()
     {
-        // TODO remove coin spent at merchant listener
+        PlayerController.OnCoinsSpentAtShop -= OnGoldSpentAtMerchant;
     }
 
     private void OnGoldSpentAtMerchant(int amount)

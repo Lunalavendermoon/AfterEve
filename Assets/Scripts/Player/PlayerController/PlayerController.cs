@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     // player attributes
     int health;
-    int coins = 100; // TODO - set to 0 in final version, this is for testing only
+    int coins = 500; // TODO - set to 0 in final version, this is for testing only
     public PlayerAttributes playerAttributes;
     public PlayerFuturePrefab playerFuturePrefab;
     private bool magicianSkillActive = false;
@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     public static event Action<bool> OnSpiritualVisionChange;
     public static event Action<IPlayerState> OnPlayerStateChange;
     public static event Action OnCoinsDecrease;
+    public static event Action<int> OnCoinsSpentAtShop;
 
     // FOR TESTING ONLY!
     public TMP_Text skillText;
@@ -95,6 +96,8 @@ public class PlayerController : MonoBehaviour
 
     // interactions
     public InteractableEntity currentInteractable;
+
+    public TarotManager tarotManager;
 
     void Start()
     {
@@ -453,12 +456,16 @@ public class PlayerController : MonoBehaviour
         playerAttributes.hitCountShield += amount;
     }
 
-    public void ChangeCoins(int amount)
+    public void ChangeCoins(int amount, bool fromShop = false)
     {
         coins += amount;
         if (amount < 0)
         {
             OnCoinsDecrease?.Invoke();
+            if (fromShop)
+            {
+                OnCoinsSpentAtShop?.Invoke(-amount);
+            }
         }
     }
 

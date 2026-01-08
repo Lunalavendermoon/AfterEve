@@ -10,10 +10,10 @@ public class ShopManager : MonoBehaviour
 
     public GameObject shopUi;
 
-    public TMP_Text testingText;
+    public GameObject shopLayout;
+    public GameObject shopItemPrefab;
 
-    // tarot card, isFuture, cost in coins
-    public List<((TarotCard.Arcana, bool), int)> shopStock = new();
+    public List<GameObject> shopStock = new();
 
     void Awake()
     {
@@ -46,13 +46,22 @@ public class ShopManager : MonoBehaviour
         if (refreshStock)
         {
             shopStock.Clear();
-            testingText.text = "";
 
             for (int i = 0; i < shopSize; ++i)
             {
+                (TarotCard.Arcana, bool) card = GenRandomCard();
+
+                // TODO adjust these values accordingly if theyre unbalanced
+
                 // Random price from 25-100 coins
-                shopStock.Add((GenRandomCard(), UnityEngine.Random.Range(25, 101)));
-                testingText.text += $"\n{shopStock[i].Item1.Item1} {(shopStock[i].Item1.Item2 ? "Future" : "Present")} - {shopStock[i].Item2} Coins";
+                int price = UnityEngine.Random.Range(25, 101);
+                
+                // Random quantity from 1-5
+                int quantity = UnityEngine.Random.Range(1, 6);
+
+                GameObject go = Instantiate(shopItemPrefab, shopLayout.transform);
+                shopStock.Add(go);
+                go.GetComponent<ShopItem>().InitializeShopItem(card.Item1, card.Item2, price, quantity);
             }
         }
     }

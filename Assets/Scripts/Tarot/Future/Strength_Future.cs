@@ -6,7 +6,7 @@ public class Strength_Future : Future_TarotCard
 
     public Strength_Future(int q) : base(q)
     {
-        name = "Strength_Future";
+        cardName = "Strength_Future";
         reward = new Strength_Reward(this);
     }
 

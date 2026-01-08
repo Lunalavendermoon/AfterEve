@@ -8,7 +8,7 @@ public class Lovers_Present : Present_TarotCard
 
     public Lovers_Present(int q) : base(q)
     {
-        name = "Lovers_Present";
+        cardName = "Lovers_Present";
         PlayerController.instance.CreateClone(basicDamage[level], spiritualDamage[level], strengthBuff[level]);
 
     }

@@ -17,15 +17,19 @@ public class TarotManager : MonoBehaviour
 
     public EffectManager effectManager;
 
-    [SerializeField] List<Present_TarotCard> presentTarot = new List<Present_TarotCard>();
-
-    [SerializeField] List<Future_TarotCard> futureTarot = new List<Future_TarotCard>();
+    // present cards can stack, so we should store them according to their arcana in case we get duplicates
+    [SerializeField] Dictionary<string, int> presentDict = new();
+    [SerializeField] List<Present_TarotCard> presentTarot = new();
+    [SerializeField] List<Future_TarotCard> futureTarot = new();
 
     public void AddCard(TarotCard tarotCard)
     {
         if (tarotCard is Present_TarotCard)
         {
             presentTarot.Add((Present_TarotCard)tarotCard);
+            if (!presentDict.TryAdd(tarotCard.cardName, tarotCard.quantity)) {
+                presentDict[tarotCard.cardName] += tarotCard.quantity;
+            }
         }
         else if (tarotCard is Future_TarotCard)
         {
@@ -39,19 +43,20 @@ public class TarotManager : MonoBehaviour
     {
         if (tarotCard is Present_TarotCard)
         {
-            if (presentTarot.Remove((Present_TarotCard)tarotCard))
+            if (!presentTarot.Remove((Present_TarotCard)tarotCard))
             {
-                tarotCard.RemoveCard(this);
+                // card does not exist in tarotmanager
+                return;
+            }
+
+            presentDict[tarotCard.cardName] -= tarotCard.quantity;
+            tarotCard.RemoveCard(this);
+
+            if (presentDict[tarotCard.cardName] == 0)
+            {
+                presentDict.Remove(tarotCard.cardName);
             }
         }
-        // I don't think we need this? bc Future cards remove themselves automatically
-        // else if (tarotCard is Future_TarotCard)
-        // {
-        //     if (futureTarot.Remove((Future_TarotCard)tarotCard))
-        //     {
-        //         tarotCard.RemoveCard(this);
-        //     }
-        // }
         DisplayCards();
     }
 
@@ -68,12 +73,12 @@ public class TarotManager : MonoBehaviour
         
         foreach (TarotCard present in presentTarot)
         {
-            s += present.name + " ";
+            s += present.cardName + " (" + present.quantity + ")\n";
         }
         s += "\nFuture: ";
         foreach (TarotCard future in futureTarot)
         {
-            s += future.name + " " + ((Future_TarotCard)future).GetQuestText() +
+            s += future.cardName + " (" + future.quantity + ") " + ((Future_TarotCard)future).GetQuestText() +
                 (((Future_TarotCard)future).questCompleted ? " - DONE" : "") + "\n";
         }
         text.text = s;
@@ -83,5 +88,6 @@ public class TarotManager : MonoBehaviour
     {
         AddCard(new Chariot_Future(1));
         AddCard(new Empress_Present(1));
+        AddCard(new Empress_Present(2));
     }
 }

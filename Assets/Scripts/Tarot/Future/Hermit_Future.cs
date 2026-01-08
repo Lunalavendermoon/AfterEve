@@ -7,7 +7,7 @@ public class Hermit_Future : Future_TarotCard
 
     public Hermit_Future(int q) : base(q)
     {
-        name = "Hermit_Future";
+        cardName = "Hermit_Future";
         reward = new Hermit_Reward(this);
     }
 

@@ -7,15 +7,15 @@ public class Empress_Present : Present_TarotCard
 
     public Empress_Present(int q) : base(q)
     {
-        name = "Empress_Present";
+        cardName = "Empress_Present";
     }
 
-    void OnEnable()
+    protected override void ApplyListeners()
     {
         Projectile.OnEnemyHit += HandleEnemyHit;
     }
 
-    void OnDisable()
+    protected override void RemoveListeners()
     {
         Projectile.OnEnemyHit -= HandleEnemyHit;
     }

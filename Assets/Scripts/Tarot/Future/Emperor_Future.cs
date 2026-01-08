@@ -8,7 +8,7 @@ public class Emperor_Future : Future_TarotCard
 
     public Emperor_Future(int q) : base(q)
     {
-        name = "Emperor_Future";
+        cardName = "Emperor_Future";
         reward = new Emperor_Reward(this);
     }
 

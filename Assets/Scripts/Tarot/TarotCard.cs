@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class TarotCard : MonoBehaviour
+public abstract class TarotCard
 {
     // Only used for shop RN, but feel free to use for tarot classes as well :)
     public enum Arcana
@@ -28,7 +28,7 @@ public abstract class TarotCard : MonoBehaviour
         Judgement,
         World
     }
-    public new string name;
+    public string cardName;
     public int quantity;
 
     public TarotCard(int q)

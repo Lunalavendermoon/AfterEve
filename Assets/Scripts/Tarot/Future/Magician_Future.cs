@@ -9,7 +9,7 @@ public class Magician_Future : Future_TarotCard
 
     public Magician_Future(int q) : base(q)
     {
-        name = "Magician_Future";
+        cardName = "Magician_Future";
         reward = new Magician_Reward(this);
     }
 

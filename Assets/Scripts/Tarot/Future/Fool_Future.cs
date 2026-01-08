@@ -14,7 +14,7 @@ public class Fool_Future : Future_TarotCard
 
     public Fool_Future(int q) : base(q)
     {
-        name = "Fpol_Future";
+        cardName = "Fpol_Future";
     }
 
     public override void ApplyCard(TarotManager tarotManager)

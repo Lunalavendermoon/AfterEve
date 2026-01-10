@@ -214,7 +214,7 @@ public abstract class EffectManager : MonoBehaviour
         }
     }
 
-    protected void Update()
+    void Update()
     {
         float time_elapsed = Time.deltaTime;
 

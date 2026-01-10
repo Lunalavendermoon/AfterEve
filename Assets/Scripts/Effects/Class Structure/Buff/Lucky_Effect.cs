@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Lucky_Effect : Flat_Effects
 {
     /// <summary>
@@ -11,5 +13,12 @@ public class Lucky_Effect : Flat_Effects
         isDebuff = false;
         effectApplication = Application.Flat;
         hasVfx = true;
+    }
+
+    public override void UpdateVFXBasedOnTime(float time_remaining, PlayerVFXManager vfx)
+    {
+        float fill = time_remaining/effectDuration;
+        float clampedFill = Mathf.Clamp(fill, 0f, 1f);
+        vfx.SetLuckValue(clampedFill);
     }
 }

@@ -8,6 +8,9 @@ using UnityEngine;
 // Don't use this directly! Instead, use the children classes PlayerEffectManager or EnemyEffectManager :)
 public abstract class EffectManager : MonoBehaviour
 {
+    //visual vfx manager for player
+    [SerializeField] protected PlayerVFXManager vfx;
+
     // only store effects that can time out
     readonly List<EffectInstance> effectTimers = new();
 
@@ -211,7 +214,7 @@ public abstract class EffectManager : MonoBehaviour
         }
     }
 
-    void Update()
+    protected void Update()
     {
         float time_elapsed = Time.deltaTime;
 
@@ -221,6 +224,8 @@ public abstract class EffectManager : MonoBehaviour
         {
             EffectInstance ei = effectTimers[i];
             ei.SubtractTime(time_elapsed);
+            ei.effect.UpdateVFXBasedOnTime(ei.timer, vfx);
+
             if (ei.IsExpired())
             {
                 RemoveEffect(ei);

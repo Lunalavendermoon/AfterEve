@@ -125,4 +125,10 @@ public abstract class Effects
     {
         return 0f;
     }
+
+    //function to update vfx based on time, only used by luck and enlighten currently
+    public virtual void UpdateVFXBasedOnTime(float time_remaining, PlayerVFXManager vfx)
+    {
+        return;
+    }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -60,8 +61,7 @@ public class PlayerVFXManager : MonoBehaviour
     private float maxYOff = -2.2f;
 
     //enlighten
-    private Material enlightenEye;
-    private Coroutine enlightenRoutine;
+    [SerializeField] TextMeshProUGUI timer;
 
     //luck
     [SerializeField] private Slider luckSlider;
@@ -82,7 +82,6 @@ public class PlayerVFXManager : MonoBehaviour
         blessAuraB = effects[4].transform.Find("AuraB").GetComponent<MeshRenderer>().material;
         blessAuraOff = blessAuraF.GetFloat("_Y_Offset");
 
-        enlightenEye = effects[5].transform.Find("Eye").GetComponent<SpriteRenderer>().material;
         vfxStates = new bool[effects.Length];
 
         foreach (GameObject obj in effects)
@@ -94,82 +93,6 @@ public class PlayerVFXManager : MonoBehaviour
             vfxStates[i] = false;
         }
     }
-
-    //TODO: remove debugging code
-    // //-----------------------------------DEBUG - START -----------------------------------
-    // private bool toggle = false;
-    // public enum Effect
-    // {
-    //     speed,
-    //     regen,
-    //     strength,
-    //     fortify,
-    //     bless,
-    //     enlighten,
-    //     luck,
-    //     none
-    // };
-
-    // public Effect currentState = Effect.none;
-
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.P))
-    //     {
-    //         switch (currentState)
-    //         {
-    //             case Effect.speed:
-    //                 EnableSpeed();
-    //                 break;
-    //             case Effect.regen:
-    //                 EnableRegen();
-    //                 break;
-    //             case Effect.strength:
-    //                 EnableStrength();
-    //                 break;
-    //             case Effect.fortify:
-    //                 EnableFortify();
-    //                 break;
-    //             case Effect.bless:
-    //                 EnableBless();
-    //                 break;
-    //             case Effect.enlighten:
-    //                 EnableEnlighten();
-    //                 break;
-    //             case Effect.luck:
-    //                 EnableLuck();
-    //                 break;
-    //         }
-    //     }
-    //     else if (Input.GetKeyDown(KeyCode.O))
-    //     {
-    //         switch (currentState)
-    //         {
-    //             case Effect.speed:
-    //                 DisableSpeed();
-    //                 break;
-    //             case Effect.regen:
-    //                 DisableRegen();
-    //                 break;
-    //             case Effect.strength:
-    //                 DisableStrength();
-    //                 break;
-    //             case Effect.fortify:
-    //                 DisableFortify();
-    //                 break;
-    //             case Effect.bless:
-    //                 DisableBless();
-    //                 break;
-    //             case Effect.enlighten:
-    //                 EnableEnlighten();
-    //                 break;
-    //             case Effect.luck:
-    //                 DisableLuck();
-    //                 break;
-    //         }
-    //     }
-    // }
-    //  //-----------------------------------DEBUG - END -----------------------------------
 
     //-----------------------------------SPEED-----------------------------------
     //manually enable/disable speed
@@ -282,61 +205,18 @@ public class PlayerVFXManager : MonoBehaviour
     //-----------------------------------ENLIGHTEN-----------------------------------
     public void EnableEnlighten()
     {
-        if (enlightenRoutine != null) StopCoroutine(enlightenRoutine);
-
         effects[5].SetActive(true);
-        enlightenRoutine = StartCoroutine(CountDown(enlightenEye));
     }
 
-    private IEnumerator CountDown(Material mat)
+    public void DisableEnlighten()
     {
-        mat.SetFloat("_Index", 0);
-        mat.SetInt("_ShowNumber", 1);
-        mat.SetFloat("_Number", 5);
-        mat.SetFloat("_Alpha", 0f);
-
-        int fps = 24;
-
-        for (int i = 0; i < 11; i++)
-        {
-            mat.SetFloat("_Alpha", Mathf.Lerp(0f, 1f, i / 11f));
-            yield return new WaitForSeconds(1f/fps); //12 frames
-        }
-        mat.SetFloat("_Alpha", 1f);
-        
-
-        yield return new WaitForSeconds(0.5f); // 12 frames
-
-
-        //loop for rest of
-        for (int times = 0; times <= 4; times++)
-        {
-            for (int i = 0; i <= 4; i++)
-            {
-                if (i == 4) mat.SetInt("_ShowNumber", 0);
-                mat.SetFloat("_Index", i);
-                yield return new WaitForSeconds(1f/fps); //5 frames
-            }
-
-            mat.SetFloat("_Number", mat.GetFloat("_Number") - 1);
-            yield return new WaitForSeconds(3f/fps); //3 frames
-
-            for (int i = 4; i >= 0; i--)
-            {
-                if (i == 3) mat.SetInt("_ShowNumber", 1);
-                mat.SetFloat("_Index", i);
-                yield return new WaitForSeconds(1f/fps); //5 frames
-            }
-            yield return new WaitForSeconds(12f/fps); // 12 frames
-        }
-
-        for (int i = 0; i < 11; i++)
-        {
-            mat.SetFloat("_Alpha", Mathf.Lerp(1f, 0f, i / 11f));
-            yield return new WaitForSeconds(1f/fps); //12 frames
-        }
-        mat.SetFloat("_Alpha", 0f);
         effects[5].SetActive(false);
+    }
+
+    public void SetEnlightenTime(float time)
+    {
+        int intTime = Mathf.CeilToInt(time);
+        timer.SetText(intTime.ToString());
     }
 
     //-----------------------------------LUCK-----------------------------------
@@ -353,13 +233,7 @@ public class PlayerVFXManager : MonoBehaviour
 
     public void SetLuckValue(float value)
     {
-        value = Mathf.Clamp(value, 0f, 1f);
-        luckSlider.value = value;
-    }
-
-    public void DecreaseLuckValue(float delta)
-    {
-        float value = Mathf.Clamp(luckSlider.value - delta, 0f, 1f);
+        if (!effects[6].activeSelf) return;
         luckSlider.value = value;
     }
 

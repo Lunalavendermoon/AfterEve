@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerEffectManager : EffectManager
 {
-    //visual vfx manager
-    [SerializeField] private PlayerVFXManager vfx;
 
     // constant, storing the base attribute values
     public PlayerAttributes basePlayerAttributes;
@@ -40,6 +38,7 @@ public class PlayerEffectManager : EffectManager
         none
     };
     public Effect currentState = Effect.none;
+    private EffectInstance speed;
     private EffectInstance regen;
     private EffectInstance strength;
     private EffectInstance fortify;
@@ -54,6 +53,7 @@ public class PlayerEffectManager : EffectManager
             switch (currentState)
             {
                 case Effect.speed:
+                    speed = AddEffect(new Haste_Effect(5f, 2f));
                     break;
                 case Effect.regen:
                     regen = AddEffect(new Regeneration_Effect(5f, 2f));
@@ -80,6 +80,8 @@ public class PlayerEffectManager : EffectManager
             switch (currentState)
             {
                 case Effect.speed:
+                    if (speed != null) RemoveEffect(speed);
+                    speed = null;
                     break;
                 case Effect.regen:
                     if (regen != null) RemoveEffect(regen);
@@ -107,6 +109,7 @@ public class PlayerEffectManager : EffectManager
                     break;
             }
         }
+        base.Update();
     }
     //------------------------------- DEBUG - END -------------------------------------
         
@@ -133,12 +136,12 @@ public class PlayerEffectManager : EffectManager
 
         if (!effect.isDebuff && effect.hasVfx)
         {
-            //TODO: no vfx for corrode, haste, hitcountshield, and pierce
+            //TODO: no vfx for corrode, hitcountshield, and pierce
             switch (effect.effectStat)
             {
                 //Speed
-                //TODO: currently no speed effect class
-                case Effects.Stat.Speed:
+                //TODO: is haste the same as speed?
+                case Effects.Stat.Haste:
                     vfx.EnableSpeed();
                     break;
                 //Regen
@@ -158,8 +161,8 @@ public class PlayerEffectManager : EffectManager
                     vfx.EnableBless();
                     break;
                 //Enlighten
-                //TODO: currently assumes countdown is 5 seconds, need to make adaptive
                 case Effects.Stat.SpiritualVision:
+                    vfx.SetEnlightenTime(effect.effectDuration);
                     vfx.EnableEnlighten();
                     break;
                 //Luck
@@ -203,7 +206,7 @@ public class PlayerEffectManager : EffectManager
             switch (effect.effectStat)
             {
                 //Speed
-                case Effects.Stat.Speed:
+                case Effects.Stat.Haste:
                     vfx.DisableSpeed();
                     break;
                 //Regen
@@ -224,7 +227,7 @@ public class PlayerEffectManager : EffectManager
                     break;
                 //Enlighten
                 case Effects.Stat.SpiritualVision:
-                    //Enlighten countdown handles itself
+                    vfx.DisableEnlighten();
                     break;
                 //Luck
                 case Effects.Stat.Luck:

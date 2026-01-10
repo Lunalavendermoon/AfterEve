@@ -23,4 +23,9 @@ public class Enlightened_Effect : Effects
     {
         playerAttributes.isEnlightened = true;
     }
+
+    public override void UpdateVFXBasedOnTime(float time_remaining, PlayerVFXManager vfx)
+    {
+        vfx.SetEnlightenTime(time_remaining);
+    }
 }

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ring 2
-  m_Shader: {fileID: -6465566751694194690, guid: fed0c62f8b4d92c44b96d8069614dcdd, type: 3}
+  m_Name: BurnB
+  m_Shader: {fileID: -6465566751694194690, guid: 0411634381ab846428289442d01e553a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -38,15 +38,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Amplitude: 3
+    - _Noise_speed: 0.5
+    - _Period: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Radius: 0.79
-    - _Remap_Intensity: 0.132
+    - _Remap_Intensity: 1.5
+    - _Rotation_Speed: 0.5
+    - _Y_Offset: -0.3
     m_Colors:
-    - _Color: {r: 0.6134529, g: 1.1560459, b: 3.3064082, a: 0}
+    - _Color: {r: 1.861635, g: 0.3615543, b: 0.1463546, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &8978180303739150565
+--- !u!114 &1424384719532962922
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -59,8 +59,25 @@ public abstract class EnemyBase : MonoBehaviour
     //lovers clone
     float marked = 1;
 
+    //chaining
+    bool isChained;
+    float chainTime;
+
+
+    public bool IsChained()
+    {
+        return isChained;
+    }
+
+    public void Chain(float f)
+    {
+        isChained = true;
+        chainTime = Time.time + f;
+    }
+
     public void Mark(float f)
     {
+        marked = f;
         marked = f;
     }
 
@@ -71,6 +88,7 @@ public abstract class EnemyBase : MonoBehaviour
         destinationSetter = GetComponent<AIDestinationSetter>();
         current_enemy_state = default_enemy_state;
         current_enemy_state.EnterState(this);
+        isChained = false;
     }
 
 
@@ -89,6 +107,11 @@ public abstract class EnemyBase : MonoBehaviour
         }
 
         //Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
+
+        if(isChained)
+            if(Time.time > chainTime)
+                isChained = false;
+        
     }
 
 

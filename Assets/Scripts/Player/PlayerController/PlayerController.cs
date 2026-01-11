@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // player attributes
-    int health;
+    public int health;
     int coins = 500; // TODO - set to 0 in final version, this is for testing only
     public PlayerAttributes playerAttributes;
     public PlayerFuturePrefab playerFuturePrefab;
@@ -545,5 +545,10 @@ public class PlayerController : MonoBehaviour
         {
             currentInteractable.TriggerInteraction();
         }
+    }
+
+    public bool IsInSpiritualVision()
+    {
+        return inSpiritualVision;
     }
 }

@@ -60,10 +60,10 @@ public class PlayerController : MonoBehaviour
     public IRotationState currentRotationState;
 
     //weapon
-    private int currentBullets;
+    private int currentAmmo;
     private float lastReload;
     private float fireRate;
-    private float fireTime;
+    // private float fireTime;
 
     //spiritual vision
     private float currentSpiritualVision;
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         // movement state machine
         currentState = new Player_Idle();
-        currentState.EnterState(this);
+        currentState.EnterState(this, playerAttributes);
         OnPlayerStateChange?.Invoke(currentState);
 
         // rotation state machine
@@ -111,11 +111,9 @@ public class PlayerController : MonoBehaviour
         currentRotationState.EnterState(this);
 
         // weapon
-        currentBullets = playerAttributes.Ammo;
-        fireRate = 1f / playerAttributes.attackPerSec;
-        fireTime = Time.time;
+        currentAmmo = playerAttributes.Ammo;
+        AttackUI.Instance.initializeAmmoUI();
 
-        // attributes
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
         healthBar.setMaxHealth(playerAttributes.maxHitPoints);
         health = playerAttributes.maxHitPoints;
@@ -139,12 +137,14 @@ public class PlayerController : MonoBehaviour
         if (playerAttributes.isParalyzed)
         {
             currentState = new Player_Idle();
-        } else
+        }
+        else
         {
             // handle input
             horizontalInput = playerInput.Player.Horizontal.ReadValue<float>();
             verticalInput = playerInput.Player.Vertical.ReadValue<float>();
 
+            // handle player state
             currentState.CheckState(this);
             currentState.UpdateState(this);
             // check if player movement is enabled before rotating the player
@@ -153,10 +153,12 @@ public class PlayerController : MonoBehaviour
             {
                 currentRotationState.UpdateState(this);
             }
+
             HandleShootInput();
             HandleSpiritualVision();
             HandleFutureSkillInput();
         }
+
         if (skillText != null)
         {
             skillText.text = BuildSkillDisplayString();
@@ -232,7 +234,7 @@ public class PlayerController : MonoBehaviour
     {
         currentState.ExitState(this);
         currentState = newState;
-        currentState.EnterState(this);
+        currentState.EnterState(this, playerAttributes);
         OnPlayerStateChange?.Invoke(newState);
     }
 
@@ -303,28 +305,36 @@ public class PlayerController : MonoBehaviour
 
     void HandleShootInput()
     {
-        if(currentBullets != 0)
+        if(currentAmmo != 0)
         {
-            if(playerInput.Player.Attack.IsPressed() && Time.time - fireTime >= fireRate)
+            bool shotFired = false;
+            if(playerInput.Player.Attack.triggered)
             {
                 if (magicianSkillActive)
                 {
-                    PlayerGun.Instance.ShootMagicianCoin();
+                    shotFired = PlayerGun.Instance.ShootMagicianCoin();
                     ChangeCoins(-Magician_Reward.coinsPerShot);
                 }
                 else
                 {
-                    PlayerGun.Instance.Shoot();
+                    shotFired = PlayerGun.Instance.Shoot();
                 }
-                fireTime = Time.time;
-                currentBullets--;
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.gunshot, this.transform.position);
+
+                // Only decrease ammo and play gunshot sfx if shot was fired (not in cooldown)
+                if(shotFired)
+                {
+                    AttackUI.Instance.greyNextAmmo(currentAmmo);
+                    currentAmmo--;
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.gunshot, this.transform.position);
+                }
             }
 
         } else
         {
+            //Debug.Log("Out of ammo. Reloading");
             Reload();
         }
+        //Debug.Log("Remaining ammo: " + currentAmmo);
     }
 
     public void SetMagicianSkill(bool activated)
@@ -345,6 +355,7 @@ public class PlayerController : MonoBehaviour
 
     void Reload()
     {
+        AttackUI.Instance.runAmmoReloadAnimation();
         if (!currentlyReloading)
         {
             currentlyReloading = true;
@@ -355,7 +366,8 @@ public class PlayerController : MonoBehaviour
             if(Time.time - lastReload >= playerAttributes.reloadSpeed)
             {
                 currentlyReloading = false;
-                currentBullets = playerAttributes.Ammo;
+                AttackUI.Instance.resetAmmoUI();
+                currentAmmo = playerAttributes.Ammo;
             }
         }
     }

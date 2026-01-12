@@ -24,20 +24,21 @@ public class PlayerGun : MonoBehaviour
         bulletEffects = new List<Effects>();
     }
 
-    public void Shoot()
+    public bool Shoot()
     {
-        ShootDamage(PlayerController.instance.playerAttributes.damage);
+        return ShootDamage(PlayerController.instance.playerAttributes.damage);
     }
 
-    public void ShootMagicianCoin()
+    public bool ShootMagicianCoin()
     {
-        ShootDamage(PlayerController.instance.playerAttributes.damage * Magician_Reward.damageMultiplier);
+        return ShootDamage(PlayerController.instance.playerAttributes.damage * Magician_Reward.damageMultiplier);
     }
 
-    void ShootDamage(int damage)
-    {
-        
-        firingSpeed = 1/ PlayerController.instance.playerAttributes.attackPerSec;
+    // Returns whether the shot was fired
+    // Clones projectile and sets projectile stats
+    bool ShootDamage(int damage)
+    {   
+        firingSpeed = 1/PlayerController.instance.playerAttributes.attackPerSec;
         if(lastTimeShot + firingSpeed <= Time.time)
         {
             int currentAngle = (PlayerController.instance.playerAttributes.bullets - 1) * 5;
@@ -55,7 +56,9 @@ public class PlayerGun : MonoBehaviour
             }
             
             lastTimeShot = Time.time;
+            return true;
         }
+        return false;
     }
 
     public void SetBulletBounce(int n)
@@ -74,5 +77,4 @@ public class PlayerGun : MonoBehaviour
     {
         bulletEffects.Remove(effect);
     }
-
 }

@@ -1,13 +1,16 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 public class Projectile : MonoBehaviour
 {
     private Vector3 firingPoint;
+
     [SerializeField]
     private float projectileSpeed;
     [SerializeField]
     private float maxProjectileDistance;
+
     public static event Action<EnemyBase> OnEnemyHit;
     private int bulletBounces;
     private Effects bulletEffect;
@@ -20,25 +23,30 @@ public class Projectile : MonoBehaviour
     {
         projectileDamage = n;
     }
+    // new
     public void SetBulletBounce(int n)
     {
         bulletBounces = n;
     }
     public void SetBulletPiercing(int n) { bulletPiercing = n; }
     public void SetBulletEffect(Effects bulletEffect)
+
     {
         this.bulletEffect = bulletEffect;
     }
+
     void Start()
     {
         firingPoint = transform.position;
         enemiesPierced = 0;
     }
+
     // Update is called once per frame
     void Update()
     {
         MoveProjectile();
     }
+
     void MoveProjectile()
     {
         if (Vector3.Distance(firingPoint, transform.position) > maxProjectileDistance)
@@ -50,6 +58,7 @@ public class Projectile : MonoBehaviour
             transform.Translate(Vector3.forward * projectileSpeed * Time.deltaTime);
         }
     }
+
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.GetComponent<PlayerController>())
@@ -93,15 +102,16 @@ public class Projectile : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision");
+        //Debug.Log("collision");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
-            Debug.Log("collision detected");
+            //Debug.Log("collision detected");
             if (bulletBounces > 0)
             {
-                Debug.Log("redirecting");
+                //Debug.Log("redirecting");
                 Vector3 surfaceNormal = collision.contacts[0].normal;
                 Vector3 reflectedDirection = Vector3.Reflect(transform.forward, surfaceNormal);
                 transform.forward = reflectedDirection.normalized;

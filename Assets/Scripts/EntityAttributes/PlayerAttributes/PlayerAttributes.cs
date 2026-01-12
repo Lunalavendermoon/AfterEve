@@ -30,6 +30,8 @@ public class PlayerAttributes : EntityAttributes
     [Header("Player Movement")]
     public float totalStamina;
     public float staminaRegeneration;
+    public float dashDuration;
+    public float dashCooldown;
 
     [Header("Spiritual Vision")]
     public float totalSpiritualVision;

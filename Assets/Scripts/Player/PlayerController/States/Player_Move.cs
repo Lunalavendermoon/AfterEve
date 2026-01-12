@@ -5,8 +5,8 @@ public class Player_Move : IPlayerState
 {
     public static event Action OnDisplaced;
 
-    
-    public void EnterState(PlayerController player)
+    public static int speedCoefficient = 5;
+    public void EnterState(PlayerController player, PlayerAttributes playerAttributes)
     {
         player.playerAnimation.playRunAnimation();
     }

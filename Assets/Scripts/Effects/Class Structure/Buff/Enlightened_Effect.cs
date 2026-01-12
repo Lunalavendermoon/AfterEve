@@ -11,6 +11,7 @@ public class Enlightened_Effect : Effects
         effectStat = Stat.SpiritualVision;
         isDebuff = false;
         effectApplication = Application.Disable;
+        hasVfx = true;
     }
 
     public override void ApplyEffect(EntityAttributes _e, bool _)
@@ -21,5 +22,10 @@ public class Enlightened_Effect : Effects
     public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool _)
     {
         playerAttributes.isEnlightened = true;
+    }
+
+    public override void UpdateVFXBasedOnTime(float time_remaining, PlayerVFXManager vfx)
+    {
+        vfx.SetEnlightenTime(time_remaining);
     }
 }

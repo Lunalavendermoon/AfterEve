@@ -10,5 +10,6 @@ public class Fortified_Effect : Multiplier_Effects
         effectStat = Stat.BasicDefense;
         isDebuff = false;
         iconType = IconType.BuffDefense;
+        hasVfx = true;
     }
 }

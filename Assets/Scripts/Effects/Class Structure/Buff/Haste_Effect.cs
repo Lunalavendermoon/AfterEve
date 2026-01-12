@@ -15,6 +15,7 @@ public class Haste_Effect : Effects
     {
         effectStat = Stat.Haste;
         isDebuff = false;
+        hasVfx = true;
 
         speedRate = speedMultiplyAdditive;
         stamRate = staminaMultiplyAdditive;
@@ -31,6 +32,7 @@ public class Haste_Effect : Effects
     {
         effectStat = Stat.Haste;
         isDebuff = false;
+        hasVfx = true;
 
         speedRate = speedMultiplyAdditive;
 

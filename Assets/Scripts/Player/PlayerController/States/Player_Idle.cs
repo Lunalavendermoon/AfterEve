@@ -5,7 +5,7 @@ public class Player_Idle : IPlayerState
 {
     public void EnterState(PlayerController player)
     {
-
+        player.playerAnimation.playIdleAnimation();
     }
 
     public void CheckState(PlayerController player)

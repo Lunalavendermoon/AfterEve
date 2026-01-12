@@ -17,6 +17,7 @@ public class Regeneration_Effect : Multiplier_Effects
         effectApplication = Application.Multiplier;
 
         iconType = IconType.BuffRegen;
+        hasVfx = true;
     }
 
     public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)

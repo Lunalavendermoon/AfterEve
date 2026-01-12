@@ -13,5 +13,6 @@ public class Fortified_Flat_Effect : Flat_Effects
         isDebuff = false;
         effectApplication = Application.Flat;
         iconType = IconType.BuffDefense;
+        hasVfx = true;
     }
 }

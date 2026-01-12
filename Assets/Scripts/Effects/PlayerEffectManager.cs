@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerEffectManager : EffectManager
 {
+
     // constant, storing the base attribute values
     public PlayerAttributes basePlayerAttributes;
 
@@ -22,7 +23,7 @@ public class PlayerEffectManager : EffectManager
     Dictionary<Effects.IconType, int> iconCounts = new();
 
     Dictionary<Effects.IconType, GameObject> iconInstances = new();
-
+        
     public override EffectInstance AddEffect(Effects effect)
     {
         OnEffectAdded?.Invoke();
@@ -43,6 +44,45 @@ public class PlayerEffectManager : EffectManager
                 ++iconCounts[effect.iconType];
             }
         }
+
+        if (!effect.isDebuff && effect.hasVfx)
+        {
+            //TODO: no vfx for corrode, hitcountshield, and pierce
+            switch (effect.effectStat)
+            {
+                //Speed
+                //TODO: is haste the same as speed?
+                case Effects.Stat.Haste:
+                    vfx.EnableSpeed();
+                    break;
+                //Regen
+                case Effects.Stat.HP:
+                    vfx.EnableRegen();
+                    break;
+                //Strength
+                case Effects.Stat.Damage:
+                    vfx.EnableStrength();
+                    break;
+                //Fortify
+                case Effects.Stat.BasicDefense:
+                    vfx.EnableFortify();
+                    break;
+                //Bless
+                case Effects.Stat.SpiritualDefense:
+                    vfx.EnableBless();
+                    break;
+                //Enlighten
+                case Effects.Stat.SpiritualVision:
+                    vfx.SetEnlightenTime(effect.effectDuration);
+                    vfx.EnableEnlighten();
+                    break;
+                //Luck
+                case Effects.Stat.Luck:
+                    vfx.EnableLuck();
+                    break;
+            }
+        }
+        
 
         return base.AddEffect(effect);
     }
@@ -68,6 +108,42 @@ public class PlayerEffectManager : EffectManager
             if (iconCounts[effect.iconType] == 0)
             {
                 RemoveIcon(effect.iconType);
+            }
+        }
+
+
+        if (!effect.isDebuff && effect.hasVfx)
+        {
+            switch (effect.effectStat)
+            {
+                //Speed
+                case Effects.Stat.Haste:
+                    vfx.DisableSpeed();
+                    break;
+                //Regen
+                case Effects.Stat.HP:
+                    vfx.DisableRegen();
+                    break;
+                //Strength
+                case Effects.Stat.Damage:
+                    vfx.DisableStrength();
+                    break;
+                //Fortify
+                case Effects.Stat.BasicDefense:
+                    vfx.DisableFortify();
+                    break;
+                //Bless
+                case Effects.Stat.SpiritualDefense:
+                    vfx.DisableBless();
+                    break;
+                //Enlighten
+                case Effects.Stat.SpiritualVision:
+                    vfx.DisableEnlighten();
+                    break;
+                //Luck
+                case Effects.Stat.Luck:
+                    vfx.DisableLuck();
+                    break;
             }
         }
 

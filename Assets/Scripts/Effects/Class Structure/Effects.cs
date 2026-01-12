@@ -86,6 +86,9 @@ public abstract class Effects
     // true = debuff, false = buff
     public bool isDebuff;
 
+    //True if has vfx, false ow
+    public bool hasVfx;
+
     public IconType iconType = IconType.None;
 
     public Effects(float duration)
@@ -121,5 +124,11 @@ public abstract class Effects
     public virtual float GetIncrementDuration()
     {
         return 0f;
+    }
+
+    //function to update vfx based on time, only used by luck and enlighten currently
+    public virtual void UpdateVFXBasedOnTime(float time_remaining, PlayerVFXManager vfx)
+    {
+        return;
     }
 }

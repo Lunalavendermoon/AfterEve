@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player_Dash : IPlayerState
 {
 
-    public PlayerAttributes playerAttributes;
+    // public PlayerAttributes playerAttributes;
     public float dashPower = 6f;
     public float dashDuration;
     public static float dashStartTime;
@@ -16,11 +16,13 @@ public class Player_Dash : IPlayerState
     public static event Action OnDash;
     public static event Action OnDisplaced;
 
-    public void EnterState(PlayerController player, PlayerAttributes playerAttributes)
+    public void EnterState(PlayerController player)
     {
-        this.playerAttributes = playerAttributes;
-        dashDuration = playerAttributes.dashDuration;
-        dashCooldown = playerAttributes.dashCooldown;
+        dashDuration = PlayerController.instance.playerAttributes.dashDuration;
+        dashCooldown = PlayerController.instance.playerAttributes.dashCooldown;
+
+        // Debug.Log("dash duration: " + dashDuration);
+        // Debug.Log("dash cooldown: " + dashCooldown);
 
         // Prevent dashing during cooldown
         Debug.Log("time since last dash: " + (Time.time - dashStartTime));

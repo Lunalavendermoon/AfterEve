@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         // movement state machine
         currentState = new Player_Idle();
-        currentState.EnterState(this, playerAttributes);
+        currentState.EnterState(this);
         OnPlayerStateChange?.Invoke(currentState);
 
         // rotation state machine
@@ -234,7 +234,7 @@ public class PlayerController : MonoBehaviour
     {
         currentState.ExitState(this);
         currentState = newState;
-        currentState.EnterState(this, playerAttributes);
+        currentState.EnterState(this);
         OnPlayerStateChange?.Invoke(newState);
     }
 

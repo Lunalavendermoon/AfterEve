@@ -3,9 +3,10 @@ using UnityEngine.XR;
 
 public class Player_Idle : IPlayerState
 {
-    public void EnterState(PlayerController player, PlayerAttributes playerAttributes)
+    public void EnterState(PlayerController player)
     {
         player.playerAnimation.playIdleAnimation();
+        PlayerUtilityUI.Instance.SetMoveUIDirection(0f, 0f);
     }
 
     public void CheckState(PlayerController player)

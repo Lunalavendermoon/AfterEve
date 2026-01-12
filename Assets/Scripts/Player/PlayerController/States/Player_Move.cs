@@ -6,7 +6,7 @@ public class Player_Move : IPlayerState
     public static event Action OnDisplaced;
 
     public static int speedCoefficient = 5;
-    public void EnterState(PlayerController player, PlayerAttributes playerAttributes)
+    public void EnterState(PlayerController player)
     {
         player.playerAnimation.playRunAnimation();
     }
@@ -28,6 +28,8 @@ public class Player_Move : IPlayerState
             currentPosition.x *= 1 / (float)Math.Sqrt(2);
             currentPosition.y *= 1 / (float)Math.Sqrt(2);
         }
+
+        PlayerUtilityUI.Instance.SetMoveUIDirection(player.horizontalInput, player.verticalInput);
 
         currentPosition += player.transform.position;
         player.transform.position = currentPosition;

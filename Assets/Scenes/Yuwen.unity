@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8121215b251ad48be21bed0fdc5942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowPlayer
-  Player: {fileID: 1447670056}
+  Player: {fileID: 2070461717}
   offset: {x: 0, y: 0, z: -5}
 --- !u!114 &165906623
 MonoBehaviour:
@@ -7261,6 +7261,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952294022}
   m_CullTransparentMesh: 1
+--- !u!4 &2070461717 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7421140615860505255, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+  m_PrefabInstance: {fileID: 491843588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2075665212
 GameObject:
   m_ObjectHideFlags: 0

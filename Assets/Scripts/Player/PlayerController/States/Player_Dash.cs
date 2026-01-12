@@ -4,8 +4,7 @@ using UnityEngine;
 public class Player_Dash : IPlayerState
 {
 
-    // public PlayerAttributes playerAttributes;
-    public float dashPower = 6f;
+    public float dashPower;
     public float dashDuration;
     public static float dashStartTime;
     public Vector3 dashDirection;
@@ -18,17 +17,15 @@ public class Player_Dash : IPlayerState
 
     public void EnterState(PlayerController player)
     {
+        dashPower = PlayerController.instance.playerAttributes.dashPower;
         dashDuration = PlayerController.instance.playerAttributes.dashDuration;
         dashCooldown = PlayerController.instance.playerAttributes.dashCooldown;
 
-        // Debug.Log("dash duration: " + dashDuration);
-        // Debug.Log("dash cooldown: " + dashCooldown);
-
         // Prevent dashing during cooldown
-        Debug.Log("time since last dash: " + (Time.time - dashStartTime));
-        Debug.Log("total time between dashes required: " + (dashDuration + dashCooldown));
+        // Debug.Log("time since last dash: " + (Time.time - dashStartTime));
+        // Debug.Log("total time between dashes required: " + (dashDuration + dashCooldown));
         if(dashStartTime != 0 && Time.time - dashStartTime < dashDuration + dashCooldown) {
-            Debug.Log("Failed to dash - dash in cooldown");
+            // Debug.Log("Failed to dash - dash in cooldown");
             return;
         }
 

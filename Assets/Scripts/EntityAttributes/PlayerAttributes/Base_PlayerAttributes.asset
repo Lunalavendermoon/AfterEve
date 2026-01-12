@@ -36,12 +36,18 @@ MonoBehaviour:
   bulletBounces: 3
   bulletBounceDmgDecrease: 0
   bulletPierces: 1
+  enemiesChained: 0
+  chainRadius: 0
+  chainTime: 0
+  chainDmg: 0
   shield: 0
   hitCountShield: 0
+  chainShieldIncrease: 0
   totalStamina: 1
   staminaRegeneration: 1
+  dashPower: 100
   dashDuration: 0.3
-  dashCooldown: 3
+  dashCooldown: 1
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1
   isEnlightened: 0

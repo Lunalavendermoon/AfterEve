@@ -16,10 +16,16 @@ public class PlayerAttributes : EntityAttributes
     public int bulletBounces;
     public float bulletBounceDmgDecrease;
     public int bulletPierces;
+    public int enemiesChained;
+    public int chainRadius;
+    public float chainTime;
+    public float chainDmg;
+    
 
     [Header("Player Defense")]
     public int shield;
     public int hitCountShield;
+    public float chainShieldIncrease;
 
     [Header("Player Movement")]
     public float totalStamina;

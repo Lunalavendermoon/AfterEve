@@ -5,7 +5,7 @@ public class Player_Move : IPlayerState
 {
     public static event Action OnDisplaced;
 
-    public static int speedCoefficient = 5;
+    
     public void EnterState(PlayerController player)
     {
         player.playerAnimation.playRunAnimation();
@@ -20,10 +20,10 @@ public class Player_Move : IPlayerState
     public void UpdateState(PlayerController player)
     {
         Vector3 currentPosition = new Vector3();
-        currentPosition.x += speedCoefficient * player.horizontalInput * player.playerAttributes.speed * Time.deltaTime;
-        currentPosition.y += speedCoefficient * player.verticalInput * player.playerAttributes.speed * Time.deltaTime;
+        currentPosition.x += IPlayerState.speedCoefficient * player.horizontalInput * player.playerAttributes.speed * Time.deltaTime;
+        currentPosition.y += IPlayerState.speedCoefficient * player.verticalInput * player.playerAttributes.speed * Time.deltaTime;
 
-        if (player.horizontalInput > 0 && player.verticalInput > 0)
+        if (player.horizontalInput != 0 && player.verticalInput != 0)
         {
             currentPosition.x *= 1 / (float)Math.Sqrt(2);
             currentPosition.y *= 1 / (float)Math.Sqrt(2);

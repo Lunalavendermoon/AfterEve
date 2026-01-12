@@ -16,16 +16,16 @@ public class Projectile : MonoBehaviour
 
     private int projectileDamage;
 
-    public void setProjectileDamage(int n)
+    public void SetProjectileDamage(int n)
     {
         projectileDamage = n;
     }
-    public void setBulletBounce(int n)
+    public void SetBulletBounce(int n)
     {
         bulletBounces = n;
     }
-    public void setBulletPiercing(int n) { bulletPiercing = n; }
-    public void setBulletEffect(Effects bulletEffect)
+    public void SetBulletPiercing(int n) { bulletPiercing = n; }
+    public void SetBulletEffect(Effects bulletEffect)
     {
         this.bulletEffect = bulletEffect;
     }
@@ -59,6 +59,22 @@ public class Projectile : MonoBehaviour
         {
             EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
             OnEnemyHit?.Invoke(enemy);
+            for (int i = 0; i < PlayerController.instance.playerAttributes.enemiesChained; i++)
+            {
+                GameObject temp = FindNearestUnchainedEnemy(other.gameObject);
+                if(temp != null)
+                {
+                    temp.GetComponent<EnemyBase>().Chain(PlayerController.instance.playerAttributes.chainTime);
+                    if(PlayerController.instance.IsInSpiritualVision())
+                    {
+                        PlayerController.instance.health += (int) (PlayerController.instance.playerAttributes.shield * PlayerController.instance.playerAttributes.chainShieldIncrease * 2);
+                    } else
+                    {
+                        PlayerController.instance.health += (int)(PlayerController.instance.playerAttributes.shield * PlayerController.instance.playerAttributes.chainShieldIncrease);
+                    }
+                }
+            }
+            DamageAllChainedEnemies();
             // TODO change to DamageType.Spiritual if player is dealing spiritual damage
             enemy.TakeDamage(projectileDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
             if (enemy.GetComponent<EffectManager>())
@@ -94,6 +110,37 @@ public class Projectile : MonoBehaviour
             else
             {
                 Destroy(this.gameObject);
+            }
+        }
+    }
+
+    GameObject FindNearestUnchainedEnemy(GameObject justHitEnemy)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float closestDistance = Mathf.Infinity;
+        GameObject nearest = null;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance < closestDistance && distance <= PlayerController.instance.playerAttributes.chainRadius && !enemy.GetComponent<EnemyBase>().IsChained() && enemy != justHitEnemy)
+            {
+                closestDistance = distance;
+                nearest = enemy;
+            }
+        }
+        return nearest;
+    }
+
+    void DamageAllChainedEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.GetComponent<EnemyBase>().IsChained())
+            {
+                enemy.GetComponent<EnemyBase>().TakeDamage((int)(projectileDamage*PlayerController.instance.playerAttributes.chainDmg), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
             }
         }
     }

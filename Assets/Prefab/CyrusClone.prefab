@@ -210,3 +210,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63254f8c7e6b64949b6ec5030d8b1243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  detectionRadius: 30
+  firingPoint: {fileID: 4121316579854021084}
+  shootTime: 0
+  lookAtEnemyDuration: 1.5
+  bombPrefab: {fileID: 5454488872047033392, guid: bbbcfab418bacf84391471db90380304, type: 3}
+  rotationSpeed: 5

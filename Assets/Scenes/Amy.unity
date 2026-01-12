@@ -911,6 +911,7 @@ MonoBehaviour:
   playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
   playerFuturePrefab: {fileID: 11400000, guid: 2eefe8d2e31024d42a45671b33503a31, type: 2}
   skillText: {fileID: 1952294024}
+
   playerAnimation: {fileID: 647527571}
   clonePrefab: {fileID: 6129751107627094636, guid: cc7b3df6b62206141bb27b7f6b3856e4, type: 3}
 --- !u!4 &199724755

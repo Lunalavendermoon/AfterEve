@@ -9,6 +9,6 @@ public class Magician_Present : Present_TarotCard
     {
         PlayerController.instance.playerAttributes.bulletBounces = bounceNum[level];
         PlayerController.instance.playerAttributes.bulletBounceDmgDecrease = damageReducedPerBounce[level];
-        name = "Magician_Present";
+        cardName = "Magician_Present";
     }
 }

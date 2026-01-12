@@ -12,18 +12,18 @@ public class Fool_Present : Present_TarotCard
 
     public Fool_Present(int q) : base(q)
     {
-        name = "Fool_Present";
+        cardName = "Fool_Present";
         lastEnemy = null;
 
         effects.Add(new FireRate_Effect(-1, fireRateIncrease[level]));
     }
 
-    void OnEnable()
+    protected override void ApplyListeners()
     {
         Projectile.OnEnemyHit += HandleEnemyHit;
     }
 
-    void OnDisable()
+    protected override void RemoveListeners()
     {
         Projectile.OnEnemyHit -= HandleEnemyHit;
     }

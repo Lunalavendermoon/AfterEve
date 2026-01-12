@@ -15,7 +15,6 @@ public class PlayerGun : MonoBehaviour
 
     private float lastTimeShot = 0;
 
-    public PlayerAttributes playerAttributes;
 
     public List<Effects> bulletEffects;
 
@@ -27,31 +26,31 @@ public class PlayerGun : MonoBehaviour
 
     public void Shoot()
     {
-        ShootDamage(playerAttributes.damage);
+        ShootDamage(PlayerController.instance.playerAttributes.damage);
     }
 
     public void ShootMagicianCoin()
     {
-        ShootDamage(playerAttributes.damage * Magician_Reward.damageMultiplier);
+        ShootDamage(PlayerController.instance.playerAttributes.damage * Magician_Reward.damageMultiplier);
     }
 
     void ShootDamage(int damage)
     {
         
-        firingSpeed = 1/playerAttributes.attackPerSec;
+        firingSpeed = 1/ PlayerController.instance.playerAttributes.attackPerSec;
         if(lastTimeShot + firingSpeed <= Time.time)
         {
-            int currentAngle = (playerAttributes.bullets - 1) * 5;
-            for (int i = 0; i < playerAttributes.bullets; i++)
+            int currentAngle = (PlayerController.instance.playerAttributes.bullets - 1) * 5;
+            for (int i = 0; i < PlayerController.instance.playerAttributes.bullets; i++)
             {
-                GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-playerAttributes.bulletSpread, playerAttributes.bulletSpread)) * firingPoint.rotation);
-                projectile.GetComponent<Projectile>().setBulletBounce(playerAttributes.bulletBounces);
-                projectile.GetComponent<Projectile>().setProjectileDamage(damage);
+                GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread)) * firingPoint.rotation);
+                projectile.GetComponent<Projectile>().SetBulletBounce(PlayerController.instance.playerAttributes.bulletBounces);
+                projectile.GetComponent<Projectile>().SetProjectileDamage(damage);
                 foreach (Effects effect in bulletEffects)
                 {
-                    projectile.GetComponent<Projectile>().setBulletEffect(effect);
+                    projectile.GetComponent<Projectile>().SetBulletEffect(effect);
                 }
-                projectile.GetComponent<Projectile>().setBulletPiercing(playerAttributes.bulletPierces);
+                projectile.GetComponent<Projectile>().SetBulletPiercing(PlayerController.instance.playerAttributes.bulletPierces);
                 currentAngle -= 10;
             }
             
@@ -61,10 +60,10 @@ public class PlayerGun : MonoBehaviour
 
     public void SetBulletBounce(int n)
     {
-        playerAttributes.bulletBounces = n;
+        PlayerController.instance.playerAttributes.bulletBounces = n;
     }
 
-    public void SetBulletPierces(int n) { playerAttributes.bulletPierces = n; }
+    public void SetBulletPierces(int n) { PlayerController.instance.playerAttributes.bulletPierces = n; }
 
     public void AddEffect(Effects effect)
     {

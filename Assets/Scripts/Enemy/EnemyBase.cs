@@ -56,12 +56,39 @@ public abstract class EnemyBase : MonoBehaviour
     public float luck = 1f;
     public bool elite = false;
 
+    //lovers clone
+    float marked = 1;
+
+    //chaining
+    bool isChained;
+    float chainTime;
+
+
+    public bool IsChained()
+    {
+        return isChained;
+    }
+
+    public void Chain(float f)
+    {
+        isChained = true;
+        chainTime = Time.time + f;
+    }
+
+    public void Mark(float f)
+    {
+        marked = f;
+        marked = f;
+    }
+
     //Initializing agent and its default state
     public virtual void Start()
     {
         agent = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
         current_enemy_state = default_enemy_state;
+        current_enemy_state.EnterState(this);
+        isChained = false;
     }
 
 
@@ -80,6 +107,11 @@ public abstract class EnemyBase : MonoBehaviour
         }
 
         //Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
+
+        if(isChained)
+            if(Time.time > chainTime)
+                isChained = false;
+        
     }
 
 
@@ -118,6 +150,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
+
+        amount = (int) (amount * marked);
+
         int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
         health -= damageAfterReduction;
 

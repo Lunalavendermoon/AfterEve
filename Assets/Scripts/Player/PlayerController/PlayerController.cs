@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     // user input system
     public PlayerInput playerInput;
+    bool inputEnabled;
     public float horizontalInput;
     public float verticalInput;
 
@@ -26,17 +27,29 @@ public class PlayerController : MonoBehaviour
 
     void OnEnable()
     {
-        playerInput.Enable();
+        EnablePlayerInput();
     }
 
     void OnDisable()
     {
+        DisablePlayerInput();
+    }
+
+    public void EnablePlayerInput()
+    {
+        playerInput.Enable();
+        inputEnabled = true;
+    }
+
+    public void DisablePlayerInput()
+    {
         playerInput.Disable();
+        inputEnabled = false;
     }
 
     // player attributes
-    int health;
-    int coins = 100; // TODO - set to 0 in final version, this is for testing only
+    public int health;
+    int coins = 500; // TODO - set to 0 in final version, this is for testing only
     public PlayerAttributes playerAttributes;
     public PlayerFuturePrefab playerFuturePrefab;
     private bool magicianSkillActive = false;
@@ -49,6 +62,8 @@ public class PlayerController : MonoBehaviour
     //weapon
     private int currentBullets;
     private float lastReload;
+    private float fireRate;
+    private float fireTime;
 
     //spiritual vision
     private float currentSpiritualVision;
@@ -65,6 +80,7 @@ public class PlayerController : MonoBehaviour
     public static event Action<bool> OnSpiritualVisionChange;
     public static event Action<IPlayerState> OnPlayerStateChange;
     public static event Action OnCoinsDecrease;
+    public static event Action<int> OnCoinsSpentAtShop;
 
     // FOR TESTING ONLY!
     public TMP_Text skillText;
@@ -78,17 +94,33 @@ public class PlayerController : MonoBehaviour
     //clone
     public GameObject clonePrefab;
 
+    // interactions
+    public InteractableEntity currentInteractable;
+
+    public TarotManager tarotManager;
+
     void Start()
     {
+        // movement state machine
         currentState = new Player_Idle();
         currentState.EnterState(this);
         OnPlayerStateChange?.Invoke(currentState);
+
+        // rotation state machine
         currentRotationState = new RotationState_N();
         currentRotationState.EnterState(this);
+
+        // weapon
         currentBullets = playerAttributes.Ammo;
+        fireRate = 1f / playerAttributes.attackPerSec;
+        fireTime = Time.time;
+
+        // attributes
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
         healthBar.setMaxHealth(playerAttributes.maxHitPoints);
         health = playerAttributes.maxHitPoints;
+
+        // audio
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);
     }
 
@@ -115,7 +147,12 @@ public class PlayerController : MonoBehaviour
 
             currentState.CheckState(this);
             currentState.UpdateState(this);
-            currentRotationState.UpdateState(this);
+            // check if player movement is enabled before rotating the player
+            // this prevents the sprite from rotating while player is interacting with UI/dialogue
+            if (inputEnabled)
+            {
+                currentRotationState.UpdateState(this);
+            }
             HandleShootInput();
             HandleSpiritualVision();
             HandleFutureSkillInput();
@@ -124,13 +161,14 @@ public class PlayerController : MonoBehaviour
         {
             skillText.text = BuildSkillDisplayString();
         }
-        Player_Move.speedCoefficient = speed;
+        IPlayerState.speedCoefficient = speed;
         UpdateSound();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            CreateClone();
+            CreateClone(1, 1, 1);
         }
+        HandleInteractInput(); // might need to check if in combat later
     }
 
     string BuildSkillDisplayString()
@@ -267,7 +305,7 @@ public class PlayerController : MonoBehaviour
     {
         if(currentBullets != 0)
         {
-            if(playerInput.Player.Attack.triggered)
+            if(playerInput.Player.Attack.IsPressed() && Time.time - fireTime >= fireRate)
             {
                 if (magicianSkillActive)
                 {
@@ -278,6 +316,7 @@ public class PlayerController : MonoBehaviour
                 {
                     PlayerGun.Instance.Shoot();
                 }
+                fireTime = Time.time;
                 currentBullets--;
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.gunshot, this.transform.position);
             }
@@ -324,7 +363,7 @@ public class PlayerController : MonoBehaviour
     void HandleSpiritualVision()
     {
         spiritualVisionTimer = Time.time;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (playerInput.Player.SpritualVision.IsPressed())
         {
             inSpiritualVision = true;
             OnSpiritualVisionChange?.Invoke(true);
@@ -414,12 +453,16 @@ public class PlayerController : MonoBehaviour
         playerAttributes.hitCountShield += amount;
     }
 
-    public void ChangeCoins(int amount)
+    public void ChangeCoins(int amount, bool fromShop = false)
     {
         coins += amount;
         if (amount < 0)
         {
             OnCoinsDecrease?.Invoke();
+            if (fromShop)
+            {
+                OnCoinsSpentAtShop?.Invoke(-amount);
+            }
         }
     }
 
@@ -487,8 +530,22 @@ public class PlayerController : MonoBehaviour
         return Mathf.Abs(horizontalValue) > 0.01f || Mathf.Abs(verticalValue) > 0.01f;
     }
 
-    public void CreateClone() {
-        Instantiate(clonePrefab, new Vector3(transform.position.x+0.5f, transform.position.y, transform.position.z), Quaternion.identity);
+    public void CreateClone(float a, float b, float c) {
+        GameObject clone = Instantiate(clonePrefab, new Vector3(transform.position.x+0.5f, transform.position.y, transform.position.z), Quaternion.identity);
+        clone.GetComponent<MimicPlayer>().SetDamage(a, b, c);
     }
 
+
+    private void HandleInteractInput()
+    {
+        if (playerInput.Player.Interact.triggered && currentInteractable != null)
+        {
+            currentInteractable.TriggerInteraction();
+        }
+    }
+
+    public bool IsInSpiritualVision()
+    {
+        return inSpiritualVision;
+    }
 }

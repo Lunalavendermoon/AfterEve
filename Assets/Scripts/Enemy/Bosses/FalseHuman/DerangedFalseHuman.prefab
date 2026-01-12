@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8035605514428021324}
   - component: {fileID: 6359726622231637239}
   - component: {fileID: 6108361045990030215}
+  - component: {fileID: 3411270614891509333}
   m_Layer: 0
   m_Name: DerangedFalseHuman
   m_TagString: Untagged
@@ -150,10 +151,99 @@ MonoBehaviour:
   destinationSetter: {fileID: 6359726622231637239}
   attackHitbox: {fileID: 6278755747373785529}
   isAttacking: 0
+  cooldown_time: 0
   Drop: {fileID: 0}
   attack_timer: 1
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
+  attackProbalities: []
+  shootRate: 1
+  projectileMaxMoveSpeed: 0
+  projectileMaxHeight: 0
+  projectilePrefab: {fileID: 6049593373930495556, guid: 0adebcc93c8dcc54c986d0e958d31f88, type: 3}
+  trajectoryAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  axisCorrectionAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  projectileSpeedAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1.1362247
+      outSlope: -1.1362247
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2560748
+      value: 0.7090415
+      inSlope: 0.14231692
+      outSlope: 0.14231692
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11557789
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.3911126
+      outSlope: 0.3911126
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   largeProjectile: {fileID: 6749576296793803437, guid: 5fdd70dce24c2eb4a861a5712fbacf0e, type: 3}
+  knightsList: []
+  emotionCapsule: {fileID: 0}
 --- !u!114 &8473512997577412845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,3 +374,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &3411270614891509333
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439078935783777668}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

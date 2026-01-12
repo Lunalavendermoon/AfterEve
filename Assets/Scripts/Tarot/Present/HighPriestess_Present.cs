@@ -10,7 +10,7 @@ public class HighPriestess_Present : Present_TarotCard
 
     public HighPriestess_Present(int q) : base(q)
     {
-        name = "HighPriestess_Present";
+        cardName = "HighPriestess_Present";
 
         // TODO make effect only apply sometimes
         playerGun = PlayerController.instance.gameObject.GetComponent<PlayerGun>();

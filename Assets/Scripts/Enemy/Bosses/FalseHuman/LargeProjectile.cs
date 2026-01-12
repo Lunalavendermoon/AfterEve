@@ -22,7 +22,7 @@ public class LargeProjectile : EnemyBase
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         current_enemy_state?.UpdateState(this);
         if (timer < 10)

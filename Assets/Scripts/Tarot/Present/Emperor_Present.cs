@@ -8,11 +8,10 @@ public class Emperor_Present : Present_TarotCard
     int[] basicDefenseIncrease = {50, 70, 90, 110, 130};
     float knockBackAmount = 0.1f;
     EffectManager effectManager = PlayerController.instance.gameObject.GetComponent<EffectManager>();
-    new List<Effects> effects;
 
     public Emperor_Present(int q) : base(q)
     {
-        name = "Emperor_Present";
+        cardName = "Emperor_Present";
 
         effects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
         effects.Add(new AmmoCapacity_Effect(-1, ammoCapaciityIncrease[level]));
@@ -20,12 +19,12 @@ public class Emperor_Present : Present_TarotCard
         effects.Add(new Knockback_Effect(-1)); // TODO set Knockback a specific amount?
     }
 
-    void OnEnable()
+    protected override void ApplyListeners()
     {
         PlayerController.OnPlayerStateChange += HandlePlayerStateChange;
     }
 
-    void OnDisable()
+    protected override void RemoveListeners()
     {
         PlayerController.OnPlayerStateChange -= HandlePlayerStateChange;
     }

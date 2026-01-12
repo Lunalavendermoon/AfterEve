@@ -1,0 +1,98 @@
+﻿title: TestScript
+---
+This is an example of a Yarn Spinner script. Write your dialogue here!
+
+===
+title: Start
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I am Cyrus.
+<<set_portrait YarnManager HatsuneMiku Happy>>
+Hatsune Miku: Hello Cyrus, I am Hatsune Miku!
+<<set_portrait YarnManager Cyrus>>
+Cyrus: HATSUNE MIKU?!
+<<jump End>>
+===
+
+title: End
+---
+<<set_portrait YarnManager HatsuneMiku Sad>>
+Hatsune Miku: Maybe After Eve was the friends we made along the way.
+Hatsune Miku: I must go now, goodbye.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Thank you Hatsune Miku.
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: Back_To_Game
+---
+<<start_controls YarnManager>>
+===
+
+title: NPC_Repeated
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: This is some repeatable dialogue.
+Cyrus: Crazy? I was crazy once. They put me in a room. A rubber room with rats. And rats make me crazy.
+Cyrus: Crazy?
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: NPC_1
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Nice to meet you random NPC. This is the first time we met.
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: NPC_2
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Hello random NPC. We meet again.
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: NPC_onetime
+---
+<<set_portrait YarnManager HatsuneMiku Happy>>
+Hatsune Miku: It's me Hatsune Miku.
+Hatsune Miku: I will disappear now.
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: Loop1Node1
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Eve/Monster introduction node
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: Loop1Node1_Alt
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Eve/Monster introduction alternate
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: Loop1Node2
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Eve Worldbuilding node
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===
+
+title: Loop1Node5
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Shop tutorial node
+<<clear_portrait YarnManager>>
+<<jump Back_To_Game>>
+===

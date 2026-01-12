@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Present_TarotCard : TarotCard
 {
-    public List<Effects> effects;
+    public List<Effects> effects = new();
     public int level;
 
     public Present_TarotCard(int q) : base(q)
@@ -21,6 +21,7 @@ public class Present_TarotCard : TarotCard
                 tarotManager.effectManager.AddEffect(e);
             }
         }
+        ApplyListeners();
     }
 
     public override void RemoveCard(TarotManager tarotManager)
@@ -31,5 +32,9 @@ public class Present_TarotCard : TarotCard
                 
             }
         }
+        RemoveListeners();
     }
+
+    protected virtual void ApplyListeners() {}
+    protected virtual void RemoveListeners() {}
 }

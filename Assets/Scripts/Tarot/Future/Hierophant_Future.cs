@@ -13,7 +13,7 @@ public class Hierophant_Future : Future_TarotCard
 
     public Hierophant_Future(int q) : base(q)
     {
-        name = "Hierophant_Future";
+        cardName = "Hierophant_Future";
         reward = new Hierophant_Reward(this);
     }
 

@@ -1,8 +1,34 @@
 using UnityEngine;
 
-public abstract class TarotCard : MonoBehaviour
+public abstract class TarotCard
 {
-    public new string name;
+    // Only used for shop RN, but feel free to use for tarot classes as well :)
+    public enum Arcana
+    {
+        Fool,
+        Magician,
+        HighPriestess,
+        Empress,
+        Emperor,
+        Hierophant,
+        Lovers,
+        Chariot,
+        Strength,
+        Hermit,
+        WheelOfFortune,
+        Justice,
+        HangedMan,
+        Death,
+        Temperance,
+        Devil,
+        Tower,
+        Star,
+        Moon,
+        Sun,
+        Judgement,
+        World
+    }
+    public string cardName;
     public int quantity;
 
     public TarotCard(int q)

@@ -11,7 +11,7 @@ public class Chariot_Future : Future_TarotCard
 
     public Chariot_Future(int q) : base(q)
     {
-        name = "Chariot_Future";
+        cardName = "Chariot_Future";
         reward = new Chariot_Reward(this);
     }
 

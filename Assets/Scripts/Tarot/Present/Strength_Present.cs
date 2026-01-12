@@ -8,7 +8,7 @@ public class Strength_Present : Present_TarotCard
 
     public Strength_Present(int q) : base(q)
     {
-        name = "Strength_Present";
+        cardName = "Strength_Present";
 
         PlayerAttributes attributes = PlayerController.instance.playerAttributes;
         attributes.bulletPierces = 3; // TODO change this

@@ -62,9 +62,4 @@ public class EffectInstance
             initialApplication = false;
         }
     }
-
-    public bool IsTriggered()
-    {
-        return !effect.IsIncremental() || IsNextTrigger();
-    }
 }

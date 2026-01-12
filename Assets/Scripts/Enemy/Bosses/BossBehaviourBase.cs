@@ -61,12 +61,14 @@ public abstract class BossBehaviourBase : MonoBehaviour
         agent = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
         current_enemy_state = default_enemy_state;
+        current_enemy_state.EnterState(this);
+        isAttacking = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        current_enemy_state?.UpdateState(this);
     }
 
     public abstract void Movement();
@@ -136,6 +138,7 @@ public abstract class BossBehaviourBase : MonoBehaviour
 
     public virtual void Pathfinding(Transform target)
     {
+        Debug.Log("Pathfinding start");
         destinationSetter.target = target;
     }
 

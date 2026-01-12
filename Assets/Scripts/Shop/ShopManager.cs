@@ -57,7 +57,8 @@ public class ShopManager : MonoBehaviour
                 int price = UnityEngine.Random.Range(25, 101);
                 
                 // Random quantity from 1-5
-                int quantity = UnityEngine.Random.Range(1, 6);
+                // Future cards can only generate w/ quantity of 1
+                int quantity = card.Item2 ? 1 : UnityEngine.Random.Range(1, 6);
 
                 GameObject go = Instantiate(shopItemPrefab, shopLayout.transform);
                 shopStock.Add(go);

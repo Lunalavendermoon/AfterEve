@@ -36,7 +36,7 @@ public class ShopItem : MonoBehaviour
 
         Debug.Log($"Purchased item {arcana} {(isFuture ? "Future" : "Present")} ({quantity}) for {price} coins");
 
-        PlayerController.instance.ChangeCoins(-price);
+        PlayerController.instance.ChangeCoins(-price, true);
 
         purchased = true;
 

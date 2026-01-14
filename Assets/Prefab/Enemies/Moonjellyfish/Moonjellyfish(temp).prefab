@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 289140800312767534}
   - component: {fileID: 4414267260244481455}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2341878997991670800}
   - component: {fileID: 7631987195092300849}
   - component: {fileID: 3553563749180926273}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Moonjellyfish(temp)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -222,6 +222,8 @@ MonoBehaviour:
   baseEnemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
   enemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
   enemyEffectManager: {fileID: 7631987195092300849}
+  chest: {fileID: 0}
+  spawner: {fileID: 0}
   health: 0
   speed: 0
   agent: {fileID: 4867966037313945444}
@@ -231,8 +233,7 @@ MonoBehaviour:
   Drop: {fileID: 0}
   attack_timer: 0
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
-  chest: {fileID: 0}
-  spawner: {fileID: 0}
+  givesRewards: 1
   luck: 1
   elite: 0
   wanderRadius: 7.5
@@ -333,6 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81eb346ca2dc4099bdbeba4de861b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
+  vfx: {fileID: 0}
   enemy: {fileID: 7347425688799341433}
   baseEnemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
   effectEnemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
@@ -360,7 +362,7 @@ GameObject:
   - component: {fileID: 4709623026183659449}
   - component: {fileID: 7012003899673333318}
   - component: {fileID: 9048658355576472768}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3372717664749113183}
   - component: {fileID: 7387802965574326996}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3968916043988219451}
   - component: {fileID: 2851084675228227762}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Teeth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7034950758700818185}
   - component: {fileID: 232768047521416004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}

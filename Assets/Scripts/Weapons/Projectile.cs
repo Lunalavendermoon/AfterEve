@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,7 +14,7 @@ public class Projectile : MonoBehaviour
 
     public static event Action<EnemyBase> OnEnemyHit;
     private int bulletBounces;
-    private Effects bulletEffect;
+    private List<Effects> bulletEffects;
     private int bulletPiercing;
     private int enemiesPierced;
 
@@ -29,10 +30,10 @@ public class Projectile : MonoBehaviour
         bulletBounces = n;
     }
     public void SetBulletPiercing(int n) { bulletPiercing = n; }
-    public void SetBulletEffect(Effects bulletEffect)
+    public void SetBulletEffects(List<Effects> bulletEffects)
 
     {
-        this.bulletEffect = bulletEffect;
+        this.bulletEffects = bulletEffects;
     }
 
     void Start()
@@ -88,8 +89,9 @@ public class Projectile : MonoBehaviour
             enemy.TakeDamage(projectileDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
             if (enemy.GetComponent<EffectManager>())
             {
-                if (!(bulletEffect == null))
-                    enemy.GetComponent<EffectManager>().AddEffect(bulletEffect);
+                if (!(bulletEffects == null))
+                    foreach(Effects bulletEffect in bulletEffects)
+                        enemy.GetComponent<EffectManager>().AddEffect(bulletEffect);
             }
             enemiesPierced++;
             if (enemiesPierced == bulletPiercing)
@@ -106,7 +108,7 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("collision");
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             //Debug.Log("collision detected");
             if (bulletBounces > 0)

@@ -49,7 +49,7 @@ public class PlayerGun : MonoBehaviour
                 projectile.GetComponent<Projectile>().SetProjectileDamage(damage);
                 foreach (Effects effect in bulletEffects)
                 {
-                    projectile.GetComponent<Projectile>().SetBulletEffect(effect);
+                    projectile.GetComponent<Projectile>().SetBulletEffects(bulletEffects);
                 }
                 projectile.GetComponent<Projectile>().SetBulletPiercing(PlayerController.instance.playerAttributes.bulletPierces);
                 currentAngle -= 10;

@@ -37,7 +37,7 @@ public class BossProjectileScript : MonoBehaviour
 
         UpdateProjectilePosition();
 
-        Debug.Log(Vector3.Distance(transform.position, target.transform.position));
+        //Debug.Log(Vector3.Distance(transform.position, target.transform.position));
         if (Vector3.Distance(transform.position, target.transform.position) < distanceToTargetToDestroyProjectile)
         {
             Destroy(target);
@@ -50,7 +50,7 @@ public class BossProjectileScript : MonoBehaviour
     {
         trajectoryRange = target.transform.position - trajectoryStartPoint;
 
-        Debug.DrawLine(transform.position, target.transform.position, Color.red);
+        //Debug.DrawLine(transform.position, target.transform.position, Color.red);
         if (Mathf.Abs(trajectoryRange.normalized.x) < Mathf.Abs(trajectoryRange.normalized.y))
         {
             // Projectile will be curved on the X axis

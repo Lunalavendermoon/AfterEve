@@ -48,6 +48,7 @@ public class EmotionCapsule : MonoBehaviour
 
         PlayerController.instance.TakeDamage(600, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
         //apply effects
+        Destroy(gameObject);
     }
 
     public void TakeDamage()

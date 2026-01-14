@@ -144,7 +144,22 @@ public abstract class BossBehaviourBase : MonoBehaviour
 
     public virtual int ChooseAttack()
     {
-        return 1;
+        float choice = UnityEngine.Random.Range(0f, 1f)*100;
+        float attackProbailitySum = 0f;
+        for (int i = 0; i < attackProbalities.Length; i++)
+        {
+            if (attackProbalities[i] > 0)
+            {
+                attackProbailitySum += attackProbalities[i];
+                if (choice <= attackProbailitySum)
+                {
+                    Debug.Log($"Chose attack {i+1} with choice value {choice} and cumulative probability {attackProbailitySum}");
+                    return i+1;
+                }
+            }
+        }
+        Debug.Log("Attack choice failed, defaulting to attack 1");
+        return 1; //default to attack 1
     }
 
 

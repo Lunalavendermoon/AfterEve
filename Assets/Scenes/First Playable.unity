@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8121215b251ad48be21bed0fdc5942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowPlayer
-  Player: {fileID: 1865706395}
+  Player: {fileID: 220935453}
   offset: {x: 0, y: 0, z: -5}
 --- !u!114 &165906623
 MonoBehaviour:
@@ -897,6 +897,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192544428}
   m_CullTransparentMesh: 1
+--- !u!4 &220935453 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7246929787120357295, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+  m_PrefabInstance: {fileID: 670709972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &265326306
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,15 +2646,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7421140615860505255, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 401.59433
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7421140615860505255, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7421140615860505255, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -250.40466
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7421140615860505255, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6644,11 +6649,6 @@ CanvasRenderer:
 --- !u!1 &1865706394 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2086849141670054534, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
-  m_PrefabInstance: {fileID: 670709972}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1865706395 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7421140615860505255, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
   m_PrefabInstance: {fileID: 670709972}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1890935039

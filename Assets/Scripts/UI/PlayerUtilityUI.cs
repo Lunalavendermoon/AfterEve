@@ -23,6 +23,10 @@ public class PlayerUtilityUI : MonoBehaviour
     {
         Instance = GetComponent<PlayerUtilityUI>();
         dashMaskImage.fillAmount = 1f;
+    }
+
+    void Start()
+    {
         dashCooldownDuration = PlayerController.instance.playerAttributes.dashCooldown;
     }
 

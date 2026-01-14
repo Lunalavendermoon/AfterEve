@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
         if (instance == null) instance = this;
 
         playerInput = new PlayerInput();
+
+        // rotation state machine
+        currentRotationState = new RotationState_N();
+        currentRotationState.EnterState(this);
     }
 
     // user input system
@@ -101,14 +105,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        // rotation state machine initialization moved to Awake()
+
         // movement state machine
         currentState = new Player_Idle();
         currentState.EnterState(this);
         OnPlayerStateChange?.Invoke(currentState);
-
-        // rotation state machine
-        currentRotationState = new RotationState_N();
-        currentRotationState.EnterState(this);
 
         // weapon
         currentAmmo = playerAttributes.Ammo;

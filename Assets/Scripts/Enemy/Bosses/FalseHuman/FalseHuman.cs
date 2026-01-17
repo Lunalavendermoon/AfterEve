@@ -177,7 +177,7 @@ public class FalseHuman : BossBehaviourBase
         isAttacking = true;
 
         Debug.Log("Attack 1: Shooting projectiles.");
-        int[] projectileCounts = new int[] { 1};
+        int[] projectileCounts = new int[] { 5,7,9};
         for (int round = 0; round < projectileCounts.Length; round++)
         {
 
@@ -190,7 +190,7 @@ public class FalseHuman : BossBehaviourBase
                 GameObject target = new GameObject("ProjectileTarget");
                 target.transform.position = PlayerController.instance.transform.position;
                 float angle = angleOffset + i * angleStep;
-                Debug.Log($"Transform z: {transform.position.z}");
+                
                 Vector3 spawnpoint = new Vector3(transform.position.x+Mathf.Cos(angle * Mathf.Deg2Rad),
                                                  transform.position.y + Mathf.Sin(angle * Mathf.Deg2Rad), 
                                                  transform.position.z);

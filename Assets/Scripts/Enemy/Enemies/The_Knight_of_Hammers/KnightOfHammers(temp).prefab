@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3977068067751882026}
   - component: {fileID: 7194713762691430079}
   - component: {fileID: 8490398554515204653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: KnightOfHammers(temp)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,19 +52,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99af19219df2e0d46b05a6ec314b5f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnightofHammersScript
+  baseEnemyAttributes: {fileID: 0}
   enemyAttributes: {fileID: 11400000, guid: d8cc421bcec8ff84fbd169ebea5dddb6, type: 2}
   enemyEffectManager: {fileID: 0}
+  chest: {fileID: 0}
+  spawner: {fileID: 0}
   health: 0
-  damage: 0
   speed: 0
-  attackRange: 0
-  visibleRange: 0
-  attackCooldown: 0
   agent: {fileID: 7194713762691430079}
   destinationSetter: {fileID: 8490398554515204653}
   attackHitbox: {fileID: 3385193953142855512}
   isAttacking: 0
+  Drop: {fileID: 0}
   attack_timer: 1
+  floatingTextPrefab: {fileID: 0}
+  givesRewards: 1
+  luck: 1
+  elite: 0
   wanderRadius: 7.5
   wanderTime: 3
   playerLayer:
@@ -301,7 +305,7 @@ GameObject:
   - component: {fileID: 2443044126186325617}
   - component: {fileID: 2307510543398404039}
   - component: {fileID: 1402633035857874628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +442,7 @@ GameObject:
   - component: {fileID: 4709623026183659449}
   - component: {fileID: 7012003899673333318}
   - component: {fileID: 6654072664844376974}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     // make into singleton
     public static PlayerController instance;
     public HealthBarScript healthBar;
+    public QuestUIScript questUIScript;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -117,8 +118,13 @@ public class PlayerController : MonoBehaviour
         AttackUI.Instance.initializeAmmoUI();
 
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
-        healthBar.setMaxHealth(playerAttributes.maxHitPoints);
+        healthBar.setMaxHitPoints(playerAttributes.maxHitPoints);
+        healthBar.setCurrentHitPoints(playerAttributes.maxHitPoints);
         health = playerAttributes.maxHitPoints;
+
+        questUIScript.setQuestName("A test quest");
+        questUIScript.setQuestDescription("blah blah blah get 8 ?");
+        questUIScript.setQuestMaxValue(8);
 
         // audio
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);
@@ -430,6 +436,7 @@ public class PlayerController : MonoBehaviour
         {
             playerAttributes.shield = 0;
             health -= amountAfterShield;
+            healthBar.setCurrentHitPoints(health);
         } else
         {
             playerAttributes.shield -= amount;
@@ -447,6 +454,7 @@ public class PlayerController : MonoBehaviour
     {
         health = Math.Clamp(health + amount, 0, playerAttributes.maxHitPoints);
         Debug.Log($"Player healed {amount}, current health: {health}");
+        healthBar.setCurrentHitPoints(health);
         // includes overflow healing in calculation :3
         OnHealed?.Invoke(amount);
     }

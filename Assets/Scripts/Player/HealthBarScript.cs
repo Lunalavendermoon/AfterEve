@@ -1,67 +1,66 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 using System;
 
 public class HealthBarScript : MonoBehaviour
 {
-    // TODO: tie slider value to a health stat in PlayerAttributes if needed
-    // - animation may be glitchy if you don't -> having separate health attr allows stopping other animations on new/frequent
-    //   health change w/out losing changes to health
-
     public Slider slider;
-    public float maxHealth;
+    private Coroutine healthSlidingRoutine; //for preventing multiple animations
+    [SerializeField] private TMP_Text healthValueText;
+    private PlayerAttributes playerAttributes;
 
-    // temporary - for testing only
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            float newHealth = slider.value - 300;
-            Debug.Log("h detected - setting new health to: " + newHealth);
-            setHealth(newHealth);
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            float newHealth = slider.value + 300;
-            Debug.Log("j detected - setting new health to: " + newHealth);
-            setHealth(newHealth);
-        }
+    private void Start() {
+        playerAttributes = PlayerController.instance.playerAttributes;
     }
 
-    public void setMaxHealth(float health)
+    // Set player's max health
+    public void setMaxHitPoints(int health)
     {
-        maxHealth = health;
+        playerAttributes.maxHitPoints = health;
         slider.maxValue = health;
-        setHealth(health);
         Debug.Log("Set max health to " + health);
+        updateHitPointUIValues(playerAttributes.currentHitPoints);
     }
 
-    public void setHealth(float health)
+    // Set player's current health
+    public void setCurrentHitPoints(int health)
     {
-        float newHealth = health;
-        if(health > maxHealth) {
-            newHealth = maxHealth;
+        int newHealth = health;
+        if(health > playerAttributes.maxHitPoints) {
+            newHealth = playerAttributes.maxHitPoints;
         }
         if(health < 0) {
             newHealth = 0;
         }
-        StartCoroutine(healthSlidingAnimationCoroutine(newHealth));
+
+        playerAttributes.currentHitPoints = newHealth;
+
+        if(healthSlidingRoutine != null) StopCoroutine(healthSlidingRoutine);
+        healthSlidingRoutine = StartCoroutine(healthSlidingAnimationCoroutine(newHealth));
     }
 
-    // UI animation helper
+    public void updateHitPointUIValues(int currentHitPoints) {
+        healthValueText.text = currentHitPoints + "/" + playerAttributes.maxHitPoints;
+    }
+
+    // UI animation helper for smooth transition between diff health values
     private IEnumerator healthSlidingAnimationCoroutine(float finalHealth)
     {
         float startingHealth = slider.value;
         float slidingStartTime = Time.time;
-        float slidingDuration = 0.01f * (Math.Abs(finalHealth - startingHealth))/maxHealth * 100; //0.05s sliding time/1% of health
+        float slidingDuration = 0.01f * (Math.Abs(finalHealth - startingHealth))/playerAttributes.maxHitPoints * 100; //0.05s sliding time/1% of health
 
         while (Time.time - slidingStartTime < slidingDuration)
         {
             // new health at X point in time = startingHealth + proportion of total time passed * total health to change
             slider.value = startingHealth + ((Time.time - slidingStartTime)/slidingDuration) * (finalHealth - startingHealth);
+            updateHitPointUIValues((int)slider.value);
             yield return null;
         }
+        
+        updateHitPointUIValues((int)finalHealth);
         slider.value = finalHealth;
         yield break;
     }

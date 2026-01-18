@@ -29,7 +29,7 @@ public class Player_Move : IPlayerState
             currentPosition.y *= 1 / (float)Math.Sqrt(2);
         }
 
-        PlayerUtilityUI.Instance.SetMoveUIDirection(player.horizontalInput, player.verticalInput);
+        PlayerMovementUI.Instance.SetMoveUIDirection(player.horizontalInput, player.verticalInput);
 
         currentPosition += player.transform.position;
         player.transform.position = currentPosition;

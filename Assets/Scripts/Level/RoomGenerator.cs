@@ -39,6 +39,7 @@ public class RoomGenerator : MonoBehaviour
     /// </summary>
     public List<RoomBlock> GenerateRoomLayout()
     {
+        Debug.Log($"[RoomGenerator] availableRoomBlocks count = {availableRoomBlocks.Count}");
         ClearExistingRooms();
         
         int roomCount = Random.Range(minRooms, maxRooms + 1);

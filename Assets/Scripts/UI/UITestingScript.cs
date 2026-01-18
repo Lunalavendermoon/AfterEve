@@ -8,6 +8,7 @@ public class UITestingScript : MonoBehaviour
     [SerializeField] private Button healHealthButton;
     [SerializeField] private Button damageHealthButton;
     [SerializeField] private Button addQuestProgressButton;
+    [SerializeField] private Button loseQuestProgressButton;
 
     [SerializeField] private TMP_Text healButtonText;
     [SerializeField] private TMP_Text damageButtonText;
@@ -35,5 +36,6 @@ public class UITestingScript : MonoBehaviour
         healHealthButton.onClick.AddListener(() => healthBarScript.setCurrentHitPoints(playerAttributes.currentHitPoints + healAmount));
         damageHealthButton.onClick.AddListener(() => healthBarScript.setCurrentHitPoints(playerAttributes.currentHitPoints - damageAmount));
         addQuestProgressButton.onClick.AddListener(() => questUIScript.setQuestCurrentValue(questUIScript.getQuestCurrentValue() + 1));
+        loseQuestProgressButton.onClick.AddListener(() => questUIScript.setQuestCurrentValue(questUIScript.getQuestCurrentValue() - 1));
     }
 }

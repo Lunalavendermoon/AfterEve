@@ -122,9 +122,10 @@ public class PlayerController : MonoBehaviour
         healthBar.setCurrentHitPoints(playerAttributes.maxHitPoints);
         health = playerAttributes.maxHitPoints;
 
-        questUIScript.setQuestName("A test quest");
-        questUIScript.setQuestDescription("blah blah blah get 8 ?");
+        questUIScript.setQuestName("The Wheel of Fortune");
+        questUIScript.setQuestDescription("Give Eve 8 million dollars because she wants it.");
         questUIScript.setQuestMaxValue(8);
+        questUIScript.setQuestCurrentValue(7);
 
         // audio
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);

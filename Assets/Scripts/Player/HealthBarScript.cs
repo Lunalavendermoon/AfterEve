@@ -42,7 +42,7 @@ public class HealthBarScript : MonoBehaviour
     }
 
     public void updateHitPointUIValues(int currentHitPoints) {
-        healthValueText.text = currentHitPoints + "/" + playerAttributes.maxHitPoints;
+        healthValueText.text = currentHitPoints + " / " + playerAttributes.maxHitPoints;
     }
 
     // UI animation helper for smooth transition between diff health values

@@ -36,7 +36,7 @@ public class QuestUIScript : MonoBehaviour
         currentValue = 0;
         slider.value = 0;
 
-        questValueText.text = currentValue + "/" + maxValue;
+        questValueText.text = currentValue + " / " + maxValue;
     }
     public void setQuestCurrentValue(int newCurrentValue) {
         if(newCurrentValue < 0 || newCurrentValue > maxValue) {
@@ -61,7 +61,7 @@ public class QuestUIScript : MonoBehaviour
         float slidingStartTime = Time.time;
         float slidingDuration = 0.01f * (Math.Abs(finalValue - startingValue))/maxValue * 100; //0.01s sliding time/1% change of total health
 
-        questValueText.text = finalValue + "/" + maxValue;
+        questValueText.text = finalValue + " / " + maxValue;
 
         while (Time.time - slidingStartTime < slidingDuration)
         {

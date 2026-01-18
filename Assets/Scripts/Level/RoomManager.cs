@@ -71,6 +71,7 @@ public class RoomManager : MonoBehaviour
     /// </summary>
     public void GenerateCompleteLevel()
     {
+        Debug.Log("RoomManager.GenerateCompleteLevel CALLED");
         if (showDebugInfo)
         {
             Debug.Log("开始生成完整关卡...");

@@ -144,7 +144,7 @@ public abstract class BossBehaviourBase : MonoBehaviour
 
     public virtual int ChooseAttack()
     {
-        float choice = UnityEngine.Random.Range(0f, 1f)*100;
+        float choice = UnityEngine.Random.Range(0f, 1f) * 100;
         float attackProbailitySum = 0f;
         for (int i = 0; i < attackProbalities.Length; i++)
         {
@@ -153,8 +153,8 @@ public abstract class BossBehaviourBase : MonoBehaviour
                 attackProbailitySum += attackProbalities[i];
                 if (choice <= attackProbailitySum)
                 {
-                    Debug.Log($"Chose attack {i+1} with choice value {choice} and cumulative probability {attackProbailitySum}");
-                    return i+1;
+                    Debug.Log($"Chose attack {i + 1} with choice value {choice} and cumulative probability {attackProbailitySum}");
+                    return i + 1;
                 }
             }
         }

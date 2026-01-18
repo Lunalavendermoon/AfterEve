@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 
 // named kind of badly: Movement-Related UI;
-public class PlayerUtilityUI : MonoBehaviour
+public class PlayerMovementUI : MonoBehaviour
 {
     // Singleton
-    public static PlayerUtilityUI Instance;
+    public static PlayerMovementUI Instance;
 
     // for dash animation
     [SerializeField] private Image dashMaskImage;
@@ -21,7 +21,7 @@ public class PlayerUtilityUI : MonoBehaviour
 
     void Awake()
     {
-        Instance = GetComponent<PlayerUtilityUI>();
+        Instance = GetComponent<PlayerMovementUI>();
         dashMaskImage.fillAmount = 1f;
     }
 

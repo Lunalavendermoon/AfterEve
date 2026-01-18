@@ -32,7 +32,7 @@ public class Player_Dash : IPlayerState
         dashActive = true;
         OnDash?.Invoke();
         dashStartTime = Time.time;
-        PlayerUtilityUI.Instance.triggerDashUsedUI();
+        PlayerMovementUI.Instance.triggerDashUsedUI();
 
         if (player.horizontalInput != 0 && player.verticalInput != 0)
         {

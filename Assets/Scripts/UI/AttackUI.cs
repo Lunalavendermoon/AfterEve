@@ -45,7 +45,10 @@ public class AttackUI : MonoBehaviour
     // Every frame - update attack direction indicator rotation
     void Update()
     {
-        Vector3 targetAngleVector = Input.mousePosition - Camera.main.WorldToScreenPoint(player.transform.position);
+        //find the angle between the player position and the mouse position
+        Vector2 mousePosition = Input.mousePosition;
+        Vector2 playerScreenPosition = Camera.main.WorldToScreenPoint(player.transform.position);
+        Vector2 targetAngleVector = mousePosition - playerScreenPosition;
         float targetAngle = Mathf.Atan2(targetAngleVector.y, targetAngleVector.x) * Mathf.Rad2Deg;
 
         attackPivotCenter.rotation = Quaternion.AngleAxis(targetAngle - 90, Vector3.forward);
@@ -53,7 +56,7 @@ public class AttackUI : MonoBehaviour
 
 
 
-    /*Ammo UI Functions*/
+    // Ammo UI
     public void initializeAmmoUI()
     {
         // TODO: if needed - update to dynamically create ammo icons based on weapon type (?)
@@ -80,7 +83,7 @@ public class AttackUI : MonoBehaviour
 
 
 
-    /*Reload Animation Functions*/
+    // Reload Animation
     public void runAmmoReloadAnimation()
     {
         StartCoroutine(reloadAnimationCoroutine());

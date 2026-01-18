@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4816070190297930849}
   - component: {fileID: 1695140541752330707}
   - component: {fileID: 8154190056846234483}
-  m_Layer: 0
+  - component: {fileID: 5830495547682645001}
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +104,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &5830495547682645001
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967006483078592933}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1710929130042634915
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +166,7 @@ GameObject:
   - component: {fileID: 5839309627099118830}
   - component: {fileID: 9057291392753763488}
   - component: {fileID: 2805890137714207626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: KnightOfShields
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,19 +202,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2448119f7238d92439ae309d8cdcb332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnightofShields_script
+  baseEnemyAttributes: {fileID: 0}
   enemyAttributes: {fileID: 11400000, guid: ed4a3554f200ad44ca43d8c02233ca44, type: 2}
   enemyEffectManager: {fileID: 0}
+  chest: {fileID: 0}
+  spawner: {fileID: 0}
   health: 0
-  damage: 0
   speed: 0
-  attackRange: 0
-  visibleRange: 0
-  attackCooldown: 0
   agent: {fileID: 9057291392753763488}
   destinationSetter: {fileID: 2805890137714207626}
   attackHitbox: {fileID: 3385193953142855512}
   isAttacking: 0
+  Drop: {fileID: 0}
   attack_timer: 1
+  floatingTextPrefab: {fileID: 0}
+  givesRewards: 1
+  luck: 1
+  elite: 0
   wanderRadius: 7.5
   wanderTime: 3
   dashSpeed: 10
@@ -398,7 +449,7 @@ GameObject:
   - component: {fileID: 4709623026183659449}
   - component: {fileID: 7012003899673333318}
   - component: {fileID: 4309242890368478670}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

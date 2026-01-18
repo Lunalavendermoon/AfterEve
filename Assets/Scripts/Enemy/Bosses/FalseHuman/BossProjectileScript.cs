@@ -37,7 +37,7 @@ public class BossProjectileScript : MonoBehaviour
 
         UpdateProjectilePosition();
 
-        //Debug.Log(Vector3.Distance(transform.position, target.transform.position));
+        Debug.Log(Vector3.Distance(transform.position, target.transform.position));
         if (Vector3.Distance(transform.position, target.transform.position) < distanceToTargetToDestroyProjectile)
         {
             Destroy(target);
@@ -147,7 +147,7 @@ public class BossProjectileScript : MonoBehaviour
         float nextPositionY = trajectoryStartPoint.y + nextYTrajectoryPosition + nextPositionYCorrectionAbsolute;
 
 
-        Vector3 newPosition = new Vector3(nextPositionX, nextPositionY, 0);
+        Vector3 newPosition = new Vector3(nextPositionX, nextPositionY, target.transform.position.z);
 
 
         CalculateNextProjectileSpeed(nextPositionXNormalized);

@@ -26,11 +26,12 @@ public class Boss_Cooldown : IBossStates
 
             boss.ChangeState(new Boss_Attack(boss.ChooseAttack()));
         }
-        // Debug.Log("Boss cooldown time: "+ cooldown_time);
+        //Debug.Log("Boss cooldown time: "+ cooldown_time);
 
     }
 
     public void ExitState(BossBehaviourBase boss)
     {
+        Debug.Log("Boss finishes cooldown");
     }
 }

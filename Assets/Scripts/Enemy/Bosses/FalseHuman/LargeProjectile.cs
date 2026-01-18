@@ -42,7 +42,8 @@ public class LargeProjectile : EnemyBase
     public override void Attack(Transform target)
     {
         PlayerController.instance.TakeDamage(health, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
-        Destroy(this);
+        Destroy(gameObject);
+        Debug.Log("Large Projectile deleted.");
 
     }
 }

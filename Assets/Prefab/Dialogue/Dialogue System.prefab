@@ -325,7 +325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.32700002, y: 1}
-  m_AnchoredPosition: {x: 25, y: -0.00015258789}
+  m_AnchoredPosition: {x: 25, y: -0.00018310547}
   m_SizeDelta: {x: -50, y: 0}
   m_Pivot: {x: 0.5, y: 0.49999997}
 --- !u!114 &1286362119369501372
@@ -403,6 +403,34 @@ MonoBehaviour:
     sprites:
     - spriteName: Default
       sprite: {fileID: 21300000, guid: 58b2ed37534ac7c449672663d5b6b464, type: 3}
+  - characterName: Eve
+    sprites:
+    - spriteName: Default
+      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+  - characterName: Shopkeeper
+    sprites:
+    - spriteName: Default
+      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+  - characterName: TownNPC1
+    sprites:
+    - spriteName: Default
+      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+  - characterName: TownNPC2
+    sprites:
+    - spriteName: Default
+      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+  - characterName: TownNPC3
+    sprites:
+    - spriteName: Default
+      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+  - characterName: HunterNPC1
+    sprites:
+    - spriteName: Default
+      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+  - characterName: HunterNPC2
+    sprites:
+    - spriteName: Default
+      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: HatsuneMiku
     sprites:
     - spriteName: Happy
@@ -668,7 +696,7 @@ MonoBehaviour:
   showCharacterNameInLine: 1
   characterNameText: {fileID: 6877835428891322614}
   characterNameContainer: {fileID: 8214400201622092453}
-  useFadeEffect: 1
+  useFadeEffect: 0
   fadeUpDuration: 0.25
   fadeDownDuration: 0.1
   autoAdvance: 0
@@ -1297,7 +1325,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &7435100052089834087
 MonoBehaviour:

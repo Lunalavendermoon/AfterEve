@@ -142,10 +142,13 @@ public class PlayerController : MonoBehaviour
                 SetMagicianSkill(false);
             }
         }
+        HandleInteractInput(); // might need to check if in combat later
 
         if (playerAttributes.isParalyzed)
         {
             currentState = new Player_Idle();
+            // player shouldn't be able to do anything while paralyzed
+            return;
         }
         else
         {
@@ -179,7 +182,6 @@ public class PlayerController : MonoBehaviour
         {
             CreateClone(1, 1, 1);
         }
-        HandleInteractInput(); // might need to check if in combat later
     }
 
     string BuildSkillDisplayString()

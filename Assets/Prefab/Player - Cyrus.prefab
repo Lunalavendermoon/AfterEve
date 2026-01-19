@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   healthBar: {fileID: 0}
+  questUIScript: {fileID: 0}
   horizontalInput: 0
   verticalInput: 0
   speed: 1
@@ -838,7 +839,7 @@ GameObject:
   - component: {fileID: 7421140615860505255}
   m_Layer: 0
   m_Name: Player - Cyrus
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

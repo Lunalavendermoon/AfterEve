@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9035796293173731193, guid: 2f62843c08f7c449fa39f2a638a86164, type: 3}
       propertyPath: yarnSpinnerNode
-      value: Loop1Node1_Alt
+      value: Act1_EveIntro_PreCombat_L1N1_Alt
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

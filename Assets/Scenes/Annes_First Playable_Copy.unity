@@ -4225,6 +4225,7 @@ MonoBehaviour:
   spawnBehavior: {fileID: 1068506910}
   portal: {fileID: 2121234110}
   narrativeRoomManager: {fileID: 828173323}
+  generateNarrativeRooms: 1
 --- !u!114 &828173323
 MonoBehaviour:
   m_ObjectHideFlags: 0

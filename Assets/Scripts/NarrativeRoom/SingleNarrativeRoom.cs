@@ -15,5 +15,5 @@ public class SingleNarrativeRoom : ScriptableObject
     public int pathCount;
     public GameObject roomPrefab;
     public GameObject itemPrefab;
-    public GameObject portalLocation;
+    // public GameObject portalLocation;
 }

@@ -72,7 +72,8 @@ public class NarrativeRoomManager : MonoBehaviour
                 Quaternion.identity,
                 roomObj.transform
             );
-            portal.transform.position = roomObj.transform.position + room.portalLocation.transform.position;
+            // TODO portal position should be different in each narrative room
+            portal.transform.position = roomObj.transform.position + new Vector3(2f, 2f, 0f);
             return true;
         }
         return false;

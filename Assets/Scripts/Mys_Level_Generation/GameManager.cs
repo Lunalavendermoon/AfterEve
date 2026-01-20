@@ -34,15 +34,24 @@ public class GameManager : MonoBehaviour
     [Header("Narrative Room Helper")]
     public NarrativeRoomManager narrativeRoomManager;
 
+    // For testing only - use to toggle on/off narrative room generation
+    public bool generateNarrativeRooms;
+
     private void Start()
     {
-        //narrativeRoomManager.StartNewNarrativePath(); // TODO: call this whenever player starts a new narrative path
+        if (generateNarrativeRooms)
+        {
+            narrativeRoomManager.StartNewNarrativePath(); // TODO: call this whenever player starts a new narrative path
+        }
         StartNewPlaythrough();
     }
 
     public void StartNewPlaythrough()
     {
-        //narrativeRoomManager.StartNewCycle(); // TODO: call this whenever player starts a new run
+        if (generateNarrativeRooms)
+        {
+            narrativeRoomManager.StartNewCycle(); // TODO: call this whenever player starts a new run
+        }
         LoadMap();
     }
 
@@ -69,11 +78,15 @@ public class GameManager : MonoBehaviour
         gridToInstance.Clear();
         occupiedCells.Clear();
 
-        narrativeRoomManager.StartNewRoom();
-        if (narrativeRoomManager.TrySpawnNarrativeRoom(mapRoot))
+
+        if (generateNarrativeRooms)
         {
-            spawnBehavior.Respawn();
-            return;
+            narrativeRoomManager.StartNewRoom();
+            if (narrativeRoomManager.TrySpawnNarrativeRoom(mapRoot))
+            {
+                spawnBehavior.Respawn();
+                return;
+            }
         }
 
         // ---------- 1. Spawn FIRST tile at origin ----------

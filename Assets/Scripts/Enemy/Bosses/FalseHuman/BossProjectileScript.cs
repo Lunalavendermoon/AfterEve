@@ -37,7 +37,7 @@ public class BossProjectileScript : MonoBehaviour
 
         UpdateProjectilePosition();
 
-        Debug.Log(Vector3.Distance(transform.position, target.transform.position));
+        //Debug.Log(Vector3.Distance(transform.position, target.transform.position));
         if (Vector3.Distance(transform.position, target.transform.position) < distanceToTargetToDestroyProjectile)
         {
             Destroy(target);

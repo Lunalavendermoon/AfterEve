@@ -30,6 +30,7 @@ public class SpawnBehavior : MonoBehaviour
         //if colliding with a portal in portal layer, call loadmap function from mapmanager
         if (collision.gameObject.layer == LayerMask.NameToLayer("Portal"))
         {
+            Debug.Log("Collided with portal, loading new map");
             gm.LoadMap();
         }
     }

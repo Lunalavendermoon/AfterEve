@@ -316,11 +316,11 @@ public class PlayerController : MonoBehaviour
 
     void HandleShootInput()
     {
-        if(currentAmmo != 0)
+        if(currentAmmo != 0 || magicianSkillActive)
         {
-            bool shotFired = false;
-            if(playerInput.Player.Attack.triggered)
+            if (playerInput.Player.Attack.triggered)
             {
+                bool shotFired;
                 if (magicianSkillActive)
                 {
                     shotFired = PlayerGun.Instance.ShootMagicianCoin();
@@ -332,10 +332,13 @@ public class PlayerController : MonoBehaviour
                 }
 
                 // Only decrease ammo and play gunshot sfx if shot was fired (not in cooldown)
-                if(shotFired)
+                if (shotFired)
                 {
-                    AttackUI.Instance.greyNextAmmo(currentAmmo);
-                    currentAmmo--;
+                    if (!magicianSkillActive)
+                    {
+                        AttackUI.Instance.greyNextAmmo(currentAmmo);
+                        currentAmmo--;
+                    }
                     AudioManager.instance.PlayOneShot(FMODEvents.instance.gunshot, this.transform.position);
                 }
             }

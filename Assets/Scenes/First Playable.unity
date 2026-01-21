@@ -3345,6 +3345,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8495735865464669737, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4219,7 +4223,7 @@ MonoBehaviour:
   - {fileID: 5045135704098879763, guid: 1545fd4707cb4944eb5473744246b9bb, type: 3}
   - {fileID: 6699442185523276588, guid: 85d3fb83fee9fd84185cf747267531f0, type: 3}
   - {fileID: 7285951446171788470, guid: f19ef8e60a0564a4bad9b2465b9b557b, type: 3}
-  - {fileID: 488433544600488035, guid: ee61e63cc65714e449e79184a66773bd, type: 3}
+  - {fileID: 488433544600488035, guid: 979614113bbac0d49b986910b6278964, type: 3}
   mapRoot: {fileID: 489417607}
   tileCount: 4
   spawnBehavior: {fileID: 1068506910}

@@ -60,18 +60,18 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void HandleBulletHit(GameObject other)
     {
-        if (other.gameObject.GetComponent<PlayerController>())
+        if (other.GetComponent<PlayerController>())
         {
         }
-        else if (other.gameObject.GetComponent<EnemyBase>())
+        else if (other.GetComponent<EnemyBase>())
         {
-            EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
+            EnemyBase enemy = other.GetComponent<EnemyBase>();
             OnEnemyHit?.Invoke(enemy);
             for (int i = 0; i < PlayerController.instance.playerAttributes.enemiesChained; i++)
             {
-                GameObject temp = FindNearestUnchainedEnemy(other.gameObject);
+                GameObject temp = FindNearestUnchainedEnemy(other);
                 if(temp != null)
                 {
                     temp.GetComponent<EnemyBase>().Chain(PlayerController.instance.playerAttributes.chainTime);
@@ -119,10 +119,7 @@ public class Projectile : MonoBehaviour
                 transform.forward = reflectedDirection.normalized;
                 bulletBounces--;
             }
-            else
-            {
-                Destroy(this.gameObject);
-            }
+            HandleBulletHit(collision.gameObject);
         }
     }
 

@@ -4697,6 +4697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1428136348101495287, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6365238946846207529, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4776,6 +4780,14 @@ PrefabInstance:
     - target: {fileID: 6365238946846207529, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517444920090821202, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1961496000}
+    - target: {fileID: 6517444920090821202, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisableShopUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5708,7 +5720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1037217889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10487,6 +10499,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952294022}
   m_CullTransparentMesh: 1
+--- !u!114 &1961496000 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
+  m_PrefabInstance: {fileID: 30267085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73f3a801185a454294ba263a02fec18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopManager
 --- !u!1 &1998726963
 GameObject:
   m_ObjectHideFlags: 0

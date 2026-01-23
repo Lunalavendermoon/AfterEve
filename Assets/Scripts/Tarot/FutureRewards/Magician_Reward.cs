@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Magician_Reward : Future_Reward
 {
-    public static int coinsPerShot = 5;
+    public const int coinsPerShot = 5;
 
-    public static int damageMultiplier = 2;
+    public const int damageMultiplier = 2;
 
-    public static float skillDuration = 5f;
+    public const float skillDuration = 5f;
 
     public Magician_Reward(Future_TarotCard card) : base(3, 10f, card)
     {

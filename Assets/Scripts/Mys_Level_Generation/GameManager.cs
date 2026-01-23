@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     // For testing only - use to toggle on/off narrative room generation
     public bool generateNarrativeRooms;
 
+    // Events
+    public static event System.Action OnRoomChange;
+
     private void Start()
     {
         if (generateNarrativeRooms)
@@ -62,6 +65,7 @@ public class GameManager : MonoBehaviour
     {
         ClearMap();
         GenerateAndPlace();
+        OnRoomChange?.Invoke();
     }
 
     // ============================================================

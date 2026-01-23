@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 // Manages the effects present on a single entity (player/enemy)
-// Don't use this directly! Instead, use the children classes PlayerEffectManager or EnemyEffectManager :)
+// Don't use this directly! Instead, use the children classes PlayerEffectManager or EnemyEffectManager
 public abstract class EffectManager : MonoBehaviour
 {
     //visual vfx manager for player

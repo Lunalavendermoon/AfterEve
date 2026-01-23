@@ -26,6 +26,11 @@ public class EnemyItemDrops : MonoBehaviour
         random = Random.Range(0, dropRates[2]);
         if (elite) random += 5;
         int numShards = (int)(random * luck + 1);
+        if (PlayerController.instance.playerAttributes.magicianPastBonusCoin)
+        {
+            Debug.Log("Added bonus shard from Magician Past tarot effect");
+            numShards += Magician_Past.bonusCoinAmount;
+        }
         if(numShards > 0)
         {
             chest.AddShards(numShards);

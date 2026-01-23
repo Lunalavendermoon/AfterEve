@@ -19,6 +19,8 @@ public abstract class Future_Reward
     public static event Action OnRewardFinished;
 
     bool firstUsage = true;
+
+    public static event Action OnSkillUsed;
     
     public Future_Reward(int uses, float cooldown, Future_TarotCard card)
     {
@@ -39,6 +41,7 @@ public abstract class Future_Reward
             return;
         }
 
+        OnSkillUsed?.Invoke();
         TriggerSkillBehavior();
         DecrementSkillUses();
     }

@@ -15,13 +15,13 @@ public class Emperor_Future : Future_TarotCard
 
     public override void ApplyCard(TarotManager tarotManager)
     {
-        // TODO room listener
+        GameManager.OnRoomChange += OnRoomChanged;
         PlayerController.OnDamageTaken += OnAttackReceived;
     }
 
     protected override void RemoveListeners()
     {
-        // TODO room listener
+        GameManager.OnRoomChange -= OnRoomChanged;
         PlayerController.OnDamageTaken -= OnAttackReceived;
     }
 

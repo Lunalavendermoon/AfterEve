@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Fool_Past : Past_TarotCard
 {
-    public static float physicalDmgBonus = 0.07f;
+    public const float physicalDmgBonus = 0.07f;
     const int maxStackPerFoolCard = 7;
     int foolCardCount = 1;
     int stackCounter = 0;
@@ -11,8 +11,6 @@ public class Fool_Past : Past_TarotCard
     {
         cardName = "Fool_Past";
         arcana = Arcana.Fool;
-
-        stackCounter = 0;
     }
 
     protected override void ApplyListeners()

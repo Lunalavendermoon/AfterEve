@@ -44,6 +44,7 @@ public class PlayerAttributes : EntityAttributes
     [Header("Player Other")]
     public float luck;
     public float trustworthiness;
+    public bool magicianPastBonusCoin;
 
 
     // Player Formulas

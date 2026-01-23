@@ -1,12 +1,10 @@
-using UnityEngine;
-
-public class FoolPast_Effect : Effects
+public class MagicianPast_Effect : Effects
 {
-    public FoolPast_Effect() : base(-1)
+    public MagicianPast_Effect() : base(Magician_Past.coinBuffDuration)
     {
         effectStat = Stat.PastTarot;
         isDebuff = false;
-        effectApplication = Application.Additive;
+        effectApplication = Application.Disable;
         hasVfx = true;
     }
 
@@ -17,6 +15,6 @@ public class FoolPast_Effect : Effects
 
     public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)
     {
-        playerAttributes.physicalAdditionalDmg += Fool_Past.physicalDmgBonus;
+        playerAttributes.magicianPastBonusCoin = true;
     }
 }

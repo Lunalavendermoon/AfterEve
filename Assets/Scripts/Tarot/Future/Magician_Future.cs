@@ -16,12 +16,12 @@ public class Magician_Future : Future_TarotCard
 
     public override void ApplyCard(TarotManager tarotManager)
     {
-        // TODO add room change listener
+        GameManager.OnRoomChange += OnRoomChange;
     }
 
     protected override void RemoveListeners()
     {
-        // TODO remove room change listener
+        GameManager.OnRoomChange -= OnRoomChange;
     }
 
     private void OnRoomChange()

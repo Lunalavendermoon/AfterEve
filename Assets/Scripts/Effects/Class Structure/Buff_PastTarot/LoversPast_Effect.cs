@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class FoolPast_Effect : Effects
+public class LoversPast_Effect : Effects
 {
-    public FoolPast_Effect() : base(-1)
+    public LoversPast_Effect() : base(-1)
     {
         effectStat = Stat.PastTarot;
         isDebuff = false;
@@ -17,6 +17,6 @@ public class FoolPast_Effect : Effects
 
     public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)
     {
-        playerAttributes.physicalAdditionalDmg += Fool_Past.physicalDmgBonus;
+        playerAttributes.spiritualAdditionalDmg += Lovers_Past.spiritualDmgBonus;
     }
 }

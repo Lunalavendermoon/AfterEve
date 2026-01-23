@@ -12,6 +12,7 @@ public class Emperor_Present : Present_TarotCard
     public Emperor_Present(int q) : base(q)
     {
         cardName = "Emperor_Present";
+        arcana = Arcana.Emperor;
 
         effects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
         effects.Add(new AmmoCapacity_Effect(-1, ammoCapaciityIncrease[level]));

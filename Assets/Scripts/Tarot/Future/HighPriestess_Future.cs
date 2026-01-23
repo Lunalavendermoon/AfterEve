@@ -12,6 +12,7 @@ public class HighPriestess_Future : Future_TarotCard
     {
         cardName = "HighPriestess_Future";
         reward = new HighPriestess_Reward(this);
+        arcana = Arcana.HighPriestess;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

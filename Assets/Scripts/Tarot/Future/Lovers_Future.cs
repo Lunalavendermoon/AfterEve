@@ -9,6 +9,7 @@ public class Lovers_Future : Future_TarotCard
     {
         cardName = "Lovers_Future";
         reward = new Lovers_Reward(this);
+        arcana = Arcana.Lovers;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

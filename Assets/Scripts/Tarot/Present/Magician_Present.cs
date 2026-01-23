@@ -7,8 +7,10 @@ public class Magician_Present : Present_TarotCard
     
     public Magician_Present(int q) : base(q)
     {
+        cardName = "Magician_Present";
+        arcana = Arcana.Magician;
+        
         PlayerController.instance.playerAttributes.bulletBounces = bounceNum[level];
         PlayerController.instance.playerAttributes.bulletBounceDmgDecrease = damageReducedPerBounce[level];
-        cardName = "Magician_Present";
     }
 }

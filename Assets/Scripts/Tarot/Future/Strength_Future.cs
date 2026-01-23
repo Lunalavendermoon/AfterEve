@@ -8,6 +8,7 @@ public class Strength_Future : Future_TarotCard
     {
         cardName = "Strength_Future";
         reward = new Strength_Reward(this);
+        arcana = Arcana.Strength;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

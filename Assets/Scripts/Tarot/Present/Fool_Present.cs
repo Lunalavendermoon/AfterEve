@@ -13,6 +13,8 @@ public class Fool_Present : Present_TarotCard
     public Fool_Present(int q) : base(q)
     {
         cardName = "Fool_Present";
+        arcana = Arcana.Fool;
+        
         lastEnemy = null;
 
         effects.Add(new FireRate_Effect(-1, fireRateIncrease[level]));

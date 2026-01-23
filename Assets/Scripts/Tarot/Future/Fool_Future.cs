@@ -15,6 +15,7 @@ public class Fool_Future : Future_TarotCard
     public Fool_Future(int q) : base(q)
     {
         cardName = "Fpol_Future";
+        arcana = Arcana.Fool;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

@@ -9,6 +9,7 @@ public class Chariot_Present : Present_TarotCard
     public Chariot_Present(int q) : base(q)
     {
         cardName = "Chariot_Present";
+        arcana = Arcana.Chariot;
 
         effects.Add(new FireRate_Effect(-1, fireRateDecrease[level]));
         effects.Add(new Strength_Effect(-1, baseDamageDecrease[level]));

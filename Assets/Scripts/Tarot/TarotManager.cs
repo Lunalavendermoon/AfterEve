@@ -21,6 +21,7 @@ public class TarotManager : MonoBehaviour
     [SerializeField] Dictionary<string, int> presentDict = new();
     [SerializeField] List<Present_TarotCard> presentTarot = new();
     [SerializeField] List<Future_TarotCard> futureTarot = new();
+    [SerializeField] Dictionary<TarotCard.Arcana, Past_TarotCard> pastTarot = new();
 
     public void AddCard(TarotCard tarotCard)
     {
@@ -34,6 +35,14 @@ public class TarotManager : MonoBehaviour
         else if (tarotCard is Future_TarotCard)
         {
             futureTarot.Add((Future_TarotCard)tarotCard);
+        }
+        else if (tarotCard is Past_TarotCard)
+        {
+            if (pastTarot.ContainsKey(tarotCard.arcana))
+            {
+                return;
+            }
+            pastTarot.Add(tarotCard.arcana, (Past_TarotCard)tarotCard);
         }
         tarotCard.ApplyCard(this);
         DisplayCards();
@@ -76,6 +85,12 @@ public class TarotManager : MonoBehaviour
             s += present.cardName + " (" + present.quantity + ")\n";
         }
         s += "\nFuture: ";
+        foreach (TarotCard future in futureTarot)
+        {
+            s += future.cardName + " (" + future.quantity + ") " + ((Future_TarotCard)future).GetQuestText() +
+                (((Future_TarotCard)future).questCompleted ? " - DONE" : "") + "\n";
+        }
+        s += "\nPast: ";
         foreach (TarotCard future in futureTarot)
         {
             s += future.cardName + " (" + future.quantity + ") " + ((Future_TarotCard)future).GetQuestText() +

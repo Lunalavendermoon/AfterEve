@@ -15,6 +15,7 @@ public class Hierophant_Future : Future_TarotCard
     {
         cardName = "Hierophant_Future";
         reward = new Hierophant_Reward(this);
+        arcana = Arcana.Hierophant;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

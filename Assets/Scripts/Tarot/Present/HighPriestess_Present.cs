@@ -11,6 +11,7 @@ public class HighPriestess_Present : Present_TarotCard
     public HighPriestess_Present(int q) : base(q)
     {
         cardName = "HighPriestess_Present";
+        arcana = Arcana.HighPriestess;
 
         // TODO make effect only apply sometimes
         playerGun = PlayerController.instance.gameObject.GetComponent<PlayerGun>();

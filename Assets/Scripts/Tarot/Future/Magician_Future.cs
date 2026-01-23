@@ -11,6 +11,7 @@ public class Magician_Future : Future_TarotCard
     {
         cardName = "Magician_Future";
         reward = new Magician_Reward(this);
+        arcana = Arcana.Magician;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

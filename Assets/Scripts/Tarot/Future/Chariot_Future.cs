@@ -13,6 +13,7 @@ public class Chariot_Future : Future_TarotCard
     {
         cardName = "Chariot_Future";
         reward = new Chariot_Reward(this);
+        arcana = Arcana.Chariot;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

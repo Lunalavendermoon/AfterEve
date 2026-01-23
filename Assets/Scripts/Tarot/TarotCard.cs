@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class TarotCard
 {
-    // Only used for shop RN, but feel free to use for tarot classes as well :)
     public enum Arcana
     {
         Fool,
@@ -30,6 +29,8 @@ public abstract class TarotCard
     }
     public string cardName;
     public int quantity;
+
+    public Arcana arcana;
 
     public TarotCard(int q)
     {

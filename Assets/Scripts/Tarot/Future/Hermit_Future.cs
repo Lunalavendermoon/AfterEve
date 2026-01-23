@@ -9,6 +9,7 @@ public class Hermit_Future : Future_TarotCard
     {
         cardName = "Hermit_Future";
         reward = new Hermit_Reward(this);
+        arcana = Arcana.Hermit;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

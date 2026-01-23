@@ -10,6 +10,7 @@ public class Emperor_Future : Future_TarotCard
     {
         cardName = "Emperor_Future";
         reward = new Emperor_Reward(this);
+        arcana = Arcana.Emperor;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

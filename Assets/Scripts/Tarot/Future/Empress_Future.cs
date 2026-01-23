@@ -12,6 +12,7 @@ public class Empress_Future : Future_TarotCard
     {
         cardName = "Empress_Future";
         reward = new Empress_Reward(this);
+        arcana = Arcana.Empress;
     }
 
     public override void ApplyCard(TarotManager tarotManager)

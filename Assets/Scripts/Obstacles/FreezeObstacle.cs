@@ -11,16 +11,17 @@ public class FreezeObstacle : MonoBehaviour
 
         if (playerEffects != null)
         {
-            playerEffects.AddEffect(new Paralyze_Effect(freezeDuration));
+            playerEffects.AddEffect(new Paralyze_Effect(freezeDuration), PlayerController.instance.playerAttributes);
             return;
         }
 
         // Enemy
         EnemyEffectManager enemyEffects = other.GetComponent<EnemyEffectManager>();
+        EnemyBase enemy = other.GetComponent<EnemyBase>();
 
         if (enemyEffects != null)
         {
-            enemyEffects.AddEffect(new Paralyze_Effect(freezeDuration));
+            enemyEffects.AddEffect(new Paralyze_Effect(freezeDuration), enemy.enemyAttributes);
         }
     }
 }

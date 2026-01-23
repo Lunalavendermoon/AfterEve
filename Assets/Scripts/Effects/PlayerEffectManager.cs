@@ -23,8 +23,13 @@ public class PlayerEffectManager : EffectManager
     Dictionary<Effects.IconType, int> iconCounts = new();
 
     Dictionary<Effects.IconType, GameObject> iconInstances = new();
+
+    public override EffectInstance AddBuff(Effects effect)
+    {
+        return AddEffect(effect, null);
+    }
         
-    public override EffectInstance AddEffect(Effects effect)
+    public override EffectInstance AddEffect(Effects effect, EntityAttributes attr)
     {
         OnEffectAdded?.Invoke();
 
@@ -84,7 +89,7 @@ public class PlayerEffectManager : EffectManager
         }
         
 
-        return base.AddEffect(effect);
+        return base.AddEffect(effect, attr);
     }
 
     public override void RemoveEffect(EffectInstance ei)

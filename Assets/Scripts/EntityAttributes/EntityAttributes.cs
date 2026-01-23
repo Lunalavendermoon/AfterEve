@@ -24,4 +24,9 @@ public class EntityAttributes : ScriptableObject
     public float resistance;
     public bool isBlind;
     public bool hasKnockback;
+
+    public float ResistanceCalculation(float effectDuration)
+    {
+        return effectDuration * (1 - (resistance / (resistance + 50)));
+    }
 }

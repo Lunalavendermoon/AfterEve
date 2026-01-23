@@ -20,7 +20,8 @@ public class Strength_Zone : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            EffectInstance ei = other.gameObject.GetComponent<EffectManager>().AddEffect(enemyEffect);
+            EffectInstance ei = other.gameObject.GetComponent<EffectManager>().AddEffect(enemyEffect,
+                other.gameObject.GetComponent<EnemyBase>().enemyAttributes);
             if (!effects.TryAdd(other, ei))
             {
                 effects[other] = ei;

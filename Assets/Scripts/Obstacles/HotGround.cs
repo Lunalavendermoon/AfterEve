@@ -14,23 +14,24 @@ public class HotGround : MonoBehaviour
 
         if (playerEffects != null)
         {
-            ApplyBurn(playerEffects);
+            ApplyBurn(playerEffects, PlayerController.instance.playerAttributes);
             return;
         }
 
         // Enemy
         EnemyEffectManager enemyEffects = other.GetComponent<EnemyEffectManager>();
+        EnemyBase enemy = other.GetComponent<EnemyBase>();
 
         if (enemyEffects != null)
         {
-            ApplyBurn(enemyEffects);
+            ApplyBurn(enemyEffects, enemy.enemyAttributes);
         }
     }
 
-    private void ApplyBurn(EffectManager effectManager)
+    private void ApplyBurn(EffectManager effectManager, EntityAttributes attr)
     {
         // Reapply burn continuously while standing on hot ground
         Burn_Effect burn = new Burn_Effect(burnDuration, burnDamagePerTick, tickInterval);
-        effectManager.AddEffect(burn);
+        effectManager.AddEffect(burn, attr);
     }
 }

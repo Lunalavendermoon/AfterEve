@@ -13,7 +13,7 @@ public class Hierophant_Reward : Future_Reward
     protected override void TriggerSkillBehavior()
     {
         Debug.Log("Triggered Hierophant skill");
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddEffect(
+        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(
             new HitCountShield_Effect(shieldAmount, shieldDuration)
         );
     }

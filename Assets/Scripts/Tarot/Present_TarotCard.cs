@@ -18,7 +18,7 @@ public class Present_TarotCard : TarotCard
         if (effects != null) { 
             foreach (Effects e in effects)
             {
-                tarotManager.effectManager.AddEffect(e);
+                tarotManager.effectManager.AddEffect(e, PlayerController.instance.playerAttributes);
             }
         }
         ApplyListeners();

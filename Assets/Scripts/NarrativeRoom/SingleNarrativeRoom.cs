@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "SingleNarrativeRoom", menuName = "Scriptable Objects/SingleNarrativeRoom")]
 // Represents a single narrative room that spawns when story conditions are unlocked.
 public class SingleNarrativeRoom : ScriptableObject
 {

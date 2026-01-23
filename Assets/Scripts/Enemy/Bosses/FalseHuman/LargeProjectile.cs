@@ -33,7 +33,7 @@ public class LargeProjectile : EnemyBase
         if (!isHaste)
         {
             isHaste = true;
-            enemyEffectManager.AddEffect(new Haste_Effect(20,4.0f));
+            enemyEffectManager.AddBuff(new Haste_Effect(20,4.0f));
         }
     }
 

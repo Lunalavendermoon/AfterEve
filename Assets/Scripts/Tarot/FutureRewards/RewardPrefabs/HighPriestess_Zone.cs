@@ -13,7 +13,9 @@ public class HighPriestess_Zone : MonoBehaviour
     {
         if (IsPlayerOrEnemy(other))
         {
-            EffectInstance ei = other.gameObject.GetComponent<EffectManager>().AddEffect(GetCorrespondingEffect(other));
+            EntityAttributes attr = other.CompareTag("Player") ? PlayerController.instance.playerAttributes :
+                other.gameObject.GetComponent<EnemyBase>().enemyAttributes;
+            EffectInstance ei = other.gameObject.GetComponent<EffectManager>().AddEffect(GetCorrespondingEffect(other), attr);
             if (!effects.TryAdd(other, ei))
             {
                 effects[other] = ei;

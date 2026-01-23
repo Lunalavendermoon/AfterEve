@@ -34,7 +34,7 @@ public class Fool_Present : Present_TarotCard
     {
         if (lastEnemy != enemy)
         {
-            PlayerController.instance.gameObject.GetComponent<EffectManager>().AddEffect(new Strength_Effect(0.1f, additionalDmg[level]));
+            PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new Strength_Effect(0.1f, additionalDmg[level]));
         }
         lastEnemy = enemy;
     }

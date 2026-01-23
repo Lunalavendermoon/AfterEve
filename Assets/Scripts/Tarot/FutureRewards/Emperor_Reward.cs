@@ -17,7 +17,7 @@ public class Emperor_Reward : Future_Reward
         List<EnemyBase> enemies = EnemySpawnerScript.instance.enemies;
         foreach (EnemyBase enemy in enemies)
         {
-            enemy.enemyEffectManager.AddEffect(new Paralyze_Effect(paralyzeDuration));
+            enemy.enemyEffectManager.AddEffect(new Paralyze_Effect(paralyzeDuration), enemy.enemyAttributes);
         }
     }
 

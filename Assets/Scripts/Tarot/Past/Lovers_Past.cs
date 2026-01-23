@@ -10,9 +10,8 @@ public class Lovers_Past : Past_TarotCard
         arcana = Arcana.Lovers;
     }
 
-    protected override void ApplyListeners()
+    protected override void ApplyListenersEffects()
     {
-        // technically not a listener, but idk where to put this lol
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddEffect(new LoversPast_Effect());
+        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new LoversPast_Effect());
     }
 }

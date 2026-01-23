@@ -12,7 +12,7 @@ public class Magician_Past : Past_TarotCard
         arcana = Arcana.Magician;
     }
 
-    protected override void ApplyListeners()
+    protected override void ApplyListenersEffects()
     {
         GameManager.OnRoomChange += OnRoomChange;
         Future_Reward.OnSkillUsed += OnSkillUsed;
@@ -26,6 +26,6 @@ public class Magician_Past : Past_TarotCard
     void OnSkillUsed()
     {
         // we trust that Effect Manager handles timers and stacking correctly... :D
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddEffect(new MagicianPast_Effect());
+        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new MagicianPast_Effect());
     }
 }

@@ -14,8 +14,8 @@ public class Chariot_Reward : Future_Reward
     {
         Debug.Log("Triggered Chariot skill");
         EffectManager em = PlayerController.instance.gameObject.GetComponent<EffectManager>();
-        em.AddEffect(new Haste_Effect(duration, hasteAmount));
-        em.AddEffect(new Strength_Effect(duration, strengthAmount));
+        em.AddBuff(new Haste_Effect(duration, hasteAmount));
+        em.AddBuff(new Strength_Effect(duration, strengthAmount));
     }
 
     public override string GetName()

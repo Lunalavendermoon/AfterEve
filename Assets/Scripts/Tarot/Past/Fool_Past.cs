@@ -13,7 +13,7 @@ public class Fool_Past : Past_TarotCard
         arcana = Arcana.Fool;
     }
 
-    protected override void ApplyListeners()
+    protected override void ApplyListenersEffects()
     {
         TarotManager.OnObtainCard += OnObtainCard;
     }
@@ -32,6 +32,6 @@ public class Fool_Past : Past_TarotCard
         }
 
         ++stackCounter;
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddEffect(new FoolPast_Effect());
+        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new FoolPast_Effect());
     }
 }

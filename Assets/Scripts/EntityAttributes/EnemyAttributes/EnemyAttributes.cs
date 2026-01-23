@@ -49,9 +49,4 @@ public class EnemyAttributes : EntityAttributes
     {
         return (int)((1 + baseDamage * (1 - ((float)basicDefense / (basicDefense + 100)))) * (1f + damageDealtBonus));
     }
-
-    public float ResistanceCalculation(float effectDuration)
-    {
-        return effectDuration * (1 - (resistance / (resistance + 50)));
-    }
 }

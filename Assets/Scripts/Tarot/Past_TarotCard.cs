@@ -18,7 +18,7 @@ public abstract class Past_TarotCard : TarotCard
         //         tarotManager.effectManager.AddEffect(e);
         //     }
         // }
-        ApplyListeners();
+        ApplyListenersEffects();
     }
 
     public override void RemoveCard(TarotManager tarotManager)
@@ -34,6 +34,6 @@ public abstract class Past_TarotCard : TarotCard
         // RemoveListeners();
     }
 
-    protected virtual void ApplyListeners() {}
+    protected virtual void ApplyListenersEffects() {}
     // protected virtual void RemoveListeners() {}
 }

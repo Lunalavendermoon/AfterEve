@@ -110,7 +110,7 @@ public class Projectile : MonoBehaviour
             {
                 if (!(bulletEffects == null))
                     foreach(Effects bulletEffect in bulletEffects)
-                        enemy.GetComponent<EffectManager>().AddEffect(bulletEffect);
+                        enemy.GetComponent<EffectManager>().AddEffect(bulletEffect, enemy.enemyAttributes);
             }
             enemiesPierced++;
             if (enemiesPierced == bulletPiercing)

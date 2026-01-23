@@ -35,51 +35,52 @@ public abstract class EffectManager : MonoBehaviour
     // ONLY FOR TESTING PURPOSES TO ADD A DUMMY EFFECT!!
     public void AddEffectTest(string effect)
     {
+        PlayerAttributes attr = PlayerController.instance.playerAttributes;
         switch (effect)
         {
             case "paralyze":
                 Debug.Log("Apply paralyze effect");
-                AddEffect(new Paralyze_Effect(5f));
+                AddEffect(new Paralyze_Effect(5f), attr);
                 break;
             case "def flat":
                 Debug.Log("Apply Defense Flat effect");
-                AddEffect(new Fortified_Flat_Effect(5f, 5));
+                AddEffect(new Fortified_Flat_Effect(5f, 5), attr);
                 break;
             case "def mult":
                 Debug.Log("Apply Defense Multiplier effect");
-                AddEffect(new Fortified_Effect(5f, 1.5f));
+                AddEffect(new Fortified_Effect(5f, 1.5f), attr);
                 break;
             case "def add":
                 Debug.Log("Apply Defense Additive effect");
-                AddEffect(new Fortified_Additive_Effect(5f, 5));
+                AddEffect(new Fortified_Additive_Effect(5f, 5), attr);
                 break;
             case "regen":
                 Debug.Log("Apply Regeneration effect");
-                AddEffect(new Regeneration_Effect(5f, 0.2f));
+                AddEffect(new Regeneration_Effect(5f, 0.2f), attr);
                 break;
             case "bleed":
                 Debug.Log("Apply Bleed effect");
-                AddEffect(new Bleed_Effect(5f, 0.1f, 1f));
+                AddEffect(new Bleed_Effect(5f, 0.1f, 1f), attr);
                 break;
             case "sunder big":
                 Debug.Log("Apply Sundered debuff (large magnitude)");
-                AddEffect(new Sundered_Effect(5f, 0.5f));
+                AddEffect(new Sundered_Effect(5f, 0.5f), attr);
                 break;
             case "sunder small":
                 Debug.Log("Apply Sundered debuff (small magnitude)");
-                AddEffect(new Sundered_Effect(5f, 0.8f));
+                AddEffect(new Sundered_Effect(5f, 0.8f), attr);
                 break;
             case "confused":
                 Debug.Log("Apply Confused effect");
-                AddEffect(new Confused_Effect(5f));
+                AddEffect(new Confused_Effect(5f), attr);
                 break;
             case "slow":
                 Debug.Log("Apply Slow effect");
-                AddEffect(new Slow_Effect(5f, 0.8f));
+                AddEffect(new Slow_Effect(5f, 0.8f), attr);
                 break;
             case "burn":
                 Debug.Log("Apply Burn effect");
-                AddEffect(new Burn_Effect(5f, 200, 1f));
+                AddEffect(new Burn_Effect(5f, 200, 1f), attr);
                 break;
             default:
                 Debug.Log(effect + " is not a valid effect");
@@ -87,7 +88,12 @@ public abstract class EffectManager : MonoBehaviour
         }
     }
 
-    public virtual EffectInstance AddEffect(Effects effect)
+    public virtual EffectInstance AddBuff(Effects effect)
+    {
+        return AddEffect(effect, null);
+    }
+
+    public virtual EffectInstance AddEffect(Effects effect, EntityAttributes attributes)
     {
         Effects.Stat stat = effect.effectStat;
         Effects.Application app = effect.effectApplication;
@@ -114,6 +120,11 @@ public abstract class EffectManager : MonoBehaviour
                 }
             }
             return null;
+        }
+
+        if (effect.isDebuff && !effect.isPermanent)
+        {
+            effect.effectDuration = attributes.ResistanceCalculation(effect.effectDuration);
         }
 
         EffectInstance eff = new EffectInstance(effect, effectCount++);

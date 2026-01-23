@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyAttributes", menuName = "Scriptable Objects/EnemyAttributes")]
 public class EnemyAttributes : EntityAttributes
 {
+    [Header("Enemy Info")]
+    public EnemyType enemyType;
+    
     [Header("Enemy Attack")]
     public DamageType damageType;
     public int attackRadius;
@@ -20,6 +23,13 @@ public class EnemyAttributes : EntityAttributes
         Basic,
         Spiritual,
         Mixed
+    }
+
+    public enum EnemyType
+    {
+        Basic,
+        Elite,
+        Boss
     }
 
     // Enemy Formulas

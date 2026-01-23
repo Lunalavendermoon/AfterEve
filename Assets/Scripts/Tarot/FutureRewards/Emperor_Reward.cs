@@ -11,12 +11,15 @@ public class Emperor_Reward : Future_Reward
 
     protected override void TriggerSkillBehavior()
     {
-        // TODO: filter out bosses and elites -- this skill should only paralyze basic mobs
         Debug.Log("Triggered Emperor skill");
 
         List<EnemyBase> enemies = EnemySpawnerScript.instance.enemies;
         foreach (EnemyBase enemy in enemies)
         {
+            if (enemy.enemyAttributes.enemyType != EnemyAttributes.EnemyType.Basic)
+            {
+                continue;
+            }
             enemy.enemyEffectManager.AddEffect(new Paralyze_Effect(paralyzeDuration), enemy.enemyAttributes);
         }
     }

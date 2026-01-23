@@ -18,11 +18,24 @@ public class Projectile : MonoBehaviour
     private int bulletPiercing;
     private int enemiesPierced;
 
-    private int projectileDamage;
+    private int physicalDamage;
+    private int spiritualDamage;
 
-    public void SetProjectileDamage(int n)
+    public void SetPhysicalDamage(int n)
     {
-        projectileDamage = n;
+        physicalDamage = n;
+    }
+    public void SetSpiritualDamage(int n)
+    {
+        spiritualDamage = n;
+    }
+    public void AddPhysicalDamage(int n)
+    {
+        physicalDamage += n;
+    }
+    public void AddSpiritualDamage(int n)
+    {
+        spiritualDamage += n;
     }
     // new
     public void SetBulletBounce(int n)
@@ -85,8 +98,14 @@ public class Projectile : MonoBehaviour
                 }
             }
             DamageAllChainedEnemies();
-            // TODO change to DamageType.Spiritual if player is dealing spiritual damage
-            enemy.TakeDamage(projectileDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+            if (physicalDamage > 0)
+            {
+                enemy.TakeDamage(physicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+            }
+            if (spiritualDamage > 0)
+            {
+                enemy.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
+            }
             if (enemy.GetComponent<EffectManager>())
             {
                 if (!(bulletEffects == null))
@@ -149,7 +168,14 @@ public class Projectile : MonoBehaviour
         {
             if (enemy.GetComponent<EnemyBase>().IsChained())
             {
-                enemy.GetComponent<EnemyBase>().TakeDamage((int)(projectileDamage*PlayerController.instance.playerAttributes.chainDmg), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+                if (physicalDamage > 0)
+                {
+                    enemy.GetComponent<EnemyBase>().TakeDamage((int)(physicalDamage*PlayerController.instance.playerAttributes.chainDmg), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+                }
+                if (spiritualDamage > 0)
+                {
+                    enemy.GetComponent<EnemyBase>().TakeDamage((int)(spiritualDamage*PlayerController.instance.playerAttributes.chainDmg), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
+                }
             }
         }
     }

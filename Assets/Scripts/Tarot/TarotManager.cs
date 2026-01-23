@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -23,6 +24,8 @@ public class TarotManager : MonoBehaviour
     [SerializeField] List<Future_TarotCard> futureTarot = new();
     [SerializeField] Dictionary<TarotCard.Arcana, Past_TarotCard> pastTarot = new();
 
+    public static event Action<TarotCard.Arcana> OnObtainCard;
+
     public void AddCard(TarotCard tarotCard)
     {
         if (tarotCard is Present_TarotCard)
@@ -45,7 +48,7 @@ public class TarotManager : MonoBehaviour
             pastTarot.Add(tarotCard.arcana, (Past_TarotCard)tarotCard);
         }
         tarotCard.ApplyCard(this);
-        DisplayCards();
+        OnObtainCard?.Invoke(tarotCard.arcana);
     }
 
     public void RemoveCard(TarotCard tarotCard)
@@ -76,6 +79,7 @@ public class TarotManager : MonoBehaviour
         DisplayCards();
     }
 
+    // For testing
     public void DisplayCards()
     {
         string s = "Present: ";
@@ -91,16 +95,16 @@ public class TarotManager : MonoBehaviour
                 (((Future_TarotCard)future).questCompleted ? " - DONE" : "") + "\n";
         }
         s += "\nPast: ";
-        foreach (TarotCard future in futureTarot)
+        foreach (TarotCard past in pastTarot.Values)
         {
-            s += future.cardName + " (" + future.quantity + ") " + ((Future_TarotCard)future).GetQuestText() +
-                (((Future_TarotCard)future).questCompleted ? " - DONE" : "") + "\n";
+            s += past.cardName + "\n";
         }
         text.text = s;
     }
 
     void Start()
     {
+        AddCard(new Fool_Past(1));
         AddCard(new Chariot_Future(1));
         AddCard(new Lovers_Future(1));
         AddCard(new Empress_Present(1));

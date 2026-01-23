@@ -20,6 +20,8 @@ public class PlayerAttributes : EntityAttributes
     public int chainRadius;
     public float chainTime;
     public float chainDmg;
+    public float physicalAdditionalDmg;
+    public float spiritualAdditionalDmg;
     
 
     [Header("Player Defense")]

@@ -46,7 +46,11 @@ public class PlayerGun : MonoBehaviour
             {
                 GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread)) * firingPoint.rotation);
                 projectile.GetComponent<Projectile>().SetBulletBounce(PlayerController.instance.playerAttributes.bulletBounces);
-                projectile.GetComponent<Projectile>().SetProjectileDamage(damage);
+                // TODO: set to basic normally, but spiritual when dealing spiritual dmg
+                projectile.GetComponent<Projectile>().SetPhysicalDamage(damage);
+                // add bonus damage
+                projectile.GetComponent<Projectile>().AddPhysicalDamage((int)(PlayerController.instance.playerAttributes.damage * PlayerController.instance.playerAttributes.physicalAdditionalDmg));
+                projectile.GetComponent<Projectile>().AddSpiritualDamage((int)(PlayerController.instance.playerAttributes.damage * PlayerController.instance.playerAttributes.spiritualAdditionalDmg));
                 foreach (Effects effect in bulletEffects)
                 {
                     projectile.GetComponent<Projectile>().SetBulletEffects(bulletEffects);

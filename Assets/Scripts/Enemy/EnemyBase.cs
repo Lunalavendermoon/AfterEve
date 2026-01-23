@@ -169,6 +169,12 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    // Can make this virtual and override for bosses w/ multiple phases if needed.
+    public bool IsAlive()
+    {
+        return health > 0;
+    }
+
     public void Heal(int amount)
     {
         health = Math.Clamp(health + amount, 0, enemyAttributes.maxHitPoints);

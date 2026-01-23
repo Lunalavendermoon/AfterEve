@@ -26,7 +26,8 @@ public class Strength_Zone : MonoBehaviour
                 effects[other] = ei;
             }
             enemiesInside.Add(other.gameObject.GetComponent<EnemyBase>());
-        } else if (other.CompareTag("Player"))
+        }
+        else if (other.CompareTag("Player"))
         {
             playerInside = true;
         }
@@ -40,7 +41,8 @@ public class Strength_Zone : MonoBehaviour
                 effects[other]
             );
             enemiesInside.Remove(other.gameObject.GetComponent<EnemyBase>());
-        } else if (other.CompareTag("Player"))
+        }
+        else if (other.CompareTag("Player"))
         {
             playerInside = false;
         }

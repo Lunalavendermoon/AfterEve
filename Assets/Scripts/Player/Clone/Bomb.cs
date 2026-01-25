@@ -15,6 +15,7 @@ public class Bomb : MonoBehaviour
     public float explosionTime;
     public float speed;
     public static event Action<EnemyBase> OnEnemyHit;
+    public Collider2D Collider;
 
     void Start()
     {
@@ -46,8 +47,10 @@ public class Bomb : MonoBehaviour
                 if (Time.time - timeStopped >= timeTillExplosion)
                 {
                     exploding = true;
+                    Collider.enabled = true;
                     timeStopped = Time.time;
                     transform.localScale *= 3f;
+
                 }
             } else
             {
@@ -77,11 +80,13 @@ public class Bomb : MonoBehaviour
         strengthBuff = f;
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
-        if (other.gameObject.GetComponent<EnemyBase>() && exploding)
+        Debug.Log("COLLISION ONE");
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") && exploding)
         {
-            EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
+            Debug.Log("COLLISION TWO");
+            EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
             OnEnemyHit?.Invoke(enemy);
             enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
             enemy.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);

@@ -8,9 +8,6 @@ public class Lovers_Summon : MonoBehaviour
     public AIPath agent;
     public AIDestinationSetter destinationSetter;
 
-    // rotation
-    public IRotationState currentRotationState;
-
     void Awake()
     {
         agent = GetComponent<AIPath>();

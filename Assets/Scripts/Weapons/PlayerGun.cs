@@ -15,7 +15,6 @@ public class PlayerGun : MonoBehaviour
 
     private float lastTimeShot = 0;
 
-
     public List<Effects> bulletEffects;
 
     void Awake()
@@ -37,11 +36,14 @@ public class PlayerGun : MonoBehaviour
     // Returns whether the shot was fired
     // Clones projectile and sets projectile stats
     bool ShootDamage(int damage)
-    {   
+    {
         firingSpeed = 1/PlayerController.instance.playerAttributes.attackPerSec;
         if(lastTimeShot + firingSpeed <= Time.time)
         {
-            int currentAngle = (PlayerController.instance.playerAttributes.bullets - 1) * 5;
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = 0f;
+            Vector2 dir = (mouseWorldPos - firingPoint.position).normalized;
+            float currentAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - (PlayerController.instance.playerAttributes.bullets - 1) * 5;
             for (int i = 0; i < PlayerController.instance.playerAttributes.bullets; i++)
             {
                 GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread)) * firingPoint.rotation);

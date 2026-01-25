@@ -16,9 +16,7 @@ public class PlayerController : MonoBehaviour
 
         playerInput = new PlayerInput();
 
-        // rotation state machine
-        currentRotationState = new RotationState_N();
-        currentRotationState.EnterState(this);
+        
     }
 
     // user input system
@@ -62,7 +60,6 @@ public class PlayerController : MonoBehaviour
 
     // state machine
     public IPlayerState currentState;
-    public IRotationState currentRotationState;
 
     //weapon
     private int currentAmmo;
@@ -106,8 +103,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        // rotation state machine initialization moved to Awake()
-
         // movement state machine
         currentState = new Player_Idle();
         currentState.EnterState(this);
@@ -163,7 +158,7 @@ public class PlayerController : MonoBehaviour
             // this prevents the sprite from rotating while player is interacting with UI/dialogue
             if (inputEnabled)
             {
-                currentRotationState.UpdateState(this);
+                
             }
 
             HandleShootInput();
@@ -249,23 +244,7 @@ public class PlayerController : MonoBehaviour
         OnPlayerStateChange?.Invoke(newState);
     }
 
-    public void ChangeRotationState(IRotationState newState)
-    {
-        currentRotationState = newState;
-        currentRotationState.EnterState(this);
-        float z = transform.eulerAngles.z;
-
-        if (Mathf.Abs(z - 135f) < 0.1f ||
-            Mathf.Abs(z - 225f) < 0.1f ||
-            Mathf.Abs(z - 180f) < 0.1f)
-        {
-            playerAnimation.SetY(-1);
-        }
-        else
-        {
-            playerAnimation.SetY(1);
-        }
-    }
+    
 
     float GetRawMouseAngle()
     {
@@ -280,38 +259,6 @@ public class PlayerController : MonoBehaviour
             return (angle + 360) % 360;
         }
         return -1f;
-    }
-
-    public void CheckRotationTransition()
-    {
-        float rawAngle = GetRawMouseAngle();
-        if (rawAngle == -1f) return;
-
-        float fixedAngleStep = 360f / 8f;
-        int index = Mathf.RoundToInt(rawAngle / fixedAngleStep) % 8;
-
-        IRotationState nextState = GetStateForIndex(index);
-
-        if (nextState.GetType() != currentRotationState.GetType())
-        {
-            ChangeRotationState(nextState);
-        }
-    }
-
-    IRotationState GetStateForIndex(int index)
-    {
-        switch (index)
-        {
-            case 0: return new RotationState_E();   
-            case 1: return new RotationState_NE();  
-            case 2: return new RotationState_N();   
-            case 3: return new RotationState_NW();  
-            case 4: return new RotationState_W();   
-            case 5: return new RotationState_SW();  
-            case 6: return new RotationState_S();   
-            case 7: return new RotationState_SE();  
-            default: return currentRotationState;
-        }
     }
 
     void HandleShootInput()

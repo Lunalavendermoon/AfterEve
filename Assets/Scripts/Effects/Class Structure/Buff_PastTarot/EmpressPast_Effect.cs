@@ -1,12 +1,10 @@
-using UnityEngine;
-
-public class StrengthPast_Effect : Effects
+public class EmpressPast_Effect : Effects
 {
-    public StrengthPast_Effect() : base(-1)
+    public EmpressPast_Effect() : base(-1)
     {
         effectStat = Stat.PastTarot;
         isDebuff = false;
-        effectApplication = Application.Additive;
+        effectApplication = Application.Disable;
         hasVfx = false;
     }
 
@@ -17,6 +15,6 @@ public class StrengthPast_Effect : Effects
 
     public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)
     {
-        playerAttributes.resistance += Strength_Past.resistanceBonus;
+        playerAttributes.empressPast = true;
     }
 }

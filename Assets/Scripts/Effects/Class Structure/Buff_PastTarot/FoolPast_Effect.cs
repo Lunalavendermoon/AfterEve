@@ -7,7 +7,7 @@ public class FoolPast_Effect : Effects
         effectStat = Stat.PastTarot;
         isDebuff = false;
         effectApplication = Application.Additive;
-        hasVfx = true;
+        hasVfx = false;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)

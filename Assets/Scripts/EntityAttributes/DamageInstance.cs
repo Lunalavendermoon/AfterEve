@@ -12,7 +12,7 @@ public class DamageInstance
 
     public enum DamageType
     {
-        Basic,
+        Physical,
         Spiritual,
         Mixed
     }

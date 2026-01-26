@@ -47,17 +47,27 @@ public class PlayerGun : MonoBehaviour
             for (int i = 0; i < PlayerController.instance.playerAttributes.bullets; i++)
             {
                 GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread)) * firingPoint.rotation);
-                projectile.GetComponent<Projectile>().SetBulletBounce(PlayerController.instance.playerAttributes.bulletBounces);
-                // TODO: set to basic normally, but spiritual when dealing spiritual dmg
-                projectile.GetComponent<Projectile>().SetPhysicalDamage(damage);
+                Projectile proj = projectile.GetComponent<Projectile>();
+                proj.SetBulletBounce(PlayerController.instance.playerAttributes.bulletBounces);
+
+                // TODO: check if player is in spiritual vision. if so, change this to spiritual damage
+                proj.SetPhysicalDamage(damage);
+
                 // add bonus damage
-                projectile.GetComponent<Projectile>().AddPhysicalDamage((int)(PlayerController.instance.playerAttributes.damage * PlayerController.instance.playerAttributes.physicalAdditionalDmg));
-                projectile.GetComponent<Projectile>().AddSpiritualDamage((int)(PlayerController.instance.playerAttributes.damage * PlayerController.instance.playerAttributes.spiritualAdditionalDmg));
+                proj.AddPhysicalDamage((int)(PlayerController.instance.playerAttributes.damage * PlayerController.instance.playerAttributes.physicalAdditionalDmg));
+                proj.AddSpiritualDamage((int)(PlayerController.instance.playerAttributes.damage * PlayerController.instance.playerAttributes.spiritualAdditionalDmg));
                 foreach (Effects effect in bulletEffects)
                 {
-                    projectile.GetComponent<Projectile>().SetBulletEffects(bulletEffects);
+                    proj.SetBulletEffects(bulletEffects);
                 }
-                projectile.GetComponent<Projectile>().SetBulletPiercing(PlayerController.instance.playerAttributes.bulletPierces);
+                proj.SetBulletPiercing(PlayerController.instance.playerAttributes.bulletPierces);
+
+                // past tarot effects
+                if (PlayerController.instance.playerAttributes.empressPast)
+                {
+                    proj.AddPhysicalDamage(Empress_Past.GetDamageBonus());
+                }
+
                 currentAngle -= 10;
             }
             

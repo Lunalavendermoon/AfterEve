@@ -63,7 +63,7 @@ public class Strength_Zone : MonoBehaviour
 
         if (playerInside)
         {
-            PlayerController.instance.TakeDamage(rawDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+            PlayerController.instance.TakeDamage(rawDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
         }
         // handles dealing dmg to enemies, takes into account enemies dying mid-loop & causing enemiesInside to shrink
         // TODO: might not handle enemies spawning mid-loop correctly
@@ -72,7 +72,7 @@ public class Strength_Zone : MonoBehaviour
         while (i >= 0) {
             int prevLen = enemiesInside.Count;
             EnemyBase enemy = enemiesInside[i];
-            enemy.TakeDamage(rawDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+            enemy.TakeDamage(rawDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
             if (enemiesInside.Count != prevLen)
             {
                 // decrement i according to length of the new list

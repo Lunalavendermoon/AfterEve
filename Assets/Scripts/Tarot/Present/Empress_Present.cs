@@ -32,7 +32,7 @@ public class Empress_Present : Present_TarotCard
                 PlayerController.instance.Heal(healAmount);
             if(newHealth > PlayerController.instance.playerAttributes.maxHitPoints)
             {
-                enemy.TakeDamage(healAmount, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+                enemy.TakeDamage(healAmount, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
             }
         }
     }

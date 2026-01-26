@@ -10,7 +10,7 @@ public class DamageObstacle : MonoBehaviour
         PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
         {
-            player.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Basic);
+            player.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Physical);
             return;
         }
 
@@ -18,7 +18,7 @@ public class DamageObstacle : MonoBehaviour
         EnemyBase enemy = other.GetComponent<EnemyBase>();
         if (enemy != null)
         {
-            enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Basic);
+            enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Physical);
         }
     }
 }

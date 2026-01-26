@@ -5,7 +5,7 @@ public class MagicianPast_Effect : Effects
         effectStat = Stat.PastTarot;
         isDebuff = false;
         effectApplication = Application.Disable;
-        hasVfx = true;
+        hasVfx = false;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)

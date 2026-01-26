@@ -15,7 +15,7 @@ public class TakeDamageScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("Taking Damage");
-            enemyBase.TakeDamage(10, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+            enemyBase.TakeDamage(10, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
         }
     }
 }

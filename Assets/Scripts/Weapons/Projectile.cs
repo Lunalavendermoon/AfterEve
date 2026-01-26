@@ -100,7 +100,7 @@ public class Projectile : MonoBehaviour
             DamageAllChainedEnemies();
             if (physicalDamage > 0)
             {
-                enemy.TakeDamage(physicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+                enemy.TakeDamage(physicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
             }
             if (spiritualDamage > 0)
             {
@@ -170,7 +170,7 @@ public class Projectile : MonoBehaviour
             {
                 if (physicalDamage > 0)
                 {
-                    enemy.GetComponent<EnemyBase>().TakeDamage((int)(physicalDamage*PlayerController.instance.playerAttributes.chainDmg), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+                    enemy.GetComponent<EnemyBase>().TakeDamage((int)(physicalDamage*PlayerController.instance.playerAttributes.chainDmg), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
                 }
                 if (spiritualDamage > 0)
                 {

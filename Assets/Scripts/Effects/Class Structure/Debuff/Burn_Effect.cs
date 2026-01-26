@@ -35,7 +35,7 @@ public class Burn_Effect : Flat_Effects
     {
         if (increment)
         {
-            PlayerController.instance.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Basic);
+            PlayerController.instance.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical);
 
             Debug.Log("Burn amount: " + effectRate);
             initialApplication = false;
@@ -46,7 +46,7 @@ public class Burn_Effect : Flat_Effects
     {   
         if (increment)
         {
-            enemy.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Basic);
+            enemy.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical);
 
             Debug.Log("Burn amount: " + effectRate);
             initialApplication = false;

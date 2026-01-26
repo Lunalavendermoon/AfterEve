@@ -88,7 +88,7 @@ public class Bomb : MonoBehaviour
             Debug.Log("COLLISION TWO");
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
             OnEnemyHit?.Invoke(enemy);
-            enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Basic);
+            enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
             enemy.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
             enemy.Mark(strengthBuff);
         }

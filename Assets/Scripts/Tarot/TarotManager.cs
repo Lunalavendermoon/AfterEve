@@ -20,11 +20,13 @@ public class TarotManager : MonoBehaviour
     void OnEnable()
     {
         PlayerController.instance.playerInput.Player.UpdateTarotHand.performed += OnUpdateTarotPerformed; // for testing
+        PlayerController.instance.playerInput.Player.Attack.performed += OnMouseClick;
     }
 
     void OnDisable()
     {
         PlayerController.instance.playerInput.Player.UpdateTarotHand.performed -= OnUpdateTarotPerformed;
+        PlayerController.instance.playerInput.Player.Attack.performed -= OnMouseClick;
     }
 
     public EffectManager effectManager;
@@ -39,6 +41,22 @@ public class TarotManager : MonoBehaviour
     [SerializeField] Dictionary<TarotCard.Arcana, Past_TarotCard> pastTarot = new();
 
     public static event Action<TarotCard.Arcana> OnObtainCard;
+
+    public void OnMouseClick(InputAction.CallbackContext context)
+    {
+        RaycastHit hit;  
+        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, LayerMask.NameToLayer("TarotUI")))
+        {
+            Debug.Log("click");
+        
+            TarotUIScript card = hit.collider.gameObject.GetComponent<TarotUIScript>();
+            if(card)
+            {
+                Debug.Log("card clicked");
+                card.runTarotCooldownAnimation();
+            }
+        }
+    }
 
     public void AddCard(TarotCard tarotCard)
     {
@@ -91,6 +109,17 @@ public class TarotManager : MonoBehaviour
     public void Update()
     {
         DisplayCards();
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            PlayerController.instance.futureSkill = futureTarot[0].reward;
+            tarotHand.transform.GetChild(0).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
+        }
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            PlayerController.instance.futureSkill = futureTarot[1].reward;
+            tarotHand.transform.GetChild(1).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
+        }
     }
 
     // For testing
@@ -116,7 +145,7 @@ public class TarotManager : MonoBehaviour
         text.text = s;
     }
     
-    // testing
+    // testing future tarot card hand
     public void OnUpdateTarotPerformed(InputAction.CallbackContext context)
     {
         Debug.Log("updated hand");
@@ -125,6 +154,14 @@ public class TarotManager : MonoBehaviour
 
     public void DisplayHand()
     {
+        // set random hand (for testing)
+        TarotCard[] randomFutureCards = {new Chariot_Future(1), new Emperor_Future(1), new Hierophant_Future(1), new Lovers_Future(1), new Strength_Future(1), new Magician_Future(1)};
+        futureTarot.Clear();
+        for(int id=0;id<5;id++)
+        {
+            AddCard(randomFutureCards[UnityEngine.Random.Range(0, randomFutureCards.Length-1)]);
+        }
+
         // clear previous hand
         foreach(GameObject child in tarotHand.transform)
         {
@@ -155,5 +192,7 @@ public class TarotManager : MonoBehaviour
         AddCard(new Chariot_Future(1));
         AddCard(new Lovers_Future(1));
         AddCard(new Empress_Present(1));
+
+        DisplayHand();
     }
 }

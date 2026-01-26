@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Future_TarotCard : TarotCard
 {
-    protected Future_Reward reward = null;
+    public Future_Reward reward = null; // set to public for testing
 
     public bool questCompleted = false;
 

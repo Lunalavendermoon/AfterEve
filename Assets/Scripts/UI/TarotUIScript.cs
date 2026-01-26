@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using UnityEditor;
+using UnityEngine.InputSystem;
+using System;
 
 [RequireComponent(typeof(Image))]
 public class TarotUIScript : MonoBehaviour
@@ -30,10 +32,12 @@ public class TarotUIScript : MonoBehaviour
         float cooldownStartTime = Time.time;
         float cooldownDuration = tarotCooldown;
         
-        // create greyed out card as child
+        // create greyed-out card as child
         GameObject obj = Instantiate(gameObject, transform);
         obj.transform.position = transform.position;
-        Destroy(obj.GetComponent<TarotUIScript>());
+        Destroy(obj.GetComponent<TarotUIScript>()); // remove this script from the greyed-out child
+
+        // configure image settings for child
         Image cooldownFill = obj.GetComponent<Image>();
         cooldownFill.type = Image.Type.Filled;
         cooldownFill.sprite = GetComponent<Image>().sprite;
@@ -48,7 +52,7 @@ public class TarotUIScript : MonoBehaviour
             yield return null;
         }
         
-        Destroy(obj);
+        Destroy(obj); // destroy greyed-out child when not needed anymore
 
         tarotCooldownRoutine = null;
 

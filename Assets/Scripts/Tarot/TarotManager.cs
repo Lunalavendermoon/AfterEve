@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class TarotManager : MonoBehaviour
 {
@@ -16,7 +17,20 @@ public class TarotManager : MonoBehaviour
         if (instance == null) instance = this;
     }
 
+    void OnEnable()
+    {
+        PlayerController.instance.playerInput.Player.UpdateTarotHand.performed += OnUpdateTarotPerformed; // for testing
+    }
+
+    void OnDisable()
+    {
+        PlayerController.instance.playerInput.Player.UpdateTarotHand.performed -= OnUpdateTarotPerformed;
+    }
+
     public EffectManager effectManager;
+    public TarotIcon tarotIcons;
+    public GameObject tarotHand;
+    public GameObject tarotPrefab;
 
     // present cards can stack, so we should store them according to their arcana in case we get duplicates
     [SerializeField] Dictionary<string, int> presentDict = new();
@@ -101,10 +115,43 @@ public class TarotManager : MonoBehaviour
         }
         text.text = s;
     }
+    
+    // testing
+    public void OnUpdateTarotPerformed(InputAction.CallbackContext context)
+    {
+        Debug.Log("updated hand");
+        DisplayHand();
+    }
+
+    public void DisplayHand()
+    {
+        // clear previous hand
+        foreach(GameObject child in tarotHand.transform)
+        {
+            Destroy(child);
+        }
+
+        int offset = 200;
+        int i = 0;
+        foreach(TarotCard future in futureTarot)
+        {
+            GameObject newCard = Instantiate(CreateCardObject(future), tarotHand.transform);
+            newCard.transform.position += new Vector3(i * offset, 0, 0);
+            i++;
+        }
+    }
+
+    public GameObject CreateCardObject(TarotCard card)
+    {
+        GameObject obj = tarotPrefab;
+        obj.GetComponent<Image>().sprite = tarotIcons.GetSprite(card.arcana);
+        
+        return obj;
+    }
 
     void Start()
     {
-        AddCard(new Empress_Past(1));
+        AddCard(new Lovers_Past(1));
         AddCard(new Chariot_Future(1));
         AddCard(new Lovers_Future(1));
         AddCard(new Empress_Present(1));

@@ -154,6 +154,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpdateTarotHand"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d08decd-e89b-48cc-84e7-b3926e2523d1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -343,6 +352,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Spritual Vision"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8db8659-9c49-48bf-8333-da3b95aa4c2e"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpdateTarotHand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -358,6 +378,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_SpritualVision = m_Player.FindAction("Spritual Vision", throwIfNotFound: true);
         m_Player_Skill = m_Player.FindAction("Skill", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_UpdateTarotHand = m_Player.FindAction("UpdateTarotHand", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -445,6 +466,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpritualVision;
     private readonly InputAction m_Player_Skill;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_UpdateTarotHand;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -484,6 +506,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Interact".
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/UpdateTarotHand".
+        /// </summary>
+        public InputAction @UpdateTarotHand => m_Wrapper.m_Player_UpdateTarotHand;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -531,6 +557,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @UpdateTarotHand.started += instance.OnUpdateTarotHand;
+            @UpdateTarotHand.performed += instance.OnUpdateTarotHand;
+            @UpdateTarotHand.canceled += instance.OnUpdateTarotHand;
         }
 
         /// <summary>
@@ -563,6 +592,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @UpdateTarotHand.started -= instance.OnUpdateTarotHand;
+            @UpdateTarotHand.performed -= instance.OnUpdateTarotHand;
+            @UpdateTarotHand.canceled -= instance.OnUpdateTarotHand;
         }
 
         /// <summary>
@@ -652,5 +684,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "UpdateTarotHand" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUpdateTarotHand(InputAction.CallbackContext context);
     }
 }

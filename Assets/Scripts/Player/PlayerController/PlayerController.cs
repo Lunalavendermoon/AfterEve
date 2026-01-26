@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour
         if (instance == null) instance = this;
 
         playerInput = new PlayerInput();
-
-        
     }
 
     // user input system

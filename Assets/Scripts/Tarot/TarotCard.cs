@@ -37,6 +37,11 @@ public abstract class TarotCard
         quantity = q;
     }
 
+    public TarotCard()
+    {
+        quantity = 1;
+    }
+
     public abstract void ApplyCard(TarotManager tarotManager);
     public abstract void RemoveCard(TarotManager tarotManager);
 }

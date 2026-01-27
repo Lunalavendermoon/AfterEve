@@ -12,10 +12,10 @@ public abstract class EffectManager : MonoBehaviour
     [SerializeField] protected PlayerVFXManager vfx;
 
     // only store effects that can time out
-    readonly List<EffectInstance> effectTimers = new();
+    protected List<EffectInstance> effectTimers = new();
 
     // only store effects that never time out (like tarot effects)
-    readonly List<EffectInstance> permanentEffects = new();
+    protected List<EffectInstance> permanentEffects = new();
 
     // stores every single effect that's currently active
     public Dictionary<Tuple<Effects.Stat, Effects.Application, bool>, List<EffectInstance>> effectStacks = new();
@@ -95,6 +95,7 @@ public abstract class EffectManager : MonoBehaviour
 
     public virtual EffectInstance AddEffect(Effects effect, EntityAttributes attributes)
     {
+        // Debug.Log($"1234 Effect added BEFORE: {effectTimers.Count} {buffs.Count} {debuffs.Count}");
         Effects.Stat stat = effect.effectStat;
         Effects.Application app = effect.effectApplication;
         Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
@@ -119,6 +120,7 @@ public abstract class EffectManager : MonoBehaviour
                     }
                 }
             }
+            // Debug.Log("1234 Effect already existed, exiting now");
             return null;
         }
 
@@ -173,6 +175,7 @@ public abstract class EffectManager : MonoBehaviour
         }
 
         ApplyEffects();
+        // Debug.Log($"1234 Effect added AFTER: {effectTimers.Count} {buffs.Count} {debuffs.Count}");
         return eff;
     }
 
@@ -180,6 +183,12 @@ public abstract class EffectManager : MonoBehaviour
     // b/c this method makes use of ReferenceEquals
     public virtual void RemoveEffect(EffectInstance ei)
     {
+        if (ei == null)
+        {
+            return;
+        }
+        // Debug.Log($"1234 Effect removed BEFORE: {effectTimers.Count} {buffs.Count} {debuffs.Count}");
+
         if (ei.effect.isPermanent)
         {
             permanentEffects.Remove(ei);
@@ -223,6 +232,7 @@ public abstract class EffectManager : MonoBehaviour
                 buffs.Remove(key);
             }
         }
+        // Debug.Log($"1234 Effect removed AFTER: {effectTimers.Count} {buffs.Count} {debuffs.Count}");
     }
 
     void Update()

@@ -80,6 +80,12 @@ public class Projectile : MonoBehaviour
         }
         else if (other.GetComponent<EnemyBase>())
         {
+            if (PlayerController.instance.playerAttributes.hermitPast)
+            {
+                float dist = Vector3.Distance(transform.position, firingPoint);
+                AddPhysicalDamage((int)(PlayerController.instance.playerAttributes.damage * dist * Hermit_Past.dmgBonusPerUnit));
+            }
+
             EnemyBase enemy = other.GetComponent<EnemyBase>();
             OnEnemyHit?.Invoke(enemy);
             for (int i = 0; i < PlayerController.instance.playerAttributes.enemiesChained; i++)

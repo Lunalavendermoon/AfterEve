@@ -47,6 +47,7 @@ public class PlayerAttributes : EntityAttributes
     [Header("Past Tarot (DON'T MANUALLY EDIT - set to false)")]
     public bool magicianPastBonusCoin;
     public bool empressPast;
+    public bool hermitPast;
 
 
     // Player Formulas

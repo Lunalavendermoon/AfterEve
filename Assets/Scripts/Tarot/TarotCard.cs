@@ -44,4 +44,7 @@ public abstract class TarotCard
 
     public abstract void ApplyCard(TarotManager tarotManager);
     public abstract void RemoveCard(TarotManager tarotManager);
+
+    // Used to simulate Update() calls on tarot card without making them MonoBehavior
+    public virtual void UpdateCard() {}
 }

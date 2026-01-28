@@ -17,7 +17,7 @@ MonoBehaviour:
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0
   maxHitPoints: 1000
-  currentHitPoints: 300
+  currentHitPoints: 0
   basicDefense: 10
   spiritualDefense: 5
   damageTakenBonus: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
   resistance: 0
   isBlind: 0
   hasKnockback: 0
-  abilityMultiplyAdditive: 0
+  abilityMultiplyAdditive: 1
   attackPerSec: 2
   Ammo: 3
   reloadSpeed: 2
@@ -41,6 +41,8 @@ MonoBehaviour:
   chainRadius: 0
   chainTime: 0
   chainDmg: 0
+  physicalAdditionalDmg: 0
+  spiritualAdditionalDmg: 0
   shield: 0
   hitCountShield: 0
   chainShieldIncrease: 0
@@ -54,3 +56,5 @@ MonoBehaviour:
   isEnlightened: 0
   luck: 1
   trustworthiness: 1
+  magicianPastBonusCoin: 0
+  empressPast: 0

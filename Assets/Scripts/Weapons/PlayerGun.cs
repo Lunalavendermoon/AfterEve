@@ -25,12 +25,12 @@ public class PlayerGun : MonoBehaviour
 
     public bool Shoot()
     {
-        return ShootDamage(PlayerController.instance.playerAttributes.damage);
+        return ShootDamage(PlayerController.instance.playerAttributes.AbilityMultiplyAdditiveDamage(1));
     }
 
     public bool ShootMagicianCoin()
     {
-        return ShootDamage(PlayerController.instance.playerAttributes.damage * Magician_Reward.damageMultiplier);
+        return ShootDamage(PlayerController.instance.playerAttributes.AbilityMultiplyAdditiveDamage(Magician_Reward.damageMultiplier));
     }
 
     // Returns whether the shot was fired

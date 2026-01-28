@@ -120,6 +120,12 @@ public class TarotManager : MonoBehaviour
             PlayerController.instance.futureSkill = futureTarot[1].reward;
             tarotHand.transform.GetChild(1).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
         }
+
+        // call Update() for any cards that need it -- currently only chariot past
+        if (pastTarot.ContainsKey(TarotCard.Arcana.Chariot))
+        {
+            pastTarot[TarotCard.Arcana.Chariot].UpdateCard();
+        }
     }
 
     // For testing
@@ -190,7 +196,7 @@ public class TarotManager : MonoBehaviour
     {
         // commented some cards out for testing purposes, uncomment if u need to use them :D
 
-        AddCard(new Emperor_Past(1));
+        AddCard(new Chariot_Past(1));
         // AddCard(new Chariot_Future(1));
         // AddCard(new Lovers_Future(1));
         // AddCard(new Empress_Present(1));

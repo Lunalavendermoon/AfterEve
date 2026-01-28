@@ -56,47 +56,48 @@ public class Entity : MonoBehaviour
         OnHealthChanged?.Invoke(currentHP, attributes.maxHitPoints);
     }
 
+    // commented this out since it seems to be unused
     /// <summary>
     /// Applies incoming damage AFTER external damage calculation.
     /// (Your ObstacleData / EnemyAttributes etc should compute the damage amount.)
     /// This method handles runtime defenses like player shield.
     /// </summary>
-    public void TakeDamage(int amount)
-    {
-        if (isDead || attributes == null) return;
+    // public void TakeDamage(int amount)
+    // {
+    //     if (isDead || attributes == null) return;
 
-        int damageApplied = Mathf.Max(0, amount);
+    //     int damageApplied = Mathf.Max(0, amount);
 
-        // Player-specific shield handling (simple + robust)
-        if (attributes is PlayerAttributes playerAttr)
-        {
-            // If shield exists, reduce damage by shield value
-            damageApplied = Mathf.Max(0, damageApplied - playerAttr.shield);
+    //     // Player-specific shield handling (simple + robust)
+    //     if (attributes is PlayerAttributes playerAttr)
+    //     {
+    //         // If shield exists, reduce damage by shield value
+    //         damageApplied = Mathf.Max(0, damageApplied - playerAttr.shield);
 
-            // Optional: shield depletes by hit count (only if you want that mechanic)
-            if (playerAttr.hitCountShield > 0)
-            {
-                playerAttr.hitCountShield -= 1;
-                if (playerAttr.hitCountShield <= 0)
-                {
-                    // Shield "breaks" after N hits
-                    playerAttr.shield = 0;
-                }
-            }
-        }
+    //         // Optional: shield depletes by hit count (only if you want that mechanic)
+    //         if (playerAttr.hitCountShield > 0)
+    //         {
+    //             playerAttr.hitCountShield -= 1;
+    //             if (playerAttr.hitCountShield <= 0)
+    //             {
+    //                 // Shield "breaks" after N hits
+    //                 playerAttr.shield = 0;
+    //             }
+    //         }
+    //     }
 
-        if (damageApplied <= 0)
-            return;
+    //     if (damageApplied <= 0)
+    //         return;
 
-        currentHP = Mathf.Max(0, currentHP - damageApplied);
-        OnDamaged?.Invoke(damageApplied);
-        OnHealthChanged?.Invoke(currentHP, attributes.maxHitPoints);
+    //     currentHP = Mathf.Max(0, currentHP - damageApplied);
+    //     OnDamaged?.Invoke(damageApplied);
+    //     OnHealthChanged?.Invoke(currentHP, attributes.maxHitPoints);
 
-        if (currentHP <= 0)
-        {
-            Die();
-        }
-    }
+    //     if (currentHP <= 0)
+    //     {
+    //         Die();
+    //     }
+    // }
 
     public void Heal(int amount)
     {

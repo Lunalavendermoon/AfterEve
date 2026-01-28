@@ -94,16 +94,6 @@ public class PlayerEffectManager : EffectManager
 
     public override void RemoveEffect(EffectInstance ei, bool muted = false)
     {
-        if (ei.effect.effectStat == Effects.Stat.HitCountShield)
-        {
-            // TODO - currently assumes only Hierophant Future applies a hit-count shield, which may not be true
-            // This code always attempts to subtract the initial shield amount,
-            // but if there are shields from multiple sources (other than Hierophant which only stacks once)
-            // then they might interfere w/ each other
-            PlayerController.instance.playerAttributes.hitCountShield = Math.Max(
-                0, PlayerController.instance.playerAttributes.hitCountShield - ((HitCountShield_Effect)ei.effect).amount);
-        }
-
         Effects effect = ei.effect;
 
         if (effect.iconType != Effects.IconType.None)

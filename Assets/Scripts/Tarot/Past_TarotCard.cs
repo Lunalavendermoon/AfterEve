@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Past_TarotCard : TarotCard
 {
-    public List<EffectInstance> effects = new();
+    public List<ShieldInstance> effects = new();
 
     public Past_TarotCard(int q) : base(q)
     {

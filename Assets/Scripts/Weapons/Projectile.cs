@@ -96,10 +96,14 @@ public class Projectile : MonoBehaviour
                     temp.GetComponent<EnemyBase>().Chain(PlayerController.instance.playerAttributes.chainTime);
                     if(PlayerController.instance.IsInSpiritualVision())
                     {
-                        PlayerController.instance.health += (int) (PlayerController.instance.playerAttributes.shield * PlayerController.instance.playerAttributes.chainShieldIncrease * 2);
+                        PlayerController.instance.GainRegularShield(
+                            (int)(PlayerController.instance.playerAttributes.maxHitPoints *
+                            PlayerController.instance.playerAttributes.chainShieldIncrease * 2));
                     } else
                     {
-                        PlayerController.instance.health += (int)(PlayerController.instance.playerAttributes.shield * PlayerController.instance.playerAttributes.chainShieldIncrease);
+                        PlayerController.instance.GainRegularShield(
+                            (int)(PlayerController.instance.playerAttributes.maxHitPoints *
+                            PlayerController.instance.playerAttributes.chainShieldIncrease));
                     }
                 }
             }

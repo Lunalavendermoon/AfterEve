@@ -24,8 +24,6 @@ public class PlayerAttributes : EntityAttributes
     
 
     [Header("Player Defense")]
-    public int shield;
-    public int hitCountShield;
     public float chainShieldIncrease;
 
     [Header("Player Movement")]
@@ -60,13 +58,13 @@ public class PlayerAttributes : EntityAttributes
         switch (damageType)
         {
             case EnemyAttributes.DamageType.Basic:
-                damageTaken = (int)(baseDamage * (1 - ((float)basicDefense / (basicDefense + 100))) - shield);
+                damageTaken = (int)(baseDamage * (1 - ((float)basicDefense / (basicDefense + 100))));
                 break;
             case EnemyAttributes.DamageType.Spiritual:
-                damageTaken = (int)(baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100))) - shield);
+                damageTaken = (int)(baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100))));
                 break;
             case EnemyAttributes.DamageType.Mixed:
-                damageTaken = (int)(0.5 * baseDamage * (1 - ((float)basicDefense / (basicDefense + 100)))) + (int)(0.5 * baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100)))) - shield;
+                damageTaken = (int)(0.5 * baseDamage * (1 - ((float)basicDefense / (basicDefense + 100)))) + (int)(0.5 * baseDamage * (1 - ((float)spiritualDefense / (spiritualDefense + 100))));
                 break;
         }
 

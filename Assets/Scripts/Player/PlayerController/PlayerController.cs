@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour
     public InteractableEntity currentInteractable;
 
     public TarotManager tarotManager;
+    public ShieldManager shieldManager;
 
     void Start()
     {
@@ -373,26 +374,13 @@ public class PlayerController : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
     {
-        if (playerAttributes.hitCountShield > 0)
-        {
-            --playerAttributes.hitCountShield;
-            // player hp/shield takes no damage, but trigger OnDamageTaken to broadcast that player was attacked
-            OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, 0, 0));
-            Debug.Log($"Player absorbed attack that would have dealt {amount} damage, remaining hit counts: {playerAttributes.hitCountShield}");
-            return;
-        }
         // TODO factor in damage reduction as well
-        int amountAfterShield = amount - playerAttributes.shield;
-        if (amountAfterShield > 0)
-        {
-            playerAttributes.shield = 0;
-            health -= amountAfterShield;
-            healthBar.setCurrentHitPoints(health);
-        } else
-        {
-            playerAttributes.shield -= amount;
-        }
-        Debug.Log($"Player took {amount} damage, remaining health: {health}, shield: {playerAttributes.shield}");
+        Debug.Log($"Remaining damage BEFORE shield: {amount}");
+        amount = shieldManager.TakeShieldDamage(amount);
+        Debug.Log($"Remaining damage AFTER shield: {amount}");
+        health -= amount;
+        healthBar.setCurrentHitPoints(health);
+        Debug.Log($"Player took {amount} damage, remaining health: {health}, regular shield: {shieldManager.GetTotalShield(Shield.ShieldType.Regular)}, hitcount shield: {shieldManager.GetTotalShield(Shield.ShieldType.HitCount)}");
         OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, amount, amount));
         if (health <= 0)
         {
@@ -415,15 +403,22 @@ public class PlayerController : MonoBehaviour
         return health;
     }
     
-    public void GainShield(int amount)
+    public void GainRegularShield(int amount, float duration = -1)
     {
-        playerAttributes.shield += amount;
+        if (duration <= 0)
+        {
+            shieldManager.GainRegularShield(amount);
+        }
+        else
+        {
+            shieldManager.AddShield(new Regular_Shield(amount, duration));
+        }
         OnShielded?.Invoke(amount);
     }
 
-    public void GainHitCountShield(int amount)
+    public void GainHitCountShield(int amount, float duration)
     {
-        playerAttributes.hitCountShield += amount;
+        shieldManager.AddShield(new HitCount_Shield(amount, duration));
     }
 
     public void ChangeCoins(int amount, bool fromShop = false)

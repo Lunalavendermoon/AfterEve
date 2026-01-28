@@ -11,5 +11,7 @@ public class Cursed_Effect : Multiplier_Effects
         effectStat = Stat.SpiritualDefense;
         isDebuff = true;
         isIncremental = false;
+
+        iconType = IconType.DebuffCursed;
     }
 }

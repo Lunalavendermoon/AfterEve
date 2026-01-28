@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class PlayerEffectManager : EffectManager
 {
@@ -35,19 +36,20 @@ public class PlayerEffectManager : EffectManager
 
         if (effect.iconType != Effects.IconType.None)
         {
-            if (iconCounts.TryAdd(effect.iconType, 1))
-            {
-                Debug.LogWarning(effectIconDisplay == null);
-                AddIcon(effect.iconType);
-            }
-            else
-            {
-                if (iconCounts[effect.iconType] == 0)
-                {
-                    AddIcon(effect.iconType);
-                }
-                ++iconCounts[effect.iconType];
-            }
+            AddIcon(effect.iconType);
+            // if (iconCounts.TryAdd(effect.iconType, 1))
+            // {
+            //     Debug.LogWarning(effectIconDisplay == null);
+            //     AddIcon(effect.iconType);
+            // }
+            // else
+            // {
+            //     if (iconCounts[effect.iconType] == 0)
+            //     {
+            //         ++iconCounts[effect.iconType];
+            //         AddIcon(effect.iconType);
+            //     }
+            // }
         }
 
         if (!effect.isDebuff && effect.hasVfx)
@@ -155,35 +157,53 @@ public class PlayerEffectManager : EffectManager
         // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefense);
     }
 
-    void AddIcon(Effects.IconType type)
+    public void AddIcon(Effects.IconType type)
     {
+        if (iconCounts.ContainsKey(type) && iconCounts[type] >= 1)
+        {
+            return;
+        }
+
         GameObject go = Instantiate(genericEffectIcon, effectIconDisplay.transform);
         go.GetComponent<Image>().sprite = getIconSprite(type);
         
+        if (!iconCounts.TryAdd(type, 1))
+        {
+            ++iconCounts[type];
+        }
         if (!iconInstances.TryAdd(type, go))
         {
             iconInstances[type] = go;
         }
     }
 
-    void RemoveIcon(Effects.IconType type)
+    public void RemoveIcon(Effects.IconType type)
     {
         Destroy(iconInstances[type]);
     }
 
     Sprite getIconSprite(Effects.IconType type)
     {
-        switch (type)
+        return type switch
         {
-            case Effects.IconType.BuffDefense:
-                return effectIcons.defenseBuff;
-            case Effects.IconType.BuffSpeed:
-                return effectIcons.speedBuff;
-            case Effects.IconType.BuffRegen:
-                return effectIcons.regeneration;
-            case Effects.IconType.BuffStrength:
-                return effectIcons.strength;
-        }
-        return null;
+            Effects.IconType.BuffBless => effectIcons.bless,
+            Effects.IconType.BuffEnlighten => effectIcons.enlighten,
+            Effects.IconType.BuffFortify => effectIcons.fortify,
+            Effects.IconType.BuffLucky => effectIcons.lucky,
+            Effects.IconType.BuffRegen => effectIcons.regen,
+            Effects.IconType.BuffShield => effectIcons.shield,
+            Effects.IconType.BuffSpeed => effectIcons.speed,
+            Effects.IconType.BuffStrength => effectIcons.strength,
+            Effects.IconType.DebuffBleed => effectIcons.bleed,
+            Effects.IconType.DebuffBlind => effectIcons.blind,
+            Effects.IconType.DebuffBurn => effectIcons.burn,
+            Effects.IconType.DebuffConfused => effectIcons.confused,
+            Effects.IconType.DebuffKnockback => effectIcons.knockback,
+            Effects.IconType.DebuffParalyze => effectIcons.paralyze,
+            Effects.IconType.DebuffSlow => effectIcons.slow,
+            Effects.IconType.DebuffSundered => effectIcons.sundered,
+            Effects.IconType.DebuffWeak => effectIcons.weak,
+            _ => null,
+        };
     }
 }

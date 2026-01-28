@@ -379,7 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34764622aab6cd40bb6bb684b628a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  shieldManager: {fileID: 4949763400254494269}
   healthBar: {fileID: 0}
   questUIScript: {fileID: 0}
   horizontalInput: 0
@@ -393,6 +392,7 @@ MonoBehaviour:
   clonePrefab: {fileID: 6129751107627094636, guid: cc7b3df6b62206141bb27b7f6b3856e4, type: 3}
   currentInteractable: {fileID: 0}
   tarotManager: {fileID: 0}
+  shieldManager: {fileID: 4949763400254494269}
 --- !u!114 &335750778297899072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13b2e1375ad848ce9dfd33a9f591d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShieldManager
+  effectManager: {fileID: 6813524830171508266}
 --- !u!1 &1081412651798372047
 GameObject:
   m_ObjectHideFlags: 0

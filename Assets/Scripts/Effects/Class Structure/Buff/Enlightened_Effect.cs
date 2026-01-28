@@ -12,6 +12,7 @@ public class Enlightened_Effect : Effects
         isDebuff = false;
         effectApplication = Application.Disable;
         hasVfx = true;
+        iconType = IconType.BuffEnlighten;
     }
 
     public override void ApplyEffect(EntityAttributes _e, bool _)

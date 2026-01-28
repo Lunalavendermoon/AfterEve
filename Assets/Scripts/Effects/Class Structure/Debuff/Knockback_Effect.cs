@@ -11,6 +11,8 @@ public class Knockback_Effect : Effects
         effectStat = Stat.Knockback;
         isDebuff = true;
         effectApplication = Application.Disable;
+
+        iconType = IconType.DebuffKnockback;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool _)

@@ -60,10 +60,24 @@ public abstract class Effects
     public enum IconType
     {
         None,
-        BuffDefense,
-        BuffSpeed,
+        BuffBless,
+        BuffEnlighten,
+        BuffFortify,
+        BuffLucky,
         BuffRegen,
-        BuffStrength
+        BuffShield,
+        BuffSpeed,
+        BuffStrength,
+        DebuffBleed,
+        DebuffBlind,
+        DebuffBurn,
+        DebuffConfused,
+        DebuffCursed,
+        DebuffKnockback,
+        DebuffParalyze,
+        DebuffSlow,
+        DebuffSundered,
+        DebuffWeak
     }
 
     // stat effected

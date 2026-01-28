@@ -12,7 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b30e0fa43d384b968c451de1baaa65b, type: 3}
   m_Name: EffectIcons
   m_EditorClassIdentifier: Assembly-CSharp::EffectIcons
-  defenseBuff: {fileID: 21300000, guid: ccb0c5ff9da9843ffb84f8153cdfa262, type: 3}
-  speedBuff: {fileID: 21300000, guid: 38460e24bc7f0464f998a2f273628c9d, type: 3}
-  regeneration: {fileID: 21300000, guid: f5b479c0c33734265a94de69b4b9ebc1, type: 3}
+  bless: {fileID: 21300000, guid: de72df50d437242bbb8913065933068b, type: 3}
+  enlighten: {fileID: 21300000, guid: 2f38d9c5e53884ad2999e1060bd3d38e, type: 3}
+  fortify: {fileID: 21300000, guid: ca6ba660a393642f2b52710acab5382f, type: 3}
+  lucky: {fileID: 21300000, guid: 99092bdce02674f40a098accb61a1757, type: 3}
+  regen: {fileID: 21300000, guid: f5b479c0c33734265a94de69b4b9ebc1, type: 3}
+  shield: {fileID: 21300000, guid: ccb0c5ff9da9843ffb84f8153cdfa262, type: 3}
+  speed: {fileID: 21300000, guid: 38460e24bc7f0464f998a2f273628c9d, type: 3}
   strength: {fileID: 21300000, guid: c675887953ba04d549b32db7f29195bb, type: 3}
+  bleed: {fileID: 0}
+  blind: {fileID: 0}
+  burn: {fileID: 0}
+  confused: {fileID: 0}
+  cursed: {fileID: 0}
+  knockback: {fileID: 0}
+  paralyze: {fileID: 0}
+  slow: {fileID: 0}
+  sundered: {fileID: 0}
+  weak: {fileID: 0}

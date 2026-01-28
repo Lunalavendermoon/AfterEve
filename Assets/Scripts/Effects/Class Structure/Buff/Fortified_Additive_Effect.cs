@@ -12,7 +12,7 @@ public class Fortified_Additive_Effect : Flat_Effects
         effectStat = Stat.BasicDefense;
         isDebuff = false;
         effectApplication = Application.Additive;
-        iconType = IconType.BuffDefense;
+        iconType = IconType.BuffFortify;
         hasVfx = true;
     }
 }

@@ -11,5 +11,7 @@ public class Sundered_Effect : Multiplier_Effects
         effectStat = Stat.BasicDefense;
         isDebuff = true;
         isIncremental = false;
+
+        iconType = IconType.DebuffSundered;
     }
 }

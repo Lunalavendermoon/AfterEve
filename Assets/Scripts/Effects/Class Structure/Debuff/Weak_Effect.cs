@@ -14,5 +14,7 @@ public class Weak_Effect : Multiplier_Effects
 
         // store as a negative value so that DebuffComparer works properly
         effectRate = -effectMultiplyAdditive;
+
+        iconType = IconType.DebuffWeak;
     }
 }

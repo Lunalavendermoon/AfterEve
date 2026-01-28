@@ -11,6 +11,8 @@ public class Paralyze_Effect : Effects
         effectStat = Stat.Movement;
         isDebuff = true;
         effectApplication = Application.Disable;
+
+        iconType = IconType.DebuffParalyze;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool _)

@@ -11,6 +11,8 @@ public class Confused_Effect : Effects
         effectStat = Stat.Confused;
         isDebuff = true;
         effectApplication = Application.Disable;
+
+        iconType = IconType.DebuffConfused;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool _ = false)

@@ -7,6 +7,8 @@ using UnityEngine;
 // No enemy equivalent (IDT any enemies use shields besides false human boss) but can make one if needed!
 public class ShieldManager : MonoBehaviour
 {
+    public PlayerEffectManager effectManager;
+
     protected Shield miscShield = new Regular_Shield(0, -1);
 
     // only store shields that can time out
@@ -41,6 +43,8 @@ public class ShieldManager : MonoBehaviour
         {
             shieldTimers.Add(si);
         }
+
+        effectManager.AddIcon(Effects.IconType.BuffShield);
         return si;
     }
 
@@ -61,6 +65,11 @@ public class ShieldManager : MonoBehaviour
         }
 
         allShields[si.shield.shieldType].Remove(si);
+
+        if (GetTotalShield() == 0)
+        {
+            effectManager.RemoveIcon(Effects.IconType.BuffShield);
+        }
     }
 
     void Update()
@@ -120,6 +129,20 @@ public class ShieldManager : MonoBehaviour
     public void GainRegularShield(int amount)
     {
         miscShield.GainShield(amount);
+    }
+
+    public int GetTotalShield()
+    {
+        int count = 0;
+
+        Shield.ShieldType[] types = (Shield.ShieldType[])Enum.GetValues(typeof(Shield.ShieldType));
+
+        foreach (Shield.ShieldType type in types)
+        {
+            count += GetTotalShield(type);
+        }
+
+        return count;
     }
 
     public int GetTotalShield(Shield.ShieldType type)

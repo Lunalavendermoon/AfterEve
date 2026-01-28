@@ -22,6 +22,8 @@ public class Bleed_Effect : Multiplier_Effects
         incrementInterval = timeBetweenIncrements;
 
         effectApplication = Application.Multiplier;
+
+        iconType = IconType.DebuffBleed;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool increment)

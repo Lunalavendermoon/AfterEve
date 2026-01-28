@@ -10,6 +10,7 @@ public class Blindness_Effect : Effects
         effectStat = Stat.SpiritualVision;
         isDebuff = true;
         effectApplication = Application.Disable;
+        iconType = IconType.DebuffBlind;
     }
 
     public override void ApplyEffect(EntityAttributes entityAttributes, bool _)

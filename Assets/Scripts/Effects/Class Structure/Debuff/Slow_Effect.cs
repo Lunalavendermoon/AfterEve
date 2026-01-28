@@ -13,5 +13,7 @@ public class Slow_Effect : Multiplier_Effects
         isDebuff = true;
         isIncremental = true;
         incrementInterval = 1;
+
+        iconType = IconType.DebuffSlow;
     }
 }

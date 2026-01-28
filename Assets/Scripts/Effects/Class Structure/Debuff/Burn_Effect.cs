@@ -19,6 +19,8 @@ public class Burn_Effect : Flat_Effects
 
         // numbers that we're not sure of yet/couuld be changed?
         incrementInterval = timeBetweenIncrements;
+
+        iconType = IconType.DebuffBurn;
     }
 
     public override bool IsIncremental()

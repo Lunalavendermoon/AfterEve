@@ -374,14 +374,18 @@ public class PlayerController : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
     {
-        // TODO factor in damage reduction as well
-        Debug.Log($"Remaining damage BEFORE shield: {amount}");
-        amount = shieldManager.TakeShieldDamage(amount);
-        Debug.Log($"Remaining damage AFTER shield: {amount}");
+        int originalAmt = amount;
+
+        // damage reduction
+        amount = playerAttributes.DamageCalculation(amount, DamageInstance.ToEnemyDamageType(damageType));
+        // shield reduction
+        amount = shieldManager.TakeShieldDamage(playerAttributes.DamageCalculation(amount, DamageInstance.ToEnemyDamageType(damageType)));
+
+        // remaining damage is subtracted from player health
         health -= amount;
         healthBar.setCurrentHitPoints(health);
         Debug.Log($"Player took {amount} damage, remaining health: {health}, regular shield: {shieldManager.GetTotalShield(Shield.ShieldType.Regular)}, hitcount shield: {shieldManager.GetTotalShield(Shield.ShieldType.HitCount)}");
-        OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, amount, amount));
+        OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, originalAmt, amount));
         if (health <= 0)
         {
             // TODO: player died

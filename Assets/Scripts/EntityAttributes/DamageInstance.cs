@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class DamageInstance
@@ -32,5 +33,18 @@ public class DamageInstance
         this.beforeReduction = beforeReduction;
         this.afterReduction = afterReduction;
         this.hitWeakPoint = hitWeakPoint;
+    }
+
+    public static EnemyAttributes.DamageType ToEnemyDamageType(DamageType type)
+    {
+        switch (type)
+        {
+            case DamageType.Physical:
+                return EnemyAttributes.DamageType.Basic;
+            case DamageType.Spiritual:
+                return EnemyAttributes.DamageType.Spiritual;
+            default:
+                return EnemyAttributes.DamageType.Mixed;
+        }
     }
 }

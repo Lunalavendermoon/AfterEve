@@ -95,7 +95,6 @@ public abstract class EffectManager : MonoBehaviour
 
     public virtual EffectInstance AddEffect(Effects effect, EntityAttributes attributes)
     {
-        // Debug.Log($"1234 Effect added BEFORE: {effectTimers.Count} {buffs.Count} {debuffs.Count}");
         Effects.Stat stat = effect.effectStat;
         Effects.Application app = effect.effectApplication;
         Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
@@ -120,7 +119,6 @@ public abstract class EffectManager : MonoBehaviour
                     }
                 }
             }
-            // Debug.Log("1234 Effect already existed, exiting now");
             return null;
         }
 
@@ -151,13 +149,10 @@ public abstract class EffectManager : MonoBehaviour
             effectStacks[key3] = new() { eff };
             if (effect.isDebuff)
             {
-                if (effect.effectApplication != Effects.Application.Disable)
+                debuffs[key] = new(new DebuffComparer())
                 {
-                    debuffs[key] = new(new DebuffComparer())
-                    {
-                        eff
-                    };
-                }
+                    eff
+                };
             }
             else
             {
@@ -175,7 +170,6 @@ public abstract class EffectManager : MonoBehaviour
         }
 
         ApplyEffects();
-        // Debug.Log($"1234 Effect added AFTER: {effectTimers.Count} {buffs.Count} {debuffs.Count}");
         return eff;
     }
 
@@ -187,7 +181,6 @@ public abstract class EffectManager : MonoBehaviour
         {
             return;
         }
-        // Debug.Log($"1234 Effect removed BEFORE: {effectTimers.Count} {buffs.Count} {debuffs.Count}");
 
         if (ei.effect.isPermanent)
         {
@@ -208,10 +201,7 @@ public abstract class EffectManager : MonoBehaviour
         if (effect.isDebuff)
         {
             effectStacks[key3].Remove(ei);
-            if (effect.effectApplication != Effects.Application.Disable)
-            {
-                debuffs[key].Remove(ei);
-            }
+            debuffs[key].Remove(ei);
 
             if (effectStacks[key3].Count == 0)
             {
@@ -232,7 +222,6 @@ public abstract class EffectManager : MonoBehaviour
                 buffs.Remove(key);
             }
         }
-        // Debug.Log($"1234 Effect removed AFTER: {effectTimers.Count} {buffs.Count} {debuffs.Count}");
     }
 
     void Update()

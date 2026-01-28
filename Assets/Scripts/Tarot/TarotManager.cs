@@ -188,11 +188,11 @@ public class TarotManager : MonoBehaviour
 
     void Start()
     {
-        AddCard(new Lovers_Past(1));
-        AddCard(new Chariot_Future(1));
-        AddCard(new Lovers_Future(1));
-        AddCard(new Empress_Present(1));
+        // AddCard(new Lovers_Past(1));
+        // AddCard(new Chariot_Future(1));
+        // AddCard(new Lovers_Future(1));
+        // AddCard(new Empress_Present(1));
 
-        DisplayHand();
+        // DisplayHand();
     }
 }

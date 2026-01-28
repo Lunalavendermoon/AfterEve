@@ -2458,6 +2458,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 889273025454543277, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 363515242}
+    - target: {fileID: 889273025454543277, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddEffectTest
+      objectReference: {fileID: 0}
     - target: {fileID: 963835296692358611, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2570,6 +2578,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: AddEffectTest
       objectReference: {fileID: 0}
+    - target: {fileID: 5977806179286360227, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 363515242}
+    - target: {fileID: 5977806179286360227, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddEffectTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074349658938892957, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 363515242}
+    - target: {fileID: 6074349658938892957, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddEffectTest
+      objectReference: {fileID: 0}
     - target: {fileID: 6120371867950333471, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
       propertyPath: m_Name
       value: EffectTesterCanvas
@@ -2577,6 +2601,30 @@ PrefabInstance:
     - target: {fileID: 6120371867950333471, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318575452094577827, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 363515242}
+    - target: {fileID: 7318575452094577827, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddEffectTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275592643297199344, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 363515242}
+    - target: {fileID: 8275592643297199344, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddEffectTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381988718831544355, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 363515242}
+    - target: {fileID: 8381988718831544355, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddEffectTest
       objectReference: {fileID: 0}
     - target: {fileID: 8864265049100913884, guid: d7f7b51ca7d6d4d13b56c083bde21b89, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3864,8 +3912,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TarotUIScript
   tarotCooldown: 2
-  cooldownFill: {fileID: 126213971}
-  tarotCooldownButtonText: {fileID: 74489093}
 --- !u!1 &742387865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5401,6 +5447,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TarotManager
   text: {fileID: 1310597047}
   effectManager: {fileID: 363515242}
+  tarotIcons: {fileID: 0}
+  tarotHand: {fileID: 0}
+  tarotPrefab: {fileID: 0}
 --- !u!1 &1070625459
 GameObject:
   m_ObjectHideFlags: 0

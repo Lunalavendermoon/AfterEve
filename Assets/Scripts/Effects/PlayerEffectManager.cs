@@ -92,7 +92,7 @@ public class PlayerEffectManager : EffectManager
         return base.AddEffect(effect, attr);
     }
 
-    public override void RemoveEffect(EffectInstance ei)
+    public override void RemoveEffect(EffectInstance ei, bool muted = false)
     {
         if (ei.effect.effectStat == Effects.Stat.HitCountShield)
         {
@@ -152,7 +152,7 @@ public class PlayerEffectManager : EffectManager
             }
         }
 
-        base.RemoveEffect(ei);
+        base.RemoveEffect(ei, muted);
     }
 
     public override void ApplyEffects()

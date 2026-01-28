@@ -23,7 +23,7 @@ public abstract class Past_TarotCard : TarotCard
 
     public override void RemoveCard(TarotManager tarotManager)
     {
-        // TODO - can past tarot cards be removed/toggled off?
+        // TODO - can past tarot cards ever be removed/toggled off?
 
         // if (effects != null) { 
         //     foreach (Effects e in effects)

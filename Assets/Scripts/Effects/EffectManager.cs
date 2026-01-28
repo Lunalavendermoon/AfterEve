@@ -175,7 +175,8 @@ public abstract class EffectManager : MonoBehaviour
 
     // Requires that the instance of EffectInstance is the same one that is stored in this EffectManager's collections
     // b/c this method makes use of ReferenceEquals
-    public virtual void RemoveEffect(EffectInstance ei)
+    // if muted is true, does not call ApplyEffects() at the end
+    public virtual void RemoveEffect(EffectInstance ei, bool muted = false)
     {
         if (ei == null)
         {
@@ -222,6 +223,10 @@ public abstract class EffectManager : MonoBehaviour
                 buffs.Remove(key);
             }
         }
+        if (!muted)
+        {
+            ApplyEffects();
+        }
     }
 
     void Update()
@@ -238,7 +243,7 @@ public abstract class EffectManager : MonoBehaviour
 
             if (ei.IsExpired())
             {
-                RemoveEffect(ei);
+                RemoveEffect(ei, true);
                 makeUpdate = true;
             }
             else if (ei.IsNextTrigger())

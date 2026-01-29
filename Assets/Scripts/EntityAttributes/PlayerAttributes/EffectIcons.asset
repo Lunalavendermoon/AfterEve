@@ -20,13 +20,13 @@ MonoBehaviour:
   shield: {fileID: 21300000, guid: ccb0c5ff9da9843ffb84f8153cdfa262, type: 3}
   speed: {fileID: 21300000, guid: 38460e24bc7f0464f998a2f273628c9d, type: 3}
   strength: {fileID: 21300000, guid: c675887953ba04d549b32db7f29195bb, type: 3}
-  bleed: {fileID: 0}
-  blind: {fileID: 0}
-  burn: {fileID: 0}
-  confused: {fileID: 0}
-  cursed: {fileID: 0}
-  knockback: {fileID: 0}
-  paralyze: {fileID: 0}
-  slow: {fileID: 0}
-  sundered: {fileID: 0}
-  weak: {fileID: 0}
+  bleed: {fileID: 21300000, guid: f85a4f4474f6b4cfb932d2441d19487b, type: 3}
+  blind: {fileID: 21300000, guid: 49293303d43e8492484b2f72f118c817, type: 3}
+  burn: {fileID: 21300000, guid: 5aa6565fdfbec4c6d9bdc26e5e55e88d, type: 3}
+  confused: {fileID: 21300000, guid: beae6ed4f6c964b5f909af53fefb96be, type: 3}
+  cursed: {fileID: 21300000, guid: b417e198da5844969a08d604c70700ec, type: 3}
+  knockback: {fileID: 21300000, guid: 30afe15ffef314843a0ca4c567e22276, type: 3}
+  paralyze: {fileID: 21300000, guid: 5ab6e0481c9f24df49db4890e2543bf7, type: 3}
+  slow: {fileID: 21300000, guid: 0beffb25dad50483b84fefb1e4bedce5, type: 3}
+  sundered: {fileID: 21300000, guid: 17ba13bff7bc84d3fbe34925d9361af7, type: 3}
+  weak: {fileID: 21300000, guid: f619c45c3921f473b8d361411ddb4685, type: 3}

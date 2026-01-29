@@ -18,9 +18,9 @@ public class Hierophant_Past : Past_TarotCard
         GameManager.OnRoomChange += OnNewRoom;
     }
 
-    // Slight issue w/ this not getting triggered in the first room, but i think that's because
+    // TODO: Slight issue w/ this not getting triggered in the first room, but i think that's because
     // the map is getting initialized earlier than the hierophant past card is added to the player
-    // SO this hopefully shouldn't be a problem once the full game is wired up & the past card is added before map generates
+    // so this hopefully shouldn't be a problem once the full game is wired up & the past tarot is created before map generates
     void OnNewRoom()
     {
         PlayerController.instance.GainRegularShield((int)(shieldPercentage * PlayerController.instance.playerAttributes.maxHitPoints));

@@ -6,7 +6,6 @@ using Yarn.Unity;
 
 public class PlayerEffectManager : EffectManager
 {
-
     // constant, storing the base attribute values
     public PlayerAttributes basePlayerAttributes;
 
@@ -19,11 +18,17 @@ public class PlayerEffectManager : EffectManager
 
     public GameObject effectIconDisplay;
 
+    // hard cap on max number of effect icons
+    public int effectIconCap = 5;
+    int effectIconCount = 0;
+
     public static event Action OnEffectAdded;
 
-    Dictionary<Effects.IconType, int> iconCounts = new();
+    Dictionary<Effects.IconType, int> typeCounts = new();
 
     Dictionary<Effects.IconType, GameObject> iconInstances = new();
+
+    // List<Effects.IconType> iconQueue = new();
 
     public override EffectInstance AddBuff(Effects effect)
     {
@@ -90,7 +95,6 @@ public class PlayerEffectManager : EffectManager
             }
         }
         
-
         return base.AddEffect(effect, attr);
     }
 
@@ -100,9 +104,9 @@ public class PlayerEffectManager : EffectManager
 
         if (effect.iconType != Effects.IconType.None)
         {
-            --iconCounts[effect.iconType];
+            --typeCounts[effect.iconType];
 
-            if (iconCounts[effect.iconType] == 0)
+            if (typeCounts[effect.iconType] == 0)
             {
                 RemoveIcon(effect.iconType);
             }
@@ -159,7 +163,7 @@ public class PlayerEffectManager : EffectManager
 
     public void AddIcon(Effects.IconType type)
     {
-        if (iconCounts.ContainsKey(type) && iconCounts[type] >= 1)
+        if (typeCounts.ContainsKey(type) && typeCounts[type] >= 1)
         {
             return;
         }
@@ -167,19 +171,65 @@ public class PlayerEffectManager : EffectManager
         GameObject go = Instantiate(genericEffectIcon, effectIconDisplay.transform);
         go.GetComponent<Image>().sprite = getIconSprite(type);
         
-        if (!iconCounts.TryAdd(type, 1))
+        if (!typeCounts.TryAdd(type, 1))
         {
-            ++iconCounts[type];
+            ++typeCounts[type];
         }
         if (!iconInstances.TryAdd(type, go))
         {
             iconInstances[type] = go;
         }
+
+        // if (typeCounts.ContainsKey(type) && typeCounts[type] >= 1)
+        // {
+        //     return;
+        // }
+
+        // ++effectIconCount;
+        
+        // if (!typeCounts.TryAdd(type, 1))
+        // {
+        //     ++typeCounts[type];
+        // }
+
+        // if (effectIconCount >= effectIconCap)
+        // {
+        //     // add to queue
+        //     iconQueue.Add(type);
+        // }
+        // else
+        // {
+        //     GameObject go = Instantiate(genericEffectIcon, effectIconDisplay.transform);
+        //     go.GetComponent<Image>().sprite = getIconSprite(type);
+        //     if (!iconInstances.TryAdd(type, go))
+        //     {
+        //         iconInstances[type] = go;
+        //     }
+        // }
     }
 
     public void RemoveIcon(Effects.IconType type)
     {
+        --effectIconCount;
         Destroy(iconInstances[type]);
+
+        // bool wasRemoved = iconQueue.Remove(type);
+
+        // if (!wasRemoved)
+        // {
+        //     // pop queue
+        //     Effects.IconType qtype = iconQueue[iconQueue.Count - 1];
+        //     iconQueue.RemoveAt(iconQueue.Count - 1);
+
+        //     ++effectIconCount;
+
+        //     GameObject go = Instantiate(genericEffectIcon, effectIconDisplay.transform);
+        //     go.GetComponent<Image>().sprite = getIconSprite(qtype);
+        //     if (!iconInstances.TryAdd(qtype, go))
+        //     {
+        //         iconInstances[qtype] = go;
+        //     }
+        // }
     }
 
     Sprite getIconSprite(Effects.IconType type)

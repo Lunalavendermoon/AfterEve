@@ -23,6 +23,11 @@ public class Hierophant_Past : Past_TarotCard
     // so this hopefully shouldn't be a problem once the full game is wired up & the past tarot is created before map generates
     void OnNewRoom()
     {
+        ApplyShield();
+    }
+
+    void ApplyShield()
+    {
         PlayerController.instance.GainRegularShield((int)(shieldPercentage * PlayerController.instance.playerAttributes.maxHitPoints));
     }
 }

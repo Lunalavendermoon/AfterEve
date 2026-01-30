@@ -74,7 +74,7 @@ public class PlayerAttributes : EntityAttributes
     // Ability MultiplyAdditive Damage Calculation
     public int AbilityMultiplyAdditiveDamage(float abilityBaseDamage)
     {
-        return (int)(damage * (1f + damageDealtBonus));
+        return (int)(damage * (abilityBaseDamage + damageDealtBonus));
     }
 
 

@@ -168,6 +168,8 @@ public class PlayerEffectManager : EffectManager
             return;
         }
 
+        Debug.Log($"Display effect {type} - {GetInstanceID()}");
+
         GameObject go = Instantiate(genericEffectIcon, effectIconDisplay.transform);
         go.GetComponent<Image>().sprite = getIconSprite(type);
         

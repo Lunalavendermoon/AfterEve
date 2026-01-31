@@ -18,9 +18,6 @@ public class Hierophant_Past : Past_TarotCard
         GameManager.OnRoomChange += OnNewRoom;
     }
 
-    // TODO: Slight issue w/ this not getting triggered in the first room, but i think that's because
-    // the map is getting initialized earlier than the hierophant past card is added to the player
-    // so this hopefully shouldn't be a problem once the full game is wired up & the past tarot is created before map generates
     void OnNewRoom()
     {
         ApplyShield();

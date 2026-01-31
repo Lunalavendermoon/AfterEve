@@ -15,7 +15,6 @@ public class Magician_Reward : Future_Reward
 
     protected override void TriggerSkillBehavior()
     {
-        // TODO start a 5-second timer and call EndMagicianSkill() at the end
         Debug.Log("Triggered Magician skill");
 
         PlayerController.instance.SetMagicianSkill(true);

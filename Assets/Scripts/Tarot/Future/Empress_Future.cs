@@ -19,13 +19,13 @@ public class Empress_Future : Future_TarotCard
     {
         PlayerController.OnHealed += OnPlayerHeal;
         maxHp = PlayerController.instance.playerAttributes.maxHitPoints;
-        // TODO add finish combat room listener
+        GameManager.OnCombatRoomClear += OnRoomChange;
     }
 
     protected override void RemoveListeners()
     {
         PlayerController.OnHealed -= OnPlayerHeal;
-        // TODO remove finish combat room listener
+        GameManager.OnCombatRoomClear -= OnRoomChange;
     }
 
     private void OnPlayerHeal(int amount)

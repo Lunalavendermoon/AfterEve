@@ -14,21 +14,21 @@ public class Fool_Future : Future_TarotCard
 
     public Fool_Future(int q) : base(q)
     {
-        cardName = "Fpol_Future";
+        cardName = "Fool_Future";
         arcana = Arcana.Fool;
     }
 
     public override void ApplyCard(TarotManager tarotManager)
     {
-        // TODO add card listener
+        TarotManager.OnObtainCard += OnCardObtained;
     }
 
     protected override void RemoveListeners()
     {
-        // TODO remove card listener
+        TarotManager.OnObtainCard -= OnCardObtained;
     }
 
-    private void OnCardObtained()
+    private void OnCardObtained(Arcana _)
     {
         ++cardCount;
         if (cardCount >= cardGoal)

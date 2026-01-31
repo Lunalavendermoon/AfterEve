@@ -22,7 +22,7 @@ public class Chariot_Future : Future_TarotCard
         Player_Dash.OnDash += OnDash;
         Player_Dash.OnDisplaced += OnMove;
         Player_Move.OnDisplaced += OnMove;
-        // TODO add room change listener (need to reset oldPos)
+        GameManager.OnRoomChange += OnRoomChange;
     }
 
     protected override void RemoveListeners()
@@ -30,7 +30,12 @@ public class Chariot_Future : Future_TarotCard
         Player_Dash.OnDash -= OnDash;
         Player_Dash.OnDisplaced -= OnMove;
         Player_Move.OnDisplaced -= OnMove;
-        // TODO remove room change listener
+        GameManager.OnRoomChange -= OnRoomChange;
+    }
+
+    void OnRoomChange()
+    {
+        oldPos = PlayerController.instance.gameObject.transform.position;
     }
 
     void OnMove()

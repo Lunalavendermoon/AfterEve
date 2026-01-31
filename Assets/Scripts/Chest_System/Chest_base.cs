@@ -1,11 +1,11 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Chest_base : MonoBehaviour
+public class Chest_base : InteractableEntity
 {
     public int shards = 0;
     public int potions = 0;
-    public int tarotCards = 0;   
+    public int tarotCards = 0;
 
     public void AddShards(int amount)
     {
@@ -36,5 +36,15 @@ public class Chest_base : MonoBehaviour
     public void RemoveTarotCard(int amount = 1)
     {
         tarotCards = Mathf.Max(0, tarotCards - amount);
+    }
+
+    public override void TriggerInteraction()
+    {
+        // TODO player actually obtains items
+        Debug.Log($"### OPEN CHEST: {shards} shards, {potions} potions, {tarotCards} cards");
+
+        GameManager.instance.ClearCombatRoom();
+
+        Destroy(gameObject);
     }
 }

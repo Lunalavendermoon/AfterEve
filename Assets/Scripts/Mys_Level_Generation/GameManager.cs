@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     [Header("Tiles")]
     // Prefab *types* to spawn (each has a SpriteRenderer on XY plane facing +Z)
     public List<GameObject> tilePrefabs;
@@ -39,9 +41,12 @@ public class GameManager : MonoBehaviour
 
     // Events
     public static event System.Action OnRoomChange;
+    public static event System.Action OnCombatRoomClear;
 
     private void Start()
     {
+        if (instance == null) instance = this;
+
         if (generateNarrativeRooms)
         {
             narrativeRoomManager.StartNewNarrativePath(); // TODO: call this whenever player starts a new narrative path
@@ -259,7 +264,14 @@ public class GameManager : MonoBehaviour
             portal.transform.position = portalPosition;
         }
 
+        portal.SetActive(false);
+
         spawnBehavior.Respawn();
+    }
+
+    public void ClearCombatRoom()
+    {
+        portal.SetActive(true);
     }
 
     // ============================================================

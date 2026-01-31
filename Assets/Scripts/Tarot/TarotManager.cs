@@ -21,6 +21,15 @@ public class TarotManager : MonoBehaviour
     {
         PlayerController.instance.playerInput.Player.UpdateTarotHand.performed += OnUpdateTarotPerformed; // for testing
         PlayerController.instance.playerInput.Player.Attack.performed += OnMouseClick;
+
+        // commented some cards out for testing purposes, uncomment if u need to use them :D
+
+        AddCard(new Hierophant_Past(1));
+        // AddCard(new Chariot_Future(1));
+        // AddCard(new Lovers_Future(1));
+        // AddCard(new Empress_Present(1));
+
+        // DisplayHand();
     }
 
     void OnDisable()
@@ -190,17 +199,5 @@ public class TarotManager : MonoBehaviour
         obj.GetComponent<Image>().sprite = tarotIcons.GetSprite(card.arcana);
         
         return obj;
-    }
-
-    void Start()
-    {
-        // commented some cards out for testing purposes, uncomment if u need to use them :D
-
-        AddCard(new WheelOfFortune_Past(1));
-        // AddCard(new Chariot_Future(1));
-        // AddCard(new Lovers_Future(1));
-        // AddCard(new Empress_Present(1));
-
-        // DisplayHand();
     }
 }

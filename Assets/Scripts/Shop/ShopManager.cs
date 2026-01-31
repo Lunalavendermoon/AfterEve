@@ -49,7 +49,7 @@ public class ShopManager : MonoBehaviour
 
             for (int i = 0; i < shopSize; ++i)
             {
-                (TarotCard.Arcana, bool) card = GenRandomCard();
+                (TarotCard.Arcana, bool) card = TarotCard.GenRandomCardData();
 
                 // TODO adjust these values accordingly if theyre unbalanced
 
@@ -65,15 +65,5 @@ public class ShopManager : MonoBehaviour
                 go.GetComponent<ShopItem>().InitializeShopItem(card.Item1, card.Item2, price, quantity);
             }
         }
-    }
-
-    (TarotCard.Arcana, bool) GenRandomCard()
-    {
-        bool future = UnityEngine.Random.Range(0, 2) == 0;
-
-        Array values = Enum.GetValues(typeof(TarotCard.Arcana));
-        int randomIndex = UnityEngine.Random.Range(0, values.Length);
-
-        return ((TarotCard.Arcana)values.GetValue(randomIndex), future);
     }
 }

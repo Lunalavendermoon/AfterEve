@@ -42,8 +42,12 @@ public class ChestRewardManager : MonoBehaviour
 
     public void OnButtonPressed(int idx)
     {
-        PlayerController.instance.tarotManager.AddCard(
-            TarotCard.GetPresentFutureCard(cards[idx].Item1, cards[idx].Item2, quantities[idx]));
+        TarotCard card = TarotCard.GetPresentFutureCard(cards[idx].Item1, cards[idx].Item2, quantities[idx]);
+        
+        if (card != null)
+        {
+            PlayerController.instance.tarotManager.AddCard(card);
+        }
 
         chestRewardCanvas.SetActive(false);
         PlayerController.instance.EnablePlayerInput();

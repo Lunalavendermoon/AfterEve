@@ -17,11 +17,13 @@ public class Magician_Future : Future_TarotCard
     public override void ApplyCard(TarotManager tarotManager)
     {
         GameManager.OnRoomChange += OnRoomChange;
+        Future_Reward.OnSkillUsed += OnSkillUse;
     }
 
     protected override void RemoveListeners()
     {
         GameManager.OnRoomChange -= OnRoomChange;
+        Future_Reward.OnSkillUsed -= OnSkillUse;
     }
 
     private void OnRoomChange()

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using Unity.VisualScripting;
 using FMOD.Studio;
+using FMODUnity;
 
 public class PlayerController : MonoBehaviour
 {
@@ -374,6 +375,8 @@ public class PlayerController : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
     {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.playerTakeDamage, this.transform.position);
+
         int originalAmt = amount;
 
         // damage reduction
@@ -485,13 +488,19 @@ public class PlayerController : MonoBehaviour
         {
             PLAYBACK_STATE playbackState;
             playerFootsteps.getPlaybackState(out playbackState);
-            if(playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            playerFootsteps.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
             {
                 playerFootsteps.start();
             }
         } else
         {
-            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+            playerFootsteps.getPlaybackState(out PLAYBACK_STATE playbackState);
+            if (playbackState != PLAYBACK_STATE.STOPPING && playbackState != PLAYBACK_STATE.STOPPED)
+            {
+                Debug.Log("stopping");
+                playerFootsteps.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
         }
     }
 

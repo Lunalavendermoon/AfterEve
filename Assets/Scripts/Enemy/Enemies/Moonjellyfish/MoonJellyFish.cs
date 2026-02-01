@@ -32,6 +32,8 @@ public class MoonJellyFish : EnemyBase
 
         // Enable hitbox for a short window
         EnableAttack();
+        // Play SFX
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.blobAttack, this.transform.position);
         // Trigger animation 
         // animator.SetTrigger("Attack");
         Invoke(nameof(DisableAttack), 0.3f); // 0.3 is temp 

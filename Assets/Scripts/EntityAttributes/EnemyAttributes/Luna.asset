@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eac10b445ec25ac4c8e961716e1777ee, type: 3}
-  m_Name: FalseHuman
+  m_Name: Luna
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttributes
   damage: 0
   damageDealtBonus: 0
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0
-  maxHitPoints: 10000
+  maxHitPoints: 1200
   currentHitPoints: 0
-  basicDefense: 50
-  spiritualDefense: 20
+  basicDefense: 40
+  spiritualDefense: 30
   damageTakenBonus: 0
   speed: 1
   isParalyzed: 0

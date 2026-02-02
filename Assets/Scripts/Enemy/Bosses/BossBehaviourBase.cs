@@ -68,6 +68,11 @@ public abstract class BossBehaviourBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BossUpdate();
+    }
+
+    public virtual void BossUpdate()
+    {
         current_enemy_state?.UpdateState(this);
     }
 

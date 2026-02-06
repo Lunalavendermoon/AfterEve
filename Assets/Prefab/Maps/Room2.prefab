@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 157911702767856957}
   - component: {fileID: 6059858200063294813}
   - component: {fileID: 6541076404955134897}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: HorizontalObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 8847215014619116078}
   - component: {fileID: 8107806850456511066}
   - component: {fileID: 5933640684736532197}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: VerticalObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -4532,6 +4532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NarrativeRoomManager
   narrativeRooms: {fileID: 11400000, guid: 37786544a2d62484aad1613c23518489, type: 2}
   portal: {fileID: 2121234110}
+  roomCount: 0
 --- !u!114 &828173324
 MonoBehaviour:
   m_ObjectHideFlags: 0

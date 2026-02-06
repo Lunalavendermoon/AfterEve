@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ public class ShopItem : MonoBehaviour
     int price;
     int quantity;
 
-    bool purchased;
+    Dictionary<bool, bool> purchased = new();
 
     public TMP_Text itemName;
     public Button purchaseButton;
@@ -22,14 +23,22 @@ public class ShopItem : MonoBehaviour
         this.price = price;
         this.quantity = quantity;
 
+        purchased[true] = false;
+        purchased[false] = false;
+
+        ResetDisplay();
+    }
+
+    void ResetDisplay()
+    {
         itemName.text = $"{arcana} {(isFuture ? "Future" : "Present")} ({quantity}) - {price} coins";
-        purchaseButton.enabled = true;
-        purchaseButtonText.text = "Buy";
+        purchaseButtonText.text = purchased[isFuture] ? "(Purchased)" : "Buy";
+        SetButtonAvailable();
     }
 
     public void PurchaseItem()
     {
-        if (purchased || PlayerController.instance.GetCoins() < price)
+        if (purchased[isFuture] || PlayerController.instance.GetCoins() < price)
         {
             return;
         }
@@ -38,7 +47,7 @@ public class ShopItem : MonoBehaviour
 
         PlayerController.instance.ChangeCoins(-price, true);
 
-        purchased = true;
+        purchased[isFuture] = true;
 
         purchaseButton.enabled = false;
         purchaseButtonText.text = "(Purchased)";
@@ -50,5 +59,21 @@ public class ShopItem : MonoBehaviour
         {
             PlayerController.instance.tarotManager.AddCard(card);
         }
+    }
+
+    public void TogglePresentFuture()
+    {
+        isFuture = !isFuture;
+        ResetDisplay();
+    }
+
+    public void SetButtonAvailable()
+    {
+        if (purchased[isFuture])
+        {
+            purchaseButton.enabled = false;
+            return;
+        }
+        purchaseButton.enabled = PlayerController.instance.GetCoins() >= price;
     }
 }

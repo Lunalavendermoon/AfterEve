@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
+  m_Name: ShopTest
+  m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
+  nodeType: 0
+  roomCount: 1
+  pathCount: 1
+  roomPrefab: {fileID: 7285951446171788470, guid: b65387211843c4b6face6377a7db9d71, type: 3}
+  itemPrefab: {fileID: 5301048128179776828, guid: 4558a9d195a454616b9737a787113943, type: 3}

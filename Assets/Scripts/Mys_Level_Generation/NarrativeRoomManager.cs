@@ -3,14 +3,21 @@ using UnityEngine;
 
 public class NarrativeRoomManager : MonoBehaviour
 {
+    public static NarrativeRoomManager instance;
+
     public NarrativeRooms narrativeRooms;
     public GameObject portal;
 
     // TODO: we might want to put these data in a static class so it doesn't get reset as easily
     // all counters include the current instance (1-indexed instead of 0-indexed)
-    int roomCount = 0; // number of rooms encountered on this playthrough
+    public int roomCount = 0; // number of rooms encountered on this playthrough (including current room)
     int furthestRoom = 0; // furthest room encountered on current narrative path (resets when we start a new path)
     int pathCount = 0; // number of NARRATIVE PATHS done (not playthroughs)
+
+    void Start()
+    {
+        if (instance == null) instance = this;
+    }
 
     public void StartNewRoom()
     {

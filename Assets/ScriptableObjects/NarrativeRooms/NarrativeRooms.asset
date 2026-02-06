@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NarrativeRooms
   m_EditorClassIdentifier: Assembly-CSharp::NarrativeRooms
   rooms:
-  - {fileID: 11400000, guid: a0643a1602a704b7b8aa878a0ad729e3, type: 2}
+  - {fileID: 11400000, guid: fba5d5e82ef46449998e375bb1f1d590, type: 2}
   - {fileID: 11400000, guid: a79d0b658c5f9482192d7e60cddca9f4, type: 2}
   - {fileID: 11400000, guid: c4e4b81f1ebef4b9b9d5cf8645c8529d, type: 2}
   - {fileID: 11400000, guid: 9d43d35d3b2a94d9081420c47c5135f3, type: 2}

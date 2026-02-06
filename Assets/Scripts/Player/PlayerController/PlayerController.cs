@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     public static event Action<int> OnShielded;
     public static event Action<bool> OnSpiritualVisionChange;
     public static event Action<IPlayerState> OnPlayerStateChange;
+    public static event Action OnCoinsChange;
     public static event Action OnCoinsDecrease;
     public static event Action<int> OnCoinsSpentAtShop;
 
@@ -431,6 +432,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeCoins(int amount, bool fromShop = false)
     {
         coins += amount;
+        OnCoinsChange?.Invoke();
         if (amount < 0)
         {
             OnCoinsDecrease?.Invoke();

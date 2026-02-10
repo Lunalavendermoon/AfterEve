@@ -158,6 +158,8 @@ public abstract class EnemyBase : MonoBehaviour
 
         OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyTakeDamage, this.transform.position);
+
         // Damage numbers
         ShowFloatingText(damageAfterReduction);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");

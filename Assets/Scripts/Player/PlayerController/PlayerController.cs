@@ -321,6 +321,7 @@ public class PlayerController : MonoBehaviour
         if (!currentlyReloading)
         {
             currentlyReloading = true;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.reload, this.transform.position);
             lastReload = Time.time;
         }
         else

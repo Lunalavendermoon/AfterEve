@@ -10813,6 +10813,13 @@ MonoBehaviour:
       Data3: 1797392528
       Data4: -299598134
     Path: event:/BlobAttack
+  <enemyTakeDamage>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <combat>k__BackingField:
     Guid:
       Data1: 1775828165
@@ -12588,7 +12595,6 @@ SceneRoots:
   - {fileID: 165906620}
   - {fileID: 1065332966}
   - {fileID: 2093864097}
-  - {fileID: 4980172060400537597}
   - {fileID: 670709972}
   - {fileID: 348060816}
   - {fileID: 2138837947}
@@ -12600,6 +12606,7 @@ SceneRoots:
   - {fileID: 196121920}
   - {fileID: 489417607}
   - {fileID: 828173321}
+  - {fileID: 4980172060400537597}
   - {fileID: 2121234113}
   - {fileID: 1379176894}
   - {fileID: 1423239507}

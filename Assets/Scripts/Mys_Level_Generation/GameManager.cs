@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     // For picking random existing tiles
     private List<Vector2Int> occupiedCells = new List<Vector2Int>();
 
-
     public SpawnBehavior spawnBehavior;
     public GameObject portal;
     // Grid directions (x => world X, y => world Y)
@@ -43,15 +42,19 @@ public class GameManager : MonoBehaviour
     public static event System.Action OnRoomChange;
     public static event System.Action OnCombatRoomClear;
 
-    private void Start()
+    void Awake()
     {
         if (instance == null) instance = this;
 
+        StartNewPlaythrough();
+    }
+
+    private void Start()
+    {
         if (generateNarrativeRooms)
         {
             narrativeRoomManager.StartNewNarrativePath(); // TODO: call this whenever player starts a new narrative path
         }
-        StartNewPlaythrough();
     }
 
     public void StartNewPlaythrough()
@@ -107,6 +110,7 @@ public class GameManager : MonoBehaviour
             Quaternion.identity,
             mapRoot
         );
+        EnemySpawnerScript.instance.ProcessRoom(startInstance, 0);
 
         gridToInstance[startCell] = startInstance;
         occupiedCells.Add(startCell);
@@ -160,6 +164,7 @@ public class GameManager : MonoBehaviour
                 Quaternion.identity,
                 mapRoot
             );
+            EnemySpawnerScript.instance.ProcessRoom(newInstance, i);
 
             // Get render sizes (world units)
             Vector3 baseSize = GetSpriteSize(baseInstance);

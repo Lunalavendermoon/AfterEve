@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawnerScript : MonoBehaviour
@@ -11,25 +12,53 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         public GameObject enemyPrefab;
         public Transform spawnPoint;
-    }
 
-    
+        public EnemyEntry(GameObject enemy, Transform spawn)
+        {
+            enemyPrefab = enemy;
+            spawnPoint = spawn;
+        }
+    }
 
     public Chest_base chest;
     public GameObject Enemy;
     public int numberOfEnemies = 0;
-    public List<EnemyEntry> enemyList = new();
+    public List<GameObject> enemyPrefabs; // pre-set prefabs, to make new EnemyEntrys with each level tile's SpawnPoints
+    public List<EnemyEntry> enemyList = new(); // entries of enemy + spawn point
+    public List<EnemyBase> enemies = new(); // list Instantiated enemies in the scene
 
-    public List<EnemyBase> enemies = new();
-
+    void Awake()
+    {
+        if (instance == null) instance = this;
+    }
     void Start()
     {
-        //if (instance == null) instance = this;
-
         SpawnAllEnemies();
     }
 
-    public void checkRevealChest()
+    public void ProcessRoom(GameObject roomPrefab, int i)
+    {
+        if(enemyPrefabs.Count == 0)
+        {
+            Debug.Log("ERROR: no enemy prefabs in List<GameObject> enemyPrefabs");
+            return;
+        }
+
+        foreach(Transform child in roomPrefab.transform) {
+            if(child.gameObject.name == "SpawnPoint")
+            {   
+                AddEnemyEntry(enemyPrefabs[i%enemyPrefabs.Count], child);
+                break;
+            }
+        }
+    }
+
+    public void AddEnemyEntry(GameObject enemy, Transform spawnPt)
+    {
+        enemyList.Add(new EnemyEntry(enemy, spawnPt));
+    }
+
+    public void CheckRevealChest()
     {
       if (numberOfEnemies <= 0)
         {
@@ -66,7 +95,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         numberOfEnemies--;
         enemies.Remove(enemy);
-        checkRevealChest();
+        CheckRevealChest();
     }
 
 

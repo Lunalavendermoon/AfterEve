@@ -96,15 +96,17 @@ public abstract class EnemyBase : MonoBehaviour
     {
         agent.maxSpeed = speed;
 
-        if (enemyAttributes.isParalyzed)
-        {
-            // enemy can't do anything if it's paralyzed
-            current_enemy_state = new Enemy_Idle();
-        }
-        else
-        {
-            current_enemy_state?.UpdateState(this);
-        }
+        current_enemy_state?.UpdateState(this);
+
+        // if (enemyAttributes.isParalyzed)
+        // {
+        //     // enemy can't do anything if it's paralyzed
+        //     current_enemy_state = new Enemy_Idle();
+        // }
+        // else
+        // {
+        //     current_enemy_state?.UpdateState(this);
+        // }
 
         //Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
 

@@ -27,6 +27,12 @@ public class Enemy_Chase : IEnemyStates
 
     public void UpdateState(EnemyBase enemy)
     {
+        if (enemy.enemyAttributes.isParalyzed)
+        {
+            enemy.ChangeState(new Enemy_Idle());
+            return;
+        }
+        
         getChasePoint(enemy);
 
         attackTimer += Time.deltaTime;

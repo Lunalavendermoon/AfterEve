@@ -38,16 +38,28 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void ProcessRoom(GameObject roomPrefab, int i)
     {
+        GameObject spawnedEnemy;
+        // if List<GameObject> enemyPrefabs not seralized, use prefabs from EnemyEntrys already in enemyList
         if(enemyPrefabs.Count == 0)
         {
-            Debug.Log("ERROR: no enemy prefabs in List<GameObject> enemyPrefabs");
-            return;
-        }
+            if(enemyList.Count == 0)
+            {
+                Debug.Log("ERROR: no enemy prefabs assigned in either enemyPrefabs or enemyList");
+                return;
+            }
 
+            spawnedEnemy = enemyList[i%enemyList.Count].enemyPrefab;
+        }
+        else
+        {
+            // use List<GameObject> enemyPrefabs to assign enemies to SpawnPoints in level room/tiles
+            spawnedEnemy = enemyPrefabs[i%enemyPrefabs.Count];
+        }
+        
         foreach(Transform child in roomPrefab.transform) {
-            if(child.gameObject.name == "SpawnPoint")
+            if(child.gameObject.name == "SpawnPoint") // might have a better way of doing this?
             {   
-                AddEnemyEntry(enemyPrefabs[i%enemyPrefabs.Count], child);
+                AddEnemyEntry(spawnedEnemy, child);
                 break;
             }
         }

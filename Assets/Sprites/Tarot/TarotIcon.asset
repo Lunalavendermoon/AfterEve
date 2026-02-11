@@ -12,4 +12,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334477d26098f1a47ba982e967088791, type: 3}
   m_Name: TarotIcon
   m_EditorClassIdentifier: Assembly-CSharp::TarotIcon
-  foolTarot: {fileID: 21300000, guid: fe8392cce9769e74caf02dc7031c47d2, type: 3}
+  fool:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: fe8392cce9769e74caf02dc7031c47d2, type: 3}
+  - {fileID: 0}
+  magician:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 796a5c4144356704eb6c03f91d796e05, type: 3}
+  - {fileID: 0}
+  highPriestess:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 5610ac9325090db4f8717c6489d473b9, type: 3}
+  - {fileID: 0}
+  empress:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 99d928351984f7748a206ae7ea20df07, type: 3}
+  - {fileID: 0}
+  emperor:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 54d059546ed5aa44e84e1dfd08ba6163, type: 3}
+  - {fileID: 0}
+  hierophant:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 7ebf73af1439056469ef6d7edff996b6, type: 3}
+  - {fileID: 0}
+  lovers:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 27d74ca11075e814eb9b9a9e4538b15c, type: 3}
+  - {fileID: 0}
+  chariot:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 6c8186a87e1b6624098bd5e7770ceccf, type: 3}
+  - {fileID: 0}
+  strength:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: cf1cc9a0f039b194ba117a5d85713afd, type: 3}
+  - {fileID: 0}
+  hermit:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: a97b14f2b003dd0409acf22def4a9128, type: 3}
+  - {fileID: 0}
+  wheelOfFortune:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: fbb3dfd98abe9644494593a46c9a79e0, type: 3}
+  - {fileID: 0}

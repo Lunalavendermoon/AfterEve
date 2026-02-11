@@ -196,7 +196,13 @@ public class TarotManager : MonoBehaviour
     public GameObject CreateCardObject(TarotCard card)
     {
         GameObject obj = tarotPrefab;
-        obj.GetComponent<Image>().sprite = tarotIcons.GetSprite(card.arcana);
+        
+        // establish if card is past, present, or future when fetching corresponding Sprite
+        TarotIcon.TarotType type = TarotIcon.TarotType.Past;
+        if(card is Present_TarotCard) type = TarotIcon.TarotType.Present;
+        else if(card is Future_TarotCard) type = TarotIcon.TarotType.Future;
+
+        obj.GetComponent<Image>().sprite = tarotIcons.GetSprite(card.arcana, type);
         
         return obj;
     }

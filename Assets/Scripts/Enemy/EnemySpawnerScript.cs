@@ -101,6 +101,11 @@ public class EnemySpawnerScript : MonoBehaviour
             enemies.Add(enemy);
             numberOfEnemies++;
         }
+
+        if (enemyList.Count > 0)
+        {
+            chest.transform.position = enemyList[enemyList.Count - 1].spawnPoint.position;
+        }
     }
 
     public void EnemyDie(EnemyBase enemy)

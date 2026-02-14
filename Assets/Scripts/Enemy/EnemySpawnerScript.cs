@@ -33,7 +33,7 @@ public class EnemySpawnerScript : MonoBehaviour
     }
     void Start()
     {
-        SpawnAllEnemies();
+        //SpawnAllEnemies();
     }
 
     public void ProcessRoom(GameObject roomPrefab, int i)
@@ -77,8 +77,12 @@ public class EnemySpawnerScript : MonoBehaviour
             chest.gameObject.SetActive(true);
         }
     }
+    public void ScanMap()
+    {
+        AstarPath.active.Scan();
 
-    void SpawnAllEnemies()
+    }
+    public void SpawnAllEnemies()
     {
         foreach (var entry in enemyList)
         {

@@ -207,6 +207,8 @@ public class GameManager : MonoBehaviour
             gridToInstance[newCell] = newInstance;
             occupiedCells.Add(newCell);
         }
+        EnemySpawnerScript.instance.ScanMap();
+        EnemySpawnerScript.instance.SpawnAllEnemies();
         // move the portal on a random edge of the last placed tile that is not touched by another tile
         Vector2Int lastCell = occupiedCells[occupiedCells.Count - 1];
         List<int> freeDirIndicesForPortal = new List<int>();

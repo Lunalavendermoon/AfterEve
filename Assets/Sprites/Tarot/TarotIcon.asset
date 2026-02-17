@@ -14,45 +14,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TarotIcon
   fool:
   - {fileID: 0}
-  - {fileID: 21300000, guid: fe8392cce9769e74caf02dc7031c47d2, type: 3}
-  - {fileID: 21300000, guid: dad5ddb21bc95474097d450f81ce1f24, type: 3}
+  - {fileID: 738334382, guid: fe8392cce9769e74caf02dc7031c47d2, type: 3}
+  - {fileID: -1978041853, guid: dad5ddb21bc95474097d450f81ce1f24, type: 3}
   magician:
   - {fileID: 0}
-  - {fileID: 21300000, guid: 796a5c4144356704eb6c03f91d796e05, type: 3}
-  - {fileID: 21300000, guid: 5707e44dab5b7fc459e109e04ac5677f, type: 3}
+  - {fileID: 934863169, guid: 796a5c4144356704eb6c03f91d796e05, type: 3}
+  - {fileID: -1322756104, guid: 5707e44dab5b7fc459e109e04ac5677f, type: 3}
   highPriestess:
   - {fileID: 0}
-  - {fileID: 21300000, guid: 5610ac9325090db4f8717c6489d473b9, type: 3}
-  - {fileID: 21300000, guid: 51da9cf5aa01689449f5620c43ab6439, type: 3}
+  - {fileID: -353944075, guid: 5610ac9325090db4f8717c6489d473b9, type: 3}
+  - {fileID: -473069082, guid: 51da9cf5aa01689449f5620c43ab6439, type: 3}
   empress:
   - {fileID: 0}
-  - {fileID: 21300000, guid: 99d928351984f7748a206ae7ea20df07, type: 3}
-  - {fileID: 21300000, guid: 4ca38e423a78ca14bbc1926b5cb4f656, type: 3}
+  - {fileID: 1243678904, guid: 99d928351984f7748a206ae7ea20df07, type: 3}
+  - {fileID: -1582011821, guid: 4ca38e423a78ca14bbc1926b5cb4f656, type: 3}
   emperor:
   - {fileID: 0}
-  - {fileID: 21300000, guid: 54d059546ed5aa44e84e1dfd08ba6163, type: 3}
-  - {fileID: 21300000, guid: adf4ba5ea9692f843af6f5f457a9c45b, type: 3}
+  - {fileID: -1197421004, guid: 54d059546ed5aa44e84e1dfd08ba6163, type: 3}
+  - {fileID: -503357002, guid: adf4ba5ea9692f843af6f5f457a9c45b, type: 3}
   hierophant:
   - {fileID: 0}
-  - {fileID: 21300000, guid: 7ebf73af1439056469ef6d7edff996b6, type: 3}
-  - {fileID: 21300000, guid: 288b5e630e765344abb87736a3e72377, type: 3}
+  - {fileID: -369907078, guid: 7ebf73af1439056469ef6d7edff996b6, type: 3}
+  - {fileID: -858976617, guid: 288b5e630e765344abb87736a3e72377, type: 3}
   lovers:
   - {fileID: 0}
-  - {fileID: 21300000, guid: 27d74ca11075e814eb9b9a9e4538b15c, type: 3}
-  - {fileID: 21300000, guid: 20a774b1a12a1904b9072a59759e5c65, type: 3}
+  - {fileID: 1500437119, guid: 27d74ca11075e814eb9b9a9e4538b15c, type: 3}
+  - {fileID: 634206657, guid: 20a774b1a12a1904b9072a59759e5c65, type: 3}
   chariot:
   - {fileID: 0}
-  - {fileID: 21300000, guid: 6c8186a87e1b6624098bd5e7770ceccf, type: 3}
-  - {fileID: 21300000, guid: 58c05b5127677f04d9abde74073fc0f0, type: 3}
+  - {fileID: 386246343, guid: 6c8186a87e1b6624098bd5e7770ceccf, type: 3}
+  - {fileID: 351962068, guid: 58c05b5127677f04d9abde74073fc0f0, type: 3}
   strength:
   - {fileID: 0}
-  - {fileID: 21300000, guid: cf1cc9a0f039b194ba117a5d85713afd, type: 3}
-  - {fileID: 21300000, guid: b97c861a4ad20aa46a03ea7868b7ab68, type: 3}
+  - {fileID: 1571389441, guid: cf1cc9a0f039b194ba117a5d85713afd, type: 3}
+  - {fileID: 1824285360, guid: b97c861a4ad20aa46a03ea7868b7ab68, type: 3}
   hermit:
   - {fileID: 0}
-  - {fileID: 21300000, guid: a97b14f2b003dd0409acf22def4a9128, type: 3}
-  - {fileID: 21300000, guid: 735dbe6bf80a8ac4a8d8ce86af74e867, type: 3}
+  - {fileID: -18229966, guid: a97b14f2b003dd0409acf22def4a9128, type: 3}
+  - {fileID: -1535197919, guid: 735dbe6bf80a8ac4a8d8ce86af74e867, type: 3}
   wheelOfFortune:
   - {fileID: 0}
-  - {fileID: 21300000, guid: fbb3dfd98abe9644494593a46c9a79e0, type: 3}
-  - {fileID: 21300000, guid: 9dcd01133a802644f95f7afad08bbd0f, type: 3}
+  - {fileID: -469821074, guid: fbb3dfd98abe9644494593a46c9a79e0, type: 3}
+  - {fileID: 354938422, guid: 9dcd01133a802644f95f7afad08bbd0f, type: 3}

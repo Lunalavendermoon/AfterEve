@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2648473299999220975}
   - component: {fileID: 5315429315333738888}
   m_Layer: 5
-  m_Name: TarotInventory
+  m_Name: TarotInventoryItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,3 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a545b44b9fa4eab90f26170be2d8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemUI
+  image: {fileID: 2648473299999220975}
+  presentCards: {fileID: 11400000, guid: f09e55b557e954274a3f5d0561c66c6e, type: 2}
+  futureCards: {fileID: 11400000, guid: f5ca7fd6bf768421fb1f18213cbeec9a, type: 2}

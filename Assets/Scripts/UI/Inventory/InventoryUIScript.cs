@@ -1,10 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUIScript : MonoBehaviour
 {
     public GameObject canvas;
 
-    public InventoryContentLayout layout;
+    public GameObject content;
+
+    public ScrollRect scrollRect;
+
+    public GameObject itemPrefab;
 
     // 0 = past, 1 = present, 2 = future
     int state;
@@ -22,6 +28,7 @@ public class InventoryUIScript : MonoBehaviour
 
         if (enabled)
         {
+            // TODO maybe also pause gameplay/player controls
             RefreshInventoryDisplay();
         }
     }
@@ -36,8 +43,50 @@ public class InventoryUIScript : MonoBehaviour
         }
     }
 
+    void ScrollToTop()
+    {
+        Canvas.ForceUpdateCanvases(); // ensures layout updated
+        scrollRect.verticalNormalizedPosition = 1f;
+    }
+
     void RefreshInventoryDisplay()
     {
-        Debug.Log($"Set card display to state: {state}");
+        for (int i = content.transform.childCount - 1; i >= 0; i--)
+        {
+            // Get the child GameObject using GetChild(i)
+            GameObject child = content.transform.GetChild(i).gameObject;
+            // Destroy the child GameObject
+            Destroy(child);
+        }
+
+        if (state == 0)
+        {
+            foreach (Past_TarotCard card in TarotManager.instance.pastTarot.Values)
+            {
+                InstantiateTarotItem(card);
+            }
+        }
+        else if (state == 1)
+        {
+            foreach (Present_TarotCard card in TarotManager.instance.presentTarot.Values)
+            {
+                InstantiateTarotItem(card);
+            }
+        }
+        else
+        {
+            foreach (Future_TarotCard card in TarotManager.instance.futureTarot)
+            {
+                InstantiateTarotItem(card);
+            }
+        }
+
+        ScrollToTop();
+    }
+
+    void InstantiateTarotItem(TarotCard card)
+    {
+        GameObject go = Instantiate(itemPrefab, content.transform);
+        go.GetComponent<InventoryItemUI>().InitItem(card);
     }
 }

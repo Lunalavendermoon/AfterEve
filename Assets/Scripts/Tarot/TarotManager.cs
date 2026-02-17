@@ -44,10 +44,9 @@ public class TarotManager : MonoBehaviour
     public GameObject tarotPrefab;
 
     // present cards can stack, so we should store them according to their arcana in case we get duplicates
-    [SerializeField] Dictionary<string, int> presentDict = new();
-    [SerializeField] List<Present_TarotCard> presentTarot = new();
-    [SerializeField] List<Future_TarotCard> futureTarot = new();
-    [SerializeField] Dictionary<TarotCard.Arcana, Past_TarotCard> pastTarot = new();
+    public Dictionary<TarotCard.Arcana, Present_TarotCard> presentTarot = new();
+    public List<Future_TarotCard> futureTarot = new();
+    public Dictionary<TarotCard.Arcana, Past_TarotCard> pastTarot = new();
 
     public static event Action<TarotCard.Arcana> OnObtainCard;
 
@@ -71,9 +70,8 @@ public class TarotManager : MonoBehaviour
     {
         if (tarotCard is Present_TarotCard)
         {
-            presentTarot.Add((Present_TarotCard)tarotCard);
-            if (!presentDict.TryAdd(tarotCard.cardName, tarotCard.quantity)) {
-                presentDict[tarotCard.cardName] += tarotCard.quantity;
+            if (!presentTarot.TryAdd(tarotCard.arcana, (Present_TarotCard)tarotCard)) {
+                presentTarot[tarotCard.arcana].quantity += tarotCard.quantity;
             }
         }
         else if (tarotCard is Future_TarotCard)
@@ -96,18 +94,18 @@ public class TarotManager : MonoBehaviour
     {
         if (tarotCard is Present_TarotCard)
         {
-            if (!presentTarot.Remove((Present_TarotCard)tarotCard))
+            if (!presentTarot.ContainsKey(tarotCard.arcana))
             {
                 // card does not exist in tarotmanager
                 return;
             }
 
-            presentDict[tarotCard.cardName] -= tarotCard.quantity;
+            presentTarot[tarotCard.arcana].quantity -= tarotCard.quantity;
             tarotCard.RemoveCard(this);
 
-            if (presentDict[tarotCard.cardName] == 0)
+            if (presentTarot[tarotCard.arcana].quantity <= 0)
             {
-                presentDict.Remove(tarotCard.cardName);
+                presentTarot.Remove(tarotCard.arcana);
             }
         }
         DisplayCards();
@@ -142,7 +140,7 @@ public class TarotManager : MonoBehaviour
     {
         string s = "Present: ";
         
-        foreach (TarotCard present in presentTarot)
+        foreach (TarotCard present in presentTarot.Values)
         {
             s += present.cardName + " (" + present.quantity + ")\n";
         }

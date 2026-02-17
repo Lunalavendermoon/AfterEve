@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InventoryUIScript : MonoBehaviour
@@ -16,6 +18,28 @@ public class InventoryUIScript : MonoBehaviour
 
     // 0 = past, 1 = present, 2 = future
     int state;
+
+    void OnEnable()
+    {
+        PlayerController.instance.playerInput.Player.ToggleInventory.performed += OnInventoryToggled;
+        PlayerController.instance.playerInput.Player.ExitInventory.performed += OnInventoryExited;
+    }
+
+    void OnDisable()
+    {
+        PlayerController.instance.playerInput.Player.ToggleInventory.performed -= OnInventoryToggled;
+        PlayerController.instance.playerInput.Player.ExitInventory.performed -= OnInventoryExited;
+    }
+
+    private void OnInventoryToggled(InputAction.CallbackContext context)
+    {
+        SetInventoryDisplay(true);
+    }
+
+    private void OnInventoryExited(InputAction.CallbackContext context)
+    {
+        SetInventoryDisplay(false);
+    }
 
     void Start()
     {

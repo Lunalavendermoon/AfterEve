@@ -4,6 +4,8 @@ public class InventoryUIScript : MonoBehaviour
 {
     public GameObject canvas;
 
+    public InventoryContentLayout layout;
+
     // 0 = past, 1 = present, 2 = future
     int state;
 

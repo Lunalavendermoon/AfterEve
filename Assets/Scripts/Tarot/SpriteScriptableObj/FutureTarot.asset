@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af60c5de6a4684dbe944720dc31a98d7, type: 3}
+  m_Name: FutureTarot
+  m_EditorClassIdentifier: Assembly-CSharp::TarotSpriteSO
+  fool: {fileID: -1978041853, guid: dad5ddb21bc95474097d450f81ce1f24, type: 3}
+  magician: {fileID: -1322756104, guid: 5707e44dab5b7fc459e109e04ac5677f, type: 3}
+  highPriestess: {fileID: -473069082, guid: 51da9cf5aa01689449f5620c43ab6439, type: 3}
+  empress: {fileID: -1582011821, guid: 4ca38e423a78ca14bbc1926b5cb4f656, type: 3}
+  emperor: {fileID: -503357002, guid: adf4ba5ea9692f843af6f5f457a9c45b, type: 3}
+  hierophant: {fileID: -858976617, guid: 288b5e630e765344abb87736a3e72377, type: 3}
+  lovers: {fileID: 634206657, guid: 20a774b1a12a1904b9072a59759e5c65, type: 3}
+  chariot: {fileID: 351962068, guid: 58c05b5127677f04d9abde74073fc0f0, type: 3}
+  strength: {fileID: 1824285360, guid: b97c861a4ad20aa46a03ea7868b7ab68, type: 3}
+  hermit: {fileID: -1535197919, guid: 735dbe6bf80a8ac4a8d8ce86af74e867, type: 3}
+  wheelOfFortune: {fileID: 354938422, guid: 9dcd01133a802644f95f7afad08bbd0f, type: 3}
+  justice: {fileID: 74590747, guid: 7653e5dec86883446996cb7041451387, type: 3}
+  hangedMan: {fileID: -851484052, guid: 5da16e7b6eadec24ea4b6f38135d1f10, type: 3}
+  death: {fileID: -1122910877, guid: 6d150ac64e9f1864a8c87dca08eeb30a, type: 3}
+  temperance: {fileID: -1239080274, guid: 4be6ccf39b97c8549beb71a04e71155e, type: 3}
+  devil: {fileID: -1074842249, guid: 9606a7238826b674a8a751428928c12a, type: 3}
+  tower: {fileID: -815020600, guid: e6584317af3481b4fafb44a20f5c8f29, type: 3}
+  star: {fileID: -1741027478, guid: f0255b964e613a3478c016412733d9ef, type: 3}
+  moon: {fileID: -1141687407, guid: a5a3aea61efb4d1408c65c2d5cc26346, type: 3}
+  sun: {fileID: 974685585, guid: c812aacb2e279f44c901dd396b9443f2, type: 3}
+  judgement: {fileID: -1867232052, guid: f308765266793354b80aafb161f9fca4, type: 3}
+  world: {fileID: 0}

@@ -12,6 +12,8 @@ public class InventoryUIScript : MonoBehaviour
 
     public GameObject itemPrefab;
 
+    public Image sidebarImage;
+
     // 0 = past, 1 = present, 2 = future
     int state;
 
@@ -59,34 +61,54 @@ public class InventoryUIScript : MonoBehaviour
             Destroy(child);
         }
 
+        bool first = true;
+
         if (state == 0)
         {
             foreach (Past_TarotCard card in TarotManager.instance.pastTarot.Values)
             {
-                InstantiateTarotItem(card);
+                InstantiateTarotItem(card, first);
+                first = false;
             }
         }
         else if (state == 1)
         {
             foreach (Present_TarotCard card in TarotManager.instance.presentTarot.Values)
             {
-                InstantiateTarotItem(card);
+                InstantiateTarotItem(card, first);
+                first = false;
             }
         }
         else
         {
             foreach (Future_TarotCard card in TarotManager.instance.futureTarot)
             {
-                InstantiateTarotItem(card);
+                InstantiateTarotItem(card, first);
+                first = false;
             }
+        }
+        if (first)
+        {
+            SetEmptySidebar();
         }
 
         ScrollToTop();
     }
 
-    void InstantiateTarotItem(TarotCard card)
+    void InstantiateTarotItem(TarotCard card, bool setSidebar)
     {
         GameObject go = Instantiate(itemPrefab, content.transform);
-        go.GetComponent<InventoryItemUI>().InitItem(card);
+        go.GetComponent<InventoryItemUI>().InitItem(card, this, setSidebar);
+    }
+
+    public void SetSidebar(Sprite cardSprite)
+    {
+        sidebarImage.enabled = true;
+        sidebarImage.sprite = cardSprite;
+    }
+
+    public void SetEmptySidebar()
+    {
+        sidebarImage.enabled = false;
     }
 }

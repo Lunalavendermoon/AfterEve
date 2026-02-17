@@ -10,23 +10,14 @@ public class InventoryItemUI : MonoBehaviour
 
     TarotCard card;
 
-    public void InitItem(TarotCard card)
+    InventoryUIScript uiScript;
+
+    public void InitItem(TarotCard card, InventoryUIScript script, bool setSidebar)
     {
         this.card = card;
-        Sprite sprite;
-        if (card is Present_TarotCard)
-        {
-            sprite = GetSprite(presentCards);
-        }
-        else if (card is Future_TarotCard)
-        {
-            sprite = GetSprite(futureCards);
-        }
-        else
-        {
-            // TODO add past cards
-            sprite = null;
-        }
+        uiScript = script;
+
+        Sprite sprite = GetSprite();
 
         if (sprite != null)
         {
@@ -38,10 +29,35 @@ public class InventoryItemUI : MonoBehaviour
             image.sprite = presentCards.fool;
             Debug.LogWarning($"No sprite for tarot card {card}");
         }
+
+        if (setSidebar)
+        {
+            uiScript.SetSidebar(GetSprite());
+        }
     }
 
-    Sprite GetSprite(TarotSpriteSO spriteSet)
+    public void OnClicked()
     {
+        uiScript.SetSidebar(GetSprite());
+    }
+
+    Sprite GetSprite()
+    {
+        TarotSpriteSO spriteSet;
+        if (card is Present_TarotCard)
+        {
+            spriteSet = presentCards;
+        }
+        else if (card is Future_TarotCard)
+        {
+            spriteSet = futureCards;
+        }
+        else
+        {
+            // TODO add past cards
+            return null;
+        }
+
         switch (card.arcana)
         {
             case TarotCard.Arcana.Fool:

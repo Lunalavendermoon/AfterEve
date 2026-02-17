@@ -124,9 +124,11 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (givesRewards)
         {
-            EnemyItemDrops.ItemDrop(PlayerController.instance.playerAttributes.luck, elite, chest);
+            int numShards = EnemyItemDrops.CalculateShardDrop(PlayerController.instance.playerAttributes.luck, elite);
+            spawner.AddPendingChestCoins(numShards);
             spawner.EnemyDie(this);
         }
+
         Destroy(gameObject);
     }
 
@@ -227,5 +229,17 @@ public abstract class EnemyBase : MonoBehaviour
         destinationSetter.target = tempTarget;
     }
 
-    
+    private void OnDestroy()
+    {
+        if (destinationSetter != null && destinationSetter.target == tempTarget)
+        {
+            destinationSetter.target = null;
+        }
+
+        if (tempTarget != null)
+        {
+            Destroy(tempTarget.gameObject);
+            tempTarget = null;
+        }
+    }
 }

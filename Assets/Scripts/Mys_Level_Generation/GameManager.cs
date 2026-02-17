@@ -71,6 +71,12 @@ public class GameManager : MonoBehaviour
     // ============================================================
     public void LoadMap()
     {
+        // Reset spawner state before destroying the old map so it doesn't keep references
+        // to spawn points/chests that are about to be destroyed.
+        if (EnemySpawnerScript.instance != null)
+        {
+            EnemySpawnerScript.instance.ResetForNewMap();
+        }
         ClearMap();
         GenerateAndPlace();
         OnRoomChange?.Invoke();
@@ -207,6 +213,13 @@ public class GameManager : MonoBehaviour
             gridToInstance[newCell] = newInstance;
             occupiedCells.Add(newCell);
         }
+
+        // Provide mapRoot so runtime-spawned objects (e.g. chest) can be parented under it.
+        if (EnemySpawnerScript.instance != null)
+        {
+            EnemySpawnerScript.instance.AssignChestFromMapRoot(mapRoot);
+        }
+
         EnemySpawnerScript.instance.ScanMap();
         EnemySpawnerScript.instance.SpawnAllEnemies();
         // move the portal on a random edge of the last placed tile that is not touched by another tile

@@ -27,7 +27,6 @@ MonoBehaviour:
   resistance: 0
   isBlind: 0
   hasKnockback: 0
-  abilityMultiplyAdditive: 1
   attackPerSec: 2
   Ammo: 3
   reloadSpeed: 2
@@ -43,13 +42,11 @@ MonoBehaviour:
   chainDmg: 0
   physicalAdditionalDmg: 0
   spiritualAdditionalDmg: 0
-  shield: 0
-  hitCountShield: 0
   chainShieldIncrease: 0
   totalStamina: 1
   staminaRegeneration: 1
-  dashPower: 100
-  dashDuration: 0.3
+  dashPower: 2
+  dashDuration: 0.1
   dashCooldown: 1
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1
@@ -58,3 +55,4 @@ MonoBehaviour:
   trustworthiness: 1
   magicianPastBonusCoin: 0
   empressPast: 0
+  hermitPast: 0

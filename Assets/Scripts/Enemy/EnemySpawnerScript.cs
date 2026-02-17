@@ -20,12 +20,21 @@ public class EnemySpawnerScript : MonoBehaviour
         }
     }
 
+    [Header("Chest")]
+    public Chest_base chestPrefab;
     public Chest_base chest;
     public GameObject Enemy;
     public int numberOfEnemies = 0;
-    public List<GameObject> enemyPrefabs; // pre-set prefabs, to make new EnemyEntrys with each level tile's SpawnPoints
+    [Header("Enemies")]
+    public List<GameObject> enemyPrefabs; // prefab pool
+
+    // Runtime entries for the current generated map only
     public List<EnemyEntry> enemyList = new(); // entries of enemy + spawn point
     public List<EnemyBase> enemies = new(); // list Instantiated enemies in the scene
+
+    private Transform currentMapRoot;
+
+    private int pendingChestCoins;
 
     void Awake()
     {
@@ -36,25 +45,39 @@ public class EnemySpawnerScript : MonoBehaviour
         //SpawnAllEnemies();
     }
 
+    public void ResetForNewMap()
+    {
+        enemyList.Clear();
+        enemies.Clear();
+        numberOfEnemies = 0;
+        pendingChestCoins = 0;
+
+        if (chest != null)
+        {
+            Destroy(chest.gameObject);
+        }
+
+        chest = null;
+        currentMapRoot = null;
+    }
+
+    public void AssignChestFromMapRoot(Transform mapRoot)
+    {
+        // Keep for compatibility: this now just stores the root we'll parent runtime objects under.
+        currentMapRoot = mapRoot;
+    }
+
     public void ProcessRoom(GameObject roomPrefab, int i)
     {
         GameObject spawnedEnemy;
-        // if List<GameObject> enemyPrefabs not seralized, use prefabs from EnemyEntrys already in enemyList
-        if(enemyPrefabs.Count == 0)
+        // use List<GameObject> enemyPrefabs to assign enemies to SpawnPoints in level room/tiles
+        if (enemyPrefabs == null || enemyPrefabs.Count == 0)
         {
-            if(enemyList.Count == 0)
-            {
-                Debug.Log("ERROR: no enemy prefabs assigned in either enemyPrefabs or enemyList");
-                return;
-            }
+            Debug.LogError("ERROR: no enemy prefabs assigned in enemyPrefabs");
+            return;
+        }
 
-            spawnedEnemy = enemyList[i%enemyList.Count].enemyPrefab;
-        }
-        else
-        {
-            // use List<GameObject> enemyPrefabs to assign enemies to SpawnPoints in level room/tiles
-            spawnedEnemy = enemyPrefabs[i%enemyPrefabs.Count];
-        }
+        spawnedEnemy = enemyPrefabs[i % enemyPrefabs.Count];
         
         foreach(Transform child in roomPrefab.transform) {
             if(child.gameObject.name == "SpawnPoint") // might have a better way of doing this?
@@ -72,10 +95,14 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void CheckRevealChest()
     {
-      if (numberOfEnemies <= 0)
+        if (numberOfEnemies > 0) return;
+
+        if (chest == null)
         {
-            chest.gameObject.SetActive(true);
+            return;
         }
+
+        chest.gameObject.SetActive(true);
     }
     public void ScanMap()
     {
@@ -106,17 +133,53 @@ public class EnemySpawnerScript : MonoBehaviour
             numberOfEnemies++;
         }
 
-        if (enemyList.Count > 0)
-        {
-            chest.transform.position = enemyList[enemyList.Count - 1].spawnPoint.position;
-        }
+        //if (enemyList.Count > 0 && chest != null)
+        //{
+        //    chest.transform.position = enemyList[enemyList.Count - 1].spawnPoint.position;
+        //}
     }
 
     public void EnemyDie(EnemyBase enemy)
     {
         numberOfEnemies--;
         enemies.Remove(enemy);
-        CheckRevealChest();
+
+        if (numberOfEnemies <= 0)
+        {
+            SpawnAndRevealChestAt(enemy != null ? enemy.transform.position : Vector3.zero);
+        }
+    }
+
+    public void AddPendingChestCoins(int amount)
+    {
+        if (amount <= 0) return;
+        pendingChestCoins += amount;
+    }
+
+    private void SpawnAndRevealChestAt(Vector3 worldPos)
+    {
+        if (chest != null)
+        {
+            chest.transform.position = worldPos;
+            chest.gameObject.SetActive(true);
+            return;
+        }
+
+        if (chestPrefab == null)
+        {
+            Debug.LogWarning("No chestPrefab assigned on EnemySpawnerScript. Cannot spawn chest.");
+            return;
+        }
+
+        var parent = currentMapRoot != null ? currentMapRoot : null;
+        chest = Instantiate(chestPrefab, worldPos, Quaternion.identity, parent);
+
+        if (pendingChestCoins > 0)
+        {
+            chest.AddCoins(pendingChestCoins);
+        }
+
+        chest.gameObject.SetActive(true);
     }
 
 

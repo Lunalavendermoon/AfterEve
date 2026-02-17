@@ -3806,6 +3806,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8495735865464669737, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495735865464669737, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
@@ -12947,9 +12951,25 @@ PrefabInstance:
       value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 7192498436825192328, guid: a85e3a505d4f33f4e95aaab20078860c, type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
+    - target: {fileID: 7192498436825192328, guid: a85e3a505d4f33f4e95aaab20078860c, type: 3}
       propertyPath: chest
       value: 
       objectReference: {fileID: 2138837948}
+    - target: {fileID: 7192498436825192328, guid: a85e3a505d4f33f4e95aaab20078860c, type: 3}
+      propertyPath: chestPrefab
+      value: 
+      objectReference: {fileID: 7237813816103943470, guid: eea218c098413c84a8fec12f0a4070f4, type: 3}
+    - target: {fileID: 7192498436825192328, guid: a85e3a505d4f33f4e95aaab20078860c, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192498436825192328, guid: a85e3a505d4f33f4e95aaab20078860c, type: 3}
+      propertyPath: 'enemyPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,17 +1,15 @@
 using System;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class Player_Idle : IPlayerState
 {
     public static event Action OnIdleEnter;
     public static event Action OnIdleExit;
+
     public void EnterState(PlayerController player)
     {
         if (!PlayerController.instance.playerAttributes.isParalyzed)
         {
-            // Don't invoke for idle because of paralysis
-            // TODO: should we invoke even when paralyzed?
             OnIdleEnter?.Invoke();
         }
 
@@ -26,9 +24,14 @@ public class Player_Idle : IPlayerState
 
     public void UpdateState(PlayerController player)
     {
-        
     }
-    
+
+    public void FixedUpdateState(PlayerController player)
+    {
+        // Intentionally no movement while idle.
+        // Keep empty to avoid throwing in PlayerController.FixedUpdate.
+    }
+
     public void ExitState(PlayerController player)
     {
         OnIdleExit?.Invoke();

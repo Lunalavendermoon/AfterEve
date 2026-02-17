@@ -27,7 +27,6 @@ public class TarotIcon : ScriptableObject
     {
         // for now since past sprites do not exist
         if(type == TarotType.Past) type = TarotType.Present;
-        type = TarotType.Present;
 
         switch(arcana)
         {

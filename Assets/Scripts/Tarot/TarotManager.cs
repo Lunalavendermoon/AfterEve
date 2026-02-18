@@ -40,8 +40,7 @@ public class TarotManager : MonoBehaviour
 
     public EffectManager effectManager;
     public TarotIcon tarotIcons;
-    public GameObject tarotHand;
-    public GameObject tarotPrefab;
+    public Transform tarotHand;
 
     // present cards can stack, so we should store them according to their arcana in case we get duplicates
     public Dictionary<TarotCard.Arcana, Present_TarotCard> presentTarot = new();
@@ -117,12 +116,13 @@ public class TarotManager : MonoBehaviour
     {
         DisplayCards();
 
-        if(Input.GetKeyDown(KeyCode.I))
+        // testing
+        if(Input.GetKeyDown(KeyCode.O))
         {
             PlayerController.instance.futureSkill = futureTarot[0].reward;
             tarotHand.transform.GetChild(0).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
         }
-        if(Input.GetKeyDown(KeyCode.O))
+        if(Input.GetKeyDown(KeyCode.P))
         {
             PlayerController.instance.futureSkill = futureTarot[1].reward;
             tarotHand.transform.GetChild(1).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
@@ -160,13 +160,7 @@ public class TarotManager : MonoBehaviour
     
     // testing future tarot card hand
     public void OnUpdateTarotPerformed(InputAction.CallbackContext context)
-    {
-        Debug.Log("updated hand");
-        DisplayHand();
-    }
-
-    public void DisplayHand()
-    {
+    {   
         // set random hand (for testing)
         TarotCard[] randomFutureCards = {new Chariot_Future(1), new Emperor_Future(1), new Hierophant_Future(1), new Lovers_Future(1), new Strength_Future(1), new Magician_Future(1)};
         futureTarot.Clear();
@@ -175,17 +169,23 @@ public class TarotManager : MonoBehaviour
             AddCard(randomFutureCards[UnityEngine.Random.Range(0, randomFutureCards.Length-1)]);
         }
 
+        Debug.Log("updated hand");
+        DisplayHand();
+    }
+
+    public void DisplayHand()
+    {
         // clear previous hand
-        foreach(GameObject child in tarotHand.transform)
+        foreach(Transform child in tarotHand)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
 
         int offset = 200;
         int i = 0;
         foreach(TarotCard future in futureTarot)
         {
-            GameObject newCard = Instantiate(CreateCardObject(future), tarotHand.transform);
+            GameObject newCard = Instantiate(CreateCardObject(future), tarotHand);
             newCard.transform.position += new Vector3(i * offset, 0, 0);
             i++;
         }
@@ -193,9 +193,25 @@ public class TarotManager : MonoBehaviour
 
     public GameObject CreateCardObject(TarotCard card)
     {
-        GameObject obj = tarotPrefab;
+        GameObject obj = new GameObject();
 
+        // dimensions of sprite
+        int width = 750;
+        int height = 1283;
+
+        float scalar = 0.25f; // I just did something random that looks good
+
+        // set size
+        obj.AddComponent<RectTransform>();
+        obj.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width*scalar);
+        obj.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height*scalar);
+
+        // add sprite image
+        obj.AddComponent<Image>();
         obj.GetComponent<Image>().sprite = tarotIcons.GetSprite(card);
+
+        // add cooldown effect script
+        obj.AddComponent<TarotUIScript>();
         
         return obj;
     }

@@ -46,15 +46,16 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
 
-        StartNewPlaythrough();
-    }
-
-    private void Start()
-    {
         if (generateNarrativeRooms)
         {
             narrativeRoomManager.StartNewNarrativePath(); // TODO: call this whenever player starts a new narrative path
         }
+    }
+
+    void Start()
+    {
+        // call in start so we have time to setup listeners
+        StartNewPlaythrough();
     }
 
     public void StartNewPlaythrough()

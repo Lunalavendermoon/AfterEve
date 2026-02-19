@@ -100,6 +100,7 @@ Cyrus: Just what do I need to know about this “Meminiscor”?
 <<set_portrait YarnManager Eve>>
 Eve: It’s a memory-born creature. If it gets too close, it’ll pull your fates out until you collapse.
 
+<<spawn_enemies YarnManager>>
 <<jump Back_To_Game>>
 ===
 
@@ -170,6 +171,7 @@ Eve: Uh, yeah-
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’ll take it.
 
+<<spawn_enemies YarnManager>>
 <<jump Back_To_Game>>
 ===
 
@@ -255,6 +257,7 @@ Cyrus: So that's your motive.
 <<set_portrait YarnManager Eve>>
 Eve: You’ll need better equipment if you want to survive your first day. The shop’s up ahead.
 
+<<complete_room YarnManager>>
 <<jump Back_To_Game>>
 ===
 
@@ -331,6 +334,7 @@ Eve’s device dings.
 Eve: That was fast.
 Eve: Your first mission’s already here. Let’s head out.
 
+<<complete_room YarnManager>>
 <<jump Back_To_Game>>
 ===
 
@@ -371,6 +375,7 @@ Eve: Haha, I see you’re learning. Just don’t do anything stupid, okay?
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’ll try my best.
 
+<<spawn_enemies YarnManager>>
 <<queue_next_dialogue YarnManager 5 Act1_TownProtection_MidCombat_P1N8>>
 <<jump Back_To_Game>>
 ===
@@ -411,6 +416,7 @@ Eve: What? Hold on, the signal is- Cy-rus?
 Cyrus: [i]There it is, right on schedule.[/i]
 Cyrus: Eve, if you can still hear this, I’ll be there soon.
 
+<<spawn_enemies YarnManager>>
 <<jump Back_To_Game>>
 ===
 
@@ -457,6 +463,7 @@ Cyrus: What...the hell is that?
 Cyrus: And I thought this day couldn’t get any stranger. A memory monster that big...anyone here to help?
 Cyrus: Guess it’s just me then.
 
+<<spawn_enemies YarnManager>>
 <<jump Back_To_Game>>
 ===
 
@@ -477,6 +484,7 @@ Cyrus: [i]Doesn’t look any better.[/i]
 Cyrus: I’d run if I were you.
 Cyrus: [i]Let’s try this again.[/i]
 
+<<spawn_enemies YarnManager>>
 <<jump Back_To_Game>>
 ===
 

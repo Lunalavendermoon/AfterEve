@@ -45,4 +45,17 @@ public class YarnCommands : MonoBehaviour
         PlayerController.instance.DisablePlayerInput();
         runner.StartDialogue(nextYarnNode);
     }
+
+    [YarnCommand("spawn_enemies")]
+    public void SpawnEnemies()
+    {
+        NarrativeRoomManager.instance.SpawnEnemies();
+    }
+
+    [YarnCommand("complete_room")]
+    public void CompleteRoom()
+    {
+        // TODO differentiate between combat, shop, and dialogue rooms?
+        GameManager.instance.ClearCombatRoom();
+    }
 }

@@ -36,6 +36,8 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private int pendingChestCoins;
 
+    public static event System.Action OnAllEnemiesDefeated;
+
     void Awake()
     {
         if (instance == null) instance = this;
@@ -88,22 +90,35 @@ public class EnemySpawnerScript : MonoBehaviour
         }
     }
 
+    public void SpawnCustomEnemies(List<GameObject> enemies, GameObject roomPrefab)
+    {
+        // use List<GameObject> enemyPrefabs to assign enemies to SpawnPoints in level room/tiles
+        if (enemies == null || enemies.Count == 0)
+        {
+            Debug.LogError("ERROR: no enemy prefabs assigned in enemyPrefabs");
+            return;
+        }
+
+        foreach (GameObject spawnedEnemy in enemies)
+        {
+            foreach(Transform child in roomPrefab.transform) {
+                if(child.gameObject.name == "SpawnPoint") // might have a better way of doing this?
+                {   
+                    AddEnemyEntry(spawnedEnemy, child);
+                    break;
+                }
+            }
+        }
+
+        ScanMap();
+        SpawnAllEnemies();
+    }
+
     public void AddEnemyEntry(GameObject enemy, Transform spawnPt)
     {
         enemyList.Add(new EnemyEntry(enemy, spawnPt));
     }
 
-    public void CheckRevealChest()
-    {
-        if (numberOfEnemies > 0) return;
-
-        if (chest == null)
-        {
-            return;
-        }
-
-        chest.gameObject.SetActive(true);
-    }
     public void ScanMap()
     {
         AstarPath.active.Scan();
@@ -158,6 +173,12 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private void SpawnAndRevealChestAt(Vector3 worldPos)
     {
+        OnAllEnemiesDefeated?.Invoke();
+        if (NarrativeRoomManager.instance.disableChestGeneration)
+        {
+            return;
+        }
+
         if (chest != null)
         {
             chest.transform.position = worldPos;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SingleNarrativeRoom", menuName = "Scriptable Objects/SingleNarrativeRoom")]
@@ -15,5 +16,12 @@ public class SingleNarrativeRoom : ScriptableObject
     public int pathCount;
     public GameObject roomPrefab;
     public GameObject itemPrefab;
-    // public GameObject portalLocation;
+
+    [Header("Enemies")]
+    public List<GameObject> enemyPrefabs;
+    public bool disableChestGeneration;
+
+    [Header("Dialogue Nodes")]
+    public string onSpawnDialogue;
+    public string postCombatDialogue;
 }

@@ -6,23 +6,19 @@ using UnityEngine;
 
 public abstract class BossBehaviourBase : MonoBehaviour
 {
+    [Header("Attributes")]
     public EnemyAttributes baseEnemyAttributes;
 
     public EnemyAttributes enemyAttributes;
 
     public EnemyEffectManager enemyEffectManager;
 
-    public Chest_base chest;
-    public EnemySpawnerScript spawner;
-
+    protected Rigidbody2D rb;
     // Enemy attributes
     public int health;
-    //public int damage;
     public float speed;
-    //public float attackRange;
-    //public float visibleRange;
-    //public float attackCooldown;
 
+    [Header("AI")]
     //Pathfinding agent
     public AIPath agent;
     public AIDestinationSetter destinationSetter;
@@ -35,8 +31,8 @@ public abstract class BossBehaviourBase : MonoBehaviour
     public float cooldown_time;
 
     //Drops
-    public GameObject Drop;
-
+    //public GameObject Drop;
+    [Header("Actions")]
     public float attack_timer = 1.0f;
 
     // event for enemy dying
@@ -45,7 +41,7 @@ public abstract class BossBehaviourBase : MonoBehaviour
     // event for enemy dying
     public static event Action<DamageInstance, EnemyBase> OnEnemyDeath;
 
-    private Transform tempTarget; // Temporary target for pathfinding to a position
+    
 
     public GameObject floatingTextPrefab;
 
@@ -58,11 +54,13 @@ public abstract class BossBehaviourBase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        isAttacking = false;
+        rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
         current_enemy_state = default_enemy_state;
         current_enemy_state.EnterState(this);
-        isAttacking = false;
+        
     }
 
     // Update is called once per frame
@@ -71,9 +69,19 @@ public abstract class BossBehaviourBase : MonoBehaviour
         BossUpdate();
     }
 
+
+    private void FixedUpdate()
+    {
+        BossFixedUpdate();
+    }
     public virtual void BossUpdate()
     {
         current_enemy_state?.UpdateState(this);
+    }
+
+    public virtual void BossFixedUpdate()
+    {
+        
     }
 
     public abstract void Movement();
@@ -143,6 +151,7 @@ public abstract class BossBehaviourBase : MonoBehaviour
 
     public virtual void Pathfinding(Transform target)
     {
+        
         Debug.Log("Pathfinding start");
         destinationSetter.target = target;
     }

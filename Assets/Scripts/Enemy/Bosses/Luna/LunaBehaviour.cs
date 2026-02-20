@@ -7,8 +7,10 @@ public class LunaBehaviour : BossBehaviourBase
 {
     bool isInvulnerable = false;
     int shieldHealth = 200;
+    public bool isDashing = false;
 
-
+    private Vector2 dashTarget;
+    public float dashSpeed;
 
     
     [SerializeField] private GameObject projectilePrefab1;
@@ -16,9 +18,6 @@ public class LunaBehaviour : BossBehaviourBase
     [SerializeField] private GameObject projectilePrefab4;
 
 
-    [SerializeField] private AnimationCurve trajectoryAnimationCurve;
-    [SerializeField] private AnimationCurve axisCorrectionAnimationCurve;
-    [SerializeField] private AnimationCurve projectileSpeedAnimationCurve;
 
     private float shootTimer;
 
@@ -26,8 +25,7 @@ public class LunaBehaviour : BossBehaviourBase
     private void Awake()
     {
         cooldown_time = 4f;
-        checkMeleeRange();
-        default_enemy_state = new Boss_Attack(this.ChooseAttack());
+        default_enemy_state = new Boss_Cooldown(1f);
         
         Debug.Log("Boss Start");
 
@@ -39,6 +37,29 @@ public class LunaBehaviour : BossBehaviourBase
         checkMeleeRange();
     }
 
+    public override void BossFixedUpdate()
+    {
+        if (isDashing)
+        {
+            performDash();
+        }
+    }
+
+    private void performDash()
+    {
+        if(Vector2.Distance(transform.position, dashTarget) < 0.5f)
+        {
+            isDashing = false;
+            isAttacking = false;
+            return;
+        }
+        Debug.Log(Vector2.Distance(transform.position, dashTarget));
+        Vector2 currentpos= transform.position;
+        Vector2 dashDirection =dashTarget- currentpos;
+        Vector2 dashDelta = dashDirection*dashSpeed*Time.fixedDeltaTime;
+        rb.MovePosition(rb.position+dashDelta);
+    }
+
     private void checkMeleeRange()
     {
         if(Vector3.Distance(PlayerController.instance.transform.position, transform.position) <= 4f)
@@ -48,7 +69,7 @@ public class LunaBehaviour : BossBehaviourBase
         }
         else
         {
-            attackProbalities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f, 0f };
+            attackProbalities = new float[5] { 50.0f, 50.0f, 0.0f, 0.0f, 0f };
         }
     }
 
@@ -64,12 +85,8 @@ public class LunaBehaviour : BossBehaviourBase
         //hat bounce 2 times if it hits a wall, accelerating 30% with each bounce.
         //The bullet curves slightly towards the player's direction as it moves..
 
-        isAttacking = true; 
-                    
-        
 
-        isAttacking = false;
-
+        StartCoroutine(Attack1Coroutine());
 
     }
     public override void Attack2()
@@ -80,15 +97,26 @@ public class LunaBehaviour : BossBehaviourBase
         //If destroyed before their life time, they do not perform the rest of their Attack 1.
         //Luna is untargetable during the dash and does not take direct damage
         //(Previous debuffs before she dashes continues to affect her).
-        isAttacking = true;
 
+        //set dashtarget to 5 units infront of its current direction
+
+        Debug.Log("Attack2");
+        dashTarget = transform.position + transform.up*5f;
+        
+        isDashing = true;
 
         
-        isAttacking = false;
 
     }
     public override void Attack3()
     {
+        //Fires 7 shots in the air that land randomly on the map after 1 second
+        //(with warning area indicators during the second) as AOE circles of diameter 3 that last for 10 seconds
+        //(circles land at the same time).
+        //Stepping into these circles applies 40% Slow and 40% Sundered to the player and deals 10 basic damage 4 times per seconds.
+        //When player leave the circle, debuff from this attack is cleared
+        //(The circles should last into other attacks/skills and can overlap with each other.)
+
 
         isAttacking = true;
         
@@ -102,6 +130,7 @@ public class LunaBehaviour : BossBehaviourBase
     public override void Attack5()
     {
         isAttacking = true;
+        isAttacking = false;
     }
 
 
@@ -140,6 +169,25 @@ public class LunaBehaviour : BossBehaviourBase
             Die();
         }
     }
+
+
+private IEnumerator Attack1Coroutine()
+    {
+        isAttacking = true;
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject projectile = Instantiate(projectilePrefab4, transform.position, Quaternion.identity);
+            BouncyProjectile projectileScript = projectile.GetComponent<BouncyProjectile>();
+            projectileScript.SetBoss(this.transform);
+            projectileScript.Fire(10f);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        isAttacking = false;
+
+
+    }
+
 
 
 

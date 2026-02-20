@@ -11,6 +11,7 @@ public class Enemy_Attack : IEnemyStates
     public void EnterState(EnemyBase enemy)
     {
         enemy.agent.isStopped = true;
+        Debug.Log("In attack range");
     }
 
     public void UpdateState(EnemyBase enemy)

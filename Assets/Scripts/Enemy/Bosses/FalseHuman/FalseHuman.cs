@@ -11,8 +11,6 @@ public class FalseHuman : BossBehaviourBase
     bool isInvulnerable = false;
     int shieldHealth = 200;
 
-
-
     [SerializeField] private float projectileMaxMoveSpeed;
     [SerializeField] private float projectileMaxHeight;
     [SerializeField] private GameObject projectilePrefab;
@@ -33,17 +31,18 @@ public class FalseHuman : BossBehaviourBase
         cooldown_time = 3f;
         default_enemy_state = new Boss_Attack(5);
         attackProbalities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f,0f };
-        Debug.Log("Boss Start");
+        //Debug.Log("Boss Start");
 
     }
     public override void Movement()
     {
         // move towards player
         Pathfinding(PlayerController.instance.transform);
+        
     }
     public override void Attack1()
     {
-        Debug.Log("attack 1 Start");
+        //Debug.Log("attack 1 Start");
         //Shoots 3 rounds of projectiles, consisting 5, 7, and 9 projectiles respectivly,
         //each with randomized path using Cubic Bezier curve (set the init player position as the destination).
         //Each dealing 30 spiritual dmg. 2 seconds between rounds.
@@ -76,7 +75,7 @@ public class FalseHuman : BossBehaviourBase
         //After the wave, each activated capsule deals 1000 dmg to the boss.
         //After finishing this attack, waits 7 seconds before using another attack.
         isAttacking = true;
-        Debug.Log("Attack 3: Emotion Capsules deployed.");
+        //Debug.Log("Attack 3: Emotion Capsules deployed.");
         attackProbalities = new float[5] { 33.30f, 33.3f, 0f, 33.30f, 0f };
         for (int i = 0; i < 3; i++)
         {
@@ -94,8 +93,8 @@ public class FalseHuman : BossBehaviourBase
         //Shoots out a large projectile with 1000 init health.
         //The projectile follows the player at a speed of 1 for ten seconds, then the projectile permanant gain 400% Haste buff.
         //If not destroyed by the time it hits the player, it deals the remaining projectile health as spiritual dmg to the player.
-        Instantiate(largeProjectile);
-        Debug.Log("Large projectile launched.");
+        Instantiate(largeProjectile, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+        //Debug.Log("Large projectile launched.");
         attackProbalities = new float[5] { 33.30f, 33.3f, 33.30f, 0f, 0f };
         cooldown_time = 10f;
         isAttacking = false;

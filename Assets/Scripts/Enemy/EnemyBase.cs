@@ -82,7 +82,7 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
     //Initializing agent and its default state
-    public virtual void Start()
+    private void Start()
     {
         agent = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
@@ -92,7 +92,7 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
 
-    public virtual void Update()
+    private void Update()
     {
         agent.maxSpeed = speed;
 
@@ -113,9 +113,15 @@ public abstract class EnemyBase : MonoBehaviour
         if(isChained)
             if(Time.time > chainTime)
                 isChained = false;
+
+        EnemyUpdate();
         
     }
 
+    public virtual void EnemyUpdate()
+    {
+
+    }
 
     // Actions
     public abstract void Attack(Transform target);

@@ -17,17 +17,19 @@ MonoBehaviour:
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0
   maxHitPoints: 100
+  currentHitPoints: 0
   basicDefense: 10
   spiritualDefense: 0
   damageTakenBonus: 0
-  speed: 1
+  speed: 1.5
   isParalyzed: 0
   isConfused: 0
   resistance: 0
   isBlind: 0
   hasKnockback: 0
+  enemyType: 0
   damageType: 0
   attackRadius: 1
-  attackRate: 0
+  attackRate: 1
   weight: 0
   detection_radius: 0

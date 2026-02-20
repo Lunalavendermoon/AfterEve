@@ -19,6 +19,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   enemyPrefabs:
   - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
-  disableChestGeneration: 1
+  disableChestGeneration: 0
   onSpawnDialogue: Act1_EveIntro_PreCombat_L1N1
   postCombatDialogue: Act1_EveIntro_PostCombat_L1N1

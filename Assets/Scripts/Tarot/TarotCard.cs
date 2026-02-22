@@ -39,13 +39,11 @@ public abstract class TarotCard
     public TarotCard(int q)
     {
         quantity = q;
-        GetLocalizedDesc();
     }
 
     public TarotCard()
     {
         quantity = 1;
-        GetLocalizedDesc();
     }
 
     public abstract void ApplyCard(TarotManager tarotManager);

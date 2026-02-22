@@ -5,6 +5,8 @@ using UnityEngine.Localization;
 
 public class Present_TarotCard : TarotCard
 {
+    const int maxQuantity = 5;
+
     public List<Effects> effects = new();
     public int level;
 
@@ -12,6 +14,7 @@ public class Present_TarotCard : TarotCard
     {
         level = q-1;
         if(level > 4) level = 4;
+        GetLocalizedDesc();
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -45,5 +48,22 @@ public class Present_TarotCard : TarotCard
         {
             TableReference = "PresentTarotTable"
         };
+    }
+
+    protected virtual void SetDescriptionValues()
+    {
+        // override in each child
+    }
+
+    public void ChangeQuantity(int q)
+    {
+        quantity += q;
+
+        level = quantity-1;
+        if(level > 4) level = 4;
+        if(level < 0) level = 0;
+
+        SetDescriptionValues();
+        desc.RefreshString();
     }
 }

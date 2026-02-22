@@ -43,6 +43,11 @@ public class Fool_Present : Present_TarotCard
     {
         base.GetLocalizedDesc();
         desc.TableEntryReference = "FoolPresent";
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
         desc.Arguments = new object[] { fireRateIncrease[level], additionalDmg[level] };
     }
 }

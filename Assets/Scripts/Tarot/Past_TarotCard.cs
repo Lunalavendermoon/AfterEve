@@ -8,6 +8,7 @@ public abstract class Past_TarotCard : TarotCard
 
     public Past_TarotCard(int q) : base(q)
     {
+        GetLocalizedDesc();
     }
 
     public override void ApplyCard(TarotManager tarotManager)

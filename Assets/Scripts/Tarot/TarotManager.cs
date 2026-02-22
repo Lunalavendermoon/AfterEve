@@ -27,8 +27,8 @@ public class TarotManager : MonoBehaviour
         AddCard(new Hierophant_Past(1));
         AddCard(new Chariot_Future(1));
         AddCard(new Lovers_Future(1));
+        AddCard(new Fool_Present(2));
         AddCard(new Empress_Present(1));
-        AddCard(new Fool_Present(1));
 
         // DisplayHand();
     }
@@ -68,10 +68,12 @@ public class TarotManager : MonoBehaviour
 
     public void AddCard(TarotCard tarotCard)
     {
+        bool applyCard = true;
         if (tarotCard is Present_TarotCard)
         {
             if (!presentTarot.TryAdd(tarotCard.arcana, (Present_TarotCard)tarotCard)) {
-                presentTarot[tarotCard.arcana].quantity += tarotCard.quantity;
+                presentTarot[tarotCard.arcana].ChangeQuantity(tarotCard.quantity);
+                applyCard = false;
             }
         }
         else if (tarotCard is Future_TarotCard)
@@ -86,7 +88,10 @@ public class TarotManager : MonoBehaviour
             }
             pastTarot.Add(tarotCard.arcana, (Past_TarotCard)tarotCard);
         }
-        tarotCard.ApplyCard(this);
+        if (applyCard)
+        {
+            tarotCard.ApplyCard(this);
+        }
         OnObtainCard?.Invoke(tarotCard.arcana);
     }
 
@@ -100,11 +105,11 @@ public class TarotManager : MonoBehaviour
                 return;
             }
 
-            presentTarot[tarotCard.arcana].quantity -= tarotCard.quantity;
-            tarotCard.RemoveCard(this);
+            presentTarot[tarotCard.arcana].ChangeQuantity(-tarotCard.quantity);
 
             if (presentTarot[tarotCard.arcana].quantity <= 0)
             {
+                presentTarot[tarotCard.arcana].RemoveCard(this);
                 presentTarot.Remove(tarotCard.arcana);
             }
         }

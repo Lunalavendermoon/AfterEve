@@ -36,14 +36,18 @@ public class BouncyProjectile : MonoBehaviour
         if (bounceCount >= 2)
         {
             Destroy(gameObject);
+            return;
         }
 
         if (Vector3.Distance(BossParent.position, transform.position) > 15f)
         {
             Destroy(gameObject);
+            return;
         }
 
-        
+
+
+
         if (velocity != Vector3.zero)
         {
             canTurn = true;
@@ -77,6 +81,13 @@ public class BouncyProjectile : MonoBehaviour
             Vector3 reflectedDirection = Vector3.Reflect(transform.forward, surfaceNormal);
             velocity=reflectedDirection*velocity.magnitude;
             bounceCount++;
+        }
+
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+        {
+            PlayerController.instance.TakeDamage(40,DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Physical);
+            Destroy(gameObject);
+            return;
         }
 
         

@@ -16,7 +16,7 @@ MonoBehaviour:
   damageDealtBonus: 0
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0
-  maxHitPoints: 1200
+  maxHitPoints: 12000
   currentHitPoints: 0
   basicDefense: 40
   spiritualDefense: 30

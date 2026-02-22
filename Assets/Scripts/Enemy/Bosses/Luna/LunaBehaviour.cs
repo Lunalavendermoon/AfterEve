@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using static EnemySpawnerScript;
+using Random = UnityEngine.Random;
 
 public class LunaBehaviour : BossBehaviourBase
 {
@@ -13,11 +16,17 @@ public class LunaBehaviour : BossBehaviourBase
     public float dashSpeed;
 
     
-    [SerializeField] private GameObject projectilePrefab1;
-    [SerializeField] private GameObject projectilePrefab3;
+    [SerializeField] private GameObject warningMarker;
+    [SerializeField] private GameObject AOEMarker;
+    [SerializeField] private GameObject spiralPrefab;
+    [SerializeField] private GameObject GhostPrefab;
     [SerializeField] private GameObject projectilePrefab4;
 
 
+    [Header("Spiral Projectile Settings")]
+    public float fireRate = 4f;               // projectiles per second
+    public float projectileSpeed = 6f;        // world units / sec
+    public float spawnOffset = 0.6f;
 
     private float shootTimer;
 
@@ -27,7 +36,7 @@ public class LunaBehaviour : BossBehaviourBase
         cooldown_time = 4f;
         default_enemy_state = new Boss_Cooldown(1f);
         
-        Debug.Log("Boss Start");
+
 
     }
 
@@ -53,7 +62,7 @@ public class LunaBehaviour : BossBehaviourBase
             isAttacking = false;
             return;
         }
-        Debug.Log(Vector2.Distance(transform.position, dashTarget));
+
         Vector2 currentpos= transform.position;
         Vector2 dashDirection =dashTarget- currentpos;
         Vector2 dashDelta = dashDirection*dashSpeed*Time.fixedDeltaTime;
@@ -69,7 +78,7 @@ public class LunaBehaviour : BossBehaviourBase
         }
         else
         {
-            attackProbalities = new float[5] { 50.0f, 50.0f, 0.0f, 0.0f, 0f };
+            attackProbalities = new float[5] { 5.0f, 5.0f, 90.0f, 0.0f, 0f };
         }
     }
 
@@ -80,7 +89,6 @@ public class LunaBehaviour : BossBehaviourBase
     }
     public override void Attack1()
     {
-        Debug.Log("attack 1 Start");
         //Fire 4 speedy projectiles, each dealing 40 basic damage, t
         //hat bounce 2 times if it hits a wall, accelerating 30% with each bounce.
         //The bullet curves slightly towards the player's direction as it moves..
@@ -101,13 +109,22 @@ public class LunaBehaviour : BossBehaviourBase
         //set dashtarget to 5 units infront of its current direction
 
         Debug.Log("Attack2");
+        SpawnGhost();
+
         dashTarget = transform.position + transform.up*5f;
         
         isDashing = true;
 
-        
+        SpawnGhost();
 
     }
+
+    private void SpawnGhost()
+    {
+        Instantiate(GhostPrefab, transform.position, Quaternion.identity);
+
+    }
+
     public override void Attack3()
     {
         //Fires 7 shots in the air that land randomly on the map after 1 second
@@ -118,7 +135,7 @@ public class LunaBehaviour : BossBehaviourBase
         //(The circles should last into other attacks/skills and can overlap with each other.)
 
 
-        isAttacking = true;
+        StartCoroutine (Attack3Coroutine());
         
     }
     public override void Attack4()
@@ -130,7 +147,10 @@ public class LunaBehaviour : BossBehaviourBase
     public override void Attack5()
     {
         isAttacking = true;
-        isAttacking = false;
+        dashTarget = PlayerController.instance.transform.position;
+
+        isDashing = true;
+        
     }
 
 
@@ -188,8 +208,57 @@ private IEnumerator Attack1Coroutine()
 
     }
 
+    private IEnumerator Attack3Coroutine()
+    {
+        // generate 7 random spots around the map
+        isAttacking = true;
+
+        Vector2[] attackSpots= new Vector2[7];
+        for (int i = 0; i < 7; i++)
+        {
+            Vector2 random = Random.insideUnitCircle;
+
+            attackSpots[i] = random*8f;
+
+            Instantiate(warningMarker, new Vector3(random.x * 8f, random.y * 8f, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
 
 
 
+        }
 
-}
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < 7; i++)
+        {
+            Instantiate(AOEMarker, new Vector3(attackSpots[i].x * 8f, attackSpots[i].y * 8f, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
+        }
+
+        isAttacking=false;
+    }
+
+    private IEnumerator Attack4Coroutine()
+    {
+   
+        isAttacking = true;
+        // Spin in a spiral for 20 seconds 
+        
+        isAttacking = false;
+    }
+
+    void SpawnProjectile(Vector2 position, Vector2 direction)
+    {
+        if (projectilePrefab == null) return;
+
+        GameObject p = Instantiate(projectilePrefab, position, Quaternion.identity);
+        // orient the projectile to face direction (optional)
+        float angleDeg = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        p.transform.rotation = Quaternion.Euler(0f, 0f, angleDeg);
+
+        Rigidbody2D prb = p.GetComponent<Rigidbody2D>();
+        if (prb != null)
+        {
+            prb.linearVelocity = direction * projectileSpeed;
+        }
+    }
+    }

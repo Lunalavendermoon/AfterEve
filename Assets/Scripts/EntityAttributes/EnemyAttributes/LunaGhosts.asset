@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eac10b445ec25ac4c8e961716e1777ee, type: 3}
-  m_Name: LunaClones
+  m_Name: LunaGhosts
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttributes
   damage: 0
   damageDealtBonus: 0
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0
-  maxHitPoints: 1000
+  maxHitPoints: 500
   currentHitPoints: 0
-  basicDefense: 100
-  spiritualDefense: 50
+  basicDefense: 40
+  spiritualDefense: 30
   damageTakenBonus: 0
   speed: 1
   isParalyzed: 0
@@ -27,9 +27,9 @@ MonoBehaviour:
   resistance: 0
   isBlind: 0
   hasKnockback: 0
-  enemyType: 2
+  enemyType: 0
   damageType: 0
-  attackRadius: 0
+  attackRadius: 50
   attackRate: 0
   weight: 0
   detection_radius: 0

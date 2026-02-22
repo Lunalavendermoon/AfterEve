@@ -13,7 +13,6 @@ public class LargeProjectile : EnemyBase
         speed = enemyAttributes.speed;
         default_enemy_state = new Enemy_Chase();
         attack_timer = 0.0f;
-        print(enemyAttributes.attackRadius);
 
     }
 

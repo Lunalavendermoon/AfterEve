@@ -18,4 +18,11 @@ public class Chariot_Present : Present_TarotCard
         //TODO add AOE pulse
     }
 
+    protected override void GetLocalizedDesc()
+    {
+        // TODO finish this
+        base.GetLocalizedDesc();
+        desc.TableEntryReference = "FoolPresent";
+        desc.Arguments = new object[] { "temp", "temp" };
+    }
 }

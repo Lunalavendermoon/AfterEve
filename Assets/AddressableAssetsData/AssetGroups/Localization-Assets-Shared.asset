@@ -10,26 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Localization-Locales
+  m_Name: Localization-Assets-Shared
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
-  m_GroupName: Localization-Locales
-  m_GUID: d62b0fbe638fd45a1a8efac026a122fc
+  m_GroupName: Localization-Assets-Shared
+  m_GUID: 87f1fd0e7ca1c47e49f73f18564a3731
   m_SerializeEntries:
-  - m_GUID: 6d73f8386d5704774ae24e92f115bda6
-    m_Address: Chinese (Simplified) (zh-Hans)
+  - m_GUID: 6e18f7d6b72624c859df850d84fe12dd
+    m_Address: Assets/Localization/PresentTarot/PresentTarotTable Shared Data.asset
     m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c98ef9635d0c44abd9df315c58e69864
-    m_Address: English (United States) (en-US)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 83038116ad4fe4316b5014c022b45a91, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 197f71424b8364c51bb21f8e1d71d2fa, type: 2}
-    - {fileID: 11400000, guid: 0e1d6436d7f4c477fabed1ba3cb96579, type: 2}
+    - {fileID: 11400000, guid: 4550d010c5c934302b68834b51d72369, type: 2}
+    - {fileID: 11400000, guid: 1bec0c93a68a14335a95beb7fba34013, type: 2}

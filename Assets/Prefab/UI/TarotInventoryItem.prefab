@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemUI
   image: {fileID: 2648473299999220975}
   icons: {fileID: 11400000, guid: a41496080438ad94b998a3513eafd9cb, type: 2}
+  desc: {fileID: 11400000, guid: 6b6067aec257e48f9bf759bba812fd51, type: 2}
 --- !u!114 &5977361325681602731
 MonoBehaviour:
   m_ObjectHideFlags: 0

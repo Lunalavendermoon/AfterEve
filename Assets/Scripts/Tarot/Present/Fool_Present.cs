@@ -38,4 +38,11 @@ public class Fool_Present : Present_TarotCard
         }
         lastEnemy = enemy;
     }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        desc.TableEntryReference = "FoolPresent";
+        desc.Arguments = new object[] { fireRateIncrease[level], additionalDmg[level] };
+    }
 }

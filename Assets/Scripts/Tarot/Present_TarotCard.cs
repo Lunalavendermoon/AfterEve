@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class Present_TarotCard : TarotCard
 {
@@ -37,4 +38,12 @@ public class Present_TarotCard : TarotCard
 
     protected virtual void ApplyListeners() {}
     protected virtual void RemoveListeners() {}
+
+    protected override void GetLocalizedDesc()
+    {
+        desc = new LocalizedString
+        {
+            TableReference = "PresentTarotTable"
+        };
+    }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class InventoryUIScript : MonoBehaviour
     public GameObject itemPrefab;
 
     public Image sidebarImage;
+    public TMP_Text sidebarDesc;
 
     // 0 = past, 1 = present, 2 = future
     int state;
@@ -125,10 +127,11 @@ public class InventoryUIScript : MonoBehaviour
         go.GetComponent<InventoryItemUI>().InitItem(card, this, setSidebar);
     }
 
-    public void SetSidebar(Sprite cardSprite)
+    public void SetSidebar(Sprite cardSprite, string desc)
     {
         sidebarImage.enabled = true;
         sidebarImage.sprite = cardSprite;
+        sidebarDesc.text = desc;
     }
 
     public void SetEmptySidebar()

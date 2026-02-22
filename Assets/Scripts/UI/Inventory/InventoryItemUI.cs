@@ -16,22 +16,17 @@ public class InventoryItemUI : MonoBehaviour
         this.card = card;
         uiScript = script;
 
-        Sprite sprite = GetSprite();
+        Sprite sprite = icons.GetSprite(card);
         image.sprite = sprite;
 
         if (setSidebar)
         {
-            uiScript.SetSidebar(GetSprite());
+            uiScript.SetSidebar(icons.GetSprite(card), card.GetDescription());
         }
     }
 
     public void OnClicked()
     {
-        uiScript.SetSidebar(GetSprite());
-    }
-
-    Sprite GetSprite()
-    {
-        return icons.GetSprite(card);
+        uiScript.SetSidebar(icons.GetSprite(card), card.GetDescription());
     }
 }

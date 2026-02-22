@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.Localization;
 
 public abstract class TarotCard
 {
@@ -33,14 +34,18 @@ public abstract class TarotCard
 
     public Arcana arcana;
 
+    protected LocalizedString desc;
+    
     public TarotCard(int q)
     {
         quantity = q;
+        GetLocalizedDesc();
     }
 
     public TarotCard()
     {
         quantity = 1;
+        GetLocalizedDesc();
     }
 
     public abstract void ApplyCard(TarotManager tarotManager);
@@ -85,5 +90,15 @@ public abstract class TarotCard
         int randomIndex = UnityEngine.Random.Range(0, values.Length);
 
         return ((Arcana)values.GetValue(randomIndex), future);
+    }
+
+    protected virtual void GetLocalizedDesc()
+    {
+        // TODO - override this for each tarot card
+    }
+
+    public string GetDescription()
+    {
+        return desc.GetLocalizedString();
     }
 }

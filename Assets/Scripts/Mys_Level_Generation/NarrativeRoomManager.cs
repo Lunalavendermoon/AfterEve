@@ -8,7 +8,7 @@ public class NarrativeRoomManager : MonoBehaviour
 
     public NarrativeRooms narrativeRooms;
     public GameObject portal;
-    public bool disableChestGeneration;
+    [HideInInspector] public bool disableChestGeneration;
     SingleNarrativeRoom currentRoom = null;
     GameObject roomObject = null;
 

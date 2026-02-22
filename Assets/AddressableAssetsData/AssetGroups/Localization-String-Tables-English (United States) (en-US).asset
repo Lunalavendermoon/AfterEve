@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-English (United States) (en-US)
   m_GUID: c2139fea84afb460a9b7d5f1e75b0ac8
   m_SerializeEntries:
+  - m_GUID: 0a1a6cf3107c64cc5a42d521a58979ba
+    m_Address: FutureTarotTable_en-US
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-US
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e297c529a9c54ca8be9a67d6e0e92b3
     m_Address: PresentTarotTable_en-US
     m_ReadOnly: 1

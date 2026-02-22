@@ -25,10 +25,11 @@ public class TarotManager : MonoBehaviour
         // commented some cards out for testing purposes, uncomment if u need to use them :D
 
         AddCard(new Hierophant_Past(1));
-        AddCard(new Chariot_Future(1));
-        AddCard(new Lovers_Future(1));
+        AddCard(new Fool_Past(1));
         AddCard(new Fool_Present(2));
         AddCard(new Empress_Present(1));
+        AddCard(new Lovers_Future(1));
+        AddCard(new Fool_Future(1));
 
         // DisplayHand();
     }

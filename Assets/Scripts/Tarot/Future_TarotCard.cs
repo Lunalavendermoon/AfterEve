@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public abstract class Future_TarotCard : TarotCard
 {
@@ -47,4 +48,23 @@ public abstract class Future_TarotCard : TarotCard
     }
 
     public abstract string GetQuestText();
+
+    protected override void GetLocalizedDesc()
+    {
+        desc = new LocalizedString
+        {
+            TableReference = "FutureTarotTable"
+        };
+    }
+
+    protected virtual void SetDescriptionValues()
+    {
+        // override in each child
+    }
+
+    protected void RefreshDescription()
+    {
+        SetDescriptionValues();
+        desc.RefreshString();
+    }
 }

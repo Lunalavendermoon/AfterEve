@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public abstract class Past_TarotCard : TarotCard
 {
@@ -36,5 +37,17 @@ public abstract class Past_TarotCard : TarotCard
     }
 
     protected virtual void ApplyListenersEffects() {}
-    // protected virtual void RemoveListeners() {}
+
+    protected override void GetLocalizedDesc()
+    {
+        desc = new LocalizedString
+        {
+            TableReference = "PastTarotTable"
+        };
+    }
+
+    protected virtual void SetDescriptionValues()
+    {
+        // override in each child
+    }
 }

@@ -20,7 +20,9 @@ MonoBehaviour:
     - rid: 1636043013058461923
   m_TableData:
   - m_Id: 11554250752
-    m_Localized: English placeholder text {0} {1}
+    m_Localized: Increase FIRE RATE by {0}% of base FIRE RATE and deal an additional
+      physical damage equal to {1}% base dmg when hitting a different enemy than
+      the previously hit enemy.
     m_Metadata:
       m_Items:
       - rid: 1636043013058461923

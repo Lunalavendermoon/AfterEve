@@ -34,4 +34,20 @@ public class Fool_Past : Past_TarotCard
         ++stackCounter;
         PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new FoolPast_Effect());
     }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        desc.TableEntryReference = "FoolPast";
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[]
+        {
+            FormatPercentage(physicalDmgBonus),
+            FormatPercentage(physicalDmgBonus * maxStackPerFoolCard)
+        };
+    }
 }

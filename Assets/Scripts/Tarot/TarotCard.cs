@@ -99,4 +99,14 @@ public abstract class TarotCard
     {
         return desc.GetLocalizedString();
     }
+
+    public static int FormatPercentage(float amount)
+    {
+        return Mathf.RoundToInt(amount * 100);
+    }
+
+    public static int FormatPlusOnePercentage(float amount)
+    {
+        return Mathf.RoundToInt(amount * 100 - 100);
+    }
 }

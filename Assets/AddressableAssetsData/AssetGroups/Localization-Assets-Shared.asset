@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2c78746088994412b34dc724775ce77
+    m_Address: Assets/Localization/FutureTarot/FutureTarotTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 83038116ad4fe4316b5014c022b45a91, type: 2}
   m_SchemaSet:

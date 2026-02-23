@@ -1728,9 +1728,41 @@ PrefabInstance:
       value: Luna
       objectReference: {fileID: 0}
     - target: {fileID: 4644685192291666928, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+      propertyPath: fireRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644685192291666928, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+      propertyPath: AOEMarker
+      value: 
+      objectReference: {fileID: 4085748998081663330, guid: 88f1e090483891d4db1282c8a9cf26d9, type: 3}
+    - target: {fileID: 4644685192291666928, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+      propertyPath: radiusStep
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644685192291666928, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
       propertyPath: GhostPrefab
       value: 
       objectReference: {fileID: 3712681336597110973, guid: aef26baaf894f73488d03b562d7d9b9b, type: 3}
+    - target: {fileID: 4644685192291666928, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+      propertyPath: spiralPrefab
+      value: 
+      objectReference: {fileID: 1380209017763096604, guid: 460637dabde159649aeb3556ef998378, type: 3}
+    - target: {fileID: 4644685192291666928, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+      propertyPath: warningMarker
+      value: 
+      objectReference: {fileID: 7221539173676724300, guid: 942b8df908625524bb9a4cad779fc7f2, type: 3}
+    - target: {fileID: 4644685192291666928, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+      propertyPath: projectileSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644685192291666928, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+      propertyPath: spinSpeedDegrees
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644685192291666928, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+      propertyPath: spiralBulletspeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6504301329841563549, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.44487

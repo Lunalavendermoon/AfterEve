@@ -22,13 +22,23 @@ public class LunaBehaviour : BossBehaviourBase
     [SerializeField] private GameObject GhostPrefab;
     [SerializeField] private GameObject projectilePrefab4;
 
+    float spinSign = 1f;
+    bool spiral = false;
 
     [Header("Spiral Projectile Settings")]
     public float fireRate = 4f;               // projectiles per second
-    public float projectileSpeed = 6f;        // world units / sec
+    
     public float spawnOffset = 0.6f;
+    public float spinSpeedDegrees = 180f;
+    public float spiralBulletspeed = 6f;
+    [Tooltip("Where the first projectile of each stream spawns (units)")]
+    public float startRadius = 0.5f;
+    [Tooltip("Increase in spawn radius after each spawned projectile (makes the spiral)")]
+    public float radiusStep = 0.06f;
+    float streamRadius;
 
-    private float shootTimer;
+    // per-stream firing accumulators
+    float fireTimers=0f;
 
 
     private void Awake()
@@ -44,6 +54,29 @@ public class LunaBehaviour : BossBehaviourBase
     {
         current_enemy_state.UpdateState(this);
         checkMeleeRange();
+
+        if (spiral)
+        {
+            float dt = Time.deltaTime;
+
+            float spinThisFrame = spinSpeedDegrees * spinSign * dt;
+            transform.Rotate(Vector3.forward, spinThisFrame, Space.Self);
+            Vector3 right = transform.right;
+            if (fireTimers <= 0f)
+            {
+                fireTimers = 1.0f / fireRate;
+                GameObject sp1= Instantiate(spiralPrefab, transform.position + (right * streamRadius), Quaternion.identity);
+                sp1.GetComponent<SpiralBulletScript>().InitializeProjectile(right, transform.position, spiralBulletspeed);
+                GameObject sp2 = Instantiate(spiralPrefab, transform.position - (right * streamRadius), Quaternion.identity);
+                sp2.GetComponent<SpiralBulletScript>().InitializeProjectile((- right), transform.position, spiralBulletspeed);
+                //streamRadius += radiusStep;
+            }
+            else
+            {
+                fireTimers -= dt;
+            }
+
+        }
     }
 
     public override void BossFixedUpdate()
@@ -52,6 +85,7 @@ public class LunaBehaviour : BossBehaviourBase
         {
             performDash();
         }
+        
     }
 
     private void performDash()
@@ -78,7 +112,7 @@ public class LunaBehaviour : BossBehaviourBase
         }
         else
         {
-            attackProbalities = new float[5] { 5.0f, 5.0f, 90.0f, 0.0f, 0f };
+            attackProbalities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f, 0f };
         }
     }
 
@@ -140,8 +174,9 @@ public class LunaBehaviour : BossBehaviourBase
     }
     public override void Attack4()
     {
-        isAttacking = true;
-
+        streamRadius = startRadius;
+        
+        StartCoroutine(Attack4Coroutine());
     }
 
     public override void Attack5()
@@ -241,24 +276,22 @@ private IEnumerator Attack1Coroutine()
     {
    
         isAttacking = true;
+        spiral = true;
         // Spin in a spiral for 20 seconds 
-        
+        yield return new WaitForSeconds(5f);
+        spinSign = -spinSign;
+        streamRadius = startRadius;
+        yield return new WaitForSeconds(5f);
+        spinSign = -spinSign;
+        streamRadius = startRadius;
+        yield return new WaitForSeconds(5f);
+        spinSign = -spinSign;
+        streamRadius = startRadius;
+        yield return new WaitForSeconds(5f);
+        spinSign = -spinSign;
+        streamRadius = startRadius;
         isAttacking = false;
+        spiral = false;
     }
 
-    void SpawnProjectile(Vector2 position, Vector2 direction)
-    {
-        if (projectilePrefab == null) return;
-
-        GameObject p = Instantiate(projectilePrefab, position, Quaternion.identity);
-        // orient the projectile to face direction (optional)
-        float angleDeg = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        p.transform.rotation = Quaternion.Euler(0f, 0f, angleDeg);
-
-        Rigidbody2D prb = p.GetComponent<Rigidbody2D>();
-        if (prb != null)
-        {
-            prb.linearVelocity = direction * projectileSpeed;
-        }
-    }
     }

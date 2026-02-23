@@ -5859,7 +5859,7 @@ MonoBehaviour:
   spawnBehavior: {fileID: 1068506910}
   portal: {fileID: 2121234110}
   narrativeRoomManager: {fileID: 828173323}
-  generateNarrativeRooms: 0
+  generateNarrativeRooms: 1
 --- !u!114 &828173323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10859,7 +10859,7 @@ GameObject:
   - component: {fileID: 1522794013}
   - component: {fileID: 1522794012}
   m_Layer: 0
-  m_Name: InventoryManager
+  m_Name: InventoryUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

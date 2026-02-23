@@ -17,7 +17,12 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: cb8c60b528a604e9c958288bec7499b2, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 6076489728
+    m_Localized: 'Every time you gain a card, weapon gain additional physical damage
+      equal to {0}% base DAMAGE (cap at {1}% per The Fool card) '
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

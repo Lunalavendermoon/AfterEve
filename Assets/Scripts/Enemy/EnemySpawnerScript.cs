@@ -126,6 +126,9 @@ public class EnemySpawnerScript : MonoBehaviour
     }
     public void SpawnAllEnemies()
     {
+        enemies.Clear();
+        numberOfEnemies = 0;
+
         foreach (var entry in enemyList)
         {
             if (entry.enemyPrefab == null || entry.spawnPoint == null)
@@ -156,8 +159,15 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void EnemyDie(EnemyBase enemy)
     {
-        numberOfEnemies--;
-        enemies.Remove(enemy);
+        if (enemy != null)
+        {
+            if (!enemies.Remove(enemy))
+            {
+                return;
+            }
+        }
+
+        numberOfEnemies = Mathf.Max(0, numberOfEnemies - 1);
 
         if (numberOfEnemies <= 0)
         {

@@ -16,11 +16,18 @@ public class ChestRewardManager : MonoBehaviour
     (TarotCard.Arcana, bool)[] cards = new (TarotCard.Arcana, bool)[3];
     int[] quantities = new int[3];
 
+    private Vector3? lastChestWorldPos;
+
     void Start()
     {
         if (instance == null) instance = this;
 
         chestRewardCanvas.SetActive(false);
+    }
+
+    public void SetLastChestWorldPos(Vector3 pos)
+    {
+        lastChestWorldPos = pos;
     }
 
     public void ShowChestRewardMenu(bool refresh = true)
@@ -60,5 +67,10 @@ public class ChestRewardManager : MonoBehaviour
 
         chestRewardCanvas.SetActive(false);
         PlayerController.instance.EnablePlayerInput();
+
+        if (lastChestWorldPos.HasValue && GameManager.instance != null)
+        {
+            GameManager.instance.SpawnPortalNearChest(lastChestWorldPos.Value);
+        }
     }
 }

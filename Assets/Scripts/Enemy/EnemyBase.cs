@@ -48,6 +48,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     private Transform tempTarget; // Temporary target for pathfinding to a position
 
+    private bool spawnerDeathNotified;
+
     public GameObject floatingTextPrefab;
     public bool givesRewards = true; // no rewards if spawned by boss
 
@@ -132,6 +134,7 @@ public abstract class EnemyBase : MonoBehaviour
         {
             int numShards = EnemyItemDrops.CalculateShardDrop(PlayerController.instance.playerAttributes.luck, elite);
             spawner.AddPendingChestCoins(numShards);
+            spawnerDeathNotified = true;
             spawner.EnemyDie(this);
         }
 
@@ -237,6 +240,12 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!spawnerDeathNotified && givesRewards && spawner != null)
+        {
+            spawnerDeathNotified = true;
+            spawner.EnemyDie(this);
+        }
+
         if (destinationSetter != null && destinationSetter.target == tempTarget)
         {
             destinationSetter.target = null;

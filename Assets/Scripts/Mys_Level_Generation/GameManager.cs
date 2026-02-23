@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public SpawnBehavior spawnBehavior;
     public GameObject portal;
 
+    [Header("Boundary Walls")]
+    public GameObject wallPrefab;
+
     [Header("Portal Placement")]
     [Min(0f)] public float portalSpawnRadius = 2f;
     [Min(1)] public int portalSpawnAttempts = 30;
@@ -233,9 +236,53 @@ public class GameManager : MonoBehaviour
 
         EnemySpawnerScript.instance.ScanMap();
         EnemySpawnerScript.instance.SpawnAllEnemies();
+
+        SpawnBoundaryWalls();
         portal.SetActive(false);
 
         spawnBehavior.Respawn();
+    }
+
+    private void SpawnBoundaryWalls()
+    {
+        if (gridToInstance.Count == 0) return;
+
+        foreach (var kvp in gridToInstance)
+        {
+            Vector2Int cell = kvp.Key;
+            GameObject room = kvp.Value;
+            if (room == null) continue;
+
+            // Up
+            if (!gridToInstance.ContainsKey(cell + new Vector2Int(0, 1)))
+            {
+                SpawnWallChild(room, 180f);
+            }
+            // Down
+            if (!gridToInstance.ContainsKey(cell + new Vector2Int(0, -1)))
+            {
+                SpawnWallChild(room, 0f);
+            }
+            // Left
+            if (!gridToInstance.ContainsKey(cell + new Vector2Int(-1, 0)))
+            {
+                SpawnWallChild(room, 270f);
+            }
+            // Right
+            if (!gridToInstance.ContainsKey(cell + new Vector2Int(1, 0)))
+            {
+                SpawnWallChild(room, 90f);
+            }
+        }
+    }
+
+    private void SpawnWallChild(GameObject room, float zRotationDeg)
+    {
+        if (wallPrefab == null || room == null) return;
+
+        var wall = Instantiate(wallPrefab, room.transform);
+        wall.transform.localPosition = Vector3.zero;
+        wall.transform.localRotation = Quaternion.Euler(0f, 0f, zRotationDeg);
     }
 
     public void ClearCombatRoom()

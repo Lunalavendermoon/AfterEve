@@ -5858,6 +5858,14 @@ MonoBehaviour:
   tileCount: 4
   spawnBehavior: {fileID: 1068506910}
   portal: {fileID: 2121234110}
+  wallPrefab: {fileID: 5501656639476985917, guid: 3222f450d0b1f104993ff2bf2d8763bb, type: 3}
+  portalSpawnRadius: 2
+  portalSpawnAttempts: 30
+  portalPlayerClearance: 0.75
+  portalObstacleClearance: 0.05
+  portalBlockingLayers:
+    serializedVersion: 2
+    m_Bits: 5128
   narrativeRoomManager: {fileID: 828173323}
   generateNarrativeRooms: 1
 --- !u!114 &828173323
@@ -15215,7 +15223,7 @@ Transform:
   m_GameObject: {fileID: 2121234110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5008, y: -4.48011, z: 0}
+  m_LocalPosition: {x: -1.3, y: 2.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -9303,7 +9303,21 @@ MonoBehaviour:
       Data3: 1880149673
       Data4: 1838972884
     Path: event:/Gunshot
+  <reload>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <blobAttack>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <enemyTakeDamage>k__BackingField:
     Guid:
       Data1: 0
       Data2: 0

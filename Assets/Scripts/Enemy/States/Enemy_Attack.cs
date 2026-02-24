@@ -11,12 +11,19 @@ public class Enemy_Attack : IEnemyStates
     public void EnterState(EnemyBase enemy)
     {
         enemy.agent.isStopped = true;
+
     }
 
     public void UpdateState(EnemyBase enemy)
     {
         Transform target = PlayerController.instance.transform;
         if (enemy.isAttacking) return; // already attacking
+
+        if (enemy.enemyAttributes.isParalyzed)
+        {
+            enemy.ChangeState(new Enemy_Idle());
+            return;
+        }
 
         if (!enemy.InAttackRange(PlayerController.instance.transform))
         {

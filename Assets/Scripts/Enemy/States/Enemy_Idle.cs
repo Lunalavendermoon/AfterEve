@@ -24,6 +24,10 @@ public class Enemy_Idle :  IEnemyStates
     }
     public void UpdateState(EnemyBase enemy)
     {
+        if (enemy.enemyAttributes.isParalyzed)
+        {
+            return;
+        }
 
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= idleTime)

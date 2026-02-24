@@ -1,16 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections;
-using UnityEditor;
-using UnityEngine.InputSystem;
-using System;
 
 [RequireComponent(typeof(Image))]
 public class TarotUIScript : MonoBehaviour
 {
 
-    [SerializeField] float tarotCooldown;
+    [SerializeField] float tarotCooldown = 2;
     //[SerializeField] private TMP_Text tarotCooldownButtonText;
     private Coroutine tarotCooldownRoutine;
 

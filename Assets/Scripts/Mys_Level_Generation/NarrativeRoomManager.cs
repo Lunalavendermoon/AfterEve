@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Yarn.Unity;
 
 public class NarrativeRoomManager : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class NarrativeRoomManager : MonoBehaviour
 
     public NarrativeRooms narrativeRooms;
     public GameObject portal;
+    [HideInInspector] public bool disableChestGeneration;
+    SingleNarrativeRoom currentRoom = null;
+    GameObject roomObject = null;
 
     // TODO: we might want to put these data in a static class so it doesn't get reset as easily
     // all counters include the current instance (1-indexed instead of 0-indexed)
@@ -14,9 +18,26 @@ public class NarrativeRoomManager : MonoBehaviour
     int furthestRoom = 0; // furthest room encountered on current narrative path (resets when we start a new path)
     int pathCount = 0; // number of NARRATIVE PATHS done (not playthroughs)
 
-    void Start()
+    // dialogue
+    DialogueRunner runner;
+
+    void Awake()
     {
         if (instance == null) instance = this;
+
+        runner = FindAnyObjectByType<DialogueRunner>();
+
+        if (runner == null)
+            Debug.LogError("No DialogueRunner found in the scene!");
+        
+        GameManager.OnRoomChange += OnRoomChange;
+        EnemySpawnerScript.OnAllEnemiesDefeated += OnAllEnemiesDefeated;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnRoomChange -= OnRoomChange;
+        EnemySpawnerScript.OnAllEnemiesDefeated -= OnAllEnemiesDefeated;
     }
 
     public void StartNewRoom()
@@ -67,22 +88,58 @@ public class NarrativeRoomManager : MonoBehaviour
                 }
             }
 
-            GameObject roomObj = Instantiate(
+            roomObject = Instantiate(
                 room.roomPrefab,
                 new Vector3(0f, 0f, 0f),
                 Quaternion.identity,
                 mapRoot
             );
-            Instantiate(
-                room.itemPrefab,
-                new Vector3(0f, 0f, 0f),
-                Quaternion.identity,
-                roomObj.transform
-            );
+
+            if (room.itemPrefab)
+            {
+                Instantiate(
+                    room.itemPrefab,
+                    new Vector3(0f, 0f, 0f),
+                    Quaternion.identity,
+                    roomObject.transform
+                );
+            }
+
             // TODO portal position should be different in each narrative room
-            portal.transform.position = roomObj.transform.position + new Vector3(2f, 2f, 0f);
+            portal.transform.position = roomObject.transform.position + new Vector3(2f, 2f, 0f);
+            portal.SetActive(false);
+            currentRoom = room;
+            disableChestGeneration = room.disableChestGeneration;
             return true;
         }
+        currentRoom = null;
+        disableChestGeneration = false;
         return false;
+    }
+
+    public void SpawnEnemies()
+    {
+        if (currentRoom)
+        {
+            EnemySpawnerScript.instance.SpawnCustomEnemies(currentRoom.enemyPrefabs, roomObject);
+        }
+    }
+
+    void OnRoomChange()
+    {
+        if (currentRoom && currentRoom.onSpawnDialogue.Length > 0)
+        {
+            PlayerController.instance.DisablePlayerInput();
+            runner.StartDialogue(currentRoom.onSpawnDialogue);
+        }
+    }
+
+    void OnAllEnemiesDefeated()
+    {
+        if (currentRoom && currentRoom.postCombatDialogue.Length > 0)
+        {
+            PlayerController.instance.DisablePlayerInput();
+            runner.StartDialogue(currentRoom.postCombatDialogue);
+        }
     }
 }

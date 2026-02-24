@@ -1,7 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class Fool_Present : Present_TarotCard
 {
@@ -37,5 +34,20 @@ public class Fool_Present : Present_TarotCard
             PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new Strength_Effect(0.1f, additionalDmg[level]));
         }
         lastEnemy = enemy;
+    }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        desc.TableEntryReference = "FoolPresent";
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[] {
+            FormatPlusOnePercentage(fireRateIncrease[level]),
+            FormatPlusOnePercentage(additionalDmg[level])
+        };
     }
 }

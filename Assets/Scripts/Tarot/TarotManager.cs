@@ -25,9 +25,11 @@ public class TarotManager : MonoBehaviour
         // commented some cards out for testing purposes, uncomment if u need to use them :D
 
         AddCard(new Hierophant_Past(1));
-        // AddCard(new Chariot_Future(1));
-        // AddCard(new Lovers_Future(1));
-        // AddCard(new Empress_Present(1));
+        AddCard(new Fool_Past(1));
+        AddCard(new Fool_Present(2));
+        AddCard(new Empress_Present(1));
+        AddCard(new Lovers_Future(1));
+        AddCard(new Fool_Future(1));
 
         // DisplayHand();
     }
@@ -40,14 +42,12 @@ public class TarotManager : MonoBehaviour
 
     public EffectManager effectManager;
     public TarotIcon tarotIcons;
-    public GameObject tarotHand;
-    public GameObject tarotPrefab;
+    public Transform tarotHand;
 
     // present cards can stack, so we should store them according to their arcana in case we get duplicates
-    [SerializeField] Dictionary<string, int> presentDict = new();
-    [SerializeField] List<Present_TarotCard> presentTarot = new();
-    [SerializeField] List<Future_TarotCard> futureTarot = new();
-    [SerializeField] Dictionary<TarotCard.Arcana, Past_TarotCard> pastTarot = new();
+    public Dictionary<TarotCard.Arcana, Present_TarotCard> presentTarot = new();
+    public List<Future_TarotCard> futureTarot = new();
+    public Dictionary<TarotCard.Arcana, Past_TarotCard> pastTarot = new();
 
     public static event Action<TarotCard.Arcana> OnObtainCard;
 
@@ -69,11 +69,12 @@ public class TarotManager : MonoBehaviour
 
     public void AddCard(TarotCard tarotCard)
     {
+        bool applyCard = true;
         if (tarotCard is Present_TarotCard)
         {
-            presentTarot.Add((Present_TarotCard)tarotCard);
-            if (!presentDict.TryAdd(tarotCard.cardName, tarotCard.quantity)) {
-                presentDict[tarotCard.cardName] += tarotCard.quantity;
+            if (!presentTarot.TryAdd(tarotCard.arcana, (Present_TarotCard)tarotCard)) {
+                presentTarot[tarotCard.arcana].ChangeQuantity(tarotCard.quantity);
+                applyCard = false;
             }
         }
         else if (tarotCard is Future_TarotCard)
@@ -88,7 +89,10 @@ public class TarotManager : MonoBehaviour
             }
             pastTarot.Add(tarotCard.arcana, (Past_TarotCard)tarotCard);
         }
-        tarotCard.ApplyCard(this);
+        if (applyCard)
+        {
+            tarotCard.ApplyCard(this);
+        }
         OnObtainCard?.Invoke(tarotCard.arcana);
     }
 
@@ -96,18 +100,18 @@ public class TarotManager : MonoBehaviour
     {
         if (tarotCard is Present_TarotCard)
         {
-            if (!presentTarot.Remove((Present_TarotCard)tarotCard))
+            if (!presentTarot.ContainsKey(tarotCard.arcana))
             {
                 // card does not exist in tarotmanager
                 return;
             }
 
-            presentDict[tarotCard.cardName] -= tarotCard.quantity;
-            tarotCard.RemoveCard(this);
+            presentTarot[tarotCard.arcana].ChangeQuantity(-tarotCard.quantity);
 
-            if (presentDict[tarotCard.cardName] == 0)
+            if (presentTarot[tarotCard.arcana].quantity <= 0)
             {
-                presentDict.Remove(tarotCard.cardName);
+                presentTarot[tarotCard.arcana].RemoveCard(this);
+                presentTarot.Remove(tarotCard.arcana);
             }
         }
         DisplayCards();
@@ -119,12 +123,13 @@ public class TarotManager : MonoBehaviour
     {
         DisplayCards();
 
-        if(Input.GetKeyDown(KeyCode.I))
+        // testing
+        if(Input.GetKeyDown(KeyCode.O))
         {
             PlayerController.instance.futureSkill = futureTarot[0].reward;
             tarotHand.transform.GetChild(0).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
         }
-        if(Input.GetKeyDown(KeyCode.O))
+        if(Input.GetKeyDown(KeyCode.P))
         {
             PlayerController.instance.futureSkill = futureTarot[1].reward;
             tarotHand.transform.GetChild(1).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
@@ -142,7 +147,7 @@ public class TarotManager : MonoBehaviour
     {
         string s = "Present: ";
         
-        foreach (TarotCard present in presentTarot)
+        foreach (TarotCard present in presentTarot.Values)
         {
             s += present.cardName + " (" + present.quantity + ")\n";
         }
@@ -162,13 +167,7 @@ public class TarotManager : MonoBehaviour
     
     // testing future tarot card hand
     public void OnUpdateTarotPerformed(InputAction.CallbackContext context)
-    {
-        Debug.Log("updated hand");
-        DisplayHand();
-    }
-
-    public void DisplayHand()
-    {
+    {   
         // set random hand (for testing)
         TarotCard[] randomFutureCards = {new Chariot_Future(1), new Emperor_Future(1), new Hierophant_Future(1), new Lovers_Future(1), new Strength_Future(1), new Magician_Future(1)};
         futureTarot.Clear();
@@ -177,17 +176,23 @@ public class TarotManager : MonoBehaviour
             AddCard(randomFutureCards[UnityEngine.Random.Range(0, randomFutureCards.Length-1)]);
         }
 
+        Debug.Log("updated hand");
+        DisplayHand();
+    }
+
+    public void DisplayHand()
+    {
         // clear previous hand
-        foreach(GameObject child in tarotHand.transform)
+        foreach(Transform child in tarotHand)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
 
         int offset = 200;
         int i = 0;
         foreach(TarotCard future in futureTarot)
         {
-            GameObject newCard = Instantiate(CreateCardObject(future), tarotHand.transform);
+            GameObject newCard = Instantiate(CreateCardObject(future), tarotHand);
             newCard.transform.position += new Vector3(i * offset, 0, 0);
             i++;
         }
@@ -195,8 +200,25 @@ public class TarotManager : MonoBehaviour
 
     public GameObject CreateCardObject(TarotCard card)
     {
-        GameObject obj = tarotPrefab;
-        obj.GetComponent<Image>().sprite = tarotIcons.GetSprite(card.arcana);
+        GameObject obj = new GameObject();
+
+        // dimensions of sprite
+        int width = 750;
+        int height = 1283;
+
+        float scalar = 0.25f; // I just did something random that looks good
+
+        // set size
+        obj.AddComponent<RectTransform>();
+        obj.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width*scalar);
+        obj.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height*scalar);
+
+        // add sprite image
+        obj.AddComponent<Image>();
+        obj.GetComponent<Image>().sprite = tarotIcons.GetSprite(card);
+
+        // add cooldown effect script
+        obj.AddComponent<TarotUIScript>();
         
         return obj;
     }

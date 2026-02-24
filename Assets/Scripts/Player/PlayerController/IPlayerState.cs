@@ -6,5 +6,9 @@ public interface IPlayerState
     public void EnterState(PlayerController player);
     public void CheckState(PlayerController player);
     public void UpdateState(PlayerController player);
+
+    // New: physics-step movement should be done here (FixedUpdate).
+    public void FixedUpdateState(PlayerController player);
+
     public void ExitState(PlayerController player);
 }

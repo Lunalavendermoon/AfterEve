@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShopTest
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 0
-  roomCount: 1
+  roomCount: 2
   pathCount: 1
   roomPrefab: {fileID: 7285951446171788470, guid: b65387211843c4b6face6377a7db9d71, type: 3}
-  itemPrefab: {fileID: 5301048128179776828, guid: 4558a9d195a454616b9737a787113943, type: 3}
+  itemPrefab: {fileID: 5301048128179776828, guid: 9d7bc1a7fd289483dae8cd2b137bca4d, type: 3}

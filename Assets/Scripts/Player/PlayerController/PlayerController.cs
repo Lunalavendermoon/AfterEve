@@ -4,6 +4,8 @@ using UnityEngine;
 using Unity.VisualScripting;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +13,14 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     public HealthBarScript healthBar;
     public QuestUIScript questUIScript;
+
+    private Rigidbody2D rb;
+
+    // Small skin so we don't end up exactly touching and jittering
+    private const float CastSkin = 0.01f;
+
+    private readonly RaycastHit2D[] castResults = new RaycastHit2D[8];
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -64,11 +74,9 @@ public class PlayerController : MonoBehaviour
     private int currentAmmo;
     private float lastReload;
     private float fireRate;
-    // private float fireTime;
 
     //spiritual vision
     private float currentSpiritualVision;
-    private float spiritualVisionTimer;
     private Boolean inSpiritualVision;
 
     // future card skill
@@ -102,8 +110,17 @@ public class PlayerController : MonoBehaviour
     public TarotManager tarotManager;
     public ShieldManager shieldManager;
 
+    //post processing
+    public Volume volume;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogError("PlayerController requires a Rigidbody2D on the same GameObject.");
+        }
+
         // movement state machine
         currentState = new Player_Idle();
         currentState.EnterState(this);
@@ -138,39 +155,36 @@ public class PlayerController : MonoBehaviour
                 SetMagicianSkill(false);
             }
         }
-        HandleInteractInput(); // might need to check if in combat later
+
+        HandleInteractInput();
 
         if (playerAttributes.isParalyzed)
         {
-            currentState = new Player_Idle();
-            // player shouldn't be able to do anything while paralyzed
-            return;
-        }
-        else
-        {
-            // handle input
-            horizontalInput = playerInput.Player.Horizontal.ReadValue<float>();
-            verticalInput = playerInput.Player.Vertical.ReadValue<float>();
-
-            // handle player state
-            currentState.CheckState(this);
-            currentState.UpdateState(this);
-            // check if player movement is enabled before rotating the player
-            // this prevents the sprite from rotating while player is interacting with UI/dialogue
-            if (inputEnabled)
+            if (currentState is not Player_Idle)
             {
-                
+                ChangeState(new Player_Idle());
             }
 
-            HandleShootInput();
-            HandleSpiritualVision();
-            HandleFutureSkillInput();
+            return;
         }
+
+        // Read input in Update (recommended)
+        horizontalInput = playerInput.Player.Horizontal.ReadValue<float>();
+        verticalInput = playerInput.Player.Vertical.ReadValue<float>();
+
+        // State checks still in Update
+        currentState.CheckState(this);
+        currentState.UpdateState(this);
+
+        HandleShootInput();
+        HandleSpiritualVision();
+        HandleFutureSkillInput();
 
         if (skillText != null)
         {
             skillText.text = BuildSkillDisplayString();
         }
+
         IPlayerState.speedCoefficient = speed;
         UpdateSound();
 
@@ -178,6 +192,47 @@ public class PlayerController : MonoBehaviour
         {
             CreateClone(1, 1, 1);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        currentState?.FixedUpdateState(this);
+    }
+
+    /// <summary>
+    /// Moves the player with collision using Rigidbody2D.Cast and MovePosition (prevents jitter and tunneling).
+    /// </summary>
+    public void TryMove(Vector2 delta)
+    {
+        if (rb == null) return;
+
+        if (delta == Vector2.zero) return;
+
+        float distance = delta.magnitude;
+        Vector2 direction = delta / distance;
+
+        int hitCount = rb.Cast(direction, castResults, distance + CastSkin);
+        if (hitCount > 0)
+        {
+            float minDistance = distance;
+
+            for (int i = 0; i < hitCount; i++)
+            {
+                // Ignore triggers
+                if (castResults[i].collider != null && castResults[i].collider.isTrigger) continue;
+
+                // Cast distance includes skin; we want to stop just before the wall
+                float d = castResults[i].distance - CastSkin;
+                if (d < minDistance)
+                {
+                    minDistance = Mathf.Max(0f, d);
+                }
+            }
+
+            delta = direction * minDistance;
+        }
+
+        rb.MovePosition(rb.position + delta);
     }
 
     string BuildSkillDisplayString()
@@ -321,6 +376,7 @@ public class PlayerController : MonoBehaviour
         if (!currentlyReloading)
         {
             currentlyReloading = true;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.reload, this.transform.position);
             lastReload = Time.time;
         }
         else
@@ -336,27 +392,34 @@ public class PlayerController : MonoBehaviour
 
     void HandleSpiritualVision()
     {
-        spiritualVisionTimer = Time.time;
-        if (playerInput.Player.SpritualVision.IsPressed())
+        if (playerInput.Player.SpritualVision.IsPressed() && !inSpiritualVision)
         {
             inSpiritualVision = true;
             OnSpiritualVisionChange?.Invoke(true);
+            if(volume.profile.TryGet(out WhiteBalance whiteBalance))
+            {
+                whiteBalance.temperature.value = -75f;
+            }
         }
         if (inSpiritualVision)
         {
-            currentSpiritualVision -= (Time.time - spiritualVisionTimer);
+            currentSpiritualVision -= Time.deltaTime;
             if (currentSpiritualVision <= 0)
             {
                 currentSpiritualVision = 0;
                 inSpiritualVision = false;
                 OnSpiritualVisionChange?.Invoke(false);
+                if (volume.profile.TryGet(out WhiteBalance whiteBalance))
+                {
+                    whiteBalance.temperature.value = 0f;
+                }
             }
         }
         else
         {
             if (!(currentSpiritualVision >= playerAttributes.totalSpiritualVision))
             {
-                currentSpiritualVision += playerAttributes.spiritualVisionRegeneration * (Time.time - spiritualVisionTimer);
+                currentSpiritualVision += playerAttributes.spiritualVisionRegeneration * Time.deltaTime;
             }
             else
             {

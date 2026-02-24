@@ -11,7 +11,7 @@ public class Boss_Attack : IBossStates
     }
     public void EnterState(BossBehaviourBase boss)
     {
-        Debug.Log(attack_number);
+        //Debug.Log(attack_number);
         boss.agent.isStopped = true;
         boss.isAttacking = true;
         switch (attack_number)
@@ -44,6 +44,7 @@ public class Boss_Attack : IBossStates
     {
         if (!boss.isAttacking)
         {
+            boss.agent.isStopped = false;
             boss.ChangeState(new Boss_Cooldown(boss.cooldown_time));
             Debug.Log("Boss change to cooldown");
         }

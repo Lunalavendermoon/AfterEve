@@ -31,6 +31,7 @@ public class Fool_Future : Future_TarotCard
     private void OnCardObtained(Arcana _)
     {
         ++cardCount;
+        RefreshDescription();
         if (cardCount >= cardGoal)
         {
             cardCount = 0;
@@ -50,5 +51,17 @@ public class Fool_Future : Future_TarotCard
     public override string GetQuestText()
     {
         return $"obtain {cardCount}/{cardGoal} cards";
+    }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        desc.TableEntryReference = "FoolFuture";
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[] { cardCount, cardGoal };
     }
 }

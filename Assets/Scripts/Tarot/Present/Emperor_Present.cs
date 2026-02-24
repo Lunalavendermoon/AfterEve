@@ -49,4 +49,12 @@ public class Emperor_Present : Present_TarotCard
             }
         }
     }
+
+    protected override void GetLocalizedDesc()
+    {
+        // TODO finish this
+        base.GetLocalizedDesc();
+        desc.TableEntryReference = "FoolPresent";
+        desc.Arguments = new object[] { "temp", "temp" };
+    }
 }

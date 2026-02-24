@@ -30,6 +30,12 @@ public class Enemy_Wander :  IEnemyStates
     
     public void UpdateState(EnemyBase enemy)
     {
+        if (enemy.enemyAttributes.isParalyzed)
+        {
+            enemy.ChangeState(new Enemy_Idle());
+            return;
+        }
+
         wanderTimer += Time.deltaTime;
         if (wanderTimer >= wanderTime)
         {

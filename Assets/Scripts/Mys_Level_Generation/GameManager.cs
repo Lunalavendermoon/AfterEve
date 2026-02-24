@@ -21,9 +21,18 @@ public class GameManager : MonoBehaviour
     // For picking random existing tiles
     private List<Vector2Int> occupiedCells = new List<Vector2Int>();
 
-
     public SpawnBehavior spawnBehavior;
     public GameObject portal;
+
+    [Header("Boundary Walls")]
+    public GameObject wallPrefab;
+
+    [Header("Portal Placement")]
+    [Min(0f)] public float portalSpawnRadius = 2f;
+    [Min(1)] public int portalSpawnAttempts = 30;
+    [Min(0f)] public float portalPlayerClearance = 0.75f;
+    [Min(0f)] public float portalObstacleClearance = 0.05f;
+    public LayerMask portalBlockingLayers;
     // Grid directions (x => world X, y => world Y)
     private readonly Vector2Int[] dirGrid =
     {
@@ -43,7 +52,9 @@ public class GameManager : MonoBehaviour
     public static event System.Action OnRoomChange;
     public static event System.Action OnCombatRoomClear;
 
-    private void Start()
+    private Bounds? mapBounds;
+
+    void Awake()
     {
         if (instance == null) instance = this;
 
@@ -51,6 +62,11 @@ public class GameManager : MonoBehaviour
         {
             narrativeRoomManager.StartNewNarrativePath(); // TODO: call this whenever player starts a new narrative path
         }
+    }
+
+    void Start()
+    {
+        // call in start so we have time to setup listeners
         StartNewPlaythrough();
     }
 
@@ -68,6 +84,12 @@ public class GameManager : MonoBehaviour
     // ============================================================
     public void LoadMap()
     {
+        // Reset spawner state before destroying the old map so it doesn't keep references
+        // to spawn points/chests that are about to be destroyed.
+        if (EnemySpawnerScript.instance != null)
+        {
+            EnemySpawnerScript.instance.ResetForNewMap();
+        }
         ClearMap();
         GenerateAndPlace();
         OnRoomChange?.Invoke();
@@ -86,6 +108,7 @@ public class GameManager : MonoBehaviour
 
         gridToInstance.Clear();
         occupiedCells.Clear();
+        mapBounds = null;
 
 
         if (generateNarrativeRooms)
@@ -107,6 +130,7 @@ public class GameManager : MonoBehaviour
             Quaternion.identity,
             mapRoot
         );
+        EnemySpawnerScript.instance.ProcessRoom(startInstance, 0);
 
         gridToInstance[startCell] = startInstance;
         occupiedCells.Add(startCell);
@@ -160,6 +184,7 @@ public class GameManager : MonoBehaviour
                 Quaternion.identity,
                 mapRoot
             );
+            EnemySpawnerScript.instance.ProcessRoom(newInstance, i);
 
             // Get render sizes (world units)
             Vector3 baseSize = GetSpriteSize(baseInstance);
@@ -202,76 +227,173 @@ public class GameManager : MonoBehaviour
             gridToInstance[newCell] = newInstance;
             occupiedCells.Add(newCell);
         }
-        // move the portal on a random edge of the last placed tile that is not touched by another tile
-        Vector2Int lastCell = occupiedCells[occupiedCells.Count - 1];
-        List<int> freeDirIndicesForPortal = new List<int>();
-        for (int d = 0; d < dirGrid.Length; d++)
+
+        // Provide mapRoot so runtime-spawned objects (e.g. chest) can be parented under it.
+        if (EnemySpawnerScript.instance != null)
         {
-            Vector2Int neighborCell = lastCell + dirGrid[d];
-            if (!gridToInstance.ContainsKey(neighborCell))
-                freeDirIndicesForPortal.Add(d);
-        }
-        if (freeDirIndicesForPortal.Count > 0)
-        {
-            int dirIndex = freeDirIndicesForPortal[Random.Range(0, freeDirIndicesForPortal.Count)];
-            Vector2Int dir = dirGrid[dirIndex];
-            GameObject lastInstance = gridToInstance[lastCell];
-            // Get render sizes (world units)
-            Vector3 lastSize = GetSpriteSize(lastInstance);
-            Vector3 portalSize = GetSpriteSize(portal);
-            Vector3 lastPos = lastInstance.transform.position;
-
-            // Place the portal fully INSIDE the bounds of the last tile, near the chosen free edge.
-            // Compute offset so that the portal's sprite bounds never extend past the tile's bounds:
-            // offset distance = tileHalf - portalHalf along the chosen axis.
-            Vector3 offset = Vector3.zero;
-            const float margin = 0f; // optional inner margin if needed
-            if (dir.x == 1)        // near right edge, inside
-            {
-                float dist = (lastSize.x * 0.5f) - (portalSize.x * 0.5f) - margin;
-                offset = new Vector3(dist, 0f, 0f);
-            }
-            else if (dir.x == -1)  // near left edge, inside
-            {
-                float dist = (lastSize.x * 0.5f) - (portalSize.x * 0.5f) - margin;
-                offset = new Vector3(-dist, 0f, 0f);
-            }
-            else if (dir.y == 1)   // near top edge, inside
-            {
-                float dist = (lastSize.y * 0.5f) - (portalSize.y * 0.5f) - margin;
-                offset = new Vector3(0f, dist, 0f);
-            }
-            else if (dir.y == -1)  // near bottom edge, inside
-            {
-                float dist = (lastSize.y * 0.5f) - (portalSize.y * 0.5f) - margin;
-                offset = new Vector3(0f, -dist, 0f);
-            }
-
-            // Clamp offset components in case portal is larger than tile; ensure stays centered inside
-            // If portal larger, center it in tile to avoid protrusion
-            if (portalSize.x > lastSize.x)
-            {
-                offset.x = 0f;
-            }
-            if (portalSize.y > lastSize.y)
-            {
-                offset.y = 0f;
-            }
-
-            Vector3 portalPosition = lastPos + offset;
-            // Force same Z for portal
-            portalPosition.z = 0f;
-            portal.transform.position = portalPosition;
+            EnemySpawnerScript.instance.AssignChestFromMapRoot(mapRoot);
         }
 
+        EnemySpawnerScript.instance.ScanMap();
+        EnemySpawnerScript.instance.SpawnAllEnemies();
+
+        SpawnBoundaryWalls();
         portal.SetActive(false);
 
         spawnBehavior.Respawn();
     }
 
+    private void SpawnBoundaryWalls()
+    {
+        if (gridToInstance.Count == 0) return;
+
+        foreach (var kvp in gridToInstance)
+        {
+            Vector2Int cell = kvp.Key;
+            GameObject room = kvp.Value;
+            if (room == null) continue;
+
+            // Up
+            if (!gridToInstance.ContainsKey(cell + new Vector2Int(0, 1)))
+            {
+                SpawnWallChild(room, 180f);
+            }
+            // Down
+            if (!gridToInstance.ContainsKey(cell + new Vector2Int(0, -1)))
+            {
+                SpawnWallChild(room, 0f);
+            }
+            // Left
+            if (!gridToInstance.ContainsKey(cell + new Vector2Int(-1, 0)))
+            {
+                SpawnWallChild(room, 270f);
+            }
+            // Right
+            if (!gridToInstance.ContainsKey(cell + new Vector2Int(1, 0)))
+            {
+                SpawnWallChild(room, 90f);
+            }
+        }
+    }
+
+    private void SpawnWallChild(GameObject room, float zRotationDeg)
+    {
+        if (wallPrefab == null || room == null) return;
+
+        var wall = Instantiate(wallPrefab, room.transform);
+        wall.transform.localPosition = Vector3.zero;
+        wall.transform.localRotation = Quaternion.Euler(0f, 0f, zRotationDeg);
+    }
+
     public void ClearCombatRoom()
     {
+        // Used by non-chest flows (e.g., narrative/Yarn rooms) to finish the room.
+        // Spawn the portal on the player for immediate transition.
+        if (portal == null)
+        {
+            Debug.LogWarning("GameManager portal reference is null.");
+            return;
+        }
+
+        if (PlayerController.instance == null)
+        {
+            Debug.LogWarning("PlayerController.instance is null; cannot spawn portal on player.");
+            portal.SetActive(true);
+            return;
+        }
+
+        Vector3 playerPos = PlayerController.instance.transform.position;
+        playerPos.z = 0f;
+        portal.transform.position = playerPos;
         portal.SetActive(true);
+    }
+
+    public bool SpawnPortalNearChest(Vector3 chestWorldPos)
+    {
+        if (portal == null)
+        {
+            Debug.LogWarning("GameManager portal reference is null.");
+            return false;
+        }
+
+        if (PlayerController.instance == null)
+        {
+            Debug.LogWarning("PlayerController.instance is null; cannot spawn portal on player.");
+            return false;
+        }
+
+        Vector3 playerPos = PlayerController.instance.transform.position;
+        playerPos.z = 0f;
+        portal.transform.position = playerPos;
+        portal.SetActive(true);
+        return true;
+    }
+
+    private void EnsureMapBounds()
+    {
+        if (mapBounds != null) return;
+        if (occupiedCells.Count == 0)
+        {
+            mapBounds = null;
+            return;
+        }
+
+        bool hasAny = false;
+        Bounds b = default;
+
+        foreach (var cell in occupiedCells)
+        {
+            if (!gridToInstance.TryGetValue(cell, out var tile) || tile == null) continue;
+            SpriteRenderer sr = tile.GetComponentInChildren<SpriteRenderer>();
+            if (sr == null) continue;
+
+            if (!hasAny)
+            {
+                b = sr.bounds;
+                hasAny = true;
+            }
+            else
+            {
+                b.Encapsulate(sr.bounds);
+            }
+        }
+
+        mapBounds = hasAny ? b : null;
+    }
+
+    private bool IsInsideMap(Vector2 candidate, float radius)
+    {
+        if (mapBounds == null) return false;
+        Bounds b = mapBounds.Value;
+
+        return candidate.x - radius >= b.min.x && candidate.x + radius <= b.max.x &&
+               candidate.y - radius >= b.min.y && candidate.y + radius <= b.max.y;
+    }
+
+    private bool IsOverlappingBlocking(Vector2 candidate, float radius)
+    {
+        Vector2 size = new Vector2(radius * 2f, radius * 2f);
+        Collider2D hit = Physics2D.OverlapBox(candidate, size, 0f, portalBlockingLayers);
+        return hit != null;
+    }
+
+    private float GetApproxRadiusFromBounds(GameObject obj)
+    {
+        SpriteRenderer sr = obj != null ? obj.GetComponentInChildren<SpriteRenderer>() : null;
+        if (sr != null)
+        {
+            Vector3 s = sr.bounds.size;
+            return Mathf.Max(s.x, s.y) * 0.5f;
+        }
+
+        Collider2D col = obj != null ? obj.GetComponentInChildren<Collider2D>() : null;
+        if (col != null)
+        {
+            Vector3 s = col.bounds.size;
+            return Mathf.Max(s.x, s.y) * 0.5f;
+        }
+
+        return 0.5f;
     }
 
     // ============================================================

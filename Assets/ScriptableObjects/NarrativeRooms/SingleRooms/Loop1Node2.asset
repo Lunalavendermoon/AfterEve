@@ -16,5 +16,7 @@ MonoBehaviour:
   roomCount: 2
   pathCount: 1
   roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
-  itemPrefab: {fileID: 1967534263779007894, guid: 1911ed6c2e2b64bed897fc4ba09a68b4, type: 3}
-  portalLocation: {fileID: 8670249491484880404, guid: 93861aa44dcad4ea2818489f33ae028a, type: 3}
+  itemPrefab: {fileID: 0}
+  enemies: []
+  onSpawnDialogue: Act1_EveWorldbuilding_L1N2
+  postCombatDialogue: 

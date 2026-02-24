@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: PresentTarotTable_en-US
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: 6e18f7d6b72624c859df850d84fe12dd, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 1636043013058461923
+  m_TableData:
+  - m_Id: 11554250752
+    m_Localized: Increase FIRE RATE by {0}% of base FIRE RATE and deal an additional
+      physical damage equal to {1}% base dmg when hitting a different enemy than
+      the previously hit enemy.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  references:
+    version: 2
+    RefIds:
+    - rid: 1636043013058461923
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 11554250752

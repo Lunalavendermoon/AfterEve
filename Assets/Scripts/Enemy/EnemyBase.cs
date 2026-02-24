@@ -48,6 +48,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     private Transform tempTarget; // Temporary target for pathfinding to a position
 
+    private bool spawnerDeathNotified;
+
     public GameObject floatingTextPrefab;
     public bool givesRewards = true; // no rewards if spawned by boss
 
@@ -82,7 +84,7 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
     //Initializing agent and its default state
-    public virtual void Start()
+    private void Start()
     {
         agent = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
@@ -92,28 +94,36 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
 
-    public virtual void Update()
+    private void Update()
     {
         agent.maxSpeed = speed;
 
-        if (enemyAttributes.isParalyzed)
-        {
-            // enemy can't do anything if it's paralyzed
-            current_enemy_state = new Enemy_Idle();
-        }
-        else
-        {
-            current_enemy_state?.UpdateState(this);
-        }
+        current_enemy_state?.UpdateState(this);
+
+        // if (enemyAttributes.isParalyzed)
+        // {
+        //     // enemy can't do anything if it's paralyzed
+        //     current_enemy_state = new Enemy_Idle();
+        // }
+        // else
+        // {
+        //     current_enemy_state?.UpdateState(this);
+        // }
 
         //Debug.Log($"{gameObject.name} is in state: {current_enemy_state?.GetType().Name}");
 
         if(isChained)
             if(Time.time > chainTime)
                 isChained = false;
+
+        EnemyUpdate();
         
     }
 
+    public virtual void EnemyUpdate()
+    {
+
+    }
 
     // Actions
     public abstract void Attack(Transform target);
@@ -122,9 +132,12 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (givesRewards)
         {
-            EnemyItemDrops.ItemDrop(PlayerController.instance.playerAttributes.luck, elite, chest);
+            int numShards = EnemyItemDrops.CalculateShardDrop(PlayerController.instance.playerAttributes.luck, elite);
+            spawner.AddPendingChestCoins(numShards);
+            spawnerDeathNotified = true;
             spawner.EnemyDie(this);
         }
+
         Destroy(gameObject);
     }
 
@@ -157,6 +170,8 @@ public abstract class EnemyBase : MonoBehaviour
         health -= damageAfterReduction;
 
         OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyTakeDamage, this.transform.position);
 
         // Damage numbers
         ShowFloatingText(damageAfterReduction);
@@ -223,5 +238,23 @@ public abstract class EnemyBase : MonoBehaviour
         destinationSetter.target = tempTarget;
     }
 
-    
+    private void OnDestroy()
+    {
+        if (!spawnerDeathNotified && givesRewards && spawner != null)
+        {
+            spawnerDeathNotified = true;
+            spawner.EnemyDie(this);
+        }
+
+        if (destinationSetter != null && destinationSetter.target == tempTarget)
+        {
+            destinationSetter.target = null;
+        }
+
+        if (tempTarget != null)
+        {
+            Destroy(tempTarget.gameObject);
+            tempTarget = null;
+        }
+    }
 }

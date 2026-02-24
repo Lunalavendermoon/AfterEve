@@ -163,6 +163,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""033e564f-ba23-4191-ac46-2b6a039f13d7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExitInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""db25b64a-e9e7-4c12-bbca-a2c379a4cd3f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -363,6 +381,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""UpdateTarotHand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70068df5-ef9c-4740-a8a4-65d1fb54b248"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2531ad2-5c7d-4496-8dab-f826c5d98d5c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -379,6 +419,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Skill = m_Player.FindAction("Skill", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_UpdateTarotHand = m_Player.FindAction("UpdateTarotHand", throwIfNotFound: true);
+        m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
+        m_Player_ExitInventory = m_Player.FindAction("ExitInventory", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -467,6 +509,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Skill;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_UpdateTarotHand;
+    private readonly InputAction m_Player_ToggleInventory;
+    private readonly InputAction m_Player_ExitInventory;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -510,6 +554,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/UpdateTarotHand".
         /// </summary>
         public InputAction @UpdateTarotHand => m_Wrapper.m_Player_UpdateTarotHand;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ToggleInventory".
+        /// </summary>
+        public InputAction @ToggleInventory => m_Wrapper.m_Player_ToggleInventory;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ExitInventory".
+        /// </summary>
+        public InputAction @ExitInventory => m_Wrapper.m_Player_ExitInventory;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -560,6 +612,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @UpdateTarotHand.started += instance.OnUpdateTarotHand;
             @UpdateTarotHand.performed += instance.OnUpdateTarotHand;
             @UpdateTarotHand.canceled += instance.OnUpdateTarotHand;
+            @ToggleInventory.started += instance.OnToggleInventory;
+            @ToggleInventory.performed += instance.OnToggleInventory;
+            @ToggleInventory.canceled += instance.OnToggleInventory;
+            @ExitInventory.started += instance.OnExitInventory;
+            @ExitInventory.performed += instance.OnExitInventory;
+            @ExitInventory.canceled += instance.OnExitInventory;
         }
 
         /// <summary>
@@ -595,6 +653,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @UpdateTarotHand.started -= instance.OnUpdateTarotHand;
             @UpdateTarotHand.performed -= instance.OnUpdateTarotHand;
             @UpdateTarotHand.canceled -= instance.OnUpdateTarotHand;
+            @ToggleInventory.started -= instance.OnToggleInventory;
+            @ToggleInventory.performed -= instance.OnToggleInventory;
+            @ToggleInventory.canceled -= instance.OnToggleInventory;
+            @ExitInventory.started -= instance.OnExitInventory;
+            @ExitInventory.performed -= instance.OnExitInventory;
+            @ExitInventory.canceled -= instance.OnExitInventory;
         }
 
         /// <summary>
@@ -691,5 +755,19 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnUpdateTarotHand(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ToggleInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleInventory(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ExitInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExitInventory(InputAction.CallbackContext context);
     }
 }

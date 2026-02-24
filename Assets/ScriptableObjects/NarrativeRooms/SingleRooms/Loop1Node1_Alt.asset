@@ -16,5 +16,9 @@ MonoBehaviour:
   roomCount: 1
   pathCount: 1
   roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
-  itemPrefab: {fileID: 1967534263779007894, guid: 8b06a2e431ec74761aae53630c74c5d2, type: 3}
-  portalLocation: {fileID: 8670249491484880404, guid: 93861aa44dcad4ea2818489f33ae028a, type: 3}
+  itemPrefab: {fileID: 0}
+  enemyPrefabs:
+  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
+  disableChestGeneration: 0
+  onSpawnDialogue: Act1_EveIntro_PreCombat_L1N1_Alt
+  postCombatDialogue: Act1_EveIntro_PostCombat_L1N1_Alt

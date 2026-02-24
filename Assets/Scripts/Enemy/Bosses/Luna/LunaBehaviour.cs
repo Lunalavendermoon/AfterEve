@@ -1,35 +1,52 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using static EnemySpawnerScript;
+using Random = UnityEngine.Random;
 
 public class LunaBehaviour : BossBehaviourBase
 {
     bool isInvulnerable = false;
     int shieldHealth = 200;
+    public bool isDashing = false;
 
-
+    private Vector2 dashTarget;
+    public float dashSpeed;
 
     
-    [SerializeField] private GameObject projectilePrefab1;
-    [SerializeField] private GameObject projectilePrefab3;
+    [SerializeField] private GameObject warningMarker;
+    [SerializeField] private GameObject AOEMarker;
+    [SerializeField] private GameObject spiralPrefab;
+    [SerializeField] private GameObject GhostPrefab;
     [SerializeField] private GameObject projectilePrefab4;
 
+    float spinSign = 1f;
+    bool spiral = false;
 
-    [SerializeField] private AnimationCurve trajectoryAnimationCurve;
-    [SerializeField] private AnimationCurve axisCorrectionAnimationCurve;
-    [SerializeField] private AnimationCurve projectileSpeedAnimationCurve;
+    [Header("Spiral Projectile Settings")]
+    public float fireRate = 4f;               // projectiles per second
+    
+    public float spawnOffset = 0.6f;
+    public float spinSpeedDegrees = 180f;
+    public float spiralBulletspeed = 6f;
+    [Tooltip("Where the first projectile of each stream spawns (units)")]
+    public float startRadius = 0.5f;
+    [Tooltip("Increase in spawn radius after each spawned projectile (makes the spiral)")]
+    public float radiusStep = 0.06f;
+    float streamRadius;
 
-    private float shootTimer;
+    // per-stream firing accumulators
+    float fireTimers=0f;
 
 
     private void Awake()
     {
         cooldown_time = 4f;
-        checkMeleeRange();
-        default_enemy_state = new Boss_Attack(this.ChooseAttack());
+        default_enemy_state = new Boss_Cooldown(1f);
         
-        Debug.Log("Boss Start");
+
 
     }
 
@@ -37,6 +54,53 @@ public class LunaBehaviour : BossBehaviourBase
     {
         current_enemy_state.UpdateState(this);
         checkMeleeRange();
+
+        if (spiral)
+        {
+            float dt = Time.deltaTime;
+
+            float spinThisFrame = spinSpeedDegrees * spinSign * dt;
+            transform.Rotate(Vector3.forward, spinThisFrame, Space.Self);
+            Vector3 right = transform.right;
+            if (fireTimers <= 0f)
+            {
+                fireTimers = 1.0f / fireRate;
+                GameObject sp1= Instantiate(spiralPrefab, transform.position + (right * streamRadius), Quaternion.identity);
+                sp1.GetComponent<SpiralBulletScript>().InitializeProjectile(right, transform.position, spiralBulletspeed);
+                GameObject sp2 = Instantiate(spiralPrefab, transform.position - (right * streamRadius), Quaternion.identity);
+                sp2.GetComponent<SpiralBulletScript>().InitializeProjectile((- right), transform.position, spiralBulletspeed);
+                //streamRadius += radiusStep;
+            }
+            else
+            {
+                fireTimers -= dt;
+            }
+
+        }
+    }
+
+    public override void BossFixedUpdate()
+    {
+        if (isDashing)
+        {
+            performDash();
+        }
+        
+    }
+
+    private void performDash()
+    {
+        if(Vector2.Distance(transform.position, dashTarget) < 0.5f)
+        {
+            isDashing = false;
+            isAttacking = false;
+            return;
+        }
+
+        Vector2 currentpos= transform.position;
+        Vector2 dashDirection =dashTarget- currentpos;
+        Vector2 dashDelta = dashDirection*dashSpeed*Time.fixedDeltaTime;
+        rb.MovePosition(rb.position+dashDelta);
     }
 
     private void checkMeleeRange()
@@ -59,17 +123,12 @@ public class LunaBehaviour : BossBehaviourBase
     }
     public override void Attack1()
     {
-        Debug.Log("attack 1 Start");
         //Fire 4 speedy projectiles, each dealing 40 basic damage, t
         //hat bounce 2 times if it hits a wall, accelerating 30% with each bounce.
         //The bullet curves slightly towards the player's direction as it moves..
 
-        isAttacking = true; 
-                    
-        
 
-        isAttacking = false;
-
+        StartCoroutine(Attack1Coroutine());
 
     }
     public override void Attack2()
@@ -80,28 +139,53 @@ public class LunaBehaviour : BossBehaviourBase
         //If destroyed before their life time, they do not perform the rest of their Attack 1.
         //Luna is untargetable during the dash and does not take direct damage
         //(Previous debuffs before she dashes continues to affect her).
-        isAttacking = true;
 
+        //set dashtarget to 5 units infront of its current direction
 
+        Debug.Log("Attack2");
+        SpawnGhost();
+
+        dashTarget = transform.position + transform.up*5f;
         
-        isAttacking = false;
+        isDashing = true;
+
+        SpawnGhost();
 
     }
+
+    private void SpawnGhost()
+    {
+        Instantiate(GhostPrefab, transform.position, Quaternion.identity);
+
+    }
+
     public override void Attack3()
     {
+        //Fires 7 shots in the air that land randomly on the map after 1 second
+        //(with warning area indicators during the second) as AOE circles of diameter 3 that last for 10 seconds
+        //(circles land at the same time).
+        //Stepping into these circles applies 40% Slow and 40% Sundered to the player and deals 10 basic damage 4 times per seconds.
+        //When player leave the circle, debuff from this attack is cleared
+        //(The circles should last into other attacks/skills and can overlap with each other.)
 
-        isAttacking = true;
+
+        StartCoroutine (Attack3Coroutine());
         
     }
     public override void Attack4()
     {
-        isAttacking = true;
-
+        streamRadius = startRadius;
+        
+        StartCoroutine(Attack4Coroutine());
     }
 
     public override void Attack5()
     {
         isAttacking = true;
+        dashTarget = PlayerController.instance.transform.position;
+
+        isDashing = true;
+        
     }
 
 
@@ -142,6 +226,72 @@ public class LunaBehaviour : BossBehaviourBase
     }
 
 
+private IEnumerator Attack1Coroutine()
+    {
+        isAttacking = true;
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject projectile = Instantiate(projectilePrefab4, transform.position, Quaternion.identity);
+            BouncyProjectile projectileScript = projectile.GetComponent<BouncyProjectile>();
+            projectileScript.SetBoss(this.transform);
+            projectileScript.Fire(10f);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        isAttacking = false;
 
 
-}
+    }
+
+    private IEnumerator Attack3Coroutine()
+    {
+        // generate 7 random spots around the map
+        isAttacking = true;
+
+        Vector2[] attackSpots= new Vector2[7];
+        for (int i = 0; i < 7; i++)
+        {
+            Vector2 random = Random.insideUnitCircle;
+
+            attackSpots[i] = random*8f;
+
+            Instantiate(warningMarker, new Vector3(random.x * 8f, random.y * 8f, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
+
+
+
+        }
+
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < 7; i++)
+        {
+            Instantiate(AOEMarker, new Vector3(attackSpots[i].x * 8f, attackSpots[i].y * 8f, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
+        }
+
+        isAttacking=false;
+    }
+
+    private IEnumerator Attack4Coroutine()
+    {
+   
+        isAttacking = true;
+        spiral = true;
+        // Spin in a spiral for 20 seconds 
+        yield return new WaitForSeconds(5f);
+        spinSign = -spinSign;
+        streamRadius = startRadius;
+        yield return new WaitForSeconds(5f);
+        spinSign = -spinSign;
+        streamRadius = startRadius;
+        yield return new WaitForSeconds(5f);
+        spinSign = -spinSign;
+        streamRadius = startRadius;
+        yield return new WaitForSeconds(5f);
+        spinSign = -spinSign;
+        streamRadius = startRadius;
+        isAttacking = false;
+        spiral = false;
+    }
+
+    }

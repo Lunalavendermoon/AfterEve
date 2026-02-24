@@ -78,6 +78,7 @@ MonoBehaviour:
   chest: {fileID: 0}
   Enemy: {fileID: 0}
   numberOfEnemies: 0
+  enemyPrefabs: []
   enemyList:
   - enemyPrefab: {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
     spawnPoint: {fileID: 4363806128234410563}

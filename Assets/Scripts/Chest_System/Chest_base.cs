@@ -17,11 +17,14 @@ public class Chest_base : InteractableEntity
 
     public override void TriggerInteraction()
     {
+        Vector3 chestPos = transform.position;
         PlayerController.instance.ChangeCoins(coins);
 
-        ChestRewardManager.instance.ShowChestRewardMenu();
-
-        GameManager.instance.ClearCombatRoom();
+        if (ChestRewardManager.instance != null)
+        {
+            ChestRewardManager.instance.ShowChestRewardMenu();
+            ChestRewardManager.instance.SetLastChestWorldPos(chestPos);
+        }
 
         Destroy(gameObject);
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 using Unity.VisualScripting;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour
 {
@@ -75,7 +77,6 @@ public class PlayerController : MonoBehaviour
 
     //spiritual vision
     private float currentSpiritualVision;
-    private float spiritualVisionTimer;
     private Boolean inSpiritualVision;
 
     // future card skill
@@ -108,6 +109,9 @@ public class PlayerController : MonoBehaviour
 
     public TarotManager tarotManager;
     public ShieldManager shieldManager;
+
+    //post processing
+    public Volume volume;
 
     void Start()
     {
@@ -388,27 +392,34 @@ public class PlayerController : MonoBehaviour
 
     void HandleSpiritualVision()
     {
-        spiritualVisionTimer = Time.time;
-        if (playerInput.Player.SpritualVision.IsPressed())
+        if (playerInput.Player.SpritualVision.IsPressed() && !inSpiritualVision)
         {
             inSpiritualVision = true;
             OnSpiritualVisionChange?.Invoke(true);
+            if(volume.profile.TryGet(out WhiteBalance whiteBalance))
+            {
+                whiteBalance.temperature.value = -75f;
+            }
         }
         if (inSpiritualVision)
         {
-            currentSpiritualVision -= (Time.time - spiritualVisionTimer);
+            currentSpiritualVision -= Time.deltaTime;
             if (currentSpiritualVision <= 0)
             {
                 currentSpiritualVision = 0;
                 inSpiritualVision = false;
                 OnSpiritualVisionChange?.Invoke(false);
+                if (volume.profile.TryGet(out WhiteBalance whiteBalance))
+                {
+                    whiteBalance.temperature.value = 0f;
+                }
             }
         }
         else
         {
             if (!(currentSpiritualVision >= playerAttributes.totalSpiritualVision))
             {
-                currentSpiritualVision += playerAttributes.spiritualVisionRegeneration * (Time.time - spiritualVisionTimer);
+                currentSpiritualVision += playerAttributes.spiritualVisionRegeneration * Time.deltaTime;
             }
             else
             {

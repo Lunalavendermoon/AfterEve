@@ -22,6 +22,10 @@ MonoBehaviour:
     m_Localized: ZH past {0} {1}
     m_Metadata:
       m_Items: []
+  - m_Id: 405402230448128
+    m_Localized: ZH FoolPast Placeholder {0} {1}
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

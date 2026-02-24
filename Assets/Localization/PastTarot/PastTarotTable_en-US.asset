@@ -23,6 +23,11 @@ MonoBehaviour:
       equal to {0}% base DAMAGE (cap at {1}% per The Fool card) '
     m_Metadata:
       m_Items: []
+  - m_Id: 405402230448128
+    m_Localized: Every time you obtain a card, gain additional physical damage equal
+      to {0}% base DAMAGE (cap at {1}% per The Fool card).
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

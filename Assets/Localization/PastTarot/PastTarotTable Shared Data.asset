@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
   m_TableCollectionName: PastTarotTable
   m_TableCollectionNameGuidString: cb8c60b528a604e9c958288bec7499b2
-  m_Entries: []
+  m_Entries:
+  - m_Id: 405402230448128
+    m_Key: FoolPast
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

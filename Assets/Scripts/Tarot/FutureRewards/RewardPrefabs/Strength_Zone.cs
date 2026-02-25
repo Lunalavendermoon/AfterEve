@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Strength_Zone : MonoBehaviour
 {
-    const float timeBetweenDamage = 0.5f;
-    const float weaponDamagePercent = 0.3f;
+    public const float timeBetweenDamage = 0.5f;
+    public const int damage = 300;
     float timer = timeBetweenDamage + 0.1f;
 
-    Slow_Effect enemyEffect = new(-1f, 0.5f);
+    public const float enemySlowAmount = 0.5f;
+
+    Slow_Effect enemyEffect = new(-1f, enemySlowAmount);
 
     Dictionary<Collider2D, EffectInstance> effects = new();
 
@@ -58,12 +60,9 @@ public class Strength_Zone : MonoBehaviour
         }
         timer = 0f;
 
-        // Currently, damage snapshots player's current weapon damage but isn't affected by other buffs
-        int rawDamage = 200 + (int)(weaponDamagePercent * PlayerController.instance.playerAttributes.damage);
-
         if (playerInside)
         {
-            PlayerController.instance.TakeDamage(rawDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
+            PlayerController.instance.TakeDamage(damage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
         }
         // handles dealing dmg to enemies, takes into account enemies dying mid-loop & causing enemiesInside to shrink
         // TODO: might not handle enemies spawning mid-loop correctly
@@ -72,7 +71,7 @@ public class Strength_Zone : MonoBehaviour
         while (i >= 0) {
             int prevLen = enemiesInside.Count;
             EnemyBase enemy = enemiesInside[i];
-            enemy.TakeDamage(rawDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
+            enemy.TakeDamage(damage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
             if (enemiesInside.Count != prevLen)
             {
                 // decrement i according to length of the new list

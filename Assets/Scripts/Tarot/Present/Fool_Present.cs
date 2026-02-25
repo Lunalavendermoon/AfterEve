@@ -39,7 +39,9 @@ public class Fool_Present : Present_TarotCard
     protected override void GetLocalizedDesc()
     {
         base.GetLocalizedDesc();
-        desc.TableEntryReference = "FoolPresent";
+
+        SetTableEntries("Fool");
+        
         SetDescriptionValues();
     }
 

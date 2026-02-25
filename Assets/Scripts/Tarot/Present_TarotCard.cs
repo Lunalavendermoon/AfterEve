@@ -66,4 +66,9 @@ public class Present_TarotCard : TarotCard
         SetDescriptionValues();
         desc.RefreshString();
     }
+
+    protected override void SetTableEntries(string cardName)
+    {
+        desc.TableEntryReference = $"{cardName}Present";
+    }
 }

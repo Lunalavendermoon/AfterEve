@@ -71,7 +71,7 @@ public abstract class Future_TarotCard : TarotCard
         };
     }
 
-    protected void SetTableEntries(string cardName)
+    protected override void SetTableEntries(string cardName)
     {
         desc.TableEntryReference = $"{cardName}Future";
 

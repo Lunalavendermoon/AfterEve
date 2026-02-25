@@ -19,6 +19,42 @@ MonoBehaviour:
     m_Key: FoolFuture
     m_Metadata:
       m_Items: []
+  - m_Id: 979010187157504
+    m_Key: MagicianFuture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 979108241596416
+    m_Key: HighPriestessFuture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 979176587780096
+    m_Key: EmpressFuture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 979234745999360
+    m_Key: EmperorFuture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 979290316333056
+    m_Key: HierophantFuture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 979334159392768
+    m_Key: LoversFuture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 979378107310080
+    m_Key: ChariotFuture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 979438899552256
+    m_Key: StrengthFuture
+    m_Metadata:
+      m_Items: []
+  - m_Id: 979492351762432
+    m_Key: HermitFuture
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

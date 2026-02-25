@@ -37,7 +37,9 @@ public class Fool_Past : Past_TarotCard
     protected override void GetLocalizedDesc()
     {
         base.GetLocalizedDesc();
-        desc.TableEntryReference = "FoolPast";
+        
+        SetTableEntries("Fool");
+
         SetDescriptionValues();
     }
 

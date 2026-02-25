@@ -19,6 +19,42 @@ MonoBehaviour:
     m_Key: FoolReward
     m_Metadata:
       m_Items: []
+  - m_Id: 1227084521472
+    m_Key: MagicianReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1588868407296
+    m_Key: HighPriestessReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1669231271936
+    m_Key: EmpressReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1736931532800
+    m_Key: EmperorReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1873472905216
+    m_Key: HierophantReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1927730421760
+    m_Key: LoversReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1979651710976
+    m_Key: ChariotReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2025709363200
+    m_Key: StrengthReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2079597780992
+    m_Key: HermitReward
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

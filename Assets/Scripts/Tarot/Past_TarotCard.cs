@@ -50,4 +50,9 @@ public abstract class Past_TarotCard : TarotCard
     {
         // override in each child
     }
+
+    protected override void SetTableEntries(string cardName)
+    {
+        desc.TableEntryReference = $"{cardName}Past";
+    }
 }

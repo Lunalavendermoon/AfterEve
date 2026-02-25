@@ -24,6 +24,78 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 1636043096540315723
+  - m_Id: 1227084521472
+    m_Localized: '<b>Reward SKILL:</b> Instead of bullets, shoot out coins (consumes
+      a fixed {0} coins per shot) that deal double the damage of bullets for {1}
+      seconds. If out of coins, this skill immediately ends. Other tarot card effects
+      apply to coins fired.
+
+      CD: {2}s
+
+      Uses: {3}'
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315723
+  - m_Id: 1588868407296
+    m_Localized: "<b>Reward SKILL:</b> Generate a zone of radius {0} for {1} seconds.
+      If the player is inside the zone they are ENLIGHTENED, enemies inside the zone
+      are {2}% CURSED. \nCD: {3}s \nUses: {4}"
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315723
+  - m_Id: 1669231271936
+    m_Localized: "<b>Reward SKILL:</b> Heal {0}% max HP and generate a pulse for
+      {1} seconds that knocks back enemies from the center. \nCD: {2}s\nUses: {3}"
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315723
+  - m_Id: 1736931532800
+    m_Localized: "<b>Reward SKILL:</b> PARALYZE all non-elite or non-boss enemies
+      within the room for {0} seconds. \nCD: {1}s \nUses: {2}"
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315723
+  - m_Id: 1873472905216
+    m_Localized: "<b>Reward SKILL:</b> Gain a shield that can absorb {0} hits for
+      {1} seconds. \nCD: {2}s\nUses: {3}"
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315723
+  - m_Id: 1927730421760
+    m_Localized: '<b>Reward SKILL:</b> Summon a non-targetable clone for {0} seconds
+      that mimics all attacks for {1}% of the damage. Clone cannot trigger special
+      effects.
+
+      CD: {2}s
+
+      Uses: {3}'
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315723
+  - m_Id: 1979651710976
+    m_Localized: "<b>Reward SKILL:</b> Grants {0}% Haste and {1}% Strength for {2}
+      seconds. \nCD: {3}s\nUses: {4}"
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315723
+  - m_Id: 2025709363200
+    m_Localized: '<b>Reward SKILL:</b> Deal {0} basic damage per {1} seconds to a
+      {2} radius circle. While in the circle, hit enemies receive {3}% SLOW. Circle
+      can be cast anywhere within {4} units of Cyrus and lasts {5} seconds.
+
+      CD:
+      {6}s
+
+      Uses: {7}'
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315723
+  - m_Id: 2079597780992
+    m_Localized: "<b>Reward SKILL:</b> Reveal all enemy weak points for {0} seconds.
+      \nCD: {1}s\nUses: {2}"
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315723
   references:
     version: 2
     RefIds:
@@ -33,3 +105,12 @@ MonoBehaviour:
         m_Entries: 
         m_SharedEntries:
         - id: 5535424512
+        - id: 1227084521472
+        - id: 1669231271936
+        - id: 1588868407296
+        - id: 1736931532800
+        - id: 1873472905216
+        - id: 1927730421760
+        - id: 1979651710976
+        - id: 2025709363200
+        - id: 2079597780992

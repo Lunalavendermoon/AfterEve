@@ -16,12 +16,74 @@ MonoBehaviour:
     m_Code: zh-Hans
   m_SharedData: {fileID: 11400000, guid: d2c78746088994412b34dc724775ce77, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 1636043096540315728
   m_TableData:
   - m_Id: 74011631616
     m_Localized: ZH temp
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 1636043096540315728
+  - m_Id: 979010187157504
+    m_Localized: ZH
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315728
+  - m_Id: 979108241596416
+    m_Localized: ZH
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315728
+  - m_Id: 979176587780096
+    m_Localized: ZH
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315728
+  - m_Id: 979234745999360
+    m_Localized: ZH
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315728
+  - m_Id: 979290316333056
+    m_Localized: ZH
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315728
+  - m_Id: 979334159392768
+    m_Localized: ZH
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315728
+  - m_Id: 979378107310080
+    m_Localized: ZH
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315728
+  - m_Id: 979438899552256
+    m_Localized: ZH
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315728
+  - m_Id: 979492351762432
+    m_Localized: ZH
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315728
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1636043096540315728
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 74011631616
+        - id: 979010187157504
+        - id: 979108241596416
+        - id: 979492351762432
+        - id: 979438899552256
+        - id: 979378107310080
+        - id: 979334159392768
+        - id: 979290316333056
+        - id: 979234745999360
+        - id: 979176587780096

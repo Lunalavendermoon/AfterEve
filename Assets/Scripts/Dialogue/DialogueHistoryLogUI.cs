@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Yarn;
 
 public class DialogueHistoryLogUI : MonoBehaviour
 {
@@ -23,24 +22,6 @@ public class DialogueHistoryLogUI : MonoBehaviour
         AddToDisplayLog(newLine);
     }
 
-    private void Update()
-    {
-        // placeholder for now
-        if (Input.GetKeyUp(KeyCode.Escape)) 
-        { 
-            if (isOpen)
-            {
-                isOpen = false;
-                logUI.SetActive(false);
-            }    
-            else
-            {
-                isOpen = true;
-                logUI.SetActive(true); 
-            }
-        }
-    }
-
     private void AddToDisplayLog(DialogueLine line)
     {
         GameObject entry = Instantiate(linePrefab, lineContainer.transform);
@@ -56,6 +37,34 @@ public class DialogueHistoryLogUI : MonoBehaviour
             {
                 t.text = line.text;
             }
+        }
+    }
+
+    private void Update()
+    {
+        HandleDialogueHistoryInput();
+    }
+
+    private void HandleDialogueHistoryInput()
+    {
+        if (PlayerController.instance.playerInput != null)
+        {
+            if (PlayerController.instance.playerInput.Player.ToggleDialogueLog.triggered)
+                DialogueLogDisplay();
+        }
+    }
+
+    public void DialogueLogDisplay()
+    {
+        if (isOpen)
+        {
+            isOpen = false;
+            logUI.SetActive(false);
+        }
+        else
+        {
+            isOpen = true;
+            logUI.SetActive(true);
         }
     }
 }

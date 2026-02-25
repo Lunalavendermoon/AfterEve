@@ -181,6 +181,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleDialogueLog"",
+                    ""type"": ""Button"",
+                    ""id"": ""4afa8e3f-8bf1-4778-a5e4-2491d6d74329"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -403,6 +412,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""ExitInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""737601c2-bc70-4a95-931b-6462d6d01545"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleDialogueLog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -421,6 +441,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_UpdateTarotHand = m_Player.FindAction("UpdateTarotHand", throwIfNotFound: true);
         m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
         m_Player_ExitInventory = m_Player.FindAction("ExitInventory", throwIfNotFound: true);
+        m_Player_ToggleDialogueLog = m_Player.FindAction("ToggleDialogueLog", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -511,6 +532,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_UpdateTarotHand;
     private readonly InputAction m_Player_ToggleInventory;
     private readonly InputAction m_Player_ExitInventory;
+    private readonly InputAction m_Player_ToggleDialogueLog;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -562,6 +584,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/ExitInventory".
         /// </summary>
         public InputAction @ExitInventory => m_Wrapper.m_Player_ExitInventory;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ToggleDialogueLog".
+        /// </summary>
+        public InputAction @ToggleDialogueLog => m_Wrapper.m_Player_ToggleDialogueLog;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -618,6 +644,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @ExitInventory.started += instance.OnExitInventory;
             @ExitInventory.performed += instance.OnExitInventory;
             @ExitInventory.canceled += instance.OnExitInventory;
+            @ToggleDialogueLog.started += instance.OnToggleDialogueLog;
+            @ToggleDialogueLog.performed += instance.OnToggleDialogueLog;
+            @ToggleDialogueLog.canceled += instance.OnToggleDialogueLog;
         }
 
         /// <summary>
@@ -659,6 +688,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @ExitInventory.started -= instance.OnExitInventory;
             @ExitInventory.performed -= instance.OnExitInventory;
             @ExitInventory.canceled -= instance.OnExitInventory;
+            @ToggleDialogueLog.started -= instance.OnToggleDialogueLog;
+            @ToggleDialogueLog.performed -= instance.OnToggleDialogueLog;
+            @ToggleDialogueLog.canceled -= instance.OnToggleDialogueLog;
         }
 
         /// <summary>
@@ -769,5 +801,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnExitInventory(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ToggleDialogueLog" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleDialogueLog(InputAction.CallbackContext context);
     }
 }

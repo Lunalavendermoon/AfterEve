@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class Chariot_Future : Future_TarotCard
 {
-    public const double distGoal = 200f;
+    public const float distGoal = 200f;
     public const int dashGoal = 40;
 
     private Vector3 oldPos;
-    private double distCount = 0f;
-    private double dashCount = 0;
+    private float distCount = 0f;
+    private int dashCount = 0;
+
+    public const int uses = 3;
+    public const float cd = 10f;
 
     public Chariot_Future(int q) : base(q)
     {
@@ -60,8 +63,22 @@ public class Chariot_Future : Future_TarotCard
         }
     }
 
-    public string temp()
+    protected override void GetLocalizedDesc()
     {
-        return $"travel {(int)distCount}/{(int)distGoal} units OR dash {dashCount}/{dashGoal} times";
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Chariot");
+        
+        rewardDesc.Arguments = new object[] { FormatPlusOnePercentage(Chariot_Reward.hasteAmount),
+            FormatPlusOnePercentage(Chariot_Reward.strengthAmount), Mathf.RoundToInt(Chariot_Reward.duration),
+            Mathf.RoundToInt(cd), uses };
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[] { Mathf.RoundToInt(distCount), Mathf.RoundToInt(distGoal),
+            dashCount, dashGoal };
     }
 }

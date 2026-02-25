@@ -3,10 +3,10 @@ using UnityEngine.Rendering.Universal.Internal;
 
 public class Hierophant_Reward : Future_Reward
 {
-    const int shieldAmount = 5;
-    const float shieldDuration = 10f;
+    public const int shieldAmount = 5;
+    public const float shieldDuration = 10f;
 
-    public Hierophant_Reward(Future_TarotCard card) : base(5, 10f, card)
+    public Hierophant_Reward(Future_TarotCard card) : base(Hierophant_Future.uses, Hierophant_Future.cd, card)
     {
     }
 

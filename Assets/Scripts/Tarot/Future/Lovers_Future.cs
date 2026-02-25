@@ -5,6 +5,9 @@ public class Lovers_Future : Future_TarotCard
     public const int spendGoal = 40;
     private int spendCount = 0;
 
+    public const int uses = 5;
+    public const float cd = 1f;
+
     public Lovers_Future(int q) : base(q)
     {
         cardName = "Lovers_Future";
@@ -25,14 +28,27 @@ public class Lovers_Future : Future_TarotCard
     private void OnGoldSpentAtMerchant(int amount)
     {
         spendCount += amount;
+        RefreshDescription();
         if (spendCount >= spendGoal)
         {
             CompleteQuest();
         }
     }
 
-    public string temp()
+    protected override void GetLocalizedDesc()
     {
-        return $"spend {spendCount}/{spendGoal} or more gold at a merchant";
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Lovers");
+        
+        rewardDesc.Arguments = new object[] { Mathf.RoundToInt(Lovers_Reward.duration),
+            FormatPercentage(Lovers_Reward.dmgMultiplier), Mathf.RoundToInt(cd), uses };
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[] { spendCount, spendGoal };
     }
 }

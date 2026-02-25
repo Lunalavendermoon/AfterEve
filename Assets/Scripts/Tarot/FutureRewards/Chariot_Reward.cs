@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Chariot_Reward : Future_Reward
 {
-    const float hasteAmount = 1.5f;
-    const float strengthAmount = 1.4f;
-    const float duration = 10f;
+    public const float hasteAmount = 1.5f;
+    public const float strengthAmount = 1.4f;
+    public const float duration = 10f;
 
-    public Chariot_Reward(Future_TarotCard card) : base(3, 10f, card)
+    public Chariot_Reward(Future_TarotCard card) : base(Chariot_Future.uses, Chariot_Future.cd, card)
     {
     }
 

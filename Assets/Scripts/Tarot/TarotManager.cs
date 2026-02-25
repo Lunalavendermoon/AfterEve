@@ -33,13 +33,13 @@ public class TarotManager : MonoBehaviour
         AddCard(new Chariot_Future(1));
         AddCard(new Emperor_Future(1));
         AddCard(new Empress_Future(1));
-        AddCard(new Fool_Future(1));
         AddCard(new Hermit_Future(1));
         AddCard(new Hierophant_Future(1));
         AddCard(new HighPriestess_Future(1));
         AddCard(new Lovers_Future(1));
         AddCard(new Magician_Future(1));
         AddCard(new Strength_Future(1));
+        AddCard(new Fool_Future(1));
 
         // DisplayHand();
     }

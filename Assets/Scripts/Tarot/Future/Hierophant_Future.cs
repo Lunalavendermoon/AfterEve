@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Hierophant_Future : Future_TarotCard
 {
-    public const double visionGoal = 30f;
-    // TODO add actual value once design finalizes
-    public const int shieldGoal = 500;
+    public const float visionGoal = 30f;
 
-    private double visionCount = 0f;
-    private int shieldCount = 0;
+    private float visionCount = 0f;
 
-    private double startTime;
+    private float startTime;
+
+    public const int uses = 5;
+    public const float cd = 10f;
 
     public Hierophant_Future(int q) : base(q)
     {
@@ -21,13 +21,11 @@ public class Hierophant_Future : Future_TarotCard
     public override void ApplyCard(TarotManager tarotManager)
     {
         PlayerController.OnSpiritualVisionChange += OnSpiritualVisionToggle;
-        PlayerController.OnShielded += OnShielded;
     }
 
     protected override void RemoveListeners()
     {
         PlayerController.OnSpiritualVisionChange -= OnSpiritualVisionToggle;
-        PlayerController.OnShielded -= OnShielded;
     }
 
     private void OnSpiritualVisionToggle(bool isOn)
@@ -39,6 +37,7 @@ public class Hierophant_Future : Future_TarotCard
         else
         {
             visionCount += Time.time - startTime;
+            RefreshDescription();
             if (visionCount >= visionGoal)
             {
                 CompleteQuest();
@@ -46,18 +45,20 @@ public class Hierophant_Future : Future_TarotCard
         }
     }
 
-    private void OnShielded(int amount)
+    protected override void GetLocalizedDesc()
     {
-        shieldCount += amount;
-        if (shieldCount >= shieldGoal)
-        {
-            CompleteQuest();
-        }
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Hierophant");
+        
+        rewardDesc.Arguments = new object[] { Hierophant_Reward.shieldAmount,
+            Mathf.RoundToInt(Hierophant_Reward.shieldDuration), Mathf.RoundToInt(cd), uses };
+
+        SetDescriptionValues();
     }
 
-    public string temp()
+    protected override void SetDescriptionValues()
     {
-        return $"use spiritual vision for more than {(int)visionCount}/{(int)visionGoal} " +
-                $"OR generate {shieldCount}/{shieldGoal} shield";
+        desc.Arguments = new object[] { Mathf.RoundToInt(visionCount), Mathf.RoundToInt(visionGoal) };
     }
 }

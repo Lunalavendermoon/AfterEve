@@ -66,7 +66,7 @@ public class Empress_Future : Future_TarotCard
         
         SetTableEntries("Empress");
 
-        rewardDesc.Arguments = new object[] { Mathf.RoundToInt(Empress_Reward.healPercent * 100),
+        rewardDesc.Arguments = new object[] { FormatPercentage(Empress_Reward.healPercent),
             Empress_Reward.pulseDuration, Mathf.RoundToInt(cd), uses };
 
         SetDescriptionValues();
@@ -74,8 +74,8 @@ public class Empress_Future : Future_TarotCard
 
     protected override void SetDescriptionValues()
     {
-        desc.Arguments = new object[] { Mathf.RoundToInt(healCount * 100),
-            Mathf.RoundToInt(healPercentGoal * 100), roomCount, roomGoal,
-            Mathf.RoundToInt(roomGoalHPThreshold * 100) };
+        desc.Arguments = new object[] { FormatPercentage(healCount),
+            FormatPercentage(healPercentGoal), roomCount, roomGoal,
+            FormatPercentage(roomGoalHPThreshold) };
     }
 }

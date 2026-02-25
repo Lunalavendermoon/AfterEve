@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Empress_Reward : Future_Reward
 {
-    const float healPercent = 0.5f;
-    const float pulseDuration = 3f;
+    public const float healPercent = 0.5f;
+    public const float pulseDuration = 3f;
 
-    public Empress_Reward(Future_TarotCard card) : base(5, 5f, card)
+    public Empress_Reward(Future_TarotCard card) : base(Empress_Future.uses, Empress_Future.cd, card)
     {
     }
 

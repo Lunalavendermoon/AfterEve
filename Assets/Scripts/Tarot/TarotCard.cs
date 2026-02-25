@@ -95,7 +95,7 @@ public abstract class TarotCard
         // TODO - override this for each tarot card
     }
 
-    public string GetDescription()
+    public virtual string GetDescription()
     {
         return desc.GetLocalizedString();
     }

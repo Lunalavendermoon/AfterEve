@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 87f1fd0e7ca1c47e49f73f18564a3731
   m_SerializeEntries:
+  - m_GUID: 2b25d3c79ce56494f8309dcc233003f8
+    m_Address: Assets/Localization/FutureReward/FutureRewardTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6e18f7d6b72624c859df850d84fe12dd
     m_Address: Assets/Localization/PresentTarot/PresentTarotTable Shared Data.asset
     m_ReadOnly: 1

@@ -20,7 +20,6 @@ public class Fool_Past : Past_TarotCard
 
     void OnObtainCard(Arcana arcana)
     {
-        Debug.Log($"OBTAINED CARD {arcana}");
         if (arcana == Arcana.Fool)
         {
             foolCardCount += 1;

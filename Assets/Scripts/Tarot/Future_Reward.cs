@@ -11,6 +11,7 @@ public abstract class Future_Reward
         StrengthZone
     }
 
+    public int uses;
     public int usesLeft;
     public float cooldown;
     public float lastUseTime;
@@ -24,6 +25,7 @@ public abstract class Future_Reward
     
     public Future_Reward(int uses, float cooldown, Future_TarotCard card)
     {
+        this.uses = uses;
         usesLeft = uses;
         this.cooldown = cooldown;
         if (card != null)

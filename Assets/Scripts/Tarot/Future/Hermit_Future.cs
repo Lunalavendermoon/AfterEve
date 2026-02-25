@@ -34,7 +34,7 @@ public class Hermit_Future : Future_TarotCard
         }
     }
 
-    public override string GetQuestText()
+    public string temp()
     {
         return $"kill {weakPointCount}/{weakPointGoal} enemies by hitting weak point";
     }

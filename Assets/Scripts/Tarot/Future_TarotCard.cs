@@ -9,6 +9,8 @@ public abstract class Future_TarotCard : TarotCard
 
     public bool questCompleted = false;
 
+    protected LocalizedString rewardDesc;
+
     public Future_TarotCard(int q) : base(q)
     {
         GetLocalizedDesc();
@@ -47,7 +49,15 @@ public abstract class Future_TarotCard : TarotCard
         RemoveCard();
     }
 
-    public abstract string GetQuestText();
+    public string GetQuestText()
+    {
+        return desc.GetLocalizedString();
+    }
+
+    public override string GetDescription()
+    {
+        return $"{desc.GetLocalizedString()}\n{rewardDesc.GetLocalizedString()}";
+    }
 
     protected override void GetLocalizedDesc()
     {
@@ -55,6 +65,17 @@ public abstract class Future_TarotCard : TarotCard
         {
             TableReference = "FutureTarotTable"
         };
+        rewardDesc = new LocalizedString
+        {
+            TableReference = "FutureRewardTable"
+        };
+    }
+
+    protected void SetTableEntries(string cardName)
+    {
+        desc.TableEntryReference = $"{cardName}Future";
+
+        rewardDesc.TableEntryReference = $"{cardName}Reward";
     }
 
     protected virtual void SetDescriptionValues()

@@ -60,7 +60,7 @@ public class Chariot_Future : Future_TarotCard
         }
     }
 
-    public override string GetQuestText()
+    public string temp()
     {
         return $"travel {(int)distCount}/{(int)distGoal} units OR dash {dashCount}/{dashGoal} times";
     }

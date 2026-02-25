@@ -18,6 +18,9 @@ public class InventoryUIScript : MonoBehaviour
     public Image sidebarImage;
     public TMP_Text sidebarDesc;
 
+    public Color futureTextColor;
+    public Color defaultTextColor;
+
     // 0 = past, 1 = present, 2 = future
     int state;
 
@@ -132,6 +135,14 @@ public class InventoryUIScript : MonoBehaviour
         sidebarImage.enabled = true;
         sidebarImage.sprite = cardSprite;
         sidebarDesc.text = desc;
+        if (state == 2)
+        {
+            sidebarDesc.color = futureTextColor;
+        }
+        else
+        {
+            sidebarDesc.color = defaultTextColor;
+        }
     }
 
     public void SetEmptySidebar()

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Magician_Future : Future_TarotCard
 {
     int roomSkillCount = 0;
@@ -6,6 +8,9 @@ public class Magician_Future : Future_TarotCard
 
     public const int roomSkillGoal = 4;
     public const int totalSkillGoal = 15;
+
+    public const int uses = 3;
+    public const float cd = 10f;
 
     public Magician_Future(int q) : base(q)
     {
@@ -29,6 +34,7 @@ public class Magician_Future : Future_TarotCard
     private void OnRoomChange()
     {
         roomSkillCount = 0;
+        RefreshDescription();
     }
 
     private void OnSkillUse()
@@ -36,15 +42,28 @@ public class Magician_Future : Future_TarotCard
         ++roomSkillCount;
         ++totalSkillCount;
 
+        RefreshDescription();
+
         if (roomSkillCount >= roomSkillGoal || totalSkillCount >= totalSkillGoal)
         {
             CompleteQuest();
         }
     }
 
-    public override string GetQuestText()
+    protected override void GetLocalizedDesc()
     {
-        return $"use skills {roomSkillCount}/{roomSkillGoal} times in one room " +
-                $"OR use skills {totalSkillCount}/{totalSkillGoal} times";
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Magician");
+
+        rewardDesc.Arguments = new object[] { Magician_Reward.coinsPerShot, Mathf.RoundToInt(Magician_Reward.skillDuration),
+            Mathf.RoundToInt(cd), uses };
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[] { roomSkillCount, roomSkillGoal, totalSkillCount, totalSkillGoal };
     }
 }

@@ -30,7 +30,7 @@ public class Strength_Future : Future_TarotCard
         }
     }
 
-    public override string GetQuestText()
+    public string temp()
     {
         return $"have total of {effectGoal} debuffs or buffs at the same time";
     }

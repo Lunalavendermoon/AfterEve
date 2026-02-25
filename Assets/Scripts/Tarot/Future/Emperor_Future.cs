@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Emperor_Future : Future_TarotCard
 {
     public const int attackRoomGoal = 8;
@@ -5,6 +7,9 @@ public class Emperor_Future : Future_TarotCard
 
     private int attackRoomCount = 0;
     private int damageCount = 0;
+
+    public const int uses = 5;
+    public const float cd = 5f;
 
     public Emperor_Future(int q) : base(q)
     {
@@ -34,6 +39,7 @@ public class Emperor_Future : Future_TarotCard
 
         damageCount += dmg.beforeReduction;
         ++attackRoomCount;
+        RefreshDescription();
 
         if (damageCount >= damageGoal || attackRoomCount >= attackRoomGoal)
         {
@@ -44,10 +50,23 @@ public class Emperor_Future : Future_TarotCard
     private void OnRoomChanged()
     {
         attackRoomCount = 0;
+        RefreshDescription();
     }
 
-    public override string GetQuestText()
+    protected override void GetLocalizedDesc()
     {
-        return $"receive {attackRoomCount}/{attackRoomGoal} in one room OR take {damageCount}/{damageGoal} enemy dmg";
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Emperor");
+        
+        rewardDesc.Arguments = new object[] { Mathf.RoundToInt(Emperor_Reward.paralyzeDuration),
+            Mathf.RoundToInt(cd), uses };
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[] { attackRoomCount, attackRoomGoal, damageCount, damageGoal };
     }
 }

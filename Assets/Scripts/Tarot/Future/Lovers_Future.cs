@@ -31,7 +31,7 @@ public class Lovers_Future : Future_TarotCard
         }
     }
 
-    public override string GetQuestText()
+    public string temp()
     {
         return $"spend {spendCount}/{spendGoal} or more gold at a merchant";
     }

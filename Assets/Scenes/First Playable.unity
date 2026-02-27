@@ -5871,7 +5871,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 5128
   narrativeRoomManager: {fileID: 828173323}
-  generateNarrativeRooms: 1
+  generateNarrativeRooms: 0
 --- !u!114 &828173323
 MonoBehaviour:
   m_ObjectHideFlags: 0

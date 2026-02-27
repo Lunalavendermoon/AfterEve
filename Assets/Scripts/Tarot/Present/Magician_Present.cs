@@ -13,4 +13,21 @@ public class Magician_Present : Present_TarotCard
         PlayerController.instance.playerAttributes.bulletBounces = bounceNum[level];
         PlayerController.instance.playerAttributes.bulletBounceDmgDecrease = damageReducedPerBounce[level];
     }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+
+        SetTableEntries("Magician");
+        
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[] {
+            bounceNum[level],
+            FormatPercentage(damageReducedPerBounce[level])
+        };
+    }
 }

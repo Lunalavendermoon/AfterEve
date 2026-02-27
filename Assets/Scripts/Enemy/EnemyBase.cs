@@ -80,7 +80,6 @@ public abstract class EnemyBase : MonoBehaviour
     public void Mark(float f)
     {
         marked = f;
-        marked = f;
     }
 
     //Initializing agent and its default state

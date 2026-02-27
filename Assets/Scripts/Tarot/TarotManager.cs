@@ -24,23 +24,23 @@ public class TarotManager : MonoBehaviour
 
         // commented some cards out for testing purposes, uncomment if u need to use them :D
 
-        AddCard(new Hierophant_Past(1));
-        AddCard(new Fool_Past(1));
-        AddCard(new Fool_Present(2));
+        // AddCard(new Hierophant_Past(1));
+        // AddCard(new Fool_Past(1));
+        // AddCard(new Fool_Present(2));
+        // AddCard(new Empress_Present(1));
+
+        AddCard(new Chariot_Present(1));
+        AddCard(new Emperor_Present(1));
         AddCard(new Empress_Present(1));
+        AddCard(new Hermit_Present(1));
+        AddCard(new Hierophant_Present(1));
+        AddCard(new HighPriestess_Present(1));
+        AddCard(new Lovers_Present(1));
+        AddCard(new Magician_Present(1));
+        AddCard(new Strength_Present(1));
+        AddCard(new Fool_Present(1));
 
-        // Future card testing :3
-        AddCard(new Chariot_Future(1));
-        AddCard(new Emperor_Future(1));
-        AddCard(new Empress_Future(1));
-        AddCard(new Hermit_Future(1));
-        AddCard(new Hierophant_Future(1));
-        AddCard(new HighPriestess_Future(1));
-        AddCard(new Lovers_Future(1));
-        AddCard(new Magician_Future(1));
-        AddCard(new Strength_Future(1));
-        AddCard(new Fool_Future(1));
-
+        // TODO - uncomment this (only commented out for testing)
         // DisplayHand();
     }
 
@@ -149,6 +149,10 @@ public class TarotManager : MonoBehaviour
         if (pastTarot.ContainsKey(TarotCard.Arcana.Chariot))
         {
             pastTarot[TarotCard.Arcana.Chariot].UpdateCard();
+        }
+        if (presentTarot.ContainsKey(TarotCard.Arcana.Empress))
+        {
+            presentTarot[TarotCard.Arcana.Empress].UpdateCard();
         }
     }
 

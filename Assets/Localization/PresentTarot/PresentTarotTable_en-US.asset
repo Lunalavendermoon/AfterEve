@@ -20,9 +20,82 @@ MonoBehaviour:
     - rid: 1636043013058461923
   m_TableData:
   - m_Id: 11554250752
-    m_Localized: Increase FIRE RATE by {0}% of base FIRE RATE and deal an additional
-      physical damage equal to {1}% base dmg when hitting a different enemy than
-      the previously hit enemy.
+    m_Localized: Increase FIRE RATE by {0}% of base FIRE RATE. When hitting a different
+      enemy, deal an additional physical damage equal to {1}% base DAMAGE.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  - m_Id: 2032310026231808
+    m_Localized: 'Bullets bounce off enemies and walls {0} times. After each bounce,
+      its damage is reduced by {1}%.
+
+      If this card has higher level than the
+      Strength Present card, this effect takes priority.'
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  - m_Id: 2032384269606912
+    m_Localized: Every attack has a {0}% chance to apply 3s {1}% WEAK. In the Spiritual
+      Plane, every attack has a {2}% chance to apply {3} second WEAK.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  - m_Id: 2032464355647488
+    m_Localized: Attacks from weapons have a {0}% chance to heal {1}% of player's
+      MAX HP on hit. If at full HP, overflow healing is added as bonus damage for
+      next shot (max once per {2} second).
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  - m_Id: 2032689682046976
+    m_Localized: While standing still, gain an additional {0}% base FIRE RATE, {1}
+      AMMO CAPACITY, and {2} BASIC DEFENSE. Bullets gain {3} units knock back.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  - m_Id: 2032945379401728
+    m_Localized: After hitting an enemy, chain up to {0} closest enemies within a
+      radius of {1} for {2} seconds. Chained enemies receive {3}% of the damage received
+      by the initially hit enemy. Generate {4}% MAX HP SHIELD for each chained enemy
+      (doubles if the enemy was hit by SPIRITUAL DMG, max once per {5} second). Chained
+      enemies cannot be chained again until the effect is over.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  - m_Id: 2033049150676992
+    m_Localized: Gain a small summon (does not have the buffs Cyrus has). The summon
+      throws out bombs that deal {0}% of weapon dmg as basic dmg and {1}% of weapon
+      dmg as spiritual dmg. Hit enemies are marked for {2} secs. When hitting a marked
+      enemy, gain {3}% STRENGTH.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  - m_Id: 2033103995396096
+    m_Localized: Decrease FIRE RATE by {0}% and weapon base DAMAGE by {1}%, but add
+      {2} extra bullets. After dashing, generate an AOE pulse at the stopping position
+      that knocks back enemies for {3} units.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  - m_Id: 2033155283345408
+    m_Localized: 'Bullets pierce through enemies. Each time a bullet passes through
+      an enemy, its damage is reduced by {0}%. Destroyed when damage reduced is over
+      {1}%.
+
+      If this card has the same or higher level than the Magician Present
+      card, this effect takes priority.
+
+      Hold down attack button for {2} or
+      more seconds to unleash a charged attack that applies {3}% SUNDERED for {4}
+      seconds on hit, and deals additional damage equal to {5}% weapon base DAMAGE.'
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461923
+  - m_Id: 2033210291642368
+    m_Localized: Decrease current AMMO CAPACITY by {0}% and FIRE RATE by {1}%, but
+      deal additional basic damage equal to {2}% weapon base DAMAGE (sniper). When
+      hitting an enemy's weak point, deal {3}% increased damage, and deal splash
+      damage to enemies behind.
     m_Metadata:
       m_Items:
       - rid: 1636043013058461923
@@ -35,3 +108,12 @@ MonoBehaviour:
         m_Entries: 
         m_SharedEntries:
         - id: 11554250752
+        - id: 2032310026231808
+        - id: 2032384269606912
+        - id: 2032464355647488
+        - id: 2032689682046976
+        - id: 2032945379401728
+        - id: 2033210291642368
+        - id: 2033049150676992
+        - id: 2033103995396096
+        - id: 2033155283345408

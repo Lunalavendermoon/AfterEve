@@ -6,6 +6,10 @@ public class Strength_Present : Present_TarotCard
     float[] sunderedPercent = {.2f, .25f, .3f, .35f, .4f};
     float[] additionalDmg = {2f, 2.5f, 3f, 3.5f, 4f};
 
+    float sunderDuration = 5f;
+
+    float chargeAttackTime = 2f;
+
     public Strength_Present(int q) : base(q)
     {
         cardName = "Strength_Present";
@@ -15,6 +19,28 @@ public class Strength_Present : Present_TarotCard
         attributes.bulletPierces = 3; // TODO change this
         attributes.bulletBounceDmgDecrease = .3f;
 
-        // Sundered ability ;-;
+        // TODO Sundered ability ;-;
+    }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+
+        SetTableEntries("Strength");
+        
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[]
+        {
+            FormatPercentage(damageReducePierce[level]),
+            "100",
+            Rnd(chargeAttackTime),
+            FormatPercentage(sunderedPercent[level]),
+            Rnd(sunderDuration),
+            FormatPercentage(additionalDmg[level])
+        };
     }
 }

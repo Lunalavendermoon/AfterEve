@@ -111,4 +111,14 @@ public abstract class TarotCard
     {
         return Mathf.RoundToInt(amount * 100 - 100);
     }
+
+    // public static int FormatDecreasePercentage(float amount)
+    // {
+    //     return Mathf.RoundToInt(100 - amount * 100);
+    // }
+
+    public static int Rnd(float amount)
+    {
+        return Mathf.RoundToInt(amount);
+    }
 }

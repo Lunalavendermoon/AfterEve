@@ -148,5 +148,6 @@ public class InventoryUIScript : MonoBehaviour
     public void SetEmptySidebar()
     {
         sidebarImage.enabled = false;
+        sidebarDesc.text = "";
     }
 }

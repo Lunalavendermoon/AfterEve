@@ -20,7 +20,52 @@ MonoBehaviour:
     - rid: 1636043013058461922
   m_TableData:
   - m_Id: 11554250752
-    m_Localized: "\u4E2D\u6587 placeholder text {0} {1}"
+    m_Localized: ZH placeholder text {0} {1}
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461922
+  - m_Id: 2032310026231808
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461922
+  - m_Id: 2032384269606912
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461922
+  - m_Id: 2032464355647488
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461922
+  - m_Id: 2032689682046976
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461922
+  - m_Id: 2032945379401728
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461922
+  - m_Id: 2033049150676992
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461922
+  - m_Id: 2033103995396096
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461922
+  - m_Id: 2033155283345408
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043013058461922
+  - m_Id: 2033210291642368
+    m_Localized: ZH temp
     m_Metadata:
       m_Items:
       - rid: 1636043013058461922
@@ -33,3 +78,12 @@ MonoBehaviour:
         m_Entries: 
         m_SharedEntries:
         - id: 11554250752
+        - id: 2032310026231808
+        - id: 2032384269606912
+        - id: 2032464355647488
+        - id: 2032689682046976
+        - id: 2032945379401728
+        - id: 2033210291642368
+        - id: 2033049150676992
+        - id: 2033103995396096
+        - id: 2033155283345408

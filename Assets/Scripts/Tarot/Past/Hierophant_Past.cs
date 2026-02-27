@@ -27,4 +27,22 @@ public class Hierophant_Past : Past_TarotCard
     {
         PlayerController.instance.GainRegularShield((int)(shieldPercentage * PlayerController.instance.playerAttributes.maxHitPoints));
     }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Hierophant");
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[]
+        {
+            FormatPercentage(shieldPercentage),
+            spiritualDefense
+        };
+    }
 }

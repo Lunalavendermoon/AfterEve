@@ -83,4 +83,23 @@ public class Chariot_Past : Past_TarotCard
             ei.RemoveAt(i);
         }
     }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Chariot");
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[]
+        {
+            Rnd(timerDur),
+            FormatPercentage(damageBonus),
+            FormatPercentage(maxStacks * damageBonus)
+        };
+    }
 }

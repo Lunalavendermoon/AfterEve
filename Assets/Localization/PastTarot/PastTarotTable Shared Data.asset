@@ -19,6 +19,42 @@ MonoBehaviour:
     m_Key: FoolPast
     m_Metadata:
       m_Items: []
+  - m_Id: 1716397833969664
+    m_Key: MagicianPast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1716482802180096
+    m_Key: HighPriestessPast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1716518474735616
+    m_Key: EmpressPast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1716579959037952
+    m_Key: EmperorPast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1716628449386496
+    m_Key: HierophantPast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1716672166617088
+    m_Key: LoversPast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1716719700664320
+    m_Key: ChariotPast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1716768153264128
+    m_Key: StrengthPast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1716808674435072
+    m_Key: HermitPast
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

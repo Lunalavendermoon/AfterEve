@@ -35,8 +35,8 @@ MonoBehaviour:
       m_Items:
       - rid: 1636043013058461923
   - m_Id: 2032384269606912
-    m_Localized: Every attack has a {0}% chance to apply 3s {1}% WEAK. In the Spiritual
-      Plane, every attack has a {2}% chance to apply {3} second WEAK.
+    m_Localized: Every attack has a {0}% chance to apply {1}s {2}% WEAK. In the Spiritual
+      Plane, every attack has a {3}% chance to apply {4} second WEAK.
     m_Metadata:
       m_Items:
       - rid: 1636043013058461923

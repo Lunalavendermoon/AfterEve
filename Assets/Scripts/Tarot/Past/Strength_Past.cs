@@ -14,4 +14,21 @@ public class Strength_Past : Past_TarotCard
     {
         PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new StrengthPast_Effect());
     }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Strength");
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[]
+        {
+            Rnd(resistanceBonus)
+        };
+    }
 }

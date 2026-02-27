@@ -29,16 +29,16 @@ public class TarotManager : MonoBehaviour
         // AddCard(new Fool_Present(2));
         // AddCard(new Empress_Present(1));
 
-        AddCard(new Chariot_Present(1));
-        AddCard(new Emperor_Present(1));
-        AddCard(new Empress_Present(1));
-        AddCard(new Hermit_Present(1));
-        AddCard(new Hierophant_Present(1));
-        AddCard(new HighPriestess_Present(1));
-        AddCard(new Lovers_Present(1));
-        AddCard(new Magician_Present(1));
-        AddCard(new Strength_Present(1));
-        AddCard(new Fool_Present(1));
+        AddCard(new Chariot_Past(1));
+        AddCard(new Emperor_Past(1));
+        AddCard(new Empress_Past(1));
+        AddCard(new Hermit_Past(1));
+        AddCard(new Hierophant_Past(1));
+        AddCard(new HighPriestess_Past(1));
+        AddCard(new Lovers_Past(1));
+        AddCard(new Magician_Past(1));
+        AddCard(new Strength_Past(1));
+        AddCard(new Fool_Past(1));
 
         // TODO - uncomment this (only commented out for testing)
         // DisplayHand();

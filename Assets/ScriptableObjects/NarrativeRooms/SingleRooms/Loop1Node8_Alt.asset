@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
-  m_Name: Loop1Node5_Alt
+  m_Name: Loop1Node8_Alt
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 1
-  roomCount: 5
+  roomCount: 8
   pathCount: 1
-  roomPrefab: {fileID: 7285951446171788470, guid: b65387211843c4b6face6377a7db9d71, type: 3}
-  itemPrefab: {fileID: 5301048128179776828, guid: e0d1e6cb4d4b84a85a1f516e2de9d7fd, type: 3}
-  enemyPrefabs: []
+  roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
+  itemPrefab: {fileID: 0}
+  enemyPrefabs:
+  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
+  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
+  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
   disableChestGeneration: 0
-  onSpawnDialogue: 
+  onSpawnDialogue: Act1_TownProtection_P1N8_Alt
   postCombatDialogue: 

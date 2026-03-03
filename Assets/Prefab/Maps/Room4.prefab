@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 3345207806180203795}
   - component: {fileID: 2602781934895568453}
   - component: {fileID: 6856136618193783999}
+  - component: {fileID: 8738262317953043549}
   m_Layer: 10
   m_Name: LavaCollision
   m_TagString: Untagged
@@ -186,7 +187,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -232,7 +233,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -278,7 +279,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -324,7 +325,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -340,6 +341,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.6517816, y: 2.5669835}
   m_EdgeRadius: 0
+--- !u!114 &8738262317953043549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555498840579360604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2acae9763c491432aa18c470ecc699f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HotGround
+  burnDuration: 2
+  burnDamagePerTick: 100
+  tickInterval: 0.5
 --- !u!1 &5841042599744837450
 GameObject:
   m_ObjectHideFlags: 0

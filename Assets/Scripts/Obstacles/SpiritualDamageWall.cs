@@ -7,57 +7,77 @@ public class SpiritualDamageWall : MonoBehaviour
     public bool dealsDamage = true;
     public int baseDamage = 5;
 
-    private BoxCollider2D wallCollider;
+    [Header("Wall Blocking")]
+    [Tooltip("指向实际阻挡玩家的 Collider（如 TilemapCollider 或独立实体墙）")]
+    public Collider2D blockingCollider;
+
+    private int enlightenedInsideCount;
 
     private void Awake()
     {
-        wallCollider = GetComponent<BoxCollider2D>();
-        wallCollider.isTrigger = false; // acts as wall by default
+        GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // palyer
-        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        PlayerController player = other.GetComponentInParent<PlayerController>();
         if (player != null)
         {
-            HandlePlayerCollision(player);
+            HandlePlayerEnter(player);
             return;
         }
 
-        //eneym
-        EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
+        EnemyBase enemy = other.GetComponentInParent<EnemyBase>();
         if (enemy != null && dealsDamage)
         {
             enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual);
         }
     }
 
-    private void HandlePlayerCollision(PlayerController player)
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        PlayerController player = other.GetComponentInParent<PlayerController>();
+        if (player != null)
+        {
+            HandlePlayerExit(player);
+        }
+    }
+
+    private void HandlePlayerEnter(PlayerController player)
     {
         PlayerAttributes attrs = player.playerAttributes;
+        if (attrs == null) return;
 
         // IGNORREEEEEE
-        if (attrs != null && attrs.isEnlightened)
+        if (attrs.isEnlightened)
         {
-            // disable collider so spiritiual player passes through
-            wallCollider.enabled = false;
-
-            // renable for enemies and future collisions
-            StartCoroutine(ReenableColliderNextFrame());
+            if (blockingCollider != null)
+            {
+                enlightenedInsideCount++;
+                blockingCollider.enabled = false;
+            }
             return;
         }
-
+        
         // damage player if true
-        if (dealsDamage && !attrs.isEnlightened)
+        if (dealsDamage)
         {
             player.TakeDamage(baseDamage, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual);
         }
     }
 
-    private System.Collections.IEnumerator ReenableColliderNextFrame()
+    private void HandlePlayerExit(PlayerController player)
     {
-        yield return null;
-        wallCollider.enabled = true;
+        PlayerAttributes attrs = player.playerAttributes;
+        if (attrs == null || !attrs.isEnlightened) return;
+
+        if (blockingCollider != null)
+        {
+            enlightenedInsideCount = Mathf.Max(0, enlightenedInsideCount - 1);
+            if (enlightenedInsideCount == 0)
+            {
+                blockingCollider.enabled = true;
+            }
+        }
     }
 }

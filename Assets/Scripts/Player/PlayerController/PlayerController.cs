@@ -1,9 +1,10 @@
-using System;
-using TMPro;
-using UnityEngine;
-using Unity.VisualScripting;
 using FMOD.Studio;
 using FMODUnity;
+using System;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -26,10 +27,12 @@ public class PlayerController : MonoBehaviour
         if (instance == null) instance = this;
 
         playerInput = new PlayerInput();
+        toggleDialogueLog = playerInput.FindAction("ToggleDialogueLog", true);
     }
 
     // user input system
     public PlayerInput playerInput;
+    private InputAction toggleDialogueLog; // action is handled in DialogueHistoryLogUI
     bool inputEnabled;
     public float horizontalInput;
     public float verticalInput;
@@ -50,12 +53,14 @@ public class PlayerController : MonoBehaviour
     public void EnablePlayerInput()
     {
         playerInput.Enable();
+        toggleDialogueLog.Disable();  
         inputEnabled = true;
     }
 
     public void DisablePlayerInput()
     {
         playerInput.Disable();
+        toggleDialogueLog.Enable(); // dialogue log can only be toggled when dialogue is playing, which is when all other inputs are disabled
         inputEnabled = false;
     }
 

@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: zh-Hans
   m_SharedData: {fileID: 11400000, guid: cb8c60b528a604e9c958288bec7499b2, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 1636043142369378377
   m_TableData:
   - m_Id: 6076489728
     m_Localized: ZH past {0} {1}
@@ -25,7 +26,68 @@ MonoBehaviour:
   - m_Id: 405402230448128
     m_Localized: ZH FoolPast Placeholder {0} {1}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 1636043142369378377
+  - m_Id: 1716397833969664
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043142369378377
+  - m_Id: 1716482802180096
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043142369378377
+  - m_Id: 1716518474735616
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043142369378377
+  - m_Id: 1716579959037952
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043142369378377
+  - m_Id: 1716628449386496
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043142369378377
+  - m_Id: 1716672166617088
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043142369378377
+  - m_Id: 1716719700664320
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043142369378377
+  - m_Id: 1716768153264128
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043142369378377
+  - m_Id: 1716808674435072
+    m_Localized: ZH temp
+    m_Metadata:
+      m_Items:
+      - rid: 1636043142369378377
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1636043142369378377
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 405402230448128
+        - id: 1716397833969664
+        - id: 1716518474735616
+        - id: 1716482802180096
+        - id: 1716579959037952
+        - id: 1716628449386496
+        - id: 1716672166617088
+        - id: 1716719700664320
+        - id: 1716768153264128
+        - id: 1716808674435072

@@ -8,6 +8,8 @@ public class Hierophant_Present : Present_TarotCard
     float[] chainDmg = { .3f, .35f, .4f, .45f, .5f };
     float[] shieldIncrease = { .01f, .02f, .03f, .04f, .05f };
 
+    float timeBetweenTrigger = 1f;
+
     public Hierophant_Present(int q) : base(q)
     {
         cardName = "Hierophant_Present";
@@ -19,5 +21,28 @@ public class Hierophant_Present : Present_TarotCard
         PlayerController.instance.playerAttributes.chainShieldIncrease = shieldIncrease[level];
         PlayerController.instance.playerAttributes.chainTime = chainTime[level];
 
+        // TODO trigger shield effect max once per second
+    }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+
+        SetTableEntries("Hierophant");
+        
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[]
+        {
+            enemiesChained[level],
+            distance[level],
+            Rnd(chainTime[level]),
+            FormatPercentage(chainDmg[level]),
+            FormatPercentage(shieldIncrease[level]),
+            Rnd(timeBetweenTrigger)
+        };
     }
 }

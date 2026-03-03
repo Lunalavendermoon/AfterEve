@@ -6,13 +6,15 @@ public class Chariot_Present : Present_TarotCard
     int[] extraBullets = {3,4,4,5,5};
     float[] baseDamageDecrease = {.4f, .35f, .3f, .25f, .2f};
 
+    string knockbackRange = "0.5";
+
     public Chariot_Present(int q) : base(q)
     {
         cardName = "Chariot_Present";
         arcana = Arcana.Chariot;
 
-        effects.Add(new FireRate_Effect(-1, fireRateDecrease[level]));
-        effects.Add(new Strength_Effect(-1, baseDamageDecrease[level]));
+        effects.Add(new FireRate_Effect(-1, 1f - fireRateDecrease[level]));
+        effects.Add(new Strength_Effect(-1, 1f - baseDamageDecrease[level]));
         PlayerController.instance.playerAttributes.bullets += extraBullets[level];
 
         //TODO add AOE pulse
@@ -20,9 +22,20 @@ public class Chariot_Present : Present_TarotCard
 
     protected override void GetLocalizedDesc()
     {
-        // TODO finish this
         base.GetLocalizedDesc();
-        desc.TableEntryReference = "FoolPresent";
-        desc.Arguments = new object[] { "temp", "temp" };
+
+        SetTableEntries("Chariot");
+        
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[] {
+            FormatPercentage(fireRateDecrease[level]),
+            FormatPercentage(baseDamageDecrease[level]),
+            extraBullets[level],
+            knockbackRange
+        };
     }
 }

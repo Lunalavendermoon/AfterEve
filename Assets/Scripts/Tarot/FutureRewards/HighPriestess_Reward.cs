@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class HighPriestess_Reward : Future_Reward
 {
-    const float zoneDuration = 10f;
-    public HighPriestess_Reward(Future_TarotCard card) : base(5, 20f, card)
+    public HighPriestess_Reward(Future_TarotCard card) : base(HighPriestess_Future.uses, HighPriestess_Future.cd, card)
     {
     }
 
     protected override void TriggerSkillBehavior()
     {
         Debug.Log("Triggered High Priestess skill");
-        PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.HighPriestessZone, zoneDuration);
+        PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.HighPriestessZone, HighPriestess_Future.zoneDuration);
     }
 
     public override string GetName()

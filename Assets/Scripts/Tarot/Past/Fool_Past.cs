@@ -20,7 +20,6 @@ public class Fool_Past : Past_TarotCard
 
     void OnObtainCard(Arcana arcana)
     {
-        Debug.Log($"OBTAINED CARD {arcana}");
         if (arcana == Arcana.Fool)
         {
             foolCardCount += 1;
@@ -38,7 +37,9 @@ public class Fool_Past : Past_TarotCard
     protected override void GetLocalizedDesc()
     {
         base.GetLocalizedDesc();
-        desc.TableEntryReference = "FoolPast";
+        
+        SetTableEntries("Fool");
+
         SetDescriptionValues();
     }
 

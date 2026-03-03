@@ -9,7 +9,7 @@ public class Magician_Reward : Future_Reward
 
     public const float skillDuration = 5f;
 
-    public Magician_Reward(Future_TarotCard card) : base(3, 10f, card)
+    public Magician_Reward(Future_TarotCard card) : base(Magician_Future.uses, Magician_Future.cd, card)
     {
     }
 

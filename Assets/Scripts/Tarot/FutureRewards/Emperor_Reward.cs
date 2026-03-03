@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Emperor_Reward : Future_Reward
 {
-    const float paralyzeDuration = 5f;
+    public const float paralyzeDuration = 5f;
 
-    public Emperor_Reward(Future_TarotCard card) : base(7, 10f, card)
+    public Emperor_Reward(Future_TarotCard card) : base(Emperor_Future.uses, Emperor_Future.cd, card)
     {
     }
 

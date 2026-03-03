@@ -2832,6 +2832,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7486369184383115630, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7773325652112711274, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -3755,6 +3759,14 @@ MonoBehaviour:
   tileCount: 4
   spawnBehavior: {fileID: 1068506910}
   portal: {fileID: 2121234110}
+  wallPrefab: {fileID: 0}
+  portalSpawnRadius: 2
+  portalSpawnAttempts: 30
+  portalPlayerClearance: 0.75
+  portalObstacleClearance: 0.05
+  portalBlockingLayers:
+    serializedVersion: 2
+    m_Bits: 0
   narrativeRoomManager: {fileID: 828173323}
   generateNarrativeRooms: 0
 --- !u!114 &828173323

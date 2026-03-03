@@ -24,13 +24,23 @@ public class TarotManager : MonoBehaviour
 
         // commented some cards out for testing purposes, uncomment if u need to use them :D
 
-        AddCard(new Hierophant_Past(1));
-        AddCard(new Fool_Past(1));
-        AddCard(new Fool_Present(2));
-        AddCard(new Empress_Present(1));
-        AddCard(new Lovers_Future(1));
-        AddCard(new Fool_Future(1));
+        // AddCard(new Hierophant_Past(1));
+        // AddCard(new Fool_Past(1));
+        // AddCard(new Fool_Present(2));
+        // AddCard(new Empress_Present(1));
 
+        AddCard(new Chariot_Past(1));
+        AddCard(new Emperor_Past(1));
+        AddCard(new Empress_Past(1));
+        AddCard(new Hermit_Past(1));
+        AddCard(new Hierophant_Past(1));
+        AddCard(new HighPriestess_Past(1));
+        AddCard(new Lovers_Past(1));
+        AddCard(new Magician_Past(1));
+        AddCard(new Strength_Past(1));
+        AddCard(new Fool_Past(1));
+
+        // TODO - uncomment this (only commented out for testing)
         // DisplayHand();
     }
 
@@ -139,6 +149,10 @@ public class TarotManager : MonoBehaviour
         if (pastTarot.ContainsKey(TarotCard.Arcana.Chariot))
         {
             pastTarot[TarotCard.Arcana.Chariot].UpdateCard();
+        }
+        if (presentTarot.ContainsKey(TarotCard.Arcana.Empress))
+        {
+            presentTarot[TarotCard.Arcana.Empress].UpdateCard();
         }
     }
 

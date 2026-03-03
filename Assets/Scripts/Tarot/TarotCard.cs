@@ -95,7 +95,9 @@ public abstract class TarotCard
         // TODO - override this for each tarot card
     }
 
-    public string GetDescription()
+    protected abstract void SetTableEntries(string cardName);
+
+    public virtual string GetDescription()
     {
         return desc.GetLocalizedString();
     }
@@ -108,5 +110,15 @@ public abstract class TarotCard
     public static int FormatPlusOnePercentage(float amount)
     {
         return Mathf.RoundToInt(amount * 100 - 100);
+    }
+
+    // public static int FormatDecreasePercentage(float amount)
+    // {
+    //     return Mathf.RoundToInt(100 - amount * 100);
+    // }
+
+    public static int Rnd(float amount)
+    {
+        return Mathf.RoundToInt(amount);
     }
 }

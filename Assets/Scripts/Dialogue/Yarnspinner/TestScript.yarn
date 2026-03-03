@@ -20,9 +20,10 @@ title: End
 Hatsune Miku: Maybe After Eve was the friends we made along the way.
 Hatsune Miku: I must go now, goodbye.
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Thank you Hatsune Miku.
-
-<<jump Back_To_Game>>
+-> Cyrus: No Hatsune Miku don't go!
+    <<jump Back_To_Game>>
+-> Cyrus: Thank you Hatsune Miku.
+    <<jump Back_To_Game>>
 ===
 
 title: NPC_Repeated

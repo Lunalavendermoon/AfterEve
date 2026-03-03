@@ -48,15 +48,14 @@ public class Fool_Future : Future_TarotCard
         RemoveCard();
     }
 
-    public override string GetQuestText()
-    {
-        return $"obtain {cardCount}/{cardGoal} cards";
-    }
-
     protected override void GetLocalizedDesc()
     {
         base.GetLocalizedDesc();
-        desc.TableEntryReference = "FoolFuture";
+        
+        SetTableEntries("Fool");
+
+        rewardDesc.Arguments = new object[] { foolCoinRewardAmount };
+
         SetDescriptionValues();
     }
 

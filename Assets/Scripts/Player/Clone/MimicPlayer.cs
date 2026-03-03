@@ -79,6 +79,7 @@ public class MimicPlayer : MonoBehaviour
         bomb.GetComponent<Bomb>().SetBasicDamage(basicDamage);
         bomb.GetComponent<Bomb>().SetSpiritualDamage(spiritualDamage);
         bomb.GetComponent<Bomb>().SetStrengthBuff(strengthBuff);
+        bomb.GetComponent<Bomb>().maxProjectileDistance = Vector3.Distance(transform.position, target.transform.position);
     }
 
     public void SetDamage(float a, float b, float c)

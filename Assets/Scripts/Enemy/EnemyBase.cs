@@ -31,10 +31,12 @@ public abstract class EnemyBase : MonoBehaviour
 
     //Helper variables
     public GameObject attackHitbox;
+    [Tooltip("Force applied to player when this enemy hits with melee (0 = no knockback).")]
+    public float knockbackForceOnHit = 0f;
     public IEnemyStates default_enemy_state;
     protected IEnemyStates current_enemy_state;
     public bool isAttacking = false;
-
+    public bool attackHitConnected;
     //Drops
     public GameObject Drop;
 
@@ -52,7 +54,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public GameObject floatingTextPrefab;
     public bool givesRewards = true; // no rewards if spawned by boss
-
+    public Rigidbody2D rb;
     [Header("Visual Facing")]
     [SerializeField] private bool lockRotation = true;
     [SerializeField] private bool flipToFacePlayer = true;
@@ -237,6 +239,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         attackHitbox.SetActive(true);
         isAttacking = true;
+        attackHitConnected = false;
 
     }
     public virtual void DisableAttack()

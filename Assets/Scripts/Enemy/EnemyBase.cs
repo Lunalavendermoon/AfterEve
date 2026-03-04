@@ -53,6 +53,10 @@ public abstract class EnemyBase : MonoBehaviour
     public GameObject floatingTextPrefab;
     public bool givesRewards = true; // no rewards if spawned by boss
 
+    [Header("Visual Facing")]
+    [SerializeField] private bool lockRotation = true;
+    [SerializeField] private bool flipToFacePlayer = true;
+
 
 
     public float luck = 1f;
@@ -87,6 +91,13 @@ public abstract class EnemyBase : MonoBehaviour
     {
         agent = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
+
+        if (agent != null)
+        {
+            agent.enableRotation = false;
+            agent.updateRotation = false;
+        }
+
         current_enemy_state = default_enemy_state;
         current_enemy_state.EnterState(this);
         isChained = false;
@@ -95,6 +106,28 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void Update()
     {
+        if (lockRotation)
+        {
+            var e = transform.eulerAngles;
+            if (e.z != 0f)
+            {
+                e.z = 0f;
+                transform.eulerAngles = e;
+            }
+        }
+
+        if (flipToFacePlayer && PlayerController.instance != null)
+        {
+            float dx = PlayerController.instance.transform.position.x - transform.position.x;
+            if (dx != 0f)
+            {
+                Vector3 s = transform.localScale;
+                float absX = Mathf.Abs(s.x);
+                s.x = dx > 0f ? -absX : absX;
+                transform.localScale = s;
+            }
+        }
+
         agent.maxSpeed = speed;
 
         current_enemy_state?.UpdateState(this);
@@ -212,13 +245,17 @@ public abstract class EnemyBase : MonoBehaviour
         isAttacking = false;
     }
 
-    private void ShowFloatingText(int damageAfterReduction)
+    protected void ShowFloatingText(int damageAfterReduction)
     {
         if (floatingTextPrefab != null)
         {
-            Debug.Log("Showing floating text for damage: " + damageAfterReduction);
-            GameObject floatingText = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, transform);
-            floatingText.GetComponentInChildren<TextMeshPro>().text = damageAfterReduction.ToString();
+            //Debug.Log("Showing floating text for damage: " + damageAfterReduction);
+            GameObject floatingText = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
+            var tmp = floatingText.GetComponentInChildren<TextMeshPro>();
+            if (tmp != null)
+            {
+                tmp.text = damageAfterReduction.ToString();
+            }
 
         }
     }

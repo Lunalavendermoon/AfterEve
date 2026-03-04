@@ -8,16 +8,24 @@ public class MoonJellyFish : EnemyBase
 {
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;
-    void Awake()
+    private void Awake()
     {
-        health = enemyAttributes.maxHitPoints;
-        //damage = enemyAttributes.damage;
-        speed = enemyAttributes.speed;
-        //visibleRange = enemyAttributes.detection_radius;
-        //attackRange = enemyAttributes.attackRadius;
-        enemyAttributes = Instantiate(baseEnemyAttributes);
+        transform.rotation = Quaternion.identity;
+
+        if (baseEnemyAttributes != null)
+        {
+            enemyAttributes = Instantiate(baseEnemyAttributes);
+
+            int maxHp = Mathf.Max(1, enemyAttributes.maxHitPoints);
+            health = maxHp;
+            speed = enemyAttributes.speed;
+        }
+        else
+        {
+            health = Mathf.Max(1, health);
+        }
         
-        default_enemy_state = new Enemy_Wander(wanderRadius, wanderTime);
+        default_enemy_state = new Enemy_Wander(wanderTime, wanderRadius);
 
         //attackCooldown = enemyAttributes.attackRate;
 

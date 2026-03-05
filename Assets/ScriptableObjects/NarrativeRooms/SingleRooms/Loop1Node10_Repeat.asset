@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
-  m_Name: Loop1Node10_Alt
+  m_Name: Loop1Node10_Repeat
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 0
   roomCount: 10

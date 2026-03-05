@@ -3,3 +3,9 @@
 <<clear_portrait YarnManager>>
 <<start_controls YarnManager>>
 ===
+
+title: Spawn_Enemies
+---
+<<spawn_enemies YarnManager>>
+<<jump Back_To_Game>>
+===

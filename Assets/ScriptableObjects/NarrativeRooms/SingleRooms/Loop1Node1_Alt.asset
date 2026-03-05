@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
   m_Name: Loop1Node1_Alt
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
-  nodeType: 1
+  nodeType: 0
   roomCount: 1
   pathCount: 1
+  visitCount: 2
   roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
   itemPrefab: {fileID: 0}
   enemyPrefabs:

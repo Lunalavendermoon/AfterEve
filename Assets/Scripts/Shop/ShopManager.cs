@@ -124,7 +124,7 @@ public class ShopManager : MonoBehaviour
 
     int GetIndexFromRoomCount()
     {
-        int roomCount = NarrativeRoomManager.instance.roomCount;
+        int roomCount = StaticGameManager.roomCount;
         if (roomCount <= 3)
         {
             return 0;

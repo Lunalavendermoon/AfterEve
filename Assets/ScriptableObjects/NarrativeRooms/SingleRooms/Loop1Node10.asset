@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Loop1Node10
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 0
-  roomCount: 1
+  roomCount: 10
   pathCount: 1
+  visitCount: 1
   roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
   itemPrefab: {fileID: 0}
   enemyPrefabs:

@@ -230,6 +230,7 @@ MonoBehaviour:
   attackHitbox: {fileID: 3385193953142855512}
   knockbackForceOnHit: 0
   isAttacking: 0
+  attackHitConnected: 0
   Drop: {fileID: 0}
   attack_timer: 0
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
@@ -305,7 +306,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0
-  pickNextWaypointDist: 2
+  pickNextWaypointDist: 0.25
   endReachedDistance: 0.2
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 0

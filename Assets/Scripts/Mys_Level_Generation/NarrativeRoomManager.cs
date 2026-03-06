@@ -127,4 +127,14 @@ public class NarrativeRoomManager : MonoBehaviour
             runner.StartDialogue(currentRoom.postCombatDialogue);
         }
     }
+
+    public bool IsPointInsideCurrentRoom(Vector2 candidate, float radius = 0f)
+    {
+        if (roomObject == null) return false;
+        SpriteRenderer sr = roomObject.GetComponentInChildren<SpriteRenderer>();
+        if (sr == null) return false;
+        Bounds b = sr.bounds;
+        return candidate.x - radius >= b.min.x && candidate.x + radius <= b.max.x &&
+               candidate.y - radius >= b.min.y && candidate.y + radius <= b.max.y;
+    }
 }

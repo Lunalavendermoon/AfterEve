@@ -62,11 +62,16 @@ MonoBehaviour:
   agent: {fileID: 7194713762691430079}
   destinationSetter: {fileID: 8490398554515204653}
   attackHitbox: {fileID: 3385193953142855512}
+  knockbackForceOnHit: 0
   isAttacking: 0
+  attackHitConnected: 0
   Drop: {fileID: 0}
   attack_timer: 1
   floatingTextPrefab: {fileID: 0}
   givesRewards: 1
+  rb: {fileID: 0}
+  lockRotation: 1
+  flipToFacePlayer: 1
   luck: 1
   elite: 0
   wanderRadius: 7.5
@@ -273,8 +278,8 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 2
+  slowdownDistance: 0.3
+  pickNextWaypointDist: 0.25
   endReachedDistance: 0.2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1

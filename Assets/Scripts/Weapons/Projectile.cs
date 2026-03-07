@@ -128,6 +128,17 @@ public class Projectile : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        else if (other.GetComponent<BossBehaviourBase>())
+        {
+            BossBehaviourBase boss = other.GetComponent<BossBehaviourBase>();
+            if (physicalDamage > 0)
+                boss.TakeDamage(physicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
+            if (spiritualDamage > 0)
+                boss.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
+            enemiesPierced++;
+            if (enemiesPierced == bulletPiercing)
+                Destroy(this.gameObject);
+        }
         else
         {
             Destroy(this.gameObject);

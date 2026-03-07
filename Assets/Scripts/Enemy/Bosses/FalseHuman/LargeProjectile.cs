@@ -4,45 +4,50 @@ using static UnityEngine.GraphicsBuffer;
 
 public class LargeProjectile : EnemyBase
 {
-    float timer = 0;
-    bool isHaste = false;
-
+    private const float InitialSpeed = 1f;
+    private const float HasteSpeed = 4f;
+    private const float HasteDelay = 10f;
+    private float timer;
+    private bool hasAppliedHaste;
     void Awake()
     {
-        health = enemyAttributes.maxHitPoints;
-        speed = enemyAttributes.speed;
+        if (baseEnemyAttributes != null)
+        {
+            enemyAttributes = Instantiate(baseEnemyAttributes);
+            health = Mathf.Max(1000, enemyAttributes.maxHitPoints);
+            speed = InitialSpeed;
+        }
+        else
+        {
+            health = 1000;
+            speed = InitialSpeed;
+        }
         default_enemy_state = new Enemy_Chase();
-        attack_timer = 0.0f;
-
+        attack_timer = 0f;
     }
-
-    // Update is called once per frame
     public override void EnemyUpdate()
     {
-        print("In range: " + Vector3.Distance(transform.position, PlayerController.instance.transform.position));
-        if (timer < 10)
+        timer += Time.deltaTime;
+        if (timer >= HasteDelay && !hasAppliedHaste)
         {
-            timer += Time.deltaTime;
-            return;
+            hasAppliedHaste = true;
+            speed = HasteSpeed;
         }
-        if (!isHaste)
-        {
-            isHaste = true;
-            //enemyEffectManager.AddBuff(new Haste_Effect(20,4.0f));
-        }
-
-        
     }
-
- 
-
     public override void Attack(Transform target)
     {
-        Debug.Log("Attack Mode");
-        PlayerController.instance.TakeDamage(health, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+        if (PlayerController.instance != null)
+            PlayerController.instance.TakeDamage(health, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
         Destroy(gameObject);
-        Debug.Log("Large Projectile deleted.");
-
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other != null && other.CompareTag("Player"))
+        {
+            if (PlayerController.instance != null)
+                PlayerController.instance.TakeDamage(health, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+            Destroy(gameObject);
+        }
     }
 }
 

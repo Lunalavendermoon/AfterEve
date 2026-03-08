@@ -24,6 +24,9 @@ public class TarotManager : MonoBehaviour
 
         // TODO - uncomment this (only commented out for testing)
         DisplayHand();
+
+        AddCard(new Fool_Present(1));
+        AddCard(new Magician_Present(1));
     }
 
     void OnDisable()

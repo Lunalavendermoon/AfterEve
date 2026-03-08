@@ -460,8 +460,8 @@ public class PlayerController : MonoBehaviour
         OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, originalAmt, amount));
         if (health <= 0)
         {
-            // TODO: player died
-            Debug.Log("Player health reached 0");
+            ++StaticGameManager.deathCount;
+            StaticGameManager.LoadDeathScreen();
         }
     }
     

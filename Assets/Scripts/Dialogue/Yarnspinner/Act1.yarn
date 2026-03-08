@@ -43,7 +43,7 @@ The Judge: Look, you want humanity to continue, right? So do we.
 The Judge: Well, Justice does. I just work here.
 The Judge: So I’d love to stand here and explain the metaphysics of divine politics, but we’re on a schedule. Off you go~
 
-<<jump Back_To_Game>>
+<<player_respawn YarnManager>>
 ===
 
 
@@ -559,5 +559,5 @@ Cyrus: Wait, I still have que-
 <<set_portrait YarnManager Judge>>
 The Judge: See you again soon~
 
-<<jump Back_To_Game>>
+<<player_respawn YarnManager>>
 ===

@@ -1,19 +1,25 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DeathRoom", menuName = "Scriptable Objects/Narrative/SingleTimeDeathRoom")]
+[CreateAssetMenu(fileName = "SingleTimeDeathRoom", menuName = "Scriptable Objects/Narrative/SingleTimeDeathRoom")]
 public class SingleTimeDeathRoom : ScriptableObject
 {
-    public bool isFirstResurrection;
+    public enum Trigger
+    {
+        SpecificNode,
+        DeathCount
+    }
+    public Trigger trigger;
     public int roomCount;
     public int pathCount;
+    public int deathCount;
     public string dialogueNode;
 
-    public bool CanTrigger(int room, int path)
+    public bool CanTrigger()
     {
-        if (isFirstResurrection)
+        if (trigger == Trigger.DeathCount)
         {
-            return path == pathCount;
+            return StaticGameManager.deathCount == deathCount;
         }
-        return path == pathCount && room == roomCount;
+        return StaticGameManager.pathCount == pathCount && StaticGameManager.roomCount == roomCount;
     }
 }

@@ -58,4 +58,10 @@ public class YarnCommands : MonoBehaviour
         // TODO differentiate between combat, shop, and dialogue rooms?
         GameManager.instance.ClearCombatRoom();
     }
+
+    [YarnCommand("player_respawn")]
+    public void Respawn()
+    {
+        StaticGameManager.LoadPlayable();
+    }
 }

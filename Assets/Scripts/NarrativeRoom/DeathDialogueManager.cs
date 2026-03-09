@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -17,12 +18,29 @@ public class DeathDialogueManager : MonoBehaviour
 
     void Start()
     {
+        string dialogueNode = null;
         foreach (SingleTimeDeathRoom room in rooms.singleTime)
         {
             if (room.CanTrigger())
             {
-                runner.StartDialogue(room.dialogueNode);
+                dialogueNode = room.dialogueNode;
             }
         }
+        runner.StartDialogue(dialogueNode ?? SelectRepeatDialogue());
+    }
+
+    string SelectRepeatDialogue()
+    {
+        List<string> possibleNodes = new();
+        foreach (RepeatDeathRoom room in rooms.repeats)
+        {
+            if (room.CanTrigger())
+            {
+                return room.dialogueNode;
+            }
+        }
+        Debug.LogWarning("No applicable death dialogue found!");
+        // TODO change to random fallback
+        return "Death_Fallback_Fortesting";
     }
 }

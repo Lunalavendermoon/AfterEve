@@ -58,9 +58,10 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
 
-        if (generateNarrativeRooms)
+        if (generateNarrativeRooms && StaticGameManager.startNewNarrativePath)
         {
             narrativeRoomManager.StartNewNarrativePath(); // TODO: call this whenever player starts a new narrative path
+            StaticGameManager.startNewNarrativePath = false;
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "RepeatDeathRoom", menuName = "Scriptable Objects/Narrative/RepeatDeathRoom")]
 public class RepeatDeathRoom : ScriptableObject
 {
     public enum DeathCauses
@@ -10,11 +11,11 @@ public class RepeatDeathRoom : ScriptableObject
         BossEnemy,
         Fallback
     }
-    public int pathCount;
     public List<DeathCauses> conditions;
+    public string dialogueNode;
 
-    public bool CanTrigger(int path, DeathCauses cond)
+    public bool CanTrigger()
     {
-        return path == pathCount && conditions.Contains(cond);
+        return conditions.Contains(StaticGameManager.latestDeathCause);
     }
 }

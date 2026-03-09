@@ -1,47 +1,7 @@
 ﻿title: Act1_Introduction
 ---
-Twenty-two Arcana shape the world,
-each a guiding star of fate.
-Their ideals collide through mortal hands,
-and in that clash of faith and will,
-balance is born.
+Cyrus: act 1 intro
 
-<<set_portrait YarnManager Judge>>
-???: Hello? 
-???: Hhhheeelllooo!
-
-<<set_portrait YarnManager Cyrus>>
-???: ...
-
-<<set_portrait YarnManager Judge>>
-???: Oh! You’re finally awake.
-
-<<set_portrait YarnManager Cyrus>>
-???: ...?
-
-<<set_portrait YarnManager Judge>>
-???: You...you look clueless.
-???: Ugh, I was sure there were no errors when bringing you back.
-???: Alright, let’s do this slowly.
-???: Name. Do you remember that much?
-
-<<set_portrait YarnManager Cyrus>>
-???: My name? It’s...
-Cyrus: Cyrus.
-
-<<set_portrait YarnManager Judge>>
-???: Great! At least some of your brain still works. You can call me the Judge.
-The Judge: So! Cyrus! It’s unfortunate that you forgot, but you’re an enforcer chosen by the Almighty Justice. It’s an honor few humans receive.
-The Judge: The Hierophant’s been tampering with the divine balance, and it’s causing quite the mess.
-The Judge: Your job is to clean it up before it brings the Assimilation.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Wha- What are you-
-
-<<set_portrait YarnManager Cyrus>>
-The Judge: Look, you want humanity to continue, right? So do we.
-The Judge: Well, Justice does. I just work here.
-The Judge: So I’d love to stand here and explain the metaphysics of divine politics, but we’re on a schedule. Off you go~
 
 <<player_respawn YarnManager>>
 ===
@@ -50,55 +10,8 @@ The Judge: So I’d love to stand here and explain the metaphysics of divine pol
 title: Act1_EveIntro_PreCombat_L1N1
 ---
 <<set_portrait YarnManager Eve>>
-???: Oh good, you’re awake!
-???: Ah! Sorry, I didn’t mean to scare you.
-???: I found you on the outskirts and brought you here. We should be safe for now.
-Eve: I’m Eve. I don’t think I’ve seen you around this part of town. What’s your name?
+???: eve intro 1st ver
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: ...
-Cyrus: This is the second time I’ve woken up in five minutes.
-
-<<set_portrait YarnManager Eve>>
-Eve: What?
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Sorry, I’m just...right, my name. It’s Cyrus.
-
-<<set_portrait YarnManager Eve>>
-Eve: Nice to meet you, Cyrus! Or not nice? Given the circumstances. Are you hurt anywhere?
-
-A Meminiscor roars. (play sound via function here)
-
-<<set_portrait YarnManager Eve>>
-Eve: That’s not good. Sounds like a Meminiscor.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: What is that?
-
-<<set_portrait YarnManager Eve>>
-Eve: You don’t know?
-Eve: They’re drawn to strong emotions, that must’ve been how they found us.
-Eve: We have to go-
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Get down!
-
-<<set_portrait YarnManager Eve>>
-Eve: Thanks! Uh-
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Do you have a weapon?
-
-<<set_portrait YarnManager Eve>>
-Eve: A gun, but I’m not-
- 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: I’ll take it.
-Cyrus: Just what do I need to know about this “Meminiscor”?
-
-<<set_portrait YarnManager Eve>>
-Eve: It’s a memory-born creature. If it gets too close, it’ll pull your fates out until you collapse.
 
 <<spawn_enemies YarnManager>>
 <<jump Back_To_Game>>
@@ -133,43 +46,7 @@ Eve: There always is. Better stay close.
 title: Act1_EveIntro_PreCombat_L1N1_Alt
 ---
 <<set_portrait YarnManager Eve>>
-Eve: Oh good, you’re awake!
-Eve: Ah! Sorry, I didn’t mean to scare you.
-Eve: I found you on the outskirts and brought you here. We should be safe for now.
-Eve: I’m Eve. I don’t think I’ve seen you around this part of town. What’s your name?
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: [i]I really am looping through time.[/i]
-Cyrus: Cyrus.
-
-<<set_portrait YarnManager Eve>>
-Eve: Nice to meet you, Cyrus! Or not nice? Given the circumstances. Are you hurt anywhere?
-
-A Meminiscor roars. (play sound via function here)
-
-<<set_portrait YarnManager Eve>>
-Eve: Oh, that’s not good. Sounds like-
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: A Meminiscor?
-
-<<set_portrait YarnManager Eve>>
-Eve: Yup. We should probably get going-
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Get down!
-
-<<set_portrait YarnManager Eve>>
-Eve: Oh, thanks!
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Do you have a gun?
-
-<<set_portrait YarnManager Eve>>
-Eve: Uh, yeah-
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: I’ll take it.
+Eve: eve intro alt
 
 <<spawn_enemies YarnManager>>
 <<jump Back_To_Game>>
@@ -526,38 +403,7 @@ Cyrus: We can’t, it’s going to-
 title: FirstResurrection
 ---
 <<set_portrait YarnManager Cyrus>>
-Cyrus: ...
-Cyrus: Did I...die?
-
-<<set_portrait YarnManager Judge>>
-The Judge: Don’t take it too hard. Most enforcers fail their first run. And their second. And, well...you’ll see.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: But I felt it. The monster, the pain- how am I still here?
-
-<<set_portrait YarnManager Judge>>
-The Judge: Your body’s dead in that timeline, but you, Cyrus? You’re Justice’s enforcer. Time is merely a tool to the Arcanas, a little thing like death won’t get you out of this. 
-The Judge: Each time you fail, time will rewind. Until you succeed. Aren’t you lucky?
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Not the word I’d use.
-
-<<set_portrait YarnManager Judge>>
-The Judge: Come on, most mortals would KILL for infinite chances to get things right. Haha, get it?
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: ...
-Cyrus: If you can control time itself, can’t you do more to help me?
-
-<<set_portrait YarnManager Judge>>
-The Judge: You think Prism is the only place on the brink of destruction? I’m already working nonstop managing the logistics of all you enforcers, and the last thing I need is another one whining about the job they signed up for.
-The Judge: Well, Cyrus, looks like our time is up. Try not to die so fast on this one.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Wait, I still have que-
- 
-<<set_portrait YarnManager Judge>>
-The Judge: See you again soon~
+Cyrus: first resurrection
 
 <<player_respawn YarnManager>>
 ===

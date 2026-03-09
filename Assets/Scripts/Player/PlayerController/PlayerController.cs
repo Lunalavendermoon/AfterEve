@@ -460,6 +460,15 @@ public class PlayerController : MonoBehaviour
         OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, originalAmt, amount));
         if (health <= 0)
         {
+            if (damageSource == DamageInstance.DamageSource.Enemy)
+            {
+                // TODO distinguish between basic/elite/boss
+                StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.BasicEnemy;
+            } else
+            {
+                StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.Fallback;
+            }
+            
             ++StaticGameManager.deathCount;
             StaticGameManager.LoadDeathScreen();
         }

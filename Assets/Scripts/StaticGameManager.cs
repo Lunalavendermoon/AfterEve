@@ -1,10 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public static class StaticGameManager
 {
+    // TODO just for testing
+    public static bool startNewNarrativePath = true;
+
     // NARRATIVE ROOM GENERATION
     public static int deathCount = 0; // number of deaths so far
+    public static RepeatDeathRoom.DeathCauses latestDeathCause = RepeatDeathRoom.DeathCauses.Fallback;
     // all counters include the current instance (1-indexed instead of 0-indexed)
     public static int roomCount = 0; // number of rooms encountered on this playthrough (including current room)
     public static int pathCount = 0; // number of NARRATIVE PATHS done (not playthroughs)

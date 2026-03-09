@@ -1,0 +1,8 @@
+title: Death_Fallback_Fortesting
+---
+
+<<set_portrait YarnManager Judge>>
+Judge: If you're seeing this, repeat death dialogue is still a work-in-progress. Never gonna give you up, never gonna let you down~
+
+<<player_respawn YarnManager>>
+===

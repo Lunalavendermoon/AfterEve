@@ -550,7 +550,8 @@ Cyrus: ...
 Cyrus: If you can control time itself, can’t you do more to help me?
 
 <<set_portrait YarnManager Judge>>
-The Judge: You think Prism is the only place on the brink of destruction? I’m already working nonstop managing the logistics of all you enforcers, and the last thing I need is another one whining about the job they signed up for.
+The Judge: You think Prism is the only place on the brink of destruction?
+The Judge: I’m already working nonstop managing the logistics of all you enforcers, and the last thing I need is another one whining about the job they signed up for.
 The Judge: Well, Cyrus, looks like our time is up. Try not to die so fast on this one.
 
 <<set_portrait YarnManager Cyrus>>

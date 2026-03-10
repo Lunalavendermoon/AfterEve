@@ -35,7 +35,7 @@ public class Bleed_Effect : Multiplier_Effects
         if (increment)
         {
             int bleedDmg = (int)(playerAttributes.maxHitPoints * effectRate);
-            PlayerController.instance.TakeDamage(bleedDmg, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical);
+            PlayerController.FindScenePlayer()?.TakeDamage(bleedDmg, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical);
 
             // Debug.Log("Bleed amount: " + bleedDmg);
             initialApplication = false;

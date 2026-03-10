@@ -21,6 +21,7 @@ public class EffectInstance
     {
         effect = eff;
         timer = eff.effectDuration;
+        // Schedule first trigger immediately (or at full duration depending on effect logic)
         nextTriggerTime = eff.effectDuration;
 
         this.effectId = effectId;
@@ -34,6 +35,13 @@ public class EffectInstance
     public void SubtractTime(float delta_t)
     {
         timer -= delta_t;
+    }
+
+    public void ResetDuration(float duration, bool triggerImmediately = true)
+    {
+        timer = duration;
+        nextTriggerTime = duration;
+        initialApplication = triggerImmediately;
     }
 
     public bool IsExpired()
@@ -56,10 +64,11 @@ public class EffectInstance
 
     public void DecrementTriggerTime()
     {
-        if (IsNextTrigger())
-        {
-            nextTriggerTime -= triggerInterval;
-            initialApplication = false;
-        }
+        // Caller must already have decided the trigger is being consumed.
+        // nextTriggerTime is expressed in the same space as `timer` (time remaining).
+        // Move it forward by one interval but never below 0, otherwise once timer < 0
+        // the effect would trigger every frame.
+        nextTriggerTime = Mathf.Max(0f, nextTriggerTime - triggerInterval);
+        initialApplication = false;
     }
 }

@@ -33,8 +33,8 @@ public class UITestingScript : MonoBehaviour
         damageButtonText.text = "Damage " + damageAmount;
 
         //tarotCooldownTriggerButton.onClick.AddListener(tarotUIScript.runTarotCooldownAnimation);
-        healHealthButton.onClick.AddListener(() => healthBarScript.setCurrentHitPoints(playerAttributes.currentHitPoints + healAmount));
-        damageHealthButton.onClick.AddListener(() => healthBarScript.setCurrentHitPoints(playerAttributes.currentHitPoints - damageAmount));
+        healHealthButton.onClick.AddListener(() => PlayerController.instance.Heal(healAmount));
+        damageHealthButton.onClick.AddListener(() => PlayerController.instance.TakeDamage(damageAmount, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical));
         addQuestProgressButton.onClick.AddListener(() => questUIScript.setQuestCurrentValue(questUIScript.getQuestCurrentValue() + 1));
         loseQuestProgressButton.onClick.AddListener(() => questUIScript.setQuestCurrentValue(questUIScript.getQuestCurrentValue() - 1));
     }

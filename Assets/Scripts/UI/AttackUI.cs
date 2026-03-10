@@ -93,10 +93,10 @@ public class AttackUI : MonoBehaviour
     {
         float reloadStartTime = Time.time;
         float reloadDuration = playerAttributes.reloadSpeed;
-        Debug.Log("reload duration: " + reloadDuration);
+        //Debug.Log("reload duration: " + reloadDuration);
 
         reloadCircleImage.fillAmount = 0f;
-        Debug.Log("bar set to 0 - starting animation");
+        //Debug.Log("bar set to 0 - starting animation");
 
         while (Time.time < reloadStartTime + reloadDuration)
         {

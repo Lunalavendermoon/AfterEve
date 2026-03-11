@@ -171,12 +171,6 @@ public class NarrativeRoomManager : MonoBehaviour
 
     public void OnDialogueEnded()
     {
-        if (currentRoom.isScriptedDeath)
-        {
-            PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
-            return;
-        }
-
         PortraitManager.instance.ClearPortrait();
         PlayerController.FindScenePlayer().EnablePlayerInput();
 
@@ -186,6 +180,11 @@ public class NarrativeRoomManager : MonoBehaviour
         }
         else
         {
+            if (currentRoom.isScriptedDeath)
+            {
+                PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
+                return;
+            }
             // Spawn the portal
             // If this room has no enemies to spawn after dialogue OR if this room doesn't spawn a chest after enemies defeated
             if (currentRoom.enemyPrefabs.Count == 0 || disableChestGeneration)

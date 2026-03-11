@@ -486,8 +486,6 @@ Cyrus: I was doing my job to protect this city.
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: We can’t, it’s going to-
-
-<<scripted_death YarnManager>>
 ===
 
 

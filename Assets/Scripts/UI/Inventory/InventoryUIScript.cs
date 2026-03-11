@@ -24,17 +24,17 @@ public class InventoryUIScript : MonoBehaviour
     // 0 = past, 1 = present, 2 = future
     int state;
 
-    void OnEnable()
-    {
-        PlayerController.instance.playerInput.Player.ToggleInventory.performed += OnInventoryToggled;
-        PlayerController.instance.playerInput.Player.ExitInventory.performed += OnInventoryExited;
-    }
+    // void OnEnable()
+    // {
+    //     PlayerController.instance.playerInput.Player.ToggleInventory.performed += OnInventoryToggled;
+    //     PlayerController.instance.playerInput.Player.ExitInventory.performed += OnInventoryExited;
+    // }
 
-    void OnDisable()
-    {
-        PlayerController.instance.playerInput.Player.ToggleInventory.performed -= OnInventoryToggled;
-        PlayerController.instance.playerInput.Player.ExitInventory.performed -= OnInventoryExited;
-    }
+    // void OnDisable()
+    // {
+    //     PlayerController.instance.playerInput.Player.ToggleInventory.performed -= OnInventoryToggled;
+    //     PlayerController.instance.playerInput.Player.ExitInventory.performed -= OnInventoryExited;
+    // }
 
     private void OnInventoryToggled(InputAction.CallbackContext context)
     {
@@ -51,6 +51,9 @@ public class InventoryUIScript : MonoBehaviour
         SetInventoryDisplay(false);
 
         state = 1;
+
+        PlayerController.instance.playerInput.Player.ToggleInventory.performed += OnInventoryToggled;
+        PlayerController.instance.playerInput.Player.ExitInventory.performed += OnInventoryExited;
     }
 
     public void SetInventoryDisplay(bool enabled)

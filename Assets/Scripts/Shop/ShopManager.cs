@@ -41,7 +41,6 @@ public class ShopManager : MonoBehaviour
     void Start()
     {
         shopUi.SetActive(false);
-        PlayerController.OnCoinsChange += OnCoinsChange;
     }
 
     public void DisableShopUI()
@@ -54,10 +53,12 @@ public class ShopManager : MonoBehaviour
         if (enabled)
         {
             PlayerController.instance.DisablePlayerInput();
+            PlayerController.OnCoinsChange += OnCoinsChange;
         }
         else
         {
             PlayerController.instance.EnablePlayerInput();
+            PlayerController.OnCoinsChange -= OnCoinsChange;
         }
 
         shopUi.SetActive(enabled);

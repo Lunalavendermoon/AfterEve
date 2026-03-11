@@ -528,3 +528,12 @@ The Judge: See you again soon~
 
 <<player_respawn YarnManager>>
 ===
+
+
+title: FirstResurrection_Alt
+---
+<<set_portrait YarnManager Cyrus>>
+The Judge: You beat the final boss of Path 1! Here's some placeholder dialogue~ (TODO add actual dialogue)
+
+<<player_respawn YarnManager>>
+===

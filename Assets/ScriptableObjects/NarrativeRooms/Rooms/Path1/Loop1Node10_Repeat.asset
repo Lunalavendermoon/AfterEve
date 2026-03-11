@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 1
   roomCount: 10
-  pathCount: 1
   visitCount: 0
   roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
   itemPrefab: {fileID: 0}
@@ -23,3 +22,4 @@ MonoBehaviour:
   disableChestGeneration: 1
   onSpawnDialogue: Spawn_Enemies
   postCombatDialogue: Act1_FalseHumanDeath_P1End
+  isScriptedDeath: 1

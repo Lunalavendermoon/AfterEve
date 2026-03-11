@@ -9,7 +9,8 @@ public class RepeatDeathRoom : ScriptableObject
         BasicEnemy,
         EliteEnemy,
         BossEnemy,
-        Fallback
+        Fallback,
+        ScriptedDeath
     }
     public List<DeathCauses> conditions;
     public string dialogueNode;

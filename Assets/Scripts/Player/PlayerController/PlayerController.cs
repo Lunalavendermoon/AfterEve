@@ -527,7 +527,12 @@ public class PlayerController : MonoBehaviour
         {
             // TODO distinguish between basic/elite/boss
             StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.BasicEnemy;
-        } else
+        }
+        else if (damageSource == DamageInstance.DamageSource.ScriptedDeath)
+        {
+            StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.ScriptedDeath;
+        }
+        else
         {
             StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.Fallback;
         }

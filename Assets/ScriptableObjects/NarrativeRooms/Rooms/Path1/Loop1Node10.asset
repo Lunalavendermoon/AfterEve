@@ -22,4 +22,4 @@ MonoBehaviour:
   disableChestGeneration: 1
   onSpawnDialogue: Act1_FalseHumanIntro_P1Boss
   postCombatDialogue: Act1_FalseHumanDeath_P1End
-  isScriptedDeath: 0
+  isScriptedDeath: 1

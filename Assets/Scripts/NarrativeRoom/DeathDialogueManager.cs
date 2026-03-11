@@ -8,12 +8,16 @@ public class DeathDialogueManager : MonoBehaviour
 
     DialogueRunner runner;
 
+    SingleTimeDeathRoom currentSpecialRoom = null;
+
     void Awake()
     {
         runner = FindAnyObjectByType<DialogueRunner>();
 
         if (runner == null)
             Debug.LogError("No DialogueRunner found in the scene!");
+        
+        runner.onDialogueComplete.AddListener(OnDialogueEnded);
     }
 
     void Start()
@@ -21,11 +25,15 @@ public class DeathDialogueManager : MonoBehaviour
         StaticGameManager.PreloadPlayableScene();
 
         string dialogueNode = null;
+        currentSpecialRoom = null;
         foreach (SingleTimeDeathRoom room in rooms.singleTime)
         {
+            // Pick the first valid dialogue node if multiple are available
             if (room.CanTrigger())
             {
+                currentSpecialRoom = room;
                 dialogueNode = room.dialogueNode;
+                break;
             }
         }
         runner.StartDialogue(dialogueNode ?? SelectRepeatDialogue());
@@ -53,6 +61,14 @@ public class DeathDialogueManager : MonoBehaviour
     public void SkipButtonPressed()
     {
         runner.Stop();
+    }
+
+    void OnDialogueEnded()
+    {
+        if (currentSpecialRoom != null && currentSpecialRoom.CanStartNewPath())
+        {
+            StaticGameManager.StartNewNarrativePath();
+        }
         StaticGameManager.LoadPlayable();
     }
 }

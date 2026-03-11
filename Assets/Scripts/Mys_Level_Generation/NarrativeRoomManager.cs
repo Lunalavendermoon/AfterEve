@@ -50,11 +50,6 @@ public class NarrativeRoomManager : MonoBehaviour
         StaticGameManager.IncrementVisits();
     }
 
-    public void StartNewNarrativePath()
-    {
-        StaticGameManager.StartNewNarrativePath();
-    }
-
     // If the current room and cycle count corresponds to a narrative room, spawn the room and return true.
     // Otherwise, do nothing and return false.
     public bool TrySpawnNarrativeRoom(Transform mapRoot)

@@ -27,6 +27,7 @@ public class TarotManager : MonoBehaviour
 
         // AddCard(new Fool_Present(1));
         // AddCard(new Magician_Present(1));
+        AddCard(new Strength_Present(1));
     }
 
     void OnDisable()

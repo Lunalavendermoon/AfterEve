@@ -496,7 +496,7 @@ public class PlayerController : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
     {
-        Debug.Log($"Incoming={amount} dmgTakenBonus={playerAttributes.damageTakenBonus} basicDef={playerAttributes.basicDefense}");
+        // Debug.Log($"Incoming={amount} dmgTakenBonus={playerAttributes.damageTakenBonus} basicDef={playerAttributes.basicDefense}");
         AudioManager.instance.PlayOneShot(FMODEvents.instance.playerTakeDamage, this.transform.position);
 
         int originalAmt = amount;

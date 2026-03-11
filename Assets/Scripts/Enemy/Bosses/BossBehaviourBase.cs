@@ -39,7 +39,7 @@ public abstract class BossBehaviourBase : MonoBehaviour
     public static event Action<DamageInstance, EnemyBase> OnEnemyDamageTaken;
 
     // event for enemy dying
-    public static event Action<DamageInstance, EnemyBase> OnEnemyDeath;
+    public static event Action OnBossDeath;
 
     
 
@@ -145,6 +145,7 @@ public abstract class BossBehaviourBase : MonoBehaviour
     {
         //EnemyItemDrops.ItemDrop(PlayerController.instance.playerAttributes.luck, elite, chest);
         //spawner.EnemyDie(this);
+        OnBossDeath?.Invoke();
         Destroy(gameObject);
     }
 

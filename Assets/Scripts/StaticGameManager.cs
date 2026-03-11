@@ -15,6 +15,8 @@ public static class StaticGameManager
     public static int pathCount = 0; // number of NARRATIVE PATHS done (not playthroughs)
     public static Dictionary<int, int> visitCount = new(); // number of times each room was visited (inclusive)
 
+    private static AsyncOperation asyncSceneLoad;
+
     public static void StartNewNarrativePath()
     {
         visitCount.Clear();
@@ -39,13 +41,29 @@ public static class StaticGameManager
         }
     }
 
+    public static void PreloadDeathScreen()
+    {
+        PreloadScene("SpiritPlane");
+    }
+
+    public static void PreloadPlayableScene()
+    {
+        PreloadScene("First Playable");
+    }
+
+    private static void PreloadScene(string sceneName)
+    {
+        asyncSceneLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncSceneLoad.allowSceneActivation = false;
+    }
+
     public static void LoadDeathScreen()
     {
-        SceneManager.LoadScene("SpiritPlane");
+        asyncSceneLoad.allowSceneActivation = true;
     }
 
     public static void LoadPlayable()
     {
-        SceneManager.LoadScene("First Playable");
+        asyncSceneLoad.allowSceneActivation = true;
     }
 }

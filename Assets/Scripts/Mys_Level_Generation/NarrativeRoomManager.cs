@@ -12,6 +12,8 @@ public class NarrativeRoomManager : MonoBehaviour
     SingleNarrativeRoom currentRoom = null;
     GameObject roomObject = null;
 
+    bool needsEnemySpawn = false;
+
     // dialogue
     DialogueRunner runner;
 
@@ -26,6 +28,8 @@ public class NarrativeRoomManager : MonoBehaviour
         
         GameManager.OnRoomChange += OnRoomChange;
         EnemySpawnerScript.OnAllEnemiesDefeated += OnAllEnemiesDefeated;
+
+        runner.onDialogueComplete.AddListener(OnDialogueEnded);
     }
 
     void OnDisable()
@@ -98,6 +102,7 @@ public class NarrativeRoomManager : MonoBehaviour
             portal.SetActive(false);
             currentRoom = room;
             disableChestGeneration = room.disableChestGeneration;
+            needsEnemySpawn = room.enemyPrefabs.Count != 0;
             return true;
         }
         currentRoom = null;
@@ -109,6 +114,7 @@ public class NarrativeRoomManager : MonoBehaviour
     {
         if (currentRoom)
         {
+            needsEnemySpawn = false;
             EnemySpawnerScript.instance.SpawnCustomEnemies(currentRoom.enemyPrefabs, roomObject);
         }
     }
@@ -139,5 +145,53 @@ public class NarrativeRoomManager : MonoBehaviour
         Bounds b = sr.bounds;
         return candidate.x - radius >= b.min.x && candidate.x + radius <= b.max.x &&
                candidate.y - radius >= b.min.y && candidate.y + radius <= b.max.y;
+    }
+
+    public void SkipButtonPressed()
+    {
+        if (runner.IsDialogueRunning)
+        {
+            runner.Stop();
+        }
+        else
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject go in enemies)
+            {
+                go.GetComponent<EnemyBase>().Die();
+            }
+
+            GameObject[] boss = GameObject.FindGameObjectsWithTag("Boss");
+            foreach (GameObject go in boss)
+            {
+                go.GetComponent<BossBehaviourBase>().Die();
+            }
+        }
+    }
+
+    public void OnDialogueEnded()
+    {
+        if (currentRoom.isScriptedDeath)
+        {
+            PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
+            return;
+        }
+
+        PortraitManager.instance.ClearPortrait();
+        PlayerController.FindScenePlayer().EnablePlayerInput();
+
+        if (needsEnemySpawn)
+        {
+            SpawnEnemies();
+        }
+        else
+        {
+            // Spawn the portal
+            // If this room has no enemies to spawn after dialogue OR if this room doesn't spawn a chest after enemies defeated
+            if (currentRoom.enemyPrefabs.Count == 0 || disableChestGeneration)
+            {
+                GameManager.instance.ClearCombatRoom();
+            }
+        }
     }
 }

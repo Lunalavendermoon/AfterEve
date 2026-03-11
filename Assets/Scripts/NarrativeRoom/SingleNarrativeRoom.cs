@@ -24,4 +24,5 @@ public class SingleNarrativeRoom : ScriptableObject
     [Header("Dialogue Nodes")]
     public string onSpawnDialogue;
     public string postCombatDialogue;
+    public bool isScriptedDeath;
 }

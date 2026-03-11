@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
     public void EnablePlayerInput()
     {
         playerInput.Enable();
+        playerInput.Player.Enable();
         toggleDialogueLog.Disable();  
         inputEnabled = true;
     }
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour
     public void DisablePlayerInput()
     {
         playerInput.Disable();
+        playerInput.Player.Disable();
         toggleDialogueLog.Enable(); // dialogue log can only be toggled when dialogue is playing, which is when all other inputs are disabled
         inputEnabled = false;
     }
@@ -514,18 +516,24 @@ public class PlayerController : MonoBehaviour
         OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, originalAmt, amount));
         if (currentHealth <= 0)
         {
-            if (damageSource == DamageInstance.DamageSource.Enemy)
-            {
-                // TODO distinguish between basic/elite/boss
-                StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.BasicEnemy;
-            } else
-            {
-                StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.Fallback;
-            }
-            
-            ++StaticGameManager.deathCount;
-            StaticGameManager.LoadDeathScreen();
+            Die(damageSource);
         }
+    }
+
+    public void Die(DamageInstance.DamageSource damageSource)
+    {
+        // TODO may be commented out for debug purposes - uncomment this for actual playtesting
+        if (damageSource == DamageInstance.DamageSource.Enemy)
+        {
+            // TODO distinguish between basic/elite/boss
+            StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.BasicEnemy;
+        } else
+        {
+            StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.Fallback;
+        }
+        
+        ++StaticGameManager.deathCount;
+        StaticGameManager.LoadDeathScreen();
     }
     
     public void Heal(int amount)

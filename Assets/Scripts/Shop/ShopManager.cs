@@ -23,6 +23,8 @@ public class ShopManager : MonoBehaviour
 
     int refreshCount;
 
+    bool firstInteraction = true;
+
     int[] normalPrice = new int[] { 7, 9, 13 };
     int[] discountPrice = new int[] { 2, 3, 5 };
     int[] refreshNormal = new int[] { 2, 2, 3 };
@@ -47,7 +49,7 @@ public class ShopManager : MonoBehaviour
         ShowShop(false);
     }
 
-    public void ShowShop(bool enabled, bool firstTime = false)
+    public void ShowShop(bool enabled)
     {
         if (enabled)
         {
@@ -60,12 +62,18 @@ public class ShopManager : MonoBehaviour
 
         shopUi.SetActive(enabled);
 
-        if (firstTime)
+        if (firstInteraction)
         {
+            firstInteraction = false;
             refreshCount = -1;
             shopStock.Clear();
             RefreshStock();
         }
+    }
+
+    public bool ShopIsClosed()
+    {
+        return !shopUi.activeSelf;
     }
 
     public void RefreshStock()

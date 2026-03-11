@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
-  m_Name: Loop1Node10
+  m_Name: Loop1Node8
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 0
-  roomCount: 10
-  pathCount: 1
+  roomCount: 8
   visitCount: 1
   roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
   itemPrefab: {fileID: 0}
   enemyPrefabs:
-  - {fileID: 7439078935783777668, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
-  disableChestGeneration: 1
-  onSpawnDialogue: Act1_FalseHumanIntro_P1Boss
-  postCombatDialogue: Act1_FalseHumanDeath_P1End
+  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
+  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
+  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
+  disableChestGeneration: 0
+  onSpawnDialogue: Act1_TownProtection_PreCombat_P1N8
+  postCombatDialogue: Act1_TownProtection_PostCombat_P1N8
+  isScriptedDeath: 0

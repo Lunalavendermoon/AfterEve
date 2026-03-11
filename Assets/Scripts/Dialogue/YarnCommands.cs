@@ -64,4 +64,22 @@ public class YarnCommands : MonoBehaviour
     {
         StaticGameManager.LoadPlayable();
     }
+
+    [YarnCommand("scripted_death")]
+    public void ScriptedDeath()
+    {
+        PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
+    }
+
+    [YarnCommand("open_shop")]
+    public void OpenShop()
+    {
+        ShopManager.instance.ShowShop(true);
+    }
+
+    [YarnCommand("wait_for_shop_close")]
+    public IEnumerator WaitForShopClose()
+    {
+        yield return new WaitUntil(() => ShopManager.instance.ShopIsClosed());
+    }
 }

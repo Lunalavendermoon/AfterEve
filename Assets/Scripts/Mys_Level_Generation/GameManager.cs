@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        StaticGameManager.PreloadDeathScreen();
+        
         // call in start so we have time to setup listeners
         StartNewPlaythrough();
     }

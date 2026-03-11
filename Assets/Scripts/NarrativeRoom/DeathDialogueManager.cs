@@ -18,6 +18,8 @@ public class DeathDialogueManager : MonoBehaviour
 
     void Start()
     {
+        StaticGameManager.PreloadPlayableScene();
+
         string dialogueNode = null;
         foreach (SingleTimeDeathRoom room in rooms.singleTime)
         {
@@ -46,5 +48,11 @@ public class DeathDialogueManager : MonoBehaviour
         }
         // Randomly choose one dialogue from all candidates
         return possibleNodes[Random.Range(0, possibleNodes.Count)];
+    }
+
+    public void SkipButtonPressed()
+    {
+        runner.Stop();
+        StaticGameManager.LoadPlayable();
     }
 }

@@ -30,6 +30,10 @@ public class Strength_Zone : MonoBehaviour
             }
             enemiesInside.Add(other.gameObject.GetComponent<EnemyBase>());
         }
+        else if (other.CompareTag("Boss"))
+        {
+            // TOOD we don't have anything to handle boss or boss summons...
+        }
         else if (other.CompareTag("Player"))
         {
             playerInside = true;

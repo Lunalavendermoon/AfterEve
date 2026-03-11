@@ -6162,7 +6162,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 5128
   narrativeRoomManager: {fileID: 828173323}
-  generateNarrativeRooms: 0
+  generateNarrativeRooms: 1
 --- !u!114 &828173323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6175,7 +6175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459d00d578be042c190829d9518c6ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NarrativeRoomManager
-  narrativeRooms: {fileID: 11400000, guid: 37786544a2d62484aad1613c23518489, type: 2}
+  narrativePaths: {fileID: 11400000, guid: 981465d32b88d4d3f91a85bc97954dd7, type: 2}
   portal: {fileID: 2121234110}
   disableChestGeneration: 0
 --- !u!114 &828173324

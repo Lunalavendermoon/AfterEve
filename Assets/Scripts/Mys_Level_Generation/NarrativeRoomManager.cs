@@ -6,7 +6,7 @@ public class NarrativeRoomManager : MonoBehaviour
 {
     public static NarrativeRoomManager instance;
 
-    public NarrativeRooms narrativeRooms;
+    public AllNarrativePaths narrativePaths;
     public GameObject portal;
     [HideInInspector] public bool disableChestGeneration;
     SingleNarrativeRoom currentRoom = null;
@@ -48,18 +48,21 @@ public class NarrativeRoomManager : MonoBehaviour
 
     public void StartNewNarrativePath()
     {
-        ++StaticGameManager.pathCount;
-        StaticGameManager.IncrementVisits();
+        StaticGameManager.StartNewNarrativePath();
     }
 
     // If the current room and cycle count corresponds to a narrative room, spawn the room and return true.
     // Otherwise, do nothing and return false.
     public bool TrySpawnNarrativeRoom(Transform mapRoot)
     {
-        // O(N) search... surely we won't have more than like 1000 narrative rooms right *copium*
-        foreach (SingleNarrativeRoom room in narrativeRooms.rooms)
+        if (StaticGameManager.pathCount > narrativePaths.paths.Count)
         {
-            if (StaticGameManager.roomCount != room.roomCount || StaticGameManager.pathCount != room.pathCount)
+            return false;
+        }
+        // O(N) search... surely we won't have more than like 20 narrative rooms per path right...
+        foreach (SingleNarrativeRoom room in narrativePaths.paths[StaticGameManager.pathCount - 1].rooms)
+        {
+            if (StaticGameManager.roomCount != room.roomCount)
             {
                 continue;
             }
@@ -67,7 +70,7 @@ public class NarrativeRoomManager : MonoBehaviour
             // assumes that there are only 2 types of narrative room: single time and repeat
 
             if (room.nodeType == SingleNarrativeRoom.NodeType.SingleTime &&
-                !StaticGameManager.VisitEquals(room.roomCount, room.pathCount, room.visitCount))
+                !StaticGameManager.VisitEquals(room.roomCount, room.visitCount))
             {
                 // player has visited the current room either too few or too many times to trigger dialogue
                 continue;

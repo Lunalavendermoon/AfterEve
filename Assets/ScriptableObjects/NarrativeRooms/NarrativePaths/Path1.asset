@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aca30e8b7d1fc4216816417d9f753364, type: 3}
-  m_Name: NarrativeRooms
+  m_Name: Path1
   m_EditorClassIdentifier: Assembly-CSharp::NarrativeRooms
   rooms:
   - {fileID: 11400000, guid: a0643a1602a704b7b8aa878a0ad729e3, type: 2}

@@ -13,22 +13,29 @@ public static class StaticGameManager
     // all counters include the current instance (1-indexed instead of 0-indexed)
     public static int roomCount = 0; // number of rooms encountered on this playthrough (including current room)
     public static int pathCount = 0; // number of NARRATIVE PATHS done (not playthroughs)
-    public static Dictionary<(int, int), int> visitCount = new(); // number of times the node (path, room) was visited (inclusive)
+    public static Dictionary<int, int> visitCount = new(); // number of times each room was visited (inclusive)
 
-    public static bool VisitEquals(int room, int path, int nvisit)
+    public static void StartNewNarrativePath()
     {
-        if (visitCount.ContainsKey((path, room)))
+        visitCount.Clear();
+        ++pathCount;
+        IncrementVisits();
+    }
+
+    public static bool VisitEquals(int room, int nvisit)
+    {
+        if (visitCount.ContainsKey(room))
         {
-            return visitCount[(path, room)] == nvisit;
+            return visitCount[room] == nvisit;
         }
         return false;
     }
 
     public static void IncrementVisits()
     {
-        if (!visitCount.TryAdd((pathCount, roomCount), 1))
+        if (!visitCount.TryAdd(roomCount, 1))
         {
-            ++visitCount[(pathCount, roomCount)];
+            ++visitCount[roomCount];
         }
     }
 

@@ -500,11 +500,11 @@ MonoBehaviour:
     sprites:
     - spriteName: Default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
-  - characterName: HunterNPC1
+  - characterName: Tobias
     sprites:
     - spriteName: Default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
-  - characterName: HunterNPC2
+  - characterName: Saul
     sprites:
     - spriteName: Default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}

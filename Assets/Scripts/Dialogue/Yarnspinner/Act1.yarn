@@ -47,7 +47,7 @@ The Judge: So I’d love to stand here and explain the metaphysics of divine pol
 ===
 
 
-title: Act1_EveIntro_PreCombat_L1N1
+title: Act1_EveIntro_PreCombat_P1N1
 ---
 <<set_portrait YarnManager Eve>>
 ???: Oh good, you’re awake!
@@ -101,7 +101,7 @@ Cyrus: Just what do I need to know about this “Meminiscor”?
 Eve: It’s a memory-born creature. If it gets too close, it’ll pull your fates out until you collapse.
 ===
 
-title: Act1_EveIntro_PostCombat_L1N1
+title: Act1_EveIntro_PostCombat_P1N1
 ---
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]Where did I learn to do that?[/i]
@@ -125,7 +125,7 @@ Eve: There always is. Better stay close.
 ===
 
 
-title: Act1_EveIntro_PreCombat_L1N1_Alt
+title: Act1_EveIntro_PreCombat_P1N1_Alt
 ---
 <<set_portrait YarnManager Eve>>
 Eve: Oh good, you’re awake!
@@ -168,7 +168,7 @@ Cyrus: I’ll take it.
 ===
 
 
-title: Act1_EveIntro_PostCombat_L1N1_Alt
+title: Act1_EveIntro_PostCombat_P1N1_Alt
 ---
 <<set_portrait YarnManager Eve>>
 Eve: You actually did it. Are you a Hunter?
@@ -187,7 +187,7 @@ Cyrus: Don’t have to tell me twice.
 ===
 
 
-title: Act1_EveWorldbuilding_L1N2
+title: Act1_EveWorldbuilding_P1N2
 ---
 <<set_portrait YarnManager Eve>>
 Eve: You really aren’t from around here, huh?
@@ -249,7 +249,7 @@ Eve: You’ll need better equipment if you want to survive your first day. The s
 ===
 
 
-title: Act1_ShopIntro_L1N5
+title: Act1_ShopIntro_P1N5
 ---
 <<set_portrait YarnManager Shopkeeper>>
 Shopkeeper: Eve? Where have you been?!
@@ -460,28 +460,28 @@ Cyrus: [i]Let’s try this again.[/i]
 
 title: Act1_FalseHumanDeath_P1End
 ---
-<<set_portrait YarnManager HunterNPC1>>
+<<set_portrait YarnManager Tobias>>
 ???: Hey, you?
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Hunters? Where have you been??
 
-<<set_portrait YarnManager HunterNPC1>>
+<<set_portrait YarnManager Tobias>>
 ???: We were way out when the signal cut off.
-<<set_portrait YarnManager HunterNPC2>>
+<<set_portrait YarnManager Saul>>
 ???: Still doesn’t explain how something that big just appeared out of nowhere.
 ???: You really fought that thing alone? Are you crazy??
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I was doing my job to protect this city.
 
-<<set_portrait YarnManager HunterNPC2>>
+<<set_portrait YarnManager Saul>>
 ???: Aren’t you heroic, new guy! What are you, an enforcer of Justice or something?
-<<set_portrait YarnManager HunterNPC1>>
+<<set_portrait YarnManager Tobias>>
 ???: Hold on, the spiritual signal around here is still messed up, looks like it’s still-
-<<set_portrait YarnManager HunterNPC2>>
+<<set_portrait YarnManager Saul>>
 ???: It’s pulling Fates from the townspeople!
-<<set_portrait YarnManager HunterNPC1>>
+<<set_portrait YarnManager Tobias>>
 ???: How do we kill it?!
 
 <<set_portrait YarnManager Cyrus>>

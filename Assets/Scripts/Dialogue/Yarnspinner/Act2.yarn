@@ -1,0 +1,217 @@
+title: Act2_EveIntro_L2N1
+---
+<<set_portrait YarnManager Eve>>
+Eve: Oh good, you’re awake!
+Eve: Ah! Sorry, I didn’t mean to scare you.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: It's really repeating...
+Cyrus: If I want to stop the Assimilation, I need to know more about this world.
+===
+
+
+title: Act2_SecretPoliceIntro_L2N3
+---
+<<set_portrait YarnManager Eve>>
+Eve: You actually did it. Are you a Hunter?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I’d like to be.
+
+<<set_portrait YarnManager Eve>>
+Eve: Hmm...we could make a pretty good team~
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: At protecting the town or collecting the bounties?
+
+<<set_portrait YarnManager Eve>>
+Eve: Why not both? Let’s get you suited up.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: That way looks dangerous, let’s try another path.
+
+Transition... (TODO)
+
+<<set_portrait YarnManager Tobias>>
+???: Is that you, Eve?
+
+<<set_portrait YarnManager Eve>>
+Eve: Hey! Didn’t expect to run into you two.
+
+<<set_portrait YarnManager Saul>>
+???: Who’s this?
+
+<<set_portrait YarnManager Eve>>
+Eve: Cyrus, a soon-to-be Hunter.
+
+<<set_portrait YarnManager Saul>>
+???: Ah, I can tell you all you need to know. You happen to be in the presence of a master.
+
+<<set_portrait YarnManager Tobias>>
+Tobias: I’m Tobias, you can ignore Saul.
+
+<<set_portrait YarnManager Saul>>
+Saul: He’s just jealous.
+
+<<set_portrait YarnManager Tobias>>
+Tobias: Better head back, Eve. You know what your father would say about being out here.
+
+<<set_portrait YarnManager Saul>>
+Saul: Not like the city is much safer, probably festering with False Humans.
+
+<<set_portrait YarnManager Tobias>>
+Tobias: What's paranoia good for? All it’s done is drive everyone crazy accusing each other.
+
+<<set_portrait YarnManager Saul>>
+Saul: It’s not paranoia, my neighbor’s definitely been acting strange.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: What’s a False Human?
+
+<<set_portrait YarnManager Eve>>
+Eve: Oh, uh, Cyrus is new here.
+
+<<set_portrait YarnManager Saul>>
+Saul: They’re the most dangerous kind of memory monster, they look and act just like us. Just one of them can wipe out a whole fleet of Hunters.
+
+<<set_portrait YarnManager Tobias>>
+Tobias: That’s why we’re paid to take care of the little guys, so The Ministry of Prismatic Security can focus on tracking down the False Humans.
+
+<<set_portrait YarnManager Saul>>
+Saul: Supposedly. I wish they’d hurry up and do their job before the Assimilation ends us all.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]If I find the False Human, could I stop the Assimilation?[/i]
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: How do you contact Prismatic Security?
+
+<<set_portrait YarnManager Tobias>>
+Tobias: “And a new dawn rises”. Use that code if you ever run into something bigger than you can handle.
+
+<<set_portrait YarnManager Saul>>
+Saul: Alright, let’s get moving. We’ve got a hunt to finish.
+===
+
+
+title: Act2_ShopBanter_L2N5
+---
+<<set_portrait YarnManager Shopkeeper>>
+Shopkeeper: Eve? Where have you been?!
+
+Eve: Had a run-in with some monsters, but we handled it. (Banter continues)
+
+Cyrus: The fates here were quite helpful. I should take a look.
+
+<<set_portrait YarnManager Shopkeeper>>
+Shopkeeper: You ought to take a look at my wares then. Don’t want you getting killed either.
+Shopkeeper: Here, I’ve got all the Fates a Hunter could ask for.
+
+(shop)
+
+
+Shop Banter (Repeatable Questions)
+
+Eve: All set. Ready to head out?
+
+
+-> Ask about her family
+-> Ask about being a dispatcher
+-> Ask about Prism
+-> Ask about her
+-> End conversation
+
+
+-> Ask about her family
+
+
+    Cyrus: Your dad seems...nice.
+
+    Eve: He likes to act tough, but he’s really just terrified.
+
+    Cyrus: He mentioned you had a sister?
+
+    Eve: ...
+    Eve: Ava.
+    Eve: She’s not here anymore.
+
+    -> Inquire further
+
+        Cyrus: Is she...
+
+        Eve: We snuck out to the outskirts together, but we were too young to know what we were getting into.
+
+        Eve: When the monsters came, I just ran.
+
+        Cyrus: Oh...I’m sorry.
+
+        Eve: Yeah, I am too.
+
+        <<jump Act2_ShopBanterLoop_L2N5>>
+    
+    -> Change the topic
+        <<jump Act2_ShopBanterLoop_L2N5>>
+
+
+-> Ask about being a dispatcher
+
+    Cyrus: You have experience with this?
+
+    Eve: Scared I’m gonna get you killed?
+
+    Eve: This is my first time, but I’ve helped Hunters before, patching gear, pointing them to jobs, you name it.
+
+    Cyrus: Why’d you decide to be a dispatcher now?
+
+    Eve: I’ve always wanted to do more to help around here, and you looked like you were going to get yourself killed without someone watching your back.
+
+    Cyrus: Won’t argue with that.
+
+    <<jump Act2_ShopBanterLoop_L2N5>>
+
+-> Ask about Prism
+
+    Cyrus: Is it always this tense around here?
+
+    Eve: Lately? Yeah. Memory monsters keep spawning faster than we can kill them. And like Tobias said, a lot of people don’t trust each other anymore.
+
+    Cyrus: You think he’s right, that it’s all just paranoia?
+
+    Eve: ...
+
+    Eve: I think the one thing this city needs right now is a united front.
+
+    <<jump Act2_ShopBanterLoop_L2N5>>
+
+-> Ask about her
+
+    Cyrus: So, uh, you do anything besides work?
+
+    Eve: Dad thinks it’s silly, but I like to make things out of the scraps laying around the shop.
+    
+    Cyrus: You mean the sculptures? You made these?
+
+    Eve: They’re a work in progress. I like to find a purpose for misfit things, rather than just throw them out.
+
+    Eve: What do you do?
+
+    Cyrus: ...
+
+    Cyrus: Good question.
+
+    Eve: Huh? It’s not like you were just born today.
+
+    <<jump Act2_ShopBanterLoop_L2N5>>
+
+-> End conversation
+
+    <<jump Act2_ShopBanterEnd_L2N5>>
+
+*ding*
+
+Eve: That was fast, your first mission’s already here.
+
+Cyrus: Deeper in the outskirts?
+
+Eve: Good guess. Let’s head out.
+===

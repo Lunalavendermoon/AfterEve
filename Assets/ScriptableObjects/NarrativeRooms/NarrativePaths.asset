@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AllNarrativePaths
   paths:
   - {fileID: 11400000, guid: 37786544a2d62484aad1613c23518489, type: 2}
+  - {fileID: 11400000, guid: 5205f910908c24166a30e16b193f9dc8, type: 2}

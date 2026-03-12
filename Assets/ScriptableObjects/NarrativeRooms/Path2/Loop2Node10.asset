@@ -20,6 +20,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 7439078935783777668, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
   disableChestGeneration: 1
-  onSpawnDialogue: Spawn_Enemies
-  postCombatDialogue: 
+  onSpawnDialogue: Act2_PreCombat_Repeat_P2End
+  postCombatDialogue: Act2_PostCombat_P2End
   isScriptedDeath: 1

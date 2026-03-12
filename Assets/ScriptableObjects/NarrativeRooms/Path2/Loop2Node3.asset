@@ -19,6 +19,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   enemyPrefabs: []
   disableChestGeneration: 0
-  onSpawnDialogue: Autoclear_Room
+  onSpawnDialogue: Act2_SecretPoliceIntro_P2N3
   postCombatDialogue: 
   isScriptedDeath: 0

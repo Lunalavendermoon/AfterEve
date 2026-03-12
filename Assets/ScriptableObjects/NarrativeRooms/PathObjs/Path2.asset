@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca30e8b7d1fc4216816417d9f753364, type: 3}
   m_Name: Path2
   m_EditorClassIdentifier: Assembly-CSharp::NarrativePath
-  rooms: []
+  rooms:
+  - {fileID: 11400000, guid: 5cfe26479f53448f99702791b90807b0, type: 2}
+  - {fileID: 11400000, guid: 6160bc1a886974289896c434c2db22c9, type: 2}
+  - {fileID: 11400000, guid: 2d8f867971ff345a8ad64760ca5b4903, type: 2}
+  - {fileID: 11400000, guid: 30881d7e29afb4375859b23e85539357, type: 2}
+  - {fileID: 11400000, guid: 2d653298c811a4445a748f85121ad2c6, type: 2}
+  - {fileID: 11400000, guid: d4e305e940df142448ed268ffdc359ee, type: 2}
+  - {fileID: 11400000, guid: 39425e4ba23904a229c34a9f6d35dc81, type: 2}
+  - {fileID: 11400000, guid: aba053478668e4c0cb23b4726e33aea3, type: 2}

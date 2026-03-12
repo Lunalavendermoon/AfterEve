@@ -22,6 +22,6 @@ MonoBehaviour:
   - {fileID: 8214233007585310572, guid: bf05398b7b92347478de14ef1f262821, type: 3}
   - {fileID: 1710929130042634915, guid: eda3c9b54afea3d42b2f6dc9073f56ef, type: 3}
   disableChestGeneration: 0
-  onSpawnDialogue: Spawn_Enemies
-  postCombatDialogue: 
+  onSpawnDialogue: Act2_PoliceContact_PreCombat_P2N6
+  postCombatDialogue: Act2_PoliceContact_PostCombat_P2N6
   isScriptedDeath: 0

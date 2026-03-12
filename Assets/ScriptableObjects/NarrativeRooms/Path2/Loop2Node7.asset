@@ -19,6 +19,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   enemyPrefabs: []
   disableChestGeneration: 0
-  onSpawnDialogue: Autoclear_Room
+  onSpawnDialogue: Act2_FateExchangeIntro_P2N7
   postCombatDialogue: 
   isScriptedDeath: 0

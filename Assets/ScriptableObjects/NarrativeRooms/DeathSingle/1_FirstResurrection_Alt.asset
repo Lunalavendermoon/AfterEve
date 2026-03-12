@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79eca9e2fbe84d46b4fa940f674d2b5, type: 3}
   m_Name: 1_FirstResurrection_Alt
   m_EditorClassIdentifier: Assembly-CSharp::SingleTimeDeathRoom
-  trigger: 2
+  trigger: 0
   roomCount: 10
   pathCount: 1
-  deathCount: 1
-  dialogueNode: FirstResurrection
-  startsNewPath: 0
+  deathCount: 0
+  dialogueNode: FirstResurrection_Alt
+  startsNewPath: 1

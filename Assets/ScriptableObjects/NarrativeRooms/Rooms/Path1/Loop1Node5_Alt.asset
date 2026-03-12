@@ -19,6 +19,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 5301048128179776828, guid: 9d7bc1a7fd289483dae8cd2b137bca4d, type: 3}
   enemyPrefabs: []
   disableChestGeneration: 0
-  onSpawnDialogue: 
+  onSpawnDialogue: Autoclear_Room
   postCombatDialogue: 
   isScriptedDeath: 0

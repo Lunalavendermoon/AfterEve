@@ -17,3 +17,4 @@ MonoBehaviour:
   pathCount: 0
   deathCount: 0
   dialogueNode: Act1_Introduction
+  startsNewPath: 1

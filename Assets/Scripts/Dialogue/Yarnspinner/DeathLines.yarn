@@ -2,7 +2,7 @@ title: Death_Fallback_Fortesting
 ---
 
 <<set_portrait YarnManager Judge>>
-Judge: Uh oh! You reached a placeholder dialogue node. Best of luck~
+Judge: Default death dialogue for testing~ (TODO add actual death dialogue)
 
 <<player_respawn YarnManager>>
 ===

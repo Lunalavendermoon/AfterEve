@@ -33,6 +33,8 @@ public class ShopManager : MonoBehaviour
     int[] baseRefreshPrice = new int[] { 3, 4, 4 };
     int[] togglePrice = new int[] { 1, 2, 3 };
 
+    bool openedFromStory;
+
     void Awake()
     {
         if (instance == null) instance = this;
@@ -50,14 +52,28 @@ public class ShopManager : MonoBehaviour
 
     public void ShowShop(bool enabled)
     {
+        SetShopEnabled(enabled, false);
+    }
+
+    public void SetShopEnabled(bool enabled, bool fromStory)
+    {
         if (enabled)
         {
-            PlayerController.instance.DisablePlayerInput();
+            openedFromStory = fromStory;
+            if (!fromStory)
+            {
+                PlayerController.instance.DisablePlayerInput();
+            }
             PlayerController.OnCoinsChange += OnCoinsChange;
         }
         else
         {
-            PlayerController.instance.EnablePlayerInput();
+            if (!openedFromStory)
+            {
+                // Don't re-enable player input if shop was opened from yarn
+                // NarrativeRoomManager will re-enable input once the time is right :)
+                PlayerController.instance.EnablePlayerInput();
+            }
             PlayerController.OnCoinsChange -= OnCoinsChange;
         }
 

@@ -6,7 +6,7 @@ public static class StaticGameManager
 {
     // NARRATIVE ROOM GENERATION
     public static int deathCount = 0; // number of deaths so far
-    public static RepeatDeathRoom.DeathCauses latestDeathCause = RepeatDeathRoom.DeathCauses.ScriptedDeath;
+    public static RepeatDeathRooms.DeathCauses latestDeathCause = RepeatDeathRooms.DeathCauses.ScriptedDeath;
     // all counters include the current instance (1-indexed instead of 0-indexed)
     public static int roomCount = 0; // number of rooms encountered on this playthrough (including current room)
     public static int pathCount = 0; // number of NARRATIVE PATHS done (not playthroughs)

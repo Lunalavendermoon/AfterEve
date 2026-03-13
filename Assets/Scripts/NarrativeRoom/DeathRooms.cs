@@ -6,5 +6,5 @@ public class DeathRooms : ScriptableObject
 {
     public List<SingleTimeDeathRoom> singleTime;
 
-    public List<RepeatDeathRoom> repeats;
+    public RepeatDeathRooms repeats;
 }

@@ -1,8 +1,131 @@
-title: Death_Fallback_Fortesting
+title: DeathRepeat_Fallback_1
 ---
+<<set_portrait YarnManager Judge>>
+The Judge: ...Oh! I didn’t know it was possible to die that way.
+===
+
+
+title: DeathRepeat_Fallback_2
+---
+<<set_portrait YarnManager Judge>>
+The Judge: No offense, but you humans are way too squishy.
+===
+
+
+title: DeathRepeat_Fallback_3
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Hm. That’s not good.
+===
+
+
+title: DeathRepeat_Monster_1
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Back so soon? C’mon. Up! You haven’t gotten to the good part yet!
+===
+
+
+title: DeathRepeat_Monster_2
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Aw, I was sure you had it that time. Maybe next round.
+===
+
+
+title: DeathRepeat_Monster_3
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Ahaha! The hotshot Hunter gets killed by a runty monster?
+
+The Judge: I expect better from an enforcer of Justice. Back you go~
+===
+
+
+title: DeathRepeat_Monster_4
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Cyrus, I don’t know what memories you traded away while you were down there, but remember-
+
+The Judge: You’re supposed to [i]kill[/i] the monsters, not give them hugs. Okay?
+===
+
+
+title: DeathRepeat_Monster_5
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Ouch. I’m glad that wasn’t me. Let’s hope you get luckier on your next run~
+===
+
+
+title: DeathRepeat_Monster_6
+---
+<<set_portrait YarnManager Judge>>
+The Judge: You have a very [i]unique[/i] fighting style.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Is that an insult or a compliment?
 
 <<set_portrait YarnManager Judge>>
-Judge: Default death dialogue for testing~ (TODO add actual death dialogue)
+The Judge: No, no, just an observation. Now get back in there and keep doing... whatever you’re doing.
+===
 
-<<player_respawn YarnManager>>
+
+title: DeathRepeat_Monster_7
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Hello?
+The Judge: Hhhheeelllooo!
+
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: ...
+
+<<set_portrait YarnManager Judge>>
+The Judge: Oh! You’re finally awake.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: ???
+
+<<set_portrait YarnManager Judge>>
+The Judge: Alright, let’s do this slowly.
+The Judge: Name. Do you remember that muc-
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Oh, no. Don’t tell me I’m back at the very beginning.
+
+
+<<set_portrait YarnManager Judge>>
+The Judge: Pff, just messing with you~ The look on your face was priceless!
+===
+
+
+title: DeathRepeat_FalseHuman_P1_1
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I’m still getting used to this whole dying over and over thing.
+
+<<set_portrait YarnManager Judge>>
+The Judge: If I can handle eons babysitting you enforcers, [i]you[/i] can handle a few more decades of this.
+===
+
+
+title: DeathRepeat_FalseHuman_P1_2
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I have to stop that monster. Send me back, now.
+
+<<set_portrait YarnManager Judge>>
+The Judge: Well, someone’s feeling heroic.
+===
+
+
+title: DeathRepeat_FalseHuman_P1_3
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Is that thing even killable?!
+
+<<set_portrait YarnManager Judge>>
+The Judge: I wouldn’t be sending you down there otherwise, now would I?
+The Judge: Well, I actually have no idea, but it’s worth a shot!
 ===

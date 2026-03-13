@@ -37,7 +37,7 @@ public class SingleTimeDeathRoom : ScriptableObject
     // Special dialogue triggered by a specific node (as opposed to death count) is always caused by scripted death
     bool RoomCorrectAndBossDefeated()
     {
-        return StaticGameManager.latestDeathCause == RepeatDeathRoom.DeathCauses.ScriptedDeath &&
+        return StaticGameManager.latestDeathCause == RepeatDeathRooms.DeathCauses.ScriptedDeath &&
             StaticGameManager.pathCount == pathCount && StaticGameManager.roomCount == roomCount;
     }
 }

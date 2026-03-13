@@ -522,19 +522,17 @@ public class PlayerController : MonoBehaviour
 
     public void Die(DamageInstance.DamageSource damageSource)
     {
-        // TODO may be commented out for debug purposes - uncomment this for actual playtesting
         if (damageSource == DamageInstance.DamageSource.Enemy)
         {
-            // TODO distinguish between basic/elite/boss
-            StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.BasicEnemy;
+            StaticGameManager.latestDeathCause = RepeatDeathRooms.DeathCauses.Enemy;
         }
         else if (damageSource == DamageInstance.DamageSource.ScriptedDeath)
         {
-            StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.ScriptedDeath;
+            StaticGameManager.latestDeathCause = RepeatDeathRooms.DeathCauses.ScriptedDeath;
         }
         else
         {
-            StaticGameManager.latestDeathCause = RepeatDeathRoom.DeathCauses.Fallback;
+            StaticGameManager.latestDeathCause = RepeatDeathRooms.DeathCauses.Fallback;
         }
         
         ++StaticGameManager.deathCount;

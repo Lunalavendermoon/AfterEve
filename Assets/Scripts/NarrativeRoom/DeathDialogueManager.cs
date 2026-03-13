@@ -41,18 +41,11 @@ public class DeathDialogueManager : MonoBehaviour
 
     string SelectRepeatDialogue()
     {
-        List<string> possibleNodes = new() { };
-        foreach (RepeatDeathRoom room in rooms.repeats)
-        {
-            if (room.CanTrigger())
-            {
-                possibleNodes.Add(room.dialogueNode);
-            }
-        }
+        List<string> possibleNodes = rooms.repeats.GetPossibleNodes();
         if (possibleNodes.Count == 0)
         {
             Debug.LogWarning("No applicable death dialogue found, defaulting to fallback");
-            return "Death_Fallback_Fortesting";
+            return "DeathRepeat_Fallback_1";
         }
         // Randomly choose one dialogue from all candidates
         return possibleNodes[Random.Range(0, possibleNodes.Count)];

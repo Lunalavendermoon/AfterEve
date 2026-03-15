@@ -54,6 +54,13 @@ public class NarrativeRoomManager : MonoBehaviour
     // Otherwise, do nothing and return false.
     public bool TrySpawnNarrativeRoom(Transform mapRoot)
     {
+        if (StaticGameManager.pathCount == 0)
+        {
+            // Ensures pathCount is always at least 1
+            // TODO delete this in final ver - this is a bandaid solution ONLY FOR EASE OF PLAYTESTING!!!
+            StaticGameManager.StartNewNarrativePath();
+        }
+
         if (StaticGameManager.pathCount > narrativePaths.paths.Count)
         {
             return false;

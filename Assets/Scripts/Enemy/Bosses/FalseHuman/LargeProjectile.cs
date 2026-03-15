@@ -2,7 +2,7 @@ using Pathfinding;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class LargeProjectile : EnemyBase
+public class LargeProjectile : StandardEnemyBase
 {
     private const float InitialSpeed = 1f;
     private const float HasteSpeed = 4f;

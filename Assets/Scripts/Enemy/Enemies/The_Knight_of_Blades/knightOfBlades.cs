@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class knightOfBlades : EnemyBase
+public class knightOfBlades : StandardEnemyBase
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float wanderRadius = 7.5f;

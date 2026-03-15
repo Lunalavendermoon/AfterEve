@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class MeleeAttackHitboxScript : MonoBehaviour
 {
-    private EnemyBase enemy;
+    private StandardEnemyBase enemy;
     private bool hasDealtDamage = false;
 
     void Awake()
     {
-        enemy = GetComponentInParent<EnemyBase>();
+        enemy = GetComponentInParent<StandardEnemyBase>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

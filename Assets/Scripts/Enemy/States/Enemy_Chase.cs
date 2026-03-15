@@ -18,14 +18,14 @@ public class Enemy_Chase : IEnemyStates
         attackCooldown = 2f;
     }
 
-    public void EnterState(EnemyBase enemy)
+    public void EnterState(StandardEnemyBase enemy)
     {
         
         attackTimer = 0f;
         enemy.agent.isStopped = false;
     }
 
-    public void UpdateState(EnemyBase enemy)
+    public void UpdateState(StandardEnemyBase enemy)
     {
         if (enemy.enemyAttributes.isParalyzed)
         {
@@ -44,12 +44,12 @@ public class Enemy_Chase : IEnemyStates
         
     }
 
-    void getChasePoint(EnemyBase enemy)
+    void getChasePoint(StandardEnemyBase enemy)
     {
         enemy.Pathfinding(PlayerController.instance.transform);
     }
     
-    public void ExitState(EnemyBase enemy)
+    public void ExitState(StandardEnemyBase enemy)
     {
         
     }

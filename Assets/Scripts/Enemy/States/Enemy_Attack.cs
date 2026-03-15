@@ -8,13 +8,13 @@ public class Enemy_Attack : IEnemyStates
 
     }
 
-    public void EnterState(EnemyBase enemy)
+    public void EnterState(StandardEnemyBase enemy)
     {
         enemy.agent.isStopped = true;
 
     }
 
-    public void UpdateState(EnemyBase enemy)
+    public void UpdateState(StandardEnemyBase enemy)
     {
         Transform target = PlayerController.instance.transform;
         if (enemy.isAttacking) return; // already attacking
@@ -52,7 +52,7 @@ public class Enemy_Attack : IEnemyStates
         enemy.attack_timer = enemy.enemyAttributes.attackRate;
     }
     
-    public void ExitState(EnemyBase enemy)
+    public void ExitState(StandardEnemyBase enemy)
     {
         
     }

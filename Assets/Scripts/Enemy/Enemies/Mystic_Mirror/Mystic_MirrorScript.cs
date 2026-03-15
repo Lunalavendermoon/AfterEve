@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Mystic_MirrorScript : EnemyBase
+public class Mystic_MirrorScript : StandardEnemyBase
 {
     void Awake()
     {

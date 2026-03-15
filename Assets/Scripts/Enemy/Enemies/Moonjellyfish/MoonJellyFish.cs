@@ -4,7 +4,7 @@ using UnityEngine;
 /*    MoonJellyFish Enemy Class
     Inherits from EnemyBase and initializes attributes from EnemyAttributes ScriptableObject
 */
-public class MoonJellyFish : EnemyBase
+public class MoonJellyFish : StandardEnemyBase
 {
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;

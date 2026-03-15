@@ -155,7 +155,10 @@ public class EnemySpawnerScript : MonoBehaviour
             }
             else
             {
-                enemy.chest = chest;
+                if (enemyObj.GetComponent<StandardEnemyBase>())
+                {
+                    enemyObj.GetComponent<StandardEnemyBase>().chest = chest;
+                }
                 enemy.spawner = this;
                 enemies.Add(enemy);
             }

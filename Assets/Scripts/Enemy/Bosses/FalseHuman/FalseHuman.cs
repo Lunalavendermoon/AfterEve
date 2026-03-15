@@ -171,7 +171,7 @@ public class FalseHuman : BossBehaviourBase
                 entry.enemyPrefab,
                 entry.spawnPoint.position,
                 Quaternion.Euler(new Vector3(0, 0, 0)));
-            EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
+            StandardEnemyBase enemy = enemyObj.GetComponent<StandardEnemyBase>();
             if (enemy != null)
             {
                 enemy.chest = null;

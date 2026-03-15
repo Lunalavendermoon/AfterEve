@@ -10524,6 +10524,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6108361045990030215, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6278755747373785529, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -10539,6 +10543,10 @@ PrefabInstance:
     - target: {fileID: 7439078935783777668, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035605514428021324, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: pickNextWaypointDist
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

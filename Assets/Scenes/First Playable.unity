@@ -5022,6 +5022,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7486369184383115630, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7486369184383115630, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -999222579
+      objectReference: {fileID: 0}
     - target: {fileID: 7773325652112711274, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -16341,6 +16349,10 @@ PrefabInstance:
     - target: {fileID: 4284727905798047589, guid: eea218c098413c84a8fec12f0a4070f4, type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284727905798047589, guid: eea218c098413c84a8fec12f0a4070f4, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4284727905798047589, guid: eea218c098413c84a8fec12f0a4070f4, type: 3}
       propertyPath: m_IsActive

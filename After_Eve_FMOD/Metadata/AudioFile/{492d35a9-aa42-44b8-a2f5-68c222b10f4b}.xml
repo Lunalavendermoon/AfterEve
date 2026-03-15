@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{492d35a9-aa42-44b8-a2f5-68c222b10f4b}">
 		<property name="assetPath">
 			<value>Music/after eve_combat_02.wav</value>

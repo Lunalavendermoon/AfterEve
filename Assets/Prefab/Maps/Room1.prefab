@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1585258270020688293}
   - component: {fileID: 1581742604991543205}
+  - component: {fileID: 6143412556019884143}
   m_Layer: 12
   m_Name: D_Wall
   m_TagString: Untagged
@@ -91,6 +92,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6143412556019884143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943696386494967417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c32a8b9de4b14586d311f2c1f4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+  precision: 100
+  referenceCollider: {fileID: 0}
+  collisionParent: {fileID: 6667332633227592609}
+  yOffset: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &4015115286132107005
 GameObject:
   m_ObjectHideFlags: 0

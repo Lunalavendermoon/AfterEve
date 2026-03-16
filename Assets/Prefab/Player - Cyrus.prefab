@@ -384,8 +384,9 @@ MonoBehaviour:
   horizontalInput: 0
   verticalInput: 0
   speed: 1
-  health: 0
   playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
+  currentHealth: 0
+  maxHealth: 0
   playerFuturePrefab: {fileID: 11400000, guid: 2eefe8d2e31024d42a45671b33503a31, type: 2}
   skillText: {fileID: 0}
   playerAnimation: {fileID: 1960957068752877385}
@@ -393,6 +394,7 @@ MonoBehaviour:
   currentInteractable: {fileID: 0}
   tarotManager: {fileID: 0}
   shieldManager: {fileID: 4949763400254494269}
+  volume: {fileID: 0}
 --- !u!114 &335750778297899072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +427,7 @@ MonoBehaviour:
   genericEffectIcon: {fileID: 3195862853416397274, guid: d369fe64b3ca844acac4066962ae7070, type: 3}
   effectIcons: {fileID: 11400000, guid: d77d395db21444d8e8a9627cc4f4b6c7, type: 2}
   effectIconDisplay: {fileID: 0}
+  effectIconCap: 5
 --- !u!61 &61846744681886410
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -459,7 +462,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -888,6 +891,7 @@ GameObject:
   - component: {fileID: 7486369184383115630}
   - component: {fileID: 6555157076438026817}
   - component: {fileID: 1960957068752877385}
+  - component: {fileID: 1651342641934834643}
   m_Layer: 0
   m_Name: Spine - Cyrus
   m_TagString: Untagged
@@ -1021,6 +1025,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a9ee617d0ca3448b2e07093a7f67a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
+--- !u!114 &1651342641934834643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104700830897567209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c32a8b9de4b14586d311f2c1f4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+  precision: 100
+  referenceCollider: {fileID: 61846744681886410}
+  collisionParent: {fileID: 0}
+  yOffset: 0
+  isStatic: 0
+  angleCompensation: 0
 --- !u!1 &2390722491497488367
 GameObject:
   m_ObjectHideFlags: 0

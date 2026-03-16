@@ -203,15 +203,16 @@ public class FalseHuman : BossBehaviourBase
                     transform.position.y + Mathf.Sin(angle * Mathf.Deg2Rad),
                     transform.position.z);
                 GameObject projectile = Instantiate(projectilePrefab, spawnpoint, Quaternion.identity);
-                BossProjectileScript projectileScript = projectile.GetComponent<BossProjectileScript>();
+                BossProjectileBezier projectileScript = projectile.GetComponent<BossProjectileBezier>();
                 if (projectileScript != null)
                 {
                     projectileScript.InitializeProjectile(target, projectileMaxMoveSpeed, projectileMaxHeight);
-                    projectileScript.InitializeAnimationCurves(
-                        trajectoryAnimationCurve,
-                        axisCorrectionAnimationCurve,
-                        projectileSpeedAnimationCurve);
+                    //projectileScript.InitializeAnimationCurves(
+                    //    trajectoryAnimationCurve,
+                    //    axisCorrectionAnimationCurve,
+                    //    projectileSpeedAnimationCurve);
                 }
+                yield return new WaitForSeconds(0.1f);
             }
             yield return new WaitForSeconds(2f);
         }

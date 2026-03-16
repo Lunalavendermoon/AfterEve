@@ -155,7 +155,7 @@ MonoBehaviour:
   cooldown_time: 0
   attack_timer: 1
   attackProbalities: []
-  projectileMaxMoveSpeed: 0
+  projectileMaxMoveSpeed: 5
   projectileMaxHeight: 0
   projectilePrefab: {fileID: 6049593373930495556, guid: 0adebcc93c8dcc54c986d0e958d31f88, type: 3}
   trajectoryAnimationCurve:

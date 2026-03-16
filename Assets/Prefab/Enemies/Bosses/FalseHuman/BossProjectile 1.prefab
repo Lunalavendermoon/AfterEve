@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1738754840463490477}
-  - component: {fileID: 2972344563778787145}
+  - component: {fileID: 1331268166149806127}
   m_Layer: 0
-  m_Name: BossProjectile
+  m_Name: BossProjectile 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 174907719057189497}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2972344563778787145
+--- !u!114 &1331268166149806127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,27 +42,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6049593373930495556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71fde2b06a11f334998772238559511a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a2f48cf269cbdf41bf0ab6c97414123, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossProjectileScript
-  trajectoryAnimationCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  axisCorrectionAnimationCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  projectileSpeedAnimationCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorClassIdentifier: Assembly-CSharp::BossProjectileBezierScript
 --- !u!1 &6095180845108918840
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,7 +50,7 @@ MonoBehaviour:
   dashCooldown: 1
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1
-  isEnlightened: 0
+  isEnlightened: 1
   luck: 1
   trustworthiness: 1
   magicianPastBonusCoin: 0

@@ -9,48 +9,74 @@ public class HealthBarScript : MonoBehaviour
     public Slider slider;
     private Coroutine healthSlidingRoutine; //for preventing multiple animations
     [SerializeField] private TMP_Text healthValueText;
-    private PlayerAttributes playerAttributes;
 
-    private void Start() {
-        playerAttributes = PlayerController.instance.playerAttributes;
+    private PlayerController GetPlayer()
+    {
+        return PlayerController.instance;
     }
 
     // Set player's max health
     public void setMaxHitPoints(int health)
     {
-        playerAttributes.maxHitPoints = health;
-        slider.maxValue = health;
+        PlayerController player = GetPlayer();
+        if (player == null)
+        {
+            return;
+        }
+
+        // UI-only: max HP should be sourced from the authoritative player health.
+        slider.maxValue = player.MaxHealth;
         Debug.Log("Set max health to " + health);
-        updateHitPointUIValues(playerAttributes.currentHitPoints);
+        updateHitPointUIValues(player.CurrentHealth);
     }
 
     // Set player's current health
     public void setCurrentHitPoints(int health)
     {
+        PlayerController player = GetPlayer();
+        if (player == null)
+        {
+            return;
+        }
+
         int newHealth = health;
-        if(health > playerAttributes.maxHitPoints) {
-            newHealth = playerAttributes.maxHitPoints;
+        if(health > player.MaxHealth) {
+            newHealth = player.MaxHealth;
         }
         if(health < 0) {
             newHealth = 0;
         }
 
-        playerAttributes.currentHitPoints = newHealth;
-
         if(healthSlidingRoutine != null) StopCoroutine(healthSlidingRoutine);
         healthSlidingRoutine = StartCoroutine(healthSlidingAnimationCoroutine(newHealth));
     }
 
-    public void updateHitPointUIValues(int currentHitPoints) {
-        healthValueText.text = currentHitPoints + " / " + playerAttributes.maxHitPoints;
+    public void SyncFromPlayer()
+    {
+        PlayerController player = GetPlayer();
+        if (player == null) return;
+        setMaxHitPoints(player.MaxHealth);
+        setCurrentHitPoints(player.CurrentHealth);
+    }
+
+    public void updateHitPointUIValues(int displayedHitPoints) {
+        PlayerController player = GetPlayer();
+        int maxHp = player != null ? player.MaxHealth : 0;
+        healthValueText.text = displayedHitPoints + " / " + maxHp;
     }
 
     // UI animation helper for smooth transition between diff health values
     private IEnumerator healthSlidingAnimationCoroutine(float finalHealth)
     {
+        PlayerController player = GetPlayer();
+        if (player == null)
+        {
+            yield break;
+        }
+
         float startingHealth = slider.value;
         float slidingStartTime = Time.time;
-        float slidingDuration = 0.01f * (Math.Abs(finalHealth - startingHealth))/playerAttributes.maxHitPoints * 100; //0.05s sliding time/1% of health
+        float slidingDuration = 0.01f * (Math.Abs(finalHealth - startingHealth))/Mathf.Max(1, player.MaxHealth) * 100; //0.05s sliding time/1% of health
 
         while (Time.time - slidingStartTime < slidingDuration)
         {

@@ -205,7 +205,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7347425688799341433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,20 +219,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoonJellyFish
   baseEnemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
-  enemyAttributes: {fileID: 11400000, guid: 3a9dcfaaa332123409b7ac26996b6c81, type: 2}
+  enemyAttributes: {fileID: 0}
   enemyEffectManager: {fileID: 7631987195092300849}
   chest: {fileID: 0}
   spawner: {fileID: 0}
-  health: 0
+  health: 100
   speed: 0
   agent: {fileID: 4867966037313945444}
   destinationSetter: {fileID: 2341878997991670800}
   attackHitbox: {fileID: 3385193953142855512}
+  knockbackForceOnHit: 0
   isAttacking: 0
+  attackHitConnected: 0
   Drop: {fileID: 0}
   attack_timer: 0
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
   givesRewards: 1
+  rb: {fileID: 0}
+  lockRotation: 1
+  flipToFacePlayer: 1
   luck: 1
   elite: 0
   wanderRadius: 7.5
@@ -290,7 +295,7 @@ MonoBehaviour:
   repathRateCompatibility: NaN
   canSearchCompability: 0
   orientation: 1
-  enableRotation: 1
+  enableRotation: 0
   autoRepath:
     mode: 2
     interval: 0.5
@@ -301,7 +306,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0
-  pickNextWaypointDist: 2
+  pickNextWaypointDist: 0.25
   endReachedDistance: 0.2
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 0
@@ -377,7 +382,7 @@ Transform:
   m_GameObject: {fileID: 3385193953142855512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalPosition: {x: -0.769, y: -0.062, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -439,7 +444,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2.8497725}
   m_EdgeRadius: 0
 --- !u!1 &6602363020343302897
 GameObject:

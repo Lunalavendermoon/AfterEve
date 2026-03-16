@@ -43,11 +43,11 @@ The Judge: Look, you want humanity to continue, right? So do we.
 The Judge: Well, Justice does. I just work here.
 The Judge: So I’d love to stand here and explain the metaphysics of divine politics, but we’re on a schedule. Off you go~
 
-<<jump Back_To_Game>>
+<<player_respawn YarnManager>>
 ===
 
 
-title: Act1_EveIntro_PreCombat_L1N1
+title: Act1_EveIntro_PreCombat_P1N1
 ---
 <<set_portrait YarnManager Eve>>
 ???: Oh good, you’re awake!
@@ -68,7 +68,7 @@ Cyrus: Sorry, I’m just...right, my name. It’s Cyrus.
 <<set_portrait YarnManager Eve>>
 Eve: Nice to meet you, Cyrus! Or not nice? Given the circumstances. Are you hurt anywhere?
 
-A Meminiscor roars. (play sound via function here)
+A Meminiscor roars. (TODO play sound via function here)
 
 <<set_portrait YarnManager Eve>>
 Eve: That’s not good. Sounds like a Meminiscor.
@@ -99,12 +99,9 @@ Cyrus: Just what do I need to know about this “Meminiscor”?
 
 <<set_portrait YarnManager Eve>>
 Eve: It’s a memory-born creature. If it gets too close, it’ll pull your fates out until you collapse.
-
-<<spawn_enemies YarnManager>>
-<<jump Back_To_Game>>
 ===
 
-title: Act1_EveIntro_PostCombat_L1N1
+title: Act1_EveIntro_PostCombat_P1N1
 ---
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]Where did I learn to do that?[/i]
@@ -115,7 +112,7 @@ Eve: You actually did it. Are you a Hunter?
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Hunter?
 
-A distant roar is heard. (play sound via function here)
+A distant roar is heard. (TODO play sound via function here)
 
 <<set_portrait YarnManager Eve>>
 Eve: We shouldn’t stay here, if a stronger Meminiscor shows up we’re in trouble.
@@ -125,12 +122,10 @@ Cyrus: There’s more?
 
 <<set_portrait YarnManager Eve>>
 Eve: There always is. Better stay close.
-
-<<jump Back_To_Game>>
 ===
 
 
-title: Act1_EveIntro_PreCombat_L1N1_Alt
+title: Act1_EveIntro_PreCombat_P1N1_Alt
 ---
 <<set_portrait YarnManager Eve>>
 Eve: Oh good, you’re awake!
@@ -145,7 +140,7 @@ Cyrus: Cyrus.
 <<set_portrait YarnManager Eve>>
 Eve: Nice to meet you, Cyrus! Or not nice? Given the circumstances. Are you hurt anywhere?
 
-A Meminiscor roars. (play sound via function here)
+A Meminiscor roars. (TODO play sound via function here)
 
 <<set_portrait YarnManager Eve>>
 Eve: Oh, that’s not good. Sounds like-
@@ -170,13 +165,10 @@ Eve: Uh, yeah-
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’ll take it.
-
-<<spawn_enemies YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
-title: Act1_EveIntro_PostCombat_L1N1_Alt
+title: Act1_EveIntro_PostCombat_P1N1_Alt
 ---
 <<set_portrait YarnManager Eve>>
 Eve: You actually did it. Are you a Hunter?
@@ -184,7 +176,7 @@ Eve: You actually did it. Are you a Hunter?
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Yup.
 
-A distant roar is heard. (play sound via function here)
+A distant roar is heard. (TODO play sound via function here)
 
 <<set_portrait YarnManager Eve>>
 Eve: We shouldn’t stay here, if a stronger Meminiscor shows up we’re in trouble.
@@ -192,12 +184,10 @@ Eve: We shouldn’t stay here, if a stronger Meminiscor shows up we’re in trou
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Got it.
 Cyrus: Don’t have to tell me twice.
-
-<<jump Back_To_Game>>
 ===
 
 
-title: Act1_EveWorldbuilding_L1N2
+title: Act1_EveWorldbuilding_P1N2
 ---
 <<set_portrait YarnManager Eve>>
 Eve: You really aren’t from around here, huh?
@@ -256,13 +246,10 @@ Cyrus: So that's your motive.
 
 <<set_portrait YarnManager Eve>>
 Eve: You’ll need better equipment if you want to survive your first day. The shop’s up ahead.
-
-<<complete_room YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
-title: Act1_ShopIntro_L1N5
+title: Act1_ShopIntro_P1N5
 ---
 <<set_portrait YarnManager Shopkeeper>>
 Shopkeeper: Eve? Where have you been?!
@@ -312,8 +299,8 @@ Cyrus: You can buy these? Aren’t they...memories?
 <<set_portrait YarnManager Eve>>
 Eve: They’re also currency, in a way. Some exchange them for resources or other Fates.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus is given the shop tutorial. NEED FUNCTION HERE!!!!
+<<open_shop YarnManager>>
+<<wait_for_shop_close YarnManager>>
 
 <<set_portrait YarnManager Eve>>
 Eve: Now you look like a real Hunter!
@@ -333,9 +320,6 @@ Eve: No, I have your spiritual signature recorded in my dispatcher device. That�
 Eve’s device dings.
 Eve: That was fast.
 Eve: Your first mission’s already here. Let’s head out.
-
-<<complete_room YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
@@ -374,22 +358,16 @@ Eve: Haha, I see you’re learning. Just don’t do anything stupid, okay?
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’ll try my best.
-
-<<spawn_enemies YarnManager>>
-<<queue_next_dialogue YarnManager 5 Act1_TownProtection_MidCombat_P1N8>>
-<<jump Back_To_Game>>
 ===
 
 
-title: Act1_TownProtection_MidCombat_P1N8
+title: Act1_TownProtection_PostCombat_P1N8
 ---
 <<set_portrait YarnManager Cyrus>>
 Cyrus: That’s almost all of them. 
 Cyrus: Eve, status?
 Cyrus: ...Eve?
 Cyrus: [i]Line’s dead. I need to get back, fast.[/i]
-
-<<jump Back_To_Game>>
 ===
 
 
@@ -415,9 +393,6 @@ Eve: What? Hold on, the signal is- Cy-rus?
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]There it is, right on schedule.[/i]
 Cyrus: Eve, if you can still hear this, I’ll be there soon.
-
-<<spawn_enemies YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
@@ -462,9 +437,6 @@ Cyrus: What the hell...
 Cyrus: What...the hell is that?
 Cyrus: And I thought this day couldn’t get any stranger. A memory monster that big...anyone here to help?
 Cyrus: Guess it’s just me then.
-
-<<spawn_enemies YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
@@ -483,43 +455,37 @@ Cyrus: [i]Doesn’t look any better.[/i]
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’d run if I were you.
 Cyrus: [i]Let’s try this again.[/i]
-
-<<spawn_enemies YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
 title: Act1_FalseHumanDeath_P1End
 ---
-<<set_portrait YarnManager HunterNPC1>>
+<<set_portrait YarnManager Tobias>>
 ???: Hey, you?
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Hunters? Where have you been??
 
-<<set_portrait YarnManager HunterNPC1>>
+<<set_portrait YarnManager Tobias>>
 ???: We were way out when the signal cut off.
-<<set_portrait YarnManager HunterNPC2>>
+<<set_portrait YarnManager Saul>>
 ???: Still doesn’t explain how something that big just appeared out of nowhere.
 ???: You really fought that thing alone? Are you crazy??
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I was doing my job to protect this city.
 
-<<set_portrait YarnManager HunterNPC2>>
+<<set_portrait YarnManager Saul>>
 ???: Aren’t you heroic, new guy! What are you, an enforcer of Justice or something?
-<<set_portrait YarnManager HunterNPC1>>
+<<set_portrait YarnManager Tobias>>
 ???: Hold on, the spiritual signal around here is still messed up, looks like it’s still-
-<<set_portrait YarnManager HunterNPC2>>
+<<set_portrait YarnManager Saul>>
 ???: It’s pulling Fates from the townspeople!
-<<set_portrait YarnManager HunterNPC1>>
+<<set_portrait YarnManager Tobias>>
 ???: How do we kill it?!
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: We can’t, it’s going to-
-
-<<complete_room YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
@@ -550,7 +516,8 @@ Cyrus: ...
 Cyrus: If you can control time itself, can’t you do more to help me?
 
 <<set_portrait YarnManager Judge>>
-The Judge: You think Prism is the only place on the brink of destruction? I’m already working nonstop managing the logistics of all you enforcers, and the last thing I need is another one whining about the job they signed up for.
+The Judge: You think Prism is the only place on the brink of destruction?
+The Judge: I’m already working nonstop managing the logistics of all you enforcers, and the last thing I need is another one whining about the job they signed up for.
 The Judge: Well, Cyrus, looks like our time is up. Try not to die so fast on this one.
 
 <<set_portrait YarnManager Cyrus>>
@@ -559,5 +526,14 @@ Cyrus: Wait, I still have que-
 <<set_portrait YarnManager Judge>>
 The Judge: See you again soon~
 
-<<jump Back_To_Game>>
+<<player_respawn YarnManager>>
+===
+
+
+title: FirstResurrection_Alt
+---
+<<set_portrait YarnManager Cyrus>>
+The Judge: You beat the final boss of Path 1! Here's some placeholder dialogue~ (TODO add actual dialogue)
+
+<<player_respawn YarnManager>>
 ===

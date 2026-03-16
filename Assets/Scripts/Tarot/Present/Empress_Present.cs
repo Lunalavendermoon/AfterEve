@@ -33,10 +33,10 @@ public class Empress_Present : Present_TarotCard
         if(random < healProbability[level] * 100)
         {
             // round down
-            int healAmount = (int)(PlayerController.instance.playerAttributes.maxHitPoints * healPercent[level]);
+            int healAmount = (int)(PlayerController.instance.MaxHealth * healPercent[level]);
             int newHealth = PlayerController.instance.GetHealth() + healAmount;
                 PlayerController.instance.Heal(healAmount);
-            if(newHealth > PlayerController.instance.playerAttributes.maxHitPoints && timer <= 0f)
+            if(newHealth > PlayerController.instance.MaxHealth && timer <= 0f)
             {
                 enemy.TakeDamage(healAmount, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
                 timer = timeBetweenTrigger;

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3417311679455085293}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,9 +47,9 @@ GameObject:
   - component: {fileID: 6359726622231637239}
   - component: {fileID: 6108361045990030215}
   - component: {fileID: 3411270614891509333}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DerangedFalseHuman
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,18 +143,17 @@ MonoBehaviour:
   baseEnemyAttributes: {fileID: 11400000, guid: 3641d2219caa8a249ac981cd76eaa2c9, type: 2}
   enemyAttributes: {fileID: 11400000, guid: 3641d2219caa8a249ac981cd76eaa2c9, type: 2}
   enemyEffectManager: {fileID: 0}
-  chest: {fileID: 0}
   spawner: {fileID: 0}
   health: 0
   speed: 0
   agent: {fileID: 8035605514428021324}
   destinationSetter: {fileID: 6359726622231637239}
+  floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
+  rb: {fileID: 0}
   attackHitbox: {fileID: 6278755747373785529}
   isAttacking: 0
   cooldown_time: 0
-  Drop: {fileID: 0}
   attack_timer: 1
-  floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
   attackProbalities: []
   projectileMaxMoveSpeed: 0
   projectileMaxHeight: 0
@@ -357,7 +356,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

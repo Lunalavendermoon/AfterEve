@@ -57,15 +57,12 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         if (instance == null) instance = this;
-
-        if (generateNarrativeRooms)
-        {
-            narrativeRoomManager.StartNewNarrativePath(); // TODO: call this whenever player starts a new narrative path
-        }
     }
 
     void Start()
     {
+        StaticGameManager.PreloadDeathScreen();
+        
         // call in start so we have time to setup listeners
         StartNewPlaythrough();
     }
@@ -116,6 +113,8 @@ public class GameManager : MonoBehaviour
             narrativeRoomManager.StartNewRoom();
             if (narrativeRoomManager.TrySpawnNarrativeRoom(mapRoot))
             {
+                if (EnemySpawnerScript.instance != null)
+                    EnemySpawnerScript.instance.ScanMap();
                 spawnBehavior.Respawn();
                 return;
             }
@@ -443,5 +442,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(mapRoot.GetChild(i).gameObject);
         }
+    }
+
+    public bool IsWorldPointInsideMap(Vector2 worldPoint, float radius = 0f)
+    {
+        EnsureMapBounds();
+        return IsInsideMap(worldPoint, radius);
     }
 }

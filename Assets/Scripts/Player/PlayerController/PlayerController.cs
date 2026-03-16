@@ -10,8 +10,50 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour
 {
-    // make into singleton
-    public static PlayerController instance;
+    public const string ScenePlayerRootName = "Player - Cyrus";
+
+    private static PlayerController cachedScenePlayer;
+    private static int cachedFrame = -1;
+
+    public static PlayerController FindScenePlayer()
+    {
+        // Avoid repeated GameObject.Find calls by caching per-frame.
+        // Refresh if cache is missing/destroyed.
+        if (cachedFrame == Time.frameCount && cachedScenePlayer != null)
+        {
+            return cachedScenePlayer;
+        }
+
+        if (cachedScenePlayer != null)
+        {
+            cachedFrame = Time.frameCount;
+            return cachedScenePlayer;
+        }
+
+        var root = GameObject.Find(ScenePlayerRootName);
+        cachedScenePlayer = root != null ? root.GetComponentInChildren<PlayerController>(true) : null;
+        cachedFrame = Time.frameCount;
+        return cachedScenePlayer;
+    }
+
+    public static PlayerController Player => FindScenePlayer();
+
+    // Kept for compatibility with existing code. Always resolves to the scene player.
+    public static PlayerController instance => FindScenePlayer();
+
+    private void OnEnable()
+    {
+        // Keep cache hot when the scene player is enabled.
+        cachedScenePlayer = this;
+        cachedFrame = Time.frameCount;
+        EnablePlayerInput();
+    }
+
+    private void OnDisable()
+    {
+        if (cachedScenePlayer == this) cachedScenePlayer = null;
+        DisablePlayerInput();
+    }
     public HealthBarScript healthBar;
     public QuestUIScript questUIScript;
 
@@ -24,8 +66,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) instance = this;
-
         playerInput = new PlayerInput();
         toggleDialogueLog = playerInput.FindAction("ToggleDialogueLog", true);
     }
@@ -40,19 +80,11 @@ public class PlayerController : MonoBehaviour
     // Player movement speed (exposed for designer control)
     public int speed;
 
-    void OnEnable()
-    {
-        EnablePlayerInput();
-    }
-
-    void OnDisable()
-    {
-        DisablePlayerInput();
-    }
 
     public void EnablePlayerInput()
     {
         playerInput.Enable();
+        playerInput.Player.Enable();
         toggleDialogueLog.Disable();  
         inputEnabled = true;
     }
@@ -60,14 +92,21 @@ public class PlayerController : MonoBehaviour
     public void DisablePlayerInput()
     {
         playerInput.Disable();
+        playerInput.Player.Disable();
         toggleDialogueLog.Enable(); // dialogue log can only be toggled when dialogue is playing, which is when all other inputs are disabled
         inputEnabled = false;
     }
 
     // player attributes
-    public int health;
     int coins = 500; // TODO - set to 0 in final version, this is for testing only
     public PlayerAttributes playerAttributes;
+
+    // Authoritative runtime health (do not store in PlayerAttributes, since effects rebuild attributes)
+    [SerializeField] private int currentHealth;
+    [SerializeField] private int maxHealth;
+
+    public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
     public PlayerFuturePrefab playerFuturePrefab;
     private bool magicianSkillActive = false;
     private float magicianSkillTimer;
@@ -136,9 +175,14 @@ public class PlayerController : MonoBehaviour
         AttackUI.Instance.initializeAmmoUI();
 
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
-        healthBar.setMaxHitPoints(playerAttributes.maxHitPoints);
-        healthBar.setCurrentHitPoints(playerAttributes.maxHitPoints);
-        health = playerAttributes.maxHitPoints;
+
+        // initialize health from attributes template once
+        maxHealth = playerAttributes.maxHitPoints;
+        currentHealth = maxHealth;
+        if (healthBar != null)
+        {
+            healthBar.SyncFromPlayer();
+        }
 
         questUIScript.setQuestName("The Wheel of Fortune");
         questUIScript.setQuestDescription("Give Eve 8 million dollars because she wants it.");
@@ -197,6 +241,16 @@ public class PlayerController : MonoBehaviour
         {
             CreateClone(1, 1, 1);
         }
+    }
+
+    public void SyncMaxHealthToAttributes(bool fill = false)
+    {
+        if (playerAttributes == null) return;
+
+        int attrMax = playerAttributes.maxHitPoints;
+        if (attrMax <= 0) return;
+
+        SetMaxHealth(attrMax, fill);
     }
 
     private void FixedUpdate()
@@ -444,39 +498,83 @@ public class PlayerController : MonoBehaviour
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
     {
+        // Debug.Log($"Incoming={amount} dmgTakenBonus={playerAttributes.damageTakenBonus} basicDef={playerAttributes.basicDefense}");
         AudioManager.instance.PlayOneShot(FMODEvents.instance.playerTakeDamage, this.transform.position);
 
         int originalAmt = amount;
 
         // damage reduction
         amount = playerAttributes.DamageCalculation(amount, DamageInstance.ToEnemyDamageType(damageType));
-        // shield reduction
-        amount = shieldManager.TakeShieldDamage(playerAttributes.DamageCalculation(amount, DamageInstance.ToEnemyDamageType(damageType)));
+        // shield reduction (apply to already-reduced damage)
+        amount = shieldManager.TakeShieldDamage(amount);
+        amount = Mathf.Max(0, amount);
 
         // remaining damage is subtracted from player health
-        health -= amount;
-        healthBar.setCurrentHitPoints(health);
-        Debug.Log($"Player took {amount} damage, remaining health: {health}, regular shield: {shieldManager.GetTotalShield(Shield.ShieldType.Regular)}, hitcount shield: {shieldManager.GetTotalShield(Shield.ShieldType.HitCount)}");
+        currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+        if (healthBar != null) healthBar.setCurrentHitPoints(currentHealth);
+        //Debug.Log($"Player took {amount} damage, remaining health: {playerAttributes.currentHitPoints}, regular shield: {shieldManager.GetTotalShield(Shield.ShieldType.Regular)}, hitcount shield: {shieldManager.GetTotalShield(Shield.ShieldType.HitCount)}");
         OnDamageTaken?.Invoke(new DamageInstance(damageSource, damageType, originalAmt, amount));
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
-            // TODO: player died
-            Debug.Log("Player health reached 0");
+            Die(damageSource);
         }
+    }
+
+    public void Die(DamageInstance.DamageSource damageSource)
+    {
+        if (damageSource == DamageInstance.DamageSource.Enemy)
+        {
+            StaticGameManager.latestDeathCause = RepeatDeathRooms.DeathCauses.Enemy;
+        }
+        else if (damageSource == DamageInstance.DamageSource.ScriptedDeath)
+        {
+            StaticGameManager.latestDeathCause = RepeatDeathRooms.DeathCauses.ScriptedDeath;
+        }
+        else
+        {
+            StaticGameManager.latestDeathCause = RepeatDeathRooms.DeathCauses.Fallback;
+        }
+        
+        ++StaticGameManager.deathCount;
+        StaticGameManager.LoadDeathScreen();
     }
     
     public void Heal(int amount)
     {
-        health = Math.Clamp(health + amount, 0, playerAttributes.maxHitPoints);
-        Debug.Log($"Player healed {amount}, current health: {health}");
-        healthBar.setCurrentHitPoints(health);
+        currentHealth = Math.Clamp(currentHealth + amount, 0, maxHealth);
+        Debug.Log($"Player healed {amount}, current health: {currentHealth}");
+        if (healthBar != null) healthBar.setCurrentHitPoints(currentHealth);
         // includes overflow healing in calculation :3
         OnHealed?.Invoke(amount);
     }
 
     public int GetHealth()
     {
-        return health;
+        return currentHealth;
+    }
+
+    public void SetMaxHealth(int value, bool fill = false)
+    {
+        maxHealth = Mathf.Max(1, value);
+        if (fill) currentHealth = maxHealth;
+        else currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (healthBar != null)
+        {
+            healthBar.setMaxHitPoints(maxHealth);
+            healthBar.setCurrentHitPoints(currentHealth);
+        }
+    }
+
+    public void SetCurrentHealth(int value)
+    {
+        SetCurrentHealthInternal(value);
+        if (healthBar != null) healthBar.setCurrentHitPoints(currentHealth);
+    }
+
+    private void SetCurrentHealthInternal(int value)
+    {
+        currentHealth = Mathf.Clamp(value, 0, maxHealth);
     }
     
     public void GainRegularShield(int amount, float duration = -1)
@@ -568,7 +666,7 @@ public class PlayerController : MonoBehaviour
             playerFootsteps.getPlaybackState(out PLAYBACK_STATE playbackState);
             if (playbackState != PLAYBACK_STATE.STOPPING && playbackState != PLAYBACK_STATE.STOPPED)
             {
-                Debug.Log("stopping");
+                //Debug.Log("stopping");
                 playerFootsteps.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             }
         }

@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SingleNarrativeRoom", menuName = "Scriptable Objects/SingleNarrativeRoom")]
+[CreateAssetMenu(fileName = "SingleNarrativeRoom", menuName = "Scriptable Objects/Narrative/SingleNarrativeRoom")]
 // Represents a single narrative room that spawns when story conditions are unlocked.
 public class SingleNarrativeRoom : ScriptableObject
 {
     public enum NodeType
     {
         SingleTime,
-        Alternate,
         Repeat
     }
+
     public NodeType nodeType;
     public int roomCount;
-    public int pathCount;
+    public int visitCount;
     public GameObject roomPrefab;
     public GameObject itemPrefab;
 
@@ -24,4 +24,5 @@ public class SingleNarrativeRoom : ScriptableObject
     [Header("Dialogue Nodes")]
     public string onSpawnDialogue;
     public string postCombatDialogue;
+    public bool isScriptedDeath;
 }

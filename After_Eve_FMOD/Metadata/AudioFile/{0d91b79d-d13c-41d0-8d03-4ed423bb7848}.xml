@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{0d91b79d-d13c-41d0-8d03-4ed423bb7848}">
+		<property name="assetPath">
+			<value>Music/extra combat music.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>78.904124999999993</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{648a6642-ab30-45f3-8ea3-823a671503e5}</destination>
+		</relationship>
+	</object>
+</objects>

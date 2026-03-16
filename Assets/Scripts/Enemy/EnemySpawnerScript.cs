@@ -144,10 +144,25 @@ public class EnemySpawnerScript : MonoBehaviour
             ));
 
             EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
-            enemy.chest = chest;
-            enemy.spawner = this;
+            if (enemy == null)
+            {
+                BossBehaviourBase boss = enemyObj.GetComponent<BossBehaviourBase>();
+                if (boss == null)
+                {
+                    Debug.LogError("Enemy has neither EnemyBase or BossBehaviourBase component!");
+                }
+                BossBehaviourBase.OnBossDeath += BossDie;
+            }
+            else
+            {
+                if (enemyObj.GetComponent<StandardEnemyBase>())
+                {
+                    enemyObj.GetComponent<StandardEnemyBase>().chest = chest;
+                }
+                enemy.spawner = this;
+                enemies.Add(enemy);
+            }
 
-            enemies.Add(enemy);
             numberOfEnemies++;
         }
 
@@ -175,6 +190,13 @@ public class EnemySpawnerScript : MonoBehaviour
         }
     }
 
+    public void BossDie()
+    {
+        // TODO: if a boss room ever spawns chest, we need to call SpawnAndRevealChest
+        //  but so far no bosses spawn chest
+        OnAllEnemiesDefeated?.Invoke();
+    }
+
     public void AddPendingChestCoins(int amount)
     {
         if (amount <= 0) return;
@@ -189,9 +211,13 @@ public class EnemySpawnerScript : MonoBehaviour
             return;
         }
 
+        Vector3 playerPos = PlayerController.instance.transform.position;
+        playerPos.z = 0f;
+
         if (chest != null)
         {
-            chest.transform.position = worldPos;
+            // chest.transform.position = worldPos;
+            chest.transform.position = playerPos;
             chest.gameObject.SetActive(true);
             return;
         }
@@ -203,7 +229,8 @@ public class EnemySpawnerScript : MonoBehaviour
         }
 
         var parent = currentMapRoot != null ? currentMapRoot : null;
-        chest = Instantiate(chestPrefab, worldPos, Quaternion.identity, parent);
+        // chest = Instantiate(chestPrefab, worldPos, Quaternion.identity, parent);
+        chest = Instantiate(chestPrefab, playerPos, Quaternion.identity, parent);
 
         if (pendingChestCoins > 0)
         {

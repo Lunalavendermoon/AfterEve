@@ -2,32 +2,41 @@ using UnityEngine;
 
 public class MeleeAttackHitboxScript : MonoBehaviour
 {
-    private EnemyBase enemy;
+    private StandardEnemyBase enemy;
     private bool hasDealtDamage = false;
 
     void Awake()
     {
-        enemy = GetComponentInParent<EnemyBase>();
+        enemy = GetComponentInParent<StandardEnemyBase>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (hasDealtDamage ) return;
-
+        if (hasDealtDamage) return;
 
         if (other.CompareTag("Player"))
         {
-
-            //PlayerController.instance.playerAttributes.TakeDamage(enemy.damage);
+            int damage = enemy.enemyAttributes.damage;
+            DamageInstance.DamageType dmgType = ToDamageInstanceType(enemy.enemyAttributes.damageType);
+            PlayerController.instance.TakeDamage(damage, DamageInstance.DamageSource.Enemy, dmgType);
             hasDealtDamage = true;
-            Debug.Log("Player hit for " + enemy.enemyAttributes.damage);
+            enemy.attackHitConnected = true;
             enemy.DisableAttack();
         }
     }
 
+    private static DamageInstance.DamageType ToDamageInstanceType(EnemyAttributes.DamageType type)
+    {
+        switch (type)
+        {
+            case EnemyAttributes.DamageType.Basic: return DamageInstance.DamageType.Physical;
+            case EnemyAttributes.DamageType.Spiritual: return DamageInstance.DamageType.Spiritual;
+            default: return DamageInstance.DamageType.Mixed;
+        }
+    }
 
     private void OnDisable()
     {
-        hasDealtDamage = false; 
+        hasDealtDamage = false;
     }
 }

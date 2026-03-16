@@ -25,14 +25,29 @@ public class FalseHuman : BossBehaviourBase
     public LargeProjectile largeProjectile;
     public List<EnemyEntry> knightsList = new();
     public EmotionCapsule emotionCapsule;
+    private const float EmotionWaveDelay = 5f;
+    private const int EmotionWaveDamageToPlayer = 600;
+    private const int EmotionWaveDamageToBossPerCapsule = 1000;
+    private const float EmotionShieldRadius = 2f;
+    private const float EmotionDebuffDuration = 7f;
+    private const float EmotionWeakPercent = 0.2f;
+
 
     private void Awake()
     {
+        if (baseEnemyAttributes != null)
+        {
+            enemyAttributes = Instantiate(baseEnemyAttributes);
+            health = Mathf.Max(1, enemyAttributes.maxHitPoints);
+            speed = enemyAttributes.speed;
+        }
+        else
+        {
+            health = Mathf.Max(1, health);
+        }
         cooldown_time = 3f;
         default_enemy_state = new Boss_Attack(5);
-        attackProbalities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f,0f };
-        //Debug.Log("Boss Start");
-
+        attackProbalities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f, 0f };
     }
     public override void Movement()
     {
@@ -75,17 +90,16 @@ public class FalseHuman : BossBehaviourBase
         //After the wave, each activated capsule deals 1000 dmg to the boss.
         //After finishing this attack, waits 7 seconds before using another attack.
         isAttacking = true;
-        //Debug.Log("Attack 3: Emotion Capsules deployed.");
         attackProbalities = new float[5] { 33.30f, 33.3f, 0f, 33.30f, 0f };
+        var capsules = new List<EmotionCapsule>();
         for (int i = 0; i < 3; i++)
         {
             Vector2 random = Random.insideUnitCircle;
-
-
-            Instantiate(emotionCapsule, new Vector3(random.x*3f,random.y*3f, transform.position.z), Quaternion.Euler(new Vector3(0, 0, 0)));
+            GameObject go = Instantiate(emotionCapsule.gameObject, new Vector3(random.x * 3f, random.y * 3f, transform.position.z), Quaternion.identity);
+            EmotionCapsule cap = go.GetComponent<EmotionCapsule>();
+            if (cap != null) capsules.Add(cap);
         }
-        cooldown_time = 7f;
-        isAttacking = false;
+        StartCoroutine(Attack3_WaveCoroutine(capsules));
     }
     public override void Attack4()
     {
@@ -105,15 +119,21 @@ public class FalseHuman : BossBehaviourBase
         //Gain a shield at the beginning of the battle preventing
         //all physical dmg to the boss that blocks 200 spiritual damage and has the same defense as the boss. 
         //The boss does not use this skill other than once at the start of the battle.
-        Debug.Log("attack 5");
         isInvulnerable = true;
         cooldown_time = 5f;
+        isAttacking = false;
     }
 
 
     public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
-        int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
+        if (enemyAttributes == null)
+            return;
+        int damageAfterReduction;
+        if (dmgType == DamageInstance.DamageType.Spiritual)
+            damageAfterReduction = Mathf.CeilToInt(amount * (1f - (enemyAttributes.spiritualDefense / (enemyAttributes.spiritualDefense + 100f))));
+        else
+            damageAfterReduction = Mathf.CeilToInt(amount * (1f - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100f))));
         if (isInvulnerable)
         {
             if (dmgType == DamageInstance.DamageType.Spiritual)
@@ -127,24 +147,14 @@ public class FalseHuman : BossBehaviourBase
                 }
                 return;
             }
-            Debug.Log($"{gameObject.name} is invulnerable and took no damage.");
             ShowFloatingText(0);
-
             return;
         }
         health -= damageAfterReduction;
-
-        //OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
-
-        // Damage numbers
         ShowFloatingText(damageAfterReduction);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
         if (health <= 0)
-        {
-            // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack
-            //OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
             Die();
-        }
     }
 
 
@@ -157,59 +167,91 @@ public class FalseHuman : BossBehaviourBase
                 Debug.LogWarning("EnemyEntry has missing prefab or spawn point.");
                 continue;
             }
-
             GameObject enemyObj = Instantiate(
                 entry.enemyPrefab,
                 entry.spawnPoint.position,
-                Quaternion.Euler(new Vector3(0, 0, 0)
-            ));
-
-            EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
-            enemy.chest = null;
-            enemy.spawner = null;
-            enemy.givesRewards = false;
+                Quaternion.Euler(new Vector3(0, 0, 0)));
+            StandardEnemyBase enemy = enemyObj.GetComponent<StandardEnemyBase>();
+            if (enemy != null)
+            {
+                enemy.chest = null;
+                enemy.spawner = null;
+                enemy.givesRewards = false;
+            }
         }
     }
 
     IEnumerator Attack1_Coroutine()
     {
         isAttacking = true;
-
-        Debug.Log("Attack 1: Shooting projectiles.");
-        int[] projectileCounts = new int[] { 5,7,9};
+        int[] projectileCounts = new int[] { 5, 7, 9 };
         for (int round = 0; round < projectileCounts.Length; round++)
         {
-
-            Debug.Log($"Attack 1: Round {round + 1} - Shooting {projectileCounts[round]} projectiles.");
+            Vector3 roundTargetPosition = PlayerController.instance != null
+                ? PlayerController.instance.transform.position
+                : transform.position + Vector3.down * 5f;
             int count = projectileCounts[round];
             float angleStep = 360f / count;
             float angleOffset = Random.Range(0f, angleStep);
             for (int i = 0; i < count; i++)
             {
                 GameObject target = new GameObject("ProjectileTarget");
-                target.transform.position = PlayerController.instance.transform.position;
+                target.transform.position = roundTargetPosition;
                 float angle = angleOffset + i * angleStep;
-                
-                Vector3 spawnpoint = new Vector3(transform.position.x+Mathf.Cos(angle * Mathf.Deg2Rad),
-                                                 transform.position.y + Mathf.Sin(angle * Mathf.Deg2Rad), 
-                                                 transform.position.z);
+                Vector3 spawnpoint = new Vector3(
+                    transform.position.x + Mathf.Cos(angle * Mathf.Deg2Rad),
+                    transform.position.y + Mathf.Sin(angle * Mathf.Deg2Rad),
+                    transform.position.z);
                 GameObject projectile = Instantiate(projectilePrefab, spawnpoint, Quaternion.identity);
                 BossProjectileScript projectileScript = projectile.GetComponent<BossProjectileScript>();
-                projectileScript.InitializeProjectile(
-                    target,
-                    projectileMaxMoveSpeed,
-                    projectileMaxHeight
-
-                );
-                projectileScript.InitializeAnimationCurves(
-                    trajectoryAnimationCurve,
-                    axisCorrectionAnimationCurve,
-                    projectileSpeedAnimationCurve
-                    );
-                
+                if (projectileScript != null)
+                {
+                    projectileScript.InitializeProjectile(target, projectileMaxMoveSpeed, projectileMaxHeight);
+                    projectileScript.InitializeAnimationCurves(
+                        trajectoryAnimationCurve,
+                        axisCorrectionAnimationCurve,
+                        projectileSpeedAnimationCurve);
+                }
             }
-            Debug.Log($"Attack 1: Round {round + 1} complete. Waiting 2 seconds before next round.");
             yield return new WaitForSeconds(2f);
+        }
+        isAttacking = false;
+    }
+
+    private IEnumerator Attack3_WaveCoroutine(List<EmotionCapsule> capsules)
+    {
+        yield return new WaitForSeconds(EmotionWaveDelay);
+        bool playerShielded = false;
+        if (PlayerController.instance != null)
+        {
+            Vector3 playerPos = PlayerController.instance.transform.position;
+            foreach (var cap in capsules)
+            {
+                if (cap != null && cap.IsPositionInsideShield(playerPos))
+                {
+                    playerShielded = true;
+                    break;
+                }
+            }
+        }
+        if (!playerShielded && PlayerController.instance != null)
+        {
+            PlayerController.instance.TakeDamage(EmotionWaveDamageToPlayer, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+            var effectManager = PlayerController.instance.gameObject.GetComponent<PlayerEffectManager>();
+            if (effectManager != null && PlayerController.instance.playerAttributes != null)
+            {
+                effectManager.AddEffect(new Blindness_Effect(EmotionDebuffDuration), PlayerController.instance.playerAttributes);
+                effectManager.AddEffect(new Weak_Effect(EmotionDebuffDuration, EmotionWeakPercent), PlayerController.instance.playerAttributes);
+            }
+        }
+        foreach (var cap in capsules)
+        {
+            if (cap != null && cap.IsActivated)
+                TakeDamage(EmotionWaveDamageToBossPerCapsule, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual);
+        }
+        foreach (var cap in capsules)
+        {
+            if (cap != null) Destroy(cap.gameObject);
         }
         isAttacking = false;
     }

@@ -6,17 +6,13 @@ public class NarrativeRoomManager : MonoBehaviour
 {
     public static NarrativeRoomManager instance;
 
-    public NarrativeRooms narrativeRooms;
+    public AllNarrativePaths narrativePaths;
     public GameObject portal;
     [HideInInspector] public bool disableChestGeneration;
     SingleNarrativeRoom currentRoom = null;
     GameObject roomObject = null;
 
-    // TODO: we might want to put these data in a static class so it doesn't get reset as easily
-    // all counters include the current instance (1-indexed instead of 0-indexed)
-    public int roomCount = 0; // number of rooms encountered on this playthrough (including current room)
-    int furthestRoom = 0; // furthest room encountered on current narrative path (resets when we start a new path)
-    int pathCount = 0; // number of NARRATIVE PATHS done (not playthroughs)
+    bool needsEnemySpawn = false;
 
     // dialogue
     DialogueRunner runner;
@@ -32,6 +28,8 @@ public class NarrativeRoomManager : MonoBehaviour
         
         GameManager.OnRoomChange += OnRoomChange;
         EnemySpawnerScript.OnAllEnemiesDefeated += OnAllEnemiesDefeated;
+
+        runner.onDialogueComplete.AddListener(OnDialogueEnded);
     }
 
     void OnDisable()
@@ -42,50 +40,46 @@ public class NarrativeRoomManager : MonoBehaviour
 
     public void StartNewRoom()
     {
-        ++roomCount;
+        ++StaticGameManager.roomCount;
+        StaticGameManager.IncrementVisits();
     }
 
     public void StartNewCycle()
     {
-        furthestRoom = Math.Max(furthestRoom, roomCount);
-        roomCount = 0;
-    }
-
-    public void StartNewNarrativePath()
-    {
-        furthestRoom = 0;
-        ++pathCount;
+        StaticGameManager.roomCount = 0;
+        StaticGameManager.IncrementVisits();
     }
 
     // If the current room and cycle count corresponds to a narrative room, spawn the room and return true.
     // Otherwise, do nothing and return false.
     public bool TrySpawnNarrativeRoom(Transform mapRoot)
     {
-        // O(N) search... surely we won't have more than like 1000 narrative rooms right *copium*
-        foreach (SingleNarrativeRoom room in narrativeRooms.rooms)
+        if (StaticGameManager.pathCount == 0)
         {
-            if (roomCount != room.roomCount || pathCount != room.pathCount)
+            // Ensures pathCount is always at least 1
+            // TODO delete this in final ver - this is a bandaid solution ONLY FOR EASE OF PLAYTESTING!!!
+            StaticGameManager.StartNewNarrativePath();
+        }
+
+        if (StaticGameManager.pathCount > narrativePaths.paths.Count)
+        {
+            return false;
+        }
+        // O(N) search... surely we won't have more than like 20 narrative rooms per path right...
+        foreach (SingleNarrativeRoom room in narrativePaths.paths[StaticGameManager.pathCount - 1].rooms)
+        {
+            if (StaticGameManager.roomCount != room.roomCount)
             {
                 continue;
             }
 
-            // assumes that there are only 3 types of narrative room: single time, alternate, and repeat
+            // assumes that there are only 2 types of narrative room: single time and repeat
 
-            if (furthestRoom < roomCount)
+            if (room.nodeType == SingleNarrativeRoom.NodeType.SingleTime &&
+                !StaticGameManager.VisitEquals(room.roomCount, room.visitCount))
             {
-                // we haven't seen this room yet -- singleTime and repeat rooms are ok, but alternate is not
-                if (room.nodeType == SingleNarrativeRoom.NodeType.Alternate)
-                {
-                    continue;
-                }
-            }
-            else
-            {
-                // we've seen this room already -- alternate and repeat are ok, but singleTime is not
-                if (room.nodeType == SingleNarrativeRoom.NodeType.SingleTime)
-                {
-                    continue;
-                }
+                // player has visited the current room either too few or too many times to trigger dialogue
+                continue;
             }
 
             roomObject = Instantiate(
@@ -110,6 +104,7 @@ public class NarrativeRoomManager : MonoBehaviour
             portal.SetActive(false);
             currentRoom = room;
             disableChestGeneration = room.disableChestGeneration;
+            needsEnemySpawn = room.enemyPrefabs.Count != 0;
             return true;
         }
         currentRoom = null;
@@ -121,6 +116,7 @@ public class NarrativeRoomManager : MonoBehaviour
     {
         if (currentRoom)
         {
+            needsEnemySpawn = false;
             EnemySpawnerScript.instance.SpawnCustomEnemies(currentRoom.enemyPrefabs, roomObject);
         }
     }
@@ -140,6 +136,63 @@ public class NarrativeRoomManager : MonoBehaviour
         {
             PlayerController.instance.DisablePlayerInput();
             runner.StartDialogue(currentRoom.postCombatDialogue);
+        }
+    }
+
+    public bool IsPointInsideCurrentRoom(Vector2 candidate, float radius = 0f)
+    {
+        if (roomObject == null) return false;
+        SpriteRenderer sr = roomObject.GetComponentInChildren<SpriteRenderer>();
+        if (sr == null) return false;
+        Bounds b = sr.bounds;
+        return candidate.x - radius >= b.min.x && candidate.x + radius <= b.max.x &&
+               candidate.y - radius >= b.min.y && candidate.y + radius <= b.max.y;
+    }
+
+    public void SkipButtonPressed()
+    {
+        if (runner.IsDialogueRunning)
+        {
+            runner.Stop();
+        }
+        else
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject go in enemies)
+            {
+                go.GetComponent<EnemyBase>().Die();
+            }
+
+            GameObject[] boss = GameObject.FindGameObjectsWithTag("Boss");
+            foreach (GameObject go in boss)
+            {
+                go.GetComponent<BossBehaviourBase>().Die();
+            }
+        }
+    }
+
+    public void OnDialogueEnded()
+    {
+        PortraitManager.instance.ClearPortrait();
+        PlayerController.FindScenePlayer().EnablePlayerInput();
+
+        if (needsEnemySpawn)
+        {
+            SpawnEnemies();
+        }
+        else
+        {
+            if (currentRoom.isScriptedDeath)
+            {
+                PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
+                return;
+            }
+            // Spawn the portal
+            // If this room has no enemies to spawn after dialogue OR if this room doesn't spawn a chest after enemies defeated
+            if (currentRoom.enemyPrefabs.Count == 0 || disableChestGeneration)
+            {
+                GameManager.instance.ClearCombatRoom();
+            }
         }
     }
 }

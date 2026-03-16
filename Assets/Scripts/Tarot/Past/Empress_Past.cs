@@ -18,7 +18,7 @@ public class Empress_Past : Past_TarotCard
 
     public static int GetDamageBonus()
     {
-        return (int)(currentHpBonus * PlayerController.instance.health +
+        return (int)(currentHpBonus * PlayerController.instance.GetHealth() +
             maxHpBonus * PlayerController.instance.playerAttributes.maxHitPoints);
     }
 

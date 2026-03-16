@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KnightofShields_script : EnemyBase
+public class KnightofShields_script : StandardEnemyBase
 {
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;

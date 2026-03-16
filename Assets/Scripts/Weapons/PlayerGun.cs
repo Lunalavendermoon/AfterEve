@@ -43,11 +43,17 @@ public class PlayerGun : MonoBehaviour
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0f;
             Vector2 dir = (mouseWorldPos - firingPoint.position).normalized;
-            float currentAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - (PlayerController.instance.playerAttributes.bullets - 1) * 5;
+            float baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float spread = 10f;
+            int bulletCount = PlayerController.instance.playerAttributes.bullets;
+
+            float startAngle = baseAngle - spread * (bulletCount - 1) / 2f;
             for (int i = 0; i < PlayerController.instance.playerAttributes.bullets; i++)
             {
+                float currentAngle = startAngle + spread * i;
                 GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread)) * firingPoint.rotation);
                 Projectile proj = projectile.GetComponent<Projectile>();
+                // TODO: Bullet bounce and Piercing need to be mutually exclusive. Currently they are not
                 proj.SetBulletBounce(PlayerController.instance.playerAttributes.bulletBounces);
 
                 // TODO: check if player is in spiritual vision. if so, change this to spiritual damage
@@ -67,8 +73,6 @@ public class PlayerGun : MonoBehaviour
                 {
                     proj.AddPhysicalDamage(Empress_Past.GetDamageBonus());
                 }
-
-                currentAngle -= 10;
             }
             
             lastTimeShot = Time.time;

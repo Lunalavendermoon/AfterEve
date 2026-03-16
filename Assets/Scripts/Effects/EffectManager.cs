@@ -35,7 +35,12 @@ public abstract class EffectManager : MonoBehaviour
     // ONLY FOR TESTING PURPOSES TO ADD A DUMMY EFFECT!!
     public void AddEffectTest(string effect)
     {
-        PlayerAttributes attr = PlayerController.instance.playerAttributes;
+        PlayerAttributes attr = PlayerController.FindScenePlayer()?.playerAttributes;
+        if (attr == null)
+        {
+            Debug.LogWarning("No scene player found; cannot apply test effect.");
+            return;
+        }
         switch (effect)
         {
             case "paralyze":
@@ -296,16 +301,24 @@ public abstract class EffectManager : MonoBehaviour
                     {
                         foreach (EffectInstance eff in buffList)
                         {
-                            applyEffect(eff.effect, eff.IsNextTrigger());
-                            eff.DecrementTriggerTime();
+                            bool shouldTrigger = eff.IsNextTrigger();
+                            applyEffect(eff.effect, shouldTrigger);
+                            if (shouldTrigger)
+                            {
+                                eff.DecrementTriggerTime();
+                            }
                         }
                     }
 
                     if (debuffs.TryGetValue(key, out SortedSet<EffectInstance> debuffSet))
                     {
                         EffectInstance debuff = debuffSet.Min;
-                        applyEffect(debuff.effect, debuff.IsNextTrigger());
-                        debuff.DecrementTriggerTime();
+                        bool shouldTrigger = debuff.IsNextTrigger();
+                        applyEffect(debuff.effect, shouldTrigger);
+                        if (shouldTrigger)
+                        {
+                            debuff.DecrementTriggerTime();
+                        }
                     }
                 }
                 else if (app == Effects.Application.MultiplyAdditive)

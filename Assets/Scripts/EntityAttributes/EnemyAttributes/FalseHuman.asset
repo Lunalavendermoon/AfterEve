@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac10b445ec25ac4c8e961716e1777ee, type: 3}
   m_Name: FalseHuman
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttributes
-  damage: 0
+  damage: 100
   damageDealtBonus: 0
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
   basicDefense: 50
   spiritualDefense: 20
   damageTakenBonus: 0
-  speed: 1
+  speed: 0.5
   isParalyzed: 0
   isConfused: 0
   resistance: 0

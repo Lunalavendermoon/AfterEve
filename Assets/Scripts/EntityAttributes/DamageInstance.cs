@@ -8,7 +8,8 @@ public class DamageInstance
         Player,
         Enemy,
         Effect,
-        Environment
+        Environment,
+        ScriptedDeath
     }
 
     public enum DamageType

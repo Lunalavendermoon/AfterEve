@@ -24,7 +24,7 @@ public class Empress_Future : Future_TarotCard
     public override void ApplyCard(TarotManager tarotManager)
     {
         PlayerController.OnHealed += OnPlayerHeal;
-        maxHp = PlayerController.instance.playerAttributes.maxHitPoints;
+        maxHp = PlayerController.instance.MaxHealth;
         GameManager.OnCombatRoomClear += OnRoomChange;
     }
 
@@ -47,7 +47,7 @@ public class Empress_Future : Future_TarotCard
 
     private void OnRoomChange()
     {
-        if (((double)PlayerController.instance.GetHealth()) / PlayerController.instance.playerAttributes.maxHitPoints >=
+        if (((double)PlayerController.instance.GetHealth()) / PlayerController.instance.MaxHealth >=
                                                                                                         roomGoalHPThreshold)
         {
             ++roomCount;

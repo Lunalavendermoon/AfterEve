@@ -11,7 +11,6 @@ public class PlayerAttributes : EntityAttributes
     public float reloadSpeed;
     public int bullets;
     public float bulletSpread;
-    public bool hasBulletBounce;
     public int bulletBounces;
     public float bulletBounceDmgDecrease;
     public int bulletPierces;

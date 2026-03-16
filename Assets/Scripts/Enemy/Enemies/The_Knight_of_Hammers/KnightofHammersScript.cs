@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-public class KnightofHammersScript : EnemyBase
+public class KnightofHammersScript : StandardEnemyBase
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float wanderRadius = 7.5f;

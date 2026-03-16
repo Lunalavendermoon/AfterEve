@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7836493745953856961}
   - component: {fileID: 4763554683736145993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TailLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1456529561631910878}
   - component: {fileID: 6837661511604618510}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TailRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7473372315665200059}
   - component: {fileID: 8320750468055344416}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShardRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1203777187115644166}
   - component: {fileID: 9144334503779785255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShardBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9171289236313735067}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1743627328600771698}
   - component: {fileID: 4791720724456355900}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chain3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3053719083706365209}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TailCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3742828816762237705}
   - component: {fileID: 4747922794299108701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chain2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7101519346963952959}
   - component: {fileID: 5505048929667863068}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TwoShard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4669884353132442396}
   - component: {fileID: 3408498969041890960}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3522857305297082523}
   - component: {fileID: 7215383104250985611}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chain1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -888,7 +888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5611176288926575772}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4785961254732752973}
   - component: {fileID: 8855671099644821157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShardLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1014,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5920469795018227277}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1047,7 +1047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5483737098935045183}
   - component: {fileID: 7278118264324561924}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShardCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1142,9 +1142,9 @@ GameObject:
   - component: {fileID: 458267433138376912}
   - component: {fileID: 4941029679880085349}
   - component: {fileID: 5471477081406513047}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mystic_Mirror
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1187,11 +1187,16 @@ MonoBehaviour:
   agent: {fileID: 4941029679880085349}
   destinationSetter: {fileID: 5471477081406513047}
   attackHitbox: {fileID: 0}
+  knockbackForceOnHit: 0
   isAttacking: 0
+  attackHitConnected: 0
   Drop: {fileID: 0}
   attack_timer: 1
   floatingTextPrefab: {fileID: 0}
   givesRewards: 1
+  rb: {fileID: 0}
+  lockRotation: 1
+  flipToFacePlayer: 1
   luck: 1
   elite: 0
 --- !u!61 &4283345422579347903
@@ -1320,7 +1325,7 @@ MonoBehaviour:
   repathRateCompatibility: NaN
   canSearchCompability: 0
   orientation: 1
-  enableRotation: 1
+  enableRotation: 0
   autoRepath:
     mode: 2
     interval: 0.5
@@ -1331,7 +1336,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
-  pickNextWaypointDist: 2
+  pickNextWaypointDist: 0.25
   endReachedDistance: 0.2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
@@ -1361,7 +1366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5580710019229249423}
   - component: {fileID: 8856227484505148049}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1454,7 +1459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7111191057441295885}
   - component: {fileID: 8616616932635559685}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmallShard
   m_TagString: Untagged
   m_Icon: {fileID: 0}

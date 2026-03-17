@@ -40,7 +40,7 @@ public abstract class StandardEnemyBase : EnemyBase
 
 
     //Initializing agent and its default state
-    private void Start()
+    public void Start()
     {
         agent = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();

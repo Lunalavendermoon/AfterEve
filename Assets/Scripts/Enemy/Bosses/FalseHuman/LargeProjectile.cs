@@ -25,6 +25,16 @@ public class LargeProjectile : StandardEnemyBase
         default_enemy_state = new Enemy_Chase();
         attack_timer = 0f;
     }
+
+    private new void Start()
+    {
+        base.Start(); // or StandardEnemyBase Start – gets agent, sets enableRotation/updateRotation = false
+        if (agent != null)
+        {
+            agent.enableRotation = true;
+            agent.updateRotation = true;
+        }
+    }
     public override void EnemyUpdate()
     {
         timer += Time.deltaTime;

@@ -235,14 +235,28 @@ public class FalseHuman : BossBehaviourBase
                 }
             }
         }
+        int totalCapsules = capsules.Count;
+        if (totalCapsules <= 0) totalCapsules = 1;
+        float damagePerCapsule = (float)EmotionWaveDamageToPlayer / totalCapsules;
+        int unactivatedCount = 0;
+        foreach (var cap in capsules)
+        {
+            if (cap != null && !cap.IsActivated)
+                unactivatedCount++;
+        }
+
         if (!playerShielded && PlayerController.instance != null)
         {
-            PlayerController.instance.TakeDamage(EmotionWaveDamageToPlayer, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
-            var effectManager = PlayerController.instance.gameObject.GetComponent<PlayerEffectManager>();
-            if (effectManager != null && PlayerController.instance.playerAttributes != null)
+            int damageToDeal = Mathf.RoundToInt(damagePerCapsule * unactivatedCount);
+            if (damageToDeal > 0)
             {
-                effectManager.AddEffect(new Blindness_Effect(EmotionDebuffDuration), PlayerController.instance.playerAttributes);
-                effectManager.AddEffect(new Weak_Effect(EmotionDebuffDuration, EmotionWeakPercent), PlayerController.instance.playerAttributes);
+                PlayerController.instance.TakeDamage(damageToDeal, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+                var effectManager = PlayerController.instance.gameObject.GetComponent<PlayerEffectManager>();
+                if (effectManager != null && PlayerController.instance.playerAttributes != null)
+                {
+                    effectManager.AddEffect(new Blindness_Effect(EmotionDebuffDuration), PlayerController.instance.playerAttributes);
+                    effectManager.AddEffect(new Weak_Effect(EmotionDebuffDuration, EmotionWeakPercent), PlayerController.instance.playerAttributes);
+                }
             }
         }
         foreach (var cap in capsules)

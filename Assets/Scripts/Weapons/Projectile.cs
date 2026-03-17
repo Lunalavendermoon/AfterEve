@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
 
     // After using up all bounces, destroy the bullet on the NEXT enemy hit
     private bool bounceQueueDestroyBullet = false;
-
+    public int SpiritualDamage => spiritualDamage;
     public void SetPhysicalDamage(int n)
     {
         physicalDamage = n;
@@ -131,6 +131,7 @@ public class Projectile : MonoBehaviour
             }
             if (spiritualDamage > 0)
             {
+                Debug.Log("Spiritual Damage Dealt");
                 enemy.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
             }
             if (enemy.GetComponent<EffectManager>())
@@ -145,17 +146,17 @@ public class Projectile : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-        else if (other.GetComponent<BossBehaviourBase>())
-        {
-            BossBehaviourBase boss = other.GetComponent<BossBehaviourBase>();
-            if (physicalDamage > 0)
-                boss.TakeDamage(physicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
-            if (spiritualDamage > 0)
-                boss.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
-            enemiesHit++;
-            if ((bulletPiercing > 0 && enemiesHit > bulletPiercing) || (bulletPiercing == 0 && bounceQueueDestroyBullet))
-                Destroy(this.gameObject);
-        }
+        //else if (other.GetComponent<BossBehaviourBase>())
+        //{
+        //    BossBehaviourBase boss = other.GetComponent<BossBehaviourBase>();
+        //    if (physicalDamage > 0)
+        //        boss.TakeDamage(physicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
+        //    if (spiritualDamage > 0)
+        //        boss.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
+        //    enemiesHit++;
+        //    if ((bulletPiercing > 0 && enemiesHit > bulletPiercing) || (bulletPiercing == 0 && bounceQueueDestroyBullet))
+        //        Destroy(this.gameObject);
+        //}
         else
         {
             if (bounceQueueDestroyBullet)

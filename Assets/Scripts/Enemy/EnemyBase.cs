@@ -143,4 +143,9 @@ public abstract class EnemyBase : MonoBehaviour
     {
 
     }
+
+    public virtual bool ShouldBlockEffect(Effects effect)
+    {
+        return false;
+    }
 }

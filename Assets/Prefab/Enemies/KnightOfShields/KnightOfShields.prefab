@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 5839309627099118830}
   - component: {fileID: 9057291392753763488}
   - component: {fileID: 2805890137714207626}
+  - component: {fileID: -8049228279361538334}
   m_Layer: 6
   m_Name: KnightOfShields
   m_TagString: Untagged
@@ -202,24 +203,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2448119f7238d92439ae309d8cdcb332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnightofShields_script
-  baseEnemyAttributes: {fileID: 0}
-  enemyAttributes: {fileID: 11400000, guid: ed4a3554f200ad44ca43d8c02233ca44, type: 2}
-  enemyEffectManager: {fileID: 0}
-  chest: {fileID: 0}
+  baseEnemyAttributes: {fileID: 11400000, guid: ed4a3554f200ad44ca43d8c02233ca44, type: 2}
+  enemyAttributes: {fileID: 0}
+  enemyEffectManager: {fileID: -8049228279361538334}
   spawner: {fileID: 0}
   health: 0
   speed: 0
   agent: {fileID: 9057291392753763488}
   destinationSetter: {fileID: 2805890137714207626}
+  floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
+  rb: {fileID: 6172759012048932825}
+  chest: {fileID: 0}
   attackHitbox: {fileID: 3385193953142855512}
   knockbackForceOnHit: 0
   isAttacking: 0
   attackHitConnected: 0
   Drop: {fileID: 0}
   attack_timer: 1
-  floatingTextPrefab: {fileID: 0}
   givesRewards: 1
-  rb: {fileID: 0}
   lockRotation: 1
   flipToFacePlayer: 1
   luck: 1
@@ -443,6 +444,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.AIDestinationSetter
   version: 1
   target: {fileID: 0}
+--- !u!114 &-8049228279361538334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710929130042634915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81eb346ca2dc4099bdbeba4de861b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
+  vfx: {fileID: 0}
+  enemy: {fileID: 2057499521550649777}
+  baseEnemyAttributes: {fileID: 11400000, guid: ed4a3554f200ad44ca43d8c02233ca44, type: 2}
+  effectEnemyAttributes: {fileID: 0}
 --- !u!1 &3385193953142855512
 GameObject:
   m_ObjectHideFlags: 0

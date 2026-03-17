@@ -270,4 +270,12 @@ public class FalseHuman : BossBehaviourBase
         }
         isAttacking = false;
     }
+
+    public override bool ShouldBlockEffect(Effects effect)
+    {
+        return effect.effectStat == Effects.Stat.Movement
+            || effect.effectStat == Effects.Stat.SpiritualVision
+            || effect.effectStat == Effects.Stat.Confused
+            || effect.effectStat == Effects.Stat.Knockback;
+    }
 }

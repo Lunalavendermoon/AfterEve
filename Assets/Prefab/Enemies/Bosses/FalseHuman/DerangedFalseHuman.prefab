@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 6359726622231637239}
   - component: {fileID: 6108361045990030215}
   - component: {fileID: 3411270614891509333}
+  - component: {fileID: 7344988139963792044}
   m_Layer: 6
   m_Name: DerangedFalseHuman
   m_TagString: Boss
@@ -142,14 +143,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FalseHuman
   baseEnemyAttributes: {fileID: 11400000, guid: 3641d2219caa8a249ac981cd76eaa2c9, type: 2}
   enemyAttributes: {fileID: 11400000, guid: 3641d2219caa8a249ac981cd76eaa2c9, type: 2}
-  enemyEffectManager: {fileID: 0}
+  enemyEffectManager: {fileID: 7344988139963792044}
   spawner: {fileID: 0}
   health: 0
   speed: 0
   agent: {fileID: 8035605514428021324}
   destinationSetter: {fileID: 6359726622231637239}
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
-  rb: {fileID: 0}
+  rb: {fileID: 3411270614891509333}
   attackHitbox: {fileID: 6278755747373785529}
   isAttacking: 0
   cooldown_time: 0
@@ -283,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.AIPath
   version: 5
-  radius: 0.5
+  radius: 0.75
   height: 2
   canMove: 1
   maxSpeed: 1
@@ -306,7 +307,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
-  pickNextWaypointDist: 2
+  pickNextWaypointDist: 1
   endReachedDistance: 0.2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
@@ -399,3 +400,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &7344988139963792044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439078935783777668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81eb346ca2dc4099bdbeba4de861b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
+  vfx: {fileID: 0}
+  enemy: {fileID: 3008216757946002452}
+  baseEnemyAttributes: {fileID: 11400000, guid: 3641d2219caa8a249ac981cd76eaa2c9, type: 2}
+  effectEnemyAttributes: {fileID: 0}

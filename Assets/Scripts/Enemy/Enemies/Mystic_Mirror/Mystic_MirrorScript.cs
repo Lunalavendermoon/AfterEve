@@ -96,6 +96,11 @@ public class Mystic_MirrorScript : StandardEnemyBase
 
     }
 
+    public override bool ShouldBlockEffect(Effects effect)
+    {
+        return effect.isDebuff;
+    }
+
 
 
 }

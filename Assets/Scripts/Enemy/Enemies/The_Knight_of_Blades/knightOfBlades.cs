@@ -1,13 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
-public class knightOfBlades : StandardEnemyBase
+public class knightOfBlades : StandardEnemyBase, IKnightWithWeakPoint
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashDuration = 1f;
+    private bool weakPointHitBySpiritualDamage;
+    public void NotifyWeakPointHitBySpiritual()
+    {
+        weakPointHitBySpiritualDamage = true;
+    }
+
+
     void Awake()
     {
         transform.rotation = Quaternion.identity;
@@ -65,5 +72,20 @@ public class knightOfBlades : StandardEnemyBase
         DisableAttack();
 
 
+    }
+
+
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    {
+        if (dmgType == DamageInstance.DamageType.Spiritual && weakPointHitBySpiritualDamage)
+        {
+            weakPointHitBySpiritualDamage = false;
+            if (enemyEffectManager != null)
+            {
+                enemyEffectManager.AddEffect(new Weak_Effect(3f, 0.5f), enemyAttributes);
+                enemyEffectManager.AddEffect(new Paralyze_Effect(3f), enemyAttributes);
+            }
+        }
+        base.TakeDamage(amount, dmgSource, dmgType);
     }
 }

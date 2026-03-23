@@ -4106,11 +4106,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   tilePrefabs:
-  - {fileID: 4015115286132107005, guid: f83024b414a82ad4a96231ceaa11e759, type: 3}
-  - {fileID: 4182450580660166591, guid: 08fb9f259c287e8459d5633f6c477656, type: 3}
   - {fileID: 300158988608683057, guid: 9585d0831e2815947a89b71469745c68, type: 3}
-  - {fileID: 5841042599744837450, guid: 525d1b0b13ebd124b89434f2f12856b1, type: 3}
-  - {fileID: 8791242281547902341, guid: 3d5774ba77a22c34584fad9937046b78, type: 3}
+  - {fileID: 5045135704098879763, guid: 1545fd4707cb4944eb5473744246b9bb, type: 3}
+  - {fileID: 7285951446171788470, guid: f19ef8e60a0564a4bad9b2465b9b557b, type: 3}
+  - {fileID: 488433544600488035, guid: 979614113bbac0d49b986910b6278964, type: 3}
   mapRoot: {fileID: 489417607}
   tileCount: 4
   spawnBehavior: {fileID: 1068506910}
@@ -4137,10 +4136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459d00d578be042c190829d9518c6ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NarrativeRoomManager
-  narrativeRooms: {fileID: 11400000, guid: 37786544a2d62484aad1613c23518489, type: 2}
+  narrativePaths: {fileID: 0}
   portal: {fileID: 2121234110}
   disableChestGeneration: 0
-  roomCount: 0
 --- !u!1 &834607460
 GameObject:
   m_ObjectHideFlags: 0
@@ -5280,6 +5278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnBehavior
   map: {fileID: 489417606}
   gm: {fileID: 828173322}
+  teleportPrompt: {fileID: 0}
 --- !u!114 &1068506914
 MonoBehaviour:
   m_ObjectHideFlags: 0

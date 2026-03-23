@@ -239,8 +239,8 @@ MonoBehaviour:
   referenceCollider: {fileID: 0}
   collisionParent: {fileID: 111338631974808376}
   yOffset: 0
-  isStatic: 1
-  angleCompensation: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &649514211022986757
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,8 +442,8 @@ MonoBehaviour:
   referenceCollider: {fileID: 0}
   collisionParent: {fileID: 3828149951656527757}
   yOffset: 0
-  isStatic: 1
-  angleCompensation: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &2211593663123887505
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,8 +645,8 @@ MonoBehaviour:
   referenceCollider: {fileID: 0}
   collisionParent: {fileID: 2558721514299510352}
   yOffset: 0
-  isStatic: 1
-  angleCompensation: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &2213710622036267349
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,8 +848,8 @@ MonoBehaviour:
   referenceCollider: {fileID: 0}
   collisionParent: {fileID: 4758570935175672152}
   yOffset: 0
-  isStatic: 1
-  angleCompensation: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &4498029307893169964
 GameObject:
   m_ObjectHideFlags: 0

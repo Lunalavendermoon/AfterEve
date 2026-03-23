@@ -108,6 +108,7 @@ MonoBehaviour:
   referenceCollider: {fileID: 0}
   collisionParent: {fileID: 6667332633227592609}
   yOffset: 0
+  sortingOrderBase: 1000
   isStatic: 0
   angleCompensation: 1
 --- !u!1 &4015115286132107005
@@ -377,8 +378,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1213030291
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d1ae32c336bddd9468855e0abf23abbc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

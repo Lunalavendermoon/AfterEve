@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 271989181958149635}
   - component: {fileID: 2020809651232662545}
   - component: {fileID: 5796715455104206319}
+  - component: {fileID: 4430485557434938520}
   m_Layer: 12
   m_Name: C_Wall_Right
   m_TagString: Untagged
@@ -262,6 +263,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.710238, y: 4.413453}
   m_EdgeRadius: 0
+--- !u!114 &4430485557434938520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346679434483527048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c32a8b9de4b14586d311f2c1f4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+  precision: 100
+  referenceCollider: {fileID: 271989181958149635}
+  collisionParent: {fileID: 0}
+  yOffset: 0
+  isStatic: 1
+  angleCompensation: 0
 --- !u!1 &6396262484904426827
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,8 +357,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1213030291
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: fba9733c361be6a4a8cc9e3fff6d0bd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -400,6 +419,7 @@ GameObject:
   - component: {fileID: 4721119968221133041}
   - component: {fileID: 3156623766710243660}
   - component: {fileID: 6055715671061908916}
+  - component: {fileID: 4581178790009529868}
   m_Layer: 12
   m_Name: C_Wall_Top
   m_TagString: Untagged
@@ -526,6 +546,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 18.751265, y: 2.1994686}
   m_EdgeRadius: 0
+--- !u!114 &4581178790009529868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526794785710748838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c32a8b9de4b14586d311f2c1f4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+  precision: 100
+  referenceCollider: {fileID: 0}
+  collisionParent: {fileID: 4721119968221133041}
+  yOffset: 0
+  isStatic: 1
+  angleCompensation: 0
 --- !u!1 &8819094820534164976
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +577,7 @@ GameObject:
   - component: {fileID: 1710790262423316342}
   - component: {fileID: 7386842382369663054}
   - component: {fileID: 7853587493806852627}
+  - component: {fileID: 6244423314851380196}
   m_Layer: 12
   m_Name: C_Wall_Left
   m_TagString: Untagged
@@ -757,6 +796,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.742877, y: 4.413453}
   m_EdgeRadius: 0
+--- !u!114 &6244423314851380196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819094820534164976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c32a8b9de4b14586d311f2c1f4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+  precision: 100
+  referenceCollider: {fileID: 0}
+  collisionParent: {fileID: 3396754262328219485}
+  yOffset: 0
+  isStatic: 1
+  angleCompensation: 0
 --- !u!1001 &6838503846318569026
 PrefabInstance:
   m_ObjectHideFlags: 0

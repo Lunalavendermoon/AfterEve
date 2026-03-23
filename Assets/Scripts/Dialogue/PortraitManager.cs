@@ -8,19 +8,13 @@ public class PortraitManager : MonoBehaviour
 {
     public List<PortraitEntry> portraits = new List<PortraitEntry>();
     public static PortraitManager instance;
+    public Image portraitContainer;
 
-    private Image portraitContainer;
     private Dictionary<string, Dictionary<string, Sprite>> portraitLookup;
 
     private void Awake()
     {
         if (instance == null) instance = this;
-
-        portraitContainer = GetComponent<Image>();
-        if (portraitContainer == null)
-        {
-            Debug.LogError("PortraitManager requires an Image component on the same GameObject.");
-        }   
 
         BuildLookup();
     }

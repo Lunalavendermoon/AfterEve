@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{f72358c4-8f4d-490e-afa6-8dda41f8442e}">
 		<property name="assetPath">
 			<value>Blob Attack_Ethan.wav</value>

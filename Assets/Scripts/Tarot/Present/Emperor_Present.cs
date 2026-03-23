@@ -7,6 +7,7 @@ public class Emperor_Present : Present_TarotCard
     int[] ammoCapaciityIncrease = {20, 30, 40, 50, 60};
     int[] basicDefenseIncrease = {50, 70, 90, 110, 130};
     float knockBackAmount = 0.1f;
+    string knockBackDisplay = "0.1";
     EffectManager effectManager = PlayerController.instance.gameObject.GetComponent<EffectManager>();
 
     public Emperor_Present(int q) : base(q)
@@ -52,9 +53,20 @@ public class Emperor_Present : Present_TarotCard
 
     protected override void GetLocalizedDesc()
     {
-        // TODO finish this
         base.GetLocalizedDesc();
-        desc.TableEntryReference = "FoolPresent";
-        desc.Arguments = new object[] { "temp", "temp" };
+
+        SetTableEntries("Emperor");
+        
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[] {
+            FormatPlusOnePercentage(fireRatePercent[level]),
+            ammoCapaciityIncrease[level],
+            basicDefenseIncrease[level],
+            knockBackDisplay
+        };
     }
 }

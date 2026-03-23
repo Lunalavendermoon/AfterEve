@@ -131,8 +131,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 40}
-  m_SizeDelta: {x: 0, y: 140}
+  m_AnchoredPosition: {x: 0, y: -15}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6995533905451453197
 CanvasRenderer:
@@ -397,14 +397,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8812081062233533210}
   - {fileID: 1117291063585361421}
+  - {fileID: 8812081062233533210}
   m_Father: {fileID: 6779206356963617677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.32700002, y: 1}
-  m_AnchoredPosition: {x: 25, y: -0.00024414062}
-  m_SizeDelta: {x: -50, y: 0}
+  m_AnchoredPosition: {x: 25, y: 62.499996}
+  m_SizeDelta: {x: -50, y: 125}
   m_Pivot: {x: 0.5, y: 0.49999997}
 --- !u!114 &1286362119369501372
 MonoBehaviour:
@@ -501,14 +501,6 @@ MonoBehaviour:
     sprites:
     - spriteName: Default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
-  - characterName: HunterNPC1
-    sprites:
-    - spriteName: Default
-      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
-  - characterName: HunterNPC2
-    sprites:
-    - spriteName: Default
-      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Tobias
     sprites:
     - spriteName: Default
@@ -517,7 +509,7 @@ MonoBehaviour:
     sprites:
     - spriteName: Default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
-  - characterName: Police
+  - characterName: PoliceNPC
     sprites:
     - spriteName: Default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
@@ -567,7 +559,7 @@ RectTransform:
   m_Father: {fileID: 4301796211867375428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.20600002, y: 0}
-  m_AnchorMax: {x: 0.7934792, y: 0.81000006}
+  m_AnchorMax: {x: 0.7934792, y: 0.786}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2171,7 +2163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 30, y: 45}
+  m_AnchoredPosition: {x: 37, y: 45}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &3197013099191501957
@@ -2382,8 +2374,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 8.5, y: 22.5}
+  m_SizeDelta: {x: 17, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6805645745433126967
 CanvasRenderer:

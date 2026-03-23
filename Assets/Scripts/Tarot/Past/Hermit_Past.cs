@@ -15,4 +15,22 @@ public class Hermit_Past : Past_TarotCard
     {
         PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new HermitPast_Effect());
     }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Hermit");
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[]
+        {
+            FormatPercentage(dmgBonusPerUnit),
+            spiritVisionBonus
+        };
+    }
 }

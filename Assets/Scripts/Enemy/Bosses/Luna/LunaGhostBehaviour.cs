@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class LunaGhostBehaviour : EnemyBase
+public class LunaGhostBehaviour : StandardEnemyBase
 {
 
     [SerializeField] private GameObject projectilePrefab;

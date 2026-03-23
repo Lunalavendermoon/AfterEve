@@ -4,24 +4,10 @@ using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 
-public abstract class BossBehaviourBase : MonoBehaviour
+public abstract class BossBehaviourBase : EnemyBase
 {
-    [Header("Attributes")]
-    public EnemyAttributes baseEnemyAttributes;
 
-    public EnemyAttributes enemyAttributes;
 
-    public EnemyEffectManager enemyEffectManager;
-
-    protected Rigidbody2D rb;
-    // Enemy attributes
-    public int health;
-    public float speed;
-
-    [Header("AI")]
-    //Pathfinding agent
-    public AIPath agent;
-    public AIDestinationSetter destinationSetter;
 
     //Helper variables
     public GameObject attackHitbox;
@@ -39,11 +25,9 @@ public abstract class BossBehaviourBase : MonoBehaviour
     public static event Action<DamageInstance, EnemyBase> OnEnemyDamageTaken;
 
     // event for enemy dying
-    public static event Action<DamageInstance, EnemyBase> OnEnemyDeath;
+    public static event Action OnBossDeath;
 
-    
 
-    public GameObject floatingTextPrefab;
 
     public float[] attackProbalities;
 
@@ -112,18 +96,9 @@ public abstract class BossBehaviourBase : MonoBehaviour
         isAttacking = false;
     }
 
-    protected void ShowFloatingText(int damageAfterReduction)
-    {
-        if (floatingTextPrefab != null)
-        {
-            Debug.Log("Showing floating text for damage: " + damageAfterReduction);
-            GameObject floatingText = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, transform);
-            floatingText.GetComponentInChildren<TextMeshPro>().text = damageAfterReduction.ToString();
 
-        }
-    }
 
-    public virtual void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
         int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
         health -= damageAfterReduction;
@@ -141,15 +116,16 @@ public abstract class BossBehaviourBase : MonoBehaviour
         }
     }
 
-    public virtual void Die()
+    public override void Die()
     {
         //EnemyItemDrops.ItemDrop(PlayerController.instance.playerAttributes.luck, elite, chest);
         //spawner.EnemyDie(this);
+        OnBossDeath?.Invoke();
         Destroy(gameObject);
     }
 
 
-    public virtual void Pathfinding(Transform target)
+    public override void Pathfinding(Transform target)
     {
         
         Debug.Log("Pathfinding start");

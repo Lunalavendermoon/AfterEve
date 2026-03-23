@@ -3693,7 +3693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9035796293173731193, guid: 2f62843c08f7c449fa39f2a638a86164, type: 3}
       propertyPath: yarnSpinnerNode
-      value: Act2_EveIntro_N1
+      value: Act2_EveIntro_P2N1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9839,38 +9839,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2087444493212792683, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.7934792
-      objectReference: {fileID: 0}
-    - target: {fileID: 2087444493212792683, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.786
-      objectReference: {fileID: 0}
-    - target: {fileID: 2087444493212792683, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.20600002
-      objectReference: {fileID: 0}
-    - target: {fileID: 2087444493212792683, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2087444493212792683, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2087444493212792683, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2087444493212792683, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3221774589681945951, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4468085360867249348, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9939,15 +9907,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue System
       objectReference: {fileID: 0}
-    - target: {fileID: 5631530237843888941, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6779206356963617677, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8860066405372902957, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}

@@ -34,4 +34,22 @@ public class Emperor_Past : Past_TarotCard
             effectManager.RemoveEffect(ei);
         }
     }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Emperor");
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[]
+        {
+            FormatPercentage(damageBonus),
+            defBonus
+        };
+    }
 }

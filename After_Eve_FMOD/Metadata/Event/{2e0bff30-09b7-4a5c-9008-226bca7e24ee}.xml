@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{2e0bff30-09b7-4a5c-9008-226bca7e24ee}">
 		<property name="name">
 			<value>BlobAttack</value>

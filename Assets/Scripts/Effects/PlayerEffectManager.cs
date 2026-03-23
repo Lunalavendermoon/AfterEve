@@ -153,12 +153,32 @@ public class PlayerEffectManager : EffectManager
 
     public override void ApplyEffects()
     {
-        effectPlayerAttributes = Instantiate(basePlayerAttributes);
+        if (effectPlayerAttributes == null)
+        {
+            effectPlayerAttributes = Instantiate(basePlayerAttributes);
+        }
+
+        CopyAttributes(basePlayerAttributes, effectPlayerAttributes);
+
         ApplyEffectsHelper((effect, increment) => { effect.ApplyPlayerEffect(effectPlayerAttributes, increment); });
-        PlayerController.instance.playerAttributes = effectPlayerAttributes;
+
+        if (PlayerController.instance != null)
+        {
+            PlayerController.instance.playerAttributes = effectPlayerAttributes;
+        }
 
         // just for testing, comment this out if needed
         // Debug.Log("Current Basic Defense: " + effectPlayerAttributes.basicDefense);
+    }
+
+    static void CopyAttributes(PlayerAttributes src, PlayerAttributes dst)
+    {
+        if (src == null || dst == null)
+        {
+            return;
+        }
+
+        JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(src), dst);
     }
 
     public void AddIcon(Effects.IconType type)

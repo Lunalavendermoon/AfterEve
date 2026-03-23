@@ -18,7 +18,25 @@ public class Empress_Past : Past_TarotCard
 
     public static int GetDamageBonus()
     {
-        return (int)(currentHpBonus * PlayerController.instance.health +
+        return (int)(currentHpBonus * PlayerController.instance.GetHealth() +
             maxHpBonus * PlayerController.instance.playerAttributes.maxHitPoints);
+    }
+
+    protected override void GetLocalizedDesc()
+    {
+        base.GetLocalizedDesc();
+        
+        SetTableEntries("Empress");
+
+        SetDescriptionValues();
+    }
+
+    protected override void SetDescriptionValues()
+    {
+        desc.Arguments = new object[]
+        {
+            FormatPercentage(currentHpBonus),
+            FormatPercentage(maxHpBonus)
+        };
     }
 }

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Strength_Reward : Future_Reward
 {
-    const float zoneDuration = 5f;
-    const float maxZoneDistance = 5f;
+    public const float zoneDuration = 5f;
+    public const float maxZoneDistance = 5f;
 
-    public Strength_Reward(Future_TarotCard card) : base(3, 5f, card)
+    public Strength_Reward(Future_TarotCard card) : base(Strength_Future.uses, Strength_Future.cd, card)
     {
     }
 

@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 557192555413732970}
   - component: {fileID: 1165655162143778}
   - component: {fileID: 734905843315420367}
+  - component: {fileID: 4874889281336383726}
   m_Layer: 12
   m_Name: E_Wall_Right
   m_TagString: Untagged
@@ -222,6 +223,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.0509005, y: 9.35343}
   m_EdgeRadius: 0
+--- !u!114 &4874889281336383726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372476797090518212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c32a8b9de4b14586d311f2c1f4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+  precision: 100
+  referenceCollider: {fileID: 0}
+  collisionParent: {fileID: 111338631974808376}
+  yOffset: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &649514211022986757
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +253,7 @@ GameObject:
   - component: {fileID: 3076415438825462575}
   - component: {fileID: 5501646727005212011}
   - component: {fileID: 2861391765011572822}
+  - component: {fileID: 7705138289078863933}
   m_Layer: 12
   m_Name: E_Wall_Top
   m_TagString: Untagged
@@ -406,6 +426,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.502685, y: 2.8258543}
   m_EdgeRadius: 0
+--- !u!114 &7705138289078863933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649514211022986757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c32a8b9de4b14586d311f2c1f4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+  precision: 100
+  referenceCollider: {fileID: 0}
+  collisionParent: {fileID: 3828149951656527757}
+  yOffset: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &2211593663123887505
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +456,7 @@ GameObject:
   - component: {fileID: 980607552304247008}
   - component: {fileID: 6408706270547529651}
   - component: {fileID: 2144540543664367976}
+  - component: {fileID: 752797172889171116}
   m_Layer: 12
   m_Name: E_Wall_Bottom
   m_TagString: Untagged
@@ -590,6 +629,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.6816292, y: 5.0619335}
   m_EdgeRadius: 0
+--- !u!114 &752797172889171116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2211593663123887505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c32a8b9de4b14586d311f2c1f4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+  precision: 100
+  referenceCollider: {fileID: 0}
+  collisionParent: {fileID: 2558721514299510352}
+  yOffset: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &2213710622036267349
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +659,7 @@ GameObject:
   - component: {fileID: 7977882606629020876}
   - component: {fileID: 3714209095997953508}
   - component: {fileID: 562722781410878479}
+  - component: {fileID: 5419462264535409682}
   m_Layer: 12
   m_Name: E_DestrWall
   m_TagString: Untagged
@@ -774,6 +832,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.1302319, y: 10.154175}
   m_EdgeRadius: 0
+--- !u!114 &5419462264535409682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2213710622036267349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c32a8b9de4b14586d311f2c1f4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
+  precision: 100
+  referenceCollider: {fileID: 0}
+  collisionParent: {fileID: 4758570935175672152}
+  yOffset: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &4498029307893169964
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,8 +926,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1213030291
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: ef81a3b8882165b469502d3fa8c98eee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

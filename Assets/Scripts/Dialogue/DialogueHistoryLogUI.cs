@@ -40,19 +40,19 @@ public class DialogueHistoryLogUI : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        HandleDialogueHistoryInput();
-    }
+    // private void Update()
+    // {
+    //     HandleDialogueHistoryInput();
+    // }
 
-    private void HandleDialogueHistoryInput()
-    {
-        if (PlayerController.instance.playerInput != null)
-        {
-            if (PlayerController.instance.playerInput.Player.ToggleDialogueLog.triggered)
-                DialogueLogDisplay();
-        }
-    }
+    // private void HandleDialogueHistoryInput()
+    // {
+    //     if (PlayerController.instance.playerInput != null)
+    //     {
+    //         if (PlayerController.instance.playerInput.Player.ToggleDialogueLog.triggered)
+    //             DialogueLogDisplay();
+    //     }
+    // }
 
     public void DialogueLogDisplay()
     {

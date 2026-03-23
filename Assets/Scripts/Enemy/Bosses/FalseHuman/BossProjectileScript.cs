@@ -24,7 +24,7 @@ public class BossProjectileScript : MonoBehaviour
     private float nextPositionYCorrectionAbsolute;
     private float nextPositionXCorrectionAbsolute;
 
-
+    private const int SpiritualDamageAmount = 30;
     private void Start()
     {
         trajectoryStartPoint = transform.position;
@@ -35,11 +35,16 @@ public class BossProjectileScript : MonoBehaviour
     {
 
 
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         UpdateProjectilePosition();
-
-        //Debug.Log(Vector3.Distance(transform.position, target.transform.position));
         if (Vector3.Distance(transform.position, target.transform.position) < distanceToTargetToDestroyProjectile)
         {
+            if (PlayerController.instance != null)
+                PlayerController.instance.TakeDamage(SpiritualDamageAmount, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
             Destroy(target);
             Destroy(gameObject);
         }
@@ -48,46 +53,37 @@ public class BossProjectileScript : MonoBehaviour
 
     private void UpdateProjectilePosition()
     {
+        if (target == null) return;
         trajectoryRange = target.transform.position - trajectoryStartPoint;
-
-        //Debug.DrawLine(transform.position, target.transform.position, Color.red);
-        if (Mathf.Abs(trajectoryRange.normalized.x) < Mathf.Abs(trajectoryRange.normalized.y))
+        float rangeX = Mathf.Abs(trajectoryRange.x);
+        float rangeY = Mathf.Abs(trajectoryRange.y);
+        if (rangeX < 0.001f && rangeY < 0.001f)
         {
-            // Projectile will be curved on the X axis
-
-
-            if (trajectoryRange.y < 0)
-            {
-                // Target is located under shooter
-                moveSpeed = -moveSpeed;
-            }
-
-
-            UpdatePositionWithXCurve();
-
-
+            transform.position = target.transform.position;
+            return;
+        }
+        if (rangeX >= rangeY)
+        {
+            if (trajectoryRange.x < 0) moveSpeed = -moveSpeed;
+            UpdatePositionWithYCurve();
         }
         else
         {
-            // Projectile will be curved on the Y axis
-
-
-            if (trajectoryRange.x < 0)
-            {
-                // Target is located behind shooter
-                moveSpeed = -moveSpeed;
-            }
-
-
-            UpdatePositionWithYCurve();
+            if (trajectoryRange.y < 0) moveSpeed = -moveSpeed;
+            UpdatePositionWithXCurve();
         }
-
 
     }
 
 
     private void UpdatePositionWithXCurve()
     {
+
+        if (Mathf.Abs(trajectoryRange.y) < 0.001f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Mathf.Abs(moveSpeed) * Time.deltaTime);
+            return;
+        }
         float nextPositionY = transform.position.y + moveSpeed * Time.deltaTime;
         float nextPositionYNormalized = (nextPositionY - trajectoryStartPoint.y) / trajectoryRange.y;
 
@@ -130,7 +126,11 @@ public class BossProjectileScript : MonoBehaviour
 
     private void UpdatePositionWithYCurve()
     {
-
+        if (Mathf.Abs(trajectoryRange.x) < 0.001f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Mathf.Abs(moveSpeed) * Time.deltaTime);
+            return;
+        }
 
         float nextPositionX = transform.position.x + moveSpeed * Time.deltaTime;
         float nextPositionXNormalized = (nextPositionX - trajectoryStartPoint.x) / trajectoryRange.x;

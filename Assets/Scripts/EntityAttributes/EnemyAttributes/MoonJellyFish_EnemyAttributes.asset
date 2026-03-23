@@ -17,7 +17,7 @@ MonoBehaviour:
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0
   maxHitPoints: 200
-  hitPoints: 200
+  currentHitPoints: 0
   basicDefense: 2
   spiritualDefense: 1
   damageTakenBonus: 0
@@ -27,8 +27,9 @@ MonoBehaviour:
   resistance: 0
   isBlind: 0
   hasKnockback: 0
+  enemyType: 0
   damageType: 0
   attackRadius: 2
   attackRate: 0.5
   weight: 1
-  detection_radius: 3
+  detection_radius: 10

@@ -27,7 +27,7 @@ public class Regeneration_Effect : Multiplier_Effects
             int regenAmount = (int)(playerAttributes.maxHitPoints * effectRate);
             PlayerController.instance.Heal(regenAmount);
 
-            Debug.Log("Regenerated amount: " + regenAmount);
+            // Debug.Log("Regenerated amount: " + regenAmount);
             initialApplication = false;
         }
     }
@@ -39,7 +39,7 @@ public class Regeneration_Effect : Multiplier_Effects
             int regenAmount = (int)(enemyAttributes.maxHitPoints * effectRate);
             enemy.Heal(regenAmount);
 
-            Debug.Log("Regenerated amount: " + regenAmount);
+            // Debug.Log("Regenerated amount: " + regenAmount);
             initialApplication = false;
         }
     }

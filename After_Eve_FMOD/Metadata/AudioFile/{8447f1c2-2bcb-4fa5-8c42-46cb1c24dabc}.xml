@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
+<objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{8447f1c2-2bcb-4fa5-8c42-46cb1c24dabc}">
 		<property name="assetPath">
 			<value>enemy damage_01.wav</value>

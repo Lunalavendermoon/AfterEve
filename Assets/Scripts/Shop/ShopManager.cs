@@ -23,6 +23,8 @@ public class ShopManager : MonoBehaviour
 
     int refreshCount;
 
+    bool firstInteraction = true;
+
     int[] normalPrice = new int[] { 7, 9, 13 };
     int[] discountPrice = new int[] { 2, 3, 5 };
     int[] refreshNormal = new int[] { 2, 2, 3 };
@@ -30,6 +32,8 @@ public class ShopManager : MonoBehaviour
 
     int[] baseRefreshPrice = new int[] { 3, 4, 4 };
     int[] togglePrice = new int[] { 1, 2, 3 };
+
+    bool openedFromStory;
 
     void Awake()
     {
@@ -39,7 +43,6 @@ public class ShopManager : MonoBehaviour
     void Start()
     {
         shopUi.SetActive(false);
-        PlayerController.OnCoinsChange += OnCoinsChange;
     }
 
     public void DisableShopUI()
@@ -47,25 +50,47 @@ public class ShopManager : MonoBehaviour
         ShowShop(false);
     }
 
-    public void ShowShop(bool enabled, bool firstTime = false)
+    public void ShowShop(bool enabled)
+    {
+        SetShopEnabled(enabled, false);
+    }
+
+    public void SetShopEnabled(bool enabled, bool fromStory)
     {
         if (enabled)
         {
-            PlayerController.instance.DisablePlayerInput();
+            openedFromStory = fromStory;
+            if (!fromStory)
+            {
+                PlayerController.instance.DisablePlayerInput();
+            }
+            PlayerController.OnCoinsChange += OnCoinsChange;
         }
         else
         {
-            PlayerController.instance.EnablePlayerInput();
+            if (!openedFromStory)
+            {
+                // Don't re-enable player input if shop was opened from yarn
+                // NarrativeRoomManager will re-enable input once the time is right :)
+                PlayerController.instance.EnablePlayerInput();
+            }
+            PlayerController.OnCoinsChange -= OnCoinsChange;
         }
 
         shopUi.SetActive(enabled);
 
-        if (firstTime)
+        if (firstInteraction)
         {
+            firstInteraction = false;
             refreshCount = -1;
             shopStock.Clear();
             RefreshStock();
         }
+    }
+
+    public bool ShopIsClosed()
+    {
+        return !shopUi.activeSelf;
     }
 
     public void RefreshStock()
@@ -124,7 +149,7 @@ public class ShopManager : MonoBehaviour
 
     int GetIndexFromRoomCount()
     {
-        int roomCount = NarrativeRoomManager.instance.roomCount;
+        int roomCount = StaticGameManager.roomCount;
         if (roomCount <= 3)
         {
             return 0;

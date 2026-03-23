@@ -65,6 +65,11 @@ public class PlayerVFXManager : MonoBehaviour
 
     //luck
     [SerializeField] private Slider luckSlider;
+
+    void Awake()
+    {
+        vfxStates = new bool[effects.Length];
+    }
     
     void Start()
     {
@@ -81,8 +86,6 @@ public class PlayerVFXManager : MonoBehaviour
         blessAuraF = effects[4].transform.Find("AuraF").GetComponent<MeshRenderer>().material;
         blessAuraB = effects[4].transform.Find("AuraB").GetComponent<MeshRenderer>().material;
         blessAuraOff = blessAuraF.GetFloat("_Y_Offset");
-
-        vfxStates = new bool[effects.Length];
 
         foreach (GameObject obj in effects)
         {

@@ -37,9 +37,9 @@ public class Burn_Effect : Flat_Effects
     {
         if (increment)
         {
-            PlayerController.instance.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical);
+            PlayerController.FindScenePlayer()?.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical);
 
-            Debug.Log("Burn amount: " + effectRate);
+            // Debug.Log("Burn amount: " + effectRate);
             initialApplication = false;
         }
     }
@@ -50,7 +50,7 @@ public class Burn_Effect : Flat_Effects
         {
             enemy.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical);
 
-            Debug.Log("Burn amount: " + effectRate);
+            // Debug.Log("Burn amount: " + effectRate);
             initialApplication = false;
         }
     }

@@ -16,12 +16,79 @@ MonoBehaviour:
     m_Code: en-US
   m_SharedData: {fileID: 11400000, guid: d2c78746088994412b34dc724775ce77, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 1636043096540315729
   m_TableData:
   - m_Id: 74011631616
     m_Localized: Obtain a total of {0}/{1} cards.
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 1636043096540315729
+  - m_Id: 979010187157504
+    m_Localized: Use SKILLS {0}/{1} times in one room, OR Use SKILLS {2}/{3} times.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315729
+  - m_Id: 979108241596416
+    m_Localized: Kill {0}/{1} enemies using SPIRITUAL DAMAGE, OR Kill {2}/{3} debuffed
+      enemies.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315729
+  - m_Id: 979176587780096
+    m_Localized: Heal a total of {0}/{1}% MAX HP, OR End {2}/{3} combat rooms at
+      {4}% or more health.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315729
+  - m_Id: 979234745999360
+    m_Localized: Receive {0}/{1} attacks in one combat room, OR Take {2}/{3} enemy
+      DAMAGE before reduction.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315729
+  - m_Id: 979290316333056
+    m_Localized: Use spiritual vision for more than {0}/{1} seconds in total.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315729
+  - m_Id: 979334159392768
+    m_Localized: Spend {0}/{1} COINS at a merchant.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315729
+  - m_Id: 979378107310080
+    m_Localized: Travel a total of {0}/{1} units distance, OR Dash a total of {2}/{3}
+      times.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315729
+  - m_Id: 979438899552256
+    m_Localized: Have a total of {0}/{1} different debuffs or {2}/{1} different buffs
+      at the same time.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315729
+  - m_Id: 979492351762432
+    m_Localized: Kill {0}/{1} enemies by hitting their weak point.
+    m_Metadata:
+      m_Items:
+      - rid: 1636043096540315729
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1636043096540315729
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 74011631616
+        - id: 979010187157504
+        - id: 979108241596416
+        - id: 979492351762432
+        - id: 979438899552256
+        - id: 979378107310080
+        - id: 979334159392768
+        - id: 979290316333056
+        - id: 979234745999360
+        - id: 979176587780096

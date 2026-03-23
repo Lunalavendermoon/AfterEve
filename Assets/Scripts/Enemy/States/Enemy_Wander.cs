@@ -21,14 +21,14 @@ public class Enemy_Wander :  IEnemyStates
     }
 
 
-    public void EnterState(EnemyBase enemy)
+    public void EnterState(StandardEnemyBase   enemy)
     {
         wanderTimer = 0f;
         getRandomWanderPoint(enemy);
 
     }
     
-    public void UpdateState(EnemyBase enemy)
+    public void UpdateState(StandardEnemyBase enemy)
     {
         if (enemy.enemyAttributes.isParalyzed)
         {
@@ -54,12 +54,12 @@ public class Enemy_Wander :  IEnemyStates
 
 
     }
-    public void ExitState(EnemyBase enemy)
+    public void ExitState(StandardEnemyBase enemy)
     {
         
     }
 
-    void getRandomWanderPoint(EnemyBase enemy)
+    void getRandomWanderPoint(StandardEnemyBase enemy)
     {
         Vector3 randomDirection = Random.insideUnitSphere * wanderRadius;
         randomDirection += enemy.transform.position;

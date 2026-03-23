@@ -16,13 +16,13 @@ public class Enemy_Idle :  IEnemyStates
     }
 
 
-    public void EnterState(EnemyBase enemy)
+    public void EnterState(StandardEnemyBase enemy)
     {
         elapsedTime = 0f;
         enemy.speed = 0;
 
     }
-    public void UpdateState(EnemyBase enemy)
+    public void UpdateState(StandardEnemyBase enemy)
     {
         if (enemy.enemyAttributes.isParalyzed)
         {
@@ -42,7 +42,7 @@ public class Enemy_Idle :  IEnemyStates
 
 
     }
-    public void ExitState(EnemyBase enemy)
+    public void ExitState(StandardEnemyBase enemy)
     {
         enemy.speed = enemy.enemyAttributes.speed;
     }

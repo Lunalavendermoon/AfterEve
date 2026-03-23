@@ -32,10 +32,9 @@ MonoBehaviour:
   reloadSpeed: 2
   bullets: 1
   bulletSpread: 0
-  hasBulletBounce: 1
-  bulletBounces: 3
-  bulletBounceDmgDecrease: 0
-  bulletPierces: 1
+  bulletBounces: 0
+  bulletBounceDmgDecrease: 0.3
+  bulletPierces: 0
   enemiesChained: 0
   chainRadius: 0
   chainTime: 0
@@ -50,7 +49,7 @@ MonoBehaviour:
   dashCooldown: 1
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1
-  isEnlightened: 0
+  isEnlightened: 1
   luck: 1
   trustworthiness: 1
   magicianPastBonusCoin: 0

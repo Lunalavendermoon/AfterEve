@@ -18,20 +18,23 @@ public class InventoryUIScript : MonoBehaviour
     public Image sidebarImage;
     public TMP_Text sidebarDesc;
 
+    public Color futureTextColor;
+    public Color defaultTextColor;
+
     // 0 = past, 1 = present, 2 = future
     int state;
 
-    void OnEnable()
-    {
-        PlayerController.instance.playerInput.Player.ToggleInventory.performed += OnInventoryToggled;
-        PlayerController.instance.playerInput.Player.ExitInventory.performed += OnInventoryExited;
-    }
+    // void OnEnable()
+    // {
+    //     PlayerController.instance.playerInput.Player.ToggleInventory.performed += OnInventoryToggled;
+    //     PlayerController.instance.playerInput.Player.ExitInventory.performed += OnInventoryExited;
+    // }
 
-    void OnDisable()
-    {
-        PlayerController.instance.playerInput.Player.ToggleInventory.performed -= OnInventoryToggled;
-        PlayerController.instance.playerInput.Player.ExitInventory.performed -= OnInventoryExited;
-    }
+    // void OnDisable()
+    // {
+    //     PlayerController.instance.playerInput.Player.ToggleInventory.performed -= OnInventoryToggled;
+    //     PlayerController.instance.playerInput.Player.ExitInventory.performed -= OnInventoryExited;
+    // }
 
     private void OnInventoryToggled(InputAction.CallbackContext context)
     {
@@ -48,6 +51,9 @@ public class InventoryUIScript : MonoBehaviour
         SetInventoryDisplay(false);
 
         state = 1;
+
+        PlayerController.instance.playerInput.Player.ToggleInventory.performed += OnInventoryToggled;
+        PlayerController.instance.playerInput.Player.ExitInventory.performed += OnInventoryExited;
     }
 
     public void SetInventoryDisplay(bool enabled)
@@ -132,10 +138,19 @@ public class InventoryUIScript : MonoBehaviour
         sidebarImage.enabled = true;
         sidebarImage.sprite = cardSprite;
         sidebarDesc.text = desc;
+        if (state == 2)
+        {
+            sidebarDesc.color = futureTextColor;
+        }
+        else
+        {
+            sidebarDesc.color = defaultTextColor;
+        }
     }
 
     public void SetEmptySidebar()
     {
         sidebarImage.enabled = false;
+        sidebarDesc.text = "";
     }
 }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
+  m_Name: Loop2Node6_Alt
+  m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
+  nodeType: 0
+  roomCount: 6
+  visitCount: 2
+  roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
+  itemPrefab: {fileID: 0}
+  enemyPrefabs:
+  - {fileID: 1710929130042634915, guid: eda3c9b54afea3d42b2f6dc9073f56ef, type: 3}
+  - {fileID: 8214233007585310572, guid: bf05398b7b92347478de14ef1f262821, type: 3}
+  - {fileID: 1710929130042634915, guid: eda3c9b54afea3d42b2f6dc9073f56ef, type: 3}
+  disableChestGeneration: 0
+  onSpawnDialogue: Act2_PoliceContact_PreCombat_P2N6_Alt
+  postCombatDialogue: Act2_PoliceContact_PostCombat_P2N6_Alt
+  isScriptedDeath: 0

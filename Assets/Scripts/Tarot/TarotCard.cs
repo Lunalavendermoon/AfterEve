@@ -85,7 +85,8 @@ public abstract class TarotCard
         bool future = UnityEngine.Random.Range(0, 2) == 0;
 
         Array values = Enum.GetValues(typeof(Arcana));
-        int randomIndex = UnityEngine.Random.Range(0, values.Length);
+        // int randomIndex = UnityEngine.Random.Range(0, values.Length);
+        int randomIndex = UnityEngine.Random.Range(0, 10); // FOR TESTING - only generate first 10 card types
 
         return ((Arcana)values.GetValue(randomIndex), future);
     }
@@ -95,7 +96,9 @@ public abstract class TarotCard
         // TODO - override this for each tarot card
     }
 
-    public string GetDescription()
+    protected abstract void SetTableEntries(string cardName);
+
+    public virtual string GetDescription()
     {
         return desc.GetLocalizedString();
     }
@@ -108,5 +111,15 @@ public abstract class TarotCard
     public static int FormatPlusOnePercentage(float amount)
     {
         return Mathf.RoundToInt(amount * 100 - 100);
+    }
+
+    // public static int FormatDecreasePercentage(float amount)
+    // {
+    //     return Mathf.RoundToInt(100 - amount * 100);
+    // }
+
+    public static int Rnd(float amount)
+    {
+        return Mathf.RoundToInt(amount);
     }
 }

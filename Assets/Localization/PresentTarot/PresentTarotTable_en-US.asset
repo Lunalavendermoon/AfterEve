@@ -41,9 +41,9 @@ MonoBehaviour:
       m_Items:
       - rid: 1636043013058461923
   - m_Id: 2032464355647488
-    m_Localized: Attacks from weapons have a {0}% chance to heal {1}% of player's
-      MAX HP on hit. If at full HP, overflow healing is added as bonus damage for
-      next shot (max once per {2} second).
+    m_Localized: Attacks from weapons have a {0}% chance to heal {1}% MAX HP on hit.
+      If at full HP, overflow healing is added as bonus damage for next shot (max
+      once per {2} second).
     m_Metadata:
       m_Items:
       - rid: 1636043013058461923

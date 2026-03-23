@@ -38,8 +38,8 @@ MonoBehaviour:
       - rid: 1636043096540315723
   - m_Id: 1588868407296
     m_Localized: "<b>Reward SKILL:</b> Generate a zone of radius {0} for {1} seconds.
-      If the player is inside the zone they are ENLIGHTENED, enemies inside the zone
-      are {2}% CURSED. \nCD: {3}s \nUses: {4}"
+      Apply ENLIGHTENED to Cyrus while inside the zone, and apply {2}% CURSED to
+      enemies inside the zone.\nCD: {3}s \nUses: {4}"
     m_Metadata:
       m_Items:
       - rid: 1636043096540315723

@@ -485,6 +485,10 @@ MonoBehaviour:
     sprites:
     - spriteName: Default
       sprite: {fileID: -792006806, guid: 4979fb13d8d490745ba1ef7dc00fdbd6, type: 3}
+  - characterName: Judge
+    sprites:
+    - spriteName: Default
+      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Shopkeeper
     sprites:
     - spriteName: Default

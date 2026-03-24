@@ -65,7 +65,7 @@ Saul: Who’s training him?
 Eve: Me. I’m going to be his dispatcher.
  
 <<set_portrait YarnManager Tobias>>
-Tobias: Not with that equipment, You know memory monsters have been spreading like wildfire through the outskirts lately.
+Tobias: Not with that equipment. You know memory monsters have been spreading like wildfire through the outskirts lately.
 
 <<set_portrait YarnManager Eve>>
 Eve: Yeah, yeah, we’re headed to the shop.
@@ -146,8 +146,9 @@ Eve: Ooh, eyeing the big bucks already! But shouldn’t we leave that to the MPS
 Saul: Hey, Eve! And, uh, new guy. Don’t think I’ve seen you around before.
 
 <<set_portrait YarnManager Eve>>
-Eve: This is Cyrus…
+Eve: This is Cyrus...
 
+<<clear_portrait YarnManager>>
 : [i]Moments later...[/i]
 
 <<set_portrait YarnManager Eve>>
@@ -156,8 +157,9 @@ Eve: Thanks! See you all later!
 : [i]Eve leaves.[/i] TODO
 
 <<set_portrait YarnManager Saul>>
-Saul: Man, of all the days for my stuff to break down... And they say the Ministry’s started docking pay if you’re late.
+Saul: [i]Man[/i], of all the days for my stuff to break down... And they say the Ministry’s started docking pay if you’re late.
 
+<<clear_portrait YarnManager>>
 : [i]Some time later...[/i]
 
 <<set_portrait YarnManager Cyrus>>
@@ -227,13 +229,13 @@ Fate Exchanger: Your time is near, young one.
 
 <<set_portrait YarnManager Ava>>
 Ava: Eve...
-Ava: Eve did this…
-Ava: She’s one of them…
+Ava: Eve did this...
+Ava: She’s one of them...
 
 Return back to present. (TODO)
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: This…this isn’t real.
+Cyrus: This...this isn’t real.
 Cyrus: I don’t believe it.
 
 <<set_portrait YarnManager FateExchanger>>
@@ -248,22 +250,22 @@ title: Act3_PreCombat_Boss
 Eve: Cyrus?
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: …
+Cyrus: ...
 
 <<set_portrait YarnManager Eve>>
 Eve: Is something wrong?
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Eve, all this time we’ve spent in the outskirts, and I’ve never seen the monsters attack you.
+Cyrus: Eve, all this time we’ve spent in the outskirts, and I’ve never seen the monsters attack [i]you[/i].
 
 <<set_portrait YarnManager Eve>>
-Eve: …What?
+Eve: ...What?
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Be honest with me. Are you a false human?
 
 <<set_portrait YarnManager Eve>>
-Eve: I-I didn’t…Why would you think that?
+Eve: I-I didn’t...Why would you think that?
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Eve-
@@ -283,14 +285,14 @@ Cyrus: Eve, I know what happened to your sister.
 Eve, overwhelmed, turns to the wall. (TODO)
 
 <<set_portrait YarnManager Eve>>
-Eve: …
-Eve: She…you don’t understand.
+Eve: ...
+Eve: She...you don’t understand.
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Then help me understand.
 
 <<set_portrait YarnManager Eve>>
-Eve: Cyrus, what does justice mean to you? 
+Eve: Cyrus, what does justice mean to you?
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: It means protecting the good in this world.

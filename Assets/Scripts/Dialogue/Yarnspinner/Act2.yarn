@@ -8,9 +8,6 @@ Eve: Ah! Sorry, I didn’t mean to scare you.
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]It's really repeating...[/i]
 Cyrus: [i]If I want to stop the Assimilation, I need to know more about this world.[/i]
-
-<<spawn_enemies YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
@@ -96,9 +93,6 @@ Tobias: [i]“And a new dawn rises”.[/i] Use that code if you ever run into so
 
 <<set_portrait YarnManager Saul>>
 Saul: Alright, let’s get moving. We’ve got a hunt to finish.
-
-<<spawn_enemies YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
@@ -171,9 +165,9 @@ title: Act2_ShopBanter_Family
         Cyrus: Oh...I’m sorry.
         <<set_portrait YarnManager Eve>>
         Eve: Yeah, I am too.
-        <<jump Act2_ShopBanter_N5>>
+        <<jump Act2_ShopBanter_End>>
     -> Change the topic
-        <<jump Act2_ShopBanter_N5>>
+        <<jump Act2_ShopBanter_End>>
 ===
 
 
@@ -192,7 +186,7 @@ title: Act2_ShopBanter_Dispatcher
     <<set_portrait YarnManager Cyrus>>
     Cyrus: Won’t argue with that.
 
-<<jump Act2_ShopBanter_N5>>
+<<jump Act2_ShopBanter_End>>
 ===
 
 
@@ -210,7 +204,7 @@ title: Act2_ShopBanter_Prism
     <<set_portrait YarnManager Eve>>
     Eve: ...I think the one thing this city needs right now is a united front.
 
-<<jump Act2_ShopBanter_N5>>
+<<jump Act2_ShopBanter_End>>
 ===
 
 
@@ -236,7 +230,7 @@ title: Act2_ShopBanter_Eve
     <<set_portrait YarnManager Eve>>
     Eve: Huh? It’s not like you were just born today.
 
-    <<jump Act2_ShopBanter_N5>>
+<<jump Act2_ShopBanter_End>>
 ===
 
 
@@ -251,9 +245,6 @@ Cyrus: Deeper in the outskirts?
 
 <<set_portrait YarnManager Eve>>
 Eve: Good guess. Let’s head out.
-
-<<complete_room YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
@@ -304,8 +295,6 @@ Cyrus: Look, I know it sounds crazy, but if I’m wrong, you lose an hour. If I�
 : [i]signal cut[/i] 
 
 Cyrus: [i]How am I supposed to warn people about something that hasn’t happened yet?[/i]
-
-<<jump Back_To_Game>>
 ===
 
 
@@ -329,7 +318,6 @@ Cyrus: Hello?
 
 Cyrus: And a new dawn rises.
 Cyrus: [i]...This is starting to feel futile, but better safe than sorry.[/i]
-<<jump Back_To_Game>>
 ===
 
 
@@ -363,9 +351,6 @@ Fate Exchanger: Just call me The Fate Exchanger. A Fate for a Fate, a simple tra
     Cyrus: No, thanks.
     <<set_portrait YarnManager FateExchanger>>
     Fate Exchanger: As you wish.
-
-<<complete_room YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
@@ -406,15 +391,11 @@ Cyrus: I’m sorry, Eve.
 <<set_portrait YarnManager Eve>>
 Eve: Hey! You-
 Eve: ...And he’s fast.
-
-<<spawn_enemies YarnManager>>
-<<jump Back_To_Game>>
 ===
 
 
 title: Act2_PreCombat_Repeat_P2End
 ---
-
 <<set_portrait YarnManager FalseHumanBoss>>
 Monster: RAHHHHHH-!
 
@@ -426,7 +407,6 @@ Cyrus: Everyone! Evacuate now!
 
 title: Act2_PostCombat_P2End
 ---
-
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]No matter how much I prepare, I still can’t beat it![/i]
 
@@ -509,4 +489,3 @@ Luna: Cyrus, is it really you??
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Not...again...
 ===
-

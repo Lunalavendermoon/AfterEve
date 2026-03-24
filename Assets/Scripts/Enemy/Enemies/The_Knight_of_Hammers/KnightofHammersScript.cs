@@ -1,99 +1,113 @@
 ﻿using UnityEngine;
 using System.Collections;
-public class KnightofHammersScript : StandardEnemyBase
+public class KnightofHammersScript : StandardEnemyBase, IKnightWithWeakPoint
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;
-    public LayerMask playerLayer;
-    [SerializeField] int jumpCount = 3;                   // Number of jumps
-    [SerializeField] float jumpDistance = 3f;             // Max distance per jump
-    [SerializeField] float jumpDuration = 1f;           // Time per jump
-    [SerializeField] float hitRadius = 1f;                // Damage radius
-    [SerializeField] float jumpHeight = 1.5f;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private int jumpCount = 3;
+    [SerializeField] private float jumpDistance = 3f;
+    [SerializeField] private float jumpDuration = 1f;
+    [SerializeField] private float hitRadius = 1f;
+    [SerializeField] private float jumpHeight = 1.5f;
     void Awake()
     {
-        health = enemyAttributes.maxHitPoints;
-        //damage = enemyAttributes.damage;
-        speed = enemyAttributes.speed;
-        //visibleRange = enemyAttributes.detection_radius;
-        //attackRange = enemyAttributes.attackRadius;
+        transform.rotation = Quaternion.identity;
 
-        default_enemy_state = new Enemy_Wander(wanderRadius, wanderTime);
+        if (baseEnemyAttributes != null)
+        {
+            enemyAttributes = Instantiate(baseEnemyAttributes);
 
-        //attackCooldown = enemyAttributes.attackRate;
+            int maxHp = Mathf.Max(1, enemyAttributes.maxHitPoints);
+            health = maxHp;
+            speed = enemyAttributes.speed;
+            rb = GetComponent<Rigidbody2D>();
+        }
+        else
+        {
+            health = Mathf.Max(1, health);
+        }
 
+
+        if (playerLayer.value == 0)
+            playerLayer = LayerMask.GetMask("Player");
+        default_enemy_state = new Enemy_Wander(wanderTime, wanderRadius);
+
+    }
+
+    private bool weakPointHitBySpiritualDamage;
+    public void NotifyWeakPointHitBySpiritual()
+    {
+        weakPointHitBySpiritualDamage = true;
     }
 
     public override void Attack(Transform target)
     {
 
         StartCoroutine(JumpAttack(target));
-        Debug.Log("Attack Func");
+        
     }
 
 
-
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    {
+        if (dmgType == DamageInstance.DamageType.Spiritual && weakPointHitBySpiritualDamage)
+        {
+            weakPointHitBySpiritualDamage = false;
+            if (enemyEffectManager != null)
+            {
+                enemyEffectManager.AddEffect(new Weak_Effect(3f, 0.5f), enemyAttributes);
+                enemyEffectManager.AddEffect(new Paralyze_Effect(3f), enemyAttributes);
+            }
+        }
+        base.TakeDamage(amount, dmgSource, dmgType);
+    }
 
 
     private IEnumerator JumpAttack(Transform target)
     {
-          
-
+        isAttacking = true;
+        if (agent != null)
+        {
+            agent.canMove = false;
+            agent.isStopped = true;
+        }
+        DisableAttack();
         for (int i = 0; i < jumpCount; i++)
         {
-            
             Vector3 directionToPlayer = target.position - transform.position;
-   
             float distance = directionToPlayer.magnitude;
-            Vector3 jumpDirection = directionToPlayer.normalized;
-
-            
+            Vector3 jumpDirection = distance > 0.001f ? directionToPlayer.normalized : Vector3.right;
             float distanceThisJump = Mathf.Min(distance, jumpDistance);
-
-            // target position
             Vector3 startPos = transform.position;
             Vector3 targetPos = startPos + jumpDirection * distanceThisJump;
-
-            
-            EnableAttack();
-
             float elapsed = 0f;
             while (elapsed < jumpDuration)
             {
-                
                 elapsed += Time.deltaTime;
-                float t = elapsed / jumpDuration;
-
-                
-                float heightOffset = 4 * jumpHeight * t * (1 - t); 
-                transform.position = Vector3.Lerp(startPos, targetPos, t) + (-Vector3.forward) * heightOffset;
-
+                float t = Mathf.Clamp01(elapsed / jumpDuration);
+                float heightOffset = 4f * jumpHeight * t * (1f - t);
+                transform.position = Vector3.Lerp(startPos, targetPos, t) - Vector3.forward * heightOffset;
                 yield return null;
             }
-
-            
-            
-
-            // Damage area 
-
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, hitRadius,3);
-            
-            foreach (var hit in hits)
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, hitRadius, playerLayer);
+            foreach (Collider2D hit in hits)
             {
-           
-                    // Deal damage here
-                    Debug.Log("Hit player with landing impact!");
-                
+                if (!hit.CompareTag("Player")) continue;
+                int damage = enemyAttributes.damage;
+                PlayerController.instance.TakeDamage(damage, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Physical);
+                break;
             }
-
-            
-            DisableAttack();
-
-            
             yield return new WaitForSeconds(1f);
         }
-
-
+        if (agent != null)
+        {
+            agent.isStopped = false;
+            agent.canMove = true;
+        }
+        DisableAttack();
+        isAttacking = false;
     }
 }
+
+

@@ -7506,7 +7506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &988982515
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7947,8 +7947,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnBehavior
   map: {fileID: 489417606}
-  gm: {fileID: 828173322}
-  teleportPrompt: {fileID: 988982516}
 --- !u!114 &1068506914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16096,6 +16094,7 @@ GameObject:
   - component: {fileID: 2121234113}
   - component: {fileID: 2121234112}
   - component: {fileID: 2121234111}
+  - component: {fileID: 2121234114}
   m_Layer: 13
   m_Name: Portal
   m_TagString: Untagged
@@ -16213,6 +16212,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2121234114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121234110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac731979e5c7442993a553921bd3d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractablePortal
+  yarnSpinnerNode: 
+  gm: {fileID: 828173322}
+  teleportPrompt: {fileID: 988982516}
 --- !u!1001 &2138837947
 PrefabInstance:
   m_ObjectHideFlags: 0

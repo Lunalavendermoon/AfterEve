@@ -687,9 +687,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInteractInput()
     {
-        if (playerInput.Player.Interact.triggered && currentInteractable != null)
+        if (playerInput.Player.Interact.triggered)
         {
-            currentInteractable.TriggerInteraction();
+            currentInteractable?.TriggerInteraction();
         }
     }
 

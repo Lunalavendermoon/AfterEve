@@ -21,12 +21,6 @@ public abstract class BossBehaviourBase : EnemyBase
     [Header("Actions")]
     public float attack_timer = 1.0f;
 
-    // event for enemy dying
-    public static event Action<DamageInstance, EnemyBase> OnEnemyDamageTaken;
-
-    // event for enemy dying
-    public static event Action OnBossDeath;
-
 
 
     public float[] attackProbalities;
@@ -120,7 +114,7 @@ public abstract class BossBehaviourBase : EnemyBase
     {
         //EnemyItemDrops.ItemDrop(PlayerController.instance.playerAttributes.luck, elite, chest);
         //spawner.EnemyDie(this);
-        OnBossDeath?.Invoke();
+        EnemySpawnerScript.instance.BossDie();
         Destroy(gameObject);
     }
 

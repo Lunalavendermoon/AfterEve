@@ -144,24 +144,12 @@ public class EnemySpawnerScript : MonoBehaviour
             ));
 
             EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
-            if (enemy == null)
+            if (enemyObj.GetComponent<StandardEnemyBase>())
             {
-                BossBehaviourBase boss = enemyObj.GetComponent<BossBehaviourBase>();
-                if (boss == null)
-                {
-                    Debug.LogError("Enemy has neither EnemyBase or BossBehaviourBase component!");
-                }
-                BossBehaviourBase.OnBossDeath += BossDie;
+                enemyObj.GetComponent<StandardEnemyBase>().chest = chest;
             }
-            else
-            {
-                if (enemyObj.GetComponent<StandardEnemyBase>())
-                {
-                    enemyObj.GetComponent<StandardEnemyBase>().chest = chest;
-                }
-                enemy.spawner = this;
-                enemies.Add(enemy);
-            }
+            enemy.spawner = this;
+            enemies.Add(enemy);
 
             numberOfEnemies++;
         }

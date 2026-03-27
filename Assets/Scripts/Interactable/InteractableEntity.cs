@@ -20,7 +20,10 @@ public abstract class InteractableEntity : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (PlayerController.instance.currentInteractable == null)
+            {
                 PlayerController.instance.currentInteractable = this;
+                HandlePlayerEnter();
+            }
         }
     }
 
@@ -29,9 +32,15 @@ public abstract class InteractableEntity : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (PlayerController.instance.currentInteractable == this)
+            {
                 PlayerController.instance.currentInteractable = null;
+                HandlePlayerExit();
+            }
         }
     }
 
     public abstract void TriggerInteraction();
+
+    protected virtual void HandlePlayerEnter() {}
+    protected virtual void HandlePlayerExit() {}
 }

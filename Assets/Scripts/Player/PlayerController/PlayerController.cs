@@ -147,6 +147,7 @@ public class PlayerController : MonoBehaviour
 
     //clone
     public GameObject clonePrefab;
+    GameObject currentClone;
 
     // interactions
     public InteractableEntity currentInteractable;
@@ -682,6 +683,11 @@ public class PlayerController : MonoBehaviour
     public void CreateClone(float a, float b, float c) {
         GameObject clone = Instantiate(clonePrefab, new Vector3(transform.position.x+0.5f, transform.position.y, transform.position.z), Quaternion.identity);
         clone.GetComponent<MimicPlayer>().SetDamage(a, b, c);
+        if (currentClone != null)
+        {
+            Destroy(currentClone);
+        }
+        currentClone = clone;
     }
 
 

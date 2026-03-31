@@ -19,6 +19,7 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
     [Header("Ranged projectile motion")]
     [SerializeField] private float rangedProjectileSpeed = 12f;
     [SerializeField] private float rangedProjectileMaxDistance = 30f;
+    [SerializeField] private float rangedProjectileSpawnPadding = 1f;
     private bool combatActive;
     private float rangedCooldownTimer;
     private float meleeCooldownTimer;
@@ -145,16 +146,18 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
     {
         if (rangedProjectilePrefab == null || PlayerController.instance == null)
             return;
-        Vector3 origin = transform.position;
-        Vector2 dir = ((Vector2)PlayerController.instance.transform.position - (Vector2)origin);
+        Vector3 knightShotOrigin = transform.position;
+        Vector2 dir = ((Vector2)PlayerController.instance.transform.position - (Vector2)knightShotOrigin);
         if (dir.sqrMagnitude < 1e-4f)
             dir = Vector2.right;
         dir.Normalize();
-        GameObject proj = Instantiate(rangedProjectilePrefab, origin, Quaternion.identity);
+        Vector3 spawnPos = knightShotOrigin + (Vector3)(dir * rangedProjectileSpawnPadding);
+        GameObject proj = Instantiate(rangedProjectilePrefab, spawnPos, Quaternion.identity);
+
         var hp = proj.GetComponent<HighKnightRangedProjectile>();
         if (hp == null)
             hp = proj.AddComponent<HighKnightRangedProjectile>();
-        hp.Initialize(this, origin, dir, rangedProjectileSpeed, rangedProjectileMaxDistance);
+        hp.Initialize(this, knightShotOrigin, dir, rangedProjectileSpeed, rangedProjectileMaxDistance);
     }
     public void SpawnGroundMarkBetween(Vector3 knightShotPosition, Vector3 projectileEndPosition)
     {

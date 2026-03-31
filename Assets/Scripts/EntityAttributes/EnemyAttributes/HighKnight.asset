@@ -29,7 +29,7 @@ MonoBehaviour:
   hasKnockback: 0
   enemyType: 1
   damageType: 0
-  attackRadius: 10
+  attackRadius: 2
   attackRate: 5
   weight: 12
   detection_radius: 10

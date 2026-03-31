@@ -428,7 +428,7 @@ public class PlayerController : MonoBehaviour
         return magicianSkillActive;
     }
 
-    Boolean currentlyReloading = false;
+    public Boolean currentlyReloading = false;
 
     void Reload()
     {

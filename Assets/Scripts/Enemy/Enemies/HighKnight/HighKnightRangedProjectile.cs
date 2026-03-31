@@ -20,6 +20,7 @@ public class HighKnightRangedProjectile : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.gravityScale = 0f;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
     }
     private void Update()
     {
@@ -35,8 +36,9 @@ public class HighKnightRangedProjectile : MonoBehaviour
     }
     private void OnDestroy()
     {
+        owner.SpawnGroundMarkBetween(knightShotPosition, transform.position);
         if (!Application.isPlaying || owner == null)
             return;
-        owner.SpawnGroundMarkBetween(knightShotPosition, transform.position);
+        
     }
 }

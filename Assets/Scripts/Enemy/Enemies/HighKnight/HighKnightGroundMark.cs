@@ -6,10 +6,12 @@ public class HighKnightGroundMark : MonoBehaviour
     private float tickInterval = 1f;
     private float tickAccumulator;
     private BoxCollider2D box;
+    private SpriteRenderer spriteRenderer;
     private void Awake()
     {
         box = GetComponent<BoxCollider2D>();
         box.isTrigger = true;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public void Configure(float length, float width, int damageEachTick, float tickSeconds, float lifetimeSeconds)
     {
@@ -17,7 +19,14 @@ public class HighKnightGroundMark : MonoBehaviour
         tickInterval = Mathf.Max(0.05f, tickSeconds);
         if (box == null)
             box = GetComponent<BoxCollider2D>();
-        box.size = new Vector2(length, width);
+        transform.localScale = new Vector3(length, width, 1f);
+        box.size = Vector2.one;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.drawMode = SpriteDrawMode.Simple;
+            spriteRenderer.flipX = false;
+            spriteRenderer.flipY = false;
+        }
         Destroy(gameObject, lifetimeSeconds);
     }
     private void OnTriggerStay2D(Collider2D other)

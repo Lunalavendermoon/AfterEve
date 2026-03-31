@@ -1,10 +1,10 @@
 ﻿title: Act1_Introduction
 ---
-Twenty-two Arcana shape the world,
-each a guiding star of fate.
-Their ideals collide through mortal hands,
-and in that clash of faith and will,
-balance is born.
+[i]Twenty-two Arcana shape the world,[/i]
+[i]each a guiding star of fate.[/i]
+[i]Their ideals collide through mortal hands,[/i]
+[i]and in that clash of faith and will,[/i]
+[i]balance is born.[/i]
 
 <<set_portrait YarnManager Judge>>
 ???: Hello? 
@@ -26,7 +26,7 @@ balance is born.
 ???: Name. Do you remember that much?
 
 <<set_portrait YarnManager Cyrus>>
-???: My name? It’s...
+???: [i]My name? It’s...[/i]
 Cyrus: Cyrus.
 
 <<set_portrait YarnManager Judge>>
@@ -134,7 +134,7 @@ Eve: I found you on the outskirts and brought you here. We should be safe for no
 Eve: I’m Eve. I don’t think I’ve seen you around this part of town. What’s your name?
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: [i]I really am looping through time.[/i]
+Cyrus: [i]...I really am looping through time.[/i]
 Cyrus: Cyrus.
 
 <<set_portrait YarnManager Eve>>
@@ -227,11 +227,11 @@ Eve: Luckily we have Hunters to fight them off. Some are corporate hires, but mo
 Eve: I’m surprised you aren’t one already, you can make a lot of money killing those things.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Hunting sounds like what The Judge wanted me to do. 
+Cyrus: [i]Hunting sounds like what The Judge wanted me to do.[/i]
 Cyrus: How do I start?
 
 <<set_portrait YarnManager Eve>>
-Eve: Oh, now you’re interested.
+Eve: Oh, [i]now[/i] you’re interested.
 Eve: You'll need a dispatcher to guide you over the air. Which should be me.
 
 <<set_portrait YarnManager Cyrus>>
@@ -242,7 +242,7 @@ Eve: Our town would be a lot safer with a Hunter like you.
 Eve: And I’ll get a cut of your profits, of course.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: So that's your motive.
+Cyrus: So [i]that's[/i] your motive.
 
 <<set_portrait YarnManager Eve>>
 Eve: You’ll need better equipment if you want to survive your first day. The shop’s up ahead.
@@ -317,7 +317,7 @@ Cyrus: You guys have t- Nevermind, just answer my question.
 
 <<set_portrait YarnManager Eve>>
 Eve: No, I have your spiritual signature recorded in my dispatcher device. That’s enough.
-Eve’s device dings.
+[i]Eve’s device dings.[/i]
 Eve: That was fast.
 Eve: Your first mission’s already here. Let’s head out.
 ===
@@ -502,7 +502,7 @@ The Judge: Don’t take it too hard. Most enforcers fail their first run. And th
 Cyrus: But I felt it. The monster, the pain- how am I still here?
 
 <<set_portrait YarnManager Judge>>
-The Judge: Your body’s dead in that timeline, but you, Cyrus? You’re Justice’s enforcer. Time is merely a tool to the Arcanas, a little thing like death won’t get you out of this. 
+The Judge: Your body’s dead in that timeline, but [i]you, Cyrus?[/i] You’re Justice’s enforcer. Time is merely a tool to the Arcanas, a little thing like death won’t get you out of this. 
 The Judge: Each time you fail, time will rewind. Until you succeed. Aren’t you lucky?
 
 <<set_portrait YarnManager Cyrus>>
@@ -517,7 +517,7 @@ Cyrus: If you can control time itself, can’t you do more to help me?
 
 <<set_portrait YarnManager Judge>>
 The Judge: You think Prism is the only place on the brink of destruction?
-The Judge: I’m already working nonstop managing the logistics of all you enforcers, and the last thing I need is another one whining about the job they signed up for.
+The Judge: I’m already working nonstop managing the logistics of all you enforcers, and the last thing I need is another one whining about the job [i]they[/i] signed up for.
 The Judge: Well, Cyrus, looks like our time is up. Try not to die so fast on this one.
 
 <<set_portrait YarnManager Cyrus>>

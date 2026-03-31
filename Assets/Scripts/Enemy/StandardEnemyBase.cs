@@ -122,7 +122,7 @@ public abstract class StandardEnemyBase : EnemyBase
             spawnerDeathNotified = true;
             spawner.EnemyDie(this);
         }
-
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyDie, this.transform.position);
         Destroy(gameObject);
     }
 

@@ -16,7 +16,10 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("Enemy SFX")]
     [field: SerializeField] public EventReference blobAttack { get; private set; }
+
     [field: SerializeField] public EventReference enemyTakeDamage { get; private set; }
+
+    [field: SerializeField] public EventReference enemyDie { get; private set; }
 
 
     [field: Header("Music")]

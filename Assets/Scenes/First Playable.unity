@@ -14005,11 +14005,18 @@ MonoBehaviour:
     Path: event:/BlobAttack
   <enemyTakeDamage>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1122829109
+      Data2: 1234665793
+      Data3: -930005113
+      Data4: 178563047
+    Path: event:/EnemyTakeDamage
+  <enemyDie>k__BackingField:
+    Guid:
+      Data1: 847179025
+      Data2: 1088445016
+      Data3: -1427384902
+      Data4: 2069542020
+    Path: event:/EnemyDie
   <combat>k__BackingField:
     Guid:
       Data1: 1775828165

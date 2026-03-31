@@ -233,12 +233,12 @@ public class GameManager : MonoBehaviour
             EnemySpawnerScript.instance.AssignChestFromMapRoot(mapRoot);
         }
 
-        EnemySpawnerScript.instance.ScanMap();
-        EnemySpawnerScript.instance.SpawnAllEnemies();
+
 
         SpawnBoundaryWalls();
         portal.SetActive(false);
-
+        EnemySpawnerScript.instance.ScanMap();
+        EnemySpawnerScript.instance.SpawnAllEnemies();
         spawnBehavior.Respawn();
     }
 

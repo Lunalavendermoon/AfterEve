@@ -15,6 +15,7 @@ public class Mystic_MirrorScript : StandardEnemyBase
         else
             health = Mathf.Max(1, health);
         default_enemy_state = new Enemy_Wander();
+        attack_timer = 0;   
 
     }
 

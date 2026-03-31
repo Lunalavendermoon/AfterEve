@@ -15,6 +15,8 @@ public class TarotManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+
+        ClearAllCards(keepPast: false);
     }
 
     void OnEnable()
@@ -44,6 +46,53 @@ public class TarotManager : MonoBehaviour
     public Dictionary<TarotCard.Arcana, Present_TarotCard> presentTarot = new();
     public List<Future_TarotCard> futureTarot = new();
     public Dictionary<TarotCard.Arcana, Past_TarotCard> pastTarot = new();
+
+    public void ClearAllCards(bool keepPast)
+    {
+        // Remove future cards (unhooks quest listeners, clears skill slot if needed)
+        for (int i = futureTarot.Count - 1; i >= 0; i--)
+        {
+            Future_TarotCard card = futureTarot[i];
+            try
+            {
+                card?.RemoveCard(this);
+            }
+            finally
+            {
+                futureTarot.RemoveAt(i);
+            }
+        }
+
+        // Remove present cards (removes applied effects)
+        foreach (Present_TarotCard card in presentTarot.Values)
+        {
+            card?.RemoveCard(this);
+        }
+        presentTarot.Clear();
+
+        // Clear player's current future skill regardless of whether it was granted by a card.
+        if (PlayerController.instance != null)
+        {
+            PlayerController.instance.futureSkill = null;
+        }
+
+        if (!keepPast)
+        {
+            foreach (Past_TarotCard card in pastTarot.Values)
+            {
+                card?.RemoveCard(this);
+            }
+            pastTarot.Clear();
+        }
+
+        DisplayHand();
+        DisplayCards();
+    }
+
+    public void ClearOnPlayerDeath()
+    {
+        ClearAllCards(keepPast: true);
+    }
 
     public static event Action<TarotCard.Arcana> OnObtainCard;
 

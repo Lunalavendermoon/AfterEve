@@ -68,6 +68,9 @@ public class PlayerController : MonoBehaviour
     {
         playerInput = new PlayerInput();
         toggleDialogueLog = playerInput.FindAction("ToggleDialogueLog", true);
+
+        // Player should not start with any future skill.
+        futureSkill = null;
     }
 
     // user input system
@@ -237,11 +240,6 @@ public class PlayerController : MonoBehaviour
 
         IPlayerState.speedCoefficient = speed;
         UpdateSound();
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            CreateClone(1, 1, 1);
-        }
     }
 
     public void SyncMaxHealthToAttributes(bool fill = false)
@@ -537,6 +535,20 @@ public class PlayerController : MonoBehaviour
         }
         
         ++StaticGameManager.deathCount;
+
+        // Clear any active future skill on death.
+        futureSkill = null;
+
+        // Clear player tarot state on death (keep past cards).
+        if (tarotManager != null)
+        {
+            tarotManager.ClearOnPlayerDeath();
+        }
+        else if (TarotManager.instance != null)
+        {
+            TarotManager.instance.ClearOnPlayerDeath();
+        }
+
         StaticGameManager.LoadDeathScreen();
     }
     

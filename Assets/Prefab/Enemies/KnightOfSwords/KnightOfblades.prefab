@@ -224,7 +224,7 @@ MonoBehaviour:
   speed: 0
   agent: {fileID: -6189326121475984472}
   destinationSetter: {fileID: 4401710635868168868}
-  floatingTextPrefab: {fileID: 0}
+  floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
   rb: {fileID: 0}
   chest: {fileID: 0}
   attackHitbox: {fileID: 3385193953142855512}
@@ -341,7 +341,7 @@ MonoBehaviour:
   vfx: {fileID: 0}
   enemy: {fileID: 3932165476820560151}
   baseEnemyAttributes: {fileID: 11400000, guid: a8fa879d4a858854696a74543ed01088, type: 2}
-  effectEnemyAttributes: {fileID: 0}
+  effectEnemyAttributes: {fileID: 11400000, guid: a8fa879d4a858854696a74543ed01088, type: 2}
 --- !u!1 &1876415662770372521
 GameObject:
   m_ObjectHideFlags: 0

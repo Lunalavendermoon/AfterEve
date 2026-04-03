@@ -86,7 +86,7 @@ public class TarotManager : MonoBehaviour
         }
 
         DisplayHand();
-        DisplayCards();
+        // DisplayCards();
     }
 
     public void ClearOnPlayerDeath()
@@ -159,14 +159,12 @@ public class TarotManager : MonoBehaviour
                 presentTarot.Remove(tarotCard.arcana);
             }
         }
-        DisplayCards();
+        // DisplayCards();
     }
 
-    // Just for testing so that the future card quests update in real-time :o
-    // Not super optimal, dont use this in the final version LOL
     public void Update()
     {
-        DisplayCards();
+        // DisplayCards();
 
         // testing
         if(Input.GetKeyDown(KeyCode.O))
@@ -191,28 +189,28 @@ public class TarotManager : MonoBehaviour
         }
     }
 
-    // For testing
-    public void DisplayCards()
-    {
-        string s = "Present: ";
+    // // For testing
+    // public void DisplayCards()
+    // {
+    //     string s = "Present: ";
         
-        foreach (TarotCard present in presentTarot.Values)
-        {
-            s += present.cardName + " (" + present.quantity + ")\n";
-        }
-        s += "\nFuture: ";
-        foreach (TarotCard future in futureTarot)
-        {
-            s += future.cardName + " (" + future.quantity + ") " + ((Future_TarotCard)future).GetQuestText() +
-                (((Future_TarotCard)future).questCompleted ? " - DONE" : "") + "\n";
-        }
-        s += "\nPast: ";
-        foreach (TarotCard past in pastTarot.Values)
-        {
-            s += past.cardName + "\n";
-        }
-        text.text = s;
-    }
+    //     foreach (TarotCard present in presentTarot.Values)
+    //     {
+    //         s += present.cardName + " (" + present.quantity + ")\n";
+    //     }
+    //     s += "\nFuture: ";
+    //     foreach (TarotCard future in futureTarot)
+    //     {
+    //         s += future.cardName + " (" + future.quantity + ") " + ((Future_TarotCard)future).GetQuestText() +
+    //             (((Future_TarotCard)future).questCompleted ? " - DONE" : "") + "\n";
+    //     }
+    //     s += "\nPast: ";
+    //     foreach (TarotCard past in pastTarot.Values)
+    //     {
+    //         s += past.cardName + "\n";
+    //     }
+    //     text.text = s;
+    // }
     
     // testing future tarot card hand
     public void OnUpdateTarotPerformed(InputAction.CallbackContext context)

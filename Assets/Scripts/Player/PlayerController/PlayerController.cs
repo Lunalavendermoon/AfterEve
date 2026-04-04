@@ -487,6 +487,7 @@ public class PlayerController : MonoBehaviour
             if (target == null)
             {
                 futureSkills[i] = skill;
+                skill.SetSkillIndex(i);
                 // TODO update on-screen display
                 return;
             }

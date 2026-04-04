@@ -2,6 +2,7 @@ using FMOD.Studio;
 using FMODUnity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -70,8 +71,8 @@ public class PlayerController : MonoBehaviour
         playerInput = new PlayerInput();
         toggleDialogueLog = playerInput.FindAction("ToggleDialogueLog", true);
 
-        // Player should not start with any future skill.
-        futureSkills.Clear();
+        // Initialize all skill slots to be empty
+        futureSkills = Enumerable.Repeat<Future_Reward>(null, StaticGameManager.futureSkillSlots).ToList();
     }
 
     // user input system
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // player attributes
-    int coins = 500; // TODO - set to 0 in final version, this is for testing only
+    int coins = 0;
     public PlayerAttributes playerAttributes;
 
     // Authoritative runtime health (do not store in PlayerAttributes, since effects rebuild attributes)
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
     //spiritual vision
     private float currentSpiritualVision;
-    private Boolean inSpiritualVision;
+    private bool inSpiritualVision;
 
     // future card skill
     public List<Future_Reward> futureSkills = new();
@@ -195,7 +196,7 @@ public class PlayerController : MonoBehaviour
         questUIScript.setQuestCurrentValue(7);
 
         // audio
-        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);
+        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, transform.position);
 
         playerInput.Player.FutureSkill.performed += ctx => HandleFutureSkillInput((int)ctx.ReadValue<float>());
     }
@@ -298,10 +299,17 @@ public class PlayerController : MonoBehaviour
     string BuildSkillDisplayString()
     {
         string s = "Coins: " + coins;
-        s += "\nFuture skills: ";
+        s += "\nFuture skills:\n";
         foreach (var skill in futureSkills)
         {
-            s += "- " + skill.ToString() + "\n";
+            if (skill == null)
+            {
+                s += "- empty slot\n";
+            }
+            else
+            {
+                s += "- " + skill.ToString() + "\n";
+            }
         }
         return s;
     }
@@ -321,7 +329,7 @@ public class PlayerController : MonoBehaviour
             "strength" => new Strength_Reward(),
             _ => null
         };
-        // TODO add skill to futureSkills
+        ObtainFutureSkill(skillToAdd);
     }
 
     public void ChangeState(IPlayerState newState)
@@ -400,7 +408,7 @@ public class PlayerController : MonoBehaviour
         return magicianSkillActive;
     }
 
-    public Boolean currentlyReloading = false;
+    public bool currentlyReloading = false;
 
     void Reload()
     {
@@ -463,9 +471,34 @@ public class PlayerController : MonoBehaviour
 
     void HandleFutureSkillInput(int skillValue)
     {
-        // TODO actually trigger skill lol
-        Debug.Log($"Future skill button pressed with value {skillValue}");
-        // futureSkill?.TriggerSkill();
+        Future_Reward skill = futureSkills[skillValue - 1];
+        if (skill != null)
+        {
+            // TODO show cooldown thingy
+            skill.TriggerSkill();
+        }
+    }
+
+    public void ObtainFutureSkill(Future_Reward skill)
+    {
+        for (int i = 0; i < futureSkills.Count; ++i)
+        {
+            Future_Reward target = futureSkills[i];
+            if (target == null)
+            {
+                futureSkills[i] = skill;
+                // TODO update on-screen display
+                return;
+            }
+            else if (target.arcana == skill.arcana)
+            {
+                target.AddUses(skill.usesLeft);
+                // TODO update on-screen display
+                return;
+            }
+        }
+
+        // TODO queue incoming skill to be swapped out after fate selection
     }
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)

@@ -16,8 +16,6 @@ public class Magician_Reward : Future_Reward
 
     protected override void TriggerSkillBehavior()
     {
-        Debug.Log("Triggered Magician skill");
-
         PlayerController.instance.SetMagicianSkill(true);
 
         PlayerController.OnCoinsDecrease += OnCoinDecrease;

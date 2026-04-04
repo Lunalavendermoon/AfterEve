@@ -12,8 +12,6 @@ public class Strength_Reward : Future_Reward
 
     protected override void TriggerSkillBehavior()
     {
-        Debug.Log("Triggered Strength skill");
-
         Vector3 playerPos = PlayerController.instance.gameObject.transform.position;
 
         Vector3 inp = Input.mousePosition;

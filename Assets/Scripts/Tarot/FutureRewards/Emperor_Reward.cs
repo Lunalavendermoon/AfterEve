@@ -14,8 +14,6 @@ public class Emperor_Reward : Future_Reward
     {
         List<EnemyBase> enemies = EnemySpawnerScript.instance.enemies;
 
-        Debug.Log($"Triggered Emperor skill, {enemies.Count} enemies found");
-
         foreach (EnemyBase enemy in enemies)
         {
             if (enemy.enemyAttributes.enemyType != EnemyAttributes.EnemyType.Basic)

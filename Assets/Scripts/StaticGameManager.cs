@@ -4,6 +4,9 @@ using UnityEngine;
 
 public static class StaticGameManager
 {
+    // PLAYER STATS SAVED BETWEEN PLAYTHROUGHS
+    public static int futureSkillSlots = 3; // between 3-7
+
     // NARRATIVE ROOM GENERATION
     public static int deathCount = 0; // number of deaths so far
     public static RepeatDeathRooms.DeathCauses latestDeathCause = RepeatDeathRooms.DeathCauses.ScriptedDeath;

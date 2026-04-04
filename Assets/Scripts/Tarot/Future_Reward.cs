@@ -20,6 +20,7 @@ public abstract class Future_Reward
     public float lastUseTime;
 
     bool firstUsage = true;
+    int skillIndex = 0;
 
     public static event Action OnSkillUsed;
 
@@ -39,7 +40,6 @@ public abstract class Future_Reward
     {
         if (IsOnCooldown())
         {
-            Debug.Log($"Skill is on cooldown!");
             return;
         }
 
@@ -65,13 +65,11 @@ public abstract class Future_Reward
         firstUsage = false;
 
         --usesLeft;
-        Debug.Log($"Used skill, {usesLeft} uses left");
         lastUseTime = Time.time;
 
         if (usesLeft == 0)
         {
-            Debug.Log("Skill is completely used!");
-            // TODO remove skill from skill slot
+            PlayerController.instance.futureSkills[skillIndex] = null;
         }
     }
 
@@ -79,7 +77,7 @@ public abstract class Future_Reward
     {
         if (IsOnCooldown())
         {
-            return $"{arcana}: {usesLeft} uses, {cooldown - Time.time + lastUseTime}s CD";
+            return $"{arcana}: {usesLeft} uses, {(int)(cooldown - Time.time + lastUseTime)}s CD";
         }
         return $"{arcana}: {usesLeft} uses, not on CD";
     }
@@ -93,6 +91,11 @@ public abstract class Future_Reward
         };
 
         SetRewardArguments(desc, usesLeft, cooldown);
+    }
+
+    public void SetSkillIndex(int newIdx)
+    {
+        skillIndex = newIdx;
     }
 
     public abstract void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown);

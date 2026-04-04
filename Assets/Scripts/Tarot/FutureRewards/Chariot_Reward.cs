@@ -13,7 +13,6 @@ public class Chariot_Reward : Future_Reward
 
     protected override void TriggerSkillBehavior()
     {
-        Debug.Log("Triggered Chariot skill");
         EffectManager em = PlayerController.instance.gameObject.GetComponent<EffectManager>();
         em.AddBuff(new Haste_Effect(duration, hasteAmount));
         em.AddBuff(new Strength_Effect(duration, strengthAmount));

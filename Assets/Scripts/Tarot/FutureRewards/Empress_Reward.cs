@@ -12,7 +12,6 @@ public class Empress_Reward : Future_Reward
 
     protected override void TriggerSkillBehavior()
     {
-        Debug.Log("Triggered Empress skill");
         PlayerController.instance.Heal((int)(PlayerController.instance.playerAttributes.maxHitPoints * healPercent));
         PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.EmpressPulse, pulseDuration);
     }

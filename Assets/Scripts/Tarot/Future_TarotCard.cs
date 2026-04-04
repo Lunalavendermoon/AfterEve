@@ -30,10 +30,11 @@ public abstract class Future_TarotCard : TarotCard
     {
         if (reward != null)
         {
-            // TODO give reward to player
+            PlayerController.instance.ObtainFutureSkill(reward);
         }
         
         RemoveCard(TarotManager.instance);
+        TarotManager.instance.RemoveCard(this);
     }
 
     public override void RemoveCard(TarotManager tarotManager)

@@ -57,7 +57,7 @@ public class ShopItem : MonoBehaviour
         TarotCard card = TarotCard.GetPresentFutureCard(arcana, isFuture, quantity);
         if (card != null)
         {
-            PlayerController.instance.tarotManager.AddCard(card);
+            TarotManager.instance.AddCard(card);
         }
     }
 

@@ -28,8 +28,10 @@ public class TarotManager : MonoBehaviour
         DisplayHand();
 
         // AddCard(new Fool_Future(1));
+        // AddCard(new Chariot_Future(1));
         // AddCard(new Magician_Future(1));
-        // AddCard(new Strength_Future(1));
+        // AddCard(new Magician_Future(1));
+        // AddCard(new Magician_Future(1));
     }
 
     void OnDisable()
@@ -50,6 +52,7 @@ public class TarotManager : MonoBehaviour
     public void ClearAllCards(bool keepPast)
     {
         // Remove future cards (unhooks quest listeners)
+        // PlayerController responsible for resetting future skill slots -- DON'T TOUCH PLAYER'S FUTURE SKILLS HERE
         for (int i = futureTarot.Count - 1; i >= 0; i--)
         {
             Future_TarotCard card = futureTarot[i];
@@ -69,12 +72,6 @@ public class TarotManager : MonoBehaviour
             card?.RemoveCard(this);
         }
         presentTarot.Clear();
-
-        // Clear player's current future skill regardless of whether it was granted by a card.
-        if (PlayerController.instance != null)
-        {
-            PlayerController.instance.futureSkills.Clear();
-        }
 
         if (!keepPast)
         {
@@ -158,6 +155,10 @@ public class TarotManager : MonoBehaviour
                 presentTarot[tarotCard.arcana].RemoveCard(this);
                 presentTarot.Remove(tarotCard.arcana);
             }
+        }
+        else if (tarotCard is Future_TarotCard)
+        {
+            futureTarot.Remove((Future_TarotCard)tarotCard);
         }
         // DisplayCards();
     }

@@ -13,7 +13,6 @@ public class Lovers_Reward : Future_Reward
 
     protected override void TriggerSkillBehavior()
     {
-        Debug.Log("Triggered Lovers skill");
         PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.LoverSummon, duration);
     }
 

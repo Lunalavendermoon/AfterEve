@@ -42,8 +42,8 @@ public class Fool_Future : Future_TarotCard
     {
         PlayerController.instance.ChangeCoins(foolCoinRewardAmount);
 
-        // Fool card doesn't use Future_Reward, so we have to manually call RemoveCard() here
         RemoveCard(TarotManager.instance);
+        TarotManager.instance.RemoveCard(this);
     }
 
     protected override void GetLocalizedDesc()

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public abstract class Future_Reward
 {
@@ -11,28 +12,27 @@ public abstract class Future_Reward
         StrengthZone
     }
 
+    public TarotCard.Arcana arcana;
+
     public int uses;
     public int usesLeft;
     public float cooldown;
     public float lastUseTime;
 
-    // invoked once all uses of the reward are done
-    public static event Action OnRewardFinished;
-
     bool firstUsage = true;
 
     public static event Action OnSkillUsed;
+
+    protected LocalizedString desc;
     
-    public Future_Reward(int uses, float cooldown, Future_TarotCard card)
+    public Future_Reward(int uses, float cooldown, TarotCard.Arcana arcana)
     {
         this.uses = uses;
         usesLeft = uses;
         this.cooldown = cooldown;
-        if (card != null)
-        {
-            // card should never be null in actual game - this is just for testing skills in isolation
-            OnRewardFinished += card.RemoveCard;
-        }
+        this.arcana = arcana;
+
+        GetLocalizedDesc();
     }
 
     public void TriggerSkill()
@@ -55,6 +55,11 @@ public abstract class Future_Reward
         return !firstUsage && cooldown != 0f && (Time.time - lastUseTime < cooldown);
     }
 
+    public void AddUses(int amount)
+    {
+        usesLeft += amount;
+    }
+
     public void DecrementSkillUses()
     {
         firstUsage = false;
@@ -66,10 +71,29 @@ public abstract class Future_Reward
         if (usesLeft == 0)
         {
             Debug.Log("Skill is completely used!");
-            PlayerController.instance.futureSkill = null; // TODO delete this -- just for testing
-            OnRewardFinished?.Invoke();
+            // TODO remove skill from skill slot
         }
     }
 
-    public abstract string GetName();
+    public override string ToString()
+    {
+        if (IsOnCooldown())
+        {
+            return $"{arcana}: {usesLeft} uses, {cooldown - Time.time + lastUseTime}s CD";
+        }
+        return $"{arcana}: {usesLeft} uses, not on CD";
+    }
+
+    protected void GetLocalizedDesc()
+    {
+        desc = new LocalizedString
+        {
+            TableReference = "FutureRewardTable",
+            TableEntryReference = $"{arcana}Reward"
+        };
+
+        SetRewardArguments(desc, usesLeft, cooldown);
+    }
+
+    public abstract void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown);
 }

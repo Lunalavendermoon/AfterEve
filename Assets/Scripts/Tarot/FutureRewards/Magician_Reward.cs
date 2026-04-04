@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class Magician_Reward : Future_Reward
 {
@@ -9,7 +10,7 @@ public class Magician_Reward : Future_Reward
 
     public const float skillDuration = 5f;
 
-    public Magician_Reward(Future_TarotCard card) : base(Magician_Future.uses, Magician_Future.cd, card)
+    public Magician_Reward() : base(Magician_Future.uses, Magician_Future.cd, TarotCard.Arcana.Magician)
     {
     }
 
@@ -39,8 +40,9 @@ public class Magician_Reward : Future_Reward
         }
     }
 
-    public override string GetName()
+    public override void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown)
     {
-        return "Magician Skill";
+        rewardDesc.Arguments = new object[] { coinsPerShot, Mathf.RoundToInt(skillDuration),
+            Mathf.RoundToInt(displayCooldown), displayUses };
     }
 }

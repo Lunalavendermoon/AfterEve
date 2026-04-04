@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class Emperor_Reward : Future_Reward
 {
     public const float paralyzeDuration = 5f;
 
-    public Emperor_Reward(Future_TarotCard card) : base(Emperor_Future.uses, Emperor_Future.cd, card)
+    public Emperor_Reward() : base(Emperor_Future.uses, Emperor_Future.cd, TarotCard.Arcana.Emperor)
     {
     }
 
@@ -25,8 +26,9 @@ public class Emperor_Reward : Future_Reward
         }
     }
 
-    public override string GetName()
+    public override void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown)
     {
-        return "Emperor Skill";
+        rewardDesc.Arguments = new object[] { Mathf.RoundToInt(paralyzeDuration),
+            Mathf.RoundToInt(displayCooldown), displayUses };
     }
 }

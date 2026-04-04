@@ -27,9 +27,9 @@ public class TarotManager : MonoBehaviour
         // TODO - uncomment this (only commented out for testing)
         DisplayHand();
 
-        // AddCard(new Fool_Present(1));
-        // AddCard(new Magician_Present(1));
-        // AddCard(new Strength_Present(1));
+        // AddCard(new Fool_Future(1));
+        // AddCard(new Magician_Future(1));
+        // AddCard(new Strength_Future(1));
     }
 
     void OnDisable()
@@ -49,7 +49,7 @@ public class TarotManager : MonoBehaviour
 
     public void ClearAllCards(bool keepPast)
     {
-        // Remove future cards (unhooks quest listeners, clears skill slot if needed)
+        // Remove future cards (unhooks quest listeners)
         for (int i = futureTarot.Count - 1; i >= 0; i--)
         {
             Future_TarotCard card = futureTarot[i];
@@ -73,7 +73,7 @@ public class TarotManager : MonoBehaviour
         // Clear player's current future skill regardless of whether it was granted by a card.
         if (PlayerController.instance != null)
         {
-            PlayerController.instance.futureSkill = null;
+            PlayerController.instance.futureSkills.Clear();
         }
 
         if (!keepPast)
@@ -169,12 +169,12 @@ public class TarotManager : MonoBehaviour
         // testing
         if(Input.GetKeyDown(KeyCode.O))
         {
-            PlayerController.instance.futureSkill = futureTarot[0].reward;
+            // PlayerController.instance.futureSkills = futureTarot[0].reward;
             tarotHand.transform.GetChild(0).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
         }
         if(Input.GetKeyDown(KeyCode.P))
         {
-            PlayerController.instance.futureSkill = futureTarot[1].reward;
+            // PlayerController.instance.futureSkills = futureTarot[1].reward;
             tarotHand.transform.GetChild(1).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
         }
 

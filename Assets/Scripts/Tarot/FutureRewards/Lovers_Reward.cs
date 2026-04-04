@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class Lovers_Reward : Future_Reward
 {
@@ -6,7 +7,7 @@ public class Lovers_Reward : Future_Reward
 
     public const float dmgMultiplier = 0.4f;
 
-    public Lovers_Reward(Future_TarotCard card) : base(Lovers_Future.uses, Lovers_Future.cd, card)
+    public Lovers_Reward() : base(Lovers_Future.uses, Lovers_Future.cd, TarotCard.Arcana.Lovers)
     {
     }
 
@@ -16,8 +17,9 @@ public class Lovers_Reward : Future_Reward
         PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.LoverSummon, duration);
     }
 
-    public override string GetName()
+    public override void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown)
     {
-        return "Lovers Skill";
+        rewardDesc.Arguments = new object[] { Mathf.RoundToInt(duration),
+            TarotCard.FormatPercentage(dmgMultiplier), Mathf.RoundToInt(displayCooldown), displayUses };
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class Chariot_Reward : Future_Reward
 {
@@ -6,7 +7,7 @@ public class Chariot_Reward : Future_Reward
     public const float strengthAmount = 1.4f;
     public const float duration = 10f;
 
-    public Chariot_Reward(Future_TarotCard card) : base(Chariot_Future.uses, Chariot_Future.cd, card)
+    public Chariot_Reward() : base(Chariot_Future.uses, Chariot_Future.cd, TarotCard.Arcana.Chariot)
     {
     }
 
@@ -18,8 +19,10 @@ public class Chariot_Reward : Future_Reward
         em.AddBuff(new Strength_Effect(duration, strengthAmount));
     }
 
-    public override string GetName()
+    public override void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown)
     {
-        return "Chariot Skill";
+        rewardDesc.Arguments = new object[] { TarotCard.FormatPlusOnePercentage(hasteAmount),
+            TarotCard.FormatPlusOnePercentage(strengthAmount), Mathf.RoundToInt(duration),
+            Mathf.RoundToInt(displayCooldown), displayUses };
     }
 }

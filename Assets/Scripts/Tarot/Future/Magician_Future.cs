@@ -15,8 +15,10 @@ public class Magician_Future : Future_TarotCard
     public Magician_Future(int q) : base(q)
     {
         cardName = "Magician_Future";
-        reward = new Magician_Reward(this);
+        reward = new Magician_Reward();
         arcana = Arcana.Magician;
+        
+        GetLocalizedDesc(uses, cd);
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -48,18 +50,6 @@ public class Magician_Future : Future_TarotCard
         {
             CompleteQuest();
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Magician");
-
-        rewardDesc.Arguments = new object[] { Magician_Reward.coinsPerShot, Mathf.RoundToInt(Magician_Reward.skillDuration),
-            Mathf.RoundToInt(cd), uses };
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

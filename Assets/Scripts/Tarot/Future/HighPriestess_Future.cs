@@ -6,13 +6,8 @@ public class HighPriestess_Future : Future_TarotCard
 
     int debuffCount = 0;
 
-    // TODO add the actual numbers once design team finalizes :D
     public const int spiritualGoal = 10;
-    public const int debuffGoal = 10;
-
-    const int zoneRadiusDisplay = 5;
-    public const float zoneDuration = 10f;
-    public const int cursedAmount = 40;
+    public const int debuffGoal = 5;
 
     public const int uses = 5;
     public const float cd = 20f;
@@ -20,8 +15,10 @@ public class HighPriestess_Future : Future_TarotCard
     public HighPriestess_Future(int q) : base(q)
     {
         cardName = "HighPriestess_Future";
-        reward = new HighPriestess_Reward(this);
+        reward = new HighPriestess_Reward();
         arcana = Arcana.HighPriestess;
+        
+        GetLocalizedDesc(uses, cd);
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -53,18 +50,6 @@ public class HighPriestess_Future : Future_TarotCard
         {
             CompleteQuest();
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("HighPriestess");
-
-        rewardDesc.Arguments = new object[] { zoneRadiusDisplay, Mathf.RoundToInt(zoneDuration),
-            cursedAmount, Mathf.RoundToInt(cd), uses };
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

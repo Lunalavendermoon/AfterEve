@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class Empress_Reward : Future_Reward
 {
     public const float healPercent = 0.5f;
     public const float pulseDuration = 3f;
 
-    public Empress_Reward(Future_TarotCard card) : base(Empress_Future.uses, Empress_Future.cd, card)
+    public Empress_Reward() : base(Empress_Future.uses, Empress_Future.cd, TarotCard.Arcana.Empress)
     {
     }
 
@@ -16,8 +17,9 @@ public class Empress_Reward : Future_Reward
         PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.EmpressPulse, pulseDuration);
     }
 
-    public override string GetName()
+    public override void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown)
     {
-        return "Empress Skill";
+        rewardDesc.Arguments = new object[] { TarotCard.FormatPercentage(healPercent),
+            pulseDuration, Mathf.RoundToInt(displayCooldown), displayUses };
     }
 }

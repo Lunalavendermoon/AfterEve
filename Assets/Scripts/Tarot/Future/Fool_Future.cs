@@ -1,8 +1,5 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine.Localization;
 
 public class Fool_Future : Future_TarotCard
 {
@@ -16,6 +13,8 @@ public class Fool_Future : Future_TarotCard
     {
         cardName = "Fool_Future";
         arcana = Arcana.Fool;
+        
+        GetLocalizedDesc();
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -41,19 +40,25 @@ public class Fool_Future : Future_TarotCard
 
     protected override void RewardPlayer()
     {
-        Debug.Log("Automatically trigger Fool reward, gain 50 coins");
         PlayerController.instance.ChangeCoins(foolCoinRewardAmount);
 
         // Fool card doesn't use Future_Reward, so we have to manually call RemoveCard() here
-        RemoveCard();
+        RemoveCard(TarotManager.instance);
     }
 
     protected override void GetLocalizedDesc()
     {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Fool");
+        desc = new LocalizedString
+        {
+            TableReference = "FutureTarotTable"
+        };
+        rewardDesc = new LocalizedString
+        {
+            TableReference = "FutureRewardTable"
+        };
 
+        SetTableEntries(arcana.ToString());
+        
         rewardDesc.Arguments = new object[] { foolCoinRewardAmount };
 
         SetDescriptionValues();

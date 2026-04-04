@@ -14,8 +14,10 @@ public class Hierophant_Future : Future_TarotCard
     public Hierophant_Future(int q) : base(q)
     {
         cardName = "Hierophant_Future";
-        reward = new Hierophant_Reward(this);
+        reward = new Hierophant_Reward();
         arcana = Arcana.Hierophant;
+        
+        GetLocalizedDesc(uses, cd);
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -43,18 +45,6 @@ public class Hierophant_Future : Future_TarotCard
                 CompleteQuest();
             }
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Hierophant");
-        
-        rewardDesc.Arguments = new object[] { Hierophant_Reward.shieldAmount,
-            Mathf.RoundToInt(Hierophant_Reward.shieldDuration), Mathf.RoundToInt(cd), uses };
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

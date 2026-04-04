@@ -14,8 +14,10 @@ public class Emperor_Future : Future_TarotCard
     public Emperor_Future(int q) : base(q)
     {
         cardName = "Emperor_Future";
-        reward = new Emperor_Reward(this);
+        reward = new Emperor_Reward();
         arcana = Arcana.Emperor;
+        
+        GetLocalizedDesc(uses, cd);
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -51,18 +53,6 @@ public class Emperor_Future : Future_TarotCard
     {
         attackRoomCount = 0;
         RefreshDescription();
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Emperor");
-        
-        rewardDesc.Arguments = new object[] { Mathf.RoundToInt(Emperor_Reward.paralyzeDuration),
-            Mathf.RoundToInt(cd), uses };
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

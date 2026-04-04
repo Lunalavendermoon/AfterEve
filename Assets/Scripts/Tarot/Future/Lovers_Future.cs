@@ -11,8 +11,10 @@ public class Lovers_Future : Future_TarotCard
     public Lovers_Future(int q) : base(q)
     {
         cardName = "Lovers_Future";
-        reward = new Lovers_Reward(this);
+        reward = new Lovers_Reward();
         arcana = Arcana.Lovers;
+        
+        GetLocalizedDesc(uses, cd);
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -33,18 +35,6 @@ public class Lovers_Future : Future_TarotCard
         {
             CompleteQuest();
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Lovers");
-        
-        rewardDesc.Arguments = new object[] { Mathf.RoundToInt(Lovers_Reward.duration),
-            FormatPercentage(Lovers_Reward.dmgMultiplier), Mathf.RoundToInt(cd), uses };
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

@@ -17,8 +17,10 @@ public class Empress_Future : Future_TarotCard
     public Empress_Future(int q) : base(q)
     {
         cardName = "Empress_Future";
-        reward = new Empress_Reward(this);
+        reward = new Empress_Reward();
         arcana = Arcana.Empress;
+        
+        GetLocalizedDesc(uses, cd);
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -58,18 +60,6 @@ public class Empress_Future : Future_TarotCard
                 CompleteQuest();
             }
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Empress");
-
-        rewardDesc.Arguments = new object[] { FormatPercentage(Empress_Reward.healPercent),
-            Empress_Reward.pulseDuration, Mathf.RoundToInt(cd), uses };
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

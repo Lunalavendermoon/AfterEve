@@ -13,7 +13,6 @@ public abstract class Future_TarotCard : TarotCard
 
     public Future_TarotCard(int q) : base(q)
     {
-        GetLocalizedDesc();
     }
 
     /// <summary>
@@ -22,7 +21,6 @@ public abstract class Future_TarotCard : TarotCard
     public void CompleteQuest()
     {
         questCompleted = true;
-        RemoveListeners();
         RewardPlayer();
     }
 
@@ -30,23 +28,17 @@ public abstract class Future_TarotCard : TarotCard
 
     protected virtual void RewardPlayer()
     {
-        // TODO give reward to player
-    }
-
-    public virtual void RemoveCard()
-    {
-        // TODO remove this card from player's inventory
         if (reward != null)
         {
-            // TODO remove skill from player's skill slot
-            // this works for 1 skill slot but not multiple...
-            PlayerController.instance.futureSkill = null;
+            // TODO give reward to player
         }
+        
+        RemoveCard(TarotManager.instance);
     }
 
     public override void RemoveCard(TarotManager tarotManager)
     {
-        RemoveCard();
+        RemoveListeners();
     }
 
     public string GetQuestText()
@@ -59,7 +51,7 @@ public abstract class Future_TarotCard : TarotCard
         return $"{desc.GetLocalizedString()}\n{rewardDesc.GetLocalizedString()}";
     }
 
-    protected override void GetLocalizedDesc()
+    protected void GetLocalizedDesc(int uses, float cd)
     {
         desc = new LocalizedString
         {
@@ -69,6 +61,12 @@ public abstract class Future_TarotCard : TarotCard
         {
             TableReference = "FutureRewardTable"
         };
+
+        SetTableEntries(arcana.ToString());
+
+        reward.SetRewardArguments(rewardDesc, uses, cd);
+
+        SetDescriptionValues();
     }
 
     protected override void SetTableEntries(string cardName)

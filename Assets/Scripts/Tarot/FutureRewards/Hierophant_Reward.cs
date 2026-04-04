@@ -1,12 +1,12 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine.Localization;
 
 public class Hierophant_Reward : Future_Reward
 {
     public const int shieldAmount = 5;
     public const float shieldDuration = 10f;
 
-    public Hierophant_Reward(Future_TarotCard card) : base(Hierophant_Future.uses, Hierophant_Future.cd, card)
+    public Hierophant_Reward() : base(Hierophant_Future.uses, Hierophant_Future.cd, TarotCard.Arcana.Hierophant)
     {
     }
 
@@ -16,8 +16,9 @@ public class Hierophant_Reward : Future_Reward
         PlayerController.instance.GainHitCountShield(shieldAmount, shieldDuration);
     }
 
-    public override string GetName()
+    public override void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown)
     {
-        return "Hierophant Skill";
+        rewardDesc.Arguments = new object[] { shieldAmount,
+            Mathf.RoundToInt(shieldDuration), Mathf.RoundToInt(displayCooldown), displayUses };
     }
 }

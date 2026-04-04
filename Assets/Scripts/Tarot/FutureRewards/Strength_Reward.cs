@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class Strength_Reward : Future_Reward
 {
     public const float zoneDuration = 5f;
     public const float maxZoneDistance = 5f;
 
-    public Strength_Reward(Future_TarotCard card) : base(Strength_Future.uses, Strength_Future.cd, card)
+    public Strength_Reward() : base(Strength_Future.uses, Strength_Future.cd, TarotCard.Arcana.Strength)
     {
     }
 
@@ -26,8 +27,12 @@ public class Strength_Reward : Future_Reward
         PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.StrengthZone, zoneDuration, true, zonePos.x, zonePos.y, zonePos.z);
     }
 
-    public override string GetName()
+    public override void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown)
     {
-        return "Strength Skill";
+        // NOTE - hardcoded strings for damage interval and zone size
+        rewardDesc.Arguments = new object[] { Strength_Zone.damage, "0.5", "2",
+            TarotCard.FormatPercentage(Strength_Zone.enemySlowAmount), maxZoneDistance,
+            Mathf.RoundToInt(zoneDuration),
+            Mathf.RoundToInt(displayCooldown), displayUses };
     }
 }

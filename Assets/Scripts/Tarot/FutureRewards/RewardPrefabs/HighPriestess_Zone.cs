@@ -5,7 +5,7 @@ public class HighPriestess_Zone : MonoBehaviour
 {
     Enlightened_Effect playerEffect = new(-1f);
 
-    Cursed_Effect enemyEffect = new(-1f, HighPriestess_Future.cursedAmount / 100f);
+    Cursed_Effect enemyEffect = new(-1f, HighPriestess_Reward.cursedAmount / 100f);
 
     Dictionary<Collider2D, EffectInstance> effects = new();
 

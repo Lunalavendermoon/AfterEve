@@ -1,6 +1,7 @@
 using FMOD.Studio;
 using FMODUnity;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
         toggleDialogueLog = playerInput.FindAction("ToggleDialogueLog", true);
 
         // Player should not start with any future skill.
-        futureSkill = null;
+        futureSkills.Clear();
     }
 
     // user input system
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
     private Boolean inSpiritualVision;
 
     // future card skill
-    public Future_Reward futureSkill = null;
+    public List<Future_Reward> futureSkills = new();
 
     // events
     public static event Action<DamageInstance> OnDamageTaken;
@@ -195,6 +196,8 @@ public class PlayerController : MonoBehaviour
 
         // audio
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, this.transform.position);
+
+        playerInput.Player.FutureSkill.performed += ctx => HandleFutureSkillInput((int)ctx.ReadValue<float>());
     }
 
     void Update()
@@ -231,7 +234,6 @@ public class PlayerController : MonoBehaviour
 
         HandleShootInput();
         HandleSpiritualVision();
-        HandleFutureSkillInput();
 
         if (skillText != null)
         {
@@ -296,58 +298,30 @@ public class PlayerController : MonoBehaviour
     string BuildSkillDisplayString()
     {
         string s = "Coins: " + coins;
-        s += "\nFuture skill: ";
-        if (futureSkill == null)
+        s += "\nFuture skills: ";
+        foreach (var skill in futureSkills)
         {
-            s += "none";
-            return s;
+            s += "- " + skill.ToString() + "\n";
         }
-        else
-        {
-            s += futureSkill.GetName();
-        }
-        s += "\n";
-        if (futureSkill.IsOnCooldown())
-        {
-            s += "Cooldown: " + (int)(futureSkill.cooldown - Time.time + futureSkill.lastUseTime);
-        } else
-        {
-            s += "Press E to use skill!";
-        }
-        s += "\nRemaining skill uses: " + futureSkill.usesLeft;
         return s;
     }
 
     // TODO: FOR TESTING ONLY - delete in final!
     public void SetFutureSkill(string skill)
     {
-        switch (skill)
+        Future_Reward skillToAdd = skill switch
         {
-            case "chariot":
-                futureSkill = new Chariot_Reward(null);
-                return;
-            case "emperor":
-                futureSkill = new Emperor_Reward(null);
-                return;
-            case "empress":
-                futureSkill = new Empress_Reward(null);
-                return;
-            case "hierophant":
-                futureSkill = new Hierophant_Reward(null);
-                return;
-            case "highpriestess":
-                futureSkill = new HighPriestess_Reward(null);
-                return;
-            case "lovers":
-                futureSkill = new Lovers_Reward(null);
-                return;
-            case "magician":
-                futureSkill = new Magician_Reward(null);
-                return;
-            case "strength":
-                futureSkill = new Strength_Reward(null);
-                return;
-        }
+            "chariot" => new Chariot_Reward(),
+            "emperor" => new Emperor_Reward(),
+            "empress" => new Empress_Reward(),
+            "hierophant" => new Hierophant_Reward(),
+            "highpriestess" => new HighPriestess_Reward(),
+            "lovers" => new Lovers_Reward(),
+            "magician" => new Magician_Reward(),
+            "strength" => new Strength_Reward(),
+            _ => null
+        };
+        // TODO add skill to futureSkills
     }
 
     public void ChangeState(IPlayerState newState)
@@ -487,12 +461,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void HandleFutureSkillInput()
+    void HandleFutureSkillInput(int skillValue)
     {
-        if (playerInput.Player.Skill.triggered)
-        {
-            futureSkill?.TriggerSkill();
-        }
+        // TODO actually trigger skill lol
+        Debug.Log($"Future skill button pressed with value {skillValue}");
+        // futureSkill?.TriggerSkill();
     }
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
@@ -537,7 +510,7 @@ public class PlayerController : MonoBehaviour
         ++StaticGameManager.deathCount;
 
         // Clear any active future skill on death.
-        futureSkill = null;
+        futureSkills.Clear();
 
         // Clear player tarot state on death (keep past cards).
         if (tarotManager != null)

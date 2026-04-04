@@ -15,8 +15,10 @@ public class Chariot_Future : Future_TarotCard
     public Chariot_Future(int q) : base(q)
     {
         cardName = "Chariot_Future";
-        reward = new Chariot_Reward(this);
+        reward = new Chariot_Reward();
         arcana = Arcana.Chariot;
+        
+        GetLocalizedDesc(uses, cd);
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -61,19 +63,6 @@ public class Chariot_Future : Future_TarotCard
         {
             CompleteQuest();
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Chariot");
-        
-        rewardDesc.Arguments = new object[] { FormatPlusOnePercentage(Chariot_Reward.hasteAmount),
-            FormatPlusOnePercentage(Chariot_Reward.strengthAmount), Mathf.RoundToInt(Chariot_Reward.duration),
-            Mathf.RoundToInt(cd), uses };
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

@@ -10,8 +10,10 @@ public class Strength_Future : Future_TarotCard
     public Strength_Future(int q) : base(q)
     {
         cardName = "Strength_Future";
-        reward = new Strength_Reward(this);
+        reward = new Strength_Reward();
         arcana = Arcana.Strength;
+        
+        GetLocalizedDesc(uses, cd);
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -32,21 +34,6 @@ public class Strength_Future : Future_TarotCard
         {
             CompleteQuest();
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Strength");
-        
-        // NOTE - hardcoded strings for damage interval and zone size
-        rewardDesc.Arguments = new object[] { Strength_Zone.damage, "0.5", "2",
-            FormatPercentage(Strength_Zone.enemySlowAmount), Strength_Reward.maxZoneDistance,
-            Mathf.RoundToInt(Strength_Reward.zoneDuration),
-            Mathf.RoundToInt(cd), uses };
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

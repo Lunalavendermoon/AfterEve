@@ -11,8 +11,10 @@ public class Hermit_Future : Future_TarotCard
     public Hermit_Future(int q) : base(q)
     {
         cardName = "Hermit_Future";
-        reward = new Hermit_Reward(this);
+        reward = new Hermit_Reward();
         arcana = Arcana.Hermit;
+        
+        GetLocalizedDesc(uses, cd);
     }
 
     public override void ApplyCard(TarotManager tarotManager)
@@ -36,18 +38,6 @@ public class Hermit_Future : Future_TarotCard
                 CompleteQuest();
             }
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Hermit");
-        
-        rewardDesc.Arguments = new object[] { Mathf.RoundToInt(Hermit_Reward.duration),
-            Mathf.RoundToInt(cd), uses };
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

@@ -1,19 +1,25 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class HighPriestess_Reward : Future_Reward
 {
-    public HighPriestess_Reward(Future_TarotCard card) : base(HighPriestess_Future.uses, HighPriestess_Future.cd, card)
+    const int zoneRadiusDisplay = 5;
+    public const float zoneDuration = 10f;
+    public const int cursedAmount = 40;
+
+    public HighPriestess_Reward() : base(HighPriestess_Future.uses, HighPriestess_Future.cd, TarotCard.Arcana.HighPriestess)
     {
     }
 
     protected override void TriggerSkillBehavior()
     {
         Debug.Log("Triggered High Priestess skill");
-        PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.HighPriestessZone, HighPriestess_Future.zoneDuration);
+        PlayerController.instance.SpawnFuturePrefab(FuturePrefabs.HighPriestessZone, zoneDuration);
     }
 
-    public override string GetName()
+    public override void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown)
     {
-        return "HighPriestess Skill";
+        rewardDesc.Arguments = new object[] { zoneRadiusDisplay, Mathf.RoundToInt(zoneDuration),
+            cursedAmount, Mathf.RoundToInt(displayCooldown), displayUses };
     }
 }

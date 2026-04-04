@@ -9,7 +9,7 @@ public class CanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        if (Input.GetKeyDown(KeyCode.Alpha8)) {
             if (UITestCanvas.enabled)
             {
                 UITestCanvas.enabled = false;
@@ -18,7 +18,7 @@ public class CanvasManager : MonoBehaviour
                 UITestCanvas.enabled = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        if (Input.GetKeyDown(KeyCode.Alpha9)) {
             if (effectTestCanvas.enabled)
             {
                 effectTestCanvas.enabled = false;
@@ -28,7 +28,7 @@ public class CanvasManager : MonoBehaviour
                 effectTestCanvas.enabled = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+        if (Input.GetKeyDown(KeyCode.Alpha0)) {
             if (tarotTestCanvas.enabled)
             {
                 tarotTestCanvas.enabled = false;

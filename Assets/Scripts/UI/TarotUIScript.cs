@@ -5,28 +5,26 @@ using System.Collections;
 [RequireComponent(typeof(Image))]
 public class TarotUIScript : MonoBehaviour
 {
-
-    [SerializeField] float tarotCooldown = 2;
+    // [SerializeField] float tarotCooldown = 2;
     //[SerializeField] private TMP_Text tarotCooldownButtonText;
     private Coroutine tarotCooldownRoutine;
 
     // Tarot Cooldown Animation
-    public void runTarotCooldownAnimation()
+    public void runTarotCooldownAnimation(float cooldownDuration = 2)
     {
         if(tarotCooldownRoutine != null) {
             Debug.Log("Tarot in cooldown -- cannot use at this time");
             return;
         }
-        tarotCooldownRoutine = StartCoroutine(tarotCooldownAnimationCoroutine());
+        tarotCooldownRoutine = StartCoroutine(tarotCooldownAnimationCoroutine(cooldownDuration));
     }
 
-    private IEnumerator tarotCooldownAnimationCoroutine()
+    private IEnumerator tarotCooldownAnimationCoroutine(float cooldownDuration)
     {
         //testing
         //(tarotCooldownButtonText != null) tarotCooldownButtonText.text = "[in cooldown]";
 
         float cooldownStartTime = Time.time;
-        float cooldownDuration = tarotCooldown;
         
         // create greyed-out card as child
         GameObject obj = Instantiate(gameObject, transform);

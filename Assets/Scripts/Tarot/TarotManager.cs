@@ -22,9 +22,8 @@ public class TarotManager : MonoBehaviour
     void OnEnable()
     {
         PlayerController.instance.playerInput.Player.UpdateTarotHand.performed += OnUpdateTarotPerformed; // for testing
-        PlayerController.instance.playerInput.Player.Attack.performed += OnMouseClick;
+        // PlayerController.instance.playerInput.Player.Attack.performed += OnMouseClick;
 
-        // TODO - uncomment this (only commented out for testing)
         DisplayHand();
 
         // AddCard(new Fool_Future(1));
@@ -37,7 +36,7 @@ public class TarotManager : MonoBehaviour
     void OnDisable()
     {
         PlayerController.instance.playerInput.Player.UpdateTarotHand.performed -= OnUpdateTarotPerformed;
-        PlayerController.instance.playerInput.Player.Attack.performed -= OnMouseClick;
+        // PlayerController.instance.playerInput.Player.Attack.performed -= OnMouseClick;
     }
 
     public EffectManager effectManager;
@@ -48,6 +47,8 @@ public class TarotManager : MonoBehaviour
     public Dictionary<TarotCard.Arcana, Present_TarotCard> presentTarot = new();
     public List<Future_TarotCard> futureTarot = new();
     public Dictionary<TarotCard.Arcana, Past_TarotCard> pastTarot = new();
+
+    public List<TarotUIScript> futureSkillUI = new();
 
     public void ClearAllCards(bool keepPast)
     {
@@ -93,21 +94,21 @@ public class TarotManager : MonoBehaviour
 
     public static event Action<TarotCard.Arcana> OnObtainCard;
 
-    public void OnMouseClick(InputAction.CallbackContext context)
-    {
-        RaycastHit hit;  
-        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, LayerMask.NameToLayer("TarotUI")))
-        {
-            Debug.Log("click");
+    // public void OnMouseClick(InputAction.CallbackContext context)
+    // {
+    //     RaycastHit hit;  
+    //     if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, LayerMask.NameToLayer("TarotUI")))
+    //     {
+    //         Debug.Log("click");
         
-            TarotUIScript card = hit.collider.gameObject.GetComponent<TarotUIScript>();
-            if(card)
-            {
-                Debug.Log("card clicked");
-                card.runTarotCooldownAnimation();
-            }
-        }
-    }
+    //         TarotUIScript card = hit.collider.gameObject.GetComponent<TarotUIScript>();
+    //         if(card)
+    //         {
+    //             Debug.Log("card clicked");
+    //             card.runTarotCooldownAnimation();
+    //         }
+    //     }
+    // }
 
     public void AddCard(TarotCard tarotCard)
     {
@@ -167,17 +168,17 @@ public class TarotManager : MonoBehaviour
     {
         // DisplayCards();
 
-        // testing
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            // PlayerController.instance.futureSkills = futureTarot[0].reward;
-            tarotHand.transform.GetChild(0).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            // PlayerController.instance.futureSkills = futureTarot[1].reward;
-            tarotHand.transform.GetChild(1).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
-        }
+        // // testing
+        // if(Input.GetKeyDown(KeyCode.O))
+        // {
+        //     // PlayerController.instance.futureSkills = futureTarot[0].reward;
+        //     tarotHand.transform.GetChild(0).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
+        // }
+        // if(Input.GetKeyDown(KeyCode.P))
+        // {
+        //     // PlayerController.instance.futureSkills = futureTarot[1].reward;
+        //     tarotHand.transform.GetChild(1).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
+        // }
 
         // call Update() for any cards that need it -- currently only chariot past
         if (pastTarot.ContainsKey(TarotCard.Arcana.Chariot))
@@ -235,18 +236,29 @@ public class TarotManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        futureSkillUI.Clear();
 
         int offset = 200;
         int i = 0;
-        foreach(TarotCard future in futureTarot)
+        foreach(Future_Reward future in PlayerController.instance.futureSkills)
         {
-            GameObject newCard = Instantiate(CreateCardObject(future), tarotHand);
-            newCard.transform.position += new Vector3(i * offset, 0, 0);
+            if (future != null)
+            {
+                GameObject newCard = Instantiate(CreateCardObject(future.arcana), tarotHand);
+                newCard.transform.position += new Vector3(i * offset, 0, 0);
+                futureSkillUI.Add(newCard.GetComponent<TarotUIScript>());
+            }
+            else
+            {
+                // TODO - what to display for empty (i.e. null) skill slots?
+                futureSkillUI.Add(null);
+            }
+
             i++;
         }
     }
 
-    public GameObject CreateCardObject(TarotCard card)
+    public GameObject CreateCardObject(TarotCard.Arcana arcana)
     {
         GameObject obj = new GameObject();
 
@@ -263,7 +275,7 @@ public class TarotManager : MonoBehaviour
 
         // add sprite image
         obj.AddComponent<Image>();
-        obj.GetComponent<Image>().sprite = tarotIcons.GetSprite(card);
+        obj.GetComponent<Image>().sprite = tarotIcons.GetFutureSkillSprite(arcana);
 
         // add cooldown effect script
         obj.AddComponent<TarotUIScript>();

@@ -23,6 +23,11 @@ public class TarotIcon : ScriptableObject
     [SerializeField] private Sprite[] hermit;
     [SerializeField] private Sprite[] wheelOfFortune;
 
+    public Sprite GetFutureSkillSprite(TarotCard.Arcana arcana)
+    {
+        return GetSprite(arcana, TarotType.Future);
+    }
+
     public Sprite GetSprite(TarotCard card)
     {
         if(card is Present_TarotCard) return GetSprite(card.arcana, TarotType.Present);

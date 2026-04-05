@@ -471,10 +471,12 @@ public class PlayerController : MonoBehaviour
 
     void HandleFutureSkillInput(int skillValue)
     {
-        Future_Reward skill = futureSkills[skillValue - 1];
+        --skillValue;
+
+        Future_Reward skill = futureSkills[skillValue];
         if (skill != null)
         {
-            // TODO show cooldown thingy
+            TarotManager.instance.futureSkillUI[skillValue].runTarotCooldownAnimation(skill.cooldown);
             skill.TriggerSkill();
         }
     }
@@ -488,13 +490,13 @@ public class PlayerController : MonoBehaviour
             {
                 futureSkills[i] = skill;
                 skill.SetSkillIndex(i);
-                // TODO update on-screen display
+                TarotManager.instance.DisplayHand();
                 return;
             }
             else if (target.arcana == skill.arcana)
             {
                 target.AddUses(skill.usesLeft);
-                // TODO update on-screen display
+                TarotManager.instance.DisplayHand();
                 return;
             }
         }

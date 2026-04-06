@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
         // Initialize all skill slots to be empty
         futureSkills = Enumerable.Repeat<Future_Reward>(null, StaticGameManager.futureSkillSlots).ToList();
+        futureSkillQueue.Clear();
     }
 
     // user input system
@@ -130,6 +131,7 @@ public class PlayerController : MonoBehaviour
 
     // future card skill
     public List<Future_Reward> futureSkills = new();
+    public Queue<Future_Reward> futureSkillQueue = new();
 
     // events
     public static event Action<DamageInstance> OnDamageTaken;
@@ -329,7 +331,7 @@ public class PlayerController : MonoBehaviour
             "strength" => new Strength_Reward(),
             _ => null
         };
-        ObtainFutureSkill(skillToAdd);
+        TryAddSkill(skillToAdd);
     }
 
     public void ChangeState(IPlayerState newState)
@@ -481,8 +483,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ObtainFutureSkill(Future_Reward skill)
+    // Pass in "null" for skill to use the skill at the top of the skill queue
+    // Returns true on success and false on failure
+    public bool TryAddSkill(Future_Reward skill = null)
     {
+        bool dequeueOnSuccess = skill == null;
+        bool enqueueOnFailure = skill != null;
+        try
+        {
+            skill ??= futureSkillQueue.Peek(); // if skill is null, set its value
+        }
+        catch (InvalidOperationException)
+        {
+            // nothing to dequeue, i.e. trying to add a new skill failed
+            return false;
+        }
+
         for (int i = 0; i < futureSkills.Count; ++i)
         {
             Future_Reward target = futureSkills[i];
@@ -490,18 +506,40 @@ public class PlayerController : MonoBehaviour
             {
                 futureSkills[i] = skill;
                 skill.SetSkillIndex(i);
+                if (dequeueOnSuccess)
+                {
+                    futureSkillQueue.Dequeue();
+                }
                 TarotManager.instance.DisplayHand();
-                return;
+                return true;
             }
             else if (target.arcana == skill.arcana)
             {
                 target.AddUses(skill.usesLeft);
+                if (dequeueOnSuccess)
+                {
+                    futureSkillQueue.Dequeue();
+                }
                 TarotManager.instance.DisplayHand();
-                return;
+                return true;
             }
         }
 
-        // TODO queue incoming skill to be swapped out after fate selection
+        if (enqueueOnFailure)
+        {
+            Debug.Log("Enqueued");
+            futureSkillQueue.Enqueue(skill);
+        }
+        return false;
+    }
+
+    public void LoseFutureSkill(Future_Reward skill)
+    {
+        futureSkills[skill.GetSkillIndex()] = null;
+        if (!TryAddSkill()) // TryAddSkill() calls DisplayHand once on success, no need to call it again
+        {
+            TarotManager.instance.DisplayHand();
+        }
     }
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)

@@ -69,8 +69,7 @@ public abstract class Future_Reward
 
         if (usesLeft == 0)
         {
-            PlayerController.instance.futureSkills[skillIndex] = null;
-            TarotManager.instance.DisplayHand();
+            PlayerController.instance.LoseFutureSkill(this);
         }
     }
 
@@ -97,6 +96,11 @@ public abstract class Future_Reward
     public void SetSkillIndex(int newIdx)
     {
         skillIndex = newIdx;
+    }
+
+    public int GetSkillIndex()
+    {
+        return skillIndex;
     }
 
     public abstract void SetRewardArguments(LocalizedString rewardDesc, int displayUses, float displayCooldown);

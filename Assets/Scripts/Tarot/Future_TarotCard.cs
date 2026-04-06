@@ -30,7 +30,7 @@ public abstract class Future_TarotCard : TarotCard
     {
         if (reward != null)
         {
-            PlayerController.instance.ObtainFutureSkill(reward);
+            PlayerController.instance.TryAddSkill(reward);
         }
         
         RemoveCard(TarotManager.instance);

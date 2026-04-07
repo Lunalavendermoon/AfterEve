@@ -50,6 +50,17 @@ public class Bomb : MonoBehaviour
                     Collider.enabled = true;
                     timeStopped = Time.time;
                     transform.localScale *= 3f;
+                    ContactFilter2D filter = new()
+                    {
+                        useTriggers = true
+                    };
+                    filter.SetLayerMask(LayerMask.GetMask("Enemy"));
+                    Collider2D[] results = new Collider2D[15];
+                    int count = Collider.Overlap(filter, results);
+                    for (int i = 0; i < count; i++)
+                    {
+                        HandleDamage(results[i].gameObject);
+                    }
 
                 }
             } else
@@ -83,14 +94,22 @@ public class Bomb : MonoBehaviour
     void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
         Debug.Log("COLLISION ONE");
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") && exploding)
+        HandleDamage(collision.gameObject);
+    }
+
+    void HandleDamage(GameObject hitObject)
+    {
+        if (hitObject.layer == LayerMask.NameToLayer("Enemy") && exploding)
         {
             Debug.Log("COLLISION TWO");
-            EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
-            OnEnemyHit?.Invoke(enemy);
-            enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
-            enemy.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
-            enemy.Mark(strengthBuff);
+            EnemyBase enemy = hitObject.GetComponent<EnemyBase>();
+            if (enemy != null)
+            {
+                OnEnemyHit?.Invoke(enemy);
+                enemy.TakeDamage(baseDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
+                enemy.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
+                enemy.Mark(strengthBuff);
+            }
         }
     }
 

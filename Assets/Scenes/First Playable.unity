@@ -5917,8 +5917,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -690, y: 400}
-  m_SizeDelta: {x: 160, y: 100}
+  m_AnchoredPosition: {x: -725, y: 400}
+  m_SizeDelta: {x: 97.4, y: 86.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805103205
 MonoBehaviour:
@@ -5996,7 +5996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e6f6b3ff1ede0e547a826cf28c2a8edb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb1a4f2e6461f694fbb2a9f513dd75f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13942,6 +13942,13 @@ MonoBehaviour:
       Data3: 2083377294
       Data4: -1996621820
     Path: event:/PlayerFootsteps
+  <walkThroughPortal>k__BackingField:
+    Guid:
+      Data1: 110668828
+      Data2: 1093787676
+      Data3: 1458756748
+      Data4: 342676977
+    Path: event:/Portal
   <playerTakeDamage>k__BackingField:
     Guid:
       Data1: -755224142
@@ -15749,8 +15756,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.6067402, g: 0.24213827, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: aa04e015582f0964991b199dcd106d2a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -7,6 +7,8 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Player SFX")]
     [field: SerializeField] public EventReference playerFootsteps { get; private set; }
 
+    [field: SerializeField] public EventReference walkThroughPortal { get; private set; }
+
     [field: SerializeField] public EventReference playerTakeDamage { get; private set; }
 
     [field: Header("Gun SFX")]

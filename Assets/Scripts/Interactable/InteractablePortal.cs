@@ -7,6 +7,7 @@ public class InteractablePortal : InteractableEntity
 
     public override void TriggerInteraction()
     {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.walkThroughPortal, this.transform.position);
         gm.LoadMap();
     }
 

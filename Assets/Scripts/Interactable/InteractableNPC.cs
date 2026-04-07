@@ -20,4 +20,9 @@ public class InteractableNPC : InteractableEntity
         runner.StartDialogue(targetNode);
         firstInteraction = false;
     }
+
+    protected override string GetInteractionType()
+    {
+        return "NPC";
+    }
 }

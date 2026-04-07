@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en-US
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e56bd5b13d2b43869d9c537ba1d92b9
+    m_Address: InteractPrompts_en-US
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-US
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cbbb55ddb23164644a4c46575c02fddb
     m_Address: PastTarotTable_en-US
     m_ReadOnly: 1

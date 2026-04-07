@@ -83,6 +83,8 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
 
+    public TMP_Text interactPrompt;
+
     // Player movement speed (exposed for designer control)
     public int speed;
 
@@ -201,6 +203,8 @@ public class PlayerController : MonoBehaviour
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, transform.position);
 
         playerInput.Player.FutureSkill.performed += ctx => HandleFutureSkillInput((int)ctx.ReadValue<float>());
+
+        interactPrompt.gameObject.SetActive(false);
     }
 
     void Update()

@@ -28,4 +28,9 @@ public class Chest_base : InteractableEntity
 
         Destroy(gameObject);
     }
+
+    protected override string GetInteractionType()
+    {
+        return "Chest";
+    }
 }

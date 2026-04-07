@@ -4589,6 +4589,10 @@ PrefabInstance:
       propertyPath: questUIScript
       value: 
       objectReference: {fileID: 999704202}
+    - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 988982516}
     - target: {fileID: 900003970690876749, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -7228,12 +7232,12 @@ GameObject:
   - component: {fileID: 988982517}
   - component: {fileID: 988982516}
   m_Layer: 5
-  m_Name: TeleportText
+  m_Name: InteractPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &988982515
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7690,6 +7694,7 @@ MonoBehaviour:
   effectManager: {fileID: 363515242}
   tarotIcons: {fileID: 11400000, guid: a41496080438ad94b998a3513eafd9cb, type: 2}
   tarotHand: {fileID: 1730119590}
+  futureSkillUI: []
 --- !u!1 &1070625459
 GameObject:
   m_ObjectHideFlags: 0
@@ -15821,8 +15826,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractablePortal
   yarnSpinnerNode: 
+  interactPrompt: {fileID: 0}
   gm: {fileID: 828173322}
-  teleportPrompt: {fileID: 988982516}
 --- !u!1001 &2138837947
 PrefabInstance:
   m_ObjectHideFlags: 0

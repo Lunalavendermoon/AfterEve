@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-zh-Hans
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77dc6782c272940269b03eea15763d8a
+    m_Address: InteractPrompts_zh-Hans
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh-Hans
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e20c4d92598eb482eb836a52e6b56f7d
     m_Address: FutureTarotTable_zh-Hans
     m_ReadOnly: 1

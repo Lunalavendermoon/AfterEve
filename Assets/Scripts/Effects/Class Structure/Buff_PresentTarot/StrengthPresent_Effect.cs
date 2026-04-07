@@ -18,7 +18,7 @@ public class StrengthPresent_Effect : Effects
 
     public override void ApplyPlayerEffect(PlayerAttributes playerAttributes, bool increment)
     {
-        playerAttributes.bulletBounces = numPierces;
+        playerAttributes.bulletPierces = numPierces;
         playerAttributes.bulletPierceDmgDecrease = bulletPierceDmgDecrease;
     }
 }

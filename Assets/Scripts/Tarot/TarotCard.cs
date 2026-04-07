@@ -82,14 +82,13 @@ public abstract class TarotCard
 
     public static (Arcana, bool) GenRandomCardData()
     {
-        return (Arcana.Chariot, UnityEngine.Random.Range(0, 2) == 0);
-        // bool future = UnityEngine.Random.Range(0, 2) == 0;
+        bool future = UnityEngine.Random.Range(0, 2) == 0;
 
-        // Array values = Enum.GetValues(typeof(Arcana));
-        // // int randomIndex = UnityEngine.Random.Range(0, values.Length);
-        // int randomIndex = UnityEngine.Random.Range(0, 10); // FOR TESTING - only generate first 10 card types
+        Array values = Enum.GetValues(typeof(Arcana));
+        // int randomIndex = UnityEngine.Random.Range(0, values.Length);
+        int randomIndex = UnityEngine.Random.Range(0, 10); // FOR TESTING - only generate first 10 card types
 
-        // return ((Arcana)values.GetValue(randomIndex), future);
+        return ((Arcana)values.GetValue(randomIndex), future);
     }
 
     protected virtual void GetLocalizedDesc()

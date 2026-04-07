@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -6164470918014890052}
   - component: {fileID: -2637096491281532155}
   - component: {fileID: -5666194849850837557}
+  - component: {fileID: 8704914156037717926}
   m_Layer: 0
   m_Name: LunaGhost
   m_TagString: Untagged
@@ -110,19 +111,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LunaGhostBehaviour
   baseEnemyAttributes: {fileID: 11400000, guid: 3ca65630600c4a1489935cfaa1882745, type: 2}
   enemyAttributes: {fileID: 11400000, guid: 3ca65630600c4a1489935cfaa1882745, type: 2}
-  enemyEffectManager: {fileID: 0}
-  chest: {fileID: 0}
+  enemyEffectManager: {fileID: 8704914156037717926}
   spawner: {fileID: 0}
   health: 0
   speed: 0
   agent: {fileID: -5666194849850837557}
   destinationSetter: {fileID: -6164470918014890052}
+  floatingTextPrefab: {fileID: 0}
+  rb: {fileID: 0}
+  chest: {fileID: 0}
   attackHitbox: {fileID: 0}
+  knockbackForceOnHit: 0
   isAttacking: 1
+  attackHitConnected: 0
   Drop: {fileID: 0}
   attack_timer: 1
-  floatingTextPrefab: {fileID: 0}
   givesRewards: 1
+  lockRotation: 1
+  flipToFacePlayer: 1
   luck: 1
   elite: 0
   projectilePrefab: {fileID: 1779082262334560470, guid: c9aac081e3f932d4bb79327d696b48a8, type: 3}
@@ -283,3 +289,19 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &8704914156037717926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712681336597110973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81eb346ca2dc4099bdbeba4de861b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyEffectManager
+  vfx: {fileID: 0}
+  enemy: {fileID: 5629462324184080777}
+  baseEnemyAttributes: {fileID: 11400000, guid: 3ca65630600c4a1489935cfaa1882745, type: 2}
+  effectEnemyAttributes: {fileID: 0}

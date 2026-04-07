@@ -9,9 +9,8 @@ public class Magician_Present : Present_TarotCard
     {
         cardName = "Magician_Present";
         arcana = Arcana.Magician;
-        
-        PlayerController.instance.playerAttributes.bulletBounces = bounceNum[level];
-        PlayerController.instance.playerAttributes.bulletBounceDmgDecrease = damageReducedPerBounce[level];
+
+        effects.Add(new MagicianPresent_Effect(bounceNum[level], damageReducedPerBounce[level]));
     }
 
     protected override void GetLocalizedDesc()

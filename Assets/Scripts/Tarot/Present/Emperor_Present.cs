@@ -16,7 +16,7 @@ public class Emperor_Present : Present_TarotCard
         arcana = Arcana.Emperor;
 
         effects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
-        effects.Add(new AmmoCapacity_Effect(-1, ammoCapaciityIncrease[level]));
+        effects.Add(new AmmoCapacity_FlatEffect(-1, ammoCapaciityIncrease[level]));
         effects.Add(new Fortified_Additive_Effect(-1, basicDefenseIncrease[level]));
         // Note: Knockback_Effect is a debuff that says the entity w/ this effect gets knocked away from damage sources
         // we prob want to create a new buff effect that says the entity w/ this effect knocks away other entities when dealing dmg

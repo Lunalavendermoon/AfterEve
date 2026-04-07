@@ -21,6 +21,7 @@ public abstract class Effects
         FireRate,
         BulletBounce,
         AmmoCapacity,
+        NumBullets,
         PastTarot // Used for tarot past skills such as additional dmg, increase coin drop rate, etc
     }
 

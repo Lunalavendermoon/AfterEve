@@ -14,6 +14,7 @@ public class PlayerAttributes : EntityAttributes
     public int bulletBounces;
     public float bulletBounceDmgDecrease;
     public int bulletPierces;
+    public float bulletPierceDmgDecrease;
     public int enemiesChained;
     public int chainRadius;
     public float chainTime;

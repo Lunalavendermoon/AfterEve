@@ -54,6 +54,7 @@ public class Projectile : MonoBehaviour
     }
     public void SetBulletPiercing(int n) {
         bulletPiercing = n;
+        // TODO dmg reduction after each pierce/bounce
         if (n > 0)
         {
             spriteRenderer.sprite = pierceSprite;

@@ -5277,8 +5277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnBehavior
   map: {fileID: 489417606}
-  gm: {fileID: 828173322}
-  teleportPrompt: {fileID: 0}
 --- !u!114 &1068506914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5295,6 +5293,7 @@ MonoBehaviour:
   effectManager: {fileID: 363515242}
   tarotIcons: {fileID: 11400000, guid: a41496080438ad94b998a3513eafd9cb, type: 2}
   tarotHand: {fileID: 15092550}
+  futureSkillUI: []
 --- !u!1 &1070625459
 GameObject:
   m_ObjectHideFlags: 0
@@ -5558,6 +5557,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3008216757946002452, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3008216757946002452, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
       propertyPath: emotionCapsule
       value: 
@@ -9552,6 +9555,13 @@ MonoBehaviour:
       Data3: 2083377294
       Data4: -1996621820
     Path: event:/PlayerFootsteps
+  <walkThroughPortal>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <playerTakeDamage>k__BackingField:
     Guid:
       Data1: 0
@@ -9581,6 +9591,13 @@ MonoBehaviour:
       Data4: 0
     Path: 
   <enemyTakeDamage>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <enemyDie>k__BackingField:
     Guid:
       Data1: 0
       Data2: 0
@@ -10485,7 +10502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: AstarPathfindingProject::AstarPath
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACYn+spxOUFaQIAACIFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMziVjHD7q3lpCSA9JmJBOLr7I8hprkCWPPgIkw3/vSraxQ6cnNG/f7r63u+aTcGlqYFbpteb5o8qB/BgR/ybfRn3wAY50p+SWf0DHeeO5LT2JBs4LtVwhPvFpRlVgNWc/5U54coSgk7xQulrlO1gqYw3CBRUGMKSV9dkSoc8ROeLPOPEpJ3zFC//6wFcSjc74ZCAt6J7aEce3N7Pb2TSOJ9PVOJq3SZNZSHKSCVrVkHsHfW586dLUluitZXgfTAnBTSuM2FMdjL/Qk7edc4omgxLPLYHvSutLDROfi8KAbVVqerrjGmfVVCS/VDPAipp9o+mdCud7TKNkHgQ1VR//Tyi0qh661pPIt7ElZ3sUyaixgyEP4buv2p08ULGnmYC3EuSTWmvlZI5Bq51PdQbiu0Gpi71lCWzf8xq1HdixXf3vsrqdjiej8zmM4LgUvMp86GbaAFuhwsDDKYDG1fxGyeFQTFsCUS/jj4FXuhteVBu459pYDLU+pdeXKac9lazC1LwdZ5dKSwhwa6UGSYU9bbCMvd7jVWzQ9ipyT/230zZvY90ncZUS4J4fRVehjTpc1mVKdXgEUz47K7iEXrQPPOGclkrK5syGM+nStk4XlA3Sdo7nX8+LzDJgxSSJErpgcZTAeEGj+fcsYxHMM5rECxKuj0v0ScWmEdqOB7cm++ISL637SxmtNa3DyeeaHtb8o1KDkXNZqC3TAPK5qXARDhqb4GeZr3KOA9qCtVyGfZPPlAjF9pCnl0JpcLo6Wk3TvkpKav6urEdSsgz/ISnx8OWYNxreORx8867YmZz/AlBLAwQUAAAICAAAmJ/rOHwY7m0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kmlSanKaoaWBZaJ5spGBZaqueaKBmUVSUrJBqllSoqWRuVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAmJ/rKcTlBWkCAAAiBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/rOHwY7m0AAAB4AAAACQAkAAAAAAAAAAAAAAC2AgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAG4DAAAAAA==
+    dataString: UEsDBBQAAAgIAACAn+v0Ku/8bAIAACEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjO3zUvbVASA8kTEgnF19keY01yJJHkgMkw3/vSraxQ04sb7/e2135k3BpKmBW6bXm2UZlQH6NiLPJj1HvfIQT3Su54x/QxbzxzBYuiPqYF2q5Qjx0aUaVYDVnv+VeuOAAwVryXOlyle1hoYw1COdUGECXVtZlS4Q+R+SEP+PYpZzRiubO+kArDkYXNBlIC7oP7QLH93fT++kkisLJahzM2qRw6pNqyQQtK8icgj43unZpakvU1kY4HUwJwU1LjNhz5YW/0LOTnXGKIj0TF1sA3xfWlRomPue5Aduy1PS85Bpn1VQkf1QzwJKaQ8PpnYra9ZiFk4kn1FTdfAuYBPHMB+RalY9d6zBwbWzB2QFJMmrsYMhDePmVey2PVBxoKuCtAPmk1lrVMkOn1bVLrQ1Ey/7vVd2iAHbo8YZsB3Z96+r7rrqVjsPR5eIncFoIXqbOdTdpgJ1Qft7+EkDjZv4iY38npi2BqKPxz8Ar3Q8PqnU8cG0sulqZ0vFLVa1dKFn5oTk5tV0oLcHDrZQKJBX2vMUy9naNN75B2xvPA3VPp23e+roXcZPi4T4+CG5cW3W8bssU6rgBUzzXVnAJPWnneMI5LZSUzZUNZ9Kl7WqdUzZI29c8+3pdZJoCy8M4iOmcRUEM4zkNZj/TlAUwS2kczYk/Pi5RJxXbhmg7Htya7ItLPLTuizJaa1r5i880Pa75R6kGI+cyVzumAeRzU+FKHDQ2wVeZrTKOA9qBtVz6fZPPhAjFDpAl10KJV7o6WU2TvkpCKv6urEMSsvCfkIQ4+HrMWw3vHI6ueVfsQi7/AVBLAwQUAAAICAAAgJ/rOHwY7m0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kmlSanKaoaWBZaJ5spGBZaqueaKBmUVSUrJBqllSoqWRuVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAgJ/r9Crv/GwCAAAhBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/rOHwY7m0AAAB4AAAACQAkAAAAAAAAAAAAAAC5AgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAHEDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -10513,11 +10530,43 @@ MonoBehaviour:
     _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
     _AreaColors:
     - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:

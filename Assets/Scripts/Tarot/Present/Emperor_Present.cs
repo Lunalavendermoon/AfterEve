@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Emperor_Present : Present_TarotCard
@@ -10,17 +11,27 @@ public class Emperor_Present : Present_TarotCard
     string knockBackDisplay = "0.1";
     EffectManager effectManager = PlayerController.instance.gameObject.GetComponent<EffectManager>();
 
+    // Effects when standing still, and their corresponding effect instance (if any)
+    List<Effects> idleEffects = new();
+    List<EffectInstance> idleEi = new();
+
     public Emperor_Present(int q) : base(q)
     {
         cardName = "Emperor_Present";
         arcana = Arcana.Emperor;
 
-        effects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
-        effects.Add(new AmmoCapacity_FlatEffect(-1, ammoCapaciityIncrease[level]));
-        effects.Add(new Fortified_Additive_Effect(-1, basicDefenseIncrease[level]));
-        // Note: Knockback_Effect is a debuff that says the entity w/ this effect gets knocked away from damage sources
-        // we prob want to create a new buff effect that says the entity w/ this effect knocks away other entities when dealing dmg
-        // effects.Add(new Knockback_Effect(-1)); // TODO set Knockback a specific amount?
+        idleEffects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
+        idleEffects.Add(new AmmoCapacity_FlatEffect(-1, ammoCapaciityIncrease[level]));
+        idleEffects.Add(new Fortified_Additive_Effect(-1, basicDefenseIncrease[level]));
+
+        idleEi = Enumerable.Repeat<EffectInstance>(null, idleEffects.Count).ToList();
+
+        HandlePlayerStateChange(PlayerController.instance.currentState);
+
+        // TODO knockback effect
+        // Don't use Knockback_Effect here. It is a debuff that says the entity w/ this effect gets knocked away from damage sources
+        // should prob create a new buff effect, and code it so the entity w/ this effect knocks away other entities when dealing dmg
+        // effects.Add(new Knockback_Effect(-1));
     }
 
     protected override void ApplyListeners()
@@ -37,27 +48,22 @@ public class Emperor_Present : Present_TarotCard
     {
         if(state is Player_Idle) 
         {
-            foreach(Effects e in effects)
+            for (int i = 0; i < idleEffects.Count; ++i)
             {
-                effectManager.AddBuff(e);
+                idleEi[i] = effectManager.AddBuff(idleEffects[i]);
             }
         }
         else
         {
-            foreach(Effects e in effects)
+            for (int i = 0; i < idleEffects.Count; ++i)
             {
-                //effectManager.RemoveEffect(e);
+                if (idleEi[i] != null)
+                {
+                    effectManager.RemoveEffect(idleEi[i]);
+                    idleEi[i] = null;
+                }
             }
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-
-        SetTableEntries("Emperor");
-        
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

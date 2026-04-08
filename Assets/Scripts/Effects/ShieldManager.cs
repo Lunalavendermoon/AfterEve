@@ -109,7 +109,6 @@ public class ShieldManager : MonoBehaviour
 
                     if (amount == 0)
                     {
-                        Debug.Log($"damage {type}");
                         return amount;
                     }
                 }
@@ -123,12 +122,18 @@ public class ShieldManager : MonoBehaviour
                 }
             }
         }
+
+        if (GetTotalShield() == 0)
+        {
+            effectManager.RemoveIcon(Effects.IconType.BuffShield);
+        }
         return amount;
     }
 
     public void GainRegularShield(int amount)
     {
         miscShield.GainShield(amount);
+        effectManager.AddIcon(Effects.IconType.BuffShield);
     }
 
     public int GetTotalShield()

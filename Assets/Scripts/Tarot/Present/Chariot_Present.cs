@@ -20,15 +20,6 @@ public class Chariot_Present : Present_TarotCard
         //TODO add AOE pulse
     }
 
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-
-        SetTableEntries("Chariot");
-        
-        SetDescriptionValues();
-    }
-
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] {

@@ -13,15 +13,6 @@ public class Magician_Present : Present_TarotCard
         effects.Add(new MagicianPresent_Effect(bounceNum[level], damageReducedPerBounce[level]));
     }
 
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-
-        SetTableEntries("Magician");
-        
-        SetDescriptionValues();
-    }
-
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] {

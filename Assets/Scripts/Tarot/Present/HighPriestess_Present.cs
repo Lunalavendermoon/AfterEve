@@ -8,6 +8,8 @@ public class HighPriestess_Present : Present_TarotCard
 
     int normalDuration = 3;
     int spiritualDuration = 5;
+
+    Weak_Effect weakDebuff;
     
     PlayerGun playerGun;
 
@@ -16,18 +18,35 @@ public class HighPriestess_Present : Present_TarotCard
         cardName = "HighPriestess_Present";
         arcana = Arcana.HighPriestess;
 
-        // TODO make effect only apply sometimes
-        playerGun = PlayerController.instance.gameObject.GetComponent<PlayerGun>();
-        playerGun.AddEffect(new Weak_Effect(3, weakPercent));
+        weakDebuff = new Weak_Effect(3, weakPercent);
     }
 
-    protected override void GetLocalizedDesc()
+    protected override void ApplyListeners()
     {
-        base.GetLocalizedDesc();
+        Projectile.OnEnemyHit += HandleEnemyHit;
+    }
 
-        SetTableEntries("HighPriestess");
-        
-        SetDescriptionValues();
+    protected override void RemoveListeners()
+    {
+        Projectile.OnEnemyHit -= HandleEnemyHit;
+    }
+
+    private void HandleEnemyHit(EnemyBase enemy)
+    {
+        int random = Random.Range(0,100);
+        bool applyWeak;
+        if (PlayerController.instance.IsInSpiritualVision())
+        {
+            applyWeak = random < spiritualApplyProbability[level];
+        }
+        else
+        {
+            applyWeak = random < applyProbability[level];
+        }
+        if (applyWeak)
+        {
+            enemy.enemyEffectManager.AddEffect(weakDebuff, enemy.enemyAttributes);
+        }
     }
 
     protected override void SetDescriptionValues()

@@ -14,7 +14,7 @@ public class Empress_Present : Present_TarotCard
         cardName = "Empress_Present";
         arcana = Arcana.Empress;
 
-        timer = timeBetweenTrigger + 1f;
+        timer = 0f;
     }
 
     protected override void ApplyListeners()
@@ -50,15 +50,6 @@ public class Empress_Present : Present_TarotCard
         {
             timer -= Time.deltaTime;
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-
-        SetTableEntries("Empress");
-        
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

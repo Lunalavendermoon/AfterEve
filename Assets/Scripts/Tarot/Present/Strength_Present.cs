@@ -20,15 +20,6 @@ public class Strength_Present : Present_TarotCard
         // TODO Sundered ability ;-;
     }
 
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-
-        SetTableEntries("Strength");
-        
-        SetDescriptionValues();
-    }
-
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[]

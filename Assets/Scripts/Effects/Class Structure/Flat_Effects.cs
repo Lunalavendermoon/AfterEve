@@ -17,7 +17,7 @@ public abstract class Flat_Effects : Effects
     protected float startTime;
 
     // the flat amount the effect is altered
-    protected Flat_Effects(float duration, int effectFlat) : base(duration)
+    protected Flat_Effects(float duration, float effectFlat) : base(duration)
     {
         effectRate = effectFlat;
         totalRate = effectRate;
@@ -66,6 +66,9 @@ public abstract class Flat_Effects : Effects
                 return;
             case Stat.NumBullets:
                 playerAttributes.bullets += (int)effectRate;
+                return;
+            case Stat.PhysicalDamageBonus:
+                playerAttributes.physicalAdditionalDmg += effectRate;
                 return;
         }
         // if effectStat wasn't one of the above (or it was Stat.Damage), this method gets called

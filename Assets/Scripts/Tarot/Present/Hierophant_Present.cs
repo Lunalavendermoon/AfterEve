@@ -9,6 +9,7 @@ public class Hierophant_Present : Present_TarotCard
     float[] shieldIncrease = { .01f, .02f, .03f, .04f, .05f };
 
     float timeBetweenTrigger = 1f;
+    float timer;
 
     public Hierophant_Present(int q) : base(q)
     {
@@ -21,16 +22,34 @@ public class Hierophant_Present : Present_TarotCard
         PlayerController.instance.playerAttributes.chainShieldIncrease = shieldIncrease[level];
         PlayerController.instance.playerAttributes.chainTime = chainTime[level];
 
-        // TODO trigger shield effect max once per second
+        timer = 0f;
     }
 
-    protected override void GetLocalizedDesc()
+    protected override void ApplyListeners()
     {
-        base.GetLocalizedDesc();
+        Projectile.OnEnemyChained += HandleEnemyHit;
+    }
 
-        SetTableEntries("Hierophant");
-        
-        SetDescriptionValues();
+    protected override void RemoveListeners()
+    {
+        Projectile.OnEnemyChained -= HandleEnemyHit;
+    }
+
+    void HandleEnemyHit(int shieldAmount)
+    {
+        if (timer <= 0f && shieldAmount > 0)
+        {
+            PlayerController.instance.GainRegularShield(shieldAmount);
+            timer = timeBetweenTrigger;
+        }
+    }
+
+    public override void UpdateCard()
+    {
+        if (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     protected override void SetDescriptionValues()

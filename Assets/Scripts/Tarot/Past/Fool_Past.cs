@@ -6,6 +6,8 @@ public class Fool_Past : Past_TarotCard
     const int maxStackPerFoolCard = 7;
     int foolCardCount = 1;
     int stackCounter = 0;
+    
+    EffectInstance prevEffect = null;
 
     public Fool_Past(int q) : base(q)
     {
@@ -31,7 +33,13 @@ public class Fool_Past : Past_TarotCard
         }
 
         ++stackCounter;
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new FoolPast_Effect());
+
+        EffectManager em = PlayerController.instance.gameObject.GetComponent<EffectManager>();
+        if (prevEffect != null)
+        {
+            em.RemoveEffect(prevEffect, true);
+        }
+        prevEffect = em.AddBuff(new PhysicalDmgBonus_Effect(-1, physicalDmgBonus * stackCounter));
     }
 
     protected override void GetLocalizedDesc()

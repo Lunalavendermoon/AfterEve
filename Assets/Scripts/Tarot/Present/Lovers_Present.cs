@@ -14,16 +14,6 @@ public class Lovers_Present : Present_TarotCard
         arcana = Arcana.Lovers;
         
         PlayerController.instance.CreateClone(basicDamage[level], spiritualDamage[level], strengthBuff[level]);
-
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-
-        SetTableEntries("Lovers");
-        
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

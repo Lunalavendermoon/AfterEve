@@ -3,7 +3,7 @@ using UnityEngine;
 public class Fool_Present : Present_TarotCard
 {
     float[] fireRateIncrease = {1.2f, 1.3f, 1.4f, 1.5f, 1.6f};
-    float[] additionalDmg = {1.2f, 1.25f, 1.3f, 1.35f, 1.4f};
+    float[] additionalDmg = {.2f, .25f, .3f, .35f, .4f};
 
     EnemyBase lastEnemy;
 
@@ -31,25 +31,18 @@ public class Fool_Present : Present_TarotCard
     {
         if (lastEnemy != enemy)
         {
-            PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new Strength_Effect(0.1f, additionalDmg[level]));
+            // Deal additional damage to enemy
+            enemy.TakeDamage((int)(additionalDmg[level] * PlayerController.instance.playerAttributes.damage),
+                DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
         }
         lastEnemy = enemy;
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-
-        SetTableEntries("Fool");
-        
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] {
             FormatPlusOnePercentage(fireRateIncrease[level]),
-            FormatPlusOnePercentage(additionalDmg[level])
+            FormatPercentage(additionalDmg[level])
         };
     }
 }

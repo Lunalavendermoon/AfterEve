@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
     private float maxProjectileDistance;
 
     public static event Action<EnemyBase> OnEnemyHit;
+    public static event Action<int> OnEnemyChained; // int parameter is the amount of shield to add
     private int bulletBounces;
     private List<Effects> bulletEffects;
     private int bulletPiercing;
@@ -106,26 +107,29 @@ public class Projectile : MonoBehaviour
 
             EnemyBase enemy = other.GetComponent<EnemyBase>();
             OnEnemyHit?.Invoke(enemy);
+
+            int cumulativeShield = 0;
             for (int i = 0; i < PlayerController.instance.playerAttributes.enemiesChained; i++)
             {
                 GameObject temp = FindNearestUnchainedEnemy(other);
-                if(temp != null)
+                if (temp != null)
                 {
                     temp.GetComponent<EnemyBase>().Chain(PlayerController.instance.playerAttributes.chainTime);
-                    if(PlayerController.instance.IsInSpiritualVision())
+                    if (spiritualDamage > 0)
                     {
-                        PlayerController.instance.GainRegularShield(
-                            (int)(PlayerController.instance.playerAttributes.maxHitPoints *
-                            PlayerController.instance.playerAttributes.chainShieldIncrease * 2));
-                    } else
+                        cumulativeShield += (int)(PlayerController.instance.playerAttributes.maxHitPoints *
+                            PlayerController.instance.playerAttributes.chainShieldIncrease * 2);
+                    }
+                    else
                     {
-                        PlayerController.instance.GainRegularShield(
-                            (int)(PlayerController.instance.playerAttributes.maxHitPoints *
-                            PlayerController.instance.playerAttributes.chainShieldIncrease));
+                        cumulativeShield += (int)(PlayerController.instance.playerAttributes.maxHitPoints *
+                            PlayerController.instance.playerAttributes.chainShieldIncrease);
                     }
                 }
             }
+            OnEnemyChained?.Invoke(cumulativeShield);
             DamageAllChainedEnemies();
+
             if (physicalDamage > 0)
             {
                 enemy.TakeDamage(physicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);

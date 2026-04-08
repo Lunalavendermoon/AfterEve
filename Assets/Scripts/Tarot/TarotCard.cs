@@ -89,6 +89,10 @@ public abstract class TarotCard
         int randomIndex = UnityEngine.Random.Range(0, 10); // FOR TESTING - only generate first 10 card types
 
         return ((Arcana)values.GetValue(randomIndex), future);
+
+        // FOR TESTING ONLY - force game to generate a specific present/future card
+        // 2nd value: false for present, true for future
+        // return (Arcana.Hierophant, false);
     }
 
     protected virtual void GetLocalizedDesc()

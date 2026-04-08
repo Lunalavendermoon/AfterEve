@@ -48,6 +48,10 @@ public class Present_TarotCard : TarotCard
         {
             TableReference = "PresentTarotTable"
         };
+
+        SetTableEntries(arcana.ToString());
+        
+        SetDescriptionValues();
     }
 
     protected virtual void SetDescriptionValues()

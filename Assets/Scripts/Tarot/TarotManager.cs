@@ -26,7 +26,7 @@ public class TarotManager : MonoBehaviour
 
         DisplayHand();
 
-        // AddCard(new Fool_Future(1));
+        // AddCard(new HighPriestess_Present(1));
         // AddCard(new Chariot_Future(1));
         // AddCard(new Magician_Future(1));
         // AddCard(new Magician_Future(1));
@@ -180,7 +180,7 @@ public class TarotManager : MonoBehaviour
         //     tarotHand.transform.GetChild(1).gameObject.GetComponent<TarotUIScript>().runTarotCooldownAnimation();
         // }
 
-        // call Update() for any cards that need it -- currently only chariot past
+        // call Update() for any cards that need it
         if (pastTarot.ContainsKey(TarotCard.Arcana.Chariot))
         {
             pastTarot[TarotCard.Arcana.Chariot].UpdateCard();
@@ -188,6 +188,10 @@ public class TarotManager : MonoBehaviour
         if (presentTarot.ContainsKey(TarotCard.Arcana.Empress))
         {
             presentTarot[TarotCard.Arcana.Empress].UpdateCard();
+        }
+        if (presentTarot.ContainsKey(TarotCard.Arcana.Hierophant))
+        {
+            presentTarot[TarotCard.Arcana.Hierophant].UpdateCard();
         }
     }
 

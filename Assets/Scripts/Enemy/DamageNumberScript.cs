@@ -9,7 +9,6 @@ public class DamageNumberScript : MonoBehaviour
         Destroy(gameObject, 1f);
         transform.position += offset;
         transform.position += new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(0, 0.5f), 0);
-
     }
 
     // Update is called once per frame

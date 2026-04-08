@@ -15,16 +15,8 @@ public class PlayerAttributes : EntityAttributes
     public float bulletBounceDmgDecrease;
     public int bulletPierces;
     public float bulletPierceDmgDecrease;
-    public int enemiesChained;
-    public int chainRadius;
-    public float chainTime;
-    public float chainDmg;
     public float physicalAdditionalDmg;
     public float spiritualAdditionalDmg;
-    
-
-    [Header("Player Defense")]
-    public float chainShieldIncrease;
 
     [Header("Player Movement")]
     public float totalStamina;

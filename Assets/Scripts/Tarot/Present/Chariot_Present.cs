@@ -13,11 +13,18 @@ public class Chariot_Present : Present_TarotCard
         cardName = "Chariot_Present";
         arcana = Arcana.Chariot;
 
+        AddNewLevelEffects();
+
+        //TODO add AOE pulse
+
+        GetLocalizedDesc();
+    }
+
+    protected override void AddNewLevelEffects()
+    {
         effects.Add(new FireRate_Effect(-1, 1f - fireRateDecrease[level]));
         effects.Add(new Strength_Effect(-1, 1f - baseDamageDecrease[level]));
         effects.Add(new ExtraBullets_Effect(-1, extraBullets[level]));
-
-        //TODO add AOE pulse
     }
 
     protected override void SetDescriptionValues()

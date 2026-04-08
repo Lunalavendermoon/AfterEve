@@ -12,11 +12,18 @@ public class Hermit_Present : Present_TarotCard
         cardName = "Hermit_Present";
         arcana = Arcana.Hermit;
 
+        AddNewLevelEffects();
+
+        // TODO handle weak point stuff (see tarot card docs)
+
+        GetLocalizedDesc();
+    }
+
+    protected override void AddNewLevelEffects()
+    {
         effects.Add(new FireRate_Effect(-1, 1f - ammoCapacityDecrease[level]));
         effects.Add(new AmmoCapacity_MultEffect(-1, 1f - fireRateDecrease[level]));
         effects.Add(new PhysicalDmgBonus_Effect(-1, additionalDamage[level]));
-
-        // TODO handle weak point stuff (see tarot card docs)
     }
 
     protected override void SetDescriptionValues()

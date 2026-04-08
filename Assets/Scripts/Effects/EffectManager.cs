@@ -98,7 +98,8 @@ public abstract class EffectManager : MonoBehaviour
         return AddEffect(effect, null);
     }
 
-    public virtual EffectInstance AddEffect(Effects effect, EntityAttributes attributes)
+    // if muted is true, does not call ApplyEffects() at the end
+    public virtual EffectInstance AddEffect(Effects effect, EntityAttributes attributes, bool muted = false)
     {
         Effects.Stat stat = effect.effectStat;
         Effects.Application app = effect.effectApplication;
@@ -174,7 +175,10 @@ public abstract class EffectManager : MonoBehaviour
             effectTimers.Add(eff);
         }
 
-        ApplyEffects();
+        if (!muted)
+        {
+            ApplyEffects();
+        }
         return eff;
     }
 

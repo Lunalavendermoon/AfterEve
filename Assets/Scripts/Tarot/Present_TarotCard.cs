@@ -5,36 +5,46 @@ using UnityEngine.Localization;
 
 public class Present_TarotCard : TarotCard
 {
-    const int maxQuantity = 5;
+    int[] levelThreshold = {1, 2, 4, 8, 16};
 
     public List<Effects> effects = new();
+    public List<EffectInstance> effectInstances = new();
     public int level;
 
     public Present_TarotCard(int q) : base(q)
     {
-        level = q-1;
-        if(level > 4) level = 4;
-        GetLocalizedDesc();
+        for (int i = levelThreshold.Length - 1; i >= 0; --i)
+        {
+            if (quantity >= levelThreshold[i])
+            {
+                level = i;
+                break;
+            }
+        }
     }
 
     public override void ApplyCard(TarotManager tarotManager)
     {
-        if (effects != null) { 
+        if (effects != null) {
             foreach (Effects e in effects)
             {
-                tarotManager.effectManager.AddEffect(e, PlayerController.instance.playerAttributes);
+                effectInstances.Add(
+                    tarotManager.effectManager.AddEffect(e, PlayerController.instance.playerAttributes, true));
             }
+            tarotManager.effectManager.ApplyEffects(); // Recalculate attributes
         }
         ApplyListeners();
     }
 
     public override void RemoveCard(TarotManager tarotManager)
     {
-        if (effects != null) { 
-            foreach (Effects e in effects)
+        if (effectInstances != null) {
+            foreach (EffectInstance e in effectInstances)
             {
-                
+                tarotManager.effectManager.RemoveEffect(e, true);
             }
+            tarotManager.effectManager.ApplyEffects(); // Recalculate attributes
+            effectInstances.Clear();
         }
         RemoveListeners();
     }
@@ -62,14 +72,58 @@ public class Present_TarotCard : TarotCard
     public void ChangeQuantity(int q)
     {
         quantity += q;
-
-        level = quantity-1;
-        if(level > 4) level = 4;
-        if(level < 0) level = 0;
-
-        SetDescriptionValues();
-        desc.RefreshString();
+        RecomputeCardLevel();
     }
+
+    public void RecomputeCardLevel()
+    {
+        // 1,2,4,8,16 is level 1,2,3,4,5
+        int oldLevel = level;
+
+        for (int i = levelThreshold.Length - 1; i >= 0; --i)
+        {
+            if (quantity >= levelThreshold[i])
+            {
+                level = i;
+                break;
+            }
+        }
+        Debug.Log($"### {quantity} {level} {oldLevel}");
+
+        if (level != oldLevel)
+        {
+            SetDescriptionValues();
+            desc.RefreshString();
+            OnCardLevelUp();
+        }
+    }
+
+    protected virtual void OnCardLevelUp()
+    {
+        if (effects.Count == 0)
+        {
+            return;
+        }
+        
+        foreach (EffectInstance e in effectInstances)
+        {
+            TarotManager.instance.effectManager.RemoveEffect(e, true);
+        }
+        effectInstances.Clear();
+
+        effects.Clear();
+        AddNewLevelEffects();
+
+        foreach (Effects e in effects)
+        {
+            effectInstances.Add(
+                TarotManager.instance.effectManager.AddEffect(e, PlayerController.instance.playerAttributes, true));
+        }
+
+        TarotManager.instance.effectManager.ApplyEffects(); // Recalculate attributes
+    }
+
+    protected virtual void AddNewLevelEffects() {}
 
     protected override void SetTableEntries(string cardName)
     {

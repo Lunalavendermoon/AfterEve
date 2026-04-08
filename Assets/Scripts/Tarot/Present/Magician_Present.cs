@@ -10,6 +10,13 @@ public class Magician_Present : Present_TarotCard
         cardName = "Magician_Present";
         arcana = Arcana.Magician;
 
+        AddNewLevelEffects();
+
+        GetLocalizedDesc();
+    }
+
+    protected override void AddNewLevelEffects()
+    {
         effects.Add(new MagicianPresent_Effect(bounceNum[level], damageReducedPerBounce[level]));
     }
 

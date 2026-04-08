@@ -14,10 +14,10 @@ public class EnemyEffectManager : EffectManager
         ApplyEffectsHelper((effect, increment) => { effect.ApplyEnemyEffect(effectEnemyAttributes, enemy, increment); });
         enemy.enemyAttributes = effectEnemyAttributes;
     }
-    public override EffectInstance AddEffect(Effects effect, EntityAttributes attributes)
+    public override EffectInstance AddEffect(Effects effect, EntityAttributes attributes, bool muted = false)
     {
         if (enemy != null && enemy.ShouldBlockEffect(effect))
             return null;
-        return base.AddEffect(effect, attributes);
+        return base.AddEffect(effect, attributes, muted);
     }
 }

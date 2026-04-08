@@ -15,6 +15,8 @@ public class Empress_Present : Present_TarotCard
         arcana = Arcana.Empress;
 
         timer = 0f;
+
+        GetLocalizedDesc();
     }
 
     protected override void ApplyListeners()

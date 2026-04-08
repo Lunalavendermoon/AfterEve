@@ -15,9 +15,16 @@ public class Strength_Present : Present_TarotCard
         cardName = "Strength_Present";
         arcana = Arcana.Strength;
 
-        effects.Add(new StrengthPresent_Effect(damageReducePierce[level]));
+        AddNewLevelEffects();
 
         // TODO Sundered ability ;-;
+
+        GetLocalizedDesc();
+    }
+
+    protected override void AddNewLevelEffects()
+    {
+        effects.Add(new StrengthPresent_Effect(damageReducePierce[level]));
     }
 
     protected override void SetDescriptionValues()

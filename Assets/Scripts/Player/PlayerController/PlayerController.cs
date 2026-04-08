@@ -745,12 +745,17 @@ public class PlayerController : MonoBehaviour
 
     public void CreateClone(float a, float b, float c) {
         GameObject clone = Instantiate(clonePrefab, new Vector3(transform.position.x+0.5f, transform.position.y, transform.position.z), Quaternion.identity);
-        clone.GetComponent<MimicPlayer>().SetDamage(a, b, c);
         if (currentClone != null)
         {
             Destroy(currentClone);
         }
         currentClone = clone;
+        SetCloneDamage(a, b, c);
+    }
+
+    public void SetCloneDamage(float a, float b, float c)
+    {
+        currentClone.GetComponent<MimicPlayer>().SetDamage(a, b, c);
     }
 
 

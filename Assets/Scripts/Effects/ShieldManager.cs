@@ -93,6 +93,11 @@ public class ShieldManager : MonoBehaviour
     {
         Shield.ShieldType[] types = (Shield.ShieldType[])Enum.GetValues(typeof(Shield.ShieldType));
 
+        if (GetTotalShield() == 0)
+        {
+            return amount;
+        }
+
         foreach (Shield.ShieldType type in types)
         {
             if (allShields.ContainsKey(type))

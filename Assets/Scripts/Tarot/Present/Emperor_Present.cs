@@ -20,9 +20,7 @@ public class Emperor_Present : Present_TarotCard
         cardName = "Emperor_Present";
         arcana = Arcana.Emperor;
 
-        idleEffects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
-        idleEffects.Add(new AmmoCapacity_FlatEffect(-1, ammoCapaciityIncrease[level]));
-        idleEffects.Add(new Fortified_Additive_Effect(-1, basicDefenseIncrease[level]));
+        SetIdleEffects();
 
         idleEi = Enumerable.Repeat<EffectInstance>(null, idleEffects.Count).ToList();
 
@@ -32,6 +30,15 @@ public class Emperor_Present : Present_TarotCard
         // Don't use Knockback_Effect here. It is a debuff that says the entity w/ this effect gets knocked away from damage sources
         // should prob create a new buff effect, and code it so the entity w/ this effect knocks away other entities when dealing dmg
         // effects.Add(new Knockback_Effect(-1));
+
+        GetLocalizedDesc();
+    }
+
+    void SetIdleEffects()
+    {
+        idleEffects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
+        idleEffects.Add(new AmmoCapacity_FlatEffect(-1, ammoCapaciityIncrease[level]));
+        idleEffects.Add(new Fortified_Additive_Effect(-1, basicDefenseIncrease[level]));
     }
 
     protected override void ApplyListeners()
@@ -42,6 +49,23 @@ public class Emperor_Present : Present_TarotCard
     protected override void RemoveListeners()
     {
         PlayerController.OnPlayerStateChange -= HandlePlayerStateChange;
+    }
+
+    protected override void OnCardLevelUp()
+    {
+        for (int i = 0; i < idleEffects.Count; ++i)
+        {
+            if (idleEi[i] != null)
+            {
+                effectManager.RemoveEffect(idleEi[i]);
+                idleEi[i] = null;
+            }
+        }
+
+        effects.Clear();
+        SetIdleEffects();
+
+        HandlePlayerStateChange(PlayerController.instance.currentState);
     }
 
     private void HandlePlayerStateChange(IPlayerState state)

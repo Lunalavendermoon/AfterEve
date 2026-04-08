@@ -19,6 +19,8 @@ public class HighPriestess_Present : Present_TarotCard
         arcana = Arcana.HighPriestess;
 
         weakDebuff = new Weak_Effect(3, weakPercent);
+
+        GetLocalizedDesc();
     }
 
     protected override void ApplyListeners()

@@ -14,7 +14,9 @@ public class Fool_Present : Present_TarotCard
         
         lastEnemy = null;
 
-        effects.Add(new FireRate_Effect(-1, fireRateIncrease[level]));
+        AddNewLevelEffects();
+
+        GetLocalizedDesc();
     }
 
     protected override void ApplyListeners()
@@ -36,6 +38,11 @@ public class Fool_Present : Present_TarotCard
                 DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
         }
         lastEnemy = enemy;
+    }
+
+    protected override void AddNewLevelEffects()
+    {
+        effects.Add(new FireRate_Effect(-1, fireRateIncrease[level]));
     }
 
     protected override void SetDescriptionValues()

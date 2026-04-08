@@ -35,7 +35,7 @@ public class PlayerEffectManager : EffectManager
         return AddEffect(effect, null);
     }
         
-    public override EffectInstance AddEffect(Effects effect, EntityAttributes attr)
+    public override EffectInstance AddEffect(Effects effect, EntityAttributes attr, bool muted = false)
     {
         OnEffectAdded?.Invoke();
 
@@ -95,7 +95,7 @@ public class PlayerEffectManager : EffectManager
             }
         }
         
-        return base.AddEffect(effect, attr);
+        return base.AddEffect(effect, attr, muted);
     }
 
     public override void RemoveEffect(EffectInstance ei, bool muted = false)

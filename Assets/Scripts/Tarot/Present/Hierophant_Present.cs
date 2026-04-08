@@ -8,6 +8,8 @@ public class Hierophant_Present : Present_TarotCard
     float[] chainDmg = { .3f, .35f, .4f, .45f, .5f };
     float[] shieldIncrease = { .01f, .02f, .03f, .04f, .05f };
 
+    float chainRadius = 5f;
+
     float timeBetweenTrigger = 1f;
     float timer;
 
@@ -15,31 +17,46 @@ public class Hierophant_Present : Present_TarotCard
     {
         cardName = "Hierophant_Present";
         arcana = Arcana.Hierophant;
-        
-        PlayerController.instance.playerAttributes.chainDmg = chainDmg[level];
-        PlayerController.instance.playerAttributes.enemiesChained = enemiesChained[level];
-        PlayerController.instance.playerAttributes.chainRadius = distance[level];
-        PlayerController.instance.playerAttributes.chainShieldIncrease = shieldIncrease[level];
-        PlayerController.instance.playerAttributes.chainTime = chainTime[level];
 
         timer = 0f;
+
+        GetLocalizedDesc();
     }
 
     protected override void ApplyListeners()
     {
-        Projectile.OnEnemyChained += HandleEnemyHit;
+        Projectile.OnEnemyHitWithDamage += HandleEnemyHit;
     }
 
     protected override void RemoveListeners()
     {
-        Projectile.OnEnemyChained -= HandleEnemyHit;
+        Projectile.OnEnemyHitWithDamage -= HandleEnemyHit;
     }
 
-    void HandleEnemyHit(int shieldAmount)
+    void HandleEnemyHit(EnemyBase enemy, int physicalDamage, int spiritualDamage)
     {
-        if (timer <= 0f && shieldAmount > 0)
+        int cumulativeShield = 0;
+        for (int i = 0; i < enemiesChained[level]; i++)
         {
-            PlayerController.instance.GainRegularShield(shieldAmount);
+            GameObject temp = FindNearestUnchainedEnemy(enemy.gameObject);
+            if (temp != null)
+            {
+                temp.GetComponent<EnemyBase>().Chain(chainTime[level]);
+                if (spiritualDamage > 0)
+                {
+                    cumulativeShield += (int)(PlayerController.instance.playerAttributes.maxHitPoints * shieldIncrease[level] * 2);
+                }
+                else
+                {
+                    cumulativeShield += (int)(PlayerController.instance.playerAttributes.maxHitPoints * shieldIncrease[level]);
+                }
+            }
+        }
+        DamageAllChainedEnemies(physicalDamage, spiritualDamage);
+
+        if (timer <= 0f && cumulativeShield > 0)
+        {
+            PlayerController.instance.GainRegularShield(cumulativeShield);
             timer = timeBetweenTrigger;
         }
     }
@@ -49,6 +66,45 @@ public class Hierophant_Present : Present_TarotCard
         if (timer > 0f)
         {
             timer -= Time.deltaTime;
+        }
+    }
+
+    GameObject FindNearestUnchainedEnemy(GameObject justHitEnemy)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float closestDistance = Mathf.Infinity;
+        GameObject nearest = null;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector3.Distance(justHitEnemy.transform.position, enemy.transform.position);
+            if (distance < closestDistance && distance <= chainRadius &&
+                !enemy.GetComponent<EnemyBase>().IsChained() && enemy != justHitEnemy)
+            {
+                closestDistance = distance;
+                nearest = enemy;
+            }
+        }
+        return nearest;
+    }
+
+    void DamageAllChainedEnemies(int physicalDamage, int spiritualDamage)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.GetComponent<EnemyBase>().IsChained())
+            {
+                if (physicalDamage > 0)
+                {
+                    enemy.GetComponent<EnemyBase>().TakeDamage((int)(physicalDamage * chainDmg[level]), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
+                }
+                if (spiritualDamage > 0)
+                {
+                    enemy.GetComponent<EnemyBase>().TakeDamage((int)(spiritualDamage * chainDmg[level]), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
+                }
+            }
         }
     }
 

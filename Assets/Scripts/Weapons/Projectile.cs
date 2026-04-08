@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
     private float maxProjectileDistance;
 
     public static event Action<EnemyBase> OnEnemyHit;
-    public static event Action<int> OnEnemyChained; // int parameter is the amount of shield to add
+    public static event Action<EnemyBase, int, int> OnEnemyHitWithDamage;
     private int bulletBounces;
     private List<Effects> bulletEffects;
     private int bulletPiercing;
@@ -107,28 +107,7 @@ public class Projectile : MonoBehaviour
 
             EnemyBase enemy = other.GetComponent<EnemyBase>();
             OnEnemyHit?.Invoke(enemy);
-
-            int cumulativeShield = 0;
-            for (int i = 0; i < PlayerController.instance.playerAttributes.enemiesChained; i++)
-            {
-                GameObject temp = FindNearestUnchainedEnemy(other);
-                if (temp != null)
-                {
-                    temp.GetComponent<EnemyBase>().Chain(PlayerController.instance.playerAttributes.chainTime);
-                    if (spiritualDamage > 0)
-                    {
-                        cumulativeShield += (int)(PlayerController.instance.playerAttributes.maxHitPoints *
-                            PlayerController.instance.playerAttributes.chainShieldIncrease * 2);
-                    }
-                    else
-                    {
-                        cumulativeShield += (int)(PlayerController.instance.playerAttributes.maxHitPoints *
-                            PlayerController.instance.playerAttributes.chainShieldIncrease);
-                    }
-                }
-            }
-            OnEnemyChained?.Invoke(cumulativeShield);
-            DamageAllChainedEnemies();
+            OnEnemyHitWithDamage?.Invoke(enemy, physicalDamage, spiritualDamage);
 
             if (physicalDamage > 0)
             {
@@ -139,6 +118,7 @@ public class Projectile : MonoBehaviour
                 Debug.Log("Spiritual Damage Dealt");
                 enemy.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
             }
+
             if (enemy.GetComponent<EffectManager>())
             {
                 if (!(bulletEffects == null))
@@ -148,7 +128,7 @@ public class Projectile : MonoBehaviour
             enemiesHit++;
             if ((bulletPiercing > 0 && enemiesHit > bulletPiercing) || (bulletPiercing == 0 && bounceQueueDestroyBullet))
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
         //else if (other.GetComponent<BossBehaviourBase>())
@@ -189,44 +169,6 @@ public class Projectile : MonoBehaviour
                 bounceQueueDestroyBullet = true;
             }
             HandleBulletHit(collision.gameObject);
-        }
-    }
-
-    GameObject FindNearestUnchainedEnemy(GameObject justHitEnemy)
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        float closestDistance = Mathf.Infinity;
-        GameObject nearest = null;
-
-        foreach (GameObject enemy in enemies)
-        {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distance < closestDistance && distance <= PlayerController.instance.playerAttributes.chainRadius && !enemy.GetComponent<EnemyBase>().IsChained() && enemy != justHitEnemy)
-            {
-                closestDistance = distance;
-                nearest = enemy;
-            }
-        }
-        return nearest;
-    }
-
-    void DamageAllChainedEnemies()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject enemy in enemies)
-        {
-            if (enemy.GetComponent<EnemyBase>().IsChained())
-            {
-                if (physicalDamage > 0)
-                {
-                    enemy.GetComponent<EnemyBase>().TakeDamage((int)(physicalDamage*PlayerController.instance.playerAttributes.chainDmg), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
-                }
-                if (spiritualDamage > 0)
-                {
-                    enemy.GetComponent<EnemyBase>().TakeDamage((int)(spiritualDamage*PlayerController.instance.playerAttributes.chainDmg), DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
-                }
-            }
         }
     }
 }

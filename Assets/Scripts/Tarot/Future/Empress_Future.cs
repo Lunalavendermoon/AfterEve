@@ -50,7 +50,7 @@ public class Empress_Future : Future_TarotCard
     private void OnRoomChange()
     {
         if (((double)PlayerController.instance.GetHealth()) / PlayerController.instance.MaxHealth >=
-                                                                                                        roomGoalHPThreshold)
+                roomGoalHPThreshold)
         {
             ++roomCount;
             RefreshDescription();

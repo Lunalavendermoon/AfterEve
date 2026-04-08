@@ -9,6 +9,7 @@ public class NarrativeRoomManager : MonoBehaviour
     public AllNarrativePaths narrativePaths;
     public GameObject portal;
     [HideInInspector] public bool disableChestGeneration;
+    [HideInInspector] public bool hasCombat = false;
     SingleNarrativeRoom currentRoom = null;
     GameObject roomObject = null;
 
@@ -105,6 +106,7 @@ public class NarrativeRoomManager : MonoBehaviour
             currentRoom = room;
             disableChestGeneration = room.disableChestGeneration;
             needsEnemySpawn = room.enemyPrefabs.Count != 0;
+            hasCombat = needsEnemySpawn;
             return true;
         }
         currentRoom = null;
@@ -191,7 +193,7 @@ public class NarrativeRoomManager : MonoBehaviour
             // If this room has no enemies to spawn after dialogue OR if this room doesn't spawn a chest after enemies defeated
             if (currentRoom.enemyPrefabs.Count == 0 || disableChestGeneration)
             {
-                GameManager.instance.ClearCombatRoom();
+                GameManager.instance.ClearCombatRoom(hasCombat);
             }
         }
     }

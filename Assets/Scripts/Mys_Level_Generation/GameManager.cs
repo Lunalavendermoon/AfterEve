@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -284,7 +285,7 @@ public class GameManager : MonoBehaviour
         wall.transform.localRotation = Quaternion.Euler(0f, 0f, zRotationDeg);
     }
 
-    public void ClearCombatRoom()
+    public void ClearCombatRoom(bool countTowardsEmpress = true)
     {
         // Used by non-chest flows (e.g., narrative/Yarn rooms) to finish the room.
         // Spawn the portal on the player for immediate transition.
@@ -299,6 +300,11 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("PlayerController.instance is null; cannot spawn portal on player.");
             portal.SetActive(true);
             return;
+        }
+
+        if (countTowardsEmpress)
+        {
+            OnCombatRoomClear?.Invoke();
         }
 
         Vector3 playerPos = PlayerController.instance.transform.position;
@@ -325,6 +331,7 @@ public class GameManager : MonoBehaviour
         playerPos.z = 0f;
         portal.transform.position = playerPos;
         portal.SetActive(true);
+        OnCombatRoomClear?.Invoke();
         return true;
     }
 

@@ -133,11 +133,11 @@ public class InventoryUIScript : MonoBehaviour
         go.GetComponent<InventoryItemUI>().InitItem(card, this, setSidebar);
     }
 
-    public void SetSidebar(Sprite cardSprite, string desc)
+    public void SetSidebar(Sprite cardSprite, TarotCard card)
     {
         sidebarImage.enabled = true;
         sidebarImage.sprite = cardSprite;
-        sidebarDesc.text = desc;
+        sidebarDesc.text = card.GetDescription();
         if (state == 2)
         {
             sidebarDesc.color = futureTextColor;

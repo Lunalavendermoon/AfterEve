@@ -21,12 +21,12 @@ public class InventoryItemUI : MonoBehaviour
 
         if (setSidebar)
         {
-            uiScript.SetSidebar(icons.GetSprite(card), card.GetDescription());
+            uiScript.SetSidebar(icons.GetSprite(card), card);
         }
     }
 
     public void OnClicked()
     {
-        uiScript.SetSidebar(icons.GetSprite(card), card.GetDescription());
+        uiScript.SetSidebar(icons.GetSprite(card), card);
     }
 }

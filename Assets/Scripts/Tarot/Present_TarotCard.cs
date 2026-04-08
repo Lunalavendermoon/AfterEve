@@ -88,7 +88,6 @@ public class Present_TarotCard : TarotCard
                 break;
             }
         }
-        Debug.Log($"### {quantity} {level} {oldLevel}");
 
         if (level != oldLevel)
         {

@@ -55,8 +55,7 @@ public class YarnCommands : MonoBehaviour
     [YarnCommand("complete_room")]
     public void CompleteRoom()
     {
-        // TODO differentiate between combat, shop, and dialogue rooms?
-        GameManager.instance.ClearCombatRoom();
+        GameManager.instance.ClearCombatRoom(NarrativeRoomManager.instance.hasCombat);
     }
 
     [YarnCommand("player_respawn")]

@@ -52,9 +52,13 @@ public class ShopItem : MonoBehaviour
         purchaseButton.enabled = false;
         purchaseButtonText.text = "(Purchased)";
 
+        TarotCard card = TarotCard.GetCardFromData(
+            arcana,
+            isFuture ? TarotCard.TarotType.Future : TarotCard.TarotType.Present,
+            quantity);
+
         // TODO - can remove the null check after all tarot cards are implemented
         // currently return null as placeholder for unimplemented cards
-        TarotCard card = TarotCard.GetPresentFutureCard(arcana, isFuture, quantity);
         if (card != null)
         {
             TarotManager.instance.AddCard(card);

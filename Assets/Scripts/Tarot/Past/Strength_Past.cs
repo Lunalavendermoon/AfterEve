@@ -4,7 +4,7 @@ public class Strength_Past : Past_TarotCard
 {
     public const float resistanceBonus = 10f;
 
-    public Strength_Past(int q) : base(q)
+    public Strength_Past() : base()
     {
         cardName = "Strength_Past";
         arcana = Arcana.Strength;

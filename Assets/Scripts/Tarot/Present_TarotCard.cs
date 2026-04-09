@@ -13,6 +13,7 @@ public class Present_TarotCard : TarotCard
 
     public Present_TarotCard(int q) : base(q)
     {
+        tarotType = TarotType.Present;
         for (int i = levelThreshold.Length - 1; i >= 0; --i)
         {
             if (quantity >= levelThreshold[i])

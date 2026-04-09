@@ -7,7 +7,7 @@ public class WheelOfFortune_Past : Past_TarotCard
 
     EffectInstance ei = null;
 
-    public WheelOfFortune_Past(int q) : base(q)
+    public WheelOfFortune_Past() : base()
     {
         cardName = "WheelOfFortune_Past";
         arcana = Arcana.WheelOfFortune;

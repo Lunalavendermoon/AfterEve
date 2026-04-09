@@ -4,7 +4,7 @@ public class HighPriestess_Past : Past_TarotCard
 {
     const float debuffDamage = 0.3f;
 
-    public HighPriestess_Past(int q) : base(q)
+    public HighPriestess_Past() : base()
     {
         cardName = "HighPriestess_Past";
         arcana = Arcana.HighPriestess;

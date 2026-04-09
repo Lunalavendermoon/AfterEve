@@ -6,7 +6,7 @@ public class Magician_Past : Past_TarotCard
     public const int bonusCoinAmount = 1;
     public const float coinBuffDuration = 10f;
 
-    public Magician_Past(int q) : base(q)
+    public Magician_Past() : base()
     {
         cardName = "Magician_Past";
         arcana = Arcana.Magician;

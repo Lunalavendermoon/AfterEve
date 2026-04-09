@@ -8,7 +8,7 @@ public class Emperor_Past : Past_TarotCard
     public const float damageBonus = 0.25f;
     public const int defBonus = 25;
 
-    public Emperor_Past(int q) : base(q)
+    public Emperor_Past() : base()
     {
         cardName = "Emperor_Past";
         arcana = Arcana.Emperor;

@@ -5,7 +5,7 @@ public class Hermit_Past : Past_TarotCard
     public const float dmgBonusPerUnit = 0.05f;
     public const int spiritVisionBonus = 2;
 
-    public Hermit_Past(int q) : base(q)
+    public Hermit_Past() : base()
     {
         cardName = "Hermit_Past";
         arcana = Arcana.Hermit;

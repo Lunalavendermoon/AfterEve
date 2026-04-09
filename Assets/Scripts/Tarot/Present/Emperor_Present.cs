@@ -24,8 +24,6 @@ public class Emperor_Present : Present_TarotCard
 
         idleEi = Enumerable.Repeat<EffectInstance>(null, idleEffects.Count).ToList();
 
-        HandlePlayerStateChange(PlayerController.instance.currentState);
-
         // TODO knockback effect
         // Don't use Knockback_Effect here. It is a debuff that says the entity w/ this effect gets knocked away from damage sources
         // should prob create a new buff effect, and code it so the entity w/ this effect knocks away other entities when dealing dmg
@@ -39,6 +37,24 @@ public class Emperor_Present : Present_TarotCard
         idleEffects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
         idleEffects.Add(new AmmoCapacity_FlatEffect(-1, ammoCapaciityIncrease[level]));
         idleEffects.Add(new Fortified_Additive_Effect(-1, basicDefenseIncrease[level]));
+    }
+
+    public override void ApplyCard(TarotManager tarotManager)
+    {
+        HandlePlayerStateChange(PlayerController.instance.currentState);
+        ApplyListeners();
+    }
+
+    public override void RemoveCard(TarotManager tarotManager)
+    {
+        for (int i = 0; i < idleEffects.Count; ++i)
+        {
+            if (idleEi[i] != null)
+            {
+                effectManager.RemoveEffect(idleEi[i]);
+            }
+        }
+        RemoveListeners();
     }
 
     protected override void ApplyListeners()

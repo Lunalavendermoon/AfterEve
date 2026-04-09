@@ -14,7 +14,7 @@ public class Chariot_Past : Past_TarotCard
     float timeout = 0f;
     bool inCombat = false;
 
-    public Chariot_Past(int q) : base(q)
+    public Chariot_Past() : base()
     {
         cardName = "Chariot_Past";
         arcana = Arcana.Chariot;

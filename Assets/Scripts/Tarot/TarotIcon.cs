@@ -4,13 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TarotIcon", menuName = "Scriptable Objects/TarotIcon")]
 public class TarotIcon : ScriptableObject
 {
-    public enum TarotType
-    {
-        Past = 0,
-        Present = 1,
-        Future = 2
-    }
-
     [SerializeField] private Sprite[] fool;
     [SerializeField] private Sprite[] magician;
     [SerializeField] private Sprite[] highPriestess;
@@ -25,20 +18,20 @@ public class TarotIcon : ScriptableObject
 
     public Sprite GetFutureSkillSprite(TarotCard.Arcana arcana)
     {
-        return GetSprite(arcana, TarotType.Future);
+        return GetSprite(arcana, TarotCard.TarotType.Future);
     }
 
     public Sprite GetSprite(TarotCard card)
     {
-        if(card is Present_TarotCard) return GetSprite(card.arcana, TarotType.Present);
-        if(card is Future_TarotCard) return GetSprite(card.arcana, TarotType.Future);
-        return GetSprite(card.arcana, TarotType.Present); // since past sprites do not exist
+        if(card is Present_TarotCard) return GetSprite(card.arcana, TarotCard.TarotType.Present);
+        if(card is Future_TarotCard) return GetSprite(card.arcana, TarotCard.TarotType.Future);
+        return GetSprite(card.arcana, TarotCard.TarotType.Present); // since past sprites do not exist
     }
 
-    public Sprite GetSprite (TarotCard.Arcana arcana, TarotType type)
+    public Sprite GetSprite (TarotCard.Arcana arcana, TarotCard.TarotType type)
     {
         // for now since past sprites do not exist
-        if(type == TarotType.Past) type = TarotType.Present;
+        if(type == TarotCard.TarotType.Past) type = TarotCard.TarotType.Present;
 
         switch(arcana)
         {

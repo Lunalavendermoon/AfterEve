@@ -13,6 +13,7 @@ public abstract class Future_TarotCard : TarotCard
 
     public Future_TarotCard(int q) : base(q)
     {
+        tarotType = TarotType.Future;
     }
 
     /// <summary>

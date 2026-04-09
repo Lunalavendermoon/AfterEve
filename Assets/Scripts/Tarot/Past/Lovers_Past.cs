@@ -4,7 +4,7 @@ public class Lovers_Past : Past_TarotCard
 {
     public const float spiritualDmgBonus = 0.2f;
 
-    public Lovers_Past(int q) : base(q)
+    public Lovers_Past() : base()
     {
         cardName = "Lovers_Past";
         arcana = Arcana.Lovers;

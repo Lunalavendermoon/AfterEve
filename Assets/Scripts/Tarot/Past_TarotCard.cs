@@ -7,8 +7,9 @@ public abstract class Past_TarotCard : TarotCard
 {
     public List<ShieldInstance> effects = new();
 
-    public Past_TarotCard(int q) : base(q)
+    public Past_TarotCard() : base(1)
     {
+        tarotType = TarotType.Past;
         GetLocalizedDesc();
     }
 

@@ -46,7 +46,7 @@ public class ChestRewardManager : MonoBehaviour
                 quantities[i] = cards[i].Item2 ? 1 : Random.Range(1, 6);
 
                 texts[i].text = $"{cards[i].Item1} {(cards[i].Item2 ? "Future" : "Present")} ({quantities[i]})";
-                TarotIcon.TarotType type = cards[i].Item2 ? TarotIcon.TarotType.Future : TarotIcon.TarotType.Present;
+                TarotCard.TarotType type = cards[i].Item2 ? TarotCard.TarotType.Future : TarotCard.TarotType.Present;
 
                 if (tarotIcons != null)
                 {
@@ -58,7 +58,10 @@ public class ChestRewardManager : MonoBehaviour
 
     public void OnButtonPressed(int idx)
     {
-        TarotCard card = TarotCard.GetPresentFutureCard(cards[idx].Item1, cards[idx].Item2, quantities[idx]);
+        TarotCard card = TarotCard.GetCardFromData(
+            cards[idx].Item1,
+            cards[idx].Item2 ? TarotCard.TarotType.Future : TarotCard.TarotType.Present,
+            quantities[idx]);
         
         if (card != null)
         {

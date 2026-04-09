@@ -5,7 +5,7 @@ public class Hierophant_Past : Past_TarotCard
     public const float shieldPercentage = 0.2f;
     public const int spiritualDefense = 20;
 
-    public Hierophant_Past(int q) : base(q)
+    public Hierophant_Past() : base()
     {
         cardName = "Hierophant_Past";
         arcana = Arcana.Hierophant;

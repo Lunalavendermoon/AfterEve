@@ -9,7 +9,7 @@ public class Fool_Past : Past_TarotCard
     
     EffectInstance prevEffect = null;
 
-    public Fool_Past(int q) : base(q)
+    public Fool_Past() : base()
     {
         cardName = "Fool_Past";
         arcana = Arcana.Fool;

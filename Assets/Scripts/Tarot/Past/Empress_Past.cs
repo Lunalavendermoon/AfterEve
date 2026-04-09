@@ -5,7 +5,7 @@ public class Empress_Past : Past_TarotCard
     const float currentHpBonus = 0.05f;
     const float maxHpBonus = 0.03f;
 
-    public Empress_Past(int q) : base(q)
+    public Empress_Past() : base()
     {
         cardName = "Empress_Past";
         arcana = Arcana.Empress;

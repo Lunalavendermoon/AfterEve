@@ -8,7 +8,7 @@ public class Lovers_Future : Future_TarotCard
     public const int uses = 5;
     public const float cd = 1f;
 
-    public Lovers_Future(int q) : base(q)
+    public Lovers_Future() : base()
     {
         cardName = "Lovers_Future";
         reward = new Lovers_Reward();

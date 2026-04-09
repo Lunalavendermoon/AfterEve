@@ -8,7 +8,7 @@ public class Hermit_Future : Future_TarotCard
     public const int uses = 7;
     public const float cd = 10f;
 
-    public Hermit_Future(int q) : base(q)
+    public Hermit_Future() : base()
     {
         cardName = "Hermit_Future";
         reward = new Hermit_Reward();

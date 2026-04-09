@@ -11,7 +11,7 @@ public class Emperor_Future : Future_TarotCard
     public const int uses = 5;
     public const float cd = 5f;
 
-    public Emperor_Future(int q) : base(q)
+    public Emperor_Future() : base()
     {
         cardName = "Emperor_Future";
         reward = new Emperor_Reward();

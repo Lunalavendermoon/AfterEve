@@ -9,7 +9,7 @@ public class Fool_Future : Future_TarotCard
 
     public const int foolCoinRewardAmount = 50;
 
-    public Fool_Future(int q) : base(q)
+    public Fool_Future() : base()
     {
         cardName = "Fool_Future";
         arcana = Arcana.Fool;

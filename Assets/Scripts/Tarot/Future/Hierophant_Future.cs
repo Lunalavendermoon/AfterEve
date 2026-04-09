@@ -11,7 +11,7 @@ public class Hierophant_Future : Future_TarotCard
     public const int uses = 5;
     public const float cd = 10f;
 
-    public Hierophant_Future(int q) : base(q)
+    public Hierophant_Future() : base()
     {
         cardName = "Hierophant_Future";
         reward = new Hierophant_Reward();

@@ -12,7 +12,7 @@ public class HighPriestess_Future : Future_TarotCard
     public const int uses = 5;
     public const float cd = 20f;
 
-    public HighPriestess_Future(int q) : base(q)
+    public HighPriestess_Future() : base()
     {
         cardName = "HighPriestess_Future";
         reward = new HighPriestess_Reward();

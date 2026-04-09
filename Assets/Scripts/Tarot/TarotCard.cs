@@ -66,25 +66,25 @@ public abstract class TarotCard
         switch (arcana)
         {
             case Arcana.Fool:
-                return type == TarotType.Future ? new Fool_Future(1) : (type == TarotType.Present ? new Fool_Present(quantity) : new Fool_Past());
+                return type == TarotType.Future ? new Fool_Future() : (type == TarotType.Present ? new Fool_Present(quantity) : new Fool_Past());
             case Arcana.Magician:
-                return type == TarotType.Future ? new Magician_Future(1) : (type == TarotType.Present ? new Magician_Present(quantity) : new Magician_Past());
+                return type == TarotType.Future ? new Magician_Future() : (type == TarotType.Present ? new Magician_Present(quantity) : new Magician_Past());
             case Arcana.HighPriestess:
-                return type == TarotType.Future ? new HighPriestess_Future(1) : (type == TarotType.Present ? new HighPriestess_Present(quantity) : new HighPriestess_Past());
+                return type == TarotType.Future ? new HighPriestess_Future() : (type == TarotType.Present ? new HighPriestess_Present(quantity) : new HighPriestess_Past());
             case Arcana.Empress:
                 return type == TarotType.Future ? new Empress_Present(1) : (type == TarotType.Present ? new Empress_Present(quantity) : new Empress_Past());
             case Arcana.Emperor:
-                return type == TarotType.Future ? new Emperor_Future(1) : (type == TarotType.Present ? new Emperor_Present(quantity) : new Emperor_Past());
+                return type == TarotType.Future ? new Emperor_Future() : (type == TarotType.Present ? new Emperor_Present(quantity) : new Emperor_Past());
             case Arcana.Hierophant:
-                return type == TarotType.Future ? new Hierophant_Future(1) : (type == TarotType.Present ? new Hierophant_Present(quantity) : new Hierophant_Past());
+                return type == TarotType.Future ? new Hierophant_Future() : (type == TarotType.Present ? new Hierophant_Present(quantity) : new Hierophant_Past());
             case Arcana.Lovers:
-                return type == TarotType.Future ? new Lovers_Future(1) : (type == TarotType.Present ? new Lovers_Present(quantity) : new Lovers_Past());
+                return type == TarotType.Future ? new Lovers_Future() : (type == TarotType.Present ? new Lovers_Present(quantity) : new Lovers_Past());
             case Arcana.Chariot:
-                return type == TarotType.Future ? new Chariot_Future(1) : (type == TarotType.Present ? new Chariot_Present(quantity) : new Chariot_Past());
+                return type == TarotType.Future ? new Chariot_Future() : (type == TarotType.Present ? new Chariot_Present(quantity) : new Chariot_Past());
             case Arcana.Strength:
-                return type == TarotType.Future ? new Strength_Future(1) : (type == TarotType.Present ? new Strength_Present(quantity) : new Strength_Past());
+                return type == TarotType.Future ? new Strength_Future() : (type == TarotType.Present ? new Strength_Present(quantity) : new Strength_Past());
             case Arcana.Hermit:
-                return type == TarotType.Future ? new Hermit_Future(1) : (type == TarotType.Present ? new Hermit_Present(quantity) : new Hermit_Past());
+                return type == TarotType.Future ? new Hermit_Future() : (type == TarotType.Present ? new Hermit_Present(quantity) : new Hermit_Past());
         }
         return null;
     }

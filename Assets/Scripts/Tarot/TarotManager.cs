@@ -27,10 +27,6 @@ public class TarotManager : MonoBehaviour
         DisplayHand();
 
         // AddCard(new HighPriestess_Present(1));
-        // AddCard(new Chariot_Future(1));
-        // AddCard(new Magician_Future(1));
-        // AddCard(new Magician_Future(1));
-        // AddCard(new Magician_Future(1));
     }
 
     void OnDisable()
@@ -222,7 +218,7 @@ public class TarotManager : MonoBehaviour
     public void OnUpdateTarotPerformed(InputAction.CallbackContext context)
     {   
         // set random hand (for testing)
-        TarotCard[] randomFutureCards = {new Chariot_Future(1), new Emperor_Future(1), new Hierophant_Future(1), new Lovers_Future(1), new Strength_Future(1), new Magician_Future(1)};
+        TarotCard[] randomFutureCards = {new Chariot_Future(), new Emperor_Future(), new Hierophant_Future(), new Lovers_Future(), new Strength_Future(), new Magician_Future()};
         futureTarot.Clear();
         for(int id=0;id<5;id++)
         {

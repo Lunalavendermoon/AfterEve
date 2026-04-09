@@ -7,7 +7,7 @@ public class Strength_Future : Future_TarotCard
     public const int uses = 3;
     public const float cd = 5f;
 
-    public Strength_Future(int q) : base(q)
+    public Strength_Future() : base()
     {
         cardName = "Strength_Future";
         reward = new Strength_Reward();

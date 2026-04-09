@@ -12,7 +12,7 @@ public class Magician_Future : Future_TarotCard
     public const int uses = 3;
     public const float cd = 10f;
 
-    public Magician_Future(int q) : base(q)
+    public Magician_Future() : base()
     {
         cardName = "Magician_Future";
         reward = new Magician_Reward();

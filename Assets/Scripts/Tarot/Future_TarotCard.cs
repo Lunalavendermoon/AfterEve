@@ -11,7 +11,7 @@ public abstract class Future_TarotCard : TarotCard
 
     protected LocalizedString rewardDesc;
 
-    public Future_TarotCard(int q) : base(q)
+    public Future_TarotCard() : base(1)
     {
         tarotType = TarotType.Future;
     }

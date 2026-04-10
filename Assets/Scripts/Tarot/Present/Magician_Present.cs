@@ -17,7 +17,27 @@ public class Magician_Present : Present_TarotCard
 
     protected override void AddNewLevelEffects()
     {
-        effects.Add(new MagicianPresent_Effect(bounceNum[level], damageReducedPerBounce[level]));
+        // Conditional: Only add effect if this card is higher level than Strength
+        if (!TarotManager.instance.presentTarot.ContainsKey(Arcana.Strength) ||
+            TarotManager.instance.presentTarot[Arcana.Strength].level < level)
+        {
+            effects.Add(new MagicianPresent_Effect(bounceNum[level], damageReducedPerBounce[level]));
+
+            // Delete Strength effect if it exists
+            if (TarotManager.instance.presentTarot.TryGetValue(Arcana.Strength, out var strengthCard))
+            {
+                ((Strength_Present)strengthCard).DisableEffect();
+            }
+        }
+    }
+
+    public void DisableEffect()
+    {
+        foreach (var ei in effectInstances)
+        {
+            TarotManager.instance.effectManager.RemoveEffect(ei);
+        }
+        effectInstances.Clear();
     }
 
     protected override void SetDescriptionValues()

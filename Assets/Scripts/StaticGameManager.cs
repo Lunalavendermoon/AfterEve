@@ -8,7 +8,8 @@ public static class StaticGameManager
     public const int maxSkillSlots = 7;
     public static int futureSkillSlots = 2; // between 2-7
     public static List<TarotCard.Arcana> pastCards = new(); // all past tarots obtained
-    public static int luckyCoins = 0; // TODO: May need upper cap on lucky coin amount?
+    public static int maxLuckyCoins = 9; // Base luck is 1, can upgrade up to 9 times
+    public static int luckyCoins = 0;
 
     // NARRATIVE ROOM GENERATION
     public static int deathCount = 0; // number of deaths so far

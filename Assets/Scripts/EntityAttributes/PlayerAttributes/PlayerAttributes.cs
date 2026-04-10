@@ -77,6 +77,6 @@ public class PlayerAttributes : EntityAttributes
 
     public float GetAdjustedLuck()
     {
-        return luck + StaticGameManager.luckyCoins;
+        return Mathf.Min(10f, luck + StaticGameManager.luckyCoins);
     }
 }

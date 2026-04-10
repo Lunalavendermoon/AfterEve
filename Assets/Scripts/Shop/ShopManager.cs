@@ -228,7 +228,8 @@ public class ShopManager : MonoBehaviour
         
         toggleButton.enabled = PlayerController.instance.GetCoins() >= GetToggleCost();
         
-        luckButton.enabled = PlayerController.instance.GetCoins() >= GetLuckCost(); // TODO check if luck coin exceeded purchase cap
+        luckButton.enabled = StaticGameManager.luckyCoins < StaticGameManager.maxLuckyCoins &&
+            PlayerController.instance.GetCoins() >= GetLuckCost();
         
         skillSlotButton.enabled = StaticGameManager.futureSkillSlots < StaticGameManager.maxSkillSlots &&
             PlayerController.instance.GetCoins() >= GetSkillSlotCost();

@@ -77,6 +77,7 @@ public class TarotManager : MonoBehaviour
                 card?.RemoveCard(this);
             }
             pastTarot.Clear();
+            StaticGameManager.pastCards.Clear();
         }
 
         DisplayHand();
@@ -127,6 +128,7 @@ public class TarotManager : MonoBehaviour
                 return;
             }
             pastTarot.Add(tarotCard.arcana, (Past_TarotCard)tarotCard);
+            StaticGameManager.pastCards.Add(tarotCard.arcana);
         }
         if (applyCard)
         {

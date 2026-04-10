@@ -100,8 +100,6 @@ public class NarrativeRoomManager : MonoBehaviour
                 );
             }
 
-            // TODO portal position should be different in each narrative room
-            portal.transform.position = roomObject.transform.position + new Vector3(2f, 2f, 0f);
             portal.SetActive(false);
             currentRoom = room;
             disableChestGeneration = room.disableChestGeneration;

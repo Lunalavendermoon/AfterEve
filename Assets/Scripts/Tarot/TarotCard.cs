@@ -89,19 +89,18 @@ public abstract class TarotCard
         return null;
     }
 
-    public static (Arcana, bool) GenRandomCardData()
+    public static (Arcana, TarotType) GenRandomCardData()
     {
-        bool future = UnityEngine.Random.Range(0, 2) == 0;
+        int tarotType = UnityEngine.Random.Range(0, 3);
 
         Array values = Enum.GetValues(typeof(Arcana));
         // int randomIndex = UnityEngine.Random.Range(0, values.Length);
         int randomIndex = UnityEngine.Random.Range(0, 10); // FOR TESTING - only generate first 10 card types
 
-        return ((Arcana)values.GetValue(randomIndex), future);
+        return ((Arcana)values.GetValue(randomIndex), (TarotType)tarotType);
 
         // FOR TESTING ONLY - force game to generate a specific present/future card
-        // 2nd value: false for present, true for future
-        // return (Arcana.Hierophant, false);
+        // return (Arcana.Hierophant, TarotType.Present);
     }
 
     protected virtual void GetLocalizedDesc()

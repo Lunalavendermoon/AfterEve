@@ -12,8 +12,7 @@ public class ChestRewardManager : MonoBehaviour
     public List<Image> cardUI;
 
     public List<GameObject> tarotButtons;
-    public List<TMP_Text> texts;
-    (TarotCard.Arcana, bool)[] cards = new (TarotCard.Arcana, bool)[3];
+    TarotCard.Arcana[] cards = new TarotCard.Arcana[3];
     int[] quantities = new int[3];
 
     private Vector3? lastChestWorldPos;
@@ -39,18 +38,15 @@ public class ChestRewardManager : MonoBehaviour
         {
             for (int i = 0; i < 3; ++i)
             {
-                cards[i] = TarotCard.GenRandomCardData();
+                cards[i] = TarotCard.GenRandomCardData().Item1;
 
                 // Random quantity from 1-5
-                // Future cards can only generate w/ quantity of 1
-                quantities[i] = cards[i].Item2 ? 1 : Random.Range(1, 6);
-
-                texts[i].text = $"{cards[i].Item1} {(cards[i].Item2 ? "Future" : "Present")} ({quantities[i]})";
-                TarotCard.TarotType type = cards[i].Item2 ? TarotCard.TarotType.Future : TarotCard.TarotType.Present;
+                // Past/Future cards can only generate w/ quantity of 1
+                quantities[i] = Random.Range(1, 6);
 
                 if (tarotIcons != null)
                 {
-                    cardUI[i].sprite = tarotIcons.GetSprite(cards[i].Item1, type);
+                    cardUI[i].sprite = tarotIcons.GetSprite(cards[i], TarotCard.TarotType.Present);
                 }
             }
         }
@@ -58,10 +54,7 @@ public class ChestRewardManager : MonoBehaviour
 
     public void OnButtonPressed(int idx)
     {
-        TarotCard card = TarotCard.GetCardFromData(
-            cards[idx].Item1,
-            cards[idx].Item2 ? TarotCard.TarotType.Future : TarotCard.TarotType.Present,
-            quantities[idx]);
+        TarotCard card = TarotCard.GetCardFromData(cards[idx], TarotCard.TarotType.Present, quantities[idx]);
         
         if (card != null)
         {

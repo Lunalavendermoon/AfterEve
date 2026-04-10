@@ -5,7 +5,9 @@ using UnityEngine;
 public static class StaticGameManager
 {
     // PLAYER STATS SAVED BETWEEN PLAYTHROUGHS
-    public static int futureSkillSlots = 3; // between 3-7
+    public const int maxSkillSlots = 7;
+    public static int futureSkillSlots = 2; // between 2-7
+    public static List<TarotCard.Arcana> pastCards = new(); // all past tarots obtained
 
     // NARRATIVE ROOM GENERATION
     public static int deathCount = 0; // number of deaths so far

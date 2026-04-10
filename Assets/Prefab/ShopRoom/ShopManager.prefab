@@ -44,8 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73f3a801185a454294ba263a02fec18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
-  shopSize: 6
+  shopSize: 4
   shopUi: {fileID: 0}
   shopLayout: {fileID: 0}
   shopItemPrefab: {fileID: 530715305846327065, guid: caf66ae02499a43feb9ed1f08a689d4f, type: 3}
+  toggleButton: {fileID: 0}
+  toggleText: {fileID: 0}
+  refreshButton: {fileID: 0}
+  refreshText: {fileID: 0}
   shopStock: []

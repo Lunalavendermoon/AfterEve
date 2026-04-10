@@ -71,9 +71,7 @@ public class PlayerController : MonoBehaviour
         playerInput = new PlayerInput();
         toggleDialogueLog = playerInput.FindAction("ToggleDialogueLog", true);
 
-        // Initialize all skill slots to be empty
-        futureSkills = Enumerable.Repeat<Future_Reward>(null, StaticGameManager.futureSkillSlots).ToList();
-        futureSkillQueue.Clear();
+        ClearFutureSkills();
     }
 
     // user input system
@@ -335,7 +333,7 @@ public class PlayerController : MonoBehaviour
             "strength" => new Strength_Reward(),
             _ => null
         };
-        TryAddSkill(skillToAdd);
+        TryAddFutureSkill(skillToAdd);
     }
 
     public void ChangeState(IPlayerState newState)
@@ -489,7 +487,7 @@ public class PlayerController : MonoBehaviour
 
     // Pass in "null" for skill to use the skill at the top of the skill queue
     // Returns true on success and false on failure
-    public bool TryAddSkill(Future_Reward skill = null)
+    public bool TryAddFutureSkill(Future_Reward skill = null)
     {
         bool dequeueOnSuccess = skill == null;
         bool enqueueOnFailure = skill != null;
@@ -531,7 +529,6 @@ public class PlayerController : MonoBehaviour
 
         if (enqueueOnFailure)
         {
-            Debug.Log("Enqueued");
             futureSkillQueue.Enqueue(skill);
         }
         return false;
@@ -540,10 +537,36 @@ public class PlayerController : MonoBehaviour
     public void LoseFutureSkill(Future_Reward skill)
     {
         futureSkills[skill.GetSkillIndex()] = null;
-        if (!TryAddSkill()) // TryAddSkill() calls DisplayHand once on success, no need to call it again
+        if (!TryAddFutureSkill()) // TryAddSkill() calls DisplayHand once on success, no need to call it again
         {
             TarotManager.instance.DisplayHand();
         }
+    }
+
+    public void GainFutureSkillSlot(int amount = 1)
+    {
+        if (StaticGameManager.futureSkillSlots + amount > StaticGameManager.maxSkillSlots)
+        {
+            amount = StaticGameManager.maxSkillSlots - StaticGameManager.futureSkillSlots;
+        }
+        StaticGameManager.futureSkillSlots += amount;
+
+        while (amount > 0)
+        {
+            futureSkills.Add(null);
+            --amount;
+        }
+        while (TryAddFutureSkill())
+        {
+        }
+        // TODO: if empty future skill slots have specific visual, call TarotManager.instance.DisplayHand();
+    }
+
+    void ClearFutureSkills()
+    {
+        // Initialize all skill slots to be empty
+        futureSkills = Enumerable.Repeat<Future_Reward>(null, StaticGameManager.futureSkillSlots).ToList();
+        futureSkillQueue.Clear();
     }
 
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource damageSource, DamageInstance.DamageType damageType)
@@ -588,7 +611,7 @@ public class PlayerController : MonoBehaviour
         ++StaticGameManager.deathCount;
 
         // Clear any active future skill on death.
-        futureSkills.Clear();
+        ClearFutureSkills();
 
         // Clear player tarot state on death (keep past cards).
         if (tarotManager != null)

@@ -7,28 +7,18 @@ public class Empress_Past : Past_TarotCard
 
     public Empress_Past() : base()
     {
+        effects.Add(new EmpressPast_Effect());
+
         cardName = "Empress_Past";
         arcana = Arcana.Empress;
-    }
 
-    protected override void ApplyListenersEffects()
-    {
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new EmpressPast_Effect());
+        GetLocalizedDesc();
     }
 
     public static int GetDamageBonus()
     {
         return (int)(currentHpBonus * PlayerController.instance.GetHealth() +
             maxHpBonus * PlayerController.instance.playerAttributes.maxHitPoints);
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Empress");
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

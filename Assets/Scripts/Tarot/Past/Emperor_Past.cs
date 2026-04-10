@@ -12,14 +12,22 @@ public class Emperor_Past : Past_TarotCard
     {
         cardName = "Emperor_Past";
         arcana = Arcana.Emperor;
+
+        GetLocalizedDesc();
     }
 
-    protected override void ApplyListenersEffects()
+    protected override void ApplyListenersEffects(bool muted = false)
     {
         effectManager = PlayerController.instance.gameObject.GetComponent<PlayerEffectManager>();
 
         Player_Idle.OnIdleEnter += OnIdleEnter;
         Player_Idle.OnIdleExit += OnIdleExit;
+    }
+
+    protected override void RemoveListeners(bool muted = false)
+    {
+        Player_Idle.OnIdleEnter -= OnIdleEnter;
+        Player_Idle.OnIdleExit -= OnIdleExit;
     }
 
     void OnIdleEnter()
@@ -33,15 +41,6 @@ public class Emperor_Past : Past_TarotCard
         {
             effectManager.RemoveEffect(ei);
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Emperor");
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

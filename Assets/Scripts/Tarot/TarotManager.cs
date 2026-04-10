@@ -15,8 +15,6 @@ public class TarotManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
-
-        ClearAllCards(keepPast: false);
     }
 
     void OnEnable()
@@ -25,8 +23,6 @@ public class TarotManager : MonoBehaviour
         // PlayerController.instance.playerInput.Player.Attack.performed += OnMouseClick;
 
         DisplayHand();
-
-        // AddCard(new HighPriestess_Present(1));
     }
 
     void OnDisable()
@@ -70,13 +66,15 @@ public class TarotManager : MonoBehaviour
         }
         presentTarot.Clear();
 
+        // Delete past card objects to reset counters/status effects/etc
+        foreach (Past_TarotCard card in pastTarot.Values)
+        {
+            card?.RemoveCard(this);
+        }
+        pastTarot.Clear();
+
         if (!keepPast)
         {
-            foreach (Past_TarotCard card in pastTarot.Values)
-            {
-                card?.RemoveCard(this);
-            }
-            pastTarot.Clear();
             StaticGameManager.pastCards.Clear();
         }
 
@@ -87,6 +85,29 @@ public class TarotManager : MonoBehaviour
     public void ClearOnPlayerDeath()
     {
         ClearAllCards(keepPast: true);
+    }
+
+    public void RestorePastTarots()
+    {
+        bool hasFool = false;
+        foreach (TarotCard.Arcana arcana in StaticGameManager.pastCards)
+        {
+            if (arcana == TarotCard.Arcana.Fool)
+            {
+                hasFool = true;
+                continue;
+            }
+            AddCard(TarotCard.GetCardFromData(arcana, TarotCard.TarotType.Past));
+        }
+        // Special handling for Fool past: apply it last to avoid triggering "on card obtained" buff
+        if (hasFool)
+        {
+            AddCard(TarotCard.GetCardFromData(TarotCard.Arcana.Fool, TarotCard.TarotType.Past));
+        }
+        if (StaticGameManager.pastCards.Count > 0)
+        {
+            PlayerController.instance.gameObject.GetComponent<EffectManager>().ApplyEffects();
+        }
     }
 
     public static event Action<TarotCard.Arcana> OnObtainCard;
@@ -125,10 +146,13 @@ public class TarotManager : MonoBehaviour
         {
             if (pastTarot.ContainsKey(tarotCard.arcana))
             {
-                return;
+                pastTarot[tarotCard.arcana] = (Past_TarotCard)tarotCard;
             }
-            pastTarot.Add(tarotCard.arcana, (Past_TarotCard)tarotCard);
-            StaticGameManager.pastCards.Add(tarotCard.arcana);
+            else
+            {
+                pastTarot.Add(tarotCard.arcana, (Past_TarotCard)tarotCard);
+                StaticGameManager.pastCards.Add(tarotCard.arcana);
+            }
         }
         if (applyCard)
         {

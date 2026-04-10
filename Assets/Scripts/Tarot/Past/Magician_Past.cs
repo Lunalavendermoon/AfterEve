@@ -10,12 +10,20 @@ public class Magician_Past : Past_TarotCard
     {
         cardName = "Magician_Past";
         arcana = Arcana.Magician;
+
+        GetLocalizedDesc();
     }
 
-    protected override void ApplyListenersEffects()
+    protected override void ApplyListenersEffects(bool muted = false)
     {
         GameManager.OnRoomChange += OnRoomChange;
         Future_Reward.OnSkillUsed += OnSkillUsed;
+    }
+
+    protected override void RemoveListeners(bool muted = false)
+    {
+        GameManager.OnRoomChange -= OnRoomChange;
+        Future_Reward.OnSkillUsed -= OnSkillUsed;
     }
 
     void OnRoomChange()
@@ -28,16 +36,7 @@ public class Magician_Past : Past_TarotCard
         // we trust that Effect Manager handles timers and stacking correctly... :D
         PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new MagicianPast_Effect());
     }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Magician");
-
-        SetDescriptionValues();
-    }
-
+    
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[]

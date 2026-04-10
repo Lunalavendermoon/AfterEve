@@ -8,11 +8,18 @@ public class HighPriestess_Past : Past_TarotCard
     {
         cardName = "HighPriestess_Past";
         arcana = Arcana.HighPriestess;
+
+        GetLocalizedDesc();
     }
 
-    protected override void ApplyListenersEffects()
+    protected override void ApplyListenersEffects(bool muted = false)
     {
         Projectile.OnEnemyHit += HandleEnemyHit;
+    }
+
+    protected override void RemoveListeners(bool muted = false)
+    {
+        Projectile.OnEnemyHit -= HandleEnemyHit;
     }
 
     private void HandleEnemyHit(EnemyBase enemy)
@@ -22,15 +29,6 @@ public class HighPriestess_Past : Past_TarotCard
             int rawDmg = (int)(debuffDamage * PlayerController.instance.playerAttributes.damage);
             enemy.TakeDamage(rawDmg, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("HighPriestess");
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

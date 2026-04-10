@@ -6,22 +6,12 @@ public class Strength_Past : Past_TarotCard
 
     public Strength_Past() : base()
     {
+        effects.Add(new StrengthPast_Effect());
+
         cardName = "Strength_Past";
         arcana = Arcana.Strength;
-    }
 
-    protected override void ApplyListenersEffects()
-    {
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new StrengthPast_Effect());
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Strength");
-
-        SetDescriptionValues();
+        GetLocalizedDesc();
     }
 
     protected override void SetDescriptionValues()

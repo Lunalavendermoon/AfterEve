@@ -6,22 +6,17 @@ public class Lovers_Past : Past_TarotCard
 
     public Lovers_Past() : base()
     {
+        effects.Add(new LoversPast_Effect());
+
         cardName = "Lovers_Past";
         arcana = Arcana.Lovers;
+
+        GetLocalizedDesc();
     }
 
-    protected override void ApplyListenersEffects()
+    protected override void ApplyListenersEffects(bool muted = false)
     {
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new LoversPast_Effect());
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Lovers");
-
-        SetDescriptionValues();
+        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new LoversPast_Effect(), muted);
     }
 
     protected override void SetDescriptionValues()

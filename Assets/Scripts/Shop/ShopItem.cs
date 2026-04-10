@@ -23,8 +23,12 @@ public class ShopItem : MonoBehaviour
         this.price = price;
         this.quantity = quantity;
 
-        purchased[TarotCard.TarotType.Past] = false;
-        purchased[TarotCard.TarotType.Present] = false;
+        // Cannot purchast Past or Present cards beyond stack limit
+        purchased[TarotCard.TarotType.Past] = TarotManager.instance.pastTarot.ContainsKey(arcana);
+
+        purchased[TarotCard.TarotType.Present] = TarotManager.instance.presentTarot.ContainsKey(arcana) &&
+            TarotManager.instance.presentTarot[arcana].level >= 4; // zero-indexed level 5
+
         purchased[TarotCard.TarotType.Future] = false;
 
         ResetDisplay();

@@ -30,9 +30,9 @@ public class PlayerEffectManager : EffectManager
 
     // List<Effects.IconType> iconQueue = new();
 
-    public override EffectInstance AddBuff(Effects effect)
+    public override EffectInstance AddBuff(Effects effect, bool muted = false)
     {
-        return AddEffect(effect, null);
+        return AddEffect(effect, null, muted);
     }
         
     public override EffectInstance AddEffect(Effects effect, EntityAttributes attr, bool muted = false)

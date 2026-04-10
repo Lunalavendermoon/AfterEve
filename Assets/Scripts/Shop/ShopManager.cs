@@ -51,6 +51,12 @@ public class ShopManager : MonoBehaviour
         shopUi.SetActive(false);
     }
 
+    public void RefreshLuckPrice()
+    {
+        int luck = (int)PlayerController.instance.playerAttributes.GetAdjustedLuck();
+        currentLuckCost = luck * 12 - luck * UnityEngine.Random.Range(0, 2);
+    }
+
     public void DisableShopUI()
     {
         ShowShop(false);
@@ -89,8 +95,6 @@ public class ShopManager : MonoBehaviour
         {
             firstInteraction = false;
 
-            currentLuckCost = GetLuckCost(true); // Recompute Lucky Coin price for this shop
-
             shopStock.Clear();
             refreshCount = -1;
             RefreshStock();
@@ -124,8 +128,6 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < shopSize; ++i)
         {
             (TarotCard.Arcana, TarotCard.TarotType) card = TarotCard.GenRandomCardData();
-
-            // TODO adjust these values accordingly if theyre unbalanced
 
             int price = ComputePrice(i == discount1 || i == discount2);
             
@@ -165,8 +167,8 @@ public class ShopManager : MonoBehaviour
 
     public void BuyLuckCoin()
     {
-        // TODO
-        Debug.Log("Purchased luck coin");
+        ++StaticGameManager.luckyCoins;
+        PlayerController.instance.ChangeCoins(-GetLuckCost());
     }
 
     public void BuySkillSlot()
@@ -209,13 +211,8 @@ public class ShopManager : MonoBehaviour
         return togglePrice[GetIndexFromRoomCount()];
     }
 
-    int GetLuckCost(bool recalculate = false)
+    int GetLuckCost()
     {
-        if (recalculate)
-        {
-            int luck = (int)PlayerController.instance.playerAttributes.luck;
-            return luck * 12 - luck * UnityEngine.Random.Range(0, 2);
-        }
         return currentLuckCost;
     }
 

@@ -93,9 +93,9 @@ public abstract class EffectManager : MonoBehaviour
         }
     }
 
-    public virtual EffectInstance AddBuff(Effects effect)
+    public virtual EffectInstance AddBuff(Effects effect, bool muted = false)
     {
-        return AddEffect(effect, null);
+        return AddEffect(effect, null, muted);
     }
 
     // if muted is true, does not call ApplyEffects() at the end

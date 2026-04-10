@@ -5,39 +5,56 @@ using UnityEngine.Localization;
 
 public abstract class Past_TarotCard : TarotCard
 {
-    public List<ShieldInstance> effects = new();
+    public List<Effects> effects = new();
+    public List<EffectInstance> effectInstances = new();
 
     public Past_TarotCard() : base(1)
     {
         tarotType = TarotType.Past;
-        GetLocalizedDesc();
     }
 
     public override void ApplyCard(TarotManager tarotManager)
     {
-        // if (effects != null) { 
-        //     foreach (Effects e in effects)
-        //     {
-        //         tarotManager.effectManager.AddEffect(e);
-        //     }
-        // }
-        ApplyListenersEffects();
+        ApplyCard(tarotManager, false);
+    }
+
+    public virtual void ApplyCard(TarotManager tarotManager, bool muted)
+    {
+        foreach (Effects e in effects)
+        {
+            effectInstances.Add(
+                tarotManager.effectManager.AddEffect(e, PlayerController.instance.playerAttributes, true));
+        }
+        if (effects.Count != 0 && !muted)
+        {
+            tarotManager.effectManager.ApplyEffects(); // Recalculate attributes
+        }
+        ApplyListenersEffects(muted);
     }
 
     public override void RemoveCard(TarotManager tarotManager)
     {
-        // TODO - can past tarot cards ever be removed/toggled off?
-
-        // if (effects != null) { 
-        //     foreach (Effects e in effects)
-        //     {
-                
-        //     }
-        // }
-        // RemoveListeners();
+        RemoveCard(tarotManager, false);
     }
 
-    protected virtual void ApplyListenersEffects() {}
+    public virtual void RemoveCard(TarotManager tarotManager, bool muted)
+    {
+        foreach (EffectInstance e in effectInstances)
+        {
+            tarotManager.effectManager.RemoveEffect(e, muted);
+        }
+        if (effectInstances.Count != 0 && !muted)
+        {
+            tarotManager.effectManager.ApplyEffects(); // Recalculate attributes
+        }
+        effectInstances.Clear();
+        RemoveListeners(muted);
+    }
+
+    protected virtual void ApplyListenersEffects(bool muted = false) {}
+
+    protected virtual void RemoveListeners(bool muted = false) {}
+    
 
     protected override void GetLocalizedDesc()
     {
@@ -45,6 +62,10 @@ public abstract class Past_TarotCard : TarotCard
         {
             TableReference = "PastTarotTable"
         };
+
+        SetTableEntries(arcana.ToString());
+        
+        SetDescriptionValues();
     }
 
     protected virtual void SetDescriptionValues()

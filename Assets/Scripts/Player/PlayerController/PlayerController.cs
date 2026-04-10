@@ -203,6 +203,8 @@ public class PlayerController : MonoBehaviour
         playerInput.Player.FutureSkill.performed += ctx => HandleFutureSkillInput((int)ctx.ReadValue<float>());
 
         interactPrompt.gameObject.SetActive(false);
+
+        TarotManager.instance.RestorePastTarots();
     }
 
     void Update()

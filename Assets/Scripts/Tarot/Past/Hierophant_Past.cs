@@ -7,15 +7,22 @@ public class Hierophant_Past : Past_TarotCard
 
     public Hierophant_Past() : base()
     {
+        effects.Add(new HierophantPast_Effect());
+
         cardName = "Hierophant_Past";
         arcana = Arcana.Hierophant;
+
+        GetLocalizedDesc();
     }
 
-    protected override void ApplyListenersEffects()
+    protected override void ApplyListenersEffects(bool muted = false)
     {
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new HierophantPast_Effect());
-
         GameManager.OnRoomChange += OnNewRoom;
+    }
+
+    protected override void RemoveListeners(bool muted = false)
+    {
+        GameManager.OnRoomChange -= OnNewRoom;
     }
 
     void OnNewRoom()
@@ -26,15 +33,6 @@ public class Hierophant_Past : Past_TarotCard
     void ApplyShield()
     {
         PlayerController.instance.GainRegularShield((int)(shieldPercentage * PlayerController.instance.playerAttributes.maxHitPoints));
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Hierophant");
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

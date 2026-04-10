@@ -34,7 +34,6 @@ public abstract class StandardEnemyBase : EnemyBase
 
 
 
-    public float luck = 1f;
     public bool elite = false;
 
 
@@ -117,7 +116,7 @@ public abstract class StandardEnemyBase : EnemyBase
     {
         if (givesRewards)
         {
-            int numShards = EnemyItemDrops.CalculateShardDrop(PlayerController.instance.playerAttributes.luck, elite);
+            int numShards = EnemyItemDrops.CalculateShardDrop(PlayerController.instance.playerAttributes.GetAdjustedLuck(), elite);
             spawner.AddPendingChestCoins(numShards);
             spawnerDeathNotified = true;
             spawner.EnemyDie(this);

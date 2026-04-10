@@ -7,22 +7,12 @@ public class Hermit_Past : Past_TarotCard
 
     public Hermit_Past() : base()
     {
+        effects.Add(new HermitPast_Effect());
+        
         cardName = "Hermit_Past";
         arcana = Arcana.Hermit;
-    }
 
-    protected override void ApplyListenersEffects()
-    {
-        PlayerController.instance.gameObject.GetComponent<EffectManager>().AddBuff(new HermitPast_Effect());
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Hermit");
-
-        SetDescriptionValues();
+        GetLocalizedDesc();
     }
 
     protected override void SetDescriptionValues()

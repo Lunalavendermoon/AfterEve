@@ -6,18 +6,25 @@ public class Fool_Past : Past_TarotCard
     const int maxStackPerFoolCard = 7;
     int foolCardCount = 1;
     int stackCounter = 0;
-    
-    EffectInstance prevEffect = null;
 
     public Fool_Past() : base()
     {
+        effectInstances.Add(null);
+
         cardName = "Fool_Past";
         arcana = Arcana.Fool;
+
+        GetLocalizedDesc();
     }
 
-    protected override void ApplyListenersEffects()
+    protected override void ApplyListenersEffects(bool muted = false)
     {
         TarotManager.OnObtainCard += OnObtainCard;
+    }
+
+    protected override void RemoveListeners(bool muted = false)
+    {
+        TarotManager.OnObtainCard -= OnObtainCard;
     }
 
     void OnObtainCard(Arcana arcana)
@@ -31,24 +38,15 @@ public class Fool_Past : Past_TarotCard
         {
             return;
         }
-
+        
         ++stackCounter;
 
         EffectManager em = PlayerController.instance.gameObject.GetComponent<EffectManager>();
-        if (prevEffect != null)
+        if (effectInstances[0] != null)
         {
-            em.RemoveEffect(prevEffect, true);
+            em.RemoveEffect(effectInstances[0], true);
         }
-        prevEffect = em.AddBuff(new PhysicalDmgBonus_Effect(-1, physicalDmgBonus * stackCounter));
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Fool");
-
-        SetDescriptionValues();
+        effectInstances[0] = em.AddBuff(new PhysicalDmgBonus_Effect(-1, physicalDmgBonus * stackCounter));
     }
 
     protected override void SetDescriptionValues()

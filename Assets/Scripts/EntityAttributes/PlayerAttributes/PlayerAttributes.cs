@@ -69,51 +69,14 @@ public class PlayerAttributes : EntityAttributes
         return (int)(damage * (abilityBaseDamage + damageDealtBonus));
     }
 
-
-    // Luck Calculation
-    public enum LuckyItems
-    {
-        TarotCard,
-        Potion,
-        Shard
-    }
-
-    // Basic Version of Luck Calculation
-    public float LuckCalculation(LuckyItems itemType)
-    {
-        switch (itemType)
-        {
-            case LuckyItems.TarotCard:
-                return 0.01f * luck;
-            case LuckyItems.Potion:
-                return 0.05f * luck;
-            case LuckyItems.Shard:
-                return Random.Range(0, 2) * luck;
-        }
-        return 0;
-    }
-
-    // Elite Version of Luck Calculation
-    public float LuckCalculation(LuckyItems itemType, bool elite)
-    {
-        if (!elite) return LuckCalculation(itemType);
-
-        switch (itemType)
-        {
-            case LuckyItems.TarotCard:
-                return 0.05f * luck;
-            case LuckyItems.Potion:
-                return 0.10f * luck;
-            case LuckyItems.Shard:
-                return Random.Range(5, 10) * luck;
-        }
-
-        return 0;
-    }
-
     // Trustworthiness Calculation
     public int NPCPricing(int basePrice)
     {
-        return (int)(basePrice * (1 - ((float)trustworthiness / (trustworthiness + 50))));
+        return (int)(basePrice * (1 - (trustworthiness / (trustworthiness + 50))));
+    }
+
+    public float GetAdjustedLuck()
+    {
+        return luck + StaticGameManager.luckyCoins;
     }
 }

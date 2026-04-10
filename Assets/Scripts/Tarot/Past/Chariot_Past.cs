@@ -4,7 +4,6 @@ using UnityEngine;
 public class Chariot_Past : Past_TarotCard
 {
     PlayerEffectManager effectManager;
-    List<EffectInstance> ei = new();
 
     public const float damageBonus = 0.05f;
     public const int maxStacks = 10;
@@ -18,9 +17,11 @@ public class Chariot_Past : Past_TarotCard
     {
         cardName = "Chariot_Past";
         arcana = Arcana.Chariot;
+
+        GetLocalizedDesc();
     }
 
-    protected override void ApplyListenersEffects()
+    protected override void ApplyListenersEffects(bool muted = false)
     {
         effectManager = PlayerController.instance.gameObject.GetComponent<PlayerEffectManager>();
 
@@ -28,9 +29,15 @@ public class Chariot_Past : Past_TarotCard
         EnemyBase.OnEnemyDamageTaken += OnDamageDealt;
     }
 
+    protected override void RemoveListeners(bool muted = false)
+    {
+        PlayerController.OnDamageTaken -= OnDamageTaken;
+        EnemyBase.OnEnemyDamageTaken -= OnDamageDealt;
+    }
+
     public override void UpdateCard()
     {
-        if (!inCombat || ei.Count >= maxStacks)
+        if (!inCombat || effectInstances.Count >= maxStacks)
         {
             return;
         }
@@ -48,7 +55,7 @@ public class Chariot_Past : Past_TarotCard
 
         if (elapsedTime >= timerDur)
         {
-            ei.Add(effectManager.AddBuff(new ChariotPast_Effect()));
+            effectInstances.Add(effectManager.AddBuff(new ChariotPast_Effect()));
             elapsedTime -= timerDur;
         }
     }
@@ -78,19 +85,10 @@ public class Chariot_Past : Past_TarotCard
     {
         inCombat = false;
 
-        for (int i = ei.Count; i >= 0; --i) {
-            effectManager.RemoveEffect(ei[i]);
-            ei.RemoveAt(i);
+        for (int i = effectInstances.Count; i >= 0; --i) {
+            effectManager.RemoveEffect(effectInstances[i]);
+            effectInstances.RemoveAt(i);
         }
-    }
-
-    protected override void GetLocalizedDesc()
-    {
-        base.GetLocalizedDesc();
-        
-        SetTableEntries("Chariot");
-
-        SetDescriptionValues();
     }
 
     protected override void SetDescriptionValues()

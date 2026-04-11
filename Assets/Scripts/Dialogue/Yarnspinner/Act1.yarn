@@ -1,10 +1,12 @@
 ﻿title: Act1_Introduction
 ---
-[i]Twenty-two Arcana shape the world,[/i]
-[i]each a guiding star of fate.[/i]
-[i]Their ideals collide through mortal hands,[/i]
-[i]and in that clash of faith and will,[/i]
-[i]balance is born.[/i]
+<<clear_portrait YarnManager>>
+: [i]Twenty-two Arcana shape the world,[/i]
+: [i]each a guiding star of fate.[/i]
+: [i]Their ideals collide through mortal hands,[/i]
+: [i]and in that clash of faith and will,[/i]
+: [i]balance is born.[/i]
+: [i]But one, the Hierophant, tipped these scales in their pursuit of absolute order, a world where all beings would be under his control. It is here where your mission begins.[/i]
 
 <<set_portrait YarnManager Judge>>
 ???: Hello? 
@@ -17,11 +19,9 @@
 ???: Oh! You’re finally awake.
 
 <<set_portrait YarnManager Cyrus>>
-???: ...?
+???: ???
 
 <<set_portrait YarnManager Judge>>
-???: You...you look clueless.
-???: Ugh, I was sure there were no errors when bringing you back.
 ???: Alright, let’s do this slowly.
 ???: Name. Do you remember that much?
 
@@ -30,18 +30,19 @@
 Cyrus: Cyrus.
 
 <<set_portrait YarnManager Judge>>
-???: Great! At least some of your brain still works. You can call me the Judge.
-The Judge: So! Cyrus! It’s unfortunate that you forgot, but you’re an enforcer chosen by the Almighty Justice. It’s an honor few humans receive.
-The Judge: The Hierophant’s been tampering with the divine balance, and it’s causing quite the mess.
-The Judge: Your job is to clean it up before it brings the Assimilation.
+???: Great! At least part of your brain still works, that’s better than some. You can call me the Judge.
+The Judge: So! Cyrus! You’re an enforcer of the Almighty Justice, chosen to preserve fairness and law throughout the universe.
+The Judge: It’s an honor few humans receive, but to keep your work professional we can’t have you keeping memories.
+The Judge: Your next mission will be in Prism.
+The Judge: The Hierophant’s been tampering with the divine balance, and your job is to hunt down his puppets before he uses them to bring the Assimilation.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Wha- What are you-
+Cyrus: What? What are you you even-
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Judge>>
 The Judge: Look, you want humanity to continue, right? So do we.
 The Judge: Well, Justice does. I just work here.
-The Judge: So I’d love to stand here and explain the metaphysics of divine politics, but we’re on a schedule. Off you go~
+The Judge: So I’d love to stand here and explain the metaphysics of divine politics, but we’re really on a schedule. Off you go!
 
 <<player_respawn YarnManager>>
 ===
@@ -68,7 +69,11 @@ Cyrus: Sorry, I’m just...right, my name. It’s Cyrus.
 <<set_portrait YarnManager Eve>>
 Eve: Nice to meet you, Cyrus! Or not nice? Given the circumstances. Are you hurt anywhere?
 
-A Meminiscor roars. (TODO play sound via function here)
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]What’s happening? That girl earlier... I can’t seem to remember anything beyond my own name. Best to play along for now.[/i]
+
+<<clear_portrait YarnManager>>
+: [i]An inhuman roar. (TODO play sound)[/i]
 
 <<set_portrait YarnManager Eve>>
 Eve: That’s not good. Sounds like a Meminiscor.
@@ -95,11 +100,11 @@ Eve: A gun, but I’m not-
  
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’ll take it.
-Cyrus: Just what do I need to know about this “Meminiscor”?
 
 <<set_portrait YarnManager Eve>>
-Eve: It’s a memory-born creature. If it gets too close, it’ll pull your fates out until you collapse.
+Eve: Be careful! If you get too close, it’ll start absorbing your memories.
 ===
+
 
 title: Act1_EveIntro_PostCombat_P1N1
 ---
@@ -112,16 +117,11 @@ Eve: You actually did it. Are you a Hunter?
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Hunter?
 
-A distant roar is heard. (TODO play sound via function here)
+<<clear_portrait YarnManager>>
+: [i]A distant roar is heard. (TODO play sound)[/i]
 
 <<set_portrait YarnManager Eve>>
-Eve: We shouldn’t stay here, if a stronger Meminiscor shows up we’re in trouble.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: There’s more?
-
-<<set_portrait YarnManager Eve>>
-Eve: There always is. Better stay close.
+Eve: We’d better head back to the city.
 ===
 
 
@@ -190,49 +190,42 @@ Cyrus: Don’t have to tell me twice.
 title: Act1_EveWorldbuilding_P1N2
 ---
 <<set_portrait YarnManager Eve>>
-Eve: You really aren’t from around here, huh?
+Eve: You really aren’t from around here, are you?
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: I’m...not sure where I’m from.
+Cyrus: I’m not sure where I’m from.
 
 <<set_portrait YarnManager Eve>>
-Eve: So you have the skills of a Hunter but remember nothing...maybe you exchanged your memories away?
+Eve: So you have the skills of a Hunter but remember nothing...maybe you exchanged your Fates away?
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: I remember The Judge. She told me she worked for...Justice?
+Cyrus: Fates?
 
 <<set_portrait YarnManager Eve>>
-Eve: Justice is one of the Arcanas, the beings that preside over our universe.
-Eve: Each represents a concept, like how Justice seeks to maintain fairness and law. Our Fates are built on each of them.
+Eve: Strong memories, the kind that only happens a few times in a person’s life.
+Eve: Depending on the memory and what Arcana it’s aligned with, they’ll each grant you a unique power. Tell me you at least know what an Arcana is.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Fates? That’s what those monsters pull out?
+Cyrus: I remember, uh, Justice?
 
 <<set_portrait YarnManager Eve>>
-Eve: Incredibly strong memories, the kind that only happens a few times in a person’s life.
-Eve: Depending on the memory and what Arcana it’s aligned with, they’ll each grant you a unique power.
-Eve: Say you became a Hunter to protect others. Your Fate would be tied to the Justice Arcana, which may then grant you stronger defense.
-Eve: Of course, throughout life we gain many Fates from different Arcanas. 
+Eve: Good. Say you became a judge to ensure fair rulings in court. That Fate would be tied to the Justice Arcana, which may then grant you stronger defense.
+Eve: Throughout life, we gain many Fates from different Arcanas. 
+Eve: You can trade them like any other currency, but if you lose them all you’ll become one of those things we ran into.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: ...Right.
-Cyrus: Then, do you happen to know anything about a “Judge”?
+Cyrus: Memory monsters...that’s how they get their name.
 
 <<set_portrait YarnManager Eve>>
-Eve: So you do have other memories.
-Eve: Sorry, that doesn’t ring a bell, she’s probably from afar. This place is pretty fragmented. Lots of wastelands.
-Eve: Anyhow, welcome to Prism!
-Eve: Sorry those monsters didn’t make the warmest welcome, that’s why it’s wise to stay out of the outskirts.
-Eve: Luckily we have Hunters to fight them off. Some are corporate hires, but most are self-employed.
-Eve: I’m surprised you aren’t one already, you can make a lot of money killing those things.
+Eve: They didn’t make the warmest welcome, but, luckily we have Hunters to fight them off.
+Eve: I’m surprised you aren’t one already. You can make a lot of money hunting those things.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: [i]Hunting sounds like what The Judge wanted me to do.[/i]
+Cyrus: [i]Hunting...isn’t that what the Judge said to do?[/i]
 Cyrus: How do I start?
 
 <<set_portrait YarnManager Eve>>
-Eve: Oh, [i]now[/i] you’re interested.
-Eve: You'll need a dispatcher to guide you over the air. Which should be me.
+Eve: Well, you'll need a dispatcher to guide you over the air. Which should be me.
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: You sound eager.
@@ -245,7 +238,7 @@ Eve: And I’ll get a cut of your profits, of course.
 Cyrus: So [i]that's[/i] your motive.
 
 <<set_portrait YarnManager Eve>>
-Eve: You’ll need better equipment if you want to survive your first day. The shop’s up ahead.
+Eve: Haha, yep~ You’ll need better equipment if you want to survive your first day. The shop’s up ahead.
 ===
 
 
@@ -268,93 +261,88 @@ Shopkeeper: A Hunter, eh? My shop here has the best supplies you’ll find in th
 Shopkeeper: For a friend of my daughter’s I’ll even throw in a discount.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Thank you. I’ll be lucky to have her as a dispatcher.
+Cyrus: Thanks. Guess I’ll be lucky to have her as a dispatcher.
 
 <<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: Eve, what is this man talking about?
+Shopkeeper: Eve???
 
 <<set_portrait YarnManager Eve>>
-Eve: I’m just helping from the radio, I won’t be on the ground.
+Eve: I-I’m just helping from the radio, I won’t be on the ground!
 
 <<set_portrait YarnManager Shopkeeper>>
 Shopkeeper: What have I told you about-
 
 <<set_portrait YarnManager Eve>>
-Eve: I’ll be safe, Dad, I promise.
+Eve: I’ll be safe, Dad, I promise!
 
 <<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: Cyrus, you swear to me you won’t put her in any trouble?
+Shopkeeper: ...I can’t believe you.
+Shopkeeper: Well, Cyrus. You ought to take a look at my wares. Don’t want you getting killed either.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: You have my word.
+<<clear_portrait YarnManager>>
+[i]Cyrus and Shopkeeper enter the shop.[/i]
 
 <<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: ...
-Shopkeeper: You ought to take a look at my wares then. Don’t want you getting killed either.
 Shopkeeper: Here, I’ve got all the Fates a Hunter could ask for.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: You can buy these? Aren’t they...memories?
-
-<<set_portrait YarnManager Eve>>
-Eve: They’re also currency, in a way. Some exchange them for resources or other Fates.
 
 <<open_shop YarnManager>>
 <<wait_for_shop_close YarnManager>>
 
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Huh? This photo...
+
+<<set_portrait YarnManager Shopkeeper>>
+Shopkeeper: My daughters.
+Shopkeeper: This one is Ava. She was the brightest kid you’d ever meet, you could tell even when she was a baby.
+Shopkeeper: And that one’s Eve, of course. She showed up at the door one night a few years back, looking up at me like a lost puppy. Really brings back memories.
+
+<<clear_portrait YarnManager>>
+[i]Cyrus leaves the shop.[/i]
+
 <<set_portrait YarnManager Eve>>
-Eve: Now you look like a real Hunter!
-Eve: I got you registered while you were in there.
+Eve: Now you look like a real Hunter! I got you registered while you were in there.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: I thought becoming a Hunter was more formal? Isn’t there paperwork or anything?
+Cyrus: It’s that easy? No paperwork?
 
 <<set_portrait YarnManager Eve>>
-Eve: You want to do paperwork? I still have taxes I haven’t filed yet, if you want-
+Eve: Thankfully not, they’re too desperate for new Hunters.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: You guys have t- Nevermind, just answer my question.
-
-<<set_portrait YarnManager Eve>>
-Eve: No, I have your spiritual signature recorded in my dispatcher device. That’s enough.
+<<clear_portrait YarnManager>>
 [i]Eve’s device dings.[/i]
+
+<<set_portrait YarnManager Eve>>
 Eve: That was fast.
-Eve: Your first mission’s already here. Let’s head out.
+Eve: Your first mission’s already here, they’re sending you deeper into the outskirts. Let’s head out.
 ===
 
 
 title: Act1_TownProtection_PreCombat_P1N8
 ---
 <<set_portrait YarnManager Eve>>
-Eve: I should’ve warned you about Dad. He’s always been a bit paranoid, but ever since the Assimilation started picking up speed...
+Eve: I should’ve warned you about Dad. He’s always been overprotective, but ever since the Assimilation started picking up...
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: The Assimilation...The Judge mentioned that.
+Cyrus: [i]The Assimilation. The Judge mentioned that.[/i]
 
 <<set_portrait YarnManager Eve>>
-Eve: Yeah, Prism doesn't have much time left. Once the memory monsters grow strong enough, the Assimilation ritual will happen.
-Eve: Your- I mean, [i]humanity’s[/i] memories will be completely swallowed up, and we’ll be nothing but empty husks.
-Eve: We’ve always known it would happen one day, but the signs indicate it may be sooner than later.
+Eve: Oh, right, you probably don’t know. Once the memory monsters have consumed enough memories, the Assimilation ritual will begin and humanity’s memories will be completely swallowed up.
+Eve: We’ve always known it would happen one day, but it’ll be sooner than we thought.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: That’s terrible.
+Cyrus: So the world is facing inevitable destruction? That’s terrible.
 
 <<set_portrait YarnManager Eve>>
-Eve: It’s definitely not the best place to wake up in. 
+Eve: Not the best place to wake up in, huh?
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: What about the Arcanas, then? If they preside over this world, shouldn’t they do something about its destruction?
+Cyrus: What about the other Arcanas, then? If they preside over this world, shouldn’t they do something about its destruction?
 
 <<set_portrait YarnManager Eve>>
-Eve: They’re not saviors or destroyers, they only seek to enforce their beliefs to the end. They can’t even interfere directly with this world.
+Eve: They’re not saviors or destroyers, they only seek to enforce their principles. They can’t even interfere directly with this world.
 Eve: But you’re right. Perhaps certain Arcanas have already directed their followers to oppose it.
 Eve: I’m picking up memory monsters up ahead. There’s been a lot more around here lately.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: At least business is booming.
-
-<<set_portrait YarnManager Eve>>
-Eve: Haha, I see you’re learning. Just don’t do anything stupid, okay?
+Eve: I’ll guide you through. Just don’t get yourself killed on your first run, okay?
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’ll try my best.
@@ -377,8 +365,8 @@ title: Act1_TownProtection_P1N8_Alt
 Eve: I’m picking up memory monsters up ahead. There’s been a lot more around here lately.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: [i]This must be when the signal was disrupted. Same pattern, same buildup.[/i]
-Cyrus: Right... I see them.
+Cyrus: [i]This must be when the signal was disrupted.[/i]
+Cyrus: Right...I see them.
 
 <<set_portrait YarnManager Eve>>
 Eve: I’ll guide you through. Just don’t get yourself killed on your first run, okay?
@@ -404,8 +392,10 @@ Cyrus: If you’re somewhere in this, please be okay. Your dad’s going to kill
 
 <<set_portrait YarnManager TownNPC1>>
 ???: HELP!!!
+
 <<set_portrait YarnManager TownNPC2>>
 ???: Wait- a Hunter!
+
 <<set_portrait YarnManager TownNPC3>>
 ???: Thank the Arcanas!
 
@@ -420,37 +410,43 @@ Cyrus: Who?
 
 <<set_portrait YarnManager TownNPC3>>
 ???: The mayor! He said the patrols were just routine!
+
 <<set_portrait YarnManager TownNPC2>>
 ???: That today was a day to be at ease!
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: The mayor? Why would he- 
 
-A massive memory monster appears. (spawn False Human boss?, do it from function)
+<<clear_portrait YarnManager>>
+[i]A massive memory monster appears. (TODO spawn False Human boss)[/i]
 
-Cyrus: What the hell...
+<<set_portrait YarnManager Cyrus>>
+Cyrus: What the hell is that?
 
 <<set_portrait YarnManager TownNPC1>>
 ???: RUN!
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: What...the hell is that?
-Cyrus: And I thought this day couldn’t get any stranger. A memory monster that big...anyone here to help?
-Cyrus: Guess it’s just me then.
+Cyrus: [i]Guess it’s just me then.[/i]
 ===
 
 
 title: Act1_FalseHumanIntro_P1Boss_Alt
 ---
+TODO Spawn False Human boss
+
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]Doesn’t look any better.[/i]
 
 <<set_portrait YarnManager TownNPC1>>
 ???: HELP!!!
+
 <<set_portrait YarnManager TownNPC2>>
 ???: Wait- a Hunter!
+
 <<set_portrait YarnManager TownNPC3>>
 ???: Thank the Arcanas!
+
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’d run if I were you.
@@ -461,13 +457,14 @@ Cyrus: [i]Let’s try this again.[/i]
 title: Act1_FalseHumanDeath_P1End
 ---
 <<set_portrait YarnManager Tobias>>
-???: Hey, you?
+???: Hey, you alright?
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Hunters? Where have you been??
+Cyrus: You’re...hunters? Could’ve used your help earlier.
 
 <<set_portrait YarnManager Tobias>>
 ???: We were way out when the signal cut off.
+
 <<set_portrait YarnManager Saul>>
 ???: Still doesn’t explain how something that big just appeared out of nowhere.
 ???: You really fought that thing alone? Are you crazy??
@@ -475,14 +472,14 @@ Cyrus: Hunters? Where have you been??
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I was doing my job to protect this city.
 
-<<set_portrait YarnManager Saul>>
-???: Aren’t you heroic, new guy! What are you, an enforcer of Justice or something?
+<<set_portrait YarnManager Tobias>>
+???: Aren’t you heroic, new guy!
+
 <<set_portrait YarnManager Tobias>>
 ???: Hold on, the spiritual signal around here is still messed up, looks like it’s still-
-<<set_portrait YarnManager Saul>>
-???: It’s pulling Fates from the townspeople!
+
 <<set_portrait YarnManager Tobias>>
-???: How do we kill it?!
+???: It’s pulling Fates! How do we kill it?!
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: We can’t, it’s going to-
@@ -499,10 +496,10 @@ Cyrus: Did I...die?
 The Judge: Don’t take it too hard. Most enforcers fail their first run. And their second. And, well...you’ll see.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: But I felt it. The monster, the pain- how am I still here?
+Cyrus: The monster, the pain- I felt it. How am I still here?
 
 <<set_portrait YarnManager Judge>>
-The Judge: Your body’s dead in that timeline, but [i]you, Cyrus?[/i] You’re Justice’s enforcer. Time is merely a tool to the Arcanas, a little thing like death won’t get you out of this. 
+The Judge: Your body’s dead in that timeline, but [i]you[/i], Cyrus? You’re Justice’s enforcer. Time is merely a tool to the Arcanas, a little thing like death won’t get you out of this. 
 The Judge: Each time you fail, time will rewind. Until you succeed. Aren’t you lucky?
 
 <<set_portrait YarnManager Cyrus>>
@@ -512,19 +509,24 @@ Cyrus: Not the word I’d use.
 The Judge: Come on, most mortals would KILL for infinite chances to get things right. Haha, get it?
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: ...
 Cyrus: If you can control time itself, can’t you do more to help me?
 
 <<set_portrait YarnManager Judge>>
 The Judge: You think Prism is the only place on the brink of destruction?
-The Judge: I’m already working nonstop managing the logistics of all you enforcers, and the last thing I need is another one whining about the job [i]they[/i] signed up for.
+The Judge: I’m already working nonstop managing the logistics of every enforcer, the last thing I need is you whining about the job [i]you[/i] signed up for.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I, I don’t even remember anything!
+
+<<set_portrait YarnManager Judge>>
+The Judge: You’ve got all the time in the world, I’m sure you’ll figure it out.
 The Judge: Well, Cyrus, looks like our time is up. Try not to die so fast on this one.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Wait, I still have que-
+Cyrus: Wait!!
  
 <<set_portrait YarnManager Judge>>
-The Judge: See you again soon~
+The Judge: See you soon!
 
 <<player_respawn YarnManager>>
 ===
@@ -532,8 +534,8 @@ The Judge: See you again soon~
 
 title: FirstResurrection_Alt
 ---
-<<set_portrait YarnManager Cyrus>>
-The Judge: You beat the final boss of Path 1! Here's some placeholder dialogue~ (TODO add actual dialogue)
+<<set_portrait YarnManager Judge>>
+The Judge: See you again soon~
 
 <<player_respawn YarnManager>>
 ===

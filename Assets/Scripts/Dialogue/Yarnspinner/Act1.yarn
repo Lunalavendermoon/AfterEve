@@ -280,7 +280,7 @@ Shopkeeper: ...I can’t believe you.
 Shopkeeper: Well, Cyrus. You ought to take a look at my wares. Don’t want you getting killed either.
 
 <<clear_portrait YarnManager>>
-[i]Cyrus and Shopkeeper enter the shop.[/i]
+: [i]Cyrus and Shopkeeper enter the shop.[/i]
 
 <<set_portrait YarnManager Shopkeeper>>
 Shopkeeper: Here, I’ve got all the Fates a Hunter could ask for.
@@ -297,7 +297,7 @@ Shopkeeper: This one is Ava. She was the brightest kid you’d ever meet, you co
 Shopkeeper: And that one’s Eve, of course. She showed up at the door one night a few years back, looking up at me like a lost puppy. Really brings back memories.
 
 <<clear_portrait YarnManager>>
-[i]Cyrus leaves the shop.[/i]
+: [i]Cyrus leaves the shop.[/i]
 
 <<set_portrait YarnManager Eve>>
 Eve: Now you look like a real Hunter! I got you registered while you were in there.
@@ -309,7 +309,7 @@ Cyrus: It’s that easy? No paperwork?
 Eve: Thankfully not, they’re too desperate for new Hunters.
 
 <<clear_portrait YarnManager>>
-[i]Eve’s device dings.[/i]
+: [i]Eve’s device dings.[/i]
 
 <<set_portrait YarnManager Eve>>
 Eve: That was fast.
@@ -418,7 +418,7 @@ Cyrus: Who?
 Cyrus: The mayor? Why would he- 
 
 <<clear_portrait YarnManager>>
-[i]A massive memory monster appears. (TODO spawn False Human boss)[/i]
+: [i]A massive memory monster appears. (TODO spawn False Human boss)[/i]
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: What the hell is that?

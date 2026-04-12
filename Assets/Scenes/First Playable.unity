@@ -4704,6 +4704,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6555157076438026817, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: dac63935c5dd4ed4f8c0d8e9584659df, type: 2}
     - target: {fileID: 6740240973986086949, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -4772,6 +4776,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -999222579
       objectReference: {fileID: 0}
+    - target: {fileID: 7486369184383115630, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 57e7b255ac1fb914d8e90a6677208e7f, type: 2}
     - target: {fileID: 7773325652112711274, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Layer
       value: 3

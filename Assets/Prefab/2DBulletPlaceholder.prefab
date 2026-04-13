@@ -113,8 +113,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6409073905072069231}
   - component: {fileID: 2099588398719063535}
-  - component: {fileID: 3046940244932973063}
   - component: {fileID: -2403854095557674971}
+  - component: {fileID: 5417902393358942116}
   m_Layer: 7
   m_Name: 2DBulletPlaceholder
   m_TagString: Untagged
@@ -165,7 +165,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &3046940244932973063
+--- !u!114 &-2403854095557674971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454488872047033392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9253afba0294c344c89fabb735ec6028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  spriteRenderer: {fileID: 5924802802131396122}
+  pierceSprite: {fileID: 21300000, guid: 00c58312c09fe44fca0352da54910a1a, type: 3}
+  bounceSprite: {fileID: 21300000, guid: 6ffb3d966f7964c28af169ea1ad2532c, type: 3}
+  projectileSpeed: 10
+  maxProjectileDistance: 15
+--- !u!58 &5417902393358942116
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,26 +212,9 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &-2403854095557674971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5454488872047033392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9253afba0294c344c89fabb735ec6028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  spriteRenderer: {fileID: 5924802802131396122}
-  pierceSprite: {fileID: 21300000, guid: 00c58312c09fe44fca0352da54910a1a, type: 3}
-  bounceSprite: {fileID: 21300000, guid: 6ffb3d966f7964c28af169ea1ad2532c, type: 3}
-  projectileSpeed: 10
-  maxProjectileDistance: 15

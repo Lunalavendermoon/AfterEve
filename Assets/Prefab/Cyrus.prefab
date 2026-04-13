@@ -50,12 +50,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   healthBar: {fileID: 0}
+  questUIScript: {fileID: 0}
   horizontalInput: 0
   verticalInput: 0
+  interactPrompt: {fileID: 0}
   speed: 0
   playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
+  currentHealth: 0
+  maxHealth: 0
   playerFuturePrefab: {fileID: 11400000, guid: 2eefe8d2e31024d42a45671b33503a31, type: 2}
   skillText: {fileID: 0}
+  playerAnimation: {fileID: 0}
+  clonePrefab: {fileID: 0}
+  currentInteractable: {fileID: 0}
+  tarotManager: {fileID: 0}
+  shieldManager: {fileID: 0}
+  volume: {fileID: 0}
+  currentlyReloading: 0
 --- !u!114 &7623997768987756731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +81,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGun
   firingPoint: {fileID: 1941564512637690296}
   projectilePrefab: {fileID: 6863573353313981101, guid: 709faae610094f645a22d737154f1784, type: 3}
-  playerAttributes: {fileID: 11400000, guid: b0efa864b07d5d44ab9c1bfc43df7537, type: 2}
 --- !u!114 &8667870610808875061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,11 +93,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1371d5ae6859446deab03350293ac183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEffectManager
+  vfx: {fileID: 0}
   basePlayerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
   effectPlayerAttributes: {fileID: 11400000, guid: b0efa864b07d5d44ab9c1bfc43df7537, type: 2}
   genericEffectIcon: {fileID: 3195862853416397274, guid: d369fe64b3ca844acac4066962ae7070, type: 3}
   effectIcons: {fileID: 11400000, guid: d77d395db21444d8e8a9627cc4f4b6c7, type: 2}
   effectIconDisplay: {fileID: 4855613505102881871, guid: 88776e5addf7c4027b05b68b26b31498, type: 3}
+  effectIconCap: 5
 --- !u!212 &7676417823161034668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -132,8 +144,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -999222579
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 58b2ed37534ac7c449672663d5b6b464, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

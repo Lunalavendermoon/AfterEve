@@ -20,6 +20,11 @@ public class Player_Dash : IPlayerState
     {
         Vector2 input = new Vector2(player.horizontalInput, player.verticalInput);
 
+        if (player.playerAttributes != null && player.playerAttributes.isConfused)
+        {
+            input *= -1f;
+        }
+
         // If not moving, dash does nothing and must not start cooldown.
         if (input.sqrMagnitude < DashInputDeadzone * DashInputDeadzone)
         {

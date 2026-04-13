@@ -124,6 +124,9 @@ public class PlayerController : MonoBehaviour
     private int currentAmmo;
     private float lastReload;
     private float fireRate;
+    private int lastKnownMaxAmmo;
+
+    public int CurrentAmmo => currentAmmo;
 
     //spiritual vision
     private float currentSpiritualVision;
@@ -178,8 +181,12 @@ public class PlayerController : MonoBehaviour
         currentState.EnterState(this);
         OnPlayerStateChange?.Invoke(currentState);
 
+        // Effects can change max ammo based on state (idle vs moving). Keep UI in sync immediately.
+        OnPlayerStateChange += _ => SyncAmmoUIAndCapacityIfNeeded();
+
         // weapon
         currentAmmo = playerAttributes.Ammo;
+        lastKnownMaxAmmo = playerAttributes.Ammo;
         AttackUI.Instance.initializeAmmoUI();
 
         currentSpiritualVision = playerAttributes.totalSpiritualVision;
@@ -209,6 +216,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        SyncAmmoUIAndCapacityIfNeeded();
+
         // decrement timer for active skills (if any)
         if (magicianSkillActive)
         {
@@ -249,6 +258,39 @@ public class PlayerController : MonoBehaviour
 
         IPlayerState.speedCoefficient = speed;
         UpdateSound();
+    }
+
+    private void SyncAmmoUIAndCapacityIfNeeded()
+    {
+        if (AttackUI.Instance == null || playerAttributes == null)
+        {
+            return;
+        }
+
+        int newMaxAmmo = Mathf.Max(0, playerAttributes.Ammo);
+        if (newMaxAmmo == lastKnownMaxAmmo)
+        {
+            return;
+        }
+
+        int oldMaxAmmo = Mathf.Max(1, lastKnownMaxAmmo);
+
+        // Reset current ammo by floor proportion (min 1) while respecting the new cap.
+        if (newMaxAmmo <= 0)
+        {
+            currentAmmo = 0;
+        }
+        else
+        {
+            float ratio = currentAmmo / (float)oldMaxAmmo;
+            int newCurrent = Mathf.FloorToInt(ratio * newMaxAmmo);
+            currentAmmo = Mathf.Clamp(Mathf.Max(1, newCurrent), 1, newMaxAmmo);
+        }
+
+        lastKnownMaxAmmo = newMaxAmmo;
+
+        // Now refresh UI so TMP shows the correct current/max after we adjusted ammo.
+        AttackUI.Instance.initializeAmmoUI();
     }
 
     public void SyncMaxHealthToAttributes(bool fill = false)
@@ -385,8 +427,13 @@ public class PlayerController : MonoBehaviour
                 {
                     if (!magicianSkillActive)
                     {
-                        AttackUI.Instance.greyNextAmmo(currentAmmo);
                         currentAmmo--;
+                        AttackUI.Instance.greyNextAmmo(currentAmmo);
+
+                        if (currentAmmo <= 0)
+                        {
+                            AttackUI.Instance.initializeAmmoUI();
+                        }
                     }
                     AudioManager.instance.PlayOneShot(FMODEvents.instance.gunshot, this.transform.position);
                 }
@@ -418,6 +465,8 @@ public class PlayerController : MonoBehaviour
 
     void Reload()
     {
+        // Keep UI counter responsive while reloading (e.g. show 0/max).
+        AttackUI.Instance.initializeAmmoUI();
         AttackUI.Instance.runAmmoReloadAnimation();
         if (!currentlyReloading)
         {
@@ -432,6 +481,7 @@ public class PlayerController : MonoBehaviour
                 currentlyReloading = false;
                 AttackUI.Instance.resetAmmoUI();
                 currentAmmo = playerAttributes.Ammo;
+                AttackUI.Instance.initializeAmmoUI();
             }
         }
     }

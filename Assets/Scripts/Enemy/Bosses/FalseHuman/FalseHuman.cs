@@ -32,6 +32,12 @@ public class FalseHuman : BossBehaviourBase
     private const float EmotionDebuffDuration = 7f;
     private const float EmotionWeakPercent = 0.2f;
 
+    [Header("Attack 2 — knight summons")]
+    [SerializeField] float knightSummonRandomRadius = 4f;
+
+    [Header("Attack 4 — large projectile")]
+    [Tooltip("World-units in front of the boss along the aim line toward the player.")]
+    [SerializeField] float largeProjectileSpawnForwardOffset = 1.25f;
 
     private void Awake()
     {
@@ -68,15 +74,24 @@ public class FalseHuman : BossBehaviourBase
     }
     public override void Attack2()
     {
-        //Summons a Knight of Blades, a Knight of Shields, and a Knight of Hammers(see enemy sheet).
-        //After finishing this attack, waits 5 seconds before using another attack.
+        StartCoroutine(SummonKnightsAttack());
+    }
+    IEnumerator SummonKnightsAttack()
+    {
         isAttacking = true;
         attackProbalities = new float[5] { 33.3f, 0.0f, 33.30f, 33.30f, 0f };
-        SpawnKnights();
-
+        foreach (EnemyEntry entry in knightsList)
+        {
+            if (entry.enemyPrefab == null)
+            {
+                Debug.LogWarning("FalseHuman knightsList entry missing enemyPrefab.");
+                continue;
+            }
+            BossSummonUtility.SpawnBossMinionFromEntry(transform.position, knightSummonRandomRadius, entry);
+        }
         cooldown_time = 5f;
+        yield return null;
         isAttacking = false;
-
     }
     public override void Attack3()
     {
@@ -107,11 +122,24 @@ public class FalseHuman : BossBehaviourBase
         //Shoots out a large projectile with 1000 init health.
         //The projectile follows the player at a speed of 1 for ten seconds, then the projectile permanant gain 400% Haste buff.
         //If not destroyed by the time it hits the player, it deals the remaining projectile health as spiritual dmg to the player.
-        Instantiate(largeProjectile, transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+        Instantiate(largeProjectile, GetLargeProjectileSpawnPosition(), Quaternion.Euler(new Vector3(0, 0, 0)));
         //Debug.Log("Large projectile launched.");
         attackProbalities = new float[5] { 33.30f, 33.3f, 33.30f, 0f, 0f };
         cooldown_time = 10f;
         isAttacking = false;
+    }
+    Vector3 GetLargeProjectileSpawnPosition()
+    {
+        Vector3 origin = transform.position;
+        Vector2 dir = Vector2.right;
+        if (PlayerController.instance != null)
+        {
+            dir = (Vector2)PlayerController.instance.transform.position - (Vector2)origin;
+            if (dir.sqrMagnitude > 1e-6f)
+                dir.Normalize();
+        }
+        Vector3 offset = new Vector3(dir.x, dir.y, 0f) * largeProjectileSpawnForwardOffset;
+        return origin + offset;
     }
 
     public override void Attack5()

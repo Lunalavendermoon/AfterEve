@@ -28,4 +28,15 @@ public class EmotionCapsule : MonoBehaviour
             return;
         ActivateFromSpiritualDamage();
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Projectile projectile = collision.collider.GetComponent<Projectile>();
+        if (projectile == null)
+            return;
+        if (projectile.SpiritualDamage <= 0)
+            return;
+        ActivateFromSpiritualDamage();
+    }
 }
+

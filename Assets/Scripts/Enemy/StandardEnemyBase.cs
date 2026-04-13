@@ -127,13 +127,13 @@ public abstract class StandardEnemyBase : EnemyBase
 
     public virtual bool InRange(Transform target)
     {
-        float distance = Vector3.Distance(transform.position, target.position);
+        float distance = Vector2.Distance(transform.position, target.position);
         return distance <= enemyAttributes.detection_radius;
     }
 
     public virtual bool InAttackRange(Transform target)
     {
-        float distance = Vector3.Distance(transform.position, target.position);
+        float distance = Vector2.Distance(transform.position, target.position);
         return distance <= enemyAttributes.attackRadius;
     }
 

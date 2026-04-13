@@ -74,7 +74,6 @@ MonoBehaviour:
   givesRewards: 1
   lockRotation: 1
   flipToFacePlayer: 1
-  luck: 1
   elite: 0
   wanderRadius: 7.5
   wanderTime: 3
@@ -394,8 +393,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -167363163
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   m_Color: {r: 0.96765494, g: 0, b: 0, a: 1}

@@ -65,7 +65,7 @@ Transform:
   m_GameObject: {fileID: 7439078935783777668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 15}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -242,8 +242,15 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   largeProjectile: {fileID: 6749576296793803437, guid: 5fdd70dce24c2eb4a861a5712fbacf0e, type: 3}
-  knightsList: []
+  knightsList:
+  - enemyPrefab: {fileID: 1710929130042634915, guid: eda3c9b54afea3d42b2f6dc9073f56ef, type: 3}
+    spawnPoint: {fileID: 0}
+  - enemyPrefab: {fileID: 1710929130042634915, guid: f896eeca2f38e14429920c03791edbdc, type: 3}
+    spawnPoint: {fileID: 0}
+  - enemyPrefab: {fileID: 1710929130042634915, guid: 754001af4b5aa7f4eb28cfb43aee0757, type: 3}
+    spawnPoint: {fileID: 0}
   emotionCapsule: {fileID: 2254829033348834515, guid: 4dade5be1351e0f438516f406305cbfc, type: 3}
+  knightSummonRandomRadius: 4
 --- !u!114 &8473512997577412845
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,139 @@
+
+Monster_Mirror.png
+size: 1274,639
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Fragment1
+  rotate: true
+  xy: 816, 18
+  size: 117, 208
+  orig: 560, 812
+  offset: 220, 443
+  index: -1
+Fragment2
+  rotate: true
+  xy: 1183, 311
+  size: 167, 89
+  orig: 560, 812
+  offset: 196, 401
+  index: -1
+Fragment3
+  rotate: false
+  xy: 758, 14
+  size: 40, 61
+  orig: 560, 812
+  offset: 162, 432
+  index: -1
+Fragment4
+  rotate: false
+  xy: 1026, 31
+  size: 178, 104
+  orig: 560, 812
+  offset: 333, 495
+  index: -1
+Fragment5
+  rotate: true
+  xy: 1138, 480
+  size: 157, 120
+  orig: 560, 812
+  offset: 67, 511
+  index: -1
+Fragments_small1
+  rotate: true
+  xy: 1245, 48
+  size: 75, 27
+  orig: 560, 812
+  offset: 123, 490
+  index: -1
+Fragments_small2
+  rotate: false
+  xy: 706, 31
+  size: 50, 44
+  orig: 560, 812
+  offset: 87, 472
+  index: -1
+Fragments_small3
+  rotate: true
+  xy: 1206, 28
+  size: 95, 37
+  orig: 560, 812
+  offset: 376, 484
+  index: -1
+Fragments_small4
+  rotate: true
+  xy: 1245, 19
+  size: 27, 21
+  orig: 560, 812
+  offset: 398, 470
+  index: -1
+Heart
+  rotate: true
+  xy: 816, 233
+  size: 404, 320
+  orig: 560, 812
+  offset: 69, 441
+  index: -1
+LeftBone1
+  rotate: false
+  xy: 1183, 245
+  size: 85, 64
+  orig: 560, 812
+  offset: 23, 547
+  index: -1
+LeftBone2
+  rotate: false
+  xy: 1212, 178
+  size: 52, 65
+  orig: 560, 812
+  offset: 51, 517
+  index: -1
+Pendant1
+  rotate: true
+  xy: 816, 137
+  size: 94, 394
+  orig: 560, 812
+  offset: 214, 28
+  index: -1
+Pendant2
+  rotate: false
+  xy: 1138, 249
+  size: 43, 229
+  orig: 560, 812
+  offset: 271, 159
+  index: -1
+Pendant3
+  rotate: true
+  xy: 421, 9
+  size: 66, 283
+  orig: 560, 812
+  offset: 292, 129
+  index: -1
+RightBone1
+  rotate: true
+  xy: 2, 77
+  size: 560, 812
+  orig: 560, 812
+  offset: 0, 0
+  index: -1
+RightBone2
+  rotate: false
+  xy: 1212, 125
+  size: 44, 51
+  orig: 560, 812
+  offset: 457, 517
+  index: -1
+TentaclesL
+  rotate: true
+  xy: 2, 2
+  size: 73, 210
+  orig: 560, 812
+  offset: 171, 211
+  index: -1
+TentaclesR
+  rotate: true
+  xy: 214, 2
+  size: 73, 205
+  orig: 560, 812
+  offset: 347, 218
+  index: -1

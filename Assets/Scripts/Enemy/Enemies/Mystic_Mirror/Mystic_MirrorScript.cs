@@ -1,9 +1,12 @@
 using System.Collections;
+using Spine.Unity;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class Mystic_MirrorScript : StandardEnemyBase
 {
+    private SkeletonAnimation skeletonAnimation;
+
     void Awake()
     {
         if (baseEnemyAttributes != null)
@@ -19,7 +22,12 @@ public class Mystic_MirrorScript : StandardEnemyBase
 
     }
 
-
+    public void Start()
+    {
+        base.Start();
+        skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
+        skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
+    }
 
     public override void Attack(Transform target)
     {

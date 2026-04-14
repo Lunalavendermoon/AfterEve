@@ -35,13 +35,9 @@ MonoBehaviour:
   bulletBounces: 0
   bulletBounceDmgDecrease: 0.3
   bulletPierces: 0
-  enemiesChained: 0
-  chainRadius: 0
-  chainTime: 0
-  chainDmg: 0
+  bulletPierceDmgDecrease: 0
   physicalAdditionalDmg: 0
   spiritualAdditionalDmg: 0
-  chainShieldIncrease: 0
   totalStamina: 1
   staminaRegeneration: 1
   dashPower: 2

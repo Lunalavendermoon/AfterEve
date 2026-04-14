@@ -1,8 +1,9 @@
-using FMOD.Studio;
-using FMODUnity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMOD.Studio;
+using FMODUnity;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -167,6 +168,11 @@ public class PlayerController : MonoBehaviour
 
     //post processing
     public Volume volume;
+
+    //chariot
+    public GameObject chariotPulsePrefab;
+    public bool chariotPulseActive = false;
+
 
     void Start()
     {
@@ -833,6 +839,18 @@ public class PlayerController : MonoBehaviour
         currentClone.GetComponent<MimicPlayer>().SetDamage(a, b, c);
     }
 
+    public void chariotPulse(float dashDuration)
+    {
+        if (!chariotPulseActive) return;
+        StartCoroutine(ChariotPulseCoroutine(dashDuration));
+    }
+
+    private IEnumerator ChariotPulseCoroutine(float dashDuration)
+    {
+        yield return new WaitForSeconds(dashDuration);
+        GameObject pulse = Instantiate(chariotPulsePrefab, transform.position, Quaternion.identity);
+        Destroy(pulse, 0.5f);
+    }
 
     private void HandleInteractInput()
     {

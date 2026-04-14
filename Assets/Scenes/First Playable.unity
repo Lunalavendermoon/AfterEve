@@ -4604,6 +4604,10 @@ PrefabInstance:
       propertyPath: interactPrompt
       value: 
       objectReference: {fileID: 988982516}
+    - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: chariotPulsePrefab
+      value: 
+      objectReference: {fileID: 297153201300601196, guid: 0fc842c534a08cc43bc5e45e8a66f9f2, type: 3}
     - target: {fileID: 900003970690876749, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Layer
       value: 3

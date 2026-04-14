@@ -51,6 +51,7 @@ public class Player_Dash : IPlayerState
         OnDash?.Invoke();
         dashStartTime = Time.time;
         PlayerMovementUI.Instance.triggerDashUsedUI();
+        PlayerController.instance.chariotPulse(dashDuration);
     }
 
     public void CheckState(PlayerController player)

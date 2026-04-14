@@ -15,7 +15,7 @@ public class Chariot_Present : Present_TarotCard
 
         AddNewLevelEffects();
 
-        //TODO add AOE pulse
+        PlayerController.instance.chariotPulseActive = true;
 
         GetLocalizedDesc();
     }

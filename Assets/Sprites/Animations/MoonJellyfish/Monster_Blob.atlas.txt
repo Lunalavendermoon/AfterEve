@@ -1,0 +1,34 @@
+
+Monster_Blob.png
+size: 1674,658
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+IMG_3646
+  rotate: true
+  xy: 752, 8
+  size: 648, 710
+  orig: 1073, 1188
+  offset: 219, 162
+  index: -1
+IMG_3647
+  rotate: true
+  xy: 2, 2
+  size: 654, 748
+  orig: 1073, 1188
+  offset: 213, 125
+  index: -1
+IMG_3648
+  rotate: false
+  xy: 1464, 435
+  size: 208, 221
+  orig: 1073, 1188
+  offset: 240, 508
+  index: -1
+IMG_3649
+  rotate: false
+  xy: 1464, 239
+  size: 174, 194
+  orig: 1073, 1188
+  offset: 258, 523
+  index: -1

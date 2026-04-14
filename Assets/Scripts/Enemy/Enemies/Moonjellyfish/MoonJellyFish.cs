@@ -1,3 +1,4 @@
+using Spine.Unity;
 using UnityEngine;
 
 
@@ -6,6 +7,8 @@ using UnityEngine;
 */
 public class MoonJellyFish : StandardEnemyBase
 {
+    private SkeletonAnimation skeletonAnimation;
+
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;
     private void Awake()
@@ -31,7 +34,12 @@ public class MoonJellyFish : StandardEnemyBase
 
     }
 
-  
+    public void Start()
+    {
+        base.Start();
+        skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
+        skeletonAnimation.AnimationState.SetAnimation(0, "Idle", true);
+    }
 
     public override void Attack(Transform target)
     {
@@ -43,11 +51,17 @@ public class MoonJellyFish : StandardEnemyBase
         // Play SFX
         AudioManager.instance.PlayOneShot(FMODEvents.instance.blobAttack, this.transform.position);
         // Trigger animation 
+        skeletonAnimation.AnimationState.SetAnimation(0, "Attack", false);
+        skeletonAnimation.AnimationState.AddAnimation(0, "Idle", true, 0f);
         // animator.SetTrigger("Attack");
         Invoke(nameof(DisableAttack), 0.3f); // 0.3 is temp 
     }
 
-    
-
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    {
+        base.TakeDamage(amount, dmgSource, dmgType);
+        skeletonAnimation.AnimationState.SetAnimation(0, "Hit", false);
+        skeletonAnimation.AnimationState.AddAnimation(0, "Idle", true, 0f);
+    }
 
 }

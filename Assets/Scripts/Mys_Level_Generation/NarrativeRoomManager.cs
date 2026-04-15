@@ -195,4 +195,14 @@ public class NarrativeRoomManager : MonoBehaviour
             }
         }
     }
+
+    public bool TryGetCurrentRoomWorldBounds(out Bounds worldBounds)
+    {
+        worldBounds = default;
+        if (roomObject == null) return false;
+        SpriteRenderer sr = roomObject.GetComponentInChildren<SpriteRenderer>();
+        if (sr == null) return false;
+        worldBounds = sr.bounds;
+        return true;
+    }
 }

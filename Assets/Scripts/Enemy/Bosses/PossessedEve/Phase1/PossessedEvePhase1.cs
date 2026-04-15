@@ -11,43 +11,90 @@ public class PossessedEvePhase1 : BossBehaviourBase
     [SerializeField] LightningStrike lightningPrefab;
     [SerializeField] int wrathBoltCount = 5;
 
+    const int VaticanPerType = 2;
+    const int VaticanTotal = 6;
+    int forcedNextAttackNumber = -1; 
+    [SerializeField] float comboGapAfterVaticanBeforeSacredWarSeconds = 5f;
+
     [Header("Attack 3 — Vatican Guard")]
-    [SerializeField] GameObject[] vaticanKnightPrefabs; 
-    [SerializeField] int vaticanKnightsPerType = 1;
-    [SerializeField] int vaticanTotalCap = 12;
+
+    [SerializeField] GameObject[] vaticanKnightPrefabs = new GameObject[3];
     [SerializeField] float vaticanSummonRandomRadius = 5f;
-    [SerializeField] float vaticanPhaseDuration = 45f;
-    [SerializeField] float vaticanBaseResurrectInterval = 8f;
-    [SerializeField] float exploitResurrectIntervalReduction = 1f;
-    [SerializeField] float exploitResurrectedHpLossPerStack = 0.15f;
+    [SerializeField] float vaticanReviveIntervalSeconds = 3f;
     [SerializeField] Transform[] vaticanSpawnPoints;
+    [Header("Vatican — exploit (narrative)")]
+
+    [SerializeField] float exploitReviveIntervalMultiplier = 0.25f;
+    [SerializeField] float exploitResurrectedHpMultiplier = 0.25f;
     struct VaticanKnightSlot
     {
         public StandardEnemyBase Enemy;
-        public int Kind; // 0 shield, 1 blade, 2 hammer
+        public int Kind;
     }
     readonly List<VaticanKnightSlot> vaticanSlots = new();
     Coroutine vaticanAttackRoutine;
     int vaticanExploitStacks;
 
 
+    [Header("Attack 4 — Sacred War")]
+    public static bool SacredWarNarrativeComplete { get; set; }
+    [Tooltip("Prefab variants [Shield, Blade, Hammer] with SacredWarKnightBehaviour + trigger collider.")]
+    [SerializeField] GameObject[] sacredWarKnightPrefabs = new GameObject[3];
+    [SerializeField] int sacredWarShieldBonus = 100;
+    [SerializeField] float sacredWarContactDpsAfterNarrative = 12f;
+    [SerializeField] float sacredWarContactDpsBeforeNarrative = 400f;
+    [SerializeField] float sacredWarMarchSpeed = 2f;
+    [SerializeField] float sacredWarMaxDuration = 25f;
+    [SerializeField] float sacredWarEdgeMargin = 0.75f;
 
-    public void NotifyVaticanExploitSuccess()
+    bool sacredWarActive;
+    readonly List<SacredWarKnightBehaviour> sacredWarUnits = new();
+    public void NotifyVaticanExploitSuccess() => vaticanExploitStacks++;
+    float EffectiveVaticanReviveInterval
     {
-        vaticanExploitStacks++;
+        get
+        {
+            float v = vaticanExploitStacks > 0
+                ? Mathf.Max(0.1f, vaticanReviveIntervalSeconds * exploitReviveIntervalMultiplier)
+                : vaticanReviveIntervalSeconds;
+            if (sacredWarActive)
+                v *= 0.5f;
+            return v;
+        }
     }
-    float VaticanResurrectInterval =>
-        Mathf.Max(0.5f, vaticanBaseResurrectInterval - vaticanExploitStacks * exploitResurrectIntervalReduction);
-    float VaticanResurrectedHpMultiplier =>
-        Mathf.Max(0.2f, 1f - vaticanExploitStacks * exploitResurrectedHpLossPerStack);
-
     private void Awake()
     {
         cooldown_time = 3f;
         default_enemy_state = new Boss_Cooldown(1f);
-        attackProbalities = new float[5] { 50f, 50f, 0f, 0f, 0f };
+        attackProbalities = new float[5] { 0f, 0f, 100f, 0f, 0f };
 
 
+    }
+
+    public override int ChooseAttack()
+    {
+        if (forcedNextAttackNumber > 0)
+        {
+            int n = forcedNextAttackNumber;
+            forcedNextAttackNumber = -1;
+            return n;
+        }
+        RefreshVaticanRoster(out int alive, out _, out _, out _);
+        float choice = Random.Range(0f, 1f) * 100f;
+        float sum = 0f;
+        for (int i = 0; i < attackProbalities.Length; i++)
+        {
+            float w = attackProbalities[i];
+            if (i == 2 && alive >= VaticanTotal)
+                w = 0f;
+            if (i == 3)
+                w = 0f; // 4 never random; only after 3
+            if (w <= 0f) continue;
+            sum += w;
+            if (choice <= sum)
+                return i + 1;
+        }
+        return 1;
     }
     public override void BossUpdate()
     {
@@ -66,12 +113,14 @@ public class PossessedEvePhase1 : BossBehaviourBase
 
     public override void Attack3()
     {
-        throw new System.NotImplementedException();
+        if (vaticanAttackRoutine != null)
+            StopCoroutine(vaticanAttackRoutine);
+        vaticanAttackRoutine = StartCoroutine(VaticanGuardAttack());
     }
 
     public override void Attack4()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(SacredWarAttack());
     }
 
     public override void Attack5()
@@ -149,6 +198,8 @@ public class PossessedEvePhase1 : BossBehaviourBase
         }
         isAttacking = false;
     }
+
+    #region Attack 3 — Vatican Guard
     Vector2 RandomStrikePoint()
     {
 
@@ -184,7 +235,6 @@ public class PossessedEvePhase1 : BossBehaviourBase
             ? p
             : transform.position;
     }
-
     void RefreshVaticanRoster(out int aliveTotal, out int alive0, out int alive1, out int alive2)
     {
         aliveTotal = alive0 = alive1 = alive2 = 0;
@@ -202,7 +252,6 @@ public class PossessedEvePhase1 : BossBehaviourBase
             else if (s.Kind == 2) alive2++;
         }
     }
-
     int FirstKindBelowQuota(int perType, int c0, int c1, int c2)
     {
         for (int k = 0; k < 3; k++)
@@ -211,50 +260,174 @@ public class PossessedEvePhase1 : BossBehaviourBase
             int c = k == 0 ? c0 : k == 1 ? c1 : c2;
             if (c < perType) return k;
         }
-        return -1; // everyone at quota (or no prefabs)
+        return -1;
     }
-    void SpawnVaticanKnight(int kind, int posIndex, bool resurrection)
+    void SpawnVaticanKnight(int kind, int posIndex, bool isResurrection)
     {
         GameObject p = Prefab(kind);
         if (p == null) return;
         StandardEnemyBase e = BossSummonUtility.SpawnBossMinion(p, VaticanPos(posIndex));
         if (e == null) return;
-        if (resurrection && VaticanResurrectedHpMultiplier < 0.999f)
-            e.health = Mathf.Max(1, Mathf.RoundToInt(e.health * VaticanResurrectedHpMultiplier));
+        if (isResurrection && vaticanExploitStacks > 0 && exploitResurrectedHpMultiplier < 0.999f)
+            e.health = Mathf.Max(1, Mathf.RoundToInt(e.health * exploitResurrectedHpMultiplier));
         vaticanSlots.Add(new VaticanKnightSlot { Enemy = e, Kind = kind });
     }
     IEnumerator VaticanGuardAttack()
     {
         isAttacking = true;
-        vaticanSlots.Clear();
-        int pos = 0;
-        for (int t = 0; t < vaticanKnightsPerType; t++)
-            for (int k = 0; k < 3; k++)
-            {
-                RefreshVaticanRoster(out int alive, out _, out _, out _);
-                if (alive >= vaticanTotalCap) break;
-                if (Prefab(k) != null)
-                    SpawnVaticanKnight(k, pos++, false);
-            }
-        RefreshVaticanRoster(out int initialTarget, out _, out _, out _);
-        float nextResurrect = Time.time + VaticanResurrectInterval;
-        float endTime = Time.time + Mathf.Max(0f, vaticanPhaseDuration);
-        while (Time.time < endTime)
+        RefreshVaticanRoster(out int startAlive, out int c0, out int c1, out int c2);
+        if (startAlive >= VaticanTotal)
         {
-            RefreshVaticanRoster(out int alive, out int c0, out int c1, out int c2);
-            if (alive < initialTarget && alive < vaticanTotalCap && Time.time >= nextResurrect)
-            {
-                int k = FirstKindBelowQuota(vaticanKnightsPerType, c0, c1, c2);
-                if (k >= 0)
-                {
-                    SpawnVaticanKnight(k, pos++, true);
-                    nextResurrect = Time.time + VaticanResurrectInterval;
-                }
-            }
-            yield return null;
+            isAttacking = false;
+            vaticanAttackRoutine = null;
+            yield break;
         }
-        cooldown_time = 5f;
+        int pos = 0;
+        if (startAlive == 0)
+        {
+            for (int t = 0; t < VaticanPerType; t++)
+                for (int k = 0; k < 3; k++)
+                {
+                    if (Prefab(k) == null) continue;
+                    SpawnVaticanKnight(k, pos++, false);
+                }
+        }
+        else
+        {
+            int reviveBudget = VaticanTotal - startAlive;
+            float interval = EffectiveVaticanReviveInterval;
+            for (int i = 0; i < reviveBudget; i++)
+            {
+                if (i > 0)
+                    yield return new WaitForSeconds(interval);
+                RefreshVaticanRoster(out int aliveNow, out c0, out c1, out c2);
+                if (aliveNow >= VaticanTotal)
+                    break;
+                int kind = FirstKindBelowQuota(VaticanPerType, c0, c1, c2);
+                if (kind < 0)
+                    break;
+                SpawnVaticanKnight(kind, pos++, true);
+            }
+        }
+        forcedNextAttackNumber = 4;
+        cooldown_time = comboGapAfterVaticanBeforeSacredWarSeconds;
         isAttacking = false;
         vaticanAttackRoutine = null;
     }
+    #endregion
+
+    #region Attack 4 — Sacred War
+    IEnumerator SacredWarAttack()
+    {
+        isAttacking = true;
+        RefreshVaticanRoster(out int alive, out _, out _, out _);
+        if (alive < 3)
+        {
+            isAttacking = false;
+            yield break;
+        }
+        var snapshot = new List<VaticanKnightSlot>();
+        foreach (VaticanKnightSlot s in vaticanSlots)
+        {
+            if (s.Enemy != null && s.Enemy.health > 0)
+                snapshot.Add(s);
+        }
+        if (snapshot.Count < 3)
+        {
+            isAttacking = false;
+            yield break;
+        }
+        if (!TryGetSacredWarArenaBounds(out Bounds arena))
+        {
+            isAttacking = false;
+            yield break;
+        }
+        sacredWarActive = true;
+        sacredWarUnits.Clear();
+        vaticanSlots.Clear();
+        float z = transform.position.z;
+        Vector2 playerXY = PlayerController.instance != null
+            ? (Vector2)PlayerController.instance.transform.position
+            : (Vector2)transform.position;
+        float minX = arena.min.x + sacredWarEdgeMargin;
+        float maxX = arena.max.x - sacredWarEdgeMargin;
+        float minY = arena.min.y + sacredWarEdgeMargin;
+        float maxY = arena.max.y - sacredWarEdgeMargin;
+        float centerY = (minY + maxY) * 0.5f;
+        float wallY = playerXY.y >= centerY ? minY : maxY;
+        Vector2 wallNormalTowardPlayer = playerXY.y >= centerY ? Vector2.up : Vector2.down;
+        int n = snapshot.Count;
+        float dps = SacredWarNarrativeComplete ? sacredWarContactDpsAfterNarrative : sacredWarContactDpsBeforeNarrative;
+        for (int i = 0; i < n; i++)
+        {
+            VaticanKnightSlot slot = snapshot[i];
+            float t = n <= 1 ? 0.5f : i / (float)(n - 1);
+            float x = Mathf.Lerp(minX, maxX, t);
+            Vector3 spawnPos = new Vector3(x, wallY, z);
+            GameObject prefab = slot.Kind >= 0 && slot.Kind < sacredWarKnightPrefabs.Length
+                ? sacredWarKnightPrefabs[slot.Kind]
+                : null;
+            if (prefab == null)
+                continue;
+            GameObject go = Instantiate(prefab, spawnPos, Quaternion.identity);
+            BossSummonUtility.ConfigureAsBossSummon(go.GetComponent<StandardEnemyBase>());
+            StandardEnemyBase ne = go.GetComponent<StandardEnemyBase>();
+            if (ne != null)
+                ne.health = slot.Enemy.health;
+            SacredWarKnightBehaviour sw = go.GetComponent<SacredWarKnightBehaviour>();
+            if (sw != null)
+            {
+                sw.ConfigureSacredWar(sacredWarShieldBonus, dps);
+                sacredWarUnits.Add(sw);
+            }
+            Destroy(slot.Enemy.gameObject);
+        }
+        float elapsed = 0f;
+        while (elapsed < sacredWarMaxDuration && sacredWarUnits.Count > 0)
+        {
+            for (int i = sacredWarUnits.Count - 1; i >= 0; i--)
+            {
+                if (sacredWarUnits[i] == null)
+                {
+                    sacredWarUnits.RemoveAt(i);
+                    continue;
+                }
+                StandardEnemyBase e = sacredWarUnits[i].GetComponent<StandardEnemyBase>();
+                if (e == null || e.health <= 0)
+                {
+                    sacredWarUnits.RemoveAt(i);
+                    continue;
+                }
+                Vector2 p = sacredWarUnits[i].transform.position;
+                p += wallNormalTowardPlayer * (sacredWarMarchSpeed * Time.deltaTime);
+                p.x = Mathf.Clamp(p.x, minX, maxX);
+                p.y = Mathf.Clamp(p.y, minY, maxY);
+                sacredWarUnits[i].SetWallPosition(new Vector3(p.x, p.y, z));
+            }
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        foreach (SacredWarKnightBehaviour u in sacredWarUnits)
+        {
+            if (u != null)
+                Destroy(u.gameObject);
+        }
+        sacredWarUnits.Clear();
+        sacredWarActive = false;
+        cooldown_time = 8f;
+        isAttacking = false;
+    }
+    bool TryGetSacredWarArenaBounds(out Bounds bounds)
+    {
+        if (NarrativeRoomManager.instance != null &&
+            NarrativeRoomManager.instance.TryGetCurrentRoomWorldBounds(out bounds))
+            return true;
+        float z = transform.position.z;
+        Vector2 c = transform.position;
+        if (PlayerController.instance != null)
+            c = ((Vector2)transform.position + (Vector2)PlayerController.instance.transform.position) * 0.5f;
+        bounds = new Bounds(new Vector3(c.x, c.y, z), new Vector3(24f, 18f, 1f));
+        return true;
+    }
+    #endregion
 }

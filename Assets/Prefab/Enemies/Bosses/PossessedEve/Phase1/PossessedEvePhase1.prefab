@@ -218,6 +218,26 @@ MonoBehaviour:
   wrathMarkPrefab: {fileID: 2529486120242308920, guid: bfbb6bcf8d1892a4e8135774ef2efbfb, type: 3}
   lightningPrefab: {fileID: 2770913160754091495, guid: eabd6a4668c56db46bfa45e5fe082f9d, type: 3}
   wrathBoltCount: 5
+  comboGapAfterVaticanBeforeSacredWarSeconds: 5
+  vaticanKnightPrefabs:
+  - {fileID: 1710929130042634915, guid: eda3c9b54afea3d42b2f6dc9073f56ef, type: 3}
+  - {fileID: 1710929130042634915, guid: 754001af4b5aa7f4eb28cfb43aee0757, type: 3}
+  - {fileID: 1710929130042634915, guid: f896eeca2f38e14429920c03791edbdc, type: 3}
+  vaticanSummonRandomRadius: 5
+  vaticanReviveIntervalSeconds: 3
+  vaticanSpawnPoints: []
+  exploitReviveIntervalMultiplier: 0.25
+  exploitResurrectedHpMultiplier: 0.25
+  sacredWarKnightPrefabs:
+  - {fileID: 5231001710338352134, guid: d091c42fab130e140ac10003ef62bedc, type: 3}
+  - {fileID: 1722356768549193143, guid: 4287f70f2b5a40f4da797a5d3c0f98bc, type: 3}
+  - {fileID: 8648425666621764516, guid: 76c6aaf36d820744b92bfe734ad7f193, type: 3}
+  sacredWarShieldBonus: 100
+  sacredWarContactDpsAfterNarrative: 12
+  sacredWarContactDpsBeforeNarrative: 400
+  sacredWarMarchSpeed: 2
+  sacredWarMaxDuration: 25
+  sacredWarEdgeMargin: 0.75
 --- !u!114 &3158831657476466812
 MonoBehaviour:
   m_ObjectHideFlags: 0

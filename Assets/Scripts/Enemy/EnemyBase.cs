@@ -1,5 +1,7 @@
 using Pathfinding;
+using Spine.Unity;
 using System;
+using System.Collections;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -28,6 +30,13 @@ public abstract class EnemyBase : MonoBehaviour
 
     public GameObject floatingTextPrefab;
     public Rigidbody2D rb;
+
+    [Header("Hit Flash")]
+    [SerializeField] protected float hitFlashDuration = 0.08f;
+    [Tooltip("Hit Effect Material")]
+    [SerializeField] protected Material hitFlashMaterial;
+
+    private Coroutine hitFlashCoroutine;
 
 
     // event for enemy dying
@@ -80,6 +89,8 @@ public abstract class EnemyBase : MonoBehaviour
 
         AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyTakeDamage, this.transform.position);
 
+        TriggerHitFlash();
+
         // Damage numbers
         ShowFloatingText(damageAfterReduction);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
@@ -109,6 +120,49 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
 
+
+    protected void TriggerHitFlash()
+    {
+        if (hitFlashCoroutine != null) StopCoroutine(hitFlashCoroutine);
+        hitFlashCoroutine = StartCoroutine(HitFlash());
+    }
+
+    protected virtual IEnumerator HitFlash()
+    {
+        // Spine SkeletonAnimation
+        var skeletonAnim = GetComponentInChildren<SkeletonAnimation>();
+        if (skeletonAnim != null)
+        {
+            var mr = skeletonAnim.GetComponent<MeshRenderer>();
+            if (hitFlashMaterial != null && mr != null)
+            {
+                Material originalMat = mr.material;
+                mr.material = hitFlashMaterial;
+                yield return new WaitForSeconds(hitFlashDuration);
+                mr.material = originalMat;
+            }
+            else
+            {
+                var skeleton = skeletonAnim.skeleton;
+                Color originalColor = new Color(skeleton.R, skeleton.G, skeleton.B, skeleton.A);
+                skeleton.SetColor(new Color(1f, 0.3f, 0.3f, 1f));
+                yield return new WaitForSeconds(hitFlashDuration);
+                skeleton.SetColor(originalColor);
+            }
+            yield break;
+        }
+
+        // SpriteRenderer fallback
+        var renderers = GetComponentsInChildren<SpriteRenderer>();
+        if (renderers.Length > 0)
+        {
+            Color[] originalColors = new Color[renderers.Length];
+            for (int i = 0; i < renderers.Length; i++) originalColors[i] = renderers[i].color;
+            foreach (var r in renderers) r.color = Color.white;
+            yield return new WaitForSeconds(hitFlashDuration);
+            for (int i = 0; i < renderers.Length; i++) renderers[i].color = originalColors[i];
+        }
+    }
 
     protected void ShowFloatingText(int damageAfterReduction)
     {

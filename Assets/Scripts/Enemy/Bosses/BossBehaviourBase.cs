@@ -99,6 +99,8 @@ public abstract class BossBehaviourBase : EnemyBase
 
         //OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
 
+        TriggerHitFlash();
+
         // Damage numbers
         ShowFloatingText(damageAfterReduction);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");

@@ -69,12 +69,6 @@ public class PlayerAttributes : EntityAttributes
         return (int)(damage * (abilityBaseDamage + damageDealtBonus));
     }
 
-    // Trustworthiness Calculation
-    public int NPCPricing(int basePrice)
-    {
-        return (int)(basePrice * (1 - (trustworthiness / (trustworthiness + 50))));
-    }
-
     public float GetAdjustedLuck()
     {
         return Mathf.Min(10f, luck + StaticGameManager.luckyCoins);

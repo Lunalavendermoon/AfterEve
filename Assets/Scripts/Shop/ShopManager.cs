@@ -129,7 +129,7 @@ public class ShopManager : MonoBehaviour
         {
             (TarotCard.Arcana, TarotCard.TarotType) card = TarotCard.GenRandomCardData();
 
-            int price = ComputePrice(i == discount1 || i == discount2);
+            int price = ComputeCardPrice(i == discount1 || i == discount2);
             
             // Random quantity from 1-5
             // Future cards ignore this quantity
@@ -191,35 +191,46 @@ public class ShopManager : MonoBehaviour
         return 2;
     }
 
-    int ComputePrice(bool isDiscount)
+    int ComputeCardPrice(bool isDiscount)
     {
         int idx = GetIndexFromRoomCount();
         if (isDiscount)
         {
             return discountPrice[idx] + refreshCount * refreshDiscount[idx];
         }
-        return normalPrice[idx] + refreshCount * refreshNormal[idx];
+        return TrustDiscount(normalPrice[idx] + refreshCount * refreshNormal[idx]);
     }
 
     int GetRefreshCost()
     {
-        return baseRefreshPrice[GetIndexFromRoomCount()] * (1 << refreshCount);
+        return TrustDiscount(baseRefreshPrice[GetIndexFromRoomCount()] * (1 << refreshCount));
     }
 
     int GetToggleCost()
     {
-        return togglePrice[GetIndexFromRoomCount()];
+        return TrustDiscount(togglePrice[GetIndexFromRoomCount()]);
     }
 
     int GetLuckCost()
     {
-        return currentLuckCost;
+        return TrustDiscount(currentLuckCost);
     }
 
     int GetSkillSlotCost()
     {
         // Price = 2 ^ (current # skill slots)
-        return 1 << StaticGameManager.futureSkillSlots;
+        return TrustDiscount(1 << StaticGameManager.futureSkillSlots);
+    }
+
+    int TrustDiscount(int baseAmount)
+    {
+        float discount = 1 - (PlayerController.instance.playerAttributes.trustworthiness * 0.1f);
+        if (discount <= 0)
+        {
+            // Cap discount at 90%
+            discount = 0.1f;
+        }
+        return Mathf.CeilToInt(discount * baseAmount);
     }
 
     void SetButtonsAvailable()

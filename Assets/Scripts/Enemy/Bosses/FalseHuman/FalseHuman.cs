@@ -32,10 +32,10 @@ public class FalseHuman : BossBehaviourBase
     private const float EmotionDebuffDuration = 7f;
     private const float EmotionWeakPercent = 0.2f;
 
-    [Header("Attack 2 — knight summons")]
+    [Header("Attack 2 ï¿½ knight summons")]
     [SerializeField] float knightSummonRandomRadius = 4f;
 
-    [Header("Attack 4 — large projectile")]
+    [Header("Attack 4 ï¿½ large projectile")]
     [Tooltip("World-units in front of the boss along the aim line toward the player.")]
     [SerializeField] float largeProjectileSpawnForwardOffset = 1.25f;
 
@@ -167,7 +167,7 @@ public class FalseHuman : BossBehaviourBase
             if (dmgType == DamageInstance.DamageType.Spiritual)
             {
                 shieldHealth -= damageAfterReduction;
-                ShowFloatingText(damageAfterReduction);
+                ShowFloatingText(damageAfterReduction, dmgType);
                 if (shieldHealth <= 0)
                 {
                     isInvulnerable = false;
@@ -175,11 +175,11 @@ public class FalseHuman : BossBehaviourBase
                 }
                 return;
             }
-            ShowFloatingText(0);
+            ShowFloatingText(0, dmgType);
             return;
         }
         health -= damageAfterReduction;
-        ShowFloatingText(damageAfterReduction);
+        ShowFloatingText(damageAfterReduction, dmgType);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
         if (health <= 0)
             Die();

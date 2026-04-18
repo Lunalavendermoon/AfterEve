@@ -92,7 +92,7 @@ public abstract class EnemyBase : MonoBehaviour
         TriggerHitFlash();
 
         // Damage numbers
-        ShowFloatingText(damageAfterReduction);
+        ShowFloatingText(damageAfterReduction, dmgType);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
         if (health <= 0)
         {
@@ -164,8 +164,9 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
-    protected void ShowFloatingText(int damageAfterReduction)
+    protected void ShowFloatingText(int damageAfterReduction, DamageInstance.DamageType damageType)
     {
+        Debug.Log($"### Floating text {damageAfterReduction} {damageType}");
         if (floatingTextPrefab != null)
         {
             //Debug.Log("Showing floating text for damage: " + damageAfterReduction);
@@ -174,6 +175,19 @@ public abstract class EnemyBase : MonoBehaviour
             if (tmp != null)
             {
                 tmp.text = damageAfterReduction.ToString();
+
+                // Set text color: red for physical dmg, blue for spiritual
+                var textColor = floatingText.GetComponentInChildren<TMP_Text>();
+                Debug.Log($"### Floating text, is text null: {textColor == null}");
+                if (textColor != null)
+                {
+                    textColor.color = damageType switch
+                    {
+                        DamageInstance.DamageType.Physical => Color.red,
+                        DamageInstance.DamageType.Spiritual => Color.blue,
+                        _ => Color.red
+                    };
+                }
             }
 
         }

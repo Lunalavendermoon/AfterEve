@@ -102,7 +102,7 @@ public abstract class BossBehaviourBase : EnemyBase
         TriggerHitFlash();
 
         // Damage numbers
-        ShowFloatingText(damageAfterReduction);
+        ShowFloatingText(damageAfterReduction, dmgType);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
         if (health <= 0)
         {

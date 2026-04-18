@@ -52,12 +52,18 @@ public class PlayerGun : MonoBehaviour
             {
                 float currentAngle = startAngle + spread * i;
                 GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread)) * firingPoint.rotation);
+                
                 Projectile proj = projectile.GetComponent<Projectile>();
-                // TODO: Bullet bounce and Piercing need to be mutually exclusive. Currently they are not
                 proj.SetBulletBounce(PlayerController.instance.playerAttributes.bulletBounces);
 
-                // TODO: check if player is in spiritual vision. if so, change this to spiritual damage
-                proj.SetPhysicalDamage(damage);
+                if (PlayerController.instance.IsInSpiritualVision())
+                {
+                    proj.SetSpiritualDamage(damage);
+                }
+                else
+                {
+                    proj.SetPhysicalDamage(damage);
+                }
 
                 // add bonus damage
                 proj.AddPhysicalDamage((int)(PlayerController.instance.playerAttributes.damage * PlayerController.instance.playerAttributes.physicalAdditionalDmg));

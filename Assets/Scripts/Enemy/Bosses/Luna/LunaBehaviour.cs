@@ -197,7 +197,7 @@ public class LunaBehaviour : BossBehaviourBase
             if (dmgType == DamageInstance.DamageType.Spiritual)
             {
                 shieldHealth -= damageAfterReduction;
-                ShowFloatingText(damageAfterReduction);
+                ShowFloatingText(damageAfterReduction, dmgType);
                 if (shieldHealth <= 0)
                 {
                     isInvulnerable = false;
@@ -206,7 +206,7 @@ public class LunaBehaviour : BossBehaviourBase
                 return;
             }
             Debug.Log($"{gameObject.name} is invulnerable and took no damage.");
-            ShowFloatingText(0);
+            ShowFloatingText(0, dmgType);
 
             return;
         }
@@ -215,7 +215,7 @@ public class LunaBehaviour : BossBehaviourBase
         //OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
 
         // Damage numbers
-        ShowFloatingText(damageAfterReduction);
+        ShowFloatingText(damageAfterReduction, dmgType);
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
         if (health <= 0)
         {

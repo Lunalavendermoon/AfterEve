@@ -4605,9 +4605,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 988982516}
     - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: deathMusic.Path
+      value: event:/Ambient/SpiritPlaneAmbient
+      objectReference: {fileID: 0}
+    - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: chariotPulsePrefab
       value: 
       objectReference: {fileID: 297153201300601196, guid: 0fc842c534a08cc43bc5e45e8a66f9f2, type: 3}
+    - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: deathMusic.Guid.Data1
+      value: 1690910630
+      objectReference: {fileID: 0}
+    - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: deathMusic.Guid.Data2
+      value: 1186871472
+      objectReference: {fileID: 0}
+    - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: deathMusic.Guid.Data3
+      value: 1305874312
+      objectReference: {fileID: 0}
+    - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: deathMusic.Guid.Data4
+      value: 501237222
+      objectReference: {fileID: 0}
     - target: {fileID: 900003970690876749, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -6106,6 +6126,13 @@ MonoBehaviour:
     m_Bits: 5128
   narrativeRoomManager: {fileID: 828173323}
   generateNarrativeRooms: 1
+  combatMusic:
+    Guid:
+      Data1: 1775828165
+      Data2: 1333177406
+      Data3: 1504175535
+      Data4: 1485114420
+    Path: event:/Music/CombatMusic
 --- !u!114 &828173323
 MonoBehaviour:
   m_ObjectHideFlags: 0

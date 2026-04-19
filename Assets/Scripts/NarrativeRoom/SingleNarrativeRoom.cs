@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 [CreateAssetMenu(fileName = "SingleNarrativeRoom", menuName = "Scriptable Objects/Narrative/SingleNarrativeRoom")]
 // Represents a single narrative room that spawns when story conditions are unlocked.
@@ -16,6 +17,7 @@ public class SingleNarrativeRoom : ScriptableObject
     public int visitCount;
     public GameObject roomPrefab;
     public GameObject itemPrefab;
+    public EventReference roomMusic;
 
     [Header("Enemies")]
     public List<GameObject> enemyPrefabs;

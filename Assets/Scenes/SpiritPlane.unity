@@ -176,6 +176,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfdaf1b510c7fed41ad561d8c4bba400, type: 3}
+--- !u!1 &153700812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 153700814}
+  - component: {fileID: 153700813}
+  m_Layer: 0
+  m_Name: DeathMusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &153700813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153700812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bd14897929b814ca1c99a5e9f37724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  musicEventReference:
+    Guid:
+      Data1: 1690910630
+      Data2: 1186871472
+      Data3: 1305874312
+      Data4: 501237222
+    Path: event:/Ambient/SpiritPlaneAmbient
+--- !u!4 &153700814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153700812}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 188.57104, y: 0, z: -771.42883}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &707249621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,3 +1187,4 @@ SceneRoots:
   - {fileID: 53192458}
   - {fileID: 947747105}
   - {fileID: 934624889}
+  - {fileID: 153700814}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FMODUnity;
 using Unity.VisualScripting;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
@@ -55,6 +56,9 @@ public class GameManager : MonoBehaviour
 
     private Bounds? mapBounds;
 
+    //Audio
+    public EventReference combatMusic;
+
     void Awake()
     {
         if (instance == null) instance = this;
@@ -91,6 +95,7 @@ public class GameManager : MonoBehaviour
         }
         ClearMap();
         GenerateAndPlace();
+        AudioManager.instance.InitializeMusic(combatMusic);
         OnRoomChange?.Invoke();
     }
 

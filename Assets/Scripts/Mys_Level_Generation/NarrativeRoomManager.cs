@@ -127,6 +127,7 @@ public class NarrativeRoomManager : MonoBehaviour
         {
             PlayerController.instance.DisablePlayerInput();
             runner.StartDialogue(currentRoom.onSpawnDialogue);
+            AudioManager.instance.InitializeMusic(currentRoom.roomMusic);
         }
     }
 

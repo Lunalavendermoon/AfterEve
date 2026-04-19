@@ -665,7 +665,6 @@ public class PlayerController : MonoBehaviour
         {
             StaticGameManager.latestDeathCause = RepeatDeathRooms.DeathCauses.Fallback;
         }
-        
         ++StaticGameManager.deathCount;
 
         // Clear any active future skill on death.
@@ -680,10 +679,9 @@ public class PlayerController : MonoBehaviour
         {
             TarotManager.instance.ClearOnPlayerDeath();
         }
-
         StaticGameManager.LoadDeathScreen();
     }
-    
+
     public void Heal(int amount)
     {
         currentHealth = Math.Clamp(currentHealth + amount, 0, maxHealth);

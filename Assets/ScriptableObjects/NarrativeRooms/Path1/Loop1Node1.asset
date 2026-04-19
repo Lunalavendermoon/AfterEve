@@ -17,6 +17,13 @@ MonoBehaviour:
   visitCount: 1
   roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
   itemPrefab: {fileID: 0}
+  roomMusic:
+    Guid:
+      Data1: -1551927784
+      Data2: 1125159920
+      Data3: -934379898
+      Data4: -1426262046
+    Path: event:/Ambient/Ambient 1
   enemyPrefabs:
   - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
   disableChestGeneration: 0

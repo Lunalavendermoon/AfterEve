@@ -17,6 +17,13 @@ MonoBehaviour:
   visitCount: 2
   roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
   itemPrefab: {fileID: 0}
+  roomMusic:
+    Guid:
+      Data1: 720450095
+      Data2: 1322995592
+      Data3: -264873030
+      Data4: 18949921
+    Path: event:/Music/Eerie Mood Track
   enemyPrefabs:
   - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
   disableChestGeneration: 0

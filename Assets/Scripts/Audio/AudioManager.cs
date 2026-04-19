@@ -21,11 +21,6 @@ public class AudioManager : MonoBehaviour
         eventInstances = new List<EventInstance>();
     }
 
-    private void Start()
-    {
-        InitializeMusic(FMODEvents.instance.combat);
-    }
-
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
         RuntimeManager.PlayOneShot(sound, worldPos);
@@ -46,8 +41,13 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
-    private void InitializeMusic(EventReference musicEventRefernece)
+    public void InitializeMusic(EventReference musicEventRefernece)
     {
+        if (musicEventInstance.isValid())
+        {
+            musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicEventInstance.release();
+        }
         musicEventInstance = CreateInstance(musicEventRefernece);
         musicEventInstance.start();
     }

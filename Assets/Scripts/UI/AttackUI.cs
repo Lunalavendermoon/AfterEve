@@ -43,7 +43,7 @@ public class AttackUI : MonoBehaviour
         RefreshAmmoIconsCache();
 
         // Sets pivote of attack direction indicator
-        attackDirectionIndicator.transform.parent = attackPivotCenter;
+        attackDirectionIndicator.SetParent(attackPivotCenter, worldPositionStays: false);
     }
 
     // Every frame - update attack direction indicator rotation

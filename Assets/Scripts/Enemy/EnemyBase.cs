@@ -38,6 +38,12 @@ public abstract class EnemyBase : MonoBehaviour
 
     private Coroutine hitFlashCoroutine;
 
+    private Material cachedSpineOriginalMaterial;
+    private Color cachedSpineOriginalColor = Color.white;
+    private bool spineBaselineCached;
+    private float hitFlashRestoreAt;
+    private bool hitFlashApplied;
+
 
     // event for enemy dying
     public static event Action<DamageInstance, EnemyBase> OnEnemyDamageTaken;
@@ -123,32 +129,63 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void TriggerHitFlash()
     {
-        if (hitFlashCoroutine != null) StopCoroutine(hitFlashCoroutine);
-        hitFlashCoroutine = StartCoroutine(HitFlash());
+        hitFlashRestoreAt = Time.time + hitFlashDuration;
+        if (hitFlashCoroutine == null)
+            hitFlashCoroutine = StartCoroutine(HitFlash());
+    }
+
+    private void CacheSpineBaselineIfNeeded(SkeletonAnimation skeletonAnim)
+    {
+        if (spineBaselineCached) return;
+        if (skeletonAnim == null) return;
+
+        var mr = skeletonAnim.GetComponent<MeshRenderer>();
+        if (mr != null) cachedSpineOriginalMaterial = mr.sharedMaterial;
+
+        var skeleton = skeletonAnim.skeleton;
+        if (skeleton != null)
+            cachedSpineOriginalColor = new Color(skeleton.R, skeleton.G, skeleton.B, skeleton.A);
+
+        spineBaselineCached = true;
     }
 
     protected virtual IEnumerator HitFlash()
     {
+        hitFlashApplied = false;
+
         // Spine SkeletonAnimation
         var skeletonAnim = GetComponentInChildren<SkeletonAnimation>();
         if (skeletonAnim != null)
         {
+            CacheSpineBaselineIfNeeded(skeletonAnim);
             var mr = skeletonAnim.GetComponent<MeshRenderer>();
             if (hitFlashMaterial != null && mr != null)
             {
-                Material originalMat = mr.material;
-                mr.material = hitFlashMaterial;
-                yield return new WaitForSeconds(hitFlashDuration);
-                mr.material = originalMat;
+                var skeleton = skeletonAnim.skeleton;
+
+                mr.sharedMaterial = hitFlashMaterial;
+                if (skeleton != null) skeleton.SetColor(Color.white);
+                hitFlashApplied = true;
+
+                while (Time.time < hitFlashRestoreAt)
+                    yield return null;
+
+                mr.sharedMaterial = cachedSpineOriginalMaterial;
+                if (skeleton != null) skeleton.SetColor(cachedSpineOriginalColor);
             }
             else
             {
                 var skeleton = skeletonAnim.skeleton;
-                Color originalColor = new Color(skeleton.R, skeleton.G, skeleton.B, skeleton.A);
                 skeleton.SetColor(new Color(1f, 0.3f, 0.3f, 1f));
-                yield return new WaitForSeconds(hitFlashDuration);
-                skeleton.SetColor(originalColor);
+                hitFlashApplied = true;
+
+                while (Time.time < hitFlashRestoreAt)
+                    yield return null;
+
+                if (skeleton != null) skeleton.SetColor(cachedSpineOriginalColor);
             }
+
+            hitFlashCoroutine = null;
             yield break;
         }
 
@@ -158,10 +195,13 @@ public abstract class EnemyBase : MonoBehaviour
         {
             Color[] originalColors = new Color[renderers.Length];
             for (int i = 0; i < renderers.Length; i++) originalColors[i] = renderers[i].color;
-            foreach (var r in renderers) r.color = Color.white;
-            yield return new WaitForSeconds(hitFlashDuration);
+            foreach (var r in renderers) r.color = new Color(1f, 0.3f, 0.3f, 1f);
+            while (Time.time < hitFlashRestoreAt)
+                yield return null;
             for (int i = 0; i < renderers.Length; i++) renderers[i].color = originalColors[i];
         }
+
+        hitFlashCoroutine = null;
     }
 
     protected void ShowFloatingText(int damageAfterReduction, DamageInstance.DamageType damageType)

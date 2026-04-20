@@ -10,6 +10,7 @@ public static class StaticGameManager
     public static List<TarotCard.Arcana> pastCards = new(); // all past tarots obtained
     public static int maxLuckyCoins = 9; // Base luck is 1, can upgrade up to 9 times
     public static int luckyCoins = 0;
+    public static float trustworthiness = 1f;
 
     // NARRATIVE ROOM GENERATION
     public static int deathCount = 0; // number of deaths so far

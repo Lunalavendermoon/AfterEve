@@ -224,7 +224,7 @@ public class ShopManager : MonoBehaviour
 
     int TrustDiscount(int baseAmount)
     {
-        float discount = 1 - (PlayerController.instance.playerAttributes.trustworthiness * 0.1f);
+        float discount = 1 - (StaticGameManager.trustworthiness * 0.1f);
         if (discount <= 0)
         {
             // Cap discount at 90%

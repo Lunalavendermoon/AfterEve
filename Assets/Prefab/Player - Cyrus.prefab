@@ -383,6 +383,7 @@ MonoBehaviour:
   questUIScript: {fileID: 0}
   horizontalInput: 0
   verticalInput: 0
+  interactPrompt: {fileID: 0}
   speed: 1
   playerAttributes: {fileID: 11400000, guid: 3672235ea776c074c89b9866996ebb52, type: 2}
   currentHealth: 0
@@ -395,6 +396,9 @@ MonoBehaviour:
   tarotManager: {fileID: 0}
   shieldManager: {fileID: 4949763400254494269}
   volume: {fileID: 0}
+  chariotPulsePrefab: {fileID: 0}
+  chariotPulseActive: 0
+  currentlyReloading: 0
 --- !u!114 &335750778297899072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,7 +951,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4af24a87188ec214eba4f7d1f6679a3c, type: 2}
+  - {fileID: 2100000, guid: 57e7b255ac1fb914d8e90a6677208e7f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -966,8 +970,8 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -167363163
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6555157076438026817
@@ -982,9 +986,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: spine-unity::Spine.Unity.SkeletonAnimation
-  skeletonDataAsset: {fileID: 11400000, guid: f10facbf37891ab4984dbd539bebba18, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: dac63935c5dd4ed4f8c0d8e9584659df, type: 2}
   initialSkinName: 
-  fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 1
   initialFlipY: 0
   updateWhenInvisible: 3
@@ -1005,11 +1008,6 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  physicsPositionInheritanceFactor: {x: 1, y: 1}
-  physicsRotationInheritanceFactor: 1
-  physicsMovementRelativeTo: {fileID: 0}
-  updateTiming: 1
-  unscaledTime: 0
   _animationName: 
   loop: 1
   timeScale: 1

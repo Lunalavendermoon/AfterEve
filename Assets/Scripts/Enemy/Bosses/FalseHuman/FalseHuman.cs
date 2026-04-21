@@ -157,11 +157,7 @@ public class FalseHuman : BossBehaviourBase
     {
         if (enemyAttributes == null)
             return;
-        int damageAfterReduction;
-        if (dmgType == DamageInstance.DamageType.Spiritual)
-            damageAfterReduction = Mathf.CeilToInt(amount * (1f - (enemyAttributes.spiritualDefense / (enemyAttributes.spiritualDefense + 100f))));
-        else
-            damageAfterReduction = Mathf.CeilToInt(amount * (1f - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100f))));
+        int damageAfterReduction = enemyAttributes.DamageCalculation(amount, DamageInstance.ToEnemyDamageType(dmgType));
         if (isInvulnerable)
         {
             if (dmgType == DamageInstance.DamageType.Spiritual)

@@ -87,8 +87,8 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
         amount = (int)(amount * marked);
-
-        int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
+        if (enemyAttributes == null) return;
+        int damageAfterReduction = enemyAttributes.DamageCalculation(amount, DamageInstance.ToEnemyDamageType(dmgType));
         health -= damageAfterReduction;
 
         OnEnemyDamageTaken?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);

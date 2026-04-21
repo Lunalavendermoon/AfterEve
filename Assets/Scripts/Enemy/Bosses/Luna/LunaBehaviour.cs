@@ -191,7 +191,7 @@ public class LunaBehaviour : BossBehaviourBase
 
     public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
-        int damageAfterReduction = Mathf.CeilToInt(amount * (1 - (enemyAttributes.basicDefense / (enemyAttributes.basicDefense + 100))));
+        int damageAfterReduction = enemyAttributes.DamageCalculation(amount, DamageInstance.ToEnemyDamageType(dmgType));
         if (isInvulnerable)
         {
             if (dmgType == DamageInstance.DamageType.Spiritual)

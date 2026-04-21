@@ -69,6 +69,7 @@ public abstract class Future_TarotCard : TarotCard
         reward.SetRewardArguments(rewardDesc, uses, cd);
 
         SetDescriptionValues();
+        SetQuestUI();
     }
 
     protected override void SetTableEntries(string cardName)
@@ -79,6 +80,11 @@ public abstract class Future_TarotCard : TarotCard
     }
 
     protected virtual void SetDescriptionValues()
+    {
+        // override in each child
+    }
+
+    protected virtual void SetQuestUI()
     {
         // override in each child
     }

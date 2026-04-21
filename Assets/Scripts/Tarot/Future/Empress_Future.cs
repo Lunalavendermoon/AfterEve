@@ -54,6 +54,7 @@ public class Empress_Future : Future_TarotCard
         {
             ++roomCount;
             RefreshDescription();
+            QuestUIScript.instance.setQuestCurrentValue(roomCount);
 
             if (roomCount >= roomGoal)
             {
@@ -67,5 +68,9 @@ public class Empress_Future : Future_TarotCard
         desc.Arguments = new object[] { FormatPercentage(healCount),
             FormatPercentage(healPercentGoal), roomCount, roomGoal,
             FormatPercentage(roomGoalHPThreshold) };
+
+        QuestUIScript.instance.setQuestName(cardName);
+        QuestUIScript.instance.setQuestDescription(GetDescription());
+        QuestUIScript.instance.setQuestMaxValue(roomCount);
     }
 }

@@ -45,6 +45,7 @@ public class Magician_Future : Future_TarotCard
         ++totalSkillCount;
 
         RefreshDescription();
+        QuestUIScript.instance.setQuestCurrentValue(totalSkillCount);
 
         if (roomSkillCount >= roomSkillGoal || totalSkillCount >= totalSkillGoal)
         {
@@ -55,5 +56,12 @@ public class Magician_Future : Future_TarotCard
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] { roomSkillCount, roomSkillGoal, totalSkillCount, totalSkillGoal };
+    }
+
+    protected override void SetQuestUI()
+    {
+        QuestUIScript.instance.setQuestName(cardName);
+        QuestUIScript.instance.setQuestDescription(GetDescription());
+        QuestUIScript.instance.setQuestMaxValue(totalSkillGoal);
     }
 }

@@ -15,6 +15,13 @@ public class QuestUIScript : MonoBehaviour
     private int maxValue;
     private int currentValue;
 
+    public static QuestUIScript instance;
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
     public int getQuestMaxValue() {
         return maxValue;
     }
@@ -39,9 +46,12 @@ public class QuestUIScript : MonoBehaviour
         questValueText.text = currentValue + " / " + maxValue;
     }
     public void setQuestCurrentValue(int newCurrentValue) {
-        if(newCurrentValue < 0 || newCurrentValue > maxValue) {
+        if(newCurrentValue < 0)
             return;
-        }
+
+        if (newCurrentValue > maxValue)
+            newCurrentValue = maxValue;
+
         currentValue = newCurrentValue;
 
         if(questSlidingRoutine != null) StopCoroutine(questSlidingRoutine);

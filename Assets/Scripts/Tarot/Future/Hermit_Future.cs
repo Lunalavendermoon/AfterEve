@@ -33,6 +33,8 @@ public class Hermit_Future : Future_TarotCard
         {
             ++weakPointCount;
             RefreshDescription();
+            QuestUIScript.instance.setQuestCurrentValue(weakPointCount);
+
             if (weakPointCount >= weakPointGoal)
             {
                 CompleteQuest();
@@ -43,5 +45,12 @@ public class Hermit_Future : Future_TarotCard
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] { weakPointGoal, weakPointCount };
+    }
+
+    protected override void SetQuestUI()
+    {
+        QuestUIScript.instance.setQuestName(cardName);
+        QuestUIScript.instance.setQuestDescription(GetDescription());
+        QuestUIScript.instance.setQuestMaxValue(weakPointGoal);
     }
 }

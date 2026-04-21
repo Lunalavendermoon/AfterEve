@@ -205,10 +205,10 @@ public class PlayerController : MonoBehaviour
             healthBar.SyncFromPlayer();
         }
 
-        questUIScript.setQuestName("The Wheel of Fortune");
+/*        questUIScript.setQuestName("The Wheel of Fortune");
         questUIScript.setQuestDescription("Give Eve 8 million dollars because she wants it.");
         questUIScript.setQuestMaxValue(8);
-        questUIScript.setQuestCurrentValue(7);
+        questUIScript.setQuestCurrentValue(7);*/
 
         // audio
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, transform.position);

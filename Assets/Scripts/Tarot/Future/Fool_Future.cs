@@ -30,7 +30,9 @@ public class Fool_Future : Future_TarotCard
     private void OnCardObtained(Arcana _)
     {
         ++cardCount;
-        RefreshDescription();
+        RefreshDescription(); 
+        QuestUIScript.instance.setQuestCurrentValue(cardCount);
+
         if (cardCount >= cardGoal)
         {
             cardCount = 0;
@@ -67,5 +69,12 @@ public class Fool_Future : Future_TarotCard
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] { cardCount, cardGoal };
+    }
+
+    protected override void SetQuestUI()
+    {
+        QuestUIScript.instance.setQuestName(cardName);
+        QuestUIScript.instance.setQuestDescription(GetDescription());
+        QuestUIScript.instance.setQuestMaxValue(cardGoal);
     }
 }

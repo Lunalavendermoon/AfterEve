@@ -58,6 +58,7 @@ public class Chariot_Future : Future_TarotCard
     private void OnDash()
     {
         ++dashCount;
+        QuestUIScript.instance.setQuestCurrentValue(dashCount);
 
         if (dashCount >= dashGoal)
         {
@@ -69,5 +70,12 @@ public class Chariot_Future : Future_TarotCard
     {
         desc.Arguments = new object[] { Mathf.RoundToInt(distCount), Mathf.RoundToInt(distGoal),
             dashCount, dashGoal };
+    }
+
+    protected override void SetQuestUI()
+    {
+        QuestUIScript.instance.setQuestName(cardName);
+        QuestUIScript.instance.setQuestDescription(GetDescription());
+        QuestUIScript.instance.setQuestMaxValue(dashGoal);
     }
 }

@@ -42,6 +42,7 @@ public class Emperor_Future : Future_TarotCard
         damageCount += dmg.beforeReduction;
         ++attackRoomCount;
         RefreshDescription();
+        QuestUIScript.instance.setQuestCurrentValue(damageCount);
 
         if (damageCount >= damageGoal || attackRoomCount >= attackRoomGoal)
         {
@@ -58,5 +59,12 @@ public class Emperor_Future : Future_TarotCard
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] { attackRoomCount, attackRoomGoal, damageCount, damageGoal };
+    }
+
+    protected override void SetQuestUI()
+    {
+        QuestUIScript.instance.setQuestName(cardName);
+        QuestUIScript.instance.setQuestDescription(GetDescription());
+        QuestUIScript.instance.setQuestMaxValue(damageGoal);
     }
 }

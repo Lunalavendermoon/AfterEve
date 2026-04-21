@@ -43,6 +43,7 @@ public class HighPriestess_Future : Future_TarotCard
         {
             ++debuffCount;
             RefreshDescription();
+            QuestUIScript.instance.setQuestCurrentValue(debuffCount);
         }
 
         if (spiritualCount >= spiritualGoal || debuffCount >= debuffGoal)
@@ -54,5 +55,12 @@ public class HighPriestess_Future : Future_TarotCard
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] { spiritualCount, spiritualGoal, debuffCount, debuffGoal };
+    }
+
+    protected override void SetQuestUI()
+    {
+        QuestUIScript.instance.setQuestName(cardName);
+        QuestUIScript.instance.setQuestDescription(GetDescription());
+        QuestUIScript.instance.setQuestMaxValue(debuffGoal);
     }
 }

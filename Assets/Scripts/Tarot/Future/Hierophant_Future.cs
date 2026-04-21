@@ -40,6 +40,8 @@ public class Hierophant_Future : Future_TarotCard
         {
             visionCount += Time.time - startTime;
             RefreshDescription();
+            QuestUIScript.instance.setQuestCurrentValue((int)visionCount);
+
             if (visionCount >= visionGoal)
             {
                 CompleteQuest();
@@ -50,5 +52,12 @@ public class Hierophant_Future : Future_TarotCard
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] { Mathf.RoundToInt(visionCount), Mathf.RoundToInt(visionGoal) };
+    }
+
+    protected override void SetQuestUI()
+    {
+        QuestUIScript.instance.setQuestName(cardName);
+        QuestUIScript.instance.setQuestDescription(GetDescription());
+        QuestUIScript.instance.setQuestMaxValue((int) visionGoal);
     }
 }

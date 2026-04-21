@@ -31,6 +31,8 @@ public class Lovers_Future : Future_TarotCard
     {
         spendCount += amount;
         RefreshDescription();
+        QuestUIScript.instance.setQuestCurrentValue(spendCount);
+
         if (spendCount >= spendGoal)
         {
             CompleteQuest();
@@ -40,5 +42,12 @@ public class Lovers_Future : Future_TarotCard
     protected override void SetDescriptionValues()
     {
         desc.Arguments = new object[] { spendCount, spendGoal };
+    }
+
+    protected override void SetQuestUI()
+    {
+        QuestUIScript.instance.setQuestName(cardName);
+        QuestUIScript.instance.setQuestDescription(GetDescription());
+        QuestUIScript.instance.setQuestMaxValue(spendGoal);
     }
 }

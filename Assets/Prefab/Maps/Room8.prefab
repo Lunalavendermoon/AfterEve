@@ -279,8 +279,8 @@ MonoBehaviour:
   referenceCollider: {fileID: 271989181958149635}
   collisionParent: {fileID: 0}
   yOffset: 0
-  isStatic: 1
-  angleCompensation: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1 &6396262484904426827
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,8 +812,8 @@ MonoBehaviour:
   referenceCollider: {fileID: 0}
   collisionParent: {fileID: 3396754262328219485}
   yOffset: 0
-  isStatic: 1
-  angleCompensation: 0
+  isStatic: 0
+  angleCompensation: 1
 --- !u!1001 &6838503846318569026
 PrefabInstance:
   m_ObjectHideFlags: 0

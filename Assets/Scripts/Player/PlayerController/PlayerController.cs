@@ -670,15 +670,15 @@ public class PlayerController : MonoBehaviour
         // Clear any active future skill on death.
         ClearFutureSkills();
 
-        // Clear player tarot state on death (keep past cards).
-        if (tarotManager != null)
-        {
-            tarotManager.ClearOnPlayerDeath();
-        }
-        else if (TarotManager.instance != null)
-        {
-            TarotManager.instance.ClearOnPlayerDeath();
-        }
+        // // Clear player tarot state on death (keep past cards).
+        // if (tarotManager != null)
+        // {
+        //     tarotManager.ClearOnPlayerDeath();
+        // }
+        // else if (TarotManager.instance != null)
+        // {
+        //     TarotManager.instance.ClearOnPlayerDeath();
+        // }
         StaticGameManager.LoadDeathScreen();
     }
 

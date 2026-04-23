@@ -85,7 +85,7 @@ public abstract class EffectManager : MonoBehaviour
                 break;
             case "burn":
                 Debug.Log("Apply Burn effect");
-                AddEffect(new Burn_Effect(5f, 200, 1f), attr);
+                AddEffect(new Burn_Effect(5f, 250, 1f), attr);
                 break;
             default:
                 Debug.Log(effect + " is not a valid effect");
@@ -208,41 +208,33 @@ public abstract class EffectManager : MonoBehaviour
         Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
         Tuple<Effects.Stat, Effects.Application, bool> key3 = Tuple.Create(stat, app, effect.isDebuff);
 
-        try
+        if (effect.isDebuff)
         {
-            if (effect.isDebuff)
-            {
-                effectStacks[key3].Remove(ei);
-                debuffs[key].Remove(ei);
+            effectStacks[key3].Remove(ei);
+            debuffs[key].Remove(ei);
 
-                if (effectStacks[key3].Count == 0)
-                {
-                    // this effect no longer exists
-                    effectStacks.Remove(key3);
-                    debuffs.Remove(key);
-                }
-            }
-            else
+            if (effectStacks[key3].Count == 0)
             {
-                effectStacks[key3].Remove(ei);
-                buffs[key].Remove(ei);
-
-                if (effectStacks[key3].Count == 0)
-                {
-                    // this effect no longer exists
-                    effectStacks.Remove(key3);
-                    buffs.Remove(key);
-                }
-            }
-            if (!muted)
-            {
-                ApplyEffects();
+                // this effect no longer exists
+                effectStacks.Remove(key3);
+                debuffs.Remove(key);
             }
         }
-        catch (Exception e)
+        else
         {
-            // Not sure what's going on, sometimes removing present tarot player buff causes stuff to break...
-            Debug.LogWarning(e.StackTrace);
+            effectStacks[key3].Remove(ei);
+            buffs[key].Remove(ei);
+
+            if (effectStacks[key3].Count == 0)
+            {
+                // this effect no longer exists
+                effectStacks.Remove(key3);
+                buffs.Remove(key);
+            }
+        }
+        if (!muted)
+        {
+            ApplyEffects();
         }
     }
 

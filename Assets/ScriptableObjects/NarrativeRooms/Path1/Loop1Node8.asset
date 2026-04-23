@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Loop1Node8
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 0
+  roomEnemyGenSetting: 0
   roomCount: 8
   visitCount: 1
-  roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
+  roomPrefab: {fileID: 0}
   itemPrefab: {fileID: 0}
+  cgList: []
   roomMusic:
     Guid:
       Data1: 1775828165
@@ -24,11 +26,9 @@ MonoBehaviour:
       Data3: 1504175535
       Data4: 1485114420
     Path: event:/Music/CombatMusic
-  enemyPrefabs:
-  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
-  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
-  - {fileID: 1710929130042634915, guid: afc4e7a70010e8c43872bbba77e23f4d, type: 3}
+  enemyPrefabs: []
   disableChestGeneration: 0
   onSpawnDialogue: Act1_TownProtection_PreCombat_P1N8
   postCombatDialogue: Act1_TownProtection_PostCombat_P1N8
   isScriptedDeath: 0
+  spawnPortalAfterLastDialogue: 0

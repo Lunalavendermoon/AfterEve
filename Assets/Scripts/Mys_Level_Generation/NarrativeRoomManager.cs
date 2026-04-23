@@ -4,6 +4,13 @@ using Yarn.Unity;
 
 public class NarrativeRoomManager : MonoBehaviour
 {
+    public enum NarrativeRoomNeed
+    {
+        Nothing,
+        MapOnly,
+        All
+    }
+
     public static NarrativeRoomManager instance;
 
     public AllNarrativePaths narrativePaths;
@@ -12,7 +19,7 @@ public class NarrativeRoomManager : MonoBehaviour
     [HideInInspector] public bool disableChestGeneration;
     [HideInInspector] public bool hasCombat = false;
     [HideInInspector] public SingleNarrativeRoom currentRoom = null;
-    GameObject roomObject = null;
+    [HideInInspector] public GameObject roomObject = null;
 
     bool needsEnemySpawn = false;
 
@@ -54,7 +61,7 @@ public class NarrativeRoomManager : MonoBehaviour
 
     // If the current room and cycle count corresponds to a narrative room, spawn the room and return true.
     // Otherwise, do nothing and return false.
-    public bool TrySpawnNarrativeRoom(Transform mapRoot)
+    public NarrativeRoomNeed TrySpawnNarrativeRoom(Transform mapRoot)
     {
         if (StaticGameManager.pathCount == 0)
         {
@@ -63,10 +70,15 @@ public class NarrativeRoomManager : MonoBehaviour
             StaticGameManager.StartNewNarrativePath();
         }
 
+        currentRoom = null;
+        roomObject = null;
+        disableChestGeneration = false;
+
         if (StaticGameManager.pathCount > narrativePaths.paths.Count)
         {
-            return false;
+            return NarrativeRoomNeed.All;
         }
+
         // O(N) search... surely we won't have more than like 20 narrative rooms per path right...
         foreach (SingleNarrativeRoom room in narrativePaths.paths[StaticGameManager.pathCount - 1].rooms)
         {
@@ -86,42 +98,53 @@ public class NarrativeRoomManager : MonoBehaviour
 
             currentRoom = room;
 
-            if (room.roomPrefab)
+            switch (room.roomEnemyGenSetting)
             {
-                roomObject = Instantiate(
-                    room.roomPrefab,
-                    new Vector3(0f, 0f, 0f),
-                    Quaternion.identity,
-                    mapRoot
-                );
-                if (room.itemPrefab)
-                {
-                    Instantiate(
-                        room.itemPrefab,
+                case SingleNarrativeRoom.RoomEnemyGen.Randomized:
+                    portal.SetActive(false);
+                    disableChestGeneration = room.disableChestGeneration;
+                    needsEnemySpawn = true;
+                    hasCombat = needsEnemySpawn;
+                    return NarrativeRoomNeed.MapOnly;
+
+                case SingleNarrativeRoom.RoomEnemyGen.Custom:
+                    if (room.roomPrefab == null)
+                    {
+                        Debug.LogWarning($"No custom room prefab found for room {room.roomCount}");
+                        return NarrativeRoomNeed.All;
+                    }
+                    roomObject = Instantiate(
+                        room.roomPrefab,
                         new Vector3(0f, 0f, 0f),
                         Quaternion.identity,
-                        roomObject.transform
+                        mapRoot
                     );
-                }
-                portal.SetActive(false);
-                disableChestGeneration = room.disableChestGeneration;
-                needsEnemySpawn = room.enemyPrefabs.Count != 0;
-                hasCombat = needsEnemySpawn;
-            } else
-            {
-                roomObject = Instantiate(
-                    defaultRoom,
-                    new Vector3(0f, 0f, 0f),
-                    Quaternion.identity,
-                    mapRoot
-                );
+                    if (room.itemPrefab)
+                    {
+                        Instantiate(
+                            room.itemPrefab,
+                            new Vector3(0f, 0f, 0f),
+                            Quaternion.identity,
+                            roomObject.transform
+                        );
+                    }
+                    portal.SetActive(false);
+                    disableChestGeneration = room.disableChestGeneration;
+                    needsEnemySpawn = room.enemyPrefabs.Count != 0;
+                    hasCombat = needsEnemySpawn;
+                    return NarrativeRoomNeed.Nothing;
+
+                case SingleNarrativeRoom.RoomEnemyGen.CutsceneOnly:
+                    roomObject = Instantiate(
+                        defaultRoom,
+                        new Vector3(0f, 0f, 0f),
+                        Quaternion.identity,
+                        mapRoot
+                    );
+                    return NarrativeRoomNeed.Nothing;
             }
-            return true;
         }
-        currentRoom = null;
-        roomObject = null;
-        disableChestGeneration = false;
-        return false;
+        return NarrativeRoomNeed.All;
     }
 
     public void SpawnEnemies()
@@ -129,7 +152,14 @@ public class NarrativeRoomManager : MonoBehaviour
         if (currentRoom)
         {
             needsEnemySpawn = false;
-            EnemySpawnerScript.instance.SpawnCustomEnemies(currentRoom.enemyPrefabs, roomObject);
+            if (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.Custom)
+            {
+                EnemySpawnerScript.instance.SpawnCustomEnemies(currentRoom.enemyPrefabs, roomObject);
+            }
+            else
+            {
+                EnemySpawnerScript.instance.SpawnAllEnemies();
+            }
         }
     }
 
@@ -202,20 +232,16 @@ public class NarrativeRoomManager : MonoBehaviour
                 PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
                 return;
             }
-            // Spawn the portal
-            // If this room has no enemies to spawn after dialogue OR if this room doesn't spawn a chest after enemies defeated
-            if (currentRoom.enemyPrefabs.Count == 0 || disableChestGeneration)
+            if (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.CutsceneOnly)
             {
-                GameManager.instance.ClearCombatRoom(hasCombat);
-            }
-            
-            if (!currentRoom.roomPrefab)
-            {
-                // No room prefab -> this dialogue node has no map, auto-TP player to next room
-                // TODO if we can procgen narrative rooms, need an enum or smth to track room type
-                //  instead of using this hacky ahh null heck
+                // Automatically move player to next room for cutscene-only nodes
                 GameManager.instance.LoadMap();
                 return;
+            }
+            // Spawn the portal if specified, or this room doesn't spawn a chest after enemies defeated
+            if (currentRoom.spawnPortalAfterLastDialogue || disableChestGeneration)
+            {
+                GameManager.instance.ClearCombatRoom(hasCombat);
             }
         }
     }

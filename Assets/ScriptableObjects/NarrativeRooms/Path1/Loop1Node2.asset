@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Loop1Node2
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 0
+  roomEnemyGenSetting: 2
   roomCount: 2
   visitCount: 1
   roomPrefab: {fileID: 0}
@@ -31,3 +32,4 @@ MonoBehaviour:
   onSpawnDialogue: Act1_EveWorldbuilding_P1N2
   postCombatDialogue: 
   isScriptedDeath: 0
+  spawnPortalAfterLastDialogue: 0

@@ -115,11 +115,15 @@ public class GameManager : MonoBehaviour
         mapBounds = null;
 
 
+        NarrativeRoomManager.NarrativeRoomNeed reqs = NarrativeRoomManager.NarrativeRoomNeed.All;
         if (generateNarrativeRooms)
         {
             narrativeRoomManager.StartNewRoom();
-            if (narrativeRoomManager.TrySpawnNarrativeRoom(mapRoot))
+            reqs = narrativeRoomManager.TrySpawnNarrativeRoom(mapRoot);
+            if (reqs == NarrativeRoomManager.NarrativeRoomNeed.Nothing)
             {
+                gridToInstance[Vector2Int.zero] = narrativeRoomManager.roomObject;
+                SpawnBoundaryWalls();
                 if (EnemySpawnerScript.instance != null)
                     EnemySpawnerScript.instance.ScanMap();
                 spawnBehavior.Respawn();
@@ -245,7 +249,10 @@ public class GameManager : MonoBehaviour
         SpawnBoundaryWalls();
         portal.SetActive(false);
         EnemySpawnerScript.instance.ScanMap();
-        EnemySpawnerScript.instance.SpawnAllEnemies();
+        if (reqs == NarrativeRoomManager.NarrativeRoomNeed.All)
+        {
+            EnemySpawnerScript.instance.SpawnAllEnemies();
+        }
         spawnBehavior.Respawn();
     }
 

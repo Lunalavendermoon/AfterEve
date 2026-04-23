@@ -12,7 +12,15 @@ public class SingleNarrativeRoom : ScriptableObject
         Repeat
     }
 
+    public enum RoomEnemyGen
+    {
+        Randomized,
+        Custom,
+        CutsceneOnly
+    }
+
     public NodeType nodeType;
+    public RoomEnemyGen roomEnemyGenSetting;
     public int roomCount;
     public int visitCount;
     public GameObject roomPrefab;
@@ -28,4 +36,5 @@ public class SingleNarrativeRoom : ScriptableObject
     public string onSpawnDialogue;
     public string postCombatDialogue;
     public bool isScriptedDeath;
+    public bool spawnPortalAfterLastDialogue;
 }

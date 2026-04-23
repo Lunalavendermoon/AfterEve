@@ -26,6 +26,25 @@ public class YarnCommands : MonoBehaviour
         PortraitManager.instance.ClearPortrait();
     }
 
+    [YarnCommand("set_cg")]
+    public void SetYarnSpinnerCG(int cgNum)
+    {
+        if (NarrativeRoomManager.instance.currentRoom.cgList.Count <= cgNum)
+        {
+            Debug.LogWarning($"CG number {cgNum} does not exist, skipping");
+        }
+        else
+        {
+            PortraitManager.instance.SetCG(NarrativeRoomManager.instance.currentRoom.cgList[cgNum]);
+        }
+    }
+
+    [YarnCommand("clear_cg")]
+    public void ClearYarnSpinnerCG()
+    {
+        PortraitManager.instance.ClearCG();
+    }
+
     [YarnCommand("start_controls")] // used to restart player controls after dialogue
     public void StartControls()
     {

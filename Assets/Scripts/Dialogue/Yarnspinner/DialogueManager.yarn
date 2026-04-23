@@ -15,3 +15,10 @@ title: Autoclear_Room
 <<complete_room YarnManager>>
 <<jump Back_To_Game>>
 ===
+
+title: ShopNode
+---
+<<open_shop YarnManager>>
+<<wait_for_shop_close YarnManager>>
+<<jump Back_To_Game>>
+===

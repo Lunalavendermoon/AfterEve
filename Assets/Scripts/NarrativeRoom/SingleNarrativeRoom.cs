@@ -17,6 +17,7 @@ public class SingleNarrativeRoom : ScriptableObject
     public int visitCount;
     public GameObject roomPrefab;
     public GameObject itemPrefab;
+    public List<Sprite> cgList;
     public EventReference roomMusic;
 
     [Header("Enemies")]

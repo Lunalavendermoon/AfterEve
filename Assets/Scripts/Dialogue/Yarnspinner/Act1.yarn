@@ -189,6 +189,8 @@ Cyrus: Don’t have to tell me twice.
 
 title: Act1_EveWorldbuilding_P1N2
 ---
+<<set_cg YarnManager 0>>
+
 <<set_portrait YarnManager Eve>>
 Eve: You really aren’t from around here, are you?
 
@@ -244,6 +246,8 @@ Eve: Haha, yep~ You’ll need better equipment if you want to survive your first
 
 title: Act1_ShopIntro_P1N5
 ---
+<<set_cg YarnManager 0>>
+
 <<set_portrait YarnManager Shopkeeper>>
 Shopkeeper: Eve? Where have you been?!
 

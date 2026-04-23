@@ -9,6 +9,7 @@ public class PortraitManager : MonoBehaviour
     public List<PortraitEntry> portraits = new List<PortraitEntry>();
     public static PortraitManager instance;
     public Image portraitContainer;
+    public Image cgContainer;
 
     private Dictionary<string, Dictionary<string, Sprite>> portraitLookup;
 
@@ -71,6 +72,32 @@ public class PortraitManager : MonoBehaviour
 
         portraitContainer.sprite = null;
         portraitContainer.color = new Color(1, 1, 1, 0);
+    }
+
+    public void SetCG(Sprite cg)
+    {
+        StartCoroutine(SetCGCoroutine(cg));
+    }
+
+    private IEnumerator SetCGCoroutine(Sprite cg)
+    {
+        yield return null; // ensures main thread + next frame
+
+        cgContainer.sprite = cg;
+        cgContainer.color = Color.white;
+    }
+
+    public void ClearCG()
+    {
+        StartCoroutine(ClearCGCoroutine());
+    }
+
+    private IEnumerator ClearCGCoroutine()
+    {
+        yield return null; // ensures main thread + next frame
+
+        cgContainer.sprite = null;
+        cgContainer.color = new Color(1, 1, 1, 0);
     }
 }
 

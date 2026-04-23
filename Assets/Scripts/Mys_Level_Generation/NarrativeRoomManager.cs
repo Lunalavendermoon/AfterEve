@@ -8,9 +8,10 @@ public class NarrativeRoomManager : MonoBehaviour
 
     public AllNarrativePaths narrativePaths;
     public GameObject portal;
+    public GameObject defaultRoom; // Spawn this room for CG nodes so player doesn't die standing on hot ground
     [HideInInspector] public bool disableChestGeneration;
     [HideInInspector] public bool hasCombat = false;
-    SingleNarrativeRoom currentRoom = null;
+    [HideInInspector] public SingleNarrativeRoom currentRoom = null;
     GameObject roomObject = null;
 
     bool needsEnemySpawn = false;
@@ -83,31 +84,42 @@ public class NarrativeRoomManager : MonoBehaviour
                 continue;
             }
 
-            roomObject = Instantiate(
-                room.roomPrefab,
-                new Vector3(0f, 0f, 0f),
-                Quaternion.identity,
-                mapRoot
-            );
+            currentRoom = room;
 
-            if (room.itemPrefab)
+            if (room.roomPrefab)
             {
-                Instantiate(
-                    room.itemPrefab,
+                roomObject = Instantiate(
+                    room.roomPrefab,
                     new Vector3(0f, 0f, 0f),
                     Quaternion.identity,
-                    roomObject.transform
+                    mapRoot
+                );
+                if (room.itemPrefab)
+                {
+                    Instantiate(
+                        room.itemPrefab,
+                        new Vector3(0f, 0f, 0f),
+                        Quaternion.identity,
+                        roomObject.transform
+                    );
+                }
+                portal.SetActive(false);
+                disableChestGeneration = room.disableChestGeneration;
+                needsEnemySpawn = room.enemyPrefabs.Count != 0;
+                hasCombat = needsEnemySpawn;
+            } else
+            {
+                roomObject = Instantiate(
+                    defaultRoom,
+                    new Vector3(0f, 0f, 0f),
+                    Quaternion.identity,
+                    mapRoot
                 );
             }
-
-            portal.SetActive(false);
-            currentRoom = room;
-            disableChestGeneration = room.disableChestGeneration;
-            needsEnemySpawn = room.enemyPrefabs.Count != 0;
-            hasCombat = needsEnemySpawn;
             return true;
         }
         currentRoom = null;
+        roomObject = null;
         disableChestGeneration = false;
         return false;
     }
@@ -175,6 +187,8 @@ public class NarrativeRoomManager : MonoBehaviour
     public void OnDialogueEnded()
     {
         PortraitManager.instance.ClearPortrait();
+        PortraitManager.instance.ClearCG();
+        
         PlayerController.FindScenePlayer().EnablePlayerInput();
 
         if (needsEnemySpawn)
@@ -193,6 +207,15 @@ public class NarrativeRoomManager : MonoBehaviour
             if (currentRoom.enemyPrefabs.Count == 0 || disableChestGeneration)
             {
                 GameManager.instance.ClearCombatRoom(hasCombat);
+            }
+            
+            if (!currentRoom.roomPrefab)
+            {
+                // No room prefab -> this dialogue node has no map, auto-TP player to next room
+                // TODO if we can procgen narrative rooms, need an enum or smth to track room type
+                //  instead of using this hacky ahh null heck
+                GameManager.instance.LoadMap();
+                return;
             }
         }
     }

@@ -208,33 +208,41 @@ public abstract class EffectManager : MonoBehaviour
         Tuple<Effects.Stat, Effects.Application> key = Tuple.Create(stat, app);
         Tuple<Effects.Stat, Effects.Application, bool> key3 = Tuple.Create(stat, app, effect.isDebuff);
 
-        if (effect.isDebuff)
+        try
         {
-            effectStacks[key3].Remove(ei);
-            debuffs[key].Remove(ei);
-
-            if (effectStacks[key3].Count == 0)
+            if (effect.isDebuff)
             {
-                // this effect no longer exists
-                effectStacks.Remove(key3);
-                debuffs.Remove(key);
+                effectStacks[key3].Remove(ei);
+                debuffs[key].Remove(ei);
+
+                if (effectStacks[key3].Count == 0)
+                {
+                    // this effect no longer exists
+                    effectStacks.Remove(key3);
+                    debuffs.Remove(key);
+                }
+            }
+            else
+            {
+                effectStacks[key3].Remove(ei);
+                buffs[key].Remove(ei);
+
+                if (effectStacks[key3].Count == 0)
+                {
+                    // this effect no longer exists
+                    effectStacks.Remove(key3);
+                    buffs.Remove(key);
+                }
+            }
+            if (!muted)
+            {
+                ApplyEffects();
             }
         }
-        else
+        catch (Exception e)
         {
-            effectStacks[key3].Remove(ei);
-            buffs[key].Remove(ei);
-
-            if (effectStacks[key3].Count == 0)
-            {
-                // this effect no longer exists
-                effectStacks.Remove(key3);
-                buffs.Remove(key);
-            }
-        }
-        if (!muted)
-        {
-            ApplyEffects();
+            // Not sure what's going on, sometimes removing present tarot player buff causes stuff to break...
+            Debug.LogWarning(e.StackTrace);
         }
     }
 

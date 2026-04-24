@@ -1,7 +1,7 @@
 title: DeathRepeat_Fallback_1
 ---
 <<set_portrait YarnManager Judge>>
-The Judge: ...Oh! I didn’t know it was possible to die that way.
+The Judge: Hm. That’s not good.
 ===
 
 
@@ -15,7 +15,7 @@ The Judge: No offense, but you humans die way too easily.
 title: DeathRepeat_Fallback_3
 ---
 <<set_portrait YarnManager Judge>>
-The Judge: Hm. That’s not good.
+The Judge: ...Oh! I didn’t know it was possible to die that way.
 ===
 
 
@@ -37,7 +37,6 @@ title: DeathRepeat_Monster_3
 ---
 <<set_portrait YarnManager Judge>>
 The Judge: Ahaha! The hotshot Hunter gets killed by a runty monster?
-
 The Judge: I expect better from an enforcer of Justice. Back you go~
 ===
 
@@ -46,7 +45,6 @@ title: DeathRepeat_Monster_4
 ---
 <<set_portrait YarnManager Judge>>
 The Judge: Cyrus, I don’t know what memories you traded away while you were down there, but remember-
-
 The Judge: You’re supposed to [i]kill[/i] the monsters, not give them hugs. Okay?
 ===
 
@@ -77,7 +75,6 @@ title: DeathRepeat_Monster_7
 The Judge: Hello?
 The Judge: Hhhheeelllooo!
 
-
 <<set_portrait YarnManager Cyrus>>
 Cyrus: ...
 
@@ -100,13 +97,22 @@ The Judge: Pff, just messing with you~ The look on your face was priceless!
 ===
 
 
+title: DeathRepeat_Monster_8
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Cyrus, Cyrus... Keep stalling like this, and Prism’s going to wind up the last world saved from the Assimilation.
+The Judge: Our current success rate is about... let’s see... six or seven percent.
+The Judge: But that number’s going up every cycle, and [i]you’re[/i] getting left behind~
+===
+
+
 title: DeathRepeat_FalseHuman_P1_1
 ---
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’m still getting used to this whole dying over and over thing.
 
 <<set_portrait YarnManager Judge>>
-The Judge: If I can handle eons babysitting you enforcers, [i]you[/i] can handle a few more decades of this.
+The Judge: If I can handle eons babysitting you enforcers, [i]you[/i] can handle a few more centuries of this.
 ===
 
 

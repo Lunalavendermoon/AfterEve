@@ -206,7 +206,6 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void ShowFloatingText(int damageAfterReduction, DamageInstance.DamageType damageType)
     {
-        Debug.Log($"### Floating text {damageAfterReduction} {damageType}");
         if (floatingTextPrefab != null)
         {
             //Debug.Log("Showing floating text for damage: " + damageAfterReduction);
@@ -218,7 +217,6 @@ public abstract class EnemyBase : MonoBehaviour
 
                 // Set text color: red for physical dmg, blue for spiritual
                 var textColor = floatingText.GetComponentInChildren<TMP_Text>();
-                Debug.Log($"### Floating text, is text null: {textColor == null}");
                 if (textColor != null)
                 {
                     textColor.color = damageType switch

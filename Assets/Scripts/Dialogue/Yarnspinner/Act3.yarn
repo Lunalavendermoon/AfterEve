@@ -24,6 +24,8 @@ The Judge: Just keep your head down and focus on saving Prism. Meeting adjourned
 title: Act3_LunaEvasion_N1
 ---
 /// no repeat
+<<set_cg YarnManager 0>>
+
 <<set_portrait YarnManager Eve>>
 Eve: Oh good, you’re awake!
 Eve: Ah! Sorry, I didn’t mean to...
@@ -170,6 +172,8 @@ Cyrus: I think I’d better head back now. See you guys later.
 title: Act3_EveCheckIn_N5
 ---
 /// no repeat
+<<set_cg YarnManager 0>>
+
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Eve! Are you alright?
 
@@ -194,6 +198,8 @@ Eve: I’m fine, Cyrus, Let’s keep moving.
 title: Act3_EveCheckIn_N5_Alt
 ---
 /// no repeat
+<<set_cg YarnManager 0>>
+
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]Huh, still no monsters.[/i]
 ===
@@ -202,6 +208,8 @@ Cyrus: [i]Huh, still no monsters.[/i]
 title: Act3_EveReveal_N9
 ---
 /// no repeat
+<<set_cg YarnManager 0>>
+
 <<set_portrait YarnManager FateExchanger>>
 Fate Exchanger: You seem heavy with thoughts, Justice’s slave.
 

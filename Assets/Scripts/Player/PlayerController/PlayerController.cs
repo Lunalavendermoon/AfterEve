@@ -78,7 +78,6 @@ public class PlayerController : MonoBehaviour
     // user input system
     public PlayerInput playerInput;
     private InputAction toggleDialogueLog; // action is handled in DialogueHistoryLogUI
-    bool inputEnabled;
     public float horizontalInput;
     public float verticalInput;
 
@@ -92,8 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         playerInput.Enable();
         playerInput.Player.Enable();
-        toggleDialogueLog.Disable();  
-        inputEnabled = true;
+        toggleDialogueLog.Disable();
     }
 
     public void DisablePlayerInput()
@@ -101,7 +99,6 @@ public class PlayerController : MonoBehaviour
         playerInput.Disable();
         playerInput.Player.Disable();
         toggleDialogueLog.Enable(); // dialogue log can only be toggled when dialogue is playing, which is when all other inputs are disabled
-        inputEnabled = false;
     }
 
     // player attributes

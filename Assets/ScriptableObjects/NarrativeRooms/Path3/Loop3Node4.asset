@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
-  m_Name: Loop2Node5
+  m_Name: Loop3Node4
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
-  nodeType: 1
-  roomEnemyGenSetting: 2
-  roomCount: 5
-  visitCount: 0
-  roomPrefab: {fileID: 7285951446171788470, guid: b65387211843c4b6face6377a7db9d71, type: 3}
+  nodeType: 0
+  roomEnemyGenSetting: 0
+  roomCount: 4
+  visitCount: 1
+  roomPrefab: {fileID: 0}
   itemPrefab: {fileID: 0}
   cgList:
   - {fileID: 21300000, guid: 953fcd942ae24442e811eaf5c8524c2e, type: 3}
@@ -29,7 +29,7 @@ MonoBehaviour:
     Path: 
   enemyPrefabs: []
   disableChestGeneration: 0
-  onSpawnDialogue: Act2_ShopBanter_P2N5
+  onSpawnDialogue: Act3_FalseHumanInvestigation_N4
   postCombatDialogue: 
   isScriptedDeath: 0
   spawnPortalAfterLastDialogue: 0

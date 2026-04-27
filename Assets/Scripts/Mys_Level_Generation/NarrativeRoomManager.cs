@@ -141,6 +141,8 @@ public class NarrativeRoomManager : MonoBehaviour
                         Quaternion.identity,
                         mapRoot
                     );
+                    needsEnemySpawn = false;
+                    hasCombat = false;
                     return NarrativeRoomNeed.Nothing;
             }
         }
@@ -219,7 +221,7 @@ public class NarrativeRoomManager : MonoBehaviour
         PortraitManager.instance.ClearPortrait();
         PortraitManager.instance.ClearCG();
         
-        PlayerController.FindScenePlayer().EnablePlayerInput();
+        PlayerController.instance.EnablePlayerInput();
 
         if (needsEnemySpawn)
         {

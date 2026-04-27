@@ -98,6 +98,7 @@ Saul: Alright, let’s get moving. We’ve got a hunt to finish.
 
 title: Act2_ShopBanter_P2N5
 ---
+<<set_cg YarnManager 0>>
 
 <<set_portrait YarnManager Shopkeeper>>
 Shopkeeper: Eve? Where have you been?!
@@ -324,6 +325,8 @@ Cyrus: [i]...This is starting to feel futile, but better safe than sorry.[/i]
 title: Act2_FateExchangeIntro_P2N7
 ---
 /// no repeat
+<<set_cg YarnManager 0>>
+
 <<set_portrait YarnManager FateExchanger>>
 ???: Ah, a familiar face returns.
 
@@ -357,6 +360,8 @@ Fate Exchanger: Just call me The Fate Exchanger. A Fate for a Fate, a simple tra
 title: Act2_EveMeeting_P2N9
 ---
 /// no repeat
+<<set_cg YarnManager 0>>
+
 <<set_portrait YarnManager Eve>>
 Eve: Oh, Cyrus! Didn’t think you’d be back this soon.
 

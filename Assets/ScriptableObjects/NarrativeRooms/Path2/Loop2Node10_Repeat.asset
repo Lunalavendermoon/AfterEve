@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
-  m_Name: Loop2Node5
+  m_Name: Loop2Node10_Repeat
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 1
-  roomEnemyGenSetting: 2
-  roomCount: 5
+  roomEnemyGenSetting: 1
+  roomCount: 10
   visitCount: 0
-  roomPrefab: {fileID: 7285951446171788470, guid: b65387211843c4b6face6377a7db9d71, type: 3}
+  roomPrefab: {fileID: 4182450580660166591, guid: 5d95faa630c6a41bfabea4e0e08e0632, type: 3}
   itemPrefab: {fileID: 0}
-  cgList:
-  - {fileID: 21300000, guid: 953fcd942ae24442e811eaf5c8524c2e, type: 3}
+  cgList: []
   roomMusic:
     Guid:
       Data1: 0
@@ -27,9 +26,10 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  enemyPrefabs: []
-  disableChestGeneration: 0
-  onSpawnDialogue: Act2_ShopBanter_P2N5
-  postCombatDialogue: 
-  isScriptedDeath: 0
+  enemyPrefabs:
+  - {fileID: 7439078935783777668, guid: acb36ccfa906bc943ade3b51d57e01f2, type: 3}
+  disableChestGeneration: 1
+  onSpawnDialogue: Spawn_Enemies
+  postCombatDialogue: Act2_PostCombat_P2End
+  isScriptedDeath: 1
   spawnPortalAfterLastDialogue: 0

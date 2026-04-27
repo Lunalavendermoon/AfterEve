@@ -53,7 +53,7 @@ public class MimicPlayer : MonoBehaviour
             waitingtoShoot = true;
         }
 
-        if (waitingtoShoot)
+        if (nearestEnemy != null && waitingtoShoot)
         {
             targetPosition = nearestEnemy.transform.position;
             if (Time.time > lookTimer)

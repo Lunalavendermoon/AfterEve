@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4765772886108771136}
   m_Layer: 0
   m_Name: PossessedEvePhase1
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,6 +209,8 @@ MonoBehaviour:
   destinationSetter: {fileID: 4765772886108771136}
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
   rb: {fileID: 0}
+  hitFlashDuration: 0.08
+  hitFlashMaterial: {fileID: 0}
   attackHitbox: {fileID: 0}
   isAttacking: 0
   cooldown_time: 0

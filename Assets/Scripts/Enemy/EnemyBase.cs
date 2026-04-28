@@ -44,7 +44,6 @@ public abstract class EnemyBase : MonoBehaviour
     private float hitFlashRestoreAt;
     private bool hitFlashApplied;
 
-
     // event for enemy dying
     public static event Action<DamageInstance, EnemyBase> OnEnemyDamageTaken;
 

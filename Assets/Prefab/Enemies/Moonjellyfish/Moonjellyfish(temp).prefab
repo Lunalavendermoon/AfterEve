@@ -136,6 +136,8 @@ MonoBehaviour:
   destinationSetter: {fileID: 2341878997991670800}
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
   rb: {fileID: 0}
+  hitFlashDuration: 0.08
+  hitFlashMaterial: {fileID: 0}
   chest: {fileID: 0}
   attackHitbox: {fileID: 3385193953142855512}
   knockbackForceOnHit: 0

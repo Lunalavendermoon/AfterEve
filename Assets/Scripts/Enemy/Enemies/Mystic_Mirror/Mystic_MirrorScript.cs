@@ -110,6 +110,21 @@ public class Mystic_MirrorScript : StandardEnemyBase
         return effect.isDebuff;
     }
 
+    public override void Die()
+    {
+
+        skeletonAnimation.AnimationState.ClearTrack(0);
+        skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
+        StartCoroutine(DieAfterAnimation(1.7f));
+    }
+
+    private IEnumerator DieAfterAnimation(float delay)
+    {
+        agent.enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(delay);
+        base.Die();
+    }
 
 
 }

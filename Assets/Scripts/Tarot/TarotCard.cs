@@ -105,11 +105,7 @@ public abstract class TarotCard
 
     public static (Arcana, TarotType) GenPresentCardData(int arcanaIndex)
     {
-        int tarotType = 1;
-
-        Array values = Enum.GetValues(typeof(Arcana));
-
-        return ((Arcana)arcanaIndex, (TarotType)tarotType);
+        return ((Arcana)arcanaIndex, TarotType.Present);
 
         // FOR TESTING ONLY - force game to generate a specific present/future card
         // return (Arcana.Hierophant, TarotType.Present);

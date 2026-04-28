@@ -35,6 +35,7 @@ public class EnemySpawnerScript : MonoBehaviour
     private Transform currentMapRoot;
 
     private int pendingChestCoins;
+    private int pendingTarotCards;
 
     public static event System.Action OnAllEnemiesDefeated;
 
@@ -191,6 +192,12 @@ public class EnemySpawnerScript : MonoBehaviour
         pendingChestCoins += amount;
     }
 
+    public void AddPendingChestTarots(int count)
+    {
+        if (count <= 0) return;
+        pendingTarotCards += count;
+    }
+
     private void SpawnAndRevealChestAt(Vector3 worldPos)
     {
         OnAllEnemiesDefeated?.Invoke();
@@ -223,6 +230,11 @@ public class EnemySpawnerScript : MonoBehaviour
         if (pendingChestCoins > 0)
         {
             chest.AddCoins(pendingChestCoins);
+        }
+
+        if (pendingTarotCards > 0)
+        {
+            chest.AddTarotCards(pendingTarotCards);
         }
 
         chest.gameObject.SetActive(true);

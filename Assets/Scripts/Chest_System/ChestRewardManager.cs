@@ -29,20 +29,35 @@ public class ChestRewardManager : MonoBehaviour
         lastChestWorldPos = pos;
     }
 
-    public void ShowChestRewardMenu(bool refresh = true)
+    public void ShowChestRewardMenu(bool refresh = true, int tarotCount = 1)
     {
         chestRewardCanvas.SetActive(true);
         PlayerController.instance.DisablePlayerInput();
 
         if (refresh)
         {
+            int[] possibleArcana = new int[10];
+            for (int j = 0; j < 10; j++)
+            {
+                possibleArcana[j] = j;
+            }
+            int totalCards = 10;
             for (int i = 0; i < 3; ++i)
             {
-                cards[i] = TarotCard.GenRandomCardData().Item1;
+                int randomIndex = Random.Range(0, totalCards);
+                int ArcanaIndex = possibleArcana[randomIndex];
+                //remove the chosen arcana from the possibleArcana array to avoid duplicates
+                for (int j = randomIndex; j < totalCards - 1;j++)
+                {
+                    possibleArcana[j] = possibleArcana[j + 1];
+                }
+                totalCards--;
+
+                cards[i] = TarotCard.GenPresentCardData(ArcanaIndex).Item1;
 
                 // Random quantity from 1-5
                 // Past/Future cards can only generate w/ quantity of 1
-                quantities[i] = Random.Range(1, 6);
+                quantities[i] = tarotCount;
 
                 if (tarotIcons != null)
                 {

@@ -97,7 +97,19 @@ public abstract class TarotCard
         // int randomIndex = UnityEngine.Random.Range(0, values.Length);
         int randomIndex = UnityEngine.Random.Range(0, 10); // FOR TESTING - only generate first 10 card types
 
-        return (Arcana.Magician, (TarotType)tarotType);
+        return ((Arcana)randomIndex, (TarotType)tarotType);
+
+        // FOR TESTING ONLY - force game to generate a specific present/future card
+        // return (Arcana.Hierophant, TarotType.Present);
+    }
+
+    public static (Arcana, TarotType) GenPresentCardData(int arcanaIndex)
+    {
+        int tarotType = 1;
+
+        Array values = Enum.GetValues(typeof(Arcana));
+
+        return ((Arcana)arcanaIndex, (TarotType)tarotType);
 
         // FOR TESTING ONLY - force game to generate a specific present/future card
         // return (Arcana.Hierophant, TarotType.Present);

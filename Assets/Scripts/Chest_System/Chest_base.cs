@@ -4,6 +4,12 @@ using UnityEngine;
 public class Chest_base : InteractableEntity
 {
     public int coins = 0;
+    public int TarotCardCount = 0;  
+
+    public void AddTarotCards(int count)
+    {
+        TarotCardCount += Mathf.Max(0, count);
+    }
 
     public void AddCoins(int amount)
     {
@@ -22,7 +28,7 @@ public class Chest_base : InteractableEntity
 
         if (ChestRewardManager.instance != null)
         {
-            ChestRewardManager.instance.ShowChestRewardMenu();
+            ChestRewardManager.instance.ShowChestRewardMenu(true, TarotCardCount);
             ChestRewardManager.instance.SetLastChestWorldPos(chestPos);
         }
 

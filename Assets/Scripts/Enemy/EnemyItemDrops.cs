@@ -19,4 +19,15 @@ public class EnemyItemDrops : MonoBehaviour
 
         return Mathf.Max(0, numShards);
     }
+
+    public static int CalculateTarotDrop(float luck, bool elite)
+    {
+        float tarotDropRate = elite ? 0.05f : 0.4f;
+        float random = Random.Range(0f, 1f);
+        if (random <= Mathf.Clamp(tarotDropRate * luck, 0f, 1f))
+        {
+            return 1; // Drop 1 tarot card
+        }
+        return 0; // No tarot card dropped
+    }
 }

@@ -117,6 +117,8 @@ public abstract class StandardEnemyBase : EnemyBase
         if (givesRewards)
         {
             int numShards = EnemyItemDrops.CalculateShardDrop(PlayerController.instance.playerAttributes.GetAdjustedLuck(), elite);
+            int numTarots = EnemyItemDrops.CalculateTarotDrop(PlayerController.instance.playerAttributes.GetAdjustedLuck(), elite);
+            spawner.AddPendingChestTarots(numTarots);
             spawner.AddPendingChestCoins(numShards);
             spawnerDeathNotified = true;
             spawner.EnemyDie(this);

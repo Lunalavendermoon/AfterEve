@@ -18,6 +18,11 @@ MonoBehaviour:
     - DeathRepeat_FalseHuman_P1_1
     - DeathRepeat_FalseHuman_P1_2
     - DeathRepeat_FalseHuman_P1_3
+  - cause: 2
+    dialogueNodes:
+    - DeathRepeat_FalseHuman_P2_1
+    - DeathRepeat_FalseHuman_P2_2
+    - DeathRepeat_FalseHuman_P2_3
   - cause: 0
     dialogueNodes:
     - DeathRepeat_Monster_1

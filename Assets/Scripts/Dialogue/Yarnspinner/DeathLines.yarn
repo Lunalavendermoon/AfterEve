@@ -135,3 +135,36 @@ Cyrus: Is that thing even killable?!
 The Judge: I wouldn’t be sending you down there otherwise, now would I?
 The Judge: Well, I actually have no idea, but it’s worth a shot!
 ===
+
+
+title: DeathRepeat_FalseHuman_P2_1
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Having fun?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I wouldn’t call it [i]fun[/i].
+===
+
+
+title: DeathRepeat_FalseHuman_P2_2
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Tch. Need to dodge that attack next time...
+
+<<set_portrait YarnManager Judge>>
+The Judge: Yeah, yeah, whatever. Back to work!
+===
+
+
+title: DeathRepeat_FalseHuman_P2_3
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Can’t you try something different next cycle? I’m getting bored of watching this bossfight.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: If Prismatic Security won’t listen to my report, I need to take matters into my own hands.
+
+<<set_portrait YarnManager Judge>>
+The Judge: Eugh. That’s so... [i]Cyrus[/i] of you.
+===

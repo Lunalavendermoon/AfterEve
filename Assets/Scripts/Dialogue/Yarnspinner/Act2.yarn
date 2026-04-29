@@ -140,52 +140,52 @@ Eve: All set. Ready to head out?
 
 title: Act2_ShopBanter_Family
 ---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Your dad seems... nice.
+
+<<set_portrait YarnManager Eve>>
+Eve: He likes to act tough, but he’s really just terrified.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: He mentioned you had a sister?
+
+<<set_portrait YarnManager Eve>>
+Eve: ...
+Eve: Ava.
+Eve: She’s not here anymore.
+
+-> Inquire further
     <<set_portrait YarnManager Cyrus>>
-    Cyrus: Your dad seems... nice.
+    Cyrus: Oh. Is she...
 
     <<set_portrait YarnManager Eve>>
-    Eve: He likes to act tough, but he’s really just terrified.
+    Eve: We snuck out to the outskirts together, but we were too young to know what we were getting into.
+    Eve: When the monsters came, I just ran.
 
     <<set_portrait YarnManager Cyrus>>
-    Cyrus: He mentioned you had a sister?
-
+    Cyrus: Oh...I’m sorry.
     <<set_portrait YarnManager Eve>>
-    Eve: ...
-    Eve: Ava.
-    Eve: She’s not here anymore.
-
-    -> Inquire further
-        <<set_portrait YarnManager Cyrus>>
-        Cyrus: Oh. Is she...
-
-        <<set_portrait YarnManager Eve>>
-        Eve: We snuck out to the outskirts together, but we were too young to know what we were getting into.
-        Eve: When the monsters came, I just ran.
-
-        <<set_portrait YarnManager Cyrus>>
-        Cyrus: Oh...I’m sorry.
-        <<set_portrait YarnManager Eve>>
-        Eve: Yeah, I am too.
-        <<jump Act2_ShopBanter_End>>
-    -> Change the topic
-        <<jump Act2_ShopBanter_End>>
+    Eve: Yeah, I am too.
+    <<jump Act2_ShopBanter_End>>
+-> Change the topic
+    <<jump Act2_ShopBanter_End>>
 ===
 
 
 title: Act2_ShopBanter_Dispatcher
 ---
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: You have experience with this?
-    <<set_portrait YarnManager Eve>>
-    Eve: Scared I’m gonna get you killed?
-    Eve: This is my first time, but I’ve helped Hunters before, patching gear, pointing them to jobs, you name it.
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: Why’d you decide to be a dispatcher now?
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You have experience with this?
+<<set_portrait YarnManager Eve>>
+Eve: Scared I’m gonna get you killed?
+Eve: This is my first time, but I’ve helped Hunters before, patching gear, pointing them to jobs, you name it.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Why’d you decide to be a dispatcher now?
 
-    <<set_portrait YarnManager Eve>>
-    Eve: I’ve always wanted to do more to help around here, and you looked like you were going to get yourself killed without someone watching your back.
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: Won’t argue with that.
+<<set_portrait YarnManager Eve>>
+Eve: I’ve always wanted to do more to help around here, and you looked like you were going to get yourself killed without someone watching your back.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Won’t argue with that.
 
 <<jump Act2_ShopBanter_End>>
 ===
@@ -193,17 +193,17 @@ title: Act2_ShopBanter_Dispatcher
 
 title: Act2_ShopBanter_Prism
 ---
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: Is it always this tense around here?
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Is it always this tense around here?
 
-    <<set_portrait YarnManager Eve>>
-    Eve: Lately? Yeah. Memory monsters keep spawning faster than we can kill them. And like Tobias said, a lot of people don’t trust each other anymore.
+<<set_portrait YarnManager Eve>>
+Eve: Lately? Yeah. Memory monsters keep spawning faster than we can kill them. And like Tobias said, a lot of people don’t trust each other anymore.
 
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: You think he’s right, that it’s all just paranoia?
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You think he’s right, that it’s all just paranoia?
 
-    <<set_portrait YarnManager Eve>>
-    Eve: ...I think the one thing this city needs right now is a united front.
+<<set_portrait YarnManager Eve>>
+Eve: ...I think the one thing this city needs right now is a united front.
 
 <<jump Act2_ShopBanter_End>>
 ===
@@ -211,25 +211,25 @@ title: Act2_ShopBanter_Prism
 
 title: Act2_ShopBanter_Eve
 ---
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: So, uh, you do anything besides work?
+<<set_portrait YarnManager Cyrus>>
+Cyrus: So, uh, you do anything besides work?
 
-    <<set_portrait YarnManager Eve>>
-    Eve: Dad thinks it’s silly, but I like to make things out of the scraps laying around the shop.
+<<set_portrait YarnManager Eve>>
+Eve: Dad thinks it’s silly, but I like to make things out of the scraps laying around the shop.
 
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: You mean the sculptures? You made these?
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You mean the sculptures? You made these?
 
-    <<set_portrait YarnManager Eve>>
-    Eve: They’re a work in progress. I like to find a purpose for misfit things, rather than just throw them out.
-    Eve: What do you do?
+<<set_portrait YarnManager Eve>>
+Eve: They’re a work in progress. I like to find a purpose for misfit things, rather than just throw them out.
+Eve: What do you do?
 
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: ...
-    Cyrus: Good question.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: ...
+Cyrus: Good question.
 
-    <<set_portrait YarnManager Eve>>
-    Eve: Huh? It’s not like you were just born today.
+<<set_portrait YarnManager Eve>>
+Eve: Huh? It’s not like you were just born today.
 
 <<jump Act2_ShopBanter_End>>
 ===
@@ -379,19 +379,19 @@ Eve: Wait, where are you going?
 Eve: If this has something to do with the monsters, you need to let your dispatcher know. It’s too risky to go out on your own.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: You wouldn’t understand, you need to stay where it’s safe.
+Cyrus: You don’t understand. If you stay here, you’ll be safe.
 
 <<set_portrait YarnManager Eve>>
-Eve: Don’t treat me like a child, at least let me come with you.
+Eve: What are you- Your gear is gonna break! At least let me fix that.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: What happens to me is unimportant, sometimes a sacrifice is necessary to save the rest.
+Cyrus: There’s no time. What happens to me is unimportant. Sometimes a sacrifice is necessary to save the rest.
 
 <<set_portrait YarnManager Eve>>
-Eve: But you’re part of “everyone,” Cyrus, you won’t just be hurting yourself.
+Eve: But you’re part of “everyone”, Cyrus.
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: I’m sorry, Eve.
+Cyrus: ...I’m sorry, Eve.
 
 <<set_portrait YarnManager Eve>>
 Eve: Hey! You-
@@ -412,6 +412,7 @@ Cyrus: Everyone! Evacuate now!
 
 title: Act2_PostCombat_P2End
 ---
+
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]No matter how much I prepare, I still can’t beat it![/i]
 
@@ -419,7 +420,7 @@ Cyrus: [i]No matter how much I prepare, I still can’t beat it![/i]
 ???: Hey! You the one who called in?
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Who are—?
+Cyrus: Who are-?
 
 <<set_portrait YarnManager PoliceNPC>>
 Guard: Prismatic Security. Good work holding it in place, Captain Luna will finish the rest.
@@ -442,10 +443,11 @@ Guard: Pretty smart for a false human to mimic the mayor, they’d never be near
 Cyrus: What do you mean?
 
 <<set_portrait YarnManager PoliceNPC>>
-Guard: Memory monsters won’t attack their own kind. The only real way to tell if someone’s a false human is to put them in a monster’s path. 
+Guard: Memory monsters won’t attack their own kind. The only real way to tell if someone’s a false human is to put them in a monster’s path.
 
 <<set_portrait YarnManager FalseHumanBoss>>
 Memory Monster: RRRRAAAAA-
+
 <<set_portrait YarnManager Luna>>
 Luna: Alright, I’ve had my fun.
 

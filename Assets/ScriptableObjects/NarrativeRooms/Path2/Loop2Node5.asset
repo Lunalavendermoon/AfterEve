@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Loop2Node5
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 1
-  roomEnemyGenSetting: 2
+  roomEnemyGenSetting: 0
   roomCount: 5
   visitCount: 0
   roomPrefab: {fileID: 7285951446171788470, guid: b65387211843c4b6face6377a7db9d71, type: 3}

@@ -1,6 +1,7 @@
 ﻿title: Back_To_Game
 ---
 <<clear_portrait YarnManager>>
+<<clear_cg YarnManager>>
 <<start_controls YarnManager>>
 ===
 

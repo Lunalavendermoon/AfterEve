@@ -171,7 +171,7 @@ public abstract class StandardEnemyBase : EnemyBase
         if (!spawnerDeathNotified && givesRewards && spawner != null)
         {
             spawnerDeathNotified = true;
-            spawner.EnemyDie(this);
+            // spawner.EnemyDie(this);
         }
 
         if (destinationSetter != null && destinationSetter.target == tempTarget)

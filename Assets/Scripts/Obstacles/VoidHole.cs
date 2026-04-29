@@ -15,6 +15,7 @@ public class VoidHole : MonoBehaviour
     private void KillEnemy(EnemyBase enemy)
     {
         // ADD THE SOUND HERE :D
-        Destroy(enemy.gameObject);
+        enemy.Die();
+        // Destroy(enemy.gameObject);
     }
 }

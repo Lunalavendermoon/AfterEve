@@ -16,7 +16,8 @@ public class SingleNarrativeRoom : ScriptableObject
     {
         Randomized,
         Custom,
-        CutsceneOnly
+        CutsceneOnly // TODO: this should be deprecated eventually and is just for testing
+        // Merge non-combat narrative rooms into their neighbors if possible.
     }
 
     public NodeType nodeType;

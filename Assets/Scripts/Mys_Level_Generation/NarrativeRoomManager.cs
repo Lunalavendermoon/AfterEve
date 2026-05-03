@@ -100,6 +100,7 @@ public class NarrativeRoomManager : MonoBehaviour
 
             switch (room.roomEnemyGenSetting)
             {
+                // Randomized room and enemy spawns
                 case SingleNarrativeRoom.RoomEnemyGen.Randomized:
                     portal.SetActive(false);
                     disableChestGeneration = room.disableChestGeneration;
@@ -107,6 +108,7 @@ public class NarrativeRoomManager : MonoBehaviour
                     hasCombat = needsEnemySpawn;
                     return NarrativeRoomNeed.MapOnly;
 
+                // Custom room and enemy spawn (used for tutorial & boss)
                 case SingleNarrativeRoom.RoomEnemyGen.Custom:
                     if (room.roomPrefab == null)
                     {
@@ -134,6 +136,8 @@ public class NarrativeRoomManager : MonoBehaviour
                     hasCombat = needsEnemySpawn;
                     return NarrativeRoomNeed.Nothing;
 
+                // TODO: this should be deprecated eventually
+                // Rooms that only play dialogue and then teleport player to next room
                 case SingleNarrativeRoom.RoomEnemyGen.CutsceneOnly:
                     roomObject = Instantiate(
                         defaultRoom,
@@ -167,6 +171,7 @@ public class NarrativeRoomManager : MonoBehaviour
 
     void OnRoomChange()
     {
+        // When spawning in a new room, play on-spawn dialogue & BGM if it exists
         if (currentRoom && currentRoom.onSpawnDialogue.Length > 0)
         {
             PlayerController.instance.DisablePlayerInput();
@@ -194,6 +199,7 @@ public class NarrativeRoomManager : MonoBehaviour
                candidate.y - radius >= b.min.y && candidate.y + radius <= b.max.y;
     }
 
+    // Skip dialogue/combat -- only used for testing
     public void SkipButtonPressed()
     {
         if (runner.IsDialogueRunning)
@@ -216,6 +222,7 @@ public class NarrativeRoomManager : MonoBehaviour
         }
     }
 
+    // Handle game behavior after dialogue finishes playing.
     public void OnDialogueEnded()
     {
         PortraitManager.instance.ClearPortrait();
@@ -225,12 +232,14 @@ public class NarrativeRoomManager : MonoBehaviour
 
         if (needsEnemySpawn)
         {
+            // If there is combat after dialogue, spawn enemies
             SpawnEnemies();
         }
         else
         {
             if (currentRoom.isScriptedDeath)
             {
+                // Used for rooms at the end of a path where the player dies no matter what
                 PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
                 return;
             }
@@ -240,7 +249,7 @@ public class NarrativeRoomManager : MonoBehaviour
                 GameManager.instance.LoadMap();
                 return;
             }
-            // Spawn the portal if specified, or this room doesn't spawn a chest after enemies defeated
+            // Spawn the portal if needed, or if this room doesn't spawn a chest after enemies defeated
             if (currentRoom.spawnPortalAfterLastDialogue || disableChestGeneration)
             {
                 GameManager.instance.ClearCombatRoom(hasCombat);

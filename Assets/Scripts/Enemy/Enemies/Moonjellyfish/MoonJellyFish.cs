@@ -1,3 +1,4 @@
+using System.Collections;
 using Spine.Unity;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ public class MoonJellyFish : StandardEnemyBase
 
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;
+
+    private bool isDying = false;
+
     private void Awake()
     {
         transform.rotation = Quaternion.identity;
@@ -44,8 +48,6 @@ public class MoonJellyFish : StandardEnemyBase
     public override void Attack(Transform target)
     {
 
-
-
         // Enable hitbox for a short window
         EnableAttack();
         // Play SFX
@@ -60,8 +62,27 @@ public class MoonJellyFish : StandardEnemyBase
     public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
         base.TakeDamage(amount, dmgSource, dmgType);
+        if (isDying) return;
         skeletonAnimation.AnimationState.SetAnimation(0, "Hit", false);
         skeletonAnimation.AnimationState.AddAnimation(0, "Idle", true, 0f);
     }
+
+    public override void Die()
+    {
+        if (isDying) return;
+        isDying = true;
+        skeletonAnimation.AnimationState.ClearTrack(0);
+        skeletonAnimation.AnimationState.SetAnimation(0, "Die", false);
+        StartCoroutine(DieAfterAnimation(1.2f));
+    }
+
+    private IEnumerator DieAfterAnimation(float delay)
+    {
+        agent.enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(delay);
+        base.Die();
+    }
+
 
 }

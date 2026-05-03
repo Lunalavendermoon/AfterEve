@@ -1,0 +1,42 @@
+title: Act4_Judge_N0
+---
+/// no repeat
+<<set_portrait YarnManager Judge>>
+The Judge: What a twist!
+The Judge: Well, at least now you know who to kill! The rest of your mission should be easy~
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I...
+
+<<set_portrait YarnManager Judge>>
+The Judge: Don’t act so surprised. You’ve been suspecting her for a while, haven’t you?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I didn’t want it to be true.
+
+<<set_portrait YarnManager Judge>>
+The Judge: Boohoo! Now that you have evidence, what’s stopping you?
+The Judge: I suppose I have the Fate Exchanger to thank for speeding things along.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You know him?
+
+<<set_portrait YarnManager Judge>>
+The Judge: In a way. He’s another spiritual being, works for the Devil Arcana.
+The Judge: Spends all day sneaking between worlds and messing with mortals. Likes to tempt them, bring out their dark side.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: A dark side?
+
+<<set_portrait YarnManager Judge>>
+The Judge: I know, you’re much too boring to have a dark side.
+The Judge: But I swear, he always waits until my back is turned to show up.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]Never mind that. Eve is still...[/i]
+
+<<set_portrait YarnManager Judge>>
+The Judge: Alright, yaddah yaddah this is your sacred duty, blah blah Prism needs its enforcer. You know the drill.
+
+<<player_respawn YarnManager>>
+===

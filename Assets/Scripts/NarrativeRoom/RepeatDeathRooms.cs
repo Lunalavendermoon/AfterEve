@@ -9,6 +9,7 @@ public class RepeatDeathRooms : ScriptableObject
     {
         Enemy,
         FalseHumanP1,
+        FalseHumanP2,
         Fallback,
         ScriptedDeath
     }
@@ -32,6 +33,8 @@ public class RepeatDeathRooms : ScriptableObject
         {
             case DeathCauses.FalseHumanP1:
                 return StaticGameManager.roomCount == 10 && StaticGameManager.pathCount == 1;
+            case DeathCauses.FalseHumanP2:
+                return StaticGameManager.roomCount == 10 && StaticGameManager.pathCount == 2;
             case DeathCauses.Enemy:
                 return cause == StaticGameManager.latestDeathCause;
             default:

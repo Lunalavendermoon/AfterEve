@@ -124,7 +124,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: animation
+  _animationName: Idle
   loop: 0
   timeScale: 1
 --- !u!1 &8214233007585310572
@@ -188,6 +188,8 @@ MonoBehaviour:
   destinationSetter: {fileID: 5471477081406513047}
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
   rb: {fileID: 0}
+  hitFlashDuration: 0.08
+  hitFlashMaterial: {fileID: 0}
   chest: {fileID: 0}
   attackHitbox: {fileID: 0}
   knockbackForceOnHit: 0

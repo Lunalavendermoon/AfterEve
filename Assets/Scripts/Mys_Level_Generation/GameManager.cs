@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     {
         if (generateNarrativeRooms)
         {
-            narrativeRoomManager.StartNewCycle(); // TODO: call this whenever player starts a new run
+            narrativeRoomManager.StartNewCycle();
         }
         ShopManager.instance.RefreshLuckPrice(); // Set lucky coin price for this run
         LoadMap();

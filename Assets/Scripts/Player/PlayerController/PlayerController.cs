@@ -650,6 +650,9 @@ public class PlayerController : MonoBehaviour
 
     public void Die(DamageInstance.DamageSource damageSource)
     {
+        // Clear current narrative room: boss rooms w/ scripted death may repeatedly kill player?
+        NarrativeRoomManager.instance.currentRoom = null;
+
         if (damageSource == DamageInstance.DamageSource.Enemy)
         {
             StaticGameManager.latestDeathCause = RepeatDeathRooms.DeathCauses.Enemy;

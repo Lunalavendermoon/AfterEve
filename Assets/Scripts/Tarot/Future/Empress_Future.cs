@@ -40,6 +40,7 @@ public class Empress_Future : Future_TarotCard
     {
         healCount += (float)amount / maxHp;
         RefreshDescription();
+        if (questUI) questUI.setQuestSliderCurrentValue(healCount, 1);
 
         if (healCount >= healPercentGoal)
         {
@@ -54,7 +55,7 @@ public class Empress_Future : Future_TarotCard
         {
             ++roomCount;
             RefreshDescription();
-            QuestUIScript.instance.setQuestCurrentValue(roomCount);
+            if (questUI) questUI.setQuestSliderCurrentValue(roomCount, 0);
 
             if (roomCount >= roomGoal)
             {
@@ -69,8 +70,14 @@ public class Empress_Future : Future_TarotCard
             FormatPercentage(healPercentGoal), roomCount, roomGoal,
             FormatPercentage(roomGoalHPThreshold) };
 
-        QuestUIScript.instance.setQuestName(cardName);
-        QuestUIScript.instance.setQuestDescription(GetDescription());
-        QuestUIScript.instance.setQuestMaxValue(roomCount);
+        QuestUIScript ui = QuestUIManager.Instance.SpawnQuestWithTwoSliders();
+        if (ui)
+        {
+            questUI = ui;
+            questUI.setQuestName(cardName);
+            questUI.setQuestDescription(GetDescription());
+            questUI.setQuestSliderMaxValue(roomGoal, 0);
+            questUI.setQuestSliderMaxValue(healPercentGoal, 1);
+        }
     }
 }

@@ -31,7 +31,7 @@ public class Strength_Future : Future_TarotCard
         PlayerEffectManager effectManager = PlayerController.instance.gameObject.GetComponent<PlayerEffectManager>();
         RefreshDescription();
         int totalEffectsCount = effectManager.debuffs.Count + effectManager.buffs.Count;
-        QuestUIScript.instance.setQuestCurrentValue(totalEffectsCount);
+        if (questUI) questUI.setQuestSliderCurrentValue(totalEffectsCount, 0);
 
         if (effectManager.debuffs.Count >= effectGoal || effectManager.buffs.Count >= effectGoal)
         {
@@ -48,8 +48,13 @@ public class Strength_Future : Future_TarotCard
 
     protected override void SetQuestUI()
     {
-        QuestUIScript.instance.setQuestName(cardName);
-        QuestUIScript.instance.setQuestDescription(GetDescription());
-        QuestUIScript.instance.setQuestMaxValue(effectGoal);
+        QuestUIScript ui = QuestUIManager.Instance.SpawnQuestWithOneSlider();
+        if (ui)
+        {
+            questUI = ui;
+            questUI.setQuestName(cardName);
+            questUI.setQuestDescription(GetDescription());
+            questUI.setQuestSliderMaxValue(effectGoal, 0);
+        }
     }
 }

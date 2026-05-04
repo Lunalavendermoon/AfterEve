@@ -42,7 +42,8 @@ public class Emperor_Future : Future_TarotCard
         damageCount += dmg.beforeReduction;
         ++attackRoomCount;
         RefreshDescription();
-        QuestUIScript.instance.setQuestCurrentValue(damageCount);
+        if (questUI) questUI.setQuestSliderCurrentValue(damageCount, 0);
+        if (questUI) questUI.setQuestSliderCurrentValue(attackRoomCount, 1);
 
         if (damageCount >= damageGoal || attackRoomCount >= attackRoomGoal)
         {
@@ -53,6 +54,7 @@ public class Emperor_Future : Future_TarotCard
     private void OnRoomChanged()
     {
         attackRoomCount = 0;
+        if (questUI) questUI.setQuestSliderCurrentValue(attackRoomCount, 1);
         RefreshDescription();
     }
 
@@ -63,8 +65,14 @@ public class Emperor_Future : Future_TarotCard
 
     protected override void SetQuestUI()
     {
-        QuestUIScript.instance.setQuestName(cardName);
-        QuestUIScript.instance.setQuestDescription(GetDescription());
-        QuestUIScript.instance.setQuestMaxValue(damageGoal);
+        QuestUIScript ui = QuestUIManager.Instance.SpawnQuestWithTwoSliders();
+        if (ui)
+        {
+            questUI = ui;
+            questUI.setQuestName(cardName);
+            questUI.setQuestDescription(GetDescription());
+            questUI.setQuestSliderMaxValue(damageGoal, 0);
+            questUI.setQuestSliderMaxValue(attackRoomGoal, 1);
+        }
     }
 }

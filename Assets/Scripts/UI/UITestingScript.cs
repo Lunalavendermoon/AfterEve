@@ -35,7 +35,7 @@ public class UITestingScript : MonoBehaviour
         //tarotCooldownTriggerButton.onClick.AddListener(tarotUIScript.runTarotCooldownAnimation);
         healHealthButton.onClick.AddListener(() => PlayerController.instance.Heal(healAmount));
         damageHealthButton.onClick.AddListener(() => PlayerController.instance.TakeDamage(damageAmount, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical));
-        addQuestProgressButton.onClick.AddListener(() => questUIScript.setQuestCurrentValue(questUIScript.getQuestCurrentValue() + 1));
-        loseQuestProgressButton.onClick.AddListener(() => questUIScript.setQuestCurrentValue(questUIScript.getQuestCurrentValue() - 1));
+        //addQuestProgressButton.onClick.AddListener(() => questUIScript.setQuestCurrentValue(questUIScript.getQuestCurrentValue() + 1));
+        //loseQuestProgressButton.onClick.AddListener(() => questUIScript.setQuestCurrentValue(questUIScript.getQuestCurrentValue() - 1));
     }
 }

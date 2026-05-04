@@ -47,6 +47,12 @@ public class QuestUIScript : MonoBehaviour
         }
     }
 
+    public void destroyUponQuestCompletion()
+    {
+        if (this.gameObject)
+            Destroy(this.gameObject);
+    }
+
     public void disableSecondSlider()
     {
         if (sliderTwo)

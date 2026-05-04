@@ -22,6 +22,12 @@ public abstract class Future_TarotCard : TarotCard
     /// </summary>
     public void CompleteQuest()
     {
+        if (questUI)
+        {
+            questUI.destroyUponQuestCompletion();
+            questUI = null;
+        }
+
         questCompleted = true;
         RewardPlayer();
     }

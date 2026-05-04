@@ -31,7 +31,7 @@ public class Lovers_Future : Future_TarotCard
     {
         spendCount += amount;
         RefreshDescription();
-        QuestUIScript.instance.setQuestCurrentValue(spendCount);
+        if (questUI) questUI.setQuestSliderCurrentValue(spendCount, 0);
 
         if (spendCount >= spendGoal)
         {
@@ -46,8 +46,13 @@ public class Lovers_Future : Future_TarotCard
 
     protected override void SetQuestUI()
     {
-        QuestUIScript.instance.setQuestName(cardName);
-        QuestUIScript.instance.setQuestDescription(GetDescription());
-        QuestUIScript.instance.setQuestMaxValue(spendGoal);
+        QuestUIScript ui = QuestUIManager.Instance.SpawnQuestWithOneSlider();
+        if (ui)
+        {
+            questUI = ui;
+            questUI.setQuestName(cardName);
+            questUI.setQuestDescription(GetDescription());
+            questUI.setQuestSliderMaxValue(spendGoal, 0);
+        }
     }
 }

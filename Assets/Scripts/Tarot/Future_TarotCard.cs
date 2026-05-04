@@ -10,6 +10,7 @@ public abstract class Future_TarotCard : TarotCard
     public bool questCompleted = false;
 
     protected LocalizedString rewardDesc;
+    protected QuestUIScript questUI;
 
     public Future_TarotCard() : base(1)
     {

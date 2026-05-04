@@ -3,7 +3,6 @@ using UnityEngine;
 public class Magician_Future : Future_TarotCard
 {
     int roomSkillCount = 0;
-
     int totalSkillCount = 0;
 
     public const int roomSkillGoal = 4;
@@ -37,6 +36,7 @@ public class Magician_Future : Future_TarotCard
     {
         roomSkillCount = 0;
         RefreshDescription();
+        if (questUI) questUI.setQuestSliderCurrentValue(roomSkillCount, 0);
     }
 
     private void OnSkillUse()
@@ -45,7 +45,11 @@ public class Magician_Future : Future_TarotCard
         ++totalSkillCount;
 
         RefreshDescription();
-        QuestUIScript.instance.setQuestCurrentValue(totalSkillCount);
+        if (questUI)
+        {
+            questUI.setQuestSliderCurrentValue(roomSkillCount, 0);
+            questUI.setQuestSliderCurrentValue(totalSkillCount, 1);
+        }
 
         if (roomSkillCount >= roomSkillGoal || totalSkillCount >= totalSkillGoal)
         {
@@ -60,8 +64,14 @@ public class Magician_Future : Future_TarotCard
 
     protected override void SetQuestUI()
     {
-        QuestUIScript.instance.setQuestName(cardName);
-        QuestUIScript.instance.setQuestDescription(GetDescription());
-        QuestUIScript.instance.setQuestMaxValue(totalSkillGoal);
+        QuestUIScript ui = QuestUIManager.Instance.SpawnQuestWithTwoSliders();
+        if (ui)
+        {
+            questUI = ui;
+            questUI.setQuestName(cardName);
+            questUI.setQuestDescription(GetDescription());
+            questUI.setQuestSliderMaxValue(roomSkillGoal, 0);
+            questUI.setQuestSliderMaxValue(totalSkillGoal, 1);
+        }
     }
 }

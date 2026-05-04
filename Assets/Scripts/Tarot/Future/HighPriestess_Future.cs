@@ -3,7 +3,6 @@ using UnityEngine;
 public class HighPriestess_Future : Future_TarotCard
 {
     int spiritualCount = 0;
-
     int debuffCount = 0;
 
     public const int spiritualGoal = 10;
@@ -37,13 +36,14 @@ public class HighPriestess_Future : Future_TarotCard
         {
             ++spiritualCount;
             RefreshDescription();
+            if (questUI) questUI.setQuestSliderCurrentValue(spiritualCount, 1);
         }
 
         if (enemy.GetComponent<EnemyEffectManager>().debuffs.Count != 0)
         {
             ++debuffCount;
             RefreshDescription();
-            QuestUIScript.instance.setQuestCurrentValue(debuffCount);
+            if (questUI) questUI.setQuestSliderCurrentValue(debuffCount, 0);
         }
 
         if (spiritualCount >= spiritualGoal || debuffCount >= debuffGoal)
@@ -59,8 +59,14 @@ public class HighPriestess_Future : Future_TarotCard
 
     protected override void SetQuestUI()
     {
-        QuestUIScript.instance.setQuestName(cardName);
-        QuestUIScript.instance.setQuestDescription(GetDescription());
-        QuestUIScript.instance.setQuestMaxValue(debuffGoal);
+        QuestUIScript ui = QuestUIManager.Instance.SpawnQuestWithTwoSliders();
+        if (ui)
+        {
+            questUI = ui;
+            questUI.setQuestName(cardName);
+            questUI.setQuestDescription(GetDescription());
+            questUI.setQuestSliderMaxValue(debuffGoal, 0);
+            questUI.setQuestSliderMaxValue(spiritualGoal, 1);
+        }
     }
 }

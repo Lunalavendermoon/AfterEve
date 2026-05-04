@@ -48,6 +48,7 @@ public class Chariot_Future : Future_TarotCard
         Vector3 newPos = PlayerController.instance.gameObject.transform.position;
         distCount += Vector3.Distance(oldPos, newPos);
         oldPos = newPos;
+        if (questUI) questUI.setQuestSliderCurrentValue(distCount, 1);
 
         if (distCount >= distGoal)
         {
@@ -58,7 +59,7 @@ public class Chariot_Future : Future_TarotCard
     private void OnDash()
     {
         ++dashCount;
-        QuestUIScript.instance.setQuestCurrentValue(dashCount);
+        if (questUI) questUI.setQuestSliderCurrentValue(dashCount, 0);
 
         if (dashCount >= dashGoal)
         {
@@ -74,8 +75,14 @@ public class Chariot_Future : Future_TarotCard
 
     protected override void SetQuestUI()
     {
-        QuestUIScript.instance.setQuestName(cardName);
-        QuestUIScript.instance.setQuestDescription(GetDescription());
-        QuestUIScript.instance.setQuestMaxValue(dashGoal);
+        QuestUIScript ui = QuestUIManager.Instance.SpawnQuestWithTwoSliders();
+        if (ui)
+        {
+            questUI = ui;
+            questUI.setQuestName(cardName);
+            questUI.setQuestDescription(GetDescription());
+            questUI.setQuestSliderMaxValue(dashGoal, 0);
+            questUI.setQuestSliderMaxValue(distGoal, 1);
+        }
     }
 }

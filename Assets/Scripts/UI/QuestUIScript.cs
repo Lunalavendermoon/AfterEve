@@ -6,80 +6,50 @@ using System;
 
 public class QuestUIScript : MonoBehaviour
 {
-    [SerializeField] private Slider slider;
+    [SerializeField] private QuestUISlider sliderOne;
+    [SerializeField] private QuestUISlider sliderTwo;
     [SerializeField] private TMP_Text questNameText;
     [SerializeField] private TMP_Text questDescriptionText;
-    [SerializeField] private TMP_Text questValueText;
-    private Coroutine questSlidingRoutine; //for preventing multiple animations
-
-    private int maxValue;
-    private int currentValue;
-
-    public static QuestUIScript instance;
-
-    private void Awake()
-    {
-        if (instance == null) instance = this;
-    }
-
-    public int getQuestMaxValue() {
-        return maxValue;
-    }
-    public int getQuestCurrentValue() {
-        return currentValue;
-    }
 
     public void setQuestName(string questName) {
         questNameText.text = questName;
     }
+
     public void setQuestDescription(string questDescription) {
         questDescriptionText.text = questDescription;
     }
 
-    public void setQuestMaxValue(int newMaxValue) {
-        maxValue = newMaxValue;
-        slider.maxValue = newMaxValue;
-
-        currentValue = 0;
-        slider.value = 0;
-
-        questValueText.text = currentValue + " / " + maxValue;
-    }
-    public void setQuestCurrentValue(int newCurrentValue) {
-        if(newCurrentValue < 0)
-            return;
-
-        if (newCurrentValue > maxValue)
-            newCurrentValue = maxValue;
-
-        currentValue = newCurrentValue;
-
-        if(questSlidingRoutine != null) StopCoroutine(questSlidingRoutine);
-        questSlidingRoutine = StartCoroutine(questSlidingAnimationCoroutine(currentValue));
-
-        if(currentValue == maxValue) {
-            questValueText.text = "Quest completed";
-        }
-    }
-
-
-
-    // UI animation helper for smooth transition between diff health values
-    private IEnumerator questSlidingAnimationCoroutine(float finalValue)
+    public void setQuestSliderMaxValue(float newMaxValue, int sliderNum) 
     {
-        float startingValue = slider.value;
-        float slidingStartTime = Time.time;
-        float slidingDuration = 0.01f * (Math.Abs(finalValue - startingValue))/maxValue * 100; //0.01s sliding time/1% change of total health
-
-        questValueText.text = finalValue + " / " + maxValue;
-
-        while (Time.time - slidingStartTime < slidingDuration)
+        if (sliderNum == 0)
         {
-            // new value at X point in time = startingValue + proportion of total time passed * total value to change
-            slider.value = startingValue + ((Time.time - slidingStartTime)/slidingDuration) * (finalValue - startingValue);
-            yield return null;
+            if (sliderOne)
+                sliderOne.setQuestMaxValue(newMaxValue);
         }
-        slider.value = finalValue;
-        yield break;
+        else
+        {
+            if (sliderTwo)
+                sliderTwo.setQuestMaxValue(newMaxValue);
+        }
+    }
+
+    public void setQuestSliderCurrentValue(float newCurrentValue, int sliderNum) 
+    {
+        if (sliderNum == 0)
+        {
+            if (sliderOne)
+                sliderOne.setQuestCurrentValue(newCurrentValue);
+        }
+        else
+        {
+            if (sliderTwo)
+                sliderTwo.setQuestCurrentValue(newCurrentValue);
+        }
+    }
+
+    public void disableSecondSlider()
+    {
+        if (sliderTwo)
+            sliderTwo.gameObject.SetActive(false);
     }
 }

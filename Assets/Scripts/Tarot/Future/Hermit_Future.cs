@@ -33,7 +33,7 @@ public class Hermit_Future : Future_TarotCard
         {
             ++weakPointCount;
             RefreshDescription();
-            QuestUIScript.instance.setQuestCurrentValue(weakPointCount);
+            if (questUI) questUI.setQuestSliderCurrentValue(weakPointCount, 0);
 
             if (weakPointCount >= weakPointGoal)
             {
@@ -49,8 +49,13 @@ public class Hermit_Future : Future_TarotCard
 
     protected override void SetQuestUI()
     {
-        QuestUIScript.instance.setQuestName(cardName);
-        QuestUIScript.instance.setQuestDescription(GetDescription());
-        QuestUIScript.instance.setQuestMaxValue(weakPointGoal);
+        QuestUIScript ui = QuestUIManager.Instance.SpawnQuestWithOneSlider();
+        if (ui)
+        {
+            questUI = ui;
+            questUI.setQuestName(cardName);
+            questUI.setQuestDescription(GetDescription());
+            questUI.setQuestSliderMaxValue(weakPointGoal, 0);
+        }
     }
 }

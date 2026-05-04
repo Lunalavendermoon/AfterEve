@@ -40,7 +40,7 @@ public class Hierophant_Future : Future_TarotCard
         {
             visionCount += Time.time - startTime;
             RefreshDescription();
-            QuestUIScript.instance.setQuestCurrentValue((int)visionCount);
+            if (questUI) questUI.setQuestSliderCurrentValue(visionCount, 0);
 
             if (visionCount >= visionGoal)
             {
@@ -56,8 +56,13 @@ public class Hierophant_Future : Future_TarotCard
 
     protected override void SetQuestUI()
     {
-        QuestUIScript.instance.setQuestName(cardName);
-        QuestUIScript.instance.setQuestDescription(GetDescription());
-        QuestUIScript.instance.setQuestMaxValue((int) visionGoal);
+        QuestUIScript ui = QuestUIManager.Instance.SpawnQuestWithOneSlider();
+        if (ui)
+        {
+            questUI = ui;
+            questUI.setQuestName(cardName);
+            questUI.setQuestDescription(GetDescription());
+            questUI.setQuestSliderMaxValue(visionGoal, 0);
+        }
     }
 }

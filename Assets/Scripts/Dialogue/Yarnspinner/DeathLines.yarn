@@ -89,8 +89,7 @@ The Judge: Alright, let’s do this slowly.
 The Judge: Name. Do you remember that muc-
 
 <<set_portrait YarnManager Cyrus>>
-Cyrus: Oh, no. Don’t tell me I’m back at the very beginning.
-
+Cyrus: ??????
 
 <<set_portrait YarnManager Judge>>
 The Judge: Pff, just messing with you~ The look on your face was priceless!
@@ -167,4 +166,64 @@ Cyrus: If Prismatic Security won’t listen to my report, I need to take matters
 
 <<set_portrait YarnManager Judge>>
 The Judge: Eugh. That’s so... [i]Cyrus[/i] of you.
+===
+
+
+title: DeathRepeat_Luna_P4_P5_1
+---
+<<set_portrait YarnManager Judge>>
+The Judge: That Luna girl is pretty strong, huh? A shame she’s not an enforcer of Justice, I bet [i]she[/i] could have fixed Prism’s timeline by now.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Wow, very encouraging.
+===
+
+
+title: DeathRepeat_Luna_P4_P5_2
+---
+<<set_portrait YarnManager Judge>>
+The Judge: C’mon, Cyrus~ I didn’t lend you all that Justice power for you to waste it sparring with the cops.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You think I [i]want[/i] to- nevermind.
+===
+
+
+title: DeathRepeat_Luna_P4_P5_3
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Okay, I know I said it was fun watching you die to a human instead of a monster, but this is getting ridiculous.
+The Judge: Jokes are only funny the first time around, you know~
+===
+
+
+title: DeathRepeat_PossessedEve_P4_P5_1
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Hehe, told you Eve was trouble.
+===
+
+
+title: DeathRepeat_PossessedEve_P4_P5_2
+---
+<<set_portrait YarnManager Judge>>
+The Judge: Ah, false humans~ always tormenting you poor enforcers of Justice.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Aren’t you the one tormenting enforcers with these time loops?
+
+<<set_portrait YarnManager Judge>>
+The Judge: Hey, it’s for the greater good!
+===
+
+
+title: DeathRepeat_PossessedEve_P4_P5_2
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]Eve...[/i]
+Cyrus: [i]Is there really no other way?[/i]
+
+<<set_portrait YarnManager Judge>>
+The Judge: Whatcha thinking about?
+The Judge: Eh, not that I care. Bye~
 ===

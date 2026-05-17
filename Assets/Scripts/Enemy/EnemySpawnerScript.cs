@@ -175,7 +175,19 @@ public class EnemySpawnerScript : MonoBehaviour
 
         if (numberOfEnemies <= 0)
         {
-            SpawnAndRevealChestAt(enemy != null ? enemy.transform.position : Vector3.zero);
+            if (NarrativeRoomManager.instance.currentRoom &&
+                ((NarrativeRoomManager.instance.currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4Decisions &&
+                    NarrativeRoomManager.instance.currentRoute.Contains("Decisions_Confront")) ||
+                 (NarrativeRoomManager.instance.currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4LunaSearch &&
+                    NarrativeRoomManager.instance.currentRoute.Contains("LunaSearch_Confront"))))
+            {
+                // Scripted death that only triggers on certain routes
+                PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
+            }
+            else
+            {
+                SpawnAndRevealChestAt(enemy != null ? enemy.transform.position : Vector3.zero);
+            }
         }
     }
 

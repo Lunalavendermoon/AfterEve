@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
+  m_Name: Loop4Node4
+  m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
+  nodeType: 2
+  roomEnemyGenSetting: 3
+  roomCount: 4
+  visitCount: 0
+  roomPrefab: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  cgList: []
+  roomMusic:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  enemyPrefabs:
+  - {fileID: 1244497314869674794, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+  disableChestGeneration: 0
+  onSpawnDialogue: Act4_LunaSearch_P4N4
+  postCombatDialogue: 
+  isScriptedDeath: 0
+  spawnPortalAfterLastDialogue: 0
+  routeName: 

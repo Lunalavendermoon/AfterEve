@@ -9,6 +9,7 @@ public class SingleNarrativeRoom : ScriptableObject
     public enum NodeType
     {
         SingleTime,
+        Branch, // Only triggers if routeName appears in currentRoute for the current run
         Repeat
     }
 
@@ -16,6 +17,8 @@ public class SingleNarrativeRoom : ScriptableObject
     {
         Randomized,
         Custom,
+        P4Decisions, // Spawns Eve boss on confrontation branch, regular enemies otherwise
+        P4LunaSearch, // Spawns Luna boss on confrontation, regular otherwise
         CutsceneOnly // TODO: this should be deprecated eventually and is just for testing
         // Merge non-combat narrative rooms into their neighbors if possible.
     }
@@ -38,4 +41,7 @@ public class SingleNarrativeRoom : ScriptableObject
     public string postCombatDialogue;
     public bool isScriptedDeath;
     public bool spawnPortalAfterLastDialogue;
+
+    [Header("Optional - branching nodes only")]
+    public string routeName;
 }

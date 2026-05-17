@@ -100,4 +100,11 @@ public class YarnCommands : MonoBehaviour
     {
         yield return new WaitUntil(() => ShopManager.instance.ShopIsClosed());
     }
+
+    [YarnCommand("set_route")]
+    public void SetNarrativeRoute(string route)
+    {
+        NarrativeRoomManager.instance.currentRoute.Add(route);
+        Debug.Log($"Set current narrative route to {route}");
+    }
 }

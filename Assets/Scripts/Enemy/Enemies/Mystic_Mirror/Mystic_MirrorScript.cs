@@ -38,7 +38,7 @@ public class Mystic_MirrorScript : StandardEnemyBase
     public override void EnemyUpdate()
     {
         base.EnemyUpdate();
-        Debug.Log(current_enemy_state);
+        // Debug.Log(current_enemy_state);
         if (agent != null)
             agent.endReachedDistance = 5f;
     }

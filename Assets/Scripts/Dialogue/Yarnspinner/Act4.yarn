@@ -40,3 +40,110 @@ The Judge: Alright, yaddah yaddah this is your sacred duty, blah blah Prism need
 
 <<player_respawn YarnManager>>
 ===
+
+
+title: Act4_Decisions_P4N1
+---
+Eve: Decisions node
+
+-> Confront Eve
+    <<jump Act4_Decisions_Confront>>
+-> Run away with Eve
+    <<jump Act4_Decisions_RunAway>>
+-> Spend more time with Eve
+    <<jump Act4_Decisions_SpendTime>>
+===
+
+
+title: Act4_Decisions_Confront
+---
+<<set_route YarnManager Decisions_Confront>>
+
+Eve: confrontation node
+===
+
+
+title: Act4_Decisions_RunAway
+---
+<<set_route YarnManager Decisions_RunAway>>
+
+Eve: run away node
+===
+
+
+title: Act4_Decisions_SpendTime
+---
+<<set_route YarnManager Decisions_SpendTime>>
+
+Eve: let's spend time together :3
+
+-> Slice of life
+    <<jump Act4_Decisions_SpendTime_SliceofLife>>
+-> Family drama
+    <<jump Act4_Decisions_SpendTime_Drama>>
+-> Romcom
+    <<jump Act4_Decisions_SpendTime_Romcom>>
+===
+
+
+title: Act4_Decisions_SpendTime_SliceofLife
+---
+<<set_route YarnManager Decisions_SpendTime_SliceofLife>>
+
+Eve: watching slice of life movie
+===
+
+
+title: Act4_Decisions_SpendTime_Drama
+---
+<<set_route YarnManager Decisions_SpendTime_Drama>>
+
+Eve: watching family drama movie
+===
+
+
+title: Act4_Decisions_SpendTime_Romcom
+---
+<<set_route YarnManager Decisions_SpendTime_Romcom>>
+
+Eve: watching romcom movie
+===
+
+
+title: Act4_FateExchange_P4N3
+---
+Eve: fate exchange scene
+===
+
+
+title: Act4_LunaSearch_P4N4
+---
+Luna: luna search scene. hi im luna >:3
+
+-> Confront her
+    <<jump Act4_LunaSearch_Confront>>
+-> Do nothing
+    <<jump Act4_LunaSearch_DoNothing>>
+===
+
+
+title: Act4_LunaSearch_Confront
+---
+<<set_route YarnManager LunaSearch_Confront>>
+
+Luna: die bitch
+===
+
+
+title: Act4_LunaSearch_DoNothing
+---
+<<set_route YarnManager LunaSearch_DoNothing>>
+
+Eve: don't confront luna
+===
+
+
+title: Act4_LunaSearch_DoNothing_P4N5
+---
+Eve: im a boss now. fight me
+===

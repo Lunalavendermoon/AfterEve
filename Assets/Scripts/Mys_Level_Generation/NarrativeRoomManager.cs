@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -20,6 +21,7 @@ public class NarrativeRoomManager : MonoBehaviour
     [HideInInspector] public bool hasCombat = false;
     [HideInInspector] public SingleNarrativeRoom currentRoom = null;
     [HideInInspector] public GameObject roomObject = null;
+    [HideInInspector] public List<string> currentRoute = new();
 
     bool needsEnemySpawn = false;
 
@@ -55,6 +57,7 @@ public class NarrativeRoomManager : MonoBehaviour
 
     public void StartNewCycle()
     {
+        currentRoute.Clear();
         StaticGameManager.roomCount = 0;
         StaticGameManager.IncrementVisits();
     }
@@ -87,12 +90,16 @@ public class NarrativeRoomManager : MonoBehaviour
                 continue;
             }
 
-            // assumes that there are only 2 types of narrative room: single time and repeat
-
             if (room.nodeType == SingleNarrativeRoom.NodeType.SingleTime &&
                 !StaticGameManager.VisitEquals(room.roomCount, room.visitCount))
             {
                 // player has visited the current room either too few or too many times to trigger dialogue
+                continue;
+            }
+            else if (room.nodeType == SingleNarrativeRoom.NodeType.Branch &&
+                     !currentRoute.Contains(room.routeName))
+            {
+                // Player is not on the correct route to trigger this scene
                 continue;
             }
 
@@ -105,7 +112,7 @@ public class NarrativeRoomManager : MonoBehaviour
                     portal.SetActive(false);
                     disableChestGeneration = room.disableChestGeneration;
                     needsEnemySpawn = true;
-                    hasCombat = needsEnemySpawn;
+                    hasCombat = true;
                     return NarrativeRoomNeed.MapOnly;
 
                 // Custom room and enemy spawn (used for tutorial & boss)
@@ -135,6 +142,14 @@ public class NarrativeRoomManager : MonoBehaviour
                     needsEnemySpawn = room.enemyPrefabs.Count != 0;
                     hasCombat = needsEnemySpawn;
                     return NarrativeRoomNeed.Nothing;
+                
+                case SingleNarrativeRoom.RoomEnemyGen.P4Decisions:
+                case SingleNarrativeRoom.RoomEnemyGen.P4LunaSearch:
+                    portal.SetActive(false);
+                    disableChestGeneration = room.disableChestGeneration;
+                    needsEnemySpawn = true;
+                    hasCombat = true;
+                    return NarrativeRoomNeed.MapOnly;
 
                 // TODO: this should be deprecated eventually
                 // Rooms that only play dialogue and then teleport player to next room
@@ -158,7 +173,11 @@ public class NarrativeRoomManager : MonoBehaviour
         if (currentRoom)
         {
             needsEnemySpawn = false;
-            if (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.Custom)
+            if (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.Custom ||
+                (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4Decisions &&
+                    currentRoute.Contains("Decisions_Confront")) ||
+                (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4LunaSearch &&
+                    currentRoute.Contains("LunaSearch_Confront")))
             {
                 EnemySpawnerScript.instance.SpawnCustomEnemies(currentRoom.enemyPrefabs, roomObject);
             }
@@ -172,8 +191,10 @@ public class NarrativeRoomManager : MonoBehaviour
     void OnRoomChange()
     {
         // When spawning in a new room, play on-spawn dialogue & BGM if it exists
+        Debug.Log("### hiiii");
         if (currentRoom && currentRoom.onSpawnDialogue.Length > 0)
         {
+            Debug.Log($"### {currentRoom.onSpawnDialogue}");
             PlayerController.instance.DisablePlayerInput();
             runner.StartDialogue(currentRoom.onSpawnDialogue);
             AudioManager.instance.InitializeMusic(currentRoom.roomMusic);

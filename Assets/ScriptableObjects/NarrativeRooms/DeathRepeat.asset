@@ -23,6 +23,16 @@ MonoBehaviour:
     - DeathRepeat_FalseHuman_P2_1
     - DeathRepeat_FalseHuman_P2_2
     - DeathRepeat_FalseHuman_P2_3
+  - cause: 3
+    dialogueNodes:
+    - DeathRepeat_PossessedEve_P4_P5_1
+    - DeathRepeat_PossessedEve_P4_P5_2
+    - DeathRepeat_PossessedEve_P4_P5_3
+  - cause: 4
+    dialogueNodes:
+    - DeathRepeat_Luna_P4_P5_1
+    - DeathRepeat_Luna_P4_P5_2
+    - DeathRepeat_Luna_P4_P5_3
   - cause: 0
     dialogueNodes:
     - DeathRepeat_Monster_1
@@ -32,7 +42,7 @@ MonoBehaviour:
     - DeathRepeat_Monster_5
     - DeathRepeat_Monster_6
     - DeathRepeat_Monster_7
-  - cause: 2
+  - cause: 3
     dialogueNodes:
     - DeathRepeat_Fallback_1
     - DeathRepeat_Fallback_2

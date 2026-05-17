@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3dde6bc376c4b81899dd53a29c5e0b, type: 3}
   m_Name: Loop4Node5
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
-  nodeType: 2
-  roomEnemyGenSetting: 3
-  roomCount: 4
+  nodeType: 1
+  roomEnemyGenSetting: 1
+  roomCount: 5
   visitCount: 0
   roomPrefab: {fileID: 0}
   itemPrefab: {fileID: 0}
@@ -27,10 +27,10 @@ MonoBehaviour:
       Data4: 0
     Path: 
   enemyPrefabs:
-  - {fileID: 1244497314869674794, guid: efd20b22ce3898e4c8a1cfe006b46073, type: 3}
+  - {fileID: 1244497314869674794, guid: c546ec807148dbb4f9e44ac8d0cf4b3e, type: 3}
   disableChestGeneration: 0
-  onSpawnDialogue: Act4_LunaSearch_P4N4
-  postCombatDialogue: 
-  isScriptedDeath: 0
+  onSpawnDialogue: Act4_LunaSearch_DoNothing_P4N5
+  postCombatDialogue: Autoclear_Room
+  isScriptedDeath: 1
   spawnPortalAfterLastDialogue: 0
   routeName: 

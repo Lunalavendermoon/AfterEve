@@ -41,7 +41,8 @@ public class RepeatDeathRooms : ScriptableObject
                 // TODO: add path 5 condition
                 return (StaticGameManager.roomCount == 10 && StaticGameManager.pathCount == 3) ||
                         (StaticGameManager.roomCount == 1 && StaticGameManager.pathCount == 4 &&
-                            NarrativeRoomManager.instance.currentRoute.Contains("Decisions_Confront"));
+                            NarrativeRoomManager.instance.currentRoute.Contains("Decisions_Confront")) ||
+                        (StaticGameManager.roomCount == 5 && StaticGameManager.pathCount == 4);
             case DeathCauses.Luna:
                 // TODO: add path 5 condition
                 return StaticGameManager.roomCount == 4 && StaticGameManager.pathCount == 4 &&

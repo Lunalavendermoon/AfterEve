@@ -107,4 +107,10 @@ public class YarnCommands : MonoBehaviour
         NarrativeRoomManager.instance.currentRoute.Add(route);
         Debug.Log($"Set current narrative route to {route}");
     }
+
+    [YarnCommand("debug_log")]
+    public void DebugLog(string text)
+    {
+        Debug.Log($"YarnSpinner debug log: {text}");
+    }
 }

@@ -451,7 +451,7 @@ public class GameManager : MonoBehaviour
     // ============================================================
     // Clear previously spawned tiles
     // ============================================================
-    private void ClearMap()
+    public void ClearMap()
     {
         gridToInstance.Clear();
         occupiedCells.Clear();

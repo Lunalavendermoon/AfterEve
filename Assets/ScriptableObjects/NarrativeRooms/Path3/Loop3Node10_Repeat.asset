@@ -30,6 +30,7 @@ MonoBehaviour:
   - {fileID: 1244497314869674794, guid: c546ec807148dbb4f9e44ac8d0cf4b3e, type: 3}
   disableChestGeneration: 0
   onSpawnDialogue: Spawn_Enemies
-  postCombatDialogue: Autoclear_Room
+  postCombatDialogue: Back_To_Game
   isScriptedDeath: 1
   spawnPortalAfterLastDialogue: 0
+  routeName: 

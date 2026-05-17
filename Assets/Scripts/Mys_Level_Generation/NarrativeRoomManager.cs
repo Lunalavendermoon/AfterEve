@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using Yarn.Unity;
 
 public class NarrativeRoomManager : MonoBehaviour
@@ -22,6 +23,8 @@ public class NarrativeRoomManager : MonoBehaviour
     [HideInInspector] public SingleNarrativeRoom currentRoom = null;
     [HideInInspector] public GameObject roomObject = null;
     [HideInInspector] public List<string> currentRoute = new();
+
+    Transform mapRoot;
 
     bool needsEnemySpawn = false;
 
@@ -145,6 +148,7 @@ public class NarrativeRoomManager : MonoBehaviour
                 
                 case SingleNarrativeRoom.RoomEnemyGen.P4Decisions:
                 case SingleNarrativeRoom.RoomEnemyGen.P4LunaSearch:
+                    this.mapRoot = mapRoot;
                     portal.SetActive(false);
                     disableChestGeneration = room.disableChestGeneration;
                     needsEnemySpawn = true;
@@ -173,12 +177,22 @@ public class NarrativeRoomManager : MonoBehaviour
         if (currentRoom)
         {
             needsEnemySpawn = false;
-            if (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.Custom ||
-                (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4Decisions &&
+            if (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.Custom)
+            {
+                EnemySpawnerScript.instance.SpawnCustomEnemies(currentRoom.enemyPrefabs, roomObject);
+            }
+            else if ((currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4Decisions &&
                     currentRoute.Contains("Decisions_Confront")) ||
                 (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4LunaSearch &&
                     currentRoute.Contains("LunaSearch_Confront")))
             {
+                GameManager.instance.ClearMap();
+                roomObject = Instantiate(
+                    currentRoom.roomPrefab,
+                    new Vector3(0f, 0f, 0f),
+                    Quaternion.identity,
+                    mapRoot
+                );
                 EnemySpawnerScript.instance.SpawnCustomEnemies(currentRoom.enemyPrefabs, roomObject);
             }
             else
@@ -191,22 +205,39 @@ public class NarrativeRoomManager : MonoBehaviour
     void OnRoomChange()
     {
         // When spawning in a new room, play on-spawn dialogue & BGM if it exists
-        Debug.Log("### hiiii");
         if (currentRoom && currentRoom.onSpawnDialogue.Length > 0)
         {
-            Debug.Log($"### {currentRoom.onSpawnDialogue}");
             PlayerController.instance.DisablePlayerInput();
             runner.StartDialogue(currentRoom.onSpawnDialogue);
-            AudioManager.instance.InitializeMusic(currentRoom.roomMusic);
+            // TODO: just for testing, can remove this try/catch wrapper once all audio is implemented
+            try
+            {
+                AudioManager.instance.InitializeMusic(currentRoom.roomMusic);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning(e);
+            }
         }
     }
 
     void OnAllEnemiesDefeated()
     {
-        if (currentRoom && currentRoom.postCombatDialogue.Length > 0)
+        if (currentRoom)
         {
-            PlayerController.instance.DisablePlayerInput();
-            runner.StartDialogue(currentRoom.postCombatDialogue);
+            if (currentRoom.postCombatDialogue.Length > 0)
+            {
+                PlayerController.instance.DisablePlayerInput();
+                runner.StartDialogue(currentRoom.postCombatDialogue);
+            }
+            else if ((currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4Decisions &&
+                        currentRoute.Contains("Decisions_Confront")) ||
+                    (currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4LunaSearch &&
+                        currentRoute.Contains("LunaSearch_Confront")))
+            {
+                // Scripted death that only triggers on certain routes
+                PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
+            }
         }
     }
 

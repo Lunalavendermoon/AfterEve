@@ -93,6 +93,9 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void SpawnCustomEnemies(List<GameObject> enemies, GameObject roomPrefab)
     {
+        // Don't spawn any previously queued random enemies
+        enemyList.Clear();
+
         // use List<GameObject> enemyPrefabs to assign enemies to SpawnPoints in level room/tiles
         if (enemies == null || enemies.Count == 0)
         {
@@ -175,19 +178,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         if (numberOfEnemies <= 0)
         {
-            if (NarrativeRoomManager.instance.currentRoom &&
-                ((NarrativeRoomManager.instance.currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4Decisions &&
-                    NarrativeRoomManager.instance.currentRoute.Contains("Decisions_Confront")) ||
-                 (NarrativeRoomManager.instance.currentRoom.roomEnemyGenSetting == SingleNarrativeRoom.RoomEnemyGen.P4LunaSearch &&
-                    NarrativeRoomManager.instance.currentRoute.Contains("LunaSearch_Confront"))))
-            {
-                // Scripted death that only triggers on certain routes
-                PlayerController.instance.Die(DamageInstance.DamageSource.ScriptedDeath);
-            }
-            else
-            {
-                SpawnAndRevealChestAt(enemy != null ? enemy.transform.position : Vector3.zero);
-            }
+            SpawnAndRevealChestAt(enemy != null ? enemy.transform.position : Vector3.zero);
         }
     }
 

@@ -116,6 +116,12 @@ Eve: fate exchange scene
 ===
 
 
+title: Act4_FateExchange_Repeat_P4N3
+---
+Eve: repeat fate exchange
+===
+
+
 title: Act4_LunaSearch_P4N4
 ---
 Luna: luna search scene. hi im luna >:3
@@ -146,4 +152,10 @@ Eve: don't confront luna
 title: Act4_LunaSearch_DoNothing_P4N5
 ---
 Eve: im a boss now. fight me
+===
+
+
+title: Act4_LunaSearch_DoNothing_PostCombat_P4N5
+---
+Cyrus: post combat dialogue
 ===

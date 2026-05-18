@@ -30,7 +30,7 @@ MonoBehaviour:
   - {fileID: 1244497314869674794, guid: c546ec807148dbb4f9e44ac8d0cf4b3e, type: 3}
   disableChestGeneration: 0
   onSpawnDialogue: Act4_LunaSearch_DoNothing_P4N5
-  postCombatDialogue: Back_To_Game
+  postCombatDialogue: Act4_LunaSearch_DoNothing_PostCombat_P4N5
   isScriptedDeath: 1
   spawnPortalAfterLastDialogue: 0
   routeName: LunaSearch_DoNothing

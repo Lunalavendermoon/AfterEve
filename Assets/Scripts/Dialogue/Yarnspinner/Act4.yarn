@@ -58,7 +58,7 @@ Eve: Decisions node
 title: Act4_Decisions_P4N1_Alt
 ---
 <<set_portrait YarnManager Cyrus>>
-Cyrus: [i]...Another failure. Let’s try something else[/i]
+Cyrus: [i]...Another failure. Let’s try something else.[/i]
 
 <<set_portrait YarnManager Eve>>
 Cyrus: Eve...

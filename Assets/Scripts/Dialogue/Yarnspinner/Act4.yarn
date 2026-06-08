@@ -55,6 +55,27 @@ Eve: Decisions node
 ===
 
 
+title: Act4_Decisions_P4N1_Alt
+---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]...Another failure. Let’s try something else[/i]
+
+<<set_portrait YarnManager Eve>>
+Cyrus: Eve...
+
+-> Confront Eve
+    <<jump Act4_Decisions_Confront>>
+-> Run away with Eve
+    <<jump Act4_Decisions_RunAway>>
+-> Spend more time with Eve
+    <<if is_flag_set("Act4_Decisions_SpendTime")>>
+        <<jump Act4_Decisions_SpendTime_Alt>>
+    <<else>>
+        <<jump Act4_Decisions_SpendTime>>
+    <<endif>>
+===
+
+
 title: Act4_Decisions_Confront
 ---
 <<set_route YarnManager Decisions_Confront>>
@@ -74,14 +95,30 @@ Eve: run away node
 title: Act4_Decisions_SpendTime
 ---
 <<set_route YarnManager Decisions_SpendTime>>
+<<set_flag YarnManager Act4_Decisions_SpendTime>>
 
 Eve: let's spend time together :3
 
--> Slice of life
+-> [i]Slice of Life[/i]
     <<jump Act4_Decisions_SpendTime_SliceofLife>>
--> Family drama
-    <<jump Act4_Decisions_SpendTime_Drama>>
--> Romcom
+-> [i]Murder Mystery[/i]
+    <<jump Act4_Decisions_SpendTime_MurderMystery>>
+-> [i]Romcom[/i]
+    <<jump Act4_Decisions_SpendTime_Romcom>>
+===
+
+
+title: Act4_Decisions_SpendTime_Alt
+---
+<<set_route YarnManager Decisions_SpendTime>>
+
+Eve: So? Which one do you want to watch?
+
+-> [i]Slice of Life[/i]
+    <<jump Act4_Decisions_SpendTime_SliceofLife>>
+-> [i]Murder Mystery[/i]
+    <<jump Act4_Decisions_SpendTime_MurderMystery>>
+-> [i]Romcom[/i]
     <<jump Act4_Decisions_SpendTime_Romcom>>
 ===
 
@@ -94,11 +131,11 @@ Eve: watching slice of life movie
 ===
 
 
-title: Act4_Decisions_SpendTime_Drama
+title: Act4_Decisions_SpendTime_MurderMystery
 ---
-<<set_route YarnManager Decisions_SpendTime_Drama>>
+<<set_route YarnManager Decisions_SpendTime_MurderMystery>>
 
-Eve: watching family drama movie
+Eve: watching murder mystery movie
 ===
 
 

@@ -20,6 +20,7 @@ public static class StaticGameManager
     public static int roomCount = 0; // number of rooms encountered on this playthrough (including current room)
     public static int pathCount = 0; // number of NARRATIVE PATHS done (not playthroughs)
     static readonly Dictionary<int, int> visitCount = new(); // number of times each room was visited (inclusive)
+    public static readonly HashSet<string> narrativeFlags = new();
 
     private static AsyncOperation asyncSceneLoad;
 

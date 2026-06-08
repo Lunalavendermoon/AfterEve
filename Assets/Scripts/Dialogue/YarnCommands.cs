@@ -113,4 +113,18 @@ public class YarnCommands : MonoBehaviour
     {
         Debug.Log($"YarnSpinner debug log: {text}");
     }
+
+    [YarnCommand("set_flag")]
+    public void SetNarrativeFlag(string flag)
+    {
+        StaticGameManager.narrativeFlags.Add(flag);
+    }
+
+    // FUNCTIONS
+
+    [YarnFunction("is_flag_set")]
+    public static bool IsNarrativeFlagSet(string flag)
+    {
+        return StaticGameManager.narrativeFlags.Contains(flag);
+    }
 }

@@ -44,14 +44,46 @@ The Judge: Alright, yaddah yaddah this is your sacred duty, blah blah Prism need
 
 title: Act4_Decisions_P4N1
 ---
-Eve: Decisions node
+<<set_portrait YarnManager Eve>>
+Eve: Hey, are you okay?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]If I kill her before the Hierophant can ever possess her, it’ll stop the Assimilation.[/i]
+Cyrus: [i]This would be the end, wouldn’t it? Just as the Judge said. True justice will be brought to the world.[/i]
+Cyrus: [i]But...[/i]
+
+<<set_portrait YarnManager Eve>>
+Eve: Umm, hello? Can you hear me? Are you okay?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: ...Yes, I can hear you.
+
+<<set_portrait YarnManager Eve>>
+Eve: Oh, that’s great! I was worried that you hit your head or something when I found you. I'm Eve!
+Eve: What’s your name?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]Maybe I should spend some more time understanding who “Eve” really is.[/i]
+
+<<clear_portrait YarnManager>>
+: [i]The two return to town.[/i]
+
+<<set_portrait YarnManager Eve>>
+Eve: We make a great dispatcher-hunter, duo, don’t we? Took those monsters out like it was nothing!
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Eve...
 
 -> Confront Eve
     <<jump Act4_Decisions_Confront>>
 -> Run away with Eve
     <<jump Act4_Decisions_RunAway>>
 -> Spend more time with Eve
-    <<jump Act4_Decisions_SpendTime>>
+    <<if is_flag_set("Act4_Decisions_SpendTime")>>
+        <<jump Act4_Decisions_SpendTime_Alt>>
+    <<else>>
+        <<jump Act4_Decisions_SpendTime>>
+    <<endif>>
 ===
 
 
@@ -60,7 +92,6 @@ title: Act4_Decisions_P4N1_Alt
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]...Another failure. Let’s try something else.[/i]
 
-<<set_portrait YarnManager Eve>>
 Cyrus: Eve...
 
 -> Confront Eve
@@ -80,7 +111,60 @@ title: Act4_Decisions_Confront
 ---
 <<set_route YarnManager Decisions_Confront>>
 
-Eve: confrontation node
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I’m going to say something, and I need you to stay calm. Okay?
+
+<<set_portrait YarnManager Eve>>
+Eve: Uh, okay?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I need to understand something.
+Cyrus: ...
+Cyrus: I know you’re a False Human.
+
+<<set_portrait YarnManager Eve>>
+Eve: ...What?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Listen to me. I’m not gonna hurt you, or do anything. I just want to talk.
+
+<<set_portrait YarnManager Eve>>
+Eve: Why would you- how could you-
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I know about Ava.
+
+<<set_portrait YarnManager Eve>>
+Eve: No, I- I didn’t- I didn’t mean to- How do you even know her name? WHO are you?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Let’s just say...I can see things beyond our timeline. A power of Fate.
+
+<<set_portrait YarnManager Eve>>
+Eve: I don’t- I don’t know how you know all this but- you weren’t there.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Then tell me. Tell me your side. I want to hear it from you. Your story.
+
+<<set_portrait YarnManager Eve>>
+Eve: Cyrus...
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I know what the Hierophant intends to do with you. You’re not just a tool. You’re not just... a step in someone else’s ritual.
+
+<<set_portrait YarnManager Eve>>
+Eve: Stop. Please stop saying it like that.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I’m trying to help you.
+
+<<set_portrait YarnManager Eve>>
+Eve: You can’t.
+Eve: You will not stop the Assimilation from happening.
+Eve: Under the Hierophant we will all be one.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Ah. I see.
 ===
 
 
@@ -88,7 +172,45 @@ title: Act4_Decisions_RunAway
 ---
 <<set_route YarnManager Decisions_RunAway>>
 
-Eve: run away node
+<<set_portrait YarnManager Eve>>
+Eve: And as I was saying, the monsters are appearing closer to the residential districts now.
+Eve: Even the shelters aren’t safe anymore. People are pretending everything is normal, but... everyone’s scared.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Forgive me if this is a stupid question, but why hasn't everyone just left? We could just run away together.
+
+<<set_portrait YarnManager Eve>>
+Eve: There isn’t anywhere safer.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: There has to be somewhere beyond the outskirts.
+
+<<set_portrait YarnManager Eve>>
+Eve: The outskirts are a disaster zone, Cyrus.
+Eve: Most roads are gone. Half the districts are overrun by monsters or memory storms. Even caravans with armed escorts disappear out there.
+Eve: Normal people can’t do anything. Maybe hunters with strong enough Fates could survive the journey, but not everyone.
+Eve: My family is here. The people at the shelter are here. Everyone I care about is still here.
+Eve: How could I run away while leaving them behind to die?
+Eve: Besides... I don’t think I could leave even if I wanted to.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: What do you mean?
+
+<<set_portrait YarnManager Eve>>
+Eve: I don’t know how to explain it properly. It’s just... 
+Eve: Sometimes I wonder if people are just shaped by the places they’re born in.
+Eve: Like no matter how much they struggle, there are some things they can never truly escape.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]Does she mean...[/i]
+Cyrus: [i]False humans are born from memories. And memories cannot stray far from their origin.[/i]
+Cyrus: [i]Eve may never have had the freedom to choose escape at all.[/i]
+
+<<set_portrait YarnManager Eve>>
+Eve: Anyway, you should stop suggesting dramatic things like “running away together.” It sounds like something from one of those romance novels.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Heh.
 ===
 
 
@@ -97,12 +219,53 @@ title: Act4_Decisions_SpendTime
 <<set_route YarnManager Decisions_SpendTime>>
 <<set_flag YarnManager Act4_Decisions_SpendTime>>
 
-Eve: let's spend time together :3
-
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]I need to learn more about Eve.[/i]
+Cyrus: [i]Everything she’s done for me couldn’t have been a farce, right?[/i]
+Cyrus: [i]There has to be something else I can do...[/i]
+<<clear_portrait YarnManager>>
+: [i]The two go to the shop.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: Hey Dad, do you need help with anything?
+<<set_portrait YarnManager Shopkeeper>>
+Shopkeeper: I’m all good for now. And actually...
+Shopkeeper: One of the Hunters you helped last week dropped by earlier and left a movie as thanks.
+<<set_portrait YarnManager Eve>>
+Eve: Oh, really? Thanks, Dad! And tell him I said thank you!
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You like watching movies?
+<<set_portrait YarnManager Eve>>
+Eve: Psh, I’m not a full-on cinephile or anything. It’s just something I like to do when I don’t have much else going on.
+Eve: Actually, want to come to my room and see my collection?
+Eve: Welcome to my room! It’s a little messy, aha...
+Eve: Anyhow, let’s see what this is.
+Eve: Oooh, it’s a new Heartline Pictures movie!
+Eve: It’s called “Fatefully Yours in Lumas.”
+<<clear_portrait YarnManager>>
+: [i]The description says: “Margaret, an ambitious city memory-writer, returns to her hometown of Lumas to help her family’s struggling shop.[/i]
+: [i]But when she meets Krys, a charming Hunter with a tragic past, she must choose between the life she built in the city and the love waiting for her at home.”[/i]
+<<set_portrait YarnManager Cyrus>>
+Cyrus: ...Sounds pretty cheesy.
+<<set_portrait YarnManager Eve>>
+Eve: Hey, don’t judge my taste in movies! Romcoms are perfectly good movies in their own right!
+Eve: The lighthearted comedy paired with the heart-melting romantic elements make them both funny and sweet to watch,
+Eve: and the less complex story with lower stakes makes it so you can easily watch them together with your friends and family and have fun! And ALSO-
+<<set_portrait YarnManager Cyrus>>
+Cyrus: For someone who claims to not be a movie-lover, you sure have a lot to say about them.
+<<set_portrait YarnManager Eve>>
+Eve: Ehehehe...
+Eve: Anyhow, want to watch a movie with me? There's no mission right now.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]Guess I defeated the monsters too fast this time.[/i]
+Cyrus: Sure. What do you have?
+<<set_portrait YarnManager Eve>>
+Eve: We have a slice of life. The other is a murder mystery.
+Eve: And of course, we can watch the new one together if you’re in the mood for some romcom!
+Eve: So? Which one do you want to watch?
 -> [i]Slice of Life[/i]
     <<jump Act4_Decisions_SpendTime_SliceofLife>>
 -> [i]Murder Mystery[/i]
-    <<jump Act4_Decisions_SpendTime_MurderMystery>>
+    <<jump Act4_Decisions_SpendTime_Drama>>
 -> [i]Romcom[/i]
     <<jump Act4_Decisions_SpendTime_Romcom>>
 ===
@@ -112,6 +275,7 @@ title: Act4_Decisions_SpendTime_Alt
 ---
 <<set_route YarnManager Decisions_SpendTime>>
 
+<<set_portrait YarnManager Eve>>
 Eve: So? Which one do you want to watch?
 
 -> [i]Slice of Life[/i]
@@ -126,42 +290,351 @@ Eve: So? Which one do you want to watch?
 title: Act4_Decisions_SpendTime_SliceofLife
 ---
 <<set_route YarnManager Decisions_SpendTime_SliceofLife>>
-
-Eve: watching slice of life movie
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I’m fine with something relaxing.
+<<set_portrait YarnManager Eve>>
+Eve: Good choice. This one’s great.
+<<clear_portrait YarnManager>>
+: [i]The movie opens on a small apartment at dawn.[/i]
+: [i]A young man, Ren, is trying to get his little sister ready for school while packing breakfast, sorting bills, and answering a call from work.[/i]
+: [i]He burns toast, steps on a toy, and insists everything is “completely under control” while the smoke alarm goes off.[/i]
+: [i]On the way to school, his sister complains about her hair. Ren tries to fix it, makes it worse...[/i]
+: [i]...then offers to buy her a “good morning memory” from a kiosk to make up for it.[/i]
+<<set_portrait YarnManager Cyrus>>
+Cyrus: That’s a thing?
+<<set_portrait YarnManager Eve>>
+Eve: Small memories, mostly. Mood boosters. People buy confidence before interviews, calming memories before exams...
+Eve: There are even first-date packages, which are apparently terrible.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Apparently?
+<<set_portrait YarnManager Eve>>
+Eve: I’ve never bought one. Obviously.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I wasn’t accusing you.
+<<set_portrait YarnManager Eve>>
+Eve: Good, because if I did, I’d at least buy the premium version.
+<<clear_portrait YarnManager>>
+: [i]Ren sees the price and quietly puts his wallet away. Instead, he tells his sister a ridiculous story about a heroic pigeon stealing the mayor’s sandwich.[/i]
+: [i]She laughs and forgets she was upset.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: Ren’s basically raising her alone. That’s why he worries over tiny things.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Your dad is like that?
+<<set_portrait YarnManager Eve>>
+Eve: Yeah. He acts relaxed, but he notices everything. If I cough once, he asks if I need medicine. If I’m five minutes late, he “just happens” to be outside.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: He must care about you a lot.
+<<set_portrait YarnManager Eve>>
+Eve: He does. Sometimes I think he cares so much because he already lost too much.
+Eve: When someone is all you have left, maybe you stop asking questions that might take them away.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: ...I can understand that.
+<<clear_portrait YarnManager>>
+: [i]On-screen, Ren’s sister auditions for a school commercial.[/i]
+: [i]The teacher says they want “authentic childhood joy,” then hands the children a list of approved expressions and memories to rehearse.[/i]
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Even commercials use planted memories?
+<<set_portrait YarnManager Eve>>
+Eve: Of course. Manufactured celebrities are all memory design. Agencies decide what people should remember about you.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: What about Hunters?
+<<set_portrait YarnManager Eve>>
+Eve: Definitely. If you became an agency Hunter, they’d probably make you the “silent protector of the forgotten city.” Lots of shots of you standing in the rain.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: That sounds inconvenient.
+<<set_portrait YarnManager Eve>>
+Eve: That’s your reaction?
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I don’t like standing in the rain.
+<<set_portrait YarnManager Eve>>
+Eve: Wow. The legend collapses immediately.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Could rivals sabotage that?
+<<set_portrait YarnManager Eve>>
+Eve: All the time. Leak the wrong memory, pay witnesses to remember you badly, make people associate you with cowardice or cruelty.
+Eve: If enough people remember a version of you, it starts to matter more than what actually happened.
+<<clear_portrait YarnManager>>
+: [i]In the movie, Ren’s sister refuses the commercial because she doesn’t want strangers told how to love her.[/i]
+: [i]She says she’d rather be remembered properly by her brother.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: This is one of my favorite scenes. Being loved by one person can still count, even if the whole world doesn’t know you.
+<<clear_portrait YarnManager>>
+: [i]Later, Ren takes a second job delivering memory cartridges and misses his sister’s recital. He arrives just as it ends.[/i]
+: [i]Instead of making excuses, he apologizes, and they sit outside eating convenience-store buns.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: That’s what I like about family stories. Even when people mess up, there’s still this understanding underneath it.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Were you close with your dad right away?
+<<set_portrait YarnManager Eve>>
+Eve: I was awkward. I wanted to help with everything, but I was terrible at it. Once I tried to make breakfast and somehow made poison.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: That’s... impressive.
+<<set_portrait YarnManager Eve>>
+Eve: Another time, I was taking orders and wrote down everything the client said. Including “uh,” “actually,” and “wait, no, not that one.”
+<<set_portrait YarnManager Cyrus>>
+Cyrus: At least you were thorough.
+<<set_portrait YarnManager Eve>>
+Eve: Dad laughed so hard he had to go into the back room. I was furious for three days.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Only three?
+<<set_portrait YarnManager Eve>>
+Eve: What can I say? I’m very forgiving.
+<<clear_portrait YarnManager>>
+: [i]The movie ends with Ren and his sister in a slightly better apartment. He makes breakfast without burning it.[/i]
+: [i]When she asks if they’ll be okay, he says, “As long as we’re together.”[/i]
+: [i]The screen fades out.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: So? How was it?
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Simple, but not shallow. The ending is a little unrealistic, though. People don’t always get rewarded for trying hard.
+<<set_portrait YarnManager Eve>>
+Eve: That’s fair. But sometimes I want a story to be kinder than reality. A happily ever after.
 ===
 
 
 title: Act4_Decisions_SpendTime_MurderMystery
 ---
 <<set_route YarnManager Decisions_SpendTime_MurderMystery>>
-
-Eve: watching murder mystery movie
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Maybe the murder mystery. The family conflict sounds interesting.
+<<set_portrait YarnManager Eve>>
+Eve: Good choice. It’s more family drama than murder, honestly, but I think that’s why I like it.
+<<clear_portrait YarnManager>>
+: [i]The movie opens with a detective arriving at a seaside estate in the rain.[/i]
+: [i]A member of the Veyne family, an old political dynasty, has been found dead. Every relative has a motive.[/i]
+: [i]The detective walks past campaign posters, old portraits, and a childhood photo of the siblings standing at the beach, holding small Arcana charms.[/i]
+<<set_portrait YarnManager Cyrus>>
+Cyrus: What are those charms?
+<<set_portrait YarnManager Eve>>
+Eve: Arcana symbols. Kids get them as gifts sometimes, but in the movie they’re also a hint.
+Eve: The ambitious brother has the Emperor, the sister who keeps running away has the Fool, things like that.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Do people usually show their Arcana that openly?
+<<set_portrait YarnManager Eve>>
+Eve: Not their real one. That’s private.
+Eve: Arcana are tied to memories, so people get weird about them. Some act like it decides your whole personality before you even speak.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Does it?
+<<set_portrait YarnManager Eve>>
+Eve: I think it influences people. But deciding someone’s entire life from one symbol sounds... cruel.
+<<clear_portrait YarnManager>>
+: [i]The movie continues. The family gathers for dinner after the funeral. At first, they pretend to be polite, but the conversation quickly breaks down.[/i]
+: [i]One brother accuses the others of using the victim’s death for political leverage. Another says the family was already dead long before the murder.[/i]
+: [i]Their father begs them to stop, but no one listens.[/i]
+: [i]On-screen, one sibling slams a glass down and says the only thing the family ever shared was a last name.[/i]
+: [i]Another laughs and says childhood memories are only valuable because they can be sold.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: ...
+<<clear_portrait YarnManager>>
+: [i]The argument worsens. Someone brings up the old beach memory, the last recording of all the siblings happy together.[/i]
+: [i]One wants to sell it to pay campaign debts. Another wants to destroy it because it makes them look weak.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: That’s awful.
+Eve: Sorry, I don’t know why this part always gets to me.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You don’t have to apologize.
+<<set_portrait YarnManager Eve>>
+Eve: I just don’t understand how they can throw it away like that. I know families fight. I know people hurt each other.
+Eve: But to have proof that you were happy together once, and still treat it like an asset or a weapon...
+Eve: Some people would give anything to have that.
+<<clear_portrait YarnManager>>
+: [i]On-screen, the detective finds the childhood memory recording.[/i]
+: [i]The siblings are children at the ocean, building a crooked sandcastle and arguing over who gets to be “ruler of the sea.”[/i]
+: [i]Their mother laughs and tells them family should be the place they return to, not the thing they conquer.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: I’ve never seen the real sea.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You want to?
+<<set_portrait YarnManager Eve>>
+Eve: More than anything. I always thought... if I ever went, I’d want to go with family.
+Eve: Otherwise it would feel like arriving somewhere beautiful and having no one to turn to.
+<<clear_portrait YarnManager>>
+: [i]The movie returns to the present. The detective reveals that the victim had been trying to buy back the beach memory before dying.[/i]
+: [i]The family argues again, but this time the anger feels weaker, exhausted.[/i]
+: [i]The mystery remains partly unresolved; no one can agree on what really happened that night.[/i]
+<<set_portrait YarnManager Cyrus>>
+Cyrus: So the detective doesn’t solve it?
+<<set_portrait YarnManager Eve>>
+Eve: Not completely. He figures out the crime, but not the family. I think that’s the point.
+<<clear_portrait YarnManager>>
+: [i]The final scene shows the surviving family members standing on the beach at dawn. They don’t reconcile. The old memory is something they can’t return to.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: So? What did you think?
+<<set_portrait YarnManager Cyrus>>
+Cyrus: It was sad. I expected the mystery to have a cleaner answer.
+<<set_portrait YarnManager Eve>>
+Eve: Same, the first time I watched it. But now I appreciate the nuance. Sometimes there isn’t a neat way to fix it.
+Eve: But even if they couldn’t go back to being that family, that memory still existed.
 ===
 
 
 title: Act4_Decisions_SpendTime_Romcom
 ---
 <<set_route YarnManager Decisions_SpendTime_Romcom>>
-
-Eve: watching romcom movie
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I guess we could try the new one.
+<<set_portrait YarnManager Eve>>
+Eve: Really? I didn’t take you for a romcom person.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You said it was new, and you seemed familiar with the studio.
+<<set_portrait YarnManager Eve>>
+Eve: I wouldn’t say familiar.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: How many of their movies have you watched?
+<<set_portrait YarnManager Eve>>
+Eve: Maybe ten. Or twenty. Anyway, sit down before you start interrogating me.
+<<clear_portrait YarnManager>>
+: [i]The movie opens in the city, where Margaret, an overworked memory-copywriter, is writing an outrage campaign for a corporation.[/i]
+: [i]Her mother calls, asking her to come home and help with the family shop.[/i]
+: [i]On-screen, Margaret insists she’s too busy. Her mother gently says they haven’t seen her in months.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: I already don’t understand her. I get being busy, but if your family is calling because they miss you, shouldn’t that matter?
+Eve: Sorry. I know it’s just a movie. I just think people should treasure family more when they have one.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: What would you do?
+<<set_portrait YarnManager Eve>>
+Eve: Go home immediately. Probably overpack, panic, and bring Dad a gift he didn’t ask for. What about you?
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Well, I don’t even know if I have a family. Memory loss, remember?
+<<set_portrait YarnManager Eve>>
+Eve: Oh. Right. Well... Dad would definitely let you join us for dinner if you wanted. He pretends he doesn’t collect strays, but he absolutely does.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I’ll keep that in mind.
+<<clear_portrait YarnManager>>
+: [i]Margaret returns to her hometown, Lumas. She helps a customer repair a hunting rifle.[/i]
+<<set_portrait YarnManager Eve>>
+Eve: No, no, no. Absolutely not.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Something wrong?
+<<set_portrait YarnManager Eve>>
+Eve: Everything. You don’t put the cartridge in before checking the Fate channel.
+Eve: Also, why is she hitting the barrel? That does nothing except make the weapon worse and maybe louder.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Are these movies usually inaccurate?
+<<set_portrait YarnManager Eve>>
+Eve: Yes, but this is personal now.
+<<clear_portrait YarnManager>>
+: [i]The door chimes. A handsome Hunter named Krys enters, wounded but charming. Margaret immediately forgets how to speak.[/i]
+<<set_portrait YarnManager Cyrus>>
+Cyrus: She repairs weapons for a living, but one attractive Hunter walks in and she loses all motor function?
+<<set_portrait YarnManager Eve>>
+Eve: That’s the romcom contract. Someone has to become embarrassed within the first twenty minutes.
+<<clear_portrait YarnManager>>
+: [i]The movie cuts through a montage of awkward flirting. Krys buys unnecessary supplies just to talk to Margaret. Margaret pretends not to notice.[/i]
+: [i]Eventually, Krys reveals his tragic backstory: a memory monster destroyed his home after false humans infiltrated the district.[/i]
+: [i]He vows to hunt both monsters and false humans until the world is safe.[/i]
+: [i]On-screen, Margaret places a hand over his and says, “Then I’ll help you expose every last one of them.”[/i]
+: [i]On-screen, the false humans appear in a secret underground ballroom, all laughing villainously while drinking stolen memories from crystal glasses.[/i]
+: [i]One says they “despise real human warmth” and another kicks a puppy-shaped service drone.[/i]
+: [i]Margaret discovers her corporate job has been secretly polishing false-human reputations through planted memories.[/i]
+: [i]Her boss calls and demands she return to the city. Krys asks whether she’ll choose her career or “the truth in her heart.”[/i]
+<<set_portrait YarnManager Cyrus>>
+Cyrus: That is a terrible thing to ask someone you’ve known for three days.
+<<set_portrait YarnManager Eve>>
+Eve: Two and a half, technically.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Worse.
+<<clear_portrait YarnManager>>
+: [i]On-screen, Margaret throws her work badge into the ocean, kisses Krys, and declares that love is the strongest Fate of all.[/i]
+: [i]Together, they expose the false humans, save the town, and reopen the family shop as a Hunter support center.[/i]
+: [i]The movie ends on a freeze-frame of Margaret and Krys laughing under fireworks.[/i]
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Well. That was something.
+<<set_portrait YarnManager Eve>>
+Eve: It definitely was.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: What did you think?
+<<set_portrait YarnManager Eve>>
+Eve: Very ridiculous, but fun. I liked Margaret’s parents, and some of the jokes were cute.
+Eve: The romance was rushed. They should’ve spent more time showing why Margaret and Krys actually liked each other, instead of just having him look sad in the rain.
+Eve: Anyway, the weapon repair scene was the real crime.
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Worse than the puppy drone?
+<<set_portrait YarnManager Eve>>
+Eve: Much worse. That rifle deserved justice.
 ===
 
 
 title: Act4_FateExchange_P4N3
 ---
-Eve: fate exchange scene
+/// no repeat
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I’d like to make an exchange.
+
+<<set_portrait YarnManager FateExchanger>>
+Fate Exchanger: Welcome back.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: You said I’ve done this before.
+
+<<set_portrait YarnManager FateExchanger>>
+Fate Exchanger: Countless. So much so, that even your own origins have become a mystery to you.
+
+<<clear_portrait YarnManager>>
+: [i]Cyrus makes an exchange.[/i] (TODO)
 ===
 
 
 title: Act4_FateExchange_Repeat_P4N3
 ---
-Eve: repeat fate exchange
+<<set_portrait YarnManager FateExchanger>>
+Fate Exchanger: What will it be at this time?
+
+-> Make a trade
+    <<set_portrait YarnManager Cyrus>>
+    Cyrus: Show me my options.
+    <<set_portrait YarnManager FateExchanger>>
+    Fate Exchanger: As you wish.
+    <<clear_portrait YarnManager>>
+    : [i]Cyrus makes an exchange.[/i] (TODO)
+    <<set_portrait YarnManager FateExchanger>>
+    Fate Exchanger: May this Fate find new life in your hands.
+-> Decline
+    <<set_portrait YarnManager Cyrus>>
+    Cyrus: No, thanks.
+    <<set_portrait YarnManager FateExchanger>>
+    Fate Exchanger: As you wish.
 ===
 
 
 title: Act4_LunaSearch_P4N4
 ---
-Luna: luna search scene. hi im luna >:3
+<<clear_portrait YarnManager>>
+Device: Attention citizens of Prism: we are in emergency lockdown. Evacuate away from the city center immediately and await further orders.
+
+<<set_portrait YarnManager Eve>>
+Eve: A lockdown? What's going on?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]Guess the mayor’s turned already.[/i]
+
+<<set_portrait YarnManager Eve>>
+Eve: This has never happened before...let me try contacting Dad, he might know something.
+
+<<clear_portrait YarnManager>>
+Door: [i]*knock knock*[/i]
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I'll get it.
+
+<<clear_portrait YarnManager>>
+Luna's voice: Prismatic Security. Anyone inside?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]Captain Luna?! What should I do?[/i]
+
+-> Confront her
+    <<jump Act4_LunaSearch_Confront>>
+-> Do nothing
+    <<jump Act4_LunaSearch_DoNothing>>
+===
+
+
+title: Act4_LunaSearch_P4N4_Alt
+---
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]Ah, it’s Luna. I should try something else this time.[/i]
 
 -> Confront her
     <<jump Act4_LunaSearch_Confront>>
@@ -174,7 +647,79 @@ title: Act4_LunaSearch_Confront
 ---
 <<set_route YarnManager LunaSearch_Confront>>
 
-Luna: die bitch
+<<set_portrait YarnManager Luna>>
+Luna: Oh, good-!
+Luna: You!
+
+<<set_portrait YarnManager PoliceNPC>>
+Officer: Captain-
+
+<<set_portrait YarnManager Luna>>
+Luna: Go make yourself useful, I’m busy.
+Luna: I can't believe you'd dare steal that face. You monster.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Wait, wait, I don't want to fight!
+
+<<set_portrait YarnManager Luna>>
+Luna: Then don’t.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Not when you're holding out your blade like that! 
+
+<<set_portrait YarnManager Luna>>
+Luna: We’ll go elsewhere. I’m not having this conversation in front of civilians.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]I told Eve I’d be going. Hm? This is the outskirts again-[/i]
+Cyrus: ! I thought we were going to talk it out!
+
+<<set_portrait YarnManager Luna>>
+Luna: Never said that.
+
+TODO split these into 2 separate scenes lol
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: *huff huff* [i]How is she so powerful? She's not even an enforcer.[/i]
+
+<<set_portrait YarnManager Luna>>
+Luna: Any last words? 
+
+<<clear_portrait YarnManager>>
+[i]A meminiscor emerges from the bushes and lunges at Cyrus, before Luna shoots it dead.[/i]
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: See??? How could that thing come at me if I’m a false human?
+
+<<set_portrait YarnManager Luna>>
+Luna: ...
+Luna: So you aren’t a false human, then. Lovely. But there’s lots of skinwalkers out there. Slaves of the Arcanas.
+
+<<set_portrait YarnManager Luna>>
+Luna: Which one are you?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Please, I really am on your side! I’m trying to stop the Assimilation.
+
+<<set_portrait YarnManager Luna>>
+Luna: Then why haven't you killed the remaining false human? You clearly know about them.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: ...This is out of their control.
+Cyrus: Condemning an innocent person for something beyond their control? I can’t do that.
+Cyrus: What if we could find another way? Don’t we owe it to them to at least try?
+
+<<set_portrait YarnManager Luna>>
+Luna: So what if they’re innocent now? There will inevitably come a day when they aren’t.
+Luna: If you truly are a follower of justice, then you know that a threat to the greater good must be eliminated.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: It’s not that simple.
+
+<<set_portrait YarnManager Luna>>
+Luna: It is. You can’t let your pity get in the way of what needs to be done.
+
+TODO start phase 2
 ===
 
 
@@ -182,17 +727,163 @@ title: Act4_LunaSearch_DoNothing
 ---
 <<set_route YarnManager LunaSearch_DoNothing>>
 
-Eve: don't confront luna
+<<set_portrait YarnManager Officer>>
+Officer: (muffled) Captain! We have a situation!
+
+<<set_portrait YarnManager Luna>>
+Luna: Let’s move.
+
+<<set_portrait YarnManager Eve>>
+Eve: Ugh, the signals are all messed up. I can’t reach him. Who was at the door?
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Oh, I think they got the wrong place. They left.
+
+<<set_portrait YarnManager Eve>>
+Eve: Huh, strange.
+Eve: I'll see if I can get in contact with anyone else... The Hunter agencies haven't said anything either.
+Eve: Ugh, I just feel useless right now.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: What more can you do?
+
+<<set_portrait YarnManager Eve>>
+Eve: I don’t know, but hiding instead of going out there and doing something makes me feel like a coward.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Doesn't that make us all cowards, then?
+
+<<set_portrait YarnManager Eve>>
+Eve: Oh, no, I didn't mean it like- I’m just scared.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Of course you are, it’s an emergency. Best thing to do is just follow instructions.
+
+<<set_portrait YarnManager Eve>>
+Eve: But you don't seem fazed at all.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Well...
+Cyrus: [i]I wouldn't say I'm normal.[/i]
+
+<<set_portrait YarnManager Eve>>
+Eve: Cyrus...
+Eve: I don’t know if my dispatcher broke, but it looks like it’s detecting meminiscors in the city.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Send me the locations, I'll take care of it. Remember to lock your doors.
+
+<<set_portrait YarnManager Eve>>
+Eve: Here. Be careful and report to me!
 ===
 
 
 title: Act4_LunaSearch_DoNothing_P4N5
 ---
-Eve: im a boss now. fight me
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Monsters in this area eliminated. That might be a new record. 
+
+<<set_portrait YarnManager Eve>>
+Eve: Alright, don’t get a big head about it. They say a hunter’s only as good as their dispatcher.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Yeah, who says that? 
+
+<<set_portrait YarnManager Eve>>
+Eve: Me, right now.
+Eve: Hm?
+
+<<clear_portrait YarnManager>>
+???: *voices speaking*
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]Huh? This voice... Luna![/i]
+Cyrus: Eve!
+Cyrus: Eve?
+Cyrus: [i]The line’s completely dead...[/i]
+Cyrus: [i]If Luna finds out...I need to head over.[/i]
+
+<<clear_portrait YarnManager>>
+: ...
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]I’m too late. Eve’s already turned.[/i]
+Cyrus: What did you do?
+
+<<set_portrait YarnManager Luna>>
+Luna: You! What are you-
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Where’s the girl!
+
+<<set_portrait YarnManager Luna>>
+Luna: Who do you think this monstrosity is? 
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Ugh-! Why are you attacking me?
+
+<<set_portrait YarnManager Luna>>
+Luna: You’re probably her accomplice, faker.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]I really don't have time for this.[/i]
 ===
 
 
 title: Act4_LunaSearch_DoNothing_PostCombat_P4N5
 ---
-Cyrus: post combat dialogue
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]With the two of us working together, we’ll actually be able to stop the assimilation.[/i]
+Cyrus: [i]...But I feel unsatisfied.[/i]
+Cyrus: [i]There must have been more I could have done.[/i]
+Cyrus: [i]Eve...[/i]
+Cyrus: [b][i]What if I just killed myself right now and restarted? I have infinite tries anyways.[/i][/b]
+
+<<set_portrait YarnManager Luna>>
+Luna: Now die-!
+Luna: ? How did I miss? What did you-
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I’m just as confused as you are.
+
+<<set_portrait YarnManager Cardinal>>
+???: Hm. This is unfortunate. I never thought I would have needed to go to such lengths. There should have not been anyone strong enough to rival God’s Creation.
+
+<<set_portrait YarnManager Luna>>
+Luna: What the hell is- Who are you!? What is this barrier-
+
+<<set_portrait YarnManager Cardinal>>
+The Cardinal: Ah, introductions. Call me the Cardinal. You, child, the strongest hunter in Prism. The executor of evil, you were meant to be executed as you had become that very evil.
+The Cardinal: This Enforcer of Justice was an unexpected variable.
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: [i]...This barrier! I can’t move![/i]
+
+<<set_portrait YarnManager Cardinal>>
+The Cardinal: Young man. Why are you still working for Justice when your faith no longer aligns with them?
+???: You desire a world with no more pain.
+???: One where Eve doesn’t have to suffer anymore.
+???: So why not join the order? 
+???: The Justice must have told you the Assimilation was a “world-destroyer”.
+???: But what Justice did not tell you is that the Assimilation would create a blissful world where none would have to ever suffer.
+
+<<set_portrait YarnManager Luna>>
+Luna: You really ought to shut that mouth of yours.
+
+<<set_portrait YarnManager Cardinal>>
+???: That is futile. I have already embedded my powers within this world. It will soon be embraced by True Order.
+
+<<set_portrait YarnManager Luna>>
+Luna: It’s getting up again!
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: ...
+Cyrus: Ha.
+Cyrus: Hahahahahah-!
+
+<<set_portrait YarnManager Luna>>
+Luna: This is funny to you??
+
+<<set_portrait YarnManager Cyrus>>
+Cyrus: I got this far...but it was still pointless.
 ===

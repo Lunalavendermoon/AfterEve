@@ -3186,6 +3186,7 @@ MonoBehaviour:
   hasCombat: 0
   currentRoom: {fileID: 0}
   roomObject: {fileID: 0}
+  currentRoute: []
 --- !u!114 &828173324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5587,6 +5588,14 @@ PrefabInstance:
     - target: {fileID: 6779206356963617677, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[3].sprites.Array.data[1].sprite
+      value: 
+      objectReference: {fileID: -792006806, guid: 4979fb13d8d490745ba1ef7dc00fdbd6, type: 3}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[3].sprites.Array.data[1].spriteName
+      value: Sad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -42,7 +42,7 @@ MonoBehaviour:
     - DeathRepeat_Monster_5
     - DeathRepeat_Monster_6
     - DeathRepeat_Monster_7
-  - cause: 3
+  - cause: 5
     dialogueNodes:
     - DeathRepeat_Fallback_1
     - DeathRepeat_Fallback_2

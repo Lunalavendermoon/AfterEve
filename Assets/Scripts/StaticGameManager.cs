@@ -13,12 +13,12 @@ public static class StaticGameManager
     public static float trustworthiness = 1f;
 
     // NARRATIVE ROOM GENERATION
-    public static int deathCount = 3; // number of deaths so far
+    public static int deathCount = 0; // number of deaths so far
     public static RepeatDeathRooms.DeathCauses latestDeathCause = RepeatDeathRooms.DeathCauses.ScriptedDeath;
 
     // all counters include the current instance (1-indexed instead of 0-indexed)
     public static int roomCount = 0; // number of rooms encountered on this playthrough (including current room)
-    public static int pathCount = 4; // number of NARRATIVE PATHS done (not playthroughs)
+    public static int pathCount = 0; // number of NARRATIVE PATHS done (not playthroughs)
     static readonly Dictionary<int, int> visitCount = new(); // number of times each room was visited (inclusive)
     public static readonly HashSet<string> narrativeFlags = new();
 

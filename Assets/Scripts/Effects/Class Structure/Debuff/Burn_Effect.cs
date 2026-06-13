@@ -46,7 +46,7 @@ public class Burn_Effect : Flat_Effects
 
     public override void ApplyEnemyEffect(EnemyAttributes enemyAttributes, EnemyBase enemy, bool increment)
     {   
-        if (increment)
+        if (increment && enemy != null)
         {
             enemy.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical);
 

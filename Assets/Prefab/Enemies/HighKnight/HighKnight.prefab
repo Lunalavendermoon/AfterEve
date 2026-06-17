@@ -167,6 +167,8 @@ MonoBehaviour:
   destinationSetter: {fileID: 2805890137714207626}
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
   rb: {fileID: 0}
+  hitFlashDuration: 0.08
+  hitFlashMaterial: {fileID: 0}
   chest: {fileID: 0}
   attackHitbox: {fileID: 3385193953142855512}
   knockbackForceOnHit: 0
@@ -177,7 +179,6 @@ MonoBehaviour:
   givesRewards: 1
   lockRotation: 1
   flipToFacePlayer: 1
-  luck: 1
   elite: 1
   wanderRadius: 7.5
   wanderTime: 3
@@ -185,7 +186,7 @@ MonoBehaviour:
   meleeAttackCooldownSeconds: 0.5
   rangedAttackCooldownSeconds: 5
   rangedProjectilePrefab: {fileID: 3357278264999052439, guid: d0cdda0b2fe16544598eff4e74510eda, type: 3}
-  groundMarkPrefab: {fileID: 3790353507615189266, guid: c289a7baf1c92764b9d3c94ae27f2401, type: 3}
+  groundMarkPrefab: {fileID: -7353061303949800851, guid: c289a7baf1c92764b9d3c94ae27f2401, type: 3}
   markLifetimeAfterProjectileDespawn: 3
   rangedMarkWidth: 1
   rangedMarkDamagePerTick: 10
@@ -490,7 +491,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -167363163
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0.2815814, b: 1, a: 1}

@@ -11,7 +11,7 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
     [SerializeField] private float rangedAttackCooldownSeconds = 5f;
     [SerializeField] private GameObject rangedProjectilePrefab;
     [Header("Ground mark (after projectile despawn)")]
-    [SerializeField] private GameObject groundMarkPrefab;
+    [SerializeField] private HighKnightGroundMark groundMarkPrefab;
     [SerializeField] private float markLifetimeAfterProjectileDespawn = 3f;
     [SerializeField] private float rangedMarkWidth = 1f;
     [SerializeField] private int rangedMarkDamagePerTick = 10;
@@ -157,30 +157,12 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
         var hp = proj.GetComponent<HighKnightRangedProjectile>();
         if (hp == null)
             hp = proj.AddComponent<HighKnightRangedProjectile>();
-        hp.Initialize(this, knightShotOrigin, dir, rangedProjectileSpeed, rangedProjectileMaxDistance);
-    }
-    public void SpawnGroundMarkBetween(Vector3 knightShotPosition, Vector3 projectileEndPosition)
-    {
-        if (groundMarkPrefab == null)
-            return;
-        Vector2 a = knightShotPosition;
-        Vector2 b = projectileEndPosition;
-        Vector2 delta = b - a;
-        float length = delta.magnitude;
-        if (length < 0.01f)
-            length = 0.01f;
-        Vector2 dir = delta / length;
-        Vector2 center = (a + b) * 0.5f;
-        float angleDeg = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Quaternion rot = Quaternion.Euler(0f, 0f, angleDeg);
-        GameObject instance = Instantiate(groundMarkPrefab, new Vector3(center.x, center.y, knightShotPosition.z), rot);
-        if (!instance.TryGetComponent(out HighKnightGroundMark mark))
-            mark = instance.AddComponent<HighKnightGroundMark>();
-        mark.Configure(
-            length,
-            rangedMarkWidth,
-            rangedMarkDamagePerTick,
-            rangedMarkDamageTickInterval,
-            markLifetimeAfterProjectileDespawn);
+
+        hp.ConfigureMark(groundMarkPrefab,
+                            rangedMarkWidth,
+                            rangedMarkDamagePerTick,
+                            rangedMarkDamageTickInterval,
+                            markLifetimeAfterProjectileDespawn);
+        hp.Initialize(knightShotOrigin, dir, rangedProjectileSpeed, rangedProjectileMaxDistance);
     }
 }

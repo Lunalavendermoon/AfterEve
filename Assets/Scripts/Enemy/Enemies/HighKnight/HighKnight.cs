@@ -20,10 +20,12 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
     [SerializeField] private float rangedProjectileSpeed = 12f;
     [SerializeField] private float rangedProjectileMaxDistance = 30f;
     [SerializeField] private float rangedProjectileSpawnPadding = 1f;
+
     private bool combatActive;
     private float rangedCooldownTimer;
     private float meleeCooldownTimer;
     private bool weakPointHitBySpiritualDamage;
+
     private sealed class NoopCombatState : IEnemyStates
     {
         public void EnterState(StandardEnemyBase enemy) { }
@@ -31,10 +33,12 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
         public void ExitState(StandardEnemyBase enemy) { }
     }
     private static readonly NoopCombatState NoopCombat = new();
+
     public void NotifyWeakPointHitBySpiritual()
     {
         weakPointHitBySpiritualDamage = true;
     }
+
     public override void ChangeState(IEnemyStates newState)
     {
         if (newState is Enemy_Chase)
@@ -47,6 +51,7 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
         }
         base.ChangeState(newState);
     }
+
     private void Awake()
     {
         transform.rotation = Quaternion.identity;
@@ -69,11 +74,13 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
         }
         default_enemy_state = new Enemy_Wander(wanderTime, wanderRadius);
     }
+
     public override void Attack(Transform target)
     {
         EnableAttack();
         Invoke(nameof(DisableAttack), 0.35f);
     }
+
     public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
         if (dmgType == DamageInstance.DamageType.Spiritual && weakPointHitBySpiritualDamage)
@@ -87,6 +94,7 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
         }
         base.TakeDamage(amount, dmgSource, dmgType);
     }
+
     public override void EnemyUpdate()
     {
         if (PlayerController.instance == null || enemyAttributes == null)
@@ -142,6 +150,7 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
             }
         }
     }
+
     private void FireRangedProjectile()
     {
         if (rangedProjectilePrefab == null || PlayerController.instance == null)

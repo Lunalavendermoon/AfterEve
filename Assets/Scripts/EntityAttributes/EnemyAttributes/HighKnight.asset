@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac10b445ec25ac4c8e961716e1777ee, type: 3}
   m_Name: HighKnight
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttributes
-  damage: 10
+  damage: 100
   damageDealtBonus: 0
   ignoreBasicDef: 0
   ignoreSpiritualDef: 0

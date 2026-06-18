@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3c06f29fe19af3048978d4a89822c0db
+guid: b64d5eca7c081417e98fc7108bd17f69
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cyrus_default_0
+      name: cyrus_smug_0
       rect:
         serializedVersion: 2
         x: 1017
-        y: 86
-        width: 831
-        height: 1130
+        y: 391
+        width: 12
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6843a9b757ffe554681519d95d77745b
-      internalID: 1143292016
+      spriteID: b5d82c29d9e2545cfad9dd3b04d65f0f
+      internalID: 1366578033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyrus_smug_1
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 83
+        width: 834
+        height: 1133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ad9ae462d1f341028cdc2d29139d79e
+      internalID: -147598907
       vertices: []
       indices: 
       edges: []
@@ -122,7 +144,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5d23e634d6c7d2f4bb9b6559dbcb8ead
+    spriteID: 2fadce4f84ef2486d867fa168672eff2
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +156,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      cyrus_default_0: 1143292016
+      cyrus_smug_0: 1366578033
+      cyrus_smug_1: -147598907
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

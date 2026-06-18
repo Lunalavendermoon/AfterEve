@@ -554,11 +554,43 @@ MonoBehaviour:
   portraits:
   - characterName: Cyrus
     sprites:
-    - spriteName: Default
-      sprite: {fileID: 1143292016, guid: 3c06f29fe19af3048978d4a89822c0db, type: 3}
+    - spriteName: angry
+      sprite: {fileID: -224310629, guid: 16de579af121a42f0b3f61afca8ccff1, type: 3}
+    - spriteName: angryShadow
+      sprite: {fileID: -243805176, guid: 559f358fd50c647129e2486b6a424578, type: 3}
+    - spriteName: angryShadowSpeak
+      sprite: {fileID: 853252561, guid: a29c5a1481fd1482aa8bc4b2ecaa2fae, type: 3}
+    - spriteName: angrySpeak
+      sprite: {fileID: 1397838373, guid: c7dc4171783d34bd4ba101f50c3ba779, type: 3}
+    - spriteName: default
+      sprite: {fileID: 427607288, guid: e08b229b91421470f82a2314473b4ef4, type: 3}
+    - spriteName: defaultSpeak
+      sprite: {fileID: -994869936, guid: ae0de8326b3da4c94ae40bb0d70d3dd5, type: 3}
+    - spriteName: disgust
+      sprite: {fileID: 1741170721, guid: f9c6823c4a95845f48d7da9d0e824f74, type: 3}
+    - spriteName: disgustQuestionmark
+      sprite: {fileID: 1779347710, guid: 65367802f29bb46749684294644eefc8, type: 3}
+    - spriteName: eyesclosed
+      sprite: {fileID: 1883336826, guid: 8e92bfb1f30c34113aa2b8e7428cd7bc, type: 3}
+    - spriteName: lookAway
+      sprite: {fileID: -949529828, guid: 83e8d9aa7644044039682a0a59414fce, type: 3}
+    - spriteName: sad
+      sprite: {fileID: 166159065, guid: 8d700f72412b248a1849f789f656f2a5, type: 3}
+    - spriteName: shockSad
+      sprite: {fileID: 1754474589, guid: 6ea4fecca372c479890710986cd42021, type: 3}
+    - spriteName: smile
+      sprite: {fileID: 667327597, guid: 7e86f2e0e03924513a23552723319cd0, type: 3}
+    - spriteName: smug
+      sprite: {fileID: -147598907, guid: b64d5eca7c081417e98fc7108bd17f69, type: 3}
+    - spriteName: surprised
+      sprite: {fileID: -1903553234, guid: 2b7a0615196af449d814c72c90c05893, type: 3}
+    - spriteName: surprisedSpeak
+      sprite: {fileID: -123587567, guid: d1947f9d95e414ad3967da035b91ccd1, type: 3}
+    - spriteName: surprisedQuestionmark
+      sprite: {fileID: -154360688, guid: 5a2c2cb2c89cb43e5964bf02f391d7bd, type: 3}
   - characterName: Eve
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: -792006806, guid: 4979fb13d8d490745ba1ef7dc00fdbd6, type: 3}
   - characterName: Judge
     sprites:
@@ -566,43 +598,43 @@ MonoBehaviour:
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Luna
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Shopkeeper
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: TownNPC1
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: TownNPC2
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: TownNPC3
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Tobias
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Saul
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: PoliceNPC
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: FateExchanger
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: FalseHumanBoss
     sprites:
-    - spriteName: Default
+    - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: HatsuneMiku
     sprites:

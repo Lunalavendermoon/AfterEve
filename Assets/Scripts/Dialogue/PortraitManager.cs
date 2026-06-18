@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,13 +23,14 @@ public class PortraitManager : MonoBehaviour
 
     private void BuildLookup()
     {
-        portraitLookup = new Dictionary<string, Dictionary<string, Sprite>>();
+        // Case-insensitive string lookup
+        portraitLookup = new Dictionary<string, Dictionary<string, Sprite>>(StringComparer.OrdinalIgnoreCase);
 
         foreach (PortraitEntry character in portraits)
         {
             if (string.IsNullOrEmpty(character.characterName) || portraitLookup.ContainsKey(character.characterName)) continue;
 
-            Dictionary<string, Sprite> spriteDict = new Dictionary<string, Sprite>();
+            Dictionary<string, Sprite> spriteDict = new Dictionary<string, Sprite>(StringComparer.OrdinalIgnoreCase);
 
             foreach (PortraitSpriteEntry spriteEntry in character.sprites)
             {

@@ -594,8 +594,24 @@ MonoBehaviour:
       sprite: {fileID: -792006806, guid: 4979fb13d8d490745ba1ef7dc00fdbd6, type: 3}
   - characterName: Judge
     sprites:
-    - spriteName: Default
-      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+    - spriteName: confused
+      sprite: {fileID: 342644451, guid: 5b851db7fdc1743b8a56ad1782d94bca, type: 3}
+    - spriteName: default
+      sprite: {fileID: 1815889777, guid: e2b3d05416b7847b782d26921c1a0703, type: 3}
+    - spriteName: defaultTalk
+      sprite: {fileID: -1606849135, guid: 307583a8c177a43bfbcff556ada8a377, type: 3}
+    - spriteName: happy
+      sprite: {fileID: -428780404, guid: d343489b43d10475f84f18f7f4cd7fd9, type: 3}
+    - spriteName: oh
+      sprite: {fileID: -167676984, guid: 77dcb5cd59d584fe6b5a9e87ac23df23, type: 3}
+    - spriteName: pout
+      sprite: {fileID: -1092724524, guid: a906424542bda4197973ff2a83bde4b4, type: 3}
+    - spriteName: smug
+      sprite: {fileID: 49085615, guid: 0fb02c9303b874591b79e63192ea72dc, type: 3}
+    - spriteName: tease
+      sprite: {fileID: 402942488, guid: 6f8d02734dc9846dcbb1a906054d3c44, type: 3}
+    - spriteName: teehee
+      sprite: {fileID: -1865196147, guid: 1f965a1d44eb843269318ac11d37c7ae, type: 3}
   - characterName: Luna
     sprites:
     - spriteName: default

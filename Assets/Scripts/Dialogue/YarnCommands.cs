@@ -27,7 +27,7 @@ public class YarnCommands : MonoBehaviour
     }
 
     [YarnCommand("set_cg")]
-    public void SetYarnSpinnerCG(int cgNum)
+    public void SetYarnSpinnerCG(int cgNum, bool fade = true)
     {
         if (NarrativeRoomManager.instance.currentRoom.cgList.Count <= cgNum)
         {
@@ -35,8 +35,14 @@ public class YarnCommands : MonoBehaviour
         }
         else
         {
-            PortraitManager.instance.SetCG(NarrativeRoomManager.instance.currentRoom.cgList[cgNum]);
+            PortraitManager.instance.SetCG(NarrativeRoomManager.instance.currentRoom.cgList[cgNum], fade);
         }
+    }
+
+    [YarnCommand("set_black_cg")]
+    public void SetYarnSpinnerBlackCG(bool fade = true)
+    {
+        PortraitManager.instance.SetBlackCG(fade);
     }
 
     [YarnCommand("clear_cg")]

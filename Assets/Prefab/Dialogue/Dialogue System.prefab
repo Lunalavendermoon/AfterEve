@@ -590,8 +590,46 @@ MonoBehaviour:
       sprite: {fileID: -154360688, guid: 5a2c2cb2c89cb43e5964bf02f391d7bd, type: 3}
   - characterName: Eve
     sprites:
+    - spriteName: angry
+      sprite: {fileID: -900448313, guid: 95d76a89f6ff140aa9040b0291083e3b, type: 3}
+    - spriteName: confused
+      sprite: {fileID: -2071496860, guid: 07304ede059cd494e95ac218d0602663, type: 3}
     - spriteName: default
-      sprite: {fileID: -792006806, guid: 4979fb13d8d490745ba1ef7dc00fdbd6, type: 3}
+      sprite: {fileID: -1302842561, guid: 212aac5a0bdf14935bb5b7fee8fa2ae0, type: 3}
+    - spriteName: defaultTalk
+      sprite: {fileID: 1177918291, guid: 910112f03f9d94c2dab583520900b178, type: 3}
+    - spriteName: disgust
+      sprite: {fileID: -431259890, guid: ff34162213f7b42d1807b38c715185a3, type: 3}
+    - spriteName: eyeclosed
+      sprite: {fileID: 1058825111, guid: c605a2ea42805420fb24041a1b6bdb1d, type: 3}
+    - spriteName: eyeclosedTalk
+      sprite: {fileID: 899221711, guid: 7f63e303b90e54d64a2223ba96d2d644, type: 3}
+    - spriteName: happy
+      sprite: {fileID: -1864427954, guid: aee5a93bb7f8c4d7aad35cae409e0c38, type: 3}
+    - spriteName: happyEyeclosed
+      sprite: {fileID: 959438630, guid: e16e4b11b01d84082aeb93fc826c1e92, type: 3}
+    - spriteName: happyEyeclosedTalk
+      sprite: {fileID: 1329600346, guid: 334d6b86778214c04b0f62c18bb08ea1, type: 3}
+    - spriteName: happyTalk
+      sprite: {fileID: 1096291323, guid: 8f26be618587a4ae294c70a1b7b254db, type: 3}
+    - spriteName: mock
+      sprite: {fileID: 766474280, guid: 0b5660731baaf4961b723514b6cff1bc, type: 3}
+    - spriteName: mockTalk
+      sprite: {fileID: -150661797, guid: 0eb8366a2e11c467895ef9c088018b26, type: 3}
+    - spriteName: nervous
+      sprite: {fileID: -1687652437, guid: b6f2540370bd04b3fa69763037ca150a, type: 3}
+    - spriteName: nervousSerious
+      sprite: {fileID: -651843415, guid: 2c50e8270b8c14bf29329866708ee38a, type: 3}
+    - spriteName: oh
+      sprite: {fileID: 1604025495, guid: 87fbb8665bfcb4fdaa21514993b43358, type: 3}
+    - spriteName: sad
+      sprite: {fileID: 1894135215, guid: 2f53720f948204697a65ce6fedd9da6d, type: 3}
+    - spriteName: sadHappy
+      sprite: {fileID: -316071782, guid: 118c4daee4a03451b9ebe4cf132688ac, type: 3}
+    - spriteName: shock
+      sprite: {fileID: 995105078, guid: efec3d2a173dc40fd85c3545bb95cc81, type: 3}
+    - spriteName: shy
+      sprite: {fileID: -1109278650, guid: 298180b2e525549eb98d6c76e6ef2744, type: 3}
   - characterName: Judge
     sprites:
     - spriteName: confused
@@ -658,6 +696,7 @@ MonoBehaviour:
       sprite: {fileID: 1143292016, guid: 3c06f29fe19af3048978d4a89822c0db, type: 3}
     - spriteName: Sad
       sprite: {fileID: -792006806, guid: 4979fb13d8d490745ba1ef7dc00fdbd6, type: 3}
+  blackBackground: {fileID: 21300000, guid: 6ce2d3af3431042daba26592d2e901ba, type: 3}
   portraitContainer: {fileID: 5631530237843888941}
   cgContainer: {fileID: 8486528139430737399}
 --- !u!1 &1511660170816518588

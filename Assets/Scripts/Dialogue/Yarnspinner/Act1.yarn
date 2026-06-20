@@ -6,43 +6,46 @@
 : [i]Their ideals collide through mortal hands,[/i]
 : [i]and in that clash of faith and will,[/i]
 : [i]balance is born.[/i]
-: [i]But one, the Hierophant, tipped these scales in their pursuit of absolute order, a world where all beings would be under their control.[/i]
-: [i]It is here where your mission begins.[/i]
+: [i]But one, the Hierophant, tipped these scales in their pursuit of absolute order.[/i]
+: [i]Now your mission begins.[/i]
 
-<<set_portrait YarnManager Judge>>
-???: Hello? 
+<<set_portrait YarnManager Judge default>>
+???: Hello?
+<<set_portrait YarnManager Judge defaultTalk>>
 ???: Hhhheeelllooo!
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus eyesclosed>>
 ???: ...
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge oh>>
 ???: Oh! You’re finally awake.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
 ???: ???
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge defaultTalk>>
 ???: Alright, let’s do this slowly.
 ???: Name. Do you remember that much?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 ???: [i]My name? It’s...[/i]
 Cyrus: Cyrus.
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge happy>>
 ???: Great! At least part of your brain still works, that’s better than some. You can call me the Judge.
 The Judge: So! Cyrus! You’re an enforcer of the Almighty Justice, chosen to preserve fairness and law throughout the universe.
-The Judge: It’s an honor few humans receive, but to keep your work professional we can’t have you keeping memories.
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: Your next mission will be in Prism.
-The Judge: The Hierophant’s been tampering with the divine balance, and your job is to hunt down his puppets before he uses them to bring the Assimilation.
+The Judge: The Hierophant’s been tampering with the divine balance, and your job is to hunt down their puppets before they use them to bring the Assimilation.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: What? What are you you even-
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge pout>>
 The Judge: Look, you want humanity to continue, right? So do we.
+<<set_portrait YarnManager Judge default>>
 The Judge: Well, Justice does. I just work here.
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: So I’d love to stand here and explain the metaphysics of divine politics, but we’re really on a schedule. Off you go!
 
 <<player_respawn YarnManager>>
@@ -51,77 +54,80 @@ The Judge: So I’d love to stand here and explain the metaphysics of divine pol
 
 title: Act1_EveIntro_PreCombat_P1N1
 ---
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve shock>>
 ???: Oh good, you’re awake!
-???: Ah! Sorry, I didn’t mean to scare you.
+<<set_portrait YarnManager Eve defaultTalk>>
+???: Sorry, I didn’t mean to scare you.
 ???: I found you on the outskirts and brought you here. We should be safe for now.
-Eve: I’m Eve. I don’t think I’ve seen you around this part of town. What’s your name?
+Eve: I’m Eve. What’s your name, if you don’t mind?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: ...
+<<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: This is the second time I’ve woken up in five minutes.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve confused>>
 Eve: What?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: Sorry, I’m just...right, my name. It’s Cyrus.
 
-<<set_portrait YarnManager Eve>>
-Eve: Nice to meet you, Cyrus! Or not nice? Given the circumstances. Are you hurt anywhere?
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: Nice to meet you, Cyrus. Or not nice? Given the circumstances. Are you hurt anywhere?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: [i]What’s happening? That girl earlier... I can’t seem to remember anything beyond my own name. Best to play along for now.[/i]
 
 <<clear_portrait YarnManager>>
 : [i]An inhuman roar. (TODO play sound)[/i]
 
-<<set_portrait YarnManager Eve>>
-Eve: That’s not good. Sounds like a Meminiscor.
+<<set_portrait YarnManager Eve angry>>
+Eve: We need to go!
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: What is that?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve oh>>
 Eve: You don’t know?
-Eve: They’re drawn to strong emotions, that must’ve been how they found us.
+<<set_portrait YarnManager Eve default>>
+Eve: Meminiscors. They’re drawn to strong emotions, must’ve been how they found us.
 Eve: We have to go-
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angrySpeak>>
 Cyrus: Get down!
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve shock>>
 Eve: Thanks! Uh-
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angrySpeak>>
 Cyrus: Do you have a weapon?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve angry>>
 Eve: A gun, but I’m not-
  
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angry>>
 Cyrus: I’ll take it.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve angry>>
 Eve: Be careful! If you get too close, it’ll start absorbing your memories.
 ===
 
 
 title: Act1_EveIntro_PostCombat_P1N1
 ---
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: [i]Where did I learn to do that?[/i]
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve shock>>
 Eve: You actually did it. Are you a Hunter?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
 Cyrus: Hunter?
 
 <<clear_portrait YarnManager>>
 : [i]A distant roar is heard. (TODO play sound)[/i]
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve angry>>
 Eve: We’d better head back to the city.
 ===
 

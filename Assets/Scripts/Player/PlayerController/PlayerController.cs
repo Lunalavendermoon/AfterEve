@@ -65,8 +65,6 @@ public class PlayerController : MonoBehaviour
     // Small skin so we don't end up exactly touching and jittering
     private const float CastSkin = 0.01f;
 
-    private readonly RaycastHit2D[] castResults = new RaycastHit2D[8];
-
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -316,35 +314,105 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void TryMove(Vector2 delta)
     {
-        if (rb == null) return;
+        // Nick: Refactored on June 19th 2026
 
+        if (rb == null) return;
         if (delta == Vector2.zero) return;
 
-        float distance = delta.magnitude;
-        Vector2 direction = delta / distance;
-
-        int hitCount = rb.Cast(direction, castResults, distance + CastSkin);
-        if (hitCount > 0)
+        List<RaycastHit2D> castResults = new List<RaycastHit2D>();
+        var current_pos = rb.position;
+        Vector2 remaining = delta;
+        int maxIterations = 5; // Prevent infinite loops on stuck scenarios
+        int iteration = 0;
+        
+        while (remaining.magnitude > 0.001f && iteration < maxIterations)
         {
-            float minDistance = distance;
+            iteration++;
 
-            for (int i = 0; i < hitCount; i++)
+            float distance = remaining.magnitude;
+            Vector2 direction = remaining / distance;
+
+            // Cast in the direction of remaining movement
+            int hitCount = rb.Cast(current_pos, 0, direction, castResults, distance + CastSkin);
+
+            if (hitCount > 0)
             {
-                // Ignore triggers
-                if (castResults[i].collider != null && castResults[i].collider.isTrigger) continue;
+                // Find the closest non-trigger collision
+                float minDistance = distance;
+                Vector2 hitNormal = Vector2.zero;
 
-                // Cast distance includes skin; we want to stop just before the wall
-                float d = castResults[i].distance - CastSkin;
-                if (d < minDistance)
+                for (int i = 0; i < hitCount; i++)
                 {
-                    minDistance = Mathf.Max(0f, d);
+                    // Ignore triggers
+                    if (castResults[i].collider != null && castResults[i].collider.isTrigger)
+                        continue;
+
+                    // Cast distance includes skin; we want to stop just before the wall
+                    float d = castResults[i].distance - CastSkin;
+                    if (d < minDistance)
+                    {
+                        minDistance = Mathf.Max(0f, d);
+                        hitNormal = castResults[i].normal;
+                    }
+                }
+
+                // Move to the collision point (I change the actual rb position, so that the next rb.Cast is from the new pos)
+                current_pos += direction * minDistance;
+                current_pos += hitNormal * CastSkin; // small push away from the wall, to avoid corner snag issues
+
+
+                // Calculate remaining movement after collision
+                remaining -= direction * minDistance;
+
+                // Slide along the collision surface by projecting remaining onto the surface
+                // Remove the component of remaining that's perpendicular to the surface (along the normal)
+                if (hitNormal != Vector2.zero)
+                {
+                    // Get the orthogonal projection of the remaining delta (i.e. slide the remaining vector along the surface)
+                    float dotProduct = Vector2.Dot(remaining, hitNormal);
+                    Vector2 newDir = (remaining - dotProduct * hitNormal).normalized;
+                    
+                    // If the newDir is zero, then we are travelling into the wall
+                    // Try to push the player out of the way of the wall if the wall is thin
+                    if (newDir == Vector2.zero)
+                    {
+                        // In this case we want to check to see if there is open space in the perpindicular directions
+                        // So the player doesn't get stuck on a corner or tiny wall
+
+                        float width = 0.51f;
+                        
+                        Vector2 perp1 = hitNormal.Perpendicular1();
+                        Vector2 perp2 = -perp1;
+
+                        hitCount = rb.Cast(current_pos + perp1 * width, 0, -hitNormal, castResults, 0.1f);
+                        
+                        if (hitCount == 0 || castResults[0].normal != hitNormal)
+                        {
+                            newDir = perp1;
+                        }
+
+                        hitCount = rb.Cast(current_pos + perp2 * width, 0, -hitNormal, castResults, 0.1f);
+                        if (hitCount == 0 || castResults[0].normal != hitNormal)
+                        {
+                            newDir = perp2;
+                        }
+                    }
+
+                    // dotProduct is the physically correct magnitude, but I intentionally
+                    // use remaining.magnitude because it feels better that way
+                    remaining = newDir * remaining.magnitude;
                 }
             }
-
-            delta = direction * minDistance;
+            else
+            {
+                // No collision detected, move the full remaining distance
+                current_pos += remaining;
+                remaining = Vector2.zero;
+            }
         }
-
-        rb.MovePosition(rb.position + delta);
+        // I directly move the position here which avoids the player getting stuck on corners
+        // rb.MovePosition sometimes fail in this case
+        rb.position = current_pos;
     }
 
     string BuildSkillDisplayString()

@@ -14,11 +14,12 @@ public class MeleeAttackHitboxScript : MonoBehaviour
     {
         if (hasDealtDamage) return;
 
-        if (other.CompareTag("Player"))
+        PlayerController player = other.GetComponentInParent<PlayerController>();
+        if (player != null)
         {
             int damage = enemy.enemyAttributes.damage;
             DamageInstance.DamageType dmgType = ToDamageInstanceType(enemy.enemyAttributes.damageType);
-            PlayerController.instance.TakeDamage(damage, DamageInstance.DamageSource.Enemy, dmgType);
+            player.TakeDamage(damage, DamageInstance.DamageSource.Enemy, dmgType);
             hasDealtDamage = true;
             enemy.attackHitConnected = true;
             enemy.DisableAttack();

@@ -51,7 +51,15 @@ public class PlayerGun : MonoBehaviour
             for (int i = 0; i < PlayerController.instance.playerAttributes.bullets; i++)
             {
                 float currentAngle = startAngle + spread * i;
-                GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread)) * firingPoint.rotation);
+
+                Quaternion projectileRotation = Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread));
+
+                // Nick: this current method of multiplying by the firingPoint's rotation works, because the projectile
+                // determines its direction based on the XY pos of the forward vector. This is confusing and convoluted,
+                // at least to me, and I think it should be changed.
+                projectileRotation *= firingPoint.rotation;
+
+                GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, projectileRotation);
                 
                 Projectile proj = projectile.GetComponent<Projectile>();
                 proj.SetBulletBounce(PlayerController.instance.playerAttributes.bulletBounces);

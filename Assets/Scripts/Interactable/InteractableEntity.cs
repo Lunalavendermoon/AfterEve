@@ -34,27 +34,33 @@ public abstract class InteractableEntity : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        PlayerController player = other.GetComponentInParent<PlayerController>();
+        if (player == null)
         {
-            if (PlayerController.instance.currentInteractable == null)
-            {
-                PlayerController.instance.currentInteractable = this;
-                SetInteractPromptVisible(true);
-                HandlePlayerEnter();
-            }
+            return;
+        }
+
+        if (player.currentInteractable == null)
+        {
+            player.currentInteractable = this;
+            SetInteractPromptVisible(true);
+            HandlePlayerEnter();
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        PlayerController player = other.GetComponentInParent<PlayerController>();
+        if (player == null)
         {
-            if (PlayerController.instance.currentInteractable == this)
-            {
-                PlayerController.instance.currentInteractable = null;
-                SetInteractPromptVisible(false);
-                HandlePlayerExit();
-            }
+            return;
+        }
+
+        if (player.currentInteractable == this)
+        {
+            player.currentInteractable = null;
+            SetInteractPromptVisible(false);
+            HandlePlayerExit();
         }
     }
 
@@ -65,7 +71,13 @@ public abstract class InteractableEntity : MonoBehaviour
 
     private void SetInteractPromptVisible(bool visible)
     {
-        PlayerController.instance.interactPrompt.text = interactPromptString.GetLocalizedString();
-        PlayerController.instance.interactPrompt.gameObject.SetActive(visible);
+        PlayerController player = PlayerController.instance;
+        if (player == null)
+        {
+            return;
+        }
+
+        player.interactPrompt.text = interactPromptString.GetLocalizedString();
+        player.interactPrompt.gameObject.SetActive(visible);
     }
 }

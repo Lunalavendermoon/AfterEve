@@ -40,7 +40,7 @@ public class SpiralBulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerHitbox"))
         {
             PlayerController.instance.TakeDamage(10, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Physical);
             Destroy(gameObject);

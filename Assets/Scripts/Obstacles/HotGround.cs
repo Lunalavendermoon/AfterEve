@@ -9,17 +9,38 @@ public class HotGround : MonoBehaviour
     public int burnDamagePerTick = 10;
     public float tickInterval = 0.5f;
 
+    [Header("Collider Filtering")]
+    [Tooltip("Only player colliders on these layers can trigger HotGround for player logic (set this to PlayerGround).")]
+    [SerializeField] private LayerMask playerGroundLayers;
+
     readonly Dictionary<int, float> nextTickTime = new();
+
+    private void Awake()
+    {
+        if (playerGroundLayers.value == 0)
+        {
+            int playerGroundLayer = LayerMask.NameToLayer("PlayerGround");
+            if (playerGroundLayer >= 0)
+            {
+                playerGroundLayers = 1 << playerGroundLayer;
+            }
+        }
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         int entityId = other.transform.root.GetInstanceID();
 
-        // Player
+        // Player (only from ground collider layer)
         PlayerEffectManager playerEffects = other.GetComponentInParent<PlayerEffectManager>();
 
         if (playerEffects != null)
         {
+            if (!IsInLayerMask(other.gameObject.layer, playerGroundLayers))
+            {
+                return;
+            }
+
             ApplyContinuousBurn(entityId, playerEffects);
             return;
         }
@@ -66,10 +87,15 @@ public class HotGround : MonoBehaviour
     {
         int entityId = other.transform.root.GetInstanceID();
 
-        // Player
+        // Player (only from ground collider layer)
         PlayerEffectManager playerEffects = other.GetComponentInParent<PlayerEffectManager>();
         if (playerEffects != null)
         {
+            if (!IsInLayerMask(other.gameObject.layer, playerGroundLayers))
+            {
+                return;
+            }
+
             nextTickTime.Remove(entityId);
             var player = PlayerController.FindScenePlayer();
             ApplyExitBurn(playerEffects, player != null ? player.playerAttributes : null);
@@ -95,5 +121,10 @@ public class HotGround : MonoBehaviour
 
         Burn_Effect burn = new Burn_Effect(burnDuration, burnDamagePerTick, tickInterval);
         effectManager.AddEffect(burn, attr);
+    }
+
+    private static bool IsInLayerMask(int layer, LayerMask mask)
+    {
+        return (mask.value & (1 << layer)) != 0;
     }
 }

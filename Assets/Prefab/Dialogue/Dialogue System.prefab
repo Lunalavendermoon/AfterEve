@@ -200,14 +200,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6646803442879941512}
+  m_Children: []
   m_Father: {fileID: 7423959591219932740}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -15}
-  m_SizeDelta: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6995533905451453197
 CanvasRenderer:
@@ -473,6 +472,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1117291063585361421}
+  - {fileID: 6646803442879941512}
   - {fileID: 8812081062233533210}
   m_Father: {fileID: 6779206356963617677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -633,7 +633,7 @@ MonoBehaviour:
     - spriteName: shy
       sprite: {fileID: -1109278650, guid: 298180b2e525549eb98d6c76e6ef2744, type: 3}
   - characterName: Judge
-    leftOffset: 0
+    leftOffset: 5
     sprites:
     - spriteName: confused
       sprite: {fileID: 342644451, guid: 5b851db7fdc1743b8a56ad1782d94bca, type: 3}
@@ -654,7 +654,7 @@ MonoBehaviour:
     - spriteName: teehee
       sprite: {fileID: -1865196147, guid: 1f965a1d44eb843269318ac11d37c7ae, type: 3}
   - characterName: Luna
-    leftOffset: -50
+    leftOffset: -25
     sprites:
     - spriteName: default
       sprite: {fileID: -1673824392, guid: b8fa1d64cc25f4890816871a842f5cbd, type: 3}
@@ -662,7 +662,9 @@ MonoBehaviour:
     leftOffset: 0
     sprites:
     - spriteName: default
-      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+      sprite: {fileID: -1080257951, guid: 0db78267a6ee545cab3ad1be49a1ac92, type: 3}
+    - spriteName: smile
+      sprite: {fileID: 1644292978, guid: 1930eeaf147c141db9fff7684331ab96, type: 3}
   - characterName: TownNPC1
     leftOffset: 0
     sprites:
@@ -714,6 +716,7 @@ MonoBehaviour:
   portraitContainer: {fileID: 5631530237843888941}
   cgContainer: {fileID: 8486528139430737399}
   cgFadeDuration: 0.5
+  imageRect: {fileID: 0}
 --- !u!1 &1511660170816518588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,7 +2357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 37, y: 45}
+  m_AnchoredPosition: {x: 36, y: 45}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &3197013099191501957
@@ -2556,17 +2559,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8353813595457003160}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1117291063585361421}
+  m_Father: {fileID: 7423959591219932740}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.5, y: 22.5}
-  m_SizeDelta: {x: 17, y: -5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 8.5, y: 230}
+  m_SizeDelta: {x: 399, y: 443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6805645745433126967
 CanvasRenderer:

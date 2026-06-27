@@ -15,9 +15,14 @@ public class PortraitManager : MonoBehaviour
     [SerializeField] private float cgFadeDuration = 0.5f;
 
     private Dictionary<string, Dictionary<string, Sprite>> portraitLookup;
-    private Dictionary<string, int> leftOffsetLookup;
+    private Dictionary<string, int> xOffsetLookup;
     private Coroutine cgCoroutine;
     private Image cgFadeOverlay;
+
+    [SerializeField] private RectTransform imageRect;
+
+    private float baseX;
+    private float fixedY;
 
     private void Awake()
     {
@@ -26,11 +31,18 @@ public class PortraitManager : MonoBehaviour
         BuildLookup();
     }
 
+    void Start()
+    {
+        imageRect = portraitContainer.rectTransform;
+        baseX = imageRect.anchoredPosition.x;
+        fixedY = imageRect.anchoredPosition.y;
+    }
+
     private void BuildLookup()
     {
         // Case-insensitive string lookup
         portraitLookup = new(StringComparer.OrdinalIgnoreCase);
-        leftOffsetLookup = new(StringComparer.OrdinalIgnoreCase);
+        xOffsetLookup = new(StringComparer.OrdinalIgnoreCase);
 
         foreach (PortraitEntry character in portraits)
         {
@@ -46,7 +58,7 @@ public class PortraitManager : MonoBehaviour
             }
 
             portraitLookup.Add(character.characterName, spriteDict);
-            leftOffsetLookup.Add(character.characterName, character.leftOffset);
+            xOffsetLookup.Add(character.characterName, character.leftOffset);
         }
     }
 
@@ -64,8 +76,7 @@ public class PortraitManager : MonoBehaviour
             portraitContainer.sprite = sprite;
             portraitContainer.color = Color.white;
             
-            RectTransform rt = portraitContainer.rectTransform;
-            rt.offsetMin = new Vector2(leftOffsetLookup[characterName], rt.offsetMin.y);
+            imageRect.anchoredPosition = new Vector2(baseX + xOffsetLookup[characterName], fixedY);
         }
         else
         {

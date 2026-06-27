@@ -16,7 +16,7 @@ MonoBehaviour:
   roomEnemyGenSetting: 1
   roomCount: 1
   visitCount: 2
-  roomPrefab: {fileID: 4015115286132107005, guid: f83024b414a82ad4a96231ceaa11e759, type: 3}
+  roomPrefab: {fileID: 4015115286132107005, guid: 1f8b4931ee1694dc28013abc858d1136, type: 3}
   itemPrefab: {fileID: 0}
   cgList: []
   roomMusic:
@@ -33,3 +33,4 @@ MonoBehaviour:
   postCombatDialogue: Act1_EveIntro_PostCombat_P1N1_Alt
   isScriptedDeath: 0
   spawnPortalAfterLastDialogue: 0
+  routeName: 

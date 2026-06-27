@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             if (reqs == NarrativeRoomManager.NarrativeRoomNeed.Nothing)
             {
                 gridToInstance[Vector2Int.zero] = narrativeRoomManager.roomObject;
-                SpawnBoundaryWalls();
+                // SpawnBoundaryWalls();
                 if (EnemySpawnerScript.instance != null)
                     EnemySpawnerScript.instance.ScanMap();
                 spawnBehavior.Respawn();

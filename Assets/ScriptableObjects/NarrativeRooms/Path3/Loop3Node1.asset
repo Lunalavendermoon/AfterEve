@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Loop3Node1
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 0
-  roomEnemyGenSetting: 2
+  roomEnemyGenSetting: 4
   roomCount: 1
   visitCount: 1
   roomPrefab: {fileID: 0}
@@ -33,3 +33,4 @@ MonoBehaviour:
   postCombatDialogue: 
   isScriptedDeath: 0
   spawnPortalAfterLastDialogue: 0
+  routeName: 

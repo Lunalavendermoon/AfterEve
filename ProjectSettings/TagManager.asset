@@ -55,6 +55,9 @@ TagManager:
   - name: Foreground
     uniqueID: 4127604133
     locked: 0
+  - name: BossRoomForeground
+    uniqueID: 1087491927
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

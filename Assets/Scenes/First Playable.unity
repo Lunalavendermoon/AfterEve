@@ -3146,7 +3146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   tilePrefabs:
-  - {fileID: 4015115286132107005, guid: f83024b414a82ad4a96231ceaa11e759, type: 3}
+  - {fileID: 4015115286132107005, guid: 1f8b4931ee1694dc28013abc858d1136, type: 3}
   - {fileID: 4182450580660166591, guid: 08fb9f259c287e8459d5633f6c477656, type: 3}
   - {fileID: 300158988608683057, guid: 9585d0831e2815947a89b71469745c68, type: 3}
   - {fileID: 5841042599744837450, guid: 525d1b0b13ebd124b89434f2f12856b1, type: 3}
@@ -3188,7 +3188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NarrativeRoomManager
   narrativePaths: {fileID: 11400000, guid: 981465d32b88d4d3f91a85bc97954dd7, type: 2}
   portal: {fileID: 2121234110}
-  defaultRoom: {fileID: 4015115286132107005, guid: f83024b414a82ad4a96231ceaa11e759, type: 3}
+  defaultRoom: {fileID: 4015115286132107005, guid: 1f8b4931ee1694dc28013abc858d1136, type: 3}
   disableChestGeneration: 0
   hasCombat: 0
   currentRoom: {fileID: 0}

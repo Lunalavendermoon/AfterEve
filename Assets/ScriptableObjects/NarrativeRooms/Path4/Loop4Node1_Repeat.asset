@@ -16,7 +16,7 @@ MonoBehaviour:
   roomEnemyGenSetting: 2
   roomCount: 1
   visitCount: 0
-  roomPrefab: {fileID: 4015115286132107005, guid: f83024b414a82ad4a96231ceaa11e759, type: 3}
+  roomPrefab: {fileID: 4015115286132107005, guid: fae63a69a929f472eab2beea1c414876, type: 3}
   itemPrefab: {fileID: 0}
   cgList: []
   roomMusic:

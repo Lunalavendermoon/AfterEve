@@ -50,6 +50,9 @@ public abstract class EnemyBase : MonoBehaviour
     // event for enemy dying
     public static event Action<DamageInstance, EnemyBase> OnEnemyDeath;
 
+    public static event Action<EnemyBase> OnEnemySpawned;
+    public static event Action<EnemyBase> OnEnemyDestroyed;
+
     //lovers clone
     protected float marked = 1;
 
@@ -244,9 +247,14 @@ public abstract class EnemyBase : MonoBehaviour
         destinationSetter.target = tempTarget;
     }
 
+    private void OnEnable()
+    {
+        OnEnemySpawned?.Invoke(this);
+    }
+
     private void OnDestroy()
     {
-
+        OnEnemyDestroyed?.Invoke(this);
     }
 
     public virtual bool ShouldBlockEffect(Effects effect)

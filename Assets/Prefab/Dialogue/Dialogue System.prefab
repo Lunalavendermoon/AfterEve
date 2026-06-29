@@ -554,7 +554,6 @@ MonoBehaviour:
   portraits:
   - characterName: Cyrus
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: angry
       sprite: {fileID: -224310629, guid: 16de579af121a42f0b3f61afca8ccff1, type: 3}
@@ -592,7 +591,6 @@ MonoBehaviour:
       sprite: {fileID: -154360688, guid: 5a2c2cb2c89cb43e5964bf02f391d7bd, type: 3}
   - characterName: Eve
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: angry
       sprite: {fileID: -900448313, guid: 95d76a89f6ff140aa9040b0291083e3b, type: 3}
@@ -636,7 +634,6 @@ MonoBehaviour:
       sprite: {fileID: -1109278650, guid: 298180b2e525549eb98d6c76e6ef2744, type: 3}
   - characterName: Judge
     leftOffset: 5
-    bottomOffset: 0
     sprites:
     - spriteName: confused
       sprite: {fileID: 342644451, guid: 5b851db7fdc1743b8a56ad1782d94bca, type: 3}
@@ -658,13 +655,31 @@ MonoBehaviour:
       sprite: {fileID: -1865196147, guid: 1f965a1d44eb843269318ac11d37c7ae, type: 3}
   - characterName: Luna
     leftOffset: -25
-    bottomOffset: 0
     sprites:
-    - spriteName: default
+    - spriteName: angryShout
       sprite: {fileID: -1673824392, guid: b8fa1d64cc25f4890816871a842f5cbd, type: 3}
+    - spriteName: angrySmug
+      sprite: {fileID: -554995067, guid: 90bd3b83dcdce4dfb973d7758182eaed, type: 3}
+    - spriteName: angryTalk
+      sprite: {fileID: -1005904826, guid: 863dce8153c5940659f38a3693be53b3, type: 3}
+    - spriteName: confused
+      sprite: {fileID: 631021512, guid: 91848543558874288b03aae3305e0ce2, type: 3}
+    - spriteName: default
+      sprite: {fileID: 2043997206, guid: df4d370621c5b420ea575f439b598320, type: 3}
+    - spriteName: defaultTalk
+      sprite: {fileID: 1110007546, guid: d46ca340a5cf540caaa26e2b925fa23e, type: 3}
+    - spriteName: disgust
+      sprite: {fileID: 1582749744, guid: 981b9cf5bff924a7ebcf41eecc0cf6a8, type: 3}
+    - spriteName: disgustTalk
+      sprite: {fileID: 1816533270, guid: 1cf82cf1991704d9594daa4445a221bc, type: 3}
+    - spriteName: eyebrowRaise
+      sprite: {fileID: -1279943890, guid: 4c514e77361da4ddd9d8f4a3b887c6cb, type: 3}
+    - spriteName: mockLaugh
+      sprite: {fileID: -2123848688, guid: b8ceee3523bd7428a99d84e843533fb1, type: 3}
+    - spriteName: smug
+      sprite: {fileID: -2063674937, guid: af1d53475f61443aa97edc56f884de60, type: 3}
   - characterName: Shopkeeper
     leftOffset: -10
-    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: -1080257951, guid: 0db78267a6ee545cab3ad1be49a1ac92, type: 3}
@@ -672,55 +687,46 @@ MonoBehaviour:
       sprite: {fileID: 1644292978, guid: 1930eeaf147c141db9fff7684331ab96, type: 3}
   - characterName: TownNPC1
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: TownNPC2
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: TownNPC3
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Tobias
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Saul
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: PoliceNPC
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: FateExchanger
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: FalseHumanBoss
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: HatsuneMiku
     leftOffset: 0
-    bottomOffset: 0
     sprites:
     - spriteName: Happy
       sprite: {fileID: 1143292016, guid: 3c06f29fe19af3048978d4a89822c0db, type: 3}

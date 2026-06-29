@@ -14,15 +14,16 @@ public class PortraitManager : MonoBehaviour
     public Image cgContainer;
     [SerializeField] private float cgFadeDuration = 0.5f;
 
-    private Dictionary<string, Dictionary<string, Sprite>> portraitLookup;
-    private Dictionary<string, int> xOffsetLookup;
+    // Case-insensitive string lookup
+    private Dictionary<string, Dictionary<string, Sprite>> portraitLookup = new(StringComparer.OrdinalIgnoreCase);
+    private Dictionary<string, int> xOffsetLookup = new(StringComparer.OrdinalIgnoreCase);
     private Coroutine cgCoroutine;
     private Image cgFadeOverlay;
 
     [SerializeField] private RectTransform imageRect;
 
     private float baseX;
-    private float fixedY;
+    private float baseY;
 
     private void Awake()
     {
@@ -35,15 +36,11 @@ public class PortraitManager : MonoBehaviour
     {
         imageRect = portraitContainer.rectTransform;
         baseX = imageRect.anchoredPosition.x;
-        fixedY = imageRect.anchoredPosition.y;
+        baseY = imageRect.anchoredPosition.y;
     }
 
     private void BuildLookup()
     {
-        // Case-insensitive string lookup
-        portraitLookup = new(StringComparer.OrdinalIgnoreCase);
-        xOffsetLookup = new(StringComparer.OrdinalIgnoreCase);
-
         foreach (PortraitEntry character in portraits)
         {
             if (string.IsNullOrEmpty(character.characterName) || portraitLookup.ContainsKey(character.characterName)) continue;
@@ -75,13 +72,33 @@ public class PortraitManager : MonoBehaviour
         {
             portraitContainer.sprite = sprite;
             portraitContainer.color = Color.white;
+            ShrinkToSpriteRatio(1920f / 4900f);
             
-            imageRect.anchoredPosition = new Vector2(baseX + xOffsetLookup[characterName], fixedY);
+            imageRect.anchoredPosition = new Vector2(baseX + xOffsetLookup[characterName], baseY);
         }
         else
         {
             Debug.LogWarning($"Portrait not found: {characterName} - {spriteName}");
         }
+    }
+
+    void ShrinkToSpriteRatio(float resizeRatio)
+    {
+        if (portraitContainer.sprite == null) return;
+
+        portraitContainer.SetNativeSize();
+
+        imageRect.sizeDelta = new Vector2(imageRect.sizeDelta.x * resizeRatio, imageRect.sizeDelta.y * resizeRatio);
+
+        // // Proportional sizing logic
+        // if (width > height)
+        // {
+        //     rectTransform.sizeDelta = new Vector2(maxDimensionLimit, maxDimensionLimit / aspectRatio);
+        // }
+        // else
+        // {
+        //     rectTransform.sizeDelta = new Vector2(maxDimensionLimit * aspectRatio, maxDimensionLimit);
+        // }
     }
 
     public void ClearPortrait()

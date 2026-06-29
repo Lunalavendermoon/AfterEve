@@ -236,7 +236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e188d22545eddde46a562b843970be02, type: 3}
+  m_Sprite: {fileID: 1005203401, guid: e188d22545eddde46a562b843970be02, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -554,6 +554,7 @@ MonoBehaviour:
   portraits:
   - characterName: Cyrus
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: angry
       sprite: {fileID: -224310629, guid: 16de579af121a42f0b3f61afca8ccff1, type: 3}
@@ -591,6 +592,7 @@ MonoBehaviour:
       sprite: {fileID: -154360688, guid: 5a2c2cb2c89cb43e5964bf02f391d7bd, type: 3}
   - characterName: Eve
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: angry
       sprite: {fileID: -900448313, guid: 95d76a89f6ff140aa9040b0291083e3b, type: 3}
@@ -634,6 +636,7 @@ MonoBehaviour:
       sprite: {fileID: -1109278650, guid: 298180b2e525549eb98d6c76e6ef2744, type: 3}
   - characterName: Judge
     leftOffset: 5
+    bottomOffset: 0
     sprites:
     - spriteName: confused
       sprite: {fileID: 342644451, guid: 5b851db7fdc1743b8a56ad1782d94bca, type: 3}
@@ -655,11 +658,13 @@ MonoBehaviour:
       sprite: {fileID: -1865196147, guid: 1f965a1d44eb843269318ac11d37c7ae, type: 3}
   - characterName: Luna
     leftOffset: -25
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: -1673824392, guid: b8fa1d64cc25f4890816871a842f5cbd, type: 3}
   - characterName: Shopkeeper
-    leftOffset: 0
+    leftOffset: -10
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: -1080257951, guid: 0db78267a6ee545cab3ad1be49a1ac92, type: 3}
@@ -667,46 +672,55 @@ MonoBehaviour:
       sprite: {fileID: 1644292978, guid: 1930eeaf147c141db9fff7684331ab96, type: 3}
   - characterName: TownNPC1
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: TownNPC2
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: TownNPC3
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Tobias
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Saul
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: PoliceNPC
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: FateExchanger
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: FalseHumanBoss
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: HatsuneMiku
     leftOffset: 0
+    bottomOffset: 0
     sprites:
     - spriteName: Happy
       sprite: {fileID: 1143292016, guid: 3c06f29fe19af3048978d4a89822c0db, type: 3}
@@ -2568,9 +2582,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 8.5, y: 230}
-  m_SizeDelta: {x: 399, y: 443}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 8.5, y: 5}
+  m_SizeDelta: {x: 500, y: 600}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6805645745433126967
 CanvasRenderer:
   m_ObjectHideFlags: 0

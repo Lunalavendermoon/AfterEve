@@ -496,7 +496,7 @@ Animator:
   m_GameObject: {fileID: 1710929130042634915}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c4960afb72b2fb9468819d531c712022, type: 2}
+  m_Controller: {fileID: 9100000, guid: f68b8f1b4b9c2cb45aad73142edceeb8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 3863844976264482356}
   - component: {fileID: 45571224570277627}
   m_Layer: 0
-  m_Name: Body
+  m_Name: Idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

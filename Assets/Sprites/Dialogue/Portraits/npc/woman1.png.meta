@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 43607b8d1b7e54a42b8e5693377ef7da
+guid: 6fdead6037ce94da488cbeeef6fd5e64
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc_officer_0
+      name: woman1_0
       rect:
         serializedVersion: 2
-        x: 1037
-        y: 73
-        width: 816
-        height: 1100
+        x: 871
+        y: 960
+        width: 11
+        height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e2c03df719694770bbe869e28600732
-      internalID: 452917088
+      spriteID: 5be28038eb68c487496c2eba34169978
+      internalID: 400323368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_officer_1
+      name: woman1_1
       rect:
         serializedVersion: 2
-        x: 1371
-        y: 1172
-        width: 7
-        height: 5
+        x: 882
+        y: 79
+        width: 1047
+        height: 1234
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,30 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18a405827cdd04fdfbb707664b1539b8
-      internalID: 766806765
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: npc_officer_2
-      rect:
-        serializedVersion: 2
-        x: 1317
-        y: 72
-        width: 54
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9e03301a39ce492ba86a4b618b9e502
-      internalID: -1124482211
+      spriteID: 42e019afb95044cf89c7cee7371e8fd3
+      internalID: 1272622764
       vertices: []
       indices: 
       edges: []
@@ -166,7 +144,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: da1dbfcdc51bb49a9a68d1827520b612
+    spriteID: 3e58b90b807874cee87cab2cc1d05ea9
     internalID: 0
     vertices: []
     indices: 
@@ -178,9 +156,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      npc_officer_0: 452917088
-      npc_officer_1: 766806765
-      npc_officer_2: -1124482211
+      woman1_0: 400323368
+      woman1_1: 1272622764
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

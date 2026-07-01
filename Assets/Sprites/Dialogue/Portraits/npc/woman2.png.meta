@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d9fd924a954004eaeb90838137633549
+guid: ba7bb0b45c5f54954991791ec373edc2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc_boy_0
+      name: woman2_0
       rect:
         serializedVersion: 2
-        x: 1088
-        y: 79
-        width: 671
-        height: 1014
+        x: 1008
+        y: 83
+        width: 777
+        height: 1140
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e9052f15c6684bd286650e6fa5916d8
-      internalID: -1316442840
+      spriteID: 6344fe641691b49df8132528e62d9f48
+      internalID: -670714174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_boy_1
+      name: woman2_1
       rect:
         serializedVersion: 2
-        x: 1460
-        y: 1075
-        width: 71
-        height: 38
+        x: 1350
+        y: 80
+        width: 7
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,8 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a537e273e418f43e8938b56244c24e01
-      internalID: 1498302048
+      spriteID: bf0fccc9a8fbe48bba3a5e6e741d7412
+      internalID: -1130275819
       vertices: []
       indices: 
       edges: []
@@ -144,7 +144,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 272d9c46ec9ed471284ea7d453f86d17
+    spriteID: 8fdca160f0ab645308a8a7b52ebdd273
     internalID: 0
     vertices: []
     indices: 
@@ -156,8 +156,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      npc_boy_0: -1316442840
-      npc_boy_1: 1498302048
+      woman2_0: -670714174
+      woman2_1: -1130275819
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -729,27 +729,27 @@ MonoBehaviour:
     leftOffset: -8.5
     sprites:
     - spriteName: default
-      sprite: {fileID: -1316442840, guid: d9fd924a954004eaeb90838137633549, type: 3}
+      sprite: {fileID: -1230968414, guid: b6589568018bf4e388d74aa127f9449f, type: 3}
   - characterName: NPC_girl
     leftOffset: -15
     sprites:
     - spriteName: default
-      sprite: {fileID: -905330022, guid: 433552660ba2843f4befd863ddddd973, type: 3}
+      sprite: {fileID: -594192935, guid: 3bc16abaabdfc4051a18600922b8f218, type: 3}
   - characterName: NPC_officer
     leftOffset: 2.5
     sprites:
     - spriteName: default
-      sprite: {fileID: 452917088, guid: 43607b8d1b7e54a42b8e5693377ef7da, type: 3}
+      sprite: {fileID: 2042279759, guid: 3ec3a775e40d344769c58125355fbf56, type: 3}
   - characterName: NPC_woman1
     leftOffset: -12
     sprites:
     - spriteName: default
-      sprite: {fileID: 800986294, guid: 22daaa068459a4273900e8b4eb0a94de, type: 3}
+      sprite: {fileID: 1272622764, guid: 6fdead6037ce94da488cbeeef6fd5e64, type: 3}
   - characterName: NPC_woman2
     leftOffset: -15
     sprites:
     - spriteName: default
-      sprite: {fileID: 2110267231, guid: 0394f841281694d1ab3d7b7f1fac05d0, type: 3}
+      sprite: {fileID: -670714174, guid: ba7bb0b45c5f54954991791ec373edc2, type: 3}
   blackBackground: {fileID: 21300000, guid: 6ce2d3af3431042daba26592d2e901ba, type: 3}
   portraitContainer: {fileID: 5631530237843888941}
   cgContainer: {fileID: 8486528139430737399}

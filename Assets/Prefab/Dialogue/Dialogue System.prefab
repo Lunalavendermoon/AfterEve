@@ -725,13 +725,31 @@ MonoBehaviour:
     sprites:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
-  - characterName: HatsuneMiku
-    leftOffset: 0
+  - characterName: NPC_boy
+    leftOffset: -8.5
     sprites:
-    - spriteName: Happy
-      sprite: {fileID: 1143292016, guid: 3c06f29fe19af3048978d4a89822c0db, type: 3}
-    - spriteName: Sad
-      sprite: {fileID: -792006806, guid: 4979fb13d8d490745ba1ef7dc00fdbd6, type: 3}
+    - spriteName: default
+      sprite: {fileID: -1316442840, guid: d9fd924a954004eaeb90838137633549, type: 3}
+  - characterName: NPC_girl
+    leftOffset: -15
+    sprites:
+    - spriteName: default
+      sprite: {fileID: -905330022, guid: 433552660ba2843f4befd863ddddd973, type: 3}
+  - characterName: NPC_officer
+    leftOffset: 2.5
+    sprites:
+    - spriteName: default
+      sprite: {fileID: 452917088, guid: 43607b8d1b7e54a42b8e5693377ef7da, type: 3}
+  - characterName: NPC_woman1
+    leftOffset: -12
+    sprites:
+    - spriteName: default
+      sprite: {fileID: 800986294, guid: 22daaa068459a4273900e8b4eb0a94de, type: 3}
+  - characterName: NPC_woman2
+    leftOffset: -15
+    sprites:
+    - spriteName: default
+      sprite: {fileID: 2110267231, guid: 0394f841281694d1ab3d7b7f1fac05d0, type: 3}
   blackBackground: {fileID: 21300000, guid: 6ce2d3af3431042daba26592d2e901ba, type: 3}
   portraitContainer: {fileID: 5631530237843888941}
   cgContainer: {fileID: 8486528139430737399}

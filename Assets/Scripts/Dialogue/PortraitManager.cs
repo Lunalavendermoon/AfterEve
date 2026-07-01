@@ -16,7 +16,7 @@ public class PortraitManager : MonoBehaviour
 
     // Case-insensitive string lookup
     private Dictionary<string, Dictionary<string, Sprite>> portraitLookup = new(StringComparer.OrdinalIgnoreCase);
-    private Dictionary<string, int> xOffsetLookup = new(StringComparer.OrdinalIgnoreCase);
+    private Dictionary<string, float> xOffsetLookup = new(StringComparer.OrdinalIgnoreCase);
     private Coroutine cgCoroutine;
     private Image cgFadeOverlay;
 
@@ -245,7 +245,7 @@ public class PortraitManager : MonoBehaviour
 public class PortraitEntry
 {
     public string characterName;
-    public int leftOffset;
+    public float leftOffset;
     public List<PortraitSpriteEntry> sprites = new List<PortraitSpriteEntry>();
 }
 

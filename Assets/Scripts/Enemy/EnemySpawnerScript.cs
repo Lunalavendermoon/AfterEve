@@ -83,10 +83,9 @@ public class EnemySpawnerScript : MonoBehaviour
         spawnedEnemy = enemyPrefabs[i % enemyPrefabs.Count];
         
         foreach(Transform child in roomPrefab.transform) {
-            if(child.gameObject.name == "SpawnPoint") // might have a better way of doing this?
-            {   
+            if(child.gameObject.name == "SpawnPoint")
+            {
                 AddEnemyEntry(spawnedEnemy, child);
-                break;
             }
         }
     }

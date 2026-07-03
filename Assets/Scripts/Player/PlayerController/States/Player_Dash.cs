@@ -47,6 +47,12 @@ public class Player_Dash : IPlayerState
         if (input.sqrMagnitude > 1f) input = input.normalized;
         dashDirection = new Vector3(input.x, input.y, 0f);
 
+        // Do rotation/scale animation
+        PlayerController.instance.transform.localScale = new Vector3(1.5f, 0.5f, 1f);
+        //var angles = PlayerController.instance.transform.localEulerAngles;
+        //angles.z = Mathf.Rad2Deg * Mathf.Atan2(input.y, input.x);
+        //PlayerController.instance.transform.localEulerAngles = angles;
+
         dashActive = true;
         OnDash?.Invoke();
         dashStartTime = Time.time;
@@ -83,5 +89,6 @@ public class Player_Dash : IPlayerState
 
     public void ExitState(PlayerController player)
     {
+        PlayerController.instance.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 }

@@ -103,6 +103,11 @@ public class PlayerController : MonoBehaviour
     int coins = 0;
     public PlayerAttributes playerAttributes;
 
+    public Transform gunRoot;
+    public Transform gunFlipTransform;
+
+    public Transform playerSpine;
+
     // Authoritative runtime health (do not store in PlayerAttributes, since effects rebuild attributes)
     [SerializeField] private int currentHealth;
     [SerializeField] private int maxHealth;
@@ -219,6 +224,7 @@ public class PlayerController : MonoBehaviour
     {
         SyncAmmoUIAndCapacityIfNeeded();
 
+
         // decrement timer for active skills (if any)
         if (magicianSkillActive)
         {
@@ -249,6 +255,11 @@ public class PlayerController : MonoBehaviour
         currentState.CheckState(this);
         currentState.UpdateState(this);
 
+        if (gunRoot != null)
+            HandleGunRotation();
+        else
+            Debug.LogError("Player \"gunRoot\" is set to null. Make sure to set it for the gun to work properly");
+        
         HandleShootInput();
         HandleSpiritualVision();
 
@@ -314,6 +325,14 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void TryMove(Vector2 delta)
     {
+        // Flip player spine
+        var newScale = playerSpine.localScale;
+        if (delta.x < 0.0)
+            newScale.x = -1 * Mathf.Abs(newScale.x);
+        else if (delta.x > 0.0)
+            newScale.x = 1 * Mathf.Abs(newScale.x);
+        playerSpine.localScale = newScale;
+
         // Nick: Refactored on June 19th 2026
 
         if (rb == null) return;
@@ -476,11 +495,29 @@ public class PlayerController : MonoBehaviour
         return -1f;
     }
 
+    // Sets the gun transform's z angle to match the player to the mouse vector
+    void HandleGunRotation()
+    {
+        Vector2 directionToMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float zAngle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
+
+        // Do gun flip
+        var newScale = gunFlipTransform.localScale;
+        newScale.y = Mathf.Abs(newScale.y);
+        if (zAngle > 90.0 || zAngle < -90.0)
+            newScale.y *= -1;
+
+        gunFlipTransform.localScale = newScale;
+
+        gunRoot.eulerAngles = new Vector3(0f, 0f, zAngle);
+    }
+
     void HandleShootInput()
     {
         if(currentAmmo != 0 || magicianSkillActive)
         {
-            if (playerInput.Player.Attack.triggered)
+            // Allow the player to just hold to shoot
+            if (playerInput.Player.Attack.IsPressed())
             {
                 bool shotFired;
                 if (magicianSkillActive)

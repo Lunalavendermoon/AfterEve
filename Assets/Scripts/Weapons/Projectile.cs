@@ -80,8 +80,8 @@ public class Projectile : MonoBehaviour
         firingPoint = transform.position;
         enemiesHit = 0;
 
-        // Infer initial travel direction from the projectile's current visual forward projected into XY.
-        Vector2 initialDir = new Vector2(transform.forward.x, transform.forward.y);
+        // Infer initial travel direction from the projectile's rotation
+        Vector2 initialDir = new Vector2(transform.right.x, transform.right.y);
         if (initialDir.sqrMagnitude < 0.0001f)
             initialDir = Vector2.right;
 

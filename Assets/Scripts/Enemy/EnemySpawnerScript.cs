@@ -80,11 +80,10 @@ public class EnemySpawnerScript : MonoBehaviour
             return;
         }
 
-        spawnedEnemy = enemyPrefabs[i % enemyPrefabs.Count];
-        
         foreach(Transform child in roomPrefab.transform) {
             if(child.gameObject.name == "SpawnPoint")
             {
+                spawnedEnemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
                 AddEnemyEntry(spawnedEnemy, child);
             }
         }

@@ -108,11 +108,11 @@ public class LunaBehaviour : BossBehaviourBase
         if(Vector3.Distance(PlayerController.instance.transform.position, transform.position) <= 4f)
         {
 
-            attackProbalities = new float[5] { 0.0f, 0.0f, 0.0f, 0.0f, 100f };
+            attackProbabilities = new float[5] { 0.0f, 0.0f, 0.0f, 0.0f, 100f };
         }
         else
         {
-            attackProbalities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f, 0f };
+            attackProbabilities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f, 0f };
         }
     }
 

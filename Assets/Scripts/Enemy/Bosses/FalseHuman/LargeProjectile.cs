@@ -50,7 +50,26 @@ public class LargeProjectile : StandardEnemyBase
             PlayerController.instance.TakeDamage(health, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
         Destroy(gameObject);
     }
+
     private void OnTriggerEnter2D(Collider2D other)
+    {
+        /*
+        if (other != null && other.CompareTag("Player"))
+        {
+            if (PlayerController.instance != null)
+                PlayerController.instance.TakeDamage(health, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+            Destroy(gameObject);
+        }
+        */
+        _dealDamage(other.gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        _dealDamage(collision.gameObject);
+    }
+
+    private void _dealDamage(GameObject other)
     {
         if (other != null && other.CompareTag("Player"))
         {

@@ -66,7 +66,7 @@ public class PossessedEvePhase1 : BossBehaviourBase
     {
         cooldown_time = 3f;
         default_enemy_state = new Boss_Cooldown(1f);
-        attackProbalities = new float[5] { 0f, 0f, 100f, 0f, 0f };
+        attackProbabilities = new float[5] { 0f, 0f, 100f, 0f, 0f };
 
 
     }
@@ -82,9 +82,9 @@ public class PossessedEvePhase1 : BossBehaviourBase
         RefreshVaticanRoster(out int alive, out _, out _, out _);
         float choice = Random.Range(0f, 1f) * 100f;
         float sum = 0f;
-        for (int i = 0; i < attackProbalities.Length; i++)
+        for (int i = 0; i < attackProbabilities.Length; i++)
         {
-            float w = attackProbalities[i];
+            float w = attackProbabilities[i];
             if (i == 2 && alive >= VaticanTotal)
                 w = 0f;
             if (i == 3)

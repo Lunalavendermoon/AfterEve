@@ -15,10 +15,11 @@ public class FalseHuman : BossBehaviourBase
     [SerializeField] private float projectileMaxHeight;
     [SerializeField] private GameObject projectilePrefab;
 
-
+    /*
     [SerializeField] private AnimationCurve trajectoryAnimationCurve;
     [SerializeField] private AnimationCurve axisCorrectionAnimationCurve;
     [SerializeField] private AnimationCurve projectileSpeedAnimationCurve;
+    */
 
     private float shootTimer;
 
@@ -51,16 +52,18 @@ public class FalseHuman : BossBehaviourBase
         {
             health = Mathf.Max(1, health);
         }
+
         cooldown_time = 3f;
         default_enemy_state = new Boss_Attack(5);
-        attackProbalities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f, 0f };
+        attackProbabilities = new float[5] { 25.0f, 25.0f, 25.0f, 25.0f, 0f };
     }
+
     public override void Movement()
     {
         // move towards player
         Pathfinding(PlayerController.instance.transform);
-        
     }
+
     public override void Attack1()
     {
         //Debug.Log("attack 1 Start");
@@ -68,18 +71,21 @@ public class FalseHuman : BossBehaviourBase
         //each with randomized path using Cubic Bezier curve (set the init player position as the destination).
         //Each dealing 30 spiritual dmg. 2 seconds between rounds.
         //After finishing this attack, waits 3 seconds before using another attack.
-        attackProbalities = new float[5] { 0.0f, 33.3f, 33.30f, 33.30f, 0f };
+        attackProbabilities = new float[5] { 0.0f, 33.3f, 33.30f, 33.30f, 0f };
         StartCoroutine(Attack1_Coroutine());
         cooldown_time = 3f;
     }
+
     public override void Attack2()
     {
         StartCoroutine(SummonKnightsAttack());
     }
-    IEnumerator SummonKnightsAttack()
+
+    private IEnumerator SummonKnightsAttack()
     {
         isAttacking = true;
-        attackProbalities = new float[5] { 33.3f, 0.0f, 33.30f, 33.30f, 0f };
+        attackProbabilities = new float[5] { 33.3f, 0.0f, 33.30f, 33.30f, 0f };
+
         foreach (EnemyEntry entry in knightsList)
         {
             if (entry.enemyPrefab == null)
@@ -89,10 +95,12 @@ public class FalseHuman : BossBehaviourBase
             }
             BossSummonUtility.SpawnBossMinionFromEntry(transform.position, knightSummonRandomRadius, entry);
         }
+
         cooldown_time = 5f;
         yield return null;
         isAttacking = false;
     }
+
     public override void Attack3()
     {
         //Shoots out 3 emotion capsules in random position on the map,
@@ -105,7 +113,7 @@ public class FalseHuman : BossBehaviourBase
         //After the wave, each activated capsule deals 1000 dmg to the boss.
         //After finishing this attack, waits 7 seconds before using another attack.
         isAttacking = true;
-        attackProbalities = new float[5] { 33.30f, 33.3f, 0f, 33.30f, 0f };
+        attackProbabilities = new float[5] { 33.30f, 33.3f, 0f, 33.30f, 0f };
         var capsules = new List<EmotionCapsule>();
         for (int i = 0; i < 3; i++)
         {
@@ -116,6 +124,7 @@ public class FalseHuman : BossBehaviourBase
         }
         StartCoroutine(Attack3_WaveCoroutine(capsules));
     }
+
     public override void Attack4()
     {
         isAttacking = true;
@@ -124,11 +133,12 @@ public class FalseHuman : BossBehaviourBase
         //If not destroyed by the time it hits the player, it deals the remaining projectile health as spiritual dmg to the player.
         Instantiate(largeProjectile, GetLargeProjectileSpawnPosition(), Quaternion.Euler(new Vector3(0, 0, 0)));
         //Debug.Log("Large projectile launched.");
-        attackProbalities = new float[5] { 33.30f, 33.3f, 33.30f, 0f, 0f };
+        attackProbabilities = new float[5] { 33.30f, 33.3f, 33.30f, 0f, 0f };
         cooldown_time = 10f;
         isAttacking = false;
     }
-    Vector3 GetLargeProjectileSpawnPosition()
+
+    private Vector3 GetLargeProjectileSpawnPosition()
     {
         Vector3 origin = transform.position;
         Vector2 dir = Vector2.right;
@@ -181,34 +191,11 @@ public class FalseHuman : BossBehaviourBase
             Die();
     }
 
-
-    void SpawnKnights()
-    {
-        foreach (var entry in knightsList)
-        {
-            if (entry.enemyPrefab == null || entry.spawnPoint == null)
-            {
-                Debug.LogWarning("EnemyEntry has missing prefab or spawn point.");
-                continue;
-            }
-            GameObject enemyObj = Instantiate(
-                entry.enemyPrefab,
-                entry.spawnPoint.position,
-                Quaternion.Euler(new Vector3(0, 0, 0)));
-            StandardEnemyBase enemy = enemyObj.GetComponent<StandardEnemyBase>();
-            if (enemy != null)
-            {
-                enemy.chest = null;
-                enemy.spawner = null;
-                enemy.givesRewards = false;
-            }
-        }
-    }
-
-    IEnumerator Attack1_Coroutine()
+    private IEnumerator Attack1_Coroutine()
     {
         isAttacking = true;
         int[] projectileCounts = new int[] { 5, 7, 9 };
+
         for (int round = 0; round < projectileCounts.Length; round++)
         {
             Vector3 roundTargetPosition = PlayerController.instance != null
@@ -217,6 +204,7 @@ public class FalseHuman : BossBehaviourBase
             int count = projectileCounts[round];
             float angleStep = 360f / count;
             float angleOffset = Random.Range(0f, angleStep);
+
             for (int i = 0; i < count; i++)
             {
                 GameObject target = new GameObject("ProjectileTarget");
@@ -226,20 +214,27 @@ public class FalseHuman : BossBehaviourBase
                     transform.position.x + Mathf.Cos(angle * Mathf.Deg2Rad),
                     transform.position.y + Mathf.Sin(angle * Mathf.Deg2Rad),
                     transform.position.z);
+
                 GameObject projectile = Instantiate(projectilePrefab, spawnpoint, Quaternion.identity);
-                BossProjectileBezier projectileScript = projectile.GetComponent<BossProjectileBezier>();
-                if (projectileScript != null)
+                //BossProjectileBezier projectileScript = projectile.GetComponent<BossProjectileBezier>();
+
+                if (projectile.TryGetComponent(out BossProjectileBezier projectileScript))
                 {
                     projectileScript.InitializeProjectile(target, projectileMaxMoveSpeed, projectileMaxHeight);
-                    //projectileScript.InitializeAnimationCurves(
-                    //    trajectoryAnimationCurve,
-                    //    axisCorrectionAnimationCurve,
-                    //    projectileSpeedAnimationCurve);
+                    /*
+                    projectileScript.InitializeAnimationCurves(
+                        trajectoryAnimationCurve,
+                        axisCorrectionAnimationCurve,
+                        projectileSpeedAnimationCurve);
+                    */
                 }
+
                 yield return new WaitForSeconds(0.1f);
             }
+
             yield return new WaitForSeconds(2f);
         }
+
         isAttacking = false;
     }
 

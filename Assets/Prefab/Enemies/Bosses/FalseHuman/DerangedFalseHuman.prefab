@@ -117,7 +117,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -167363163
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.96765494, g: 0.024778154, b: 0.024778154, a: 1}
@@ -152,11 +152,13 @@ MonoBehaviour:
   destinationSetter: {fileID: 6359726622231637239}
   floatingTextPrefab: {fileID: 2040070248671814085, guid: 13bb11662f873d94dae1441f83139a4b, type: 3}
   rb: {fileID: 3411270614891509333}
+  hitFlashDuration: 0.08
+  hitFlashMaterial: {fileID: 0}
   attackHitbox: {fileID: 6278755747373785529}
   isAttacking: 0
   cooldown_time: 0
   attack_timer: 1
-  attackProbalities: []
+  attackProbabilities: []
   projectileMaxMoveSpeed: 5
   projectileMaxHeight: 0
   projectilePrefab: {fileID: 6049593373930495556, guid: 5051b7982e07ae441bdd46e8c5c75cf5, type: 3}
@@ -251,6 +253,7 @@ MonoBehaviour:
     spawnPoint: {fileID: 0}
   emotionCapsule: {fileID: 2254829033348834515, guid: 4dade5be1351e0f438516f406305cbfc, type: 3}
   knightSummonRandomRadius: 4
+  largeProjectileSpawnForwardOffset: 1.25
 --- !u!114 &8473512997577412845
 MonoBehaviour:
   m_ObjectHideFlags: 0

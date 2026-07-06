@@ -8,7 +8,6 @@ public class Boss_Cooldown : IBossStates
     public Boss_Cooldown(float cooldown_time)
     {
         this.cooldown_time = cooldown_time;
-        
     }
 
     public void EnterState(BossBehaviourBase boss)
@@ -27,7 +26,6 @@ public class Boss_Cooldown : IBossStates
             boss.ChangeState(new Boss_Attack(boss.ChooseAttack()));
         }
         //Debug.Log("Boss cooldown time: "+ cooldown_time);
-
     }
 
     public void ExitState(BossBehaviourBase boss)

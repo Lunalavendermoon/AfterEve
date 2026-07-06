@@ -43,12 +43,14 @@ public static class BossSummonUtility
         {
             Vector2 offset = Random.insideUnitCircle * radius;
             Vector2 candidate = new Vector2(bossWorldPosition.x + offset.x, bossWorldPosition.y + offset.y);
+
             if (NarrativeRoomManager.instance != null &&
                 NarrativeRoomManager.instance.IsPointInsideCurrentRoom(candidate, 0f))
             {
                 spawnPosition = new Vector3(candidate.x, candidate.y, zWorld);
                 return true;
             }
+
             if (GameManager.instance != null &&
                 GameManager.instance.IsWorldPointInsideMap(candidate, 0f))
             {
@@ -56,6 +58,7 @@ public static class BossSummonUtility
                 return true;
             }
         }
+
         spawnPosition = new Vector3(bossWorldPosition.x, bossWorldPosition.y, zWorld);
         return false;
     }

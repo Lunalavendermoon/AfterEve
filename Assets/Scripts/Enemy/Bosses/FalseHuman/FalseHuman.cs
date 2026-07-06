@@ -241,36 +241,30 @@ public class FalseHuman : BossBehaviourBase
     private IEnumerator Attack3_WaveCoroutine(List<EmotionCapsule> capsules)
     {
         yield return new WaitForSeconds(EmotionWaveDelay);
-        bool playerShielded = false;
+
         if (PlayerController.instance != null)
         {
+            bool playerShielded = false;
             Vector3 playerPos = PlayerController.instance.transform.position;
-            foreach (var cap in capsules)
-            {
-                if (cap != null && cap.IsPositionInsideShield(playerPos))
-                {
-                    playerShielded = true;
-                    break;
-                }
-            }
-        }
-        int totalCapsules = capsules.Count;
-        if (totalCapsules <= 0) totalCapsules = 1;
-        float damagePerCapsule = (float)EmotionWaveDamageToPlayer / totalCapsules;
-        int unactivatedCount = 0;
-        foreach (var cap in capsules)
-        {
-            if (cap != null && !cap.IsActivated)
-                unactivatedCount++;
-        }
+            int index = 0;
+            EmotionCapsule cap = null;
 
-        if (!playerShielded && PlayerController.instance != null)
-        {
-            int damageToDeal = Mathf.RoundToInt(damagePerCapsule * unactivatedCount);
-            if (damageToDeal > 0)
+            while (!playerShielded && index < capsules.Count)
             {
-                PlayerController.instance.TakeDamage(damageToDeal, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+                cap = capsules[index];
+
+                if (cap != null && cap.IsPositionInsideShield(playerPos))
+                    playerShielded = true;
+                else
+                    index++;
+            }
+
+            if (!playerShielded)
+            {
+                PlayerController.instance.TakeDamage(EmotionWaveDamageToPlayer, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+                
                 var effectManager = PlayerController.instance.gameObject.GetComponent<PlayerEffectManager>();
+
                 if (effectManager != null && PlayerController.instance.playerAttributes != null)
                 {
                     effectManager.AddEffect(new Blindness_Effect(EmotionDebuffDuration), PlayerController.instance.playerAttributes);
@@ -278,15 +272,18 @@ public class FalseHuman : BossBehaviourBase
                 }
             }
         }
+
         foreach (var cap in capsules)
         {
-            if (cap != null && cap.IsActivated)
-                TakeDamage(EmotionWaveDamageToBossPerCapsule, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual);
+            if (cap != null)
+            {
+                if (cap.IsActivated)
+                    TakeDamage(EmotionWaveDamageToBossPerCapsule, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual);
+
+                Destroy(cap.gameObject);
+            }
         }
-        foreach (var cap in capsules)
-        {
-            if (cap != null) Destroy(cap.gameObject);
-        }
+
         isAttacking = false;
     }
 

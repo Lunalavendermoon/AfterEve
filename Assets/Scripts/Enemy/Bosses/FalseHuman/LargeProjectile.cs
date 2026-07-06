@@ -46,9 +46,7 @@ public class LargeProjectile : StandardEnemyBase
     }
     public override void Attack(Transform target)
     {
-        if (PlayerController.instance != null)
-            PlayerController.instance.TakeDamage(health, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
-        Destroy(gameObject);
+        _dealDamage();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,10 +71,15 @@ public class LargeProjectile : StandardEnemyBase
     {
         if (other != null && other.CompareTag("Player"))
         {
-            if (PlayerController.instance != null)
-                PlayerController.instance.TakeDamage(health, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
-            Destroy(gameObject);
+            _dealDamage();
         }
+    }
+
+    private void _dealDamage()
+    {
+        if (PlayerController.instance != null)
+            PlayerController.instance.TakeDamage(health, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+        Destroy(gameObject);
     }
 }
 

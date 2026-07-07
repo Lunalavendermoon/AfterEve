@@ -5592,6 +5592,50 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[18].leftOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[19].leftOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[18].characterName
+      value: NPC_man1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[19].characterName
+      value: NPC_man2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[18].sprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[19].sprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[18].sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 728656790, guid: e06b7895a22d84927b5bed591252bf7f, type: 3}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[19].sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 29156533, guid: 7701126893bfb457a89d16e9e17cd929, type: 3}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[18].sprites.Array.data[0].spriteName
+      value: default
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[19].sprites.Array.data[0].spriteName
+      value: default
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

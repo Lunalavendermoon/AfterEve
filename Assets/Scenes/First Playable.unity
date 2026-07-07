@@ -5592,6 +5592,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6877835428891322614, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_fontSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6877835428891322614, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: m_margin.z
+      value: 71.02582
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

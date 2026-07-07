@@ -55,14 +55,14 @@ The Judge: So I’d love to stand here and explain the metaphysics of divine pol
 title: Act1_EveIntro_PreCombat_P1N1
 ---
 <<set_portrait YarnManager Eve shock>>
-???: Oh good, you’re awake!
+scared woman: Oh good, you’re awake!
 <<set_portrait YarnManager Eve defaultTalk>>
-???: Sorry, I didn’t mean to scare you.
-???: I found you on the outskirts and brought you here. We should be safe for now.
+another random kid: Sorry, I didn’t mean to scare you.
+another kid: I found you on the outskirts and brought you here. We should be safe for now.
 Eve: I’m Eve. What’s your name, if you don’t mind?
 
 <<set_portrait YarnManager Cyrus surprised>>
-Cyrus: ...
+shopkeeper: ...
 <<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: This is the second time I’ve woken up in five minutes.
 
@@ -250,143 +250,298 @@ Eve: Haha, yep~ You’ll need better equipment if you want to survive your first
 
 title: Act1_ShopIntro_P1N5
 ---
-<<set_cg YarnManager 0>>
+<<set_portrait YarnManager Eve oh >>
+Eve: Oh, by the way, the shopkeeper is my dad. Don’t bring up anything about the outskirts, just say I scouted you on the streets.
 
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: Eve? Where have you been?!
-
-<<set_portrait YarnManager Eve>>
-Eve: Had a run-in with some monsters, but we handled it.
-
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: You have a habit of getting yourself in danger the moment I turn my- Who’s this?
-
-<<set_portrait YarnManager Eve>>
-Eve: Oh! Dad, this is Cyrus. He’s a Hunter- well, a Hunter-in-training.
-
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: A Hunter, eh? My shop here has the best supplies you’ll find in this town.
-Shopkeeper: For a friend of my daughter’s I’ll even throw in a discount.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Thanks. Guess I’ll be lucky to have her as a dispatcher.
-
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: Eve???
-
-<<set_portrait YarnManager Eve>>
-Eve: I-I’m just helping from the radio, I won’t be on the ground!
-
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: What have I told you about-
-
-<<set_portrait YarnManager Eve>>
-Eve: I’ll be safe, Dad, I promise!
-
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: ...I can’t believe you.
-Shopkeeper: Well, Cyrus. You ought to take a look at my wares. Don’t want you getting killed either.
-
-<<clear_portrait YarnManager>>
-: [i]Cyrus and Shopkeeper enter the shop.[/i]
-
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: Here, I’ve got all the Fates a Hunter could ask for.
 
 <<open_shop YarnManager>>
 <<wait_for_shop_close YarnManager>>
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: Huh? This photo...
+===
 
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: My daughters.
-Shopkeeper: This one is Ava. She was the brightest kid you’d ever meet, you could tell even when she was a baby.
-Shopkeeper: And that one’s Eve, of course. She showed up at the door one night a few years back, looking up at me like a lost puppy. Really brings back memories.
+
+title: Act1_SliceofLife_P1N6
+---
+<<set_portrait YarnManager Eve happyTalk>>
+Eve: Hey Dad, we’re back! Do you need help with anything?
+
+<<set_portrait YarnManager Shopkeeper smile>>
+Shopkeeper: I’m all good for now. And actually...
+Shopkeeper: One of the Hunters you helped last week dropped by earlier and left a movie as thanks.
+
+<<set_portrait YarnManager Eve happyTalk >>
+Eve: Oh, really? Thanks, Dad! And tell him I said thank you!
+
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: You like watching movies?
+
+<<set_portrait YarnManager Eve shy >>
+Eve: Psh, I’m not a full-on cinephile or anything. It’s just something I like to do when I don’t have much else going on.
+
+<<set_portrait YarnManager Eve happyTalk >>
+Eve: Actually, want to come to my room and see my collection?
+
+<<set_portrait YarnManager Eve shy >>
+Eve: Welcome to my room! It’s a little messy, aha...
+
+<<set_portrait YarnManager Eve oh >>
+Eve: Anyhow, let’s see what this is.
+
+<<set_portrait YarnManager Eve shock >>
+Eve: Oooh, it’s a new Heartline Pictures movie!
+Eve: It’s called “Fatefully Yours in Lumas.”
 
 <<clear_portrait YarnManager>>
-: [i]Cyrus leaves the shop.[/i]
+: [i]The description says: “Margaret, an ambitious city memory-writer, returns to her hometown of Lumas to help her family’s struggling shop.[/i]
+: [i]But when she meets Krys, a charming Hunter with a tragic past, she must choose between the life she built in the city and the love waiting for her at home.”[/i]
 
-<<set_portrait YarnManager Eve>>
-Eve: Now you look like a real Hunter! I got you registered while you were in there.
+<<set_portrait YarnManager Cyrus disgust>>
+Cyrus: ...Sounds pretty cheesy.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: It’s that easy? No paperwork?
+<<set_portrait YarnManager Eve angry>>
+Eve: Hey, don’t judge my taste in movies! Romcoms are perfectly good movies in their own right!
+Eve: The lighthearted comedy paired with the heart-melting romantic elements make them both funny and sweet to watch,
+Eve: and the less complex story with lower stakes makes it so you can easily watch them together with your friends and family and have fun! And ALSO-
 
-<<set_portrait YarnManager Eve>>
-Eve: Thankfully not, they’re too desperate for new Hunters.
+<<set_portrait YarnManager Cyrus smug>>
+Cyrus: For someone who claims to not be a movie-lover, you sure have a lot to say about them.
+
+<<set_portrait YarnManager Eve shy>>
+Eve: Ehehehe...
+
+<<set_portrait YarnManager Eve happyTalk>>
+Eve: Anyhow, want to watch a movie with me? There's no mission right now.
+
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: Why not?
+
+<<set_portrait YarnManager Eve oh>>
+Eve: On a scale of 1-10, how much of a movie watcher are you?
+
+<<set_portrait YarnManager Cyrus surprisedSpeak >>
+Cyrus: Uhhh, well, I kinda lost my memories. So a zero?
+
+<<set_portrait YarnManager Eve shock >>
+Eve: What??? You don’t remember watching a single movie???
+
+<<set_portrait YarnManager Cyrus default >>
+Cyrus: Nope.
+
+<<set_portrait YarnManager Eve happy >>
+Eve: Well we need to fix that right now! Since you’re new, I’ll show you one of my favorites! It’s a relaxing one.
+
+<<clear_portrait YarnManager>>
+: [i]The movie opens on a small apartment at dawn.[/i]
+: [i]A young man, Ren, is trying to get his little sister ready for school while packing breakfast, sorting bills, and answering a call from work.[/i]
+: [i]He burns toast, steps on a toy, and insists everything is “completely under control” while the smoke alarm goes off.[/i]
+: [i]On the way to school, his sister complains about her hair. Ren tries to fix it, makes it worse...[/i]
+: [i]...then offers to buy her a “good morning memory” from a kiosk to make up for it.[/i]
+
+<<set_portrait YarnManager Cyrus surprised >>
+Cyrus: That’s a thing?
+
+<<set_portrait YarnManager Eve happy >>
+Eve: Small memories, mostly. Mood boosters. People buy confidence before interviews, calming memories before exams...
+Eve: There are even first-date packages, which are apparently terrible.
+
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: I’ve never bought one. Obviously.
+
+<<set_portrait YarnManager Cyrus lookAway>>
+Cyrus: I didn’t say anything.
+
+<<set_portrait YarnManager Eve happyEyeclosedTalk>>
+Eve: Good, because if I did, I’d at least buy the premium version.
+
+<<clear_portrait YarnManager>>
+: [i]Ren sees the price and quietly puts his wallet away. Instead, he tells his sister a ridiculous story about a heroic pigeon stealing the mayor’s sandwich.[/i]
+: [i]She laughs and forgets she was upset.[/i]
+
+<<set_portrait YarnManager Eve sadHappy>>
+Eve: Ren’s basically raising her alone. That’s why he worries over tiny things. Kinda like dad.
+Eve: He acts relaxed, but he notices everything. If I cough once, he asks if I need medicine. If I’m five minutes late, he “just happens” to be outside.
+
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: He must care about you a lot.
+
+<<set_portrait YarnManager Eve sad>>
+Eve: He does. Sometimes I think he cares so much because he already lost too much.
+Eve: When someone is all you have left, maybe you stop asking questions that might take them away.
+
+<<set_portrait YarnManager Cyrus lookAway>>
+Cyrus: ...
+
+<<clear_portrait YarnManager>>
+: [i]On-screen, Ren’s sister auditions for a school commercial.[/i]
+: [i]The teacher says they want “authentic childhood joy,” then hands the children a list of approved expressions and memories to rehearse.[/i]
+
+<<set_portrait YarnManager Cyrus surprised>>
+Cyrus: Even commercials use planted memories?
+
+<<set_portrait YarnManager Eve default>>
+Eve: Of course. Manufactured celebrities are all memory design. Agencies decide what people should remember about you.
+
+<<set_portrait YarnManager Cyrus defaultSpeak>>
+Cyrus: What about Hunters?
+
+<<set_portrait YarnManager Eve oh>>
+Eve: Definitely. If you became an agency Hunter, they’d probably make you the “silent protector of the forgotten city.” Lots of shots of you standing in the rain.
+
+<<set_portrait YarnManager Cyrus disgustQuestionmark>>
+Cyrus: That sounds inconvenient.
+
+<<set_portrait YarnManager Eve confused>>
+Eve: That’s your reaction?
+
+<<set_portrait YarnManager Cyrus disgust>>
+Cyrus: I don’t like standing in the rain.
+
+<<set_portrait YarnManager Eve oh>>
+Eve: Wow. The legend collapses immediately.
+
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: Could rivals sabotage that?
+
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: All the time. Leak the wrong memory, pay witnesses to remember you badly, make people associate you with cowardice or cruelty.
+Eve: If enough people remember a version of you, it starts to matter more than what actually happened.
+
+<<clear_portrait YarnManager>>
+: [i]In the movie, Ren’s sister refuses the commercial because she doesn’t want strangers told how to love her.[/i]
+: [i]She says she’d rather be remembered properly by her brother.[/i]
+
+<<set_portrait YarnManager Eve happyTalk>>
+Eve: This is one of my favorite scenes. Being loved by one person can still count, even if the whole world doesn’t know you.
+
+<<clear_portrait YarnManager>>
+: [i]Later, Ren takes a second job delivering memory cartridges and misses his sister’s recital. He arrives just as it ends.[/i]
+: [i]Instead of making excuses, he apologizes, and they sit outside eating convenience-store buns.[/i]
+
+<<set_portrait YarnManager Eve happyTalk>>
+Eve: That’s what I like about family stories. Even when people mess up, there’s still this understanding underneath it.
+
+<<set_portrait YarnManager Eve sadHappy>>
+Eve: I was awkward with Dad. I wanted to help with everything, but I was terrible at it. Once I tried to make breakfast and somehow made poison.
+
+<<set_portrait YarnManager Cyrus surprised>>
+Cyrus: That’s... impressive.
+
+<<set_portrait YarnManager Eve shy>>
+Eve: Another time, I was taking orders and wrote down everything the client said. Including “uh,” “actually,” and “wait, no, not that one.”
+
+<<set_portrait YarnManager Cyrus smile>>
+Cyrus: At least you were thorough.
+
+<<set_portrait YarnManager Eve shy>>
+Eve: Dad laughed so hard he had to go into the back room. I was furious for three days.
+
+<<set_portrait YarnManager Cyrus surprised>>
+Cyrus: Only three?
+
+<<set_portrait YarnManager Eve happyEyeclosed>>
+Eve: What can I say? I’m very forgiving.
+
+<<clear_portrait YarnManager>>
+: [i]The movie ends with Ren and his sister in a slightly better apartment. He makes breakfast without burning it.[/i]
+: [i]When she asks if they’ll be okay, he says, “As long as we’re together.”[/i]
+: [i]The screen fades out.[/i]
+
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: So? How was it?
+
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: Simple, but not shallow. The ending is a little unrealistic, though. People don’t always get rewarded for trying hard.
+
+<<set_portrait YarnManager Eve happy>>
+Eve: That’s fair. But sometimes I want a story to be kinder than reality. A happily ever after.
 
 <<clear_portrait YarnManager>>
 : [i]Eve’s device dings.[/i]
 
-<<set_portrait YarnManager Eve>>
-Eve: That was fast.
-Eve: Your first mission’s already here, they’re sending you deeper into the outskirts. Let’s head out.
+<<set_portrait YarnManager Eve shock>>
+Eve: Perfect timing! Your first mission’s already here! Let’s head out.
 ===
 
 
 title: Act1_TownProtection_PreCombat_P1N8
 ---
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve sad>>
 Eve: I should’ve warned you about Dad. He’s always been overprotective, but ever since the Assimilation started picking up...
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: [i]The Assimilation. The Judge mentioned that.[/i]
 
-<<set_portrait YarnManager Eve>>
-Eve: Oh, right, you probably don’t know. Once the memory monsters have consumed enough memories, the Assimilation ritual will begin and humanity’s memories will be completely swallowed up.
+<<set_portrait YarnManager Eve oh>>
+Eve: Oh, right, you don’t know.
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: Once the Meminiscors have consumed enough memories, the Assimilation ritual will begin, and humanity’s memories will be completely swallowed up.
+<<set_portrait YarnManager Eve sad>>
 Eve: We’ve always known it would happen one day, but it’ll be sooner than we thought.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: So the world is facing inevitable destruction? That’s terrible.
+<<set_portrait YarnManager Cyrus lookAway>>
+Cyrus: So the world is facing inevitable destruction? Sounds terrible.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve sadHappy>>
 Eve: Not the best place to wake up in, huh?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: What about the other Arcanas, then? If they preside over this world, shouldn’t they do something about its destruction?
 
-<<set_portrait YarnManager Eve>>
-Eve: They’re not saviors or destroyers, they only seek to enforce their principles. They can’t even interfere directly with this world.
+<<set_portrait YarnManager Eve default>>
+Eve: They’re not saviors or destroyers; they only seek to enforce their principles. They can’t even interfere directly with this world.
 Eve: But you’re right. Perhaps certain Arcanas have already directed their followers to oppose it.
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: By the way, Cyrus. If you don’t mind me asking, why did you decide to become a hunter?
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: ...
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: Didn’t we already go over this? It’s for the money. I kind of woke up with nothing.
+<<set_portrait YarnManager Eve shy>>
+Eve: Oh, yeah, that’s true. 
+<<set_portrait YarnManager Eve angry>>
 Eve: I’m picking up memory monsters up ahead. There’s been a lot more around here lately.
-Eve: I’ll guide you through. Just don’t get yourself killed on your first run, okay?
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: I’ll guide you through. Don’t get yourself killed on your first run, okay?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angry>>
 Cyrus: I’ll try my best.
 ===
 
 
 title: Act1_TownProtection_PostCombat_P1N8
 ---
-<<set_portrait YarnManager Cyrus>>
-Cyrus: That’s almost all of them. 
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: That’s all of them. 
 Cyrus: Eve, status?
+<<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: ...Eve?
+<<set_portrait YarnManager Cyrus angry>>
 Cyrus: [i]Line’s dead. I need to get back, fast.[/i]
 ===
 
 
 title: Act1_TownProtection_P1N8_Alt
 ---
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve angry>>
 Eve: I’m picking up memory monsters up ahead. There’s been a lot more around here lately.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: [i]This must be when the signal was disrupted.[/i]
 Cyrus: Right...I see them.
 
-<<set_portrait YarnManager Eve>>
-Eve: I’ll guide you through. Just don’t get yourself killed on your first run, okay?
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: I’ll guide you through. Don’t get yourself killed on your first run, okay?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus lookAway>>
 Cyrus: [i]If only it was that easy.[/i]
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve confused>>
 Eve: Cyrus? You’re heading back towards the city.
 Eve: What? Hold on, the signal is- Cy-rus?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: [i]There it is, right on schedule.[/i]
 Cyrus: Eve, if you can still hear this, I’ll be there soon.
 ===
@@ -394,71 +549,47 @@ Cyrus: Eve, if you can still hear this, I’ll be there soon.
 
 title: Act1_FalseHumanIntro_P1Boss
 ---
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angrySpeak>>
 Cyrus: Eve, I made it back. Do you copy?
-Cyrus: If you’re somewhere in this, please be okay. Your dad’s going to kill me otherwise.
 
-<<set_portrait YarnManager TownNPC1>>
-???: HELP!!!
 
-<<set_portrait YarnManager TownNPC2>>
-???: Wait- a Hunter!
+<<set_portrait YarnManager Cyrus eyesclosed>>
+Cyrus: Please be okay. Your dad’s going to kill me otherwise.
 
-<<set_portrait YarnManager TownNPC3>>
-???: Thank the Arcanas!
+<<set_portrait YarnManager NPC_man2 >>
+Scared man: HELP!!!
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: What’s going on here?
+<<set_portrait YarnManager NPC_woman1>>
+Scared woman: A Hunter!
 
-<<set_portrait YarnManager TownNPC2>>
-???: He told us we were safe!
+<<set_portrait YarnManager NPC_woman1>>
+Scared woman: Thank the Arcanas!
 
-<<set_portrait YarnManager Cyrus>>
+
+<<set_portrait YarnManager Cyrus angry>>
+Cyrus: What’s going on?
+
+<<set_portrait YarnManager NPC_woman1>>
+Scared woman: He told us we were safe!
+
+
+<<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: Who?
-
-<<set_portrait YarnManager TownNPC3>>
-???: The mayor! He said the patrols were just routine!
-
-<<set_portrait YarnManager TownNPC2>>
-???: That today was a day to be at ease!
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: The mayor? Why would he- 
 
 <<clear_portrait YarnManager>>
 : [i]A massive memory monster appears. (TODO spawn False Human boss)[/i]
 
-<<set_portrait YarnManager Cyrus>>
+
+<<set_portrait YarnManager Cyrus angrySpeak>>
 Cyrus: What the hell is that?
 
-<<set_portrait YarnManager TownNPC1>>
-???: RUN!
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager NPC_woman1>>
+???: RUN! AHHHHHHH-
+
+
+<<set_portrait YarnManager Cyrus angry>>
 Cyrus: [i]Guess it’s just me then.[/i]
-===
-
-
-title: Act1_FalseHumanIntro_P1Boss_Alt
----
-TODO Spawn False Human boss
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: [i]Doesn’t look any better.[/i]
-
-<<set_portrait YarnManager TownNPC1>>
-???: HELP!!!
-
-<<set_portrait YarnManager TownNPC2>>
-???: Wait- a Hunter!
-
-<<set_portrait YarnManager TownNPC3>>
-???: Thank the Arcanas!
-
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: I’d run if I were you.
-Cyrus: [i]Let’s try this again.[/i]
 ===
 
 
@@ -467,8 +598,8 @@ title: Act1_FalseHumanDeath_P1End
 <<set_portrait YarnManager Tobias>>
 ???: Hey, you alright?
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: You’re...hunters? Could’ve used your help earlier.
+<<set_portrait YarnManager Cyrus shockBleed>>
+Cyrus: You’re...Hunters? Could’ve used your help earlier.
 
 <<set_portrait YarnManager Tobias>>
 ???: We were way out when the signal cut off.
@@ -477,64 +608,69 @@ Cyrus: You’re...hunters? Could’ve used your help earlier.
 ???: Still doesn’t explain how something that big just appeared out of nowhere.
 ???: You really fought that thing alone? Are you crazy??
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus defaultBleed>>
 Cyrus: I was doing my job to protect this city.
 
-<<set_portrait YarnManager Tobias>>
-???: Aren’t you heroic, new guy!
+<<set_portrait YarnManager Saul>>
+???: You’re not in it for the money? It’s okay, you can be honest with us. We’re just here to make some bucks.
+
+<<set_portrait YarnManager Cyrus confusedBleed>>
+Cyrus: No... Isn’t it natural to want to help people? I can’t stand innocent people getting hurt.
+
+<<set_portrait YarnManager Saul>>
+???: Wow. That’s- I mean, good for you. Everyone’s got their own thing.
 
 <<set_portrait YarnManager Tobias>>
 ???: Hold on, the spiritual signal around here is still messed up, looks like it’s still-
+???: It’s pulling Fates away from civilians and healing itself!
 
-<<set_portrait YarnManager Tobias>>
-???: It’s pulling Fates! How do we kill it?!
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: We can’t, it’s going to-
+<<set_portrait YarnManager Cyrus angryTalkBleed>>
+Cyrus: Watch out-!
 ===
 
 
 title: FirstResurrection
 ---
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus eyesclosed>>
 Cyrus: ...
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: Did I...die?
 
-<<set_portrait YarnManager Judge>>
-The Judge: Don’t take it too hard. Most enforcers fail their first run. And their second. And, well...you’ll see.
+<<set_portrait YarnManager Judge happy>>
+The Judge: Don’t take it too hard. Most Enforcers fail their first run. And their second. And, well...you’ll see.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: The monster, the pain- I felt it. How am I still here?
 
-<<set_portrait YarnManager Judge>>
-The Judge: Your body’s dead in that timeline, but [i]you[/i], Cyrus? You’re Justice’s enforcer. Time is merely a tool to the Arcanas, a little thing like death won’t get you out of this. 
+<<set_portrait YarnManager Judge defaultTalk>>
+The Judge: Your body’s dead in that timeline, but [i]you[/i], Cyrus? You’re Justice’s Enforcer. Time is merely a tool to the Arcanas; a little thing like death won’t get you out of this. 
 The Judge: Each time you fail, time will rewind. Until you succeed. Aren’t you lucky?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus lookAway>>
 Cyrus: Not the word I’d use.
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge tease>>
 The Judge: Come on, most mortals would KILL for infinite chances to get things right. Haha, get it?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: If you can control time itself, can’t you do more to help me?
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge pout>>
 The Judge: You think Prism is the only place on the brink of destruction?
-The Judge: I’m already working nonstop managing the logistics of every enforcer, the last thing I need is you whining about the job [i]you[/i] signed up for.
+The Judge: I’m already working nonstop managing the logistics of every Enforcer, the last thing I need is you whining about the job [i]you[/i] signed up for.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: I, I don’t even remember anything!
+<<set_portrait YarnManager Cyrus disgustQuestionmark>>
+Cyrus: I don’t even remember anything!
 
-<<set_portrait YarnManager Judge>>
-The Judge: You’ve got all the time in the world, I’m sure you’ll figure it out.
+<<set_portrait YarnManager Judge teehee>>
+The Judge: You’ve got all the time in the world; I’m sure you’ll figure it out.
 The Judge: Well, Cyrus, looks like our time is up. Try not to die so fast on this one.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Wait!!
+<<set_portrait YarnManager Cyrus angrySpeak>>
+Cyrus: Wait!! What am I supposed to be-
  
-<<set_portrait YarnManager Judge>>
-The Judge: See you soon!
+<<set_portrait YarnManager Judge teehee>>
+The Judge: Oh! By the way, I’d advise against telling anyone about your looping ability. Minions of the other Arcanas would kill you immediately. See you soon!
 
 <<player_respawn YarnManager>>
 ===
@@ -542,8 +678,12 @@ The Judge: See you soon!
 
 title: FirstResurrection_Alt
 ---
+<<set_portrait YarnManager Cyrus>>
+Cyrus: Is that thing even killable?!
+
 <<set_portrait YarnManager Judge>>
-The Judge: See you again soon~
+The Judge: I wouldn’t be sending you down there otherwise, now would I?
+The Judge: Well, I actually have no idea, but it’s worth a shot!
 
 <<player_respawn YarnManager>>
 ===

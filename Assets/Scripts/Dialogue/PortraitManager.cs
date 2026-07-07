@@ -142,51 +142,55 @@ public class PortraitManager : MonoBehaviour
             case TransitionType.Nothing:
                 cgContainer.sprite = cg;
                 cgContainer.color = Color.white;
-                cgCoroutine = null;
-                yield break;
+                break;
             case TransitionType.Fade:
-                Image previousCG = null;
-                float newStartAlpha = cgContainer.color.a;
-                bool hasPreviousCG = cgContainer.sprite != null && cgContainer.color.a > 0f;
-
-                if (hasPreviousCG)
-                {
-                    previousCG = Instantiate(cgContainer, cgContainer.transform.parent);
-                    cgFadeOverlay = previousCG;
-                    newStartAlpha = 0f;
-                    previousCG.transform.SetSiblingIndex(cgContainer.transform.GetSiblingIndex());
-                    previousCG.raycastTarget = false;
-                }
-
-                cgContainer.sprite = cg;
-                cgContainer.color = new Color(1, 1, 1, newStartAlpha);
-
-                float elapsedTime = 0f;
-
-                while (elapsedTime < cgFadeDuration)
-                {
-                    float fadeProgress = cgFadeDuration <= 0f ? 1f : elapsedTime / cgFadeDuration;
-
-                    cgContainer.color = new Color(1, 1, 1, Mathf.Lerp(newStartAlpha, 1f, fadeProgress));
-
-                    elapsedTime += Time.deltaTime;
-                    yield return null;
-                }
-
-                cgContainer.color = Color.white;
-
-                if (previousCG != null)
-                {
-                    Destroy(previousCG.gameObject);
-                    cgFadeOverlay = null;
-                }
-
-                cgCoroutine = null;
-                yield break;
-
+                yield return FadeCG(cg);
+                break;
             case TransitionType.FadeWithBlack:
-                // TODO add transition
-                yield break;
+                yield return FadeCG(blackBackground);
+                yield return FadeCG(cg);
+                break;
+        }
+
+        cgCoroutine = null;
+    }
+
+    private IEnumerator FadeCG(Sprite cg)
+    {
+        Image previousCG = null;
+        float newStartAlpha = cgContainer.color.a;
+        bool hasPreviousCG = cgContainer.sprite != null && cgContainer.color.a > 0f;
+
+        if (hasPreviousCG)
+        {
+            previousCG = Instantiate(cgContainer, cgContainer.transform.parent);
+            cgFadeOverlay = previousCG;
+            newStartAlpha = 0f;
+            previousCG.transform.SetSiblingIndex(cgContainer.transform.GetSiblingIndex());
+            previousCG.raycastTarget = false;
+        }
+
+        cgContainer.sprite = cg;
+        cgContainer.color = new Color(1, 1, 1, newStartAlpha);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < cgFadeDuration)
+        {
+            float fadeProgress = cgFadeDuration <= 0f ? 1f : elapsedTime / cgFadeDuration;
+
+            cgContainer.color = new Color(1, 1, 1, Mathf.Lerp(newStartAlpha, 1f, fadeProgress));
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        cgContainer.color = Color.white;
+
+        if (previousCG != null)
+        {
+            Destroy(previousCG.gameObject);
+            cgFadeOverlay = null;
         }
     }
 

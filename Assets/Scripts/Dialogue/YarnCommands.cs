@@ -26,8 +26,26 @@ public class YarnCommands : MonoBehaviour
         PortraitManager.instance.ClearPortrait();
     }
 
+    private PortraitManager.TransitionType StringToTransitionType(string anim)
+    {
+        anim = anim.ToLower();
+        if (anim == "notransition")
+        {
+            return PortraitManager.TransitionType.Nothing;
+        }
+        else if (anim == "fadewithblack")
+        {
+            return PortraitManager.TransitionType.FadeWithBlack;
+        }
+        if (anim != "fade")
+        {
+            Debug.LogWarning($"Received unknown CG animation type {anim}, defaulting to Fade");
+        }
+        return PortraitManager.TransitionType.Fade;
+    }
+
     [YarnCommand("set_cg")]
-    public void SetYarnSpinnerCG(int cgNum, bool fade = true)
+    public void SetYarnSpinnerCG(int cgNum, string anim = "fade")
     {
         if (NarrativeRoomManager.instance.currentRoom.cgList.Count <= cgNum)
         {
@@ -35,7 +53,7 @@ public class YarnCommands : MonoBehaviour
         }
         else
         {
-            PortraitManager.instance.SetCG(NarrativeRoomManager.instance.currentRoom.cgList[cgNum], fade);
+            PortraitManager.instance.SetCG(NarrativeRoomManager.instance.currentRoom.cgList[cgNum], StringToTransitionType(anim));
         }
     }
 

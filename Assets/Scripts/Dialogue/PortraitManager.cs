@@ -25,6 +25,13 @@ public class PortraitManager : MonoBehaviour
     private float baseX;
     private float baseY;
 
+    public enum TransitionType
+    {
+        Nothing,
+        Fade,
+        FadeWithBlack,
+    }
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -114,67 +121,73 @@ public class PortraitManager : MonoBehaviour
         portraitContainer.color = new Color(1, 1, 1, 0);
     }
 
-    public void SetCG(Sprite cg, bool fade)
+    public void SetCG(Sprite cg, TransitionType anim)
     {
         StopCGCoroutine();
-        cgCoroutine = StartCoroutine(SetCGCoroutine(cg, fade));
+        cgCoroutine = StartCoroutine(SetCGCoroutine(cg, anim));
     }
 
     public void SetBlackCG(bool fade)
     {
         StopCGCoroutine();
-        cgCoroutine = StartCoroutine(SetCGCoroutine(blackBackground, fade));
+        cgCoroutine = StartCoroutine(SetCGCoroutine(blackBackground, fade ? TransitionType.Fade : TransitionType.Nothing));
     }
 
-    private IEnumerator SetCGCoroutine(Sprite cg, bool fade)
+    private IEnumerator SetCGCoroutine(Sprite cg, TransitionType anim)
     {
         yield return null; // ensures main thread + next frame
 
-        if (!fade)
+        switch (anim)
         {
-            cgContainer.sprite = cg;
-            cgContainer.color = Color.white;
-            cgCoroutine = null;
-            yield break;
+            case TransitionType.Nothing:
+                cgContainer.sprite = cg;
+                cgContainer.color = Color.white;
+                cgCoroutine = null;
+                yield break;
+            case TransitionType.Fade:
+                Image previousCG = null;
+                float newStartAlpha = cgContainer.color.a;
+                bool hasPreviousCG = cgContainer.sprite != null && cgContainer.color.a > 0f;
+
+                if (hasPreviousCG)
+                {
+                    previousCG = Instantiate(cgContainer, cgContainer.transform.parent);
+                    cgFadeOverlay = previousCG;
+                    newStartAlpha = 0f;
+                    previousCG.transform.SetSiblingIndex(cgContainer.transform.GetSiblingIndex());
+                    previousCG.raycastTarget = false;
+                }
+
+                cgContainer.sprite = cg;
+                cgContainer.color = new Color(1, 1, 1, newStartAlpha);
+
+                float elapsedTime = 0f;
+
+                while (elapsedTime < cgFadeDuration)
+                {
+                    float fadeProgress = cgFadeDuration <= 0f ? 1f : elapsedTime / cgFadeDuration;
+
+                    cgContainer.color = new Color(1, 1, 1, Mathf.Lerp(newStartAlpha, 1f, fadeProgress));
+
+                    elapsedTime += Time.deltaTime;
+                    yield return null;
+                }
+
+                cgContainer.color = Color.white;
+
+                if (previousCG != null)
+                {
+                    Destroy(previousCG.gameObject);
+                    cgFadeOverlay = null;
+                }
+
+                cgCoroutine = null;
+                yield break;
+
+            case TransitionType.FadeWithBlack:
+                // TODO add transition
+                yield break;
         }
-
-        Image previousCG = null;
-        float newStartAlpha = cgContainer.color.a;
-        bool hasPreviousCG = cgContainer.sprite != null && cgContainer.color.a > 0f;
-
-        if (hasPreviousCG)
-        {
-            previousCG = Instantiate(cgContainer, cgContainer.transform.parent);
-            cgFadeOverlay = previousCG;
-            newStartAlpha = 0f;
-            previousCG.transform.SetSiblingIndex(cgContainer.transform.GetSiblingIndex());
-            previousCG.raycastTarget = false;
-        }
-
-        cgContainer.sprite = cg;
-        cgContainer.color = new Color(1, 1, 1, newStartAlpha);
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < cgFadeDuration)
-        {
-            float fadeProgress = cgFadeDuration <= 0f ? 1f : elapsedTime / cgFadeDuration;
-
-            cgContainer.color = new Color(1, 1, 1, Mathf.Lerp(newStartAlpha, 1f, fadeProgress));
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        cgContainer.color = Color.white;
-
-        if (previousCG != null)
-        {
-            Destroy(previousCG.gameObject);
-            cgFadeOverlay = null;
-        }
-
-        cgCoroutine = null;
     }
 
     public void ClearCG()

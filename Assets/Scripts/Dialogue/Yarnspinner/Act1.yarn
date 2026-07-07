@@ -134,119 +134,116 @@ Eve: We’d better head back to the city.
 
 title: Act1_EveIntro_PreCombat_P1N1_Alt
 ---
-<<set_portrait YarnManager Eve>>
-Eve: Oh good, you’re awake!
-Eve: Ah! Sorry, I didn’t mean to scare you.
-Eve: I found you on the outskirts and brought you here. We should be safe for now.
-Eve: I’m Eve. I don’t think I’ve seen you around this part of town. What’s your name?
+<<set_portrait YarnManager Eve shock>>
+???: Oh good, you’re awake!
+<<set_portrait YarnManager Eve defaultTalk>>
+???: Sorry, I didn’t mean to scare you.
+???: I found you on the outskirts and brought you here. We should be safe for now.
+Eve: I’m Eve. What’s your name, if you don’t mind?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: [i]...I really am looping through time.[/i]
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: Cyrus.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve defaultTalk>>
 Eve: Nice to meet you, Cyrus! Or not nice? Given the circumstances. Are you hurt anywhere?
 
+<<clear_portrait YarnManager>>
 A Meminiscor roars. (TODO play sound via function here)
 
-<<set_portrait YarnManager Eve>>
-Eve: Oh, that’s not good. Sounds like-
+<<set_portrait YarnManager Eve angry>>
+Eve: We need to go!
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: A Meminiscor?
-
-<<set_portrait YarnManager Eve>>
-Eve: Yup. We should probably get going-
-
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angrySpeak>>
 Cyrus: Get down!
 
-<<set_portrait YarnManager Eve>>
-Eve: Oh, thanks!
+<<set_portrait YarnManager Eve shock>>
+Eve: !!
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Do you have a gun?
+<<set_portrait YarnManager Cyrus angrySpeak>>
+Cyrus: Give me- Do you have a gun?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve defaultTalk>>
 Eve: Uh, yeah-
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angry>>
 Cyrus: I’ll take it.
 ===
 
 
 title: Act1_EveIntro_PostCombat_P1N1_Alt
 ---
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve shock>>
 Eve: You actually did it. Are you a Hunter?
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Yup.
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: Sort of.
 
-A distant roar is heard. (TODO play sound via function here)
+<<clear_portrait YarnManager>>
+: [i]A distant roar is heard. (TODO play sound)[/i]
 
-<<set_portrait YarnManager Eve>>
-Eve: We shouldn’t stay here, if a stronger Meminiscor shows up we’re in trouble.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Got it.
-Cyrus: Don’t have to tell me twice.
+<<set_portrait YarnManager Eve angry>>
+Eve: We’d better head back to the city.
 ===
 
 
 title: Act1_EveWorldbuilding_P1N2
 ---
-<<set_cg YarnManager 0>>
+<<set_portrait YarnManager Eve confused>>
+Eve: You really aren’t from around here?
 
-<<set_portrait YarnManager Eve>>
-Eve: You really aren’t from around here, are you?
-
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: I’m not sure where I’m from.
 
-<<set_portrait YarnManager Eve>>
-Eve: So you have the skills of a Hunter but remember nothing...maybe you exchanged your Fates away?
+<<set_portrait YarnManager Eve confused>>
+Eve: So you have the skills of a Hunter but remember nothing? Maybe you exchanged your Fates away?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
 Cyrus: Fates?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve default>>
 Eve: Strong memories, the kind that only happens a few times in a person’s life.
-Eve: Depending on the memory and what Arcana it’s aligned with, they’ll each grant you a unique power. Tell me you at least know what an Arcana is.
+Eve: Depending on the memory and what Arcana it’s aligned with, they’ll grant you a unique power.
+<<set_portrait YarnManager Eve oh>>
+Eve: ...You at least know what an Arcana is, right?
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: I remember, uh, Justice?
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: Uh. I remember, uh, Justice?
 
-<<set_portrait YarnManager Eve>>
-Eve: Good. Say you became a judge to ensure fair rulings in court. That Fate would be tied to the Justice Arcana, which may then grant you stronger defense.
-Eve: Throughout life, we gain many Fates from different Arcanas. 
-Eve: You can trade them like any other currency, but if you lose them all you’ll become one of those things we ran into.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Memory monsters...that’s how they get their name.
-
-<<set_portrait YarnManager Eve>>
-Eve: They didn’t make the warmest welcome, but, luckily we have Hunters to fight them off.
+<<set_portrait YarnManager Eve default>>
+Eve: Eh, better than nothing.
+Eve: Hmm, say you became a judge to ensure fair rulings in court. That memory might become a Fate tied to the Justice Arcana, which may grant you stronger defense.
+Eve: Throughout life, we gain Fates from different Arcanas. 
+Eve: Think of Arcanas as higher dimensional gods that enforce a particular belief no matter what. Together, they maintain balance in this world.
+Eve: You can trade Fates like any other currency, but if you lose them all, you’ll become one of those things we ran into.
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: They didn’t make the warmest welcome, but luckily we have Hunters to fight them off.
 Eve: I’m surprised you aren’t one already. You can make a lot of money hunting those things.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: [i]Hunting...isn’t that what the Judge said to do?[/i]
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: [i]Hunting...the Judge mentioned something about it.[/i]
 Cyrus: How do I start?
 
-<<set_portrait YarnManager Eve>>
-Eve: Well, you'll need a dispatcher to guide you over the air. Which should be me.
+<<set_portrait YarnManager Eve happyTalk>>
+Eve: Guess money’s a big motivator, huh?
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: You'll need a dispatcher to guide you remotely. The outskirts is a distorted space, and it's constantly changing. 
+<<set_portrait YarnManager Eve happyTalk>>
+Eve: You'll get lost if you don't have a trained dispatcher. There's not many free around town, so you ought to choose me as your dispatcher.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: You sound eager.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve happy>>
 Eve: Our town would be a lot safer with a Hunter like you.
-Eve: And I’ll get a cut of your profits, of course.
+<<set_portrait YarnManager Eve happyEyeclosedTalk>>
+Eve: Aaaand I’ll get a cut of your profits, of course.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus defaultSpeak>>
 Cyrus: So [i]that's[/i] your motive.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve happyTalk>>
 Eve: Haha, yep~ You’ll need better equipment if you want to survive your first day. The shop’s up ahead.
 ===
 

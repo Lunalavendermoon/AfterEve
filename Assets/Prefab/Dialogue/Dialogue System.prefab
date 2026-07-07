@@ -589,6 +589,14 @@ MonoBehaviour:
       sprite: {fileID: -123587567, guid: d1947f9d95e414ad3967da035b91ccd1, type: 3}
     - spriteName: surprisedQuestionmark
       sprite: {fileID: -154360688, guid: 5a2c2cb2c89cb43e5964bf02f391d7bd, type: 3}
+    - spriteName: angryTalkBleed
+      sprite: {fileID: -297977833, guid: 74e7f9874df714a1f9d864f7067b0b56, type: 3}
+    - spriteName: confusedBleed
+      sprite: {fileID: -1470233918, guid: 95dfa03a6d9c34d93bd61cdd6b80c3cc, type: 3}
+    - spriteName: defaultBleed
+      sprite: {fileID: 1820293364, guid: 5b1403d3ba98e44268c03c233335a477, type: 3}
+    - spriteName: shockBleed
+      sprite: {fileID: -1430616837, guid: e0924836edaa24c5191fe419380eaacf, type: 3}
   - characterName: Eve
     leftOffset: 0
     sprites:

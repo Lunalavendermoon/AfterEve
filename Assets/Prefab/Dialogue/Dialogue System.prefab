@@ -642,6 +642,12 @@ MonoBehaviour:
       sprite: {fileID: 995105078, guid: efec3d2a173dc40fd85c3545bb95cc81, type: 3}
     - spriteName: shy
       sprite: {fileID: -1109278650, guid: 298180b2e525549eb98d6c76e6ef2744, type: 3}
+    - spriteName: defaultPossessed
+      sprite: {fileID: -274727046, guid: cd54b2da71018473a826c4e70faa65d8, type: 3}
+    - spriteName: happyPossessed
+      sprite: {fileID: 1235003671, guid: 2d49d1cc7da4f441d95e5ad3f911c439, type: 3}
+    - spriteName: happyPossessedTalk
+      sprite: {fileID: -1039180579, guid: a55957225b9114fa5a31dc747220aab6, type: 3}
   - characterName: Judge
     leftOffset: 5
     sprites:

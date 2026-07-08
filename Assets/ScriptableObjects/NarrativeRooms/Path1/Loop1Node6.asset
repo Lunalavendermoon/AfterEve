@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Loop1Node6
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 0
-  roomEnemyGenSetting: 4
-  roomCount: 2
+  roomEnemyGenSetting: 0
+  roomCount: 6
   visitCount: 1
   roomPrefab: {fileID: 0}
   itemPrefab: {fileID: 0}
@@ -29,7 +29,7 @@ MonoBehaviour:
     Path: event:/Ambient/Ambient 1
   enemyPrefabs: []
   disableChestGeneration: 0
-  onSpawnDialogue: Act1_EveWorldbuilding_P1N2
+  onSpawnDialogue: Act1_SliceofLife_P1N6
   postCombatDialogue: 
   isScriptedDeath: 0
   spawnPortalAfterLastDialogue: 0

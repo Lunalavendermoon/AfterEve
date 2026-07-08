@@ -64,9 +64,9 @@ public class YarnCommands : MonoBehaviour
     }
 
     [YarnCommand("clear_cg")]
-    public void ClearYarnSpinnerCG()
+    public void ClearYarnSpinnerCG(string anim = "fade")
     {
-        PortraitManager.instance.ClearCG();
+        PortraitManager.instance.ClearCG(StringToTransitionType(anim));
     }
 
     [YarnCommand("start_controls")] // used to restart player controls after dialogue

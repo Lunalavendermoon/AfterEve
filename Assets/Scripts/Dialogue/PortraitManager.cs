@@ -194,21 +194,40 @@ public class PortraitManager : MonoBehaviour
         }
     }
 
-    public void ClearCG()
+    public void ClearCG(TransitionType anim = TransitionType.Fade)
     {
         StopCGCoroutine();
-        cgCoroutine = StartCoroutine(ClearCGCoroutine());
+        cgCoroutine = StartCoroutine(ClearCGCoroutine(anim));
     }
 
-    private IEnumerator ClearCGCoroutine()
+    private IEnumerator ClearCGCoroutine(TransitionType anim)
     {
         yield return null; // ensures main thread + next frame
 
+        switch (anim)
+        {
+            case TransitionType.Nothing:
+                cgContainer.sprite = null;
+                cgContainer.color = new Color(1, 1, 1, 0);
+                break;
+            case TransitionType.Fade:
+                yield return FadeOutCG();
+                break;
+            case TransitionType.FadeWithBlack:
+                yield return FadeCG(blackBackground);
+                yield return FadeOutCG();
+                break;
+        }
+
+        cgCoroutine = null;
+    }
+
+    private IEnumerator FadeOutCG()
+    {
         if (cgContainer.sprite == null || cgContainer.color.a <= 0f || cgFadeDuration <= 0f)
         {
             cgContainer.sprite = null;
             cgContainer.color = new Color(1, 1, 1, 0);
-            cgCoroutine = null;
             yield break;
         }
 
@@ -239,7 +258,6 @@ public class PortraitManager : MonoBehaviour
 
         Destroy(fadingCG.gameObject);
         cgFadeOverlay = null;
-        cgCoroutine = null;
     }
 
     private void StopCGCoroutine()

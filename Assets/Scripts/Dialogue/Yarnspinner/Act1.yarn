@@ -55,10 +55,10 @@ The Judge: So I’d love to stand here and explain the metaphysics of divine pol
 title: Act1_EveIntro_PreCombat_P1N1
 ---
 <<set_portrait YarnManager Eve shock>>
-scared woman: Oh good, you’re awake!
+???: Oh good, you’re awake!
 <<set_portrait YarnManager Eve defaultTalk>>
-another random kid: Sorry, I didn’t mean to scare you.
-another kid: I found you on the outskirts and brought you here. We should be safe for now.
+???: Sorry, I didn’t mean to scare you.
+???: I found you on the outskirts and brought you here. We should be safe for now.
 Eve: I’m Eve. What’s your name, if you don’t mind?
 
 <<set_portrait YarnManager Cyrus surprised>>
@@ -253,12 +253,169 @@ title: Act1_ShopIntro_P1N5
 <<set_portrait YarnManager Eve oh >>
 Eve: Oh, by the way, the shopkeeper is my dad. Don’t bring up anything about the outskirts, just say I scouted you on the streets.
 
+<<set_portrait YarnManager Shopkeeper default>>
+Shopkeeper: Eve? Where have you been?!
+
+<<set_portrait YarnManager Eve happyTalk>>
+Eve: I was just buying some supplies around town, no need to worry, dad.
+
+<<set_portrait YarnManager Shopkeeper default>>
+Shopkeeper: Then why did Saul mention seeing you in the outskirts?
+
+<<set_portrait YarnManager Eve oh >>
+Eve: Huh? You sure he didn’t just mistake someone else for me?
+
+<<set_portrait YarnManager Shopkeeper default>>
+Shopkeeper: Eve.
+
+<<set_portrait YarnManager Eve shy >>
+Eve: Ugh, fine. I WAS in the outskirts, but I’m perfectly fine now. See? You know we’re running low on repair parts, the outskirts is just the best way to get the base materials...
+
+<<set_portrait YarnManager Eve default >>
+Eve: I promise I was careful! I didn't go very far. The radio signal could still be used. Besides, haven't I already passed all the necessary dispatcher training? I can handle this.
+
+<<set_portrait YarnManager Shopkeeper default>>
+Shopkeeper: Ughhh. You have a habit of getting yourself in danger the moment I turn my- Who’s this?
+
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: Oh! Dad, this is Cyrus. He’s a Hunter- well, a Hunter-in-training.
+
+<<set_portrait YarnManager Shopkeeper smile>>
+Shopkeeper: A Hunter, eh? My shop here has the best supplies you’ll find in this town.
+Shopkeeper: For a friend of my daughter’s, I’ll even throw in a discount.
+
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: Thanks. Guess I’ll be lucky to have her as a dispatcher.
+
+<<set_portrait YarnManager Shopkeeper default>>
+Shopkeeper: Eve???
+
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: I-I’m just helping from the radio, I won’t be on the ground!
+
+<<set_portrait YarnManager Shopkeeper default>>
+Shopkeeper: What have I told you about-
+
+<<set_portrait YarnManager Eve shy >>
+Eve: I’ll be safe, Dad, I promise!
+
+<<set_portrait YarnManager Shopkeeper default>>
+Shopkeeper: ...I can’t believe you. It’s like you’re trying to have this old man die of a heart attack.
+Shopkeeper: Well, Cyrus. You ought to take a look at my wares. Don’t want you getting killed either.
+
+<<clear_portrait YarnManager>>
+: [i]Cyrus and Shopkeeper enter the shop.[/i]
+
+<<set_portrait YarnManager Shopkeeper smile>>
+Shopkeeper: Here, I’ve got all the Fates a Hunter could ask for.
 
 <<open_shop YarnManager>>
 <<wait_for_shop_close YarnManager>>
 
 <<set_portrait YarnManager Cyrus surprised>>
 Cyrus: Huh? This photo...
+
+<<set_portrait YarnManager Shopkeeper default>>
+Shopkeeper: My daughters.
+Shopkeeper: This one is Ava. She was the brightest kid you’d ever meet; you could tell even when she was a baby.
+Shopkeeper: And that one’s Eve, of course. She showed up at the door one night a few years back, looking up at me like a lost puppy. Really brings back memories.
+
+<<clear_portrait YarnManager>>
+: [i]Cyrus leaves the shop.[/i]
+
+<<set_portrait YarnManager Eve happyTalk >>
+Eve: Now you look like a real Hunter! I got you registered while you were in there.
+
+<<set_portrait YarnManager Cyrus default >>
+Cyrus: It’s that easy? No paperwork?
+
+<<set_portrait YarnManager Eve default >>
+Eve: Thankfully not, they’re too desperate for new Hunters.
+<<set_portrait YarnManager Eve happyEyeclosed >>
+ Eve: Since you’re new here, how about I show you around town first?
+<<clear_portrait YarnManager>>
+<<clear_cg YarnManager fadeWithBlack>>
+<<set_portrait YarnManager NPC_woman2>>
+Old Woman: Eve! Thank Arcanas you're here. I finally finished that scarf.
+<<set_portrait YarnManager Eve happyTalk >>
+Eve: You did? Can I see?
+Eve: It's beautiful!
+<<clear_portrait YarnManager>>
+<<clear_cg YarnManager fadeWithBlack>>
+<<set_portrait YarnManager NPC_boy>>
+Random Kid: Eve!
+<<set_portrait YarnManager Eve happyTalk >>
+Eve: Hi, Timmy!
+<<set_portrait YarnManager NPC_boy>>
+Random Kid: Look! I found a cool rock!
+<<set_portrait YarnManager Eve oh >>
+Eve: Whoa! That is a cool rock!
+<<clear_portrait YarnManager>>
+<<clear_cg YarnManager fadeWithBlack>>
+<<set_portrait YarnManager NPC_girl >>
+Another Kid: Eve!
+<<set_portrait YarnManager Eve happyTalk >>
+Eve: Hi, Sarah!
+<<set_portrait YarnManager NPC_girl >>
+Another Kid: Look! I found a cool rock!
+<<set_portrait YarnManager Eve oh>>
+Eve: Whoa! That's a different cool rock!
+<<clear_portrait YarnManager>>
+<<clear_cg YarnManager fadeWithBlack>>
+<<set_portrait YarnManager NPC_boy >>
+Another Random Kid: Look! I—
+<<set_portrait YarnManager Cyrus surprisedQuestionmark >>
+Cyrus: Is there some kind of competition?
+<<set_portrait YarnManager NPC_boy>>
+Another Random Kid: Hey! Don’t interrupt me! Don’t you know that’s rude???
+<<clear_portrait YarnManager>>
+<<clear_cg YarnManager fadeWithBlack>>
+<<set_portrait YarnManager NPC_man1>>
+Delivery Worker: Hey, Eve! Do you know the directions to the new warehouse?
+<<clear_portrait YarnManager>>
+<<clear_cg YarnManager fadeWithBlack>>
+<<set_portrait YarnManager NPC_woman2>>
+Pastry Store Owner: Eve! Take a free pastry! One for your friend as well! This is thanks for helping watch the store last week!
+<<clear_portrait YarnManager>>
+<<clear_cg YarnManager fadeWithBlack>>
+<<set_portrait YarnManager Cyrus surprised >>
+Cyrus: Do you know everyone here?
+<<set_portrait YarnManager Eve default >>
+Eve: Not everyone.
+<<set_portrait YarnManager NPC_woman2>>
+Customer 1: Eve!
+<<set_portrait YarnManager NPC_man1>>
+Customer 2: Eve!
+<<set_portrait YarnManager NPC_man2>>
+Customer 3: Eve!
+<<set_portrait YarnManager Eve eyeclosed >>
+Eve: ...
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
+Cyrus: Are you famous?
+<<set_portrait YarnManager Eve happyEyeclosed >>
+Eve: No.
+<<set_portrait YarnManager NPC_woman1>>
+Barista: She's famous.
+<<set_portrait YarnManager Eve happyEyeclosed>>
+Eve: I'm not.
+<<set_portrait YarnManager NPC_woman2>>
+Customer: Last month, she helped me carry furniture.
+<<set_portrait YarnManager NPC_man2 >>
+Another Customer: She found my dog.
+<<set_portrait YarnManager NPC_man1 >>
+Another Customer: She helped me practice for a job interview.
+<<set_portrait YarnManager Eve confused >>
+Eve: Those are normal things! And I don’t actually know everyone—
+<<set_portrait YarnManager Cyrus smile >>
+Cyrus: Yeah, probably that newborn baby that was just born ten seconds ago.
+<<set_portrait YarnManager Eve happyEyeclosed >>
+Eve: You— ANYWAYS, welcome to my favorite cafe! This place is great. Dad and I come here all the time. What do you want?
+<<set_portrait YarnManager Cyrus default >>
+Cyrus: What do you recommend?
+<<set_portrait YarnManager Eve happy >>
+Eve: Blueberry latte.
+<<set_portrait YarnManager Cyrus default >>
+Cyrus: Alright. I’ll get a blueberry latte.
 ===
 
 

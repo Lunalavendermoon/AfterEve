@@ -1,36 +1,21 @@
 ﻿title: Act2_EveIntro_P2N1
 ---
-/// no repeat
-<<set_portrait YarnManager Eve>>
-Eve: Oh good, you’re awake!
-Eve: Ah! Sorry, I didn’t mean to scare you.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: [i]It's really repeating...[/i]
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: [i]If I want to stop the Assimilation, I need to know more about this world.[/i]
 ===
 
 
 title: Act2_SecretPoliceIntro_P2N3
 ---
-/// no repeat
-<<set_portrait YarnManager Eve>>
-Eve: You actually did it. Are you a Hunter?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Eve oh>>
+Eve: You’re goooood. Are you a Hunter?
+
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: I’d like to be.
 
-<<set_portrait YarnManager Eve>>
-Eve: Hmm...we could make a pretty good team~
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: At protecting the town or collecting the bounties?
-
-<<set_portrait YarnManager Eve>>
-Eve: Why not both? Let’s get you suited up.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: That way looks dangerous, let’s try another path.
+<<set_portrait YarnManager Eve happy>>
+Eve: Well, you know what? We could make a pretty good team~
 
 <<clear_portrait YarnManager>>
 : [i]Some time later...[/i]
@@ -39,20 +24,23 @@ Transition (TODO)
 <<set_portrait YarnManager Tobias>>
 ???: Is that you, Eve?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve shock>>
 Eve: Hey! Didn’t expect to run into you two.
+
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
+Cyrus: [i]What? This is new. Did things change because of the butterfly effect? Eve did mention that the outskirts’ distorted space is constantly changing.[/i]
 
 <<set_portrait YarnManager Saul>>
 ???: Who’s this?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve happy>>
 Eve: Cyrus, a soon-to-be Hunter.
 
 <<set_portrait YarnManager Saul>>
 ???: Ah, I can tell you all you need to know. You happen to be in the presence of a master.
 
 <<set_portrait YarnManager Tobias>>
-Tobias: I’m Tobias, you can ignore Saul.
+Tobias: I’m Tobias. You can ignore Saul.
 
 <<set_portrait YarnManager Saul>>
 Saul: He’s just jealous.
@@ -61,34 +49,38 @@ Saul: He’s just jealous.
 Tobias: Better head back, Eve. You know what your father would say about being out here.
 
 <<set_portrait YarnManager Saul>>
-Saul: Not like the city is much safer, probably festering with False Humans.
+Saul: Not like the city is much safer? Probably festering with False Humans.
 
 <<set_portrait YarnManager Tobias>>
 Tobias: What's paranoia good for? All it’s done is drive everyone crazy accusing each other.
 
 <<set_portrait YarnManager Saul>>
-Saul: It’s not paranoia, my neighbor’s definitely been acting strange.
+Saul: It’s not paranoia! My neighbor’s definitely been acting strange.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: What’s a False Human?
+<<set_portrait YarnManager Cyrus disgustQuestionmark>>
+Cyrus: Um. What’s a False Human?
 
-<<set_portrait YarnManager Eve>>
-Eve: Oh, uh, Cyrus is new here.
+<<set_portrait YarnManager Eve oh>>
+Eve: Oh, Cyrus is new here.
 
 <<set_portrait YarnManager Saul>>
-Saul: They’re the most dangerous kind of memory monster, they look and act just like us. Just one of them can wipe out a whole fleet of Hunters.
+Saul: They’re the most dangerous “memory monster” - that’s the common phrase for Meminiscors; they look and act just like us.
+Saul: Just one of them can wipe out a whole fleet of Hunters.
 
 <<set_portrait YarnManager Tobias>>
-Tobias: That’s why we’re paid to take care of the little guys, so The Ministry of Prismatic Security can focus on tracking down the False Humans.
+Tobias: That’s why we’re paid to take care of the mindless weak ones in the outskirts, so The Ministry of Prismatic Security can focus on tracking down False Humans.
 
 <<set_portrait YarnManager Saul>>
 Saul: Supposedly. I wish they’d hurry up and do their job before the Assimilation ends us all.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus lookAway>>
 Cyrus: [i]If I find the False Human, could I stop the Assimilation?[/i]
-Cyrus: How do I contact Prismatic Security?
+
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: Prismatic Security?
 
 <<set_portrait YarnManager Tobias>>
+Tobias: Think of them like government security. 
 Tobias: [i]“And a new dawn rises”.[/i] Use that code if you ever run into something bigger than you can handle.
 
 <<set_portrait YarnManager Saul>>
@@ -98,21 +90,6 @@ Saul: Alright, let’s get moving. We’ve got a hunt to finish.
 
 title: Act2_ShopBanter_P2N5
 ---
-<<set_cg YarnManager 0>>
-
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: Eve? Where have you been?!
-
-<<set_portrait YarnManager Eve>>
-Eve: Had a run-in with some monsters, but we handled it. (Banter continues)
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: [i]The fates here were quite helpful. I should take a look.[/i]
-
-
-<<set_portrait YarnManager Shopkeeper>>
-Shopkeeper: You ought to take a look at my wares then. Don’t want you getting killed either.
-Shopkeeper: Here, I’ve got all the Fates a Hunter could ask for.
 
 <<open_shop YarnManager>>
 <<wait_for_shop_close YarnManager>>
@@ -131,7 +108,7 @@ Eve: All set. Ready to head out?
     <<jump Act2_ShopBanter_Dispatcher>>
 -> Ask about Prism
     <<jump Act2_ShopBanter_Prism>>
--> Ask about her
+-> Ask about her hobbies
     <<jump Act2_ShopBanter_Eve>>
 -> End conversation
     <<jump Act2_ShopBanter_End>>
@@ -140,51 +117,39 @@ Eve: All set. Ready to head out?
 
 title: Act2_ShopBanter_Family
 ---
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Your dad seems... nice.
+<<set_portrait YarnManager Eve shy>>
+Eve: Dad likes to act tough, but he’s really just a big softie inside.
 
-<<set_portrait YarnManager Eve>>
-Eve: He likes to act tough, but he’s really just terrified.
-
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: He mentioned you had a sister?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve sad>>
 Eve: ...
 Eve: Ava.
 Eve: She’s not here anymore.
 
--> Inquire further
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: Oh. Is she...
+<<set_portrait YarnManager Cyrus sad>>
+Cyrus: Oh...I’m sorry.
 
-    <<set_portrait YarnManager Eve>>
-    Eve: We snuck out to the outskirts together, but we were too young to know what we were getting into.
-    Eve: When the monsters came, I just ran.
-
-    <<set_portrait YarnManager Cyrus>>
-    Cyrus: Oh...I’m sorry.
-    <<set_portrait YarnManager Eve>>
-    Eve: Yeah, I am too.
-    <<jump Act2_ShopBanter_End>>
--> Change the topic
-    <<jump Act2_ShopBanter_End>>
+<<jump Act2_ShopBanter_End>>
 ===
 
 
 title: Act2_ShopBanter_Dispatcher
 ---
-<<set_portrait YarnManager Cyrus>>
-Cyrus: You have experience with this?
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve happy>>
 Eve: Scared I’m gonna get you killed?
-Eve: This is my first time, but I’ve helped Hunters before, patching gear, pointing them to jobs, you name it.
-<<set_portrait YarnManager Cyrus>>
+
+<<set_portrait YarnManager Eve default>>
+Eve: This is my first time officially, but I’ve helped Hunters before. Patching gear, pointing them to jobs, you name it.
+
+<<set_portrait YarnManager Cyrus defaultSpeak>>
 Cyrus: Why’d you decide to be a dispatcher now?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve happyTalk>>
 Eve: I’ve always wanted to do more to help around here, and you looked like you were going to get yourself killed without someone watching your back.
-<<set_portrait YarnManager Cyrus>>
+
+<<set_portrait YarnManager Cyrus smile>>
 Cyrus: Won’t argue with that.
 
 <<jump Act2_ShopBanter_End>>
@@ -193,16 +158,16 @@ Cyrus: Won’t argue with that.
 
 title: Act2_ShopBanter_Prism
 ---
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: Is it always this tense around here?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve default>>
 Eve: Lately? Yeah. Memory monsters keep spawning faster than we can kill them. And like Tobias said, a lot of people don’t trust each other anymore.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus lookAway>>
 Cyrus: You think he’s right, that it’s all just paranoia?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve eyeclosedTalk>>
 Eve: ...I think the one thing this city needs right now is a united front.
 
 <<jump Act2_ShopBanter_End>>
@@ -211,24 +176,22 @@ Eve: ...I think the one thing this city needs right now is a united front.
 
 title: Act2_ShopBanter_Eve
 ---
-<<set_portrait YarnManager Cyrus>>
-Cyrus: So, uh, you do anything besides work?
 
-<<set_portrait YarnManager Eve>>
-Eve: Dad thinks it’s silly, but I like to make things out of the scraps laying around the shop.
+<<set_portrait YarnManager Eve happyEyeclosedTalk>>
+Eve: Oooh, watching movies! But recently- Dad thinks it’s silly- I’ve been getting into making things out of the scraps laying around the shop.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: You mean the sculptures? You made these?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve happyTalk>>
 Eve: They’re a work in progress. I like to find a purpose for misfit things, rather than just throw them out.
-Eve: What do you do?
+Eve: What about you? Got any hobbies?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus lookAway>>
 Cyrus: ...
 Cyrus: Good question.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve confused>>
 Eve: Huh? It’s not like you were just born today.
 
 <<jump Act2_ShopBanter_End>>
@@ -237,86 +200,109 @@ Eve: Huh? It’s not like you were just born today.
 
 title: Act2_ShopBanter_End
 ---
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve shock>>
 : [i]ding[/i]
 Eve: That was fast, your first mission’s already here.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Deeper in the outskirts?
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: Already? Who’s it from?
 
-<<set_portrait YarnManager Eve>>
-Eve: Good guess. Let’s head out.
+<<set_portrait YarnManager Eve defaultTalk>>
+Eve: It’s a commission from the government.
+
+<<set_portrait YarnManager Cyrus defaultSpeak>>
+Cyrus: So are Hunters not directly affiliated with the government?
+
+<<set_portrait YarnManager Eve default>>
+Eve: No, not really. You’d never be directly in contact with anyone from the government except for short term contracts. 
+Eve: Honestly, I don’t know much about them. They prefer to stay in their lofty towers rather than around town.
 ===
 
 
 title: Act2_PoliceContact_PreCombat_P2N6
 ---
-/// no repeat
+
 <<set_portrait YarnManager Saul>>
 Saul: Cyrus! Didn’t expect to see you so soon! Looks like every Hunter is getting sent out here.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Why would we all be dispatched so far away at the same time? 
+<<set_portrait YarnManager Cyrus defaultSpeak>>
+Cyrus: What commission is it? 
 
 <<set_portrait YarnManager Saul>>
-Saul: It was a government commission, mayor’s orders. Must be serious.
+Saul: Government commission. Prooobably the mayor’s orders. We all know the Council doesn't have any real power.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: [i]Seems like my suspicions were true.[/i]
+<<set_portrait YarnManager Cyrus lookAway>>
+Cyrus: [i]The mayor, huh.[/i]
+
+<<set_portrait YarnManager Saul>>
+Saul: Well, gotta go! See ya around!
 ===
 
 
 title: Act2_PoliceContact_PostCombat_P2N6
 ---
-/// no repeat
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Eve?
-Cyrus: [i]Connection cut off again... maybe Prismatic Security can help.[/i]
-Cyrus: Hello?
 
+<<set_portrait YarnManager Cyrus eyesclosed>>
+Cyrus: Hey Eve, your voice is lagging from my end. I’m going to try to restart the device. Give me a few minutes.
+
+<<set_portrait YarnManager Eve default>>
+Eve: Huh? Oh, okay. Be careful!
+
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: [i]Hmmm, this should allow me to contact Prismatic Security.[/i]
+
+<<clear_portrait YarnManager>>
 ???: The moon falls.
 
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: And a new dawn rises.
 
+<<clear_portrait YarnManager>>
 ???: What are you calling to report?
 
-Cyrus: The mayor is a False Human.
+<<set_portrait YarnManager Cyrus defaultSpeak>>
+Cyrus: There’s a False Human within the upper ranks of the government. I suspect it may be the mayor, or one of their close confidants.
 
+<<clear_portrait YarnManager>>
 ???: ...
+
 ???: And what makes you so sure of this?
 
-Cyrus: He just dispatched all the Hunters deep into the outskirts, the city’s been left undefended for something terrible.
+<<set_portrait YarnManager Cyrus angry>>
+Cyrus: He- well the government just dispatched all the Hunters deep into the outskirts; the city’s been left undefended for something terrible.
 
-???: We don’t waste our time on every far-flung theory.
+<<clear_portrait YarnManager>>
+???: We require more concrete evidence in order to investigate such a case.
 
+<<set_portrait YarnManager Cyrus angrySpeak>>
 Cyrus: Look, I know it sounds crazy, but if I’m wrong, you lose an hour. If I’m right, you lose a city.
 
-???: ...
+<<clear_portrait YarnManager>>
+: [i]signal cut[/i]
 
-: [i]signal cut[/i] 
-
+<<set_portrait YarnManager Cyrus lookAway>>
 Cyrus: [i]How am I supposed to warn people about something that hasn’t happened yet?[/i]
+
 ===
 
 
 title: Act2_PoliceContact_PreCombat_P2N6_Alt
 ---
+
 <<set_portrait YarnManager Saul>>
 Saul: Cyrus! Didn’t expect to see you so soon! Seems like every Hunter is getting sent out here.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: Yeah...what a coincidence.
 ===
 
 
 title: Act2_PoliceContact_PostCombat_P2N6_Alt
 ---
-/// no repeat
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Hello?
-
+<<clear_portrait YarnManager>>
 ???: The moon falls.
 
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: And a new dawn rises.
 Cyrus: [i]...This is starting to feel futile, but better safe than sorry.[/i]
 ===
@@ -328,19 +314,13 @@ title: Act2_FateExchangeIntro_P2N7
 <<set_cg YarnManager 0>>
 
 <<set_portrait YarnManager FateExchanger>>
-???: Ah, a familiar face returns.
+???: Ah, a familiar face returns. Justice’s slave.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: ...?
-
-<<set_portrait YarnManager FateExchanger>>
-???: Justice’s slave. I’ll keep your secret.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Who are you?
+<<set_portrait YarnManager Cyrus surprised>>
+Cyrus: ...? Who are you?
 
 <<set_portrait YarnManager FateExchanger>>
-Fate Exchanger: Just call me The Fate Exchanger. A Fate for a Fate, a simple trade.
+Fate Exchanger: Just call me The Fate Exchanger. A Fate for a Fate; a simple trade.
 
 -> Make a trade
     <<set_portrait YarnManager Cyrus>>
@@ -362,137 +342,123 @@ title: Act2_EveMeeting_P2N9
 /// no repeat
 <<set_cg YarnManager 0>>
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve shock>>
 Eve: Oh, Cyrus! Didn’t think you’d be back this soon.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus defaultSpeak>>
 Cyrus: Has anything happened yet?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve confused>>
 Eve: Uh...no?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus eyesclosed>>
 Cyrus: That’s good to hear. Don’t go anywhere until I’m back.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve angry>>
 Eve: Wait, where are you going?
 Eve: If this has something to do with the monsters, you need to let your dispatcher know. It’s too risky to go out on your own.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: You don’t understand. If you stay here, you’ll be safe.
+<<set_portrait YarnManager Cyrus lookAway>>
+Cyrus: Trust me. If you stay here, you’ll be safe.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve angry>>
 Eve: What are you- Your gear is gonna break! At least let me fix that.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: There’s no time. What happens to me is unimportant. Sometimes a sacrifice is necessary to save the rest.
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: There’s no time. 
 
-<<set_portrait YarnManager Eve>>
-Eve: But you’re part of “everyone”, Cyrus.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: ...I’m sorry, Eve.
-
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve angry>>
 Eve: Hey! You-
-Eve: ...And he’s fast.
+Eve: ...And he’s gone.
 ===
 
 
 title: Act2_PreCombat_Repeat_P2End
 ---
+
 <<set_portrait YarnManager FalseHumanBoss>>
 Monster: RAHHHHHH-!
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: [i]Looks like I came just in time.[/i]
-Cyrus: Everyone! Evacuate now!
+<<set_portrait YarnManager Cyrus default>>
+Cyrus: [i]...Looks like they didn’t listen to my call. Guess it’s just me again.[/i]
 ===
 
 
 title: Act2_PostCombat_P2End
 ---
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: [i]No matter how much I prepare, I still can’t beat it![/i]
+<<set_portrait YarnManager Cyrus angryBleed>>
+Cyrus: [i]I’m still not strong enough...![/i]
 
-<<set_portrait YarnManager PoliceNPC>>
+<<set_portrait YarnManager NPC_officer>>
 ???: Hey! You the one who called in?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus confusedBleed>>
 Cyrus: Who are-?
 
-<<set_portrait YarnManager PoliceNPC>>
-Guard: Prismatic Security. Good work holding it in place, Captain Luna will finish the rest.
+<<set_portrait YarnManager NPC_officer>>
+Guard: Prismatic Security. We appreciate the assistance, but Captain Luna will handle it from here.
 
-<<set_portrait YarnManager Luna>>
+<<set_portrait YarnManager Luna disgustTalk>>
 Luna: What a nasty looking thing.
 
-Luna begins fighting the monster. (TODO sfx??)
+: [i]Luna engages in battle with the monster.[/i] (TODO sfx??)
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus shockBleed>>
 Cyrus: She can handle it all on her own?
 
-<<set_portrait YarnManager PoliceNPC>>
-Guard: You must not know Luna.
+<<set_portrait YarnManager NPC_officer>>
+Guard: She’s the strongest around here.
 
-<<set_portrait YarnManager PoliceNPC>>
-Guard: Pretty smart for a false human to mimic the mayor, they’d never be near a memory monster. No wonder we never caught him.
+<<set_portrait YarnManager NPC_officer>>
+Guard: Pretty smart for a False Human to mimic the mayor; they’d never be near a memory monster. No wonder we never caught him.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus defaultBleed>>
 Cyrus: What do you mean?
 
-<<set_portrait YarnManager PoliceNPC>>
-Guard: Memory monsters won’t attack their own kind. The only real way to tell if someone’s a false human is to put them in a monster’s path.
+<<set_portrait YarnManager NPC_officer>>
+Guard: Memory monsters won’t attack their own kind. The only real way to tell if someone’s a False Human is to put them in a monster’s path.
 
 <<set_portrait YarnManager FalseHumanBoss>>
 Memory Monster: RRRRAAAAA-
 
-<<set_portrait YarnManager Luna>>
-Luna: Alright, I’ve had my fun.
-
 Stab SFX (TODO)
 
-<<set_portrait YarnManager Luna>>
+<<set_portrait YarnManager Luna defaultTalk>>
 Luna: Start the cleanup.
 
-<<set_portrait YarnManager PoliceNPC>>
+<<set_portrait YarnManager NPC_officer>>
 Guard: Yes, captain!
 
-<<set_portrait YarnManager Luna>>
+<<set_portrait YarnManager Luna disgust>>
 Luna: You.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus confusedBleed>>
 Cyrus: Me?
-
-<<set_portrait YarnManager Luna>>
-Luna: Heh.
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Do I know you?
-
-<<set_portrait YarnManager Luna>>
-Luna: You could say that.
+Cyrus: ...Do I know you?
 
 Stab SFX (TODO)
 
-<<set_portrait YarnManager PoliceNPC>>
-Guard: What are you doing!!
+<<set_portrait YarnManager Cyrus angryTalkBleed>>
+Cyrus: Wha-
+Cyrus: [i]When did she...![/i]
 
-<<set_portrait YarnManager Luna>>
-Luna: He’s the other false human. I knew who he’s trying to mimic.
+<<set_portrait YarnManager NPC_officer>>
+Guard: Captain???
 
-The Assimilation begins (TODO show this somehow)
+<<set_portrait YarnManager Luna disgust>>
+Luna: Didn’t expect there to be two False Humans.
 
-<<set_portrait YarnManager Luna>>
-Luna: [i]No.[/i]
+<<set_portrait YarnManager NPC_officer>>
+Guard: Um, captain! The Meminiscors are still increasing in numbers! It appears that the Assimilation is happening!
 
-<<set_portrait YarnManager PoliceNPC>>
-Guard: The Assimilation! The other false human is still out there!
+<<set_portrait YarnManager Luna confused>>
+Luna: What? But-
 
-<<set_portrait YarnManager Luna>>
-Luna: Cyrus, is it really you??
+<<set_portrait YarnManager Cyrus angryTalkBleed>>
+Cyrus: [i]There’s another False Human!?[/i]
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angryBleed>>
+Cyrus: [i]I’ve lost too much blood...![/i]
 Cyrus: Not...again...
 ===

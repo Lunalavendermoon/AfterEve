@@ -597,6 +597,8 @@ MonoBehaviour:
       sprite: {fileID: 1820293364, guid: 5b1403d3ba98e44268c03c233335a477, type: 3}
     - spriteName: shockBleed
       sprite: {fileID: -1430616837, guid: e0924836edaa24c5191fe419380eaacf, type: 3}
+    - spriteName: angryBleed
+      sprite: {fileID: -446855055, guid: ab71127ff37324b74819f14a94481e2c, type: 3}
   - characterName: Eve
     leftOffset: 0
     sprites:
@@ -709,15 +711,15 @@ MonoBehaviour:
     - spriteName: default
       sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
   - characterName: Tobias
-    leftOffset: 0
+    leftOffset: -8.5
     sprites:
     - spriteName: default
-      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+      sprite: {fileID: 529489861, guid: 883ff160f81884a69886f8f1eb31535d, type: 3}
   - characterName: Saul
-    leftOffset: 0
+    leftOffset: -8.5
     sprites:
     - spriteName: default
-      sprite: {fileID: 7482667652216324306, guid: 7f941dd87f9d47c4c98cefbf9adda35d, type: 3}
+      sprite: {fileID: -736064228, guid: f798fa0b9939c4da1a918aacbebe25b1, type: 3}
   - characterName: PoliceNPC
     leftOffset: 0
     sprites:

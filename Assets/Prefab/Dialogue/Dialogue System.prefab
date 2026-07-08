@@ -776,6 +776,11 @@ MonoBehaviour:
     sprites:
     - spriteName: default
       sprite: {fileID: 29156533, guid: 7701126893bfb457a89d16e9e17cd929, type: 3}
+  - characterName: Cardinal
+    leftOffset: -13
+    sprites:
+    - spriteName: default
+      sprite: {fileID: 1455476173, guid: eb43917729f6e4e35af79111657d9d30, type: 3}
   blackBackground: {fileID: 21300000, guid: 6ce2d3af3431042daba26592d2e901ba, type: 3}
   portraitContainer: {fileID: 5631530237843888941}
   cgContainer: {fileID: 8486528139430737399}

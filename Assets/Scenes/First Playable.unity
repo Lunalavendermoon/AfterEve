@@ -5593,41 +5593,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.size
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[20].leftOffset
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[20].characterName
-      value: Saul
-      objectReference: {fileID: 0}
-    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
       propertyPath: portraits.Array.data[21].characterName
       value: Tobias
-      objectReference: {fileID: 0}
-    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[20].sprites.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
       propertyPath: portraits.Array.data[21].sprites.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[20].sprites.Array.data[0].sprite
-      value: 
-      objectReference: {fileID: -736064228, guid: f798fa0b9939c4da1a918aacbebe25b1, type: 3}
-    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
       propertyPath: portraits.Array.data[21].sprites.Array.data[0].sprite
       value: 
       objectReference: {fileID: 529489861, guid: 883ff160f81884a69886f8f1eb31535d, type: 3}
-    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[20].sprites.Array.data[0].spriteName
-      value: default
-      objectReference: {fileID: 0}
     - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
       propertyPath: portraits.Array.data[21].sprites.Array.data[0].spriteName
       value: default

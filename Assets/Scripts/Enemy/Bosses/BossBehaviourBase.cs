@@ -23,7 +23,7 @@ public abstract class BossBehaviourBase : EnemyBase
 
 
 
-    public float[] attackProbalities;
+    public float[] attackProbabilities;
 
     // 2 states : in cooldown and attack 
     // during in cooldown will use the movement func
@@ -63,11 +63,15 @@ public abstract class BossBehaviourBase : EnemyBase
     }
 
     public abstract void Movement();
+    [ContextMenu("Attack 1")]
     public abstract void Attack1();
+    [ContextMenu("Attack 2")]
     public abstract void Attack2();
+    [ContextMenu("Attack 3")]
     public abstract void Attack3();
+    [ContextMenu("Attack 4")]
     public abstract void Attack4();
-
+    [ContextMenu("Attack 5")]
     public abstract void Attack5();
 
     public virtual void ChangeState(IBossStates new_state)
@@ -89,8 +93,6 @@ public abstract class BossBehaviourBase : EnemyBase
         attackHitbox.SetActive(false);
         isAttacking = false;
     }
-
-
 
     public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
     {
@@ -123,7 +125,6 @@ public abstract class BossBehaviourBase : EnemyBase
 
     public override void Pathfinding(Transform target)
     {
-        
         Debug.Log("Pathfinding start");
         destinationSetter.target = target;
     }
@@ -131,24 +132,23 @@ public abstract class BossBehaviourBase : EnemyBase
     public virtual int ChooseAttack()
     {
         float choice = UnityEngine.Random.Range(0f, 1f) * 100;
-        float attackProbailitySum = 0f;
-        for (int i = 0; i < attackProbalities.Length; i++)
+        float attackProbabilitySum = 0f;
+
+        for (int i = 0; i < attackProbabilities.Length; i++)
         {
-            if (attackProbalities[i] > 0)
+            if (attackProbabilities[i] > 0)
             {
-                attackProbailitySum += attackProbalities[i];
-                if (choice <= attackProbailitySum)
+                attackProbabilitySum += attackProbabilities[i];
+
+                if (choice <= attackProbabilitySum)
                 {
-                    Debug.Log($"Chose attack {i + 1} with choice value {choice} and cumulative probability {attackProbailitySum}");
+                    Debug.Log($"Chose attack {i + 1} with choice value {choice} and cumulative probability {attackProbabilitySum}");
                     return i + 1;
                 }
             }
         }
+
         Debug.Log("Attack choice failed, defaulting to attack 1");
         return 1; //default to attack 1
     }
-
-
-
-
 }

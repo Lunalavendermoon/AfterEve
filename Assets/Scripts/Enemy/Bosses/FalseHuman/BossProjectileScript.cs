@@ -172,11 +172,8 @@ public class BossProjectileScript : MonoBehaviour
         this.target = target;
         this.maxMoveSpeed = maxMoveSpeed;
 
-
         float xDistanceToTarget = target.transform.position.x - transform.position.x;
         this.trajectoryMaxRelativeHeight = Mathf.Abs(xDistanceToTarget) * trajectoryMaxHeight;
-
-
     }
 
 

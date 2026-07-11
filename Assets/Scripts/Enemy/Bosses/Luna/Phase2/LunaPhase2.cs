@@ -121,7 +121,7 @@ public class LunaPhase2 : BossBehaviourBase
     private void Awake()
     {
         cooldown_time = 4f;
-        attackProbalities = new float[5] { 20f, 20f, 20f, 20f, 20f };
+        attackProbabilities = new float[5] { 20f, 20f, 20f, 20f, 20f };
         default_enemy_state = new Boss_Cooldown(1f);
         if (baseEnemyAttributes != null)
         {

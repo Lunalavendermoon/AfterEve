@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BossProjectileBezier: MonoBehaviour
 {
+    [SerializeField] private int _spiritualDamageAmount = 30;
+
     private GameObject target;
     private const float DistanceToTargetToDestroy = 0.5f;
     // Cubic Bezier: B(t) = (1-t)³P0 + 3(1-t)²t P1 + 3(1-t)t² P2 + t³ P3
@@ -10,7 +12,6 @@ public class BossProjectileBezier: MonoBehaviour
     private float curveLength;
     private float moveSpeed;
     private Vector3 projectileMoveDir;
-    private const int SpiritualDamageAmount = 30;
 
     private const float PlayerHitRadius = 0.5f;
     private bool hasDealtDamage;
@@ -99,7 +100,7 @@ public class BossProjectileBezier: MonoBehaviour
             if (distToPlayer <= PlayerHitRadius)
             {
                 hasDealtDamage = true;
-                PlayerController.instance.TakeDamage(SpiritualDamageAmount, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+                PlayerController.instance.TakeDamage(_spiritualDamageAmount, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
                 if (target != null) Destroy(target);
                 Destroy(gameObject);
                 return;

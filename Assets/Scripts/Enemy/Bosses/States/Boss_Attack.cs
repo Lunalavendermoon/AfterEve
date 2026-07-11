@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class Boss_Attack : IBossStates
 {
-    int attack_number;
-
+    private int attack_number;
 
     public Boss_Attack(int attack_number)
     {
         this.attack_number = attack_number;
     }
+
     public void EnterState(BossBehaviourBase boss)
     {
         //Debug.Log(attack_number);
         boss.agent.isStopped = true;
         boss.isAttacking = true;
+
         switch (attack_number)
         {
             case 1:
                 boss.Attack1();
-                
                 break;
             case 2:
                 boss.Attack2();
@@ -36,8 +36,6 @@ public class Boss_Attack : IBossStates
                 Debug.LogError("Invalid attack number");
                 break;
         }
-
-        
     }
 
     public void UpdateState(BossBehaviourBase boss)
@@ -52,7 +50,6 @@ public class Boss_Attack : IBossStates
 
     public void ExitState(BossBehaviourBase boss)
     {
+
     }
-
-
 }

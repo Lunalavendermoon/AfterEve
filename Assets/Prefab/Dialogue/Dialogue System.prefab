@@ -599,6 +599,8 @@ MonoBehaviour:
       sprite: {fileID: -1430616837, guid: e0924836edaa24c5191fe419380eaacf, type: 3}
     - spriteName: angryBleed
       sprite: {fileID: -446855055, guid: ab71127ff37324b74819f14a94481e2c, type: 3}
+    - spriteName: shock
+      sprite: {fileID: 1981442700, guid: a1e3dba5778704fb19d7536e63c63ae3, type: 3}
   - characterName: Eve
     leftOffset: 0
     sprites:
@@ -648,6 +650,10 @@ MonoBehaviour:
       sprite: {fileID: 1235003671, guid: 2d49d1cc7da4f441d95e5ad3f911c439, type: 3}
     - spriteName: happyPossessedTalk
       sprite: {fileID: -1039180579, guid: a55957225b9114fa5a31dc747220aab6, type: 3}
+    - spriteName: sadEyeclosed
+      sprite: {fileID: 1581391769, guid: 4fb2b58b614294bc69a9af0579b2bada, type: 3}
+    - spriteName: sadEyeclosedTalk
+      sprite: {fileID: 673345195, guid: a9cce6318e661445f81465e9386a1a03, type: 3}
   - characterName: Judge
     leftOffset: 5
     sprites:

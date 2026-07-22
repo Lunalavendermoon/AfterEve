@@ -135,6 +135,28 @@ public class Projectile : MonoBehaviour
         transform.eulerAngles = new Vector3(pitchX, 90f, 0f);
     }
 
+    private bool IsInWeakpoint(EnemyBase enemy)
+    {
+        // Search for a child GameObject named "Weakpoint" in the enemy hierarchy
+        Transform weakpointTransform = enemy.transform.Find("WeakPoint");
+
+        if (weakpointTransform == null)
+        {
+            Debug.Log("[Bullet] No Weakpoint found on enemy: " + enemy.name);
+            return false;
+        }
+
+        Collider2D weakpointCollider = weakpointTransform.GetComponentInChildren<Collider2D>();
+        if (weakpointCollider == null || !weakpointCollider.isTrigger)
+        {
+            Debug.Log("[Bullet] Weakpoint does not have a valid trigger collider on enemy: " + enemy.name);
+            return false;
+        }
+
+        // Check if the bullet is inside the weakpoint trigger
+        return weakpointCollider.OverlapPoint(transform.position);
+    }
+
     private void HandleBulletHit(GameObject other)
     {
         if (other == null)
@@ -152,16 +174,30 @@ public class Projectile : MonoBehaviour
                 AddPhysicalDamage((int)(PlayerController.instance.playerAttributes.damage * dist * Hermit_Past.dmgBonusPerUnit));
             }
 
+            // Check if bullet is hitting a weakpoint
+            bool hitWeakpoint = IsInWeakpoint(enemy);
+
+            // Apply 1.5x damage multiplier if weakpoint is hit
+            int finalPhysicalDamage = physicalDamage;
+            int finalSpiritualDamage = spiritualDamage;
+
+            if (hitWeakpoint)
+            {
+                finalPhysicalDamage = (int)(physicalDamage * 1.5f);
+                finalSpiritualDamage = (int)(spiritualDamage * 1.5f);
+                Debug.Log($"[Bullet] Weakpoint hit! Damage multiplied by 1.5x");
+            }
+
             OnEnemyHit?.Invoke(enemy);
-            OnEnemyHitWithDamage?.Invoke(enemy, physicalDamage, spiritualDamage);
+            OnEnemyHitWithDamage?.Invoke(enemy, finalPhysicalDamage, finalSpiritualDamage);
 
-            if (physicalDamage > 0)
-                enemy.TakeDamage(physicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
+            if (finalPhysicalDamage > 0)
+                enemy.TakeDamage(finalPhysicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
 
-            if (spiritualDamage > 0)
+            if (finalSpiritualDamage > 0)
             {
                 Debug.Log("Spiritual Damage Dealt");
-                enemy.TakeDamage(spiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
+                enemy.TakeDamage(finalSpiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
             }
 
             if (enemy.TryGetComponent(out EffectManager effectManager) && bulletEffects != null)

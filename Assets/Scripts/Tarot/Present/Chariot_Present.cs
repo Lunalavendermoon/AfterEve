@@ -4,7 +4,7 @@ public class Chariot_Present : Present_TarotCard
 {
     float[] fireRateDecrease = {.5f, .45f, .4f, .35f, .3f};
     int[] extraBullets = {3,4,4,5,5};
-    float[] baseDamageDecrease = {.4f, .35f, .3f, .25f, .2f};
+    float[] baseDamageDecrease = {.6f, .55f, .5f, .45f, .4f};
 
     string knockbackRange = "0.5";
 
@@ -23,7 +23,7 @@ public class Chariot_Present : Present_TarotCard
     protected override void AddNewLevelEffects()
     {
         effects.Add(new FireRate_Effect(-1, 1f - fireRateDecrease[level]));
-        effects.Add(new Strength_Effect(-1, 1f - baseDamageDecrease[level]));
+        effects.Add(new DamageDeduction_Effect(-1, 1f - baseDamageDecrease[level]));
         effects.Add(new ExtraBullets_Effect(-1, extraBullets[level]));
     }
 

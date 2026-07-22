@@ -23,6 +23,7 @@ public abstract class Effects
         AmmoCapacity,
         NumBullets,
         PhysicalDamageBonus,
+        BaseDamage, // NEW: Reduce base damage separately from damage bonus
         PastTarot // Used for tarot past skills such as additional dmg, increase coin drop rate, etc
     }
 

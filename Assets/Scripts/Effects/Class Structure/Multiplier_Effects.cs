@@ -38,6 +38,9 @@ public abstract class Multiplier_Effects : Effects
             case Stat.Damage:
                 entityAttributes.damageDealtBonus *= totalRate;
                 break;
+            case Stat.BaseDamage:
+                entityAttributes.damage = (int)(entityAttributes.damage * totalRate);
+                break;
             case Stat.DamageTaken:
                 entityAttributes.damageTakenBonus *= totalRate;
                 break;
@@ -64,6 +67,14 @@ public abstract class Multiplier_Effects : Effects
                 // we also want to modify damageDealtBonus by calling the catch-all method ApplyEffect
                 ApplyEffect(playerAttributes, increment);
                 // we need to return here to avoid potentially calling CompoundTotalEffect() twice!
+                return;
+            case Stat.BaseDamage:
+                // NEW: Handle base damage reduction separately
+                playerAttributes.damage = (int)(playerAttributes.damage * totalRate);
+                if (increment)
+                {
+                    CompoundTotalEffect();
+                }
                 return;
             case Stat.StaminaRegeneration:
                 playerAttributes.staminaRegeneration *= totalRate;

@@ -33,7 +33,7 @@ Cyrus: Cyrus.
 
 <<set_portrait YarnManager Judge happy>>
 ???: Great! At least part of your brain still works, that’s better than some. You can call me the Judge.
-The Judge: So! Cyrus! You’re an enforcer of the Almighty Justice, chosen to preserve fairness and law throughout the universe.
+The Judge: So! Cyrus! You’re an Enforcer of the Almighty Justice, chosen to preserve fairness and law throughout the universe.
 <<set_portrait YarnManager Judge defaultTalk>>
 The Judge: Your next mission will be in Prism.
 The Judge: The Hierophant’s been tampering with the divine balance, and your job is to hunt down their puppets before they use them to bring the Assimilation.

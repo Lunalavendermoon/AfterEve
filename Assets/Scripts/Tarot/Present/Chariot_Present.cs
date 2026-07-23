@@ -31,7 +31,7 @@ public class Chariot_Present : Present_TarotCard
     {
         desc.Arguments = new object[] {
             FormatPercentage(fireRateDecrease[level]),
-            FormatPercentage(baseDamageDecrease[level]),
+            FormatPercentage(1f - baseDamageDecrease[level]),
             extraBullets[level],
             knockbackRange
         };

@@ -54,7 +54,7 @@ The Judge: So I’d love to stand here and explain the metaphysics of divine pol
 
 title: Act1_EveIntro_PreCombat_P1N1
 ---
-<<set_portrait YarnManager Cardinal>>
+<<set_portrait YarnManager Eve shock>>
 ???: Oh good, you’re awake!
 <<set_portrait YarnManager Eve defaultTalk>>
 ???: Sorry, I didn’t mean to scare you.

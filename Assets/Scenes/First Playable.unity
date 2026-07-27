@@ -5592,6 +5592,30 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.size
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[21].leftOffset
+      value: -24
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[21].characterName
+      value: Mayor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[21].sprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[21].sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 254018270, guid: 4d98a2d4f39424aefbc40147e7218fd0, type: 3}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[21].sprites.Array.data[0].spriteName
+      value: default
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

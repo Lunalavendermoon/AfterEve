@@ -18,8 +18,8 @@ Cyrus: I’d like to be.
 Eve: Well, you know what? We could make a pretty good team~
 
 <<clear_portrait YarnManager>>
+<<clear_cg YarnManager fadeWithBlack>>
 : [i]Some time later...[/i]
-Transition (TODO)
 
 <<set_portrait YarnManager Tobias>>
 ???: Is that you, Eve?

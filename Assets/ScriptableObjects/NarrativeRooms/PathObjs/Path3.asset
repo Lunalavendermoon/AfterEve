@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Path3
   m_EditorClassIdentifier: Assembly-CSharp::NarrativePath
   rooms:
-  - {fileID: 11400000, guid: 395e9b5863b0f485bb50934ec021fba9, type: 2}
   - {fileID: 11400000, guid: 73453dde998a44999914f814f1213dea, type: 2}
-  - {fileID: 11400000, guid: 8e99af0ef4af44d45b84f114ce6ff0be, type: 2}
   - {fileID: 11400000, guid: fbbe7001f67eb49baa8573e0085f3b96, type: 2}
   - {fileID: 11400000, guid: 7104b8673dc414508b178731dc184165, type: 2}
   - {fileID: 11400000, guid: b1485b8695a3742109e8565e9504023f, type: 2}

@@ -1,87 +1,93 @@
 ﻿title: Act3_Judge_N0
 ---
 /// no repeat
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge oh>>
 The Judge: Killed by a human this time? That’s new.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus disgust>>
 Cyrus: Is this just entertainment to you?
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge pout>>
 The Judge: I work all day long! Don’t blame me for finding joy in the little things.
-The Judge: Who knows how long I’ll have to watch you run in circles before you kill the other false human.  
+The Judge: Who knows how long I’ll have to watch you run in circles before you kill the other False Human.  
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Why did that woman think it was me?
+<<set_portrait YarnManager Cyrus angrySpeak>>
+Cyrus: Why did that woman kill me? It looked like she recognized-
 
-<<set_portrait YarnManager Judge>>
-The Judge: Just keep your head down and focus on saving Prism. Meeting adjourned!
+<<set_portrait YarnManager Judge confused>>
+The Judge: YOU’RE the one who threw away your memories, don’t ask me! Just keep your head down and focus on saving Prism. Meeting adjourned!
+
+<<set_portrait YarnManager Cyrus eyesclosed>>
+Cyrus: [i]...Of course I wasn’t going to get any answers.[/i]
+
+<<set_portrait YarnManager Cyrus angry>>
+Cyrus: [i]But I’d better avoid that Luna woman then. She thought I was a False Human. Maybe she’s one of those “Arcana minions” that the Judge mentioned?[/i]
 
 <<player_respawn YarnManager>>
-===
-
-
-title: Act3_LunaEvasion_N1
----
-/// no repeat
-<<set_cg YarnManager 0>>
-
-<<set_portrait YarnManager Eve>>
-Eve: Oh good, you’re awake!
-Eve: Ah! Sorry, I didn’t mean to...
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: [i]How many times have I heard this already?[/i]
-Cyrus: [i]This time I have to avoid that psychotic woman.[/i]
 ===
 
 
 title: Act3_FalseHumanInvestigation_N4
 ---
 /// no repeat
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve shock>>
 Eve: You actually did it. Are you a Hunter?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: I’ve been waiting for the right dispatcher.
 
-<<set_portrait YarnManager Eve>>
-Eve: ...Are you a mind reader?
+<<set_portrait YarnManager Eve oh>>
+Eve: Are you a mind reader?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus smile>>
 Cyrus: Maybe. I think we’d make a pretty good team.
 
-<<set_portrait YarnManager Eve>>
-Eve: Huh, I was thinking the same... Oh! Saul! Tobias! Over here!
+<<set_portrait YarnManager Eve happyTalk>>
+Eve: Huh, I was thinking the same... 
+
+<<set_portrait YarnManager Eve oh>>
+Eve: Oh! Saul! Tobias! Over here!
 
 <<set_portrait YarnManager Saul>>
 Saul: Hey, Eve! And, uh, new guy. Don’t think I’ve seen you around before.
 
-<<set_portrait YarnManager Eve>>
-Eve: Cyrus, he’s a hunter-in-training.
-
-<<set_portrait YarnManager Saul>>
-Saul: Who’s training him?
-
-<<set_portrait YarnManager Eve>>
-Eve: Me. I’m going to be his dispatcher.
+<<set_portrait YarnManager Eve default>>
+Eve: Cyrus. He’s a Hunter-in-training. I’m going to be his dispatcher.
  
 <<set_portrait YarnManager Tobias>>
-Tobias: Not with that equipment. You know memory monsters have been spreading like wildfire through the outskirts lately.
+Tobias: He needs better equipment. You know memory monsters have been spreading like wildfire through the outskirts lately.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve defaultTalk>>
 Eve: Yeah, yeah, we’re headed to the shop.
 
-<<clear_portrait YarnManager>>
-: [i]Eve walks away and Cyrus begins to follow.[/i] TODO
+<<set_portrait YarnManager Cyrus smug>>
+Cyrus: Besides, I can handle myself just fine.
 
 <<set_portrait YarnManager Saul>>
-Saul: Hey kid, let me give you some real hunting training.
+Saul: Oooh! An arrogant one, huh? Hey kid, let me give you some real Hunting training.
+
+<<set_portrait YarnManager Eve shock>>
+Eve: For real?
+
+<<set_portrait YarnManager Saul>>
+Saul: Yep! I’m intrigued now.
+
+<<set_portrait YarnManager Eve angry>>
+Eve: I’ll head back first then. You know my dad.
+
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
+Cyrus: Will you be okay on your own?
+
+<<set_portrait YarnManager Eve default>>
+Eve: Of course! Got my trusty radio. We’re not even that far from town. Saul, you better bring him back to the shop in one piece.
+
+<<set_portrait YarnManager Saul>>
+Saul: Yeah, of course! Don’t you trust me, Eve?
 
 <<set_portrait YarnManager Tobias>>
-Tobias: We need to get this job over with Saul, the Ministry’s started docking pay if you’re late.
+Tobias: We need to get this job over with, Saul. The Ministry’s started docking pay if you’re late.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: The MPS commissions Hunters?
 
 <<set_portrait YarnManager Tobias>>
@@ -90,107 +96,68 @@ Tobias: Only when they need a live Meminiscor. They never tell us why, though. G
 <<set_portrait YarnManager Saul>>
 Saul: Don’t lie to him, Tobias. If he’s going to be a hunter, he should know.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
 Cyrus: Know what?
 
 <<set_portrait YarnManager Saul>>
 Saul: MPS likes to keep things under wraps, but word is they use live monsters for False Human trials.
 
 <<set_portrait YarnManager Tobias>>
-Tobias: It isn’t wise to believe every rumor.
+Tobias: It isn’t wise to believe every rumor you hear.
 
 <<set_portrait YarnManager Saul>>
 Saul: False Humans are the most evolved tier of memory monsters, right? And have you ever seen two monsters fighting each other on the outskirts?
 Saul: Nope, they only go after humans!
-Saul: I’d bet the MPS chucks all their false human suspects to the memory monsters. That’s the only way to know for sure.
+Saul: I’d bet the MPS chucks all their False Human suspects to the memory monsters. That’s the only way to know for sure.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: And what if their suspicions are wrong?
 
 <<set_portrait YarnManager Saul>>
 Saul: It’s a risk you’ve gotta take.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angrySpeak>>
 Cyrus: How are we protecting humanity if we’re putting innocent people at risk?
 
 <<set_portrait YarnManager Saul>>
-Saul: I mean, what’s the alternative? Let False Humans run free, start the Assimilation whenever they feel like it?
+Saul: I mean, what’s the alternative? Let False Humans run free- start the Assimilation whenever they feel like it?
 
 <<set_portrait YarnManager Tobias>>
 Tobias: Ahem- Ignore Saul, this isn’t the first rabbit hole he’s been down. MPS probably just wants a live specimen for research.
-Tobias: You better catch up with Eve, it’s not safe out here.
-
-<<set_portrait YarnManager Saul>>
-Saul: See you on the next hunt.
+Tobias: You better catch up with Eve; it’s not safe out here.
 
 <<clear_portrait YarnManager>>
-: [i]Cyrus follows Eve’s path.[/i] TODO
+<<clear_cg YarnManager fadeWithBlack>>
 
-<<set_portrait YarnManager Cyrus>>
+: [i]Cyrus follows Eve’s path.[/i]
+
+<<set_portrait YarnManager Cyrus shockSad>>
 Cyrus: [i]Wait...last loop, weren’t we ambushed by memory monsters on this path?[/i]
 Cyrus: [i] ...Eve![/i]
-===
-
-
-title: Act3_FalseHumanInvestigation_N4_Alt
----
-/// no repeat
-<<set_portrait YarnManager Eve>>
-Eve: You want to become a Hunter? You know, we could be a great team~
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Sure. In for the money, yeah?
-
-<<set_portrait YarnManager Eve>>
-Eve: Ooh, eyeing the big bucks already! But shouldn’t we leave that to the MPS- Oh, is that... Saul! Tobias! Over here!
-
-<<set_portrait YarnManager Saul>>
-Saul: Hey, Eve! And, uh, new guy. Don’t think I’ve seen you around before.
-
-<<set_portrait YarnManager Eve>>
-Eve: This is Cyrus...
-
-<<clear_portrait YarnManager>>
-: [i]Moments later...[/i]
-
-<<set_portrait YarnManager Eve>>
-Eve: Thanks! See you all later!
-
-: [i]Eve leaves.[/i] TODO
-
-<<set_portrait YarnManager Saul>>
-Saul: [i]Man[/i], of all the days for my stuff to break down... And they say the Ministry’s started docking pay if you’re late.
-
-<<clear_portrait YarnManager>>
-: [i]Some time later...[/i]
-
-<<set_portrait YarnManager Cyrus>>
-Cyrus: I think I’d better head back now. See you guys later.
 ===
 
 
 title: Act3_EveCheckIn_N5
 ---
 /// no repeat
-<<set_cg YarnManager 0>>
-
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus shockSad>>
 Cyrus: Eve! Are you alright?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve confused>>
 Eve: Why wouldn’t I be?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
 Cyrus: Did the monsters not attack?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve nervous>>
 Eve: Uh...I saw a few. But I know how to avoid them, don’t worry.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: [i]I swear there were monsters on this path last time.[/i]
+<<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: You’re sure you-
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve angry>>
 Eve: I’m fine, Cyrus, Let’s keep moving.
 ===
 
@@ -198,9 +165,7 @@ Eve: I’m fine, Cyrus, Let’s keep moving.
 title: Act3_EveCheckIn_N5_Alt
 ---
 /// no repeat
-<<set_cg YarnManager 0>>
-
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprised>>
 Cyrus: [i]Huh, still no monsters.[/i]
 ===
 
@@ -208,29 +173,28 @@ Cyrus: [i]Huh, still no monsters.[/i]
 title: Act3_EveReveal_N9
 ---
 /// no repeat
-<<set_cg YarnManager 0>>
-
 <<set_portrait YarnManager FateExchanger>>
 Fate Exchanger: You seem heavy with thoughts, Justice’s slave.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus lookAway>>
 Cyrus: You could say that. 
 
 <<set_portrait YarnManager FateExchanger>>
-Fate Exchanger:  You have your suspicions don’t you? Perhaps I can help illuminate them.
+Fate Exchanger:  You have your suspicions, don’t you? Perhaps I can help illuminate them.
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: What is this? 
+<<set_portrait YarnManager Cyrus angrySpeak>>
+Cyrus: What is this?
 
 <<set_portrait YarnManager FateExchanger>>
 Fate Exchanger: A Death Fate, from a girl I found on the outskirts.
 
-The Fate Exchanger hobbles into a clearing and comes across Ava, who is bleeding out in the grass. Beside her is a tree, with cut rope lying at the roots. - show memory (TODO)
+<<clear_portrait YarnManager>>
+<<clear_cg YarnManager fadeWithBlack>>
+
+: [i]The Fate Exchanger hobbles into a clearing and comes across Ava, who is bleeding out in the grass. Beside her is a tree, with cut rope lying at the roots.[/i] - show memory (TODO)
 
 <<set_portrait YarnManager Ava>>
 Ava: Help...please.
-
-: [i]The Fate Exchanger kneels beside Ava.[/i] (TODO?)
 
 <<set_portrait YarnManager FateExchanger>>
 Fate Exchanger: Your time is near, young one.
@@ -240,80 +204,79 @@ Ava: Eve...
 Ava: Eve did this...
 Ava: She’s one of them...
 
-Return back to present. (TODO)
+<<clear_cg YarnManager fadeWithBlack>>
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus shockSad>>
 Cyrus: This...this isn’t real.
-Cyrus: I don’t believe it.
+Cyrus: It can’t be.
 
 <<set_portrait YarnManager FateExchanger>>
 Fate Exchanger: I am but a spiritual follower. I cannot defy my path, nor indulge in trickery.
-=== 
+===
 
 
 title: Act3_PreCombat_Boss
 ---
 /// no repeat
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve confused>>
 Eve: Cyrus?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus sad>>
 Cyrus: ...
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve confused>>
 Eve: Is something wrong?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus sad>>
 Cyrus: Eve, all this time we’ve spent in the outskirts, and I’ve never seen the monsters attack [i]you[/i].
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve disgust>>
 Eve: ...What?
 
-<<set_portrait YarnManager Cyrus>>
-Cyrus: Be honest with me. Are you a false human?
+<<set_portrait YarnManager Cyrus shockSad>>
+Cyrus: Be honest with me. Are you a False Human?
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve nervous>>
 Eve: I-I didn’t...Why would you think that?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus shockSad>>
 Cyrus: Eve-
 
-<<set_portrait YarnManager Eve>>
-Eve: That’s not proof. That’s just... you guessing.
+<<set_portrait YarnManager Eve nervousSerious>>
+Eve: There could be plenty of reasons why they didn't attack me! You're just- throwing accusations around!
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus shockSad>>
 Cyrus: I’m not trying to-
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve disgust>>
 Eve: I’m your dispatcher. I’ve been helping you. I’ve been trying to keep people safe.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus sad>>
 Cyrus: Eve, I know what happened to your sister.
 
-Eve, overwhelmed, turns to the wall. (TODO)
-
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve nervousSerious>>
 Eve: ...
+
+<<set_portrait YarnManager Eve sad>>
 Eve: She...you don’t understand.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus shockSad>>
 Cyrus: Then help me understand.
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve eyeclosed>>
 Eve: Cyrus, what does justice mean to you?
 
 <<set_portrait YarnManager Cyrus>>
 Cyrus: It means protecting the good in this world.
 
-Eve turns around with glowing eyes and a serene smile, showing she’s been possessed by the Hierophant. (TODO)
-
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve defaultPossessed>>
 Eve: Then why are you working against it?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus shockBleed>>
 Cyrus: Urgh! You-!
 
-<<set_portrait YarnManager Eve>>
+<<set_portrait YarnManager Eve happyPossessed>>
 Eve: After the Assimilation, there will be no more discord or pain. Eve was created to bring this peace.
+<<set_portrait YarnManager Eve happyPossessedTalk>>
 Eve: Under the Hierophant, we will all be one.
 ===

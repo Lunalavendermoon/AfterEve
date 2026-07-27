@@ -5593,28 +5593,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.size
-      value: 22
+      propertyPath: portraits.Array.data[1].sprites.Array.size
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[21].leftOffset
-      value: -24
-      objectReference: {fileID: 0}
-    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[21].characterName
-      value: Mayor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[21].sprites.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[21].sprites.Array.data[0].sprite
+      propertyPath: portraits.Array.data[1].sprites.Array.data[25].sprite
       value: 
-      objectReference: {fileID: 254018270, guid: 4d98a2d4f39424aefbc40147e7218fd0, type: 3}
+      objectReference: {fileID: -1852219738, guid: 096e2b0c9771c4db8be518afcbdfd416, type: 3}
     - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
-      propertyPath: portraits.Array.data[21].sprites.Array.data[0].spriteName
-      value: default
+      propertyPath: portraits.Array.data[1].sprites.Array.data[26].sprite
+      value: 
+      objectReference: {fileID: -775696331, guid: 19a1bd82d38e64bc3af30a66c0f180c0, type: 3}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[1].sprites.Array.data[27].sprite
+      value: 
+      objectReference: {fileID: -833631194, guid: 580ff984dbeec4087aa8173038bf47eb, type: 3}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[1].sprites.Array.data[25].spriteName
+      value: angryPossessedTalk
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[1].sprites.Array.data[26].spriteName
+      value: shockPossessed
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206532038654599641, guid: d5d492efa5ab2bb4ea3b1e02fa20177f, type: 3}
+      propertyPath: portraits.Array.data[1].sprites.Array.data[27].spriteName
+      value: sadStare
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

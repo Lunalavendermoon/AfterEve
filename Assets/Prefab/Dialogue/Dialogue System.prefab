@@ -601,6 +601,8 @@ MonoBehaviour:
       sprite: {fileID: -446855055, guid: ab71127ff37324b74819f14a94481e2c, type: 3}
     - spriteName: shock
       sprite: {fileID: 1981442700, guid: a1e3dba5778704fb19d7536e63c63ae3, type: 3}
+    - spriteName: shockSmile
+      sprite: {fileID: 1771325163, guid: 74ae30ea10e1b4456af70006b503dc87, type: 3}
   - characterName: Eve
     leftOffset: 0
     sprites:
@@ -654,6 +656,12 @@ MonoBehaviour:
       sprite: {fileID: 1581391769, guid: 4fb2b58b614294bc69a9af0579b2bada, type: 3}
     - spriteName: sadEyeclosedTalk
       sprite: {fileID: 673345195, guid: a9cce6318e661445f81465e9386a1a03, type: 3}
+    - spriteName: angryPossessedTalk
+      sprite: {fileID: -1852219738, guid: 096e2b0c9771c4db8be518afcbdfd416, type: 3}
+    - spriteName: shockPossessed
+      sprite: {fileID: -775696331, guid: 19a1bd82d38e64bc3af30a66c0f180c0, type: 3}
+    - spriteName: sadStare
+      sprite: {fileID: -833631194, guid: 580ff984dbeec4087aa8173038bf47eb, type: 3}
   - characterName: Judge
     leftOffset: 5
     sprites:
@@ -787,6 +795,11 @@ MonoBehaviour:
     sprites:
     - spriteName: default
       sprite: {fileID: 1455476173, guid: eb43917729f6e4e35af79111657d9d30, type: 3}
+  - characterName: Mayor
+    leftOffset: -24
+    sprites:
+    - spriteName: default
+      sprite: {fileID: 254018270, guid: 4d98a2d4f39424aefbc40147e7218fd0, type: 3}
   blackBackground: {fileID: 21300000, guid: 6ce2d3af3431042daba26592d2e901ba, type: 3}
   portraitContainer: {fileID: 5631530237843888941}
   cgContainer: {fileID: 8486528139430737399}

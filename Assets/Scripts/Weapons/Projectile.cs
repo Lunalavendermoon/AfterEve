@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
 
     public static event Action<EnemyBase> OnEnemyHit;
     public static event Action<EnemyBase, int, int> OnEnemyHitWithDamage;
+    public static event Action<Transform> OnWeakpointHit;
 
     private int bulletBounces;
     private List<Effects> bulletEffects;
@@ -186,6 +187,13 @@ public class Projectile : MonoBehaviour
                 finalPhysicalDamage = (int)(physicalDamage * 1.5f);
                 finalSpiritualDamage = (int)(spiritualDamage * 1.5f);
                 Debug.Log($"[Bullet] Weakpoint hit! Damage multiplied by 1.5x");
+
+                // Notify weakpoint script of the hit
+                Transform weakpointTransform = enemy.transform.Find("WeakPoint");
+                if (weakpointTransform != null)
+                {
+                    OnWeakpointHit?.Invoke(weakpointTransform);
+                }
             }
 
             OnEnemyHit?.Invoke(enemy);

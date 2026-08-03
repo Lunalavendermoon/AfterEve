@@ -58,6 +58,16 @@ public class Weakpoints : MonoBehaviour
             inCooldown = true;
             cooldownEndTime = Time.time + cooldownAfterHit;
             weakpoint.SetActive(false);
+            // Notify enemy if it implements the interface
+            IKnightWithWeakPoint knightWithWeakpoint = GetComponentInParent<IKnightWithWeakPoint>();
+            if (knightWithWeakpoint != null)
+            {
+                knightWithWeakpoint.NotifyWeakPointHitBySpiritual();
+            }
+            else
+            {
+                Debug.LogWarning("Parent does not implement IKnightWithWeakPoint interface.");
+            }
         }
     }
 

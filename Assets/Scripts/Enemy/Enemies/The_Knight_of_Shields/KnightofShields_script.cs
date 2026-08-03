@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KnightofShields_script : StandardEnemyBase
+public class KnightofShields_script : StandardEnemyBase, IKnightWithWeakPoint
 {
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;
@@ -10,7 +10,13 @@ public class KnightofShields_script : StandardEnemyBase
     private bool weakPointHitBySpiritualDamage;
     public void NotifyWeakPointHitBySpiritual()
     {
-        weakPointHitBySpiritualDamage = true;
+        //weakPointHitBySpiritualDamage = true;
+        Debug.Log("Knight of Shields: Weak point hit by spiritual damage. Applying debuffs.");
+        if (enemyEffectManager != null)
+        {
+            enemyEffectManager.AddEffect(new Weak_Effect(3f, 0.5f), enemyAttributes);
+            enemyEffectManager.AddEffect(new Paralyze_Effect(3f), enemyAttributes);
+        }
     }
     private void Awake()
     {
@@ -52,7 +58,7 @@ public class KnightofShields_script : StandardEnemyBase
     {
         if (enemyAttributes == null)
             return;
-        if (dmgType == DamageInstance.DamageType.Spiritual && weakPointHitBySpiritualDamage)
+        /*if (dmgType == DamageInstance.DamageType.Spiritual && weakPointHitBySpiritualDamage)
         {
             weakPointHitBySpiritualDamage = false;
             if (enemyEffectManager != null)
@@ -60,10 +66,11 @@ public class KnightofShields_script : StandardEnemyBase
                 enemyEffectManager.AddEffect(new Weak_Effect(3f, 0.5f), enemyAttributes);
                 enemyEffectManager.AddEffect(new Paralyze_Effect(3f), enemyAttributes);
             }
-        }
+        }*/
         if (!enemyAttributes.isParalyzed
             && dmgSource == DamageInstance.DamageSource.Player
-            && IsDamageSourceInShieldedFrontArc())
+            //&& IsDamageSourceInShieldedFrontArc()
+            )
         {
             return;
         }

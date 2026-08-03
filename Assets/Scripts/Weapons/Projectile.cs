@@ -118,7 +118,7 @@ public class Projectile : MonoBehaviour
 
         // Use trigger while not bouncing; use collision while bouncing so we can read contact normals.
         col.isTrigger = bulletBounces <= 0;
-        Debug.Log($"[Bullet] ApplyBounceCollisionMode -> isTrigger={col.isTrigger}, bulletBounces={bulletBounces}");
+        //Debug.Log($"[Bullet] ApplyBounceCollisionMode -> isTrigger={col.isTrigger}, bulletBounces={bulletBounces}");
     }
 
     private IEnumerator ApplyBounceCollisionModeNextFixedStep()
@@ -143,14 +143,14 @@ public class Projectile : MonoBehaviour
 
         if (weakpointTransform == null)
         {
-            Debug.Log("[Bullet] No Weakpoint found on enemy: " + enemy.name);
+            //Debug.Log("[Bullet] No Weakpoint found on enemy: " + enemy.name);
             return false;
         }
 
         Collider2D weakpointCollider = weakpointTransform.GetComponentInChildren<Collider2D>();
         if (weakpointCollider == null || !weakpointCollider.isTrigger)
         {
-            Debug.Log("[Bullet] Weakpoint does not have a valid trigger collider on enemy: " + enemy.name);
+            //Debug.Log("[Bullet] Weakpoint does not have a valid trigger collider on enemy: " + enemy.name);
             return false;
         }
 
@@ -186,7 +186,7 @@ public class Projectile : MonoBehaviour
             {
                 finalPhysicalDamage = (int)(physicalDamage * 1.5f);
                 finalSpiritualDamage = (int)(spiritualDamage * 1.5f);
-                Debug.Log($"[Bullet] Weakpoint hit! Damage multiplied by 1.5x");
+                //Debug.Log($"[Bullet] Weakpoint hit! Damage multiplied by 1.5x");
 
                 // Notify weakpoint script of the hit
                 Transform weakpointTransform = enemy.transform.Find("WeakPoint");
@@ -204,7 +204,7 @@ public class Projectile : MonoBehaviour
 
             if (finalSpiritualDamage > 0)
             {
-                Debug.Log("Spiritual Damage Dealt");
+                //Debug.Log("Spiritual Damage Dealt");
                 enemy.TakeDamage(finalSpiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
             }
 
@@ -243,7 +243,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"[Bullet] OnTriggerEnter2D fired with {(other == null ? "NULL" : other.name)}, bulletBounces={bulletBounces}");
+        //Debug.Log($"[Bullet] OnTriggerEnter2D fired with {(other == null ? "NULL" : other.name)}, bulletBounces={bulletBounces}");
 
         if (bulletBounces > 0)
             return;
@@ -254,25 +254,25 @@ public class Projectile : MonoBehaviour
         int obstacleLayer = LayerMask.NameToLayer("Obstacle");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
 
-        Debug.Log($"[Bullet] Trigger layer = {LayerMask.LayerToName(other.gameObject.layer)}");
+        //Debug.Log($"[Bullet] Trigger layer = {LayerMask.LayerToName(other.gameObject.layer)}");
 
         if (other.gameObject.layer == enemyLayer)
         {
-            Debug.Log("[Bullet] Trigger enemy hit");
+            //Debug.Log("[Bullet] Trigger enemy hit");
             HandleBulletHit(other.gameObject);
             return;
         }
 
         if (other.gameObject.layer == obstacleLayer)
         {
-            Debug.Log("[Bullet] Trigger obstacle hit -> destroy");
+            //Debug.Log("[Bullet] Trigger obstacle hit -> destroy");
             Destroy(gameObject);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"[Bullet] OnCollisionEnter2D fired with {(collision == null || collision.collider == null ? "NULL" : collision.collider.name)}");
+        //Debug.Log($"[Bullet] OnCollisionEnter2D fired with {(collision == null || collision.collider == null ? "NULL" : collision.collider.name)}");
 
         if (bulletBounces <= 0)
             return;
@@ -285,11 +285,11 @@ public class Projectile : MonoBehaviour
 
         GameObject other = collision.collider.gameObject;
 
-        Debug.Log($"[Bullet] Collision layer={LayerMask.LayerToName(other.layer)}, bulletBounces={bulletBounces}, velocity={rb.linearVelocity}");
+        //Debug.Log($"[Bullet] Collision layer={LayerMask.LayerToName(other.layer)}, bulletBounces={bulletBounces}, velocity={rb.linearVelocity}");
 
         if (other.layer != obstacleLayer && other.layer != enemyLayer)
         {
-            Debug.Log("[Bullet] Collision ignored because layer is not Obstacle or Enemy");
+            //Debug.Log("[Bullet] Collision ignored because layer is not Obstacle or Enemy");
             return;
         }
 
@@ -297,13 +297,13 @@ public class Projectile : MonoBehaviour
         if (surfaceNormal.sqrMagnitude < 0.0001f)
         {
             surfaceNormal = ((Vector2)transform.position - (Vector2)other.transform.position).normalized;
-            Debug.Log($"[Bullet] Fallback NORMAL = {surfaceNormal}");
+            //Debug.Log($"[Bullet] Fallback NORMAL = {surfaceNormal}");
         }
 
         Vector2 inDir2 = moveDir.normalized;
         Vector2 outDir2 = Vector2.Reflect(inDir2, surfaceNormal).normalized;
 
-        Debug.Log($"[Bullet] IN={inDir2}, NORMAL={surfaceNormal}, OUT={outDir2}");
+        //Debug.Log($"[Bullet] IN={inDir2}, NORMAL={surfaceNormal}, OUT={outDir2}");
 
         // Push slightly out so we don't remain embedded in the collider.
         rb.position += surfaceNormal * 0.02f;
@@ -313,7 +313,7 @@ public class Projectile : MonoBehaviour
         ApplyVisualRotationFromMoveDir();
 
         bulletBounces--;
-        Debug.Log($"[Bullet] bulletBounces after hit = {bulletBounces}");
+        //Debug.Log($"[Bullet] bulletBounces after hit = {bulletBounces}");
 
         // Enemy should still take damage while bouncing.
         HandleBulletHit(other);
@@ -321,7 +321,7 @@ public class Projectile : MonoBehaviour
         // After the last bounce is consumed, switch modes on the next fixed step, not inside this collision callback.
         if (bulletBounces <= 0)
         {
-            Debug.Log("[Bullet] Scheduling bounce collision mode switch");
+            //Debug.Log("[Bullet] Scheduling bounce collision mode switch");
             StartCoroutine(ApplyBounceCollisionModeNextFixedStep());
         }
     }

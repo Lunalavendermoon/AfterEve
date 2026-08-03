@@ -144,7 +144,7 @@ public abstract class StandardEnemyBase : EnemyBase
         current_enemy_state?.ExitState(this);
         current_enemy_state = new_state;
         current_enemy_state?.EnterState(this);
-        Debug.Log($"{gameObject.name} changed to state: {current_enemy_state?.GetType().Name}");
+        //Debug.Log($"{gameObject.name} changed to state: {current_enemy_state?.GetType().Name}");
     }
 
 

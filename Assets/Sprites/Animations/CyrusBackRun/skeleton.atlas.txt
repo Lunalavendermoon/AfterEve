@@ -1,0 +1,69 @@
+
+skeleton.png
+size: 4769,2366
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back_Cyrus_CoverRARM
+  rotate: false
+  xy: 3195, 4
+  size: 447, 404
+  orig: 2700, 4800
+  offset: 891, 3311
+  index: -1
+Back_Cyrus_FRONTHAIR
+  rotate: true
+  xy: 3940, 2
+  size: 489, 602
+  orig: 2700, 4800
+  offset: 899, 3942
+  index: -1
+Back_Cyrus_FULLBODY
+  rotate: true
+  xy: 2, 954
+  size: 1410, 3164
+  orig: 2700, 4800
+  offset: 767, 1369
+  index: -1
+Back_Cyrus_L-ARM
+  rotate: true
+  xy: 2383, 410
+  size: 505, 1555
+  orig: 2700, 4800
+  offset: 1686, 2071
+  index: -1
+Back_Cyrus_LDownLeg
+  rotate: true
+  xy: 3168, 1645
+  size: 719, 1593
+  orig: 2700, 4800
+  offset: 1329, 365
+  index: -1
+Back_Cyrus_LUpLeg
+  rotate: true
+  xy: 2383, 44
+  size: 364, 810
+  orig: 2700, 4800
+  offset: 1452, 1656
+  index: -1
+Back_Cyrus_RARM
+  rotate: true
+  xy: 2, 141
+  size: 811, 2379
+  orig: 2700, 4800
+  offset: 311, 1198
+  index: -1
+Back_Cyrus_RDownLeg
+  rotate: true
+  xy: 3168, 917
+  size: 726, 1520
+  orig: 2700, 4800
+  offset: 475, 413
+  index: -1
+Back_Cyrus_RUpLeg
+  rotate: true
+  xy: 3940, 493
+  size: 422, 827
+  orig: 2700, 4800
+  offset: 885, 1662
+  index: -1

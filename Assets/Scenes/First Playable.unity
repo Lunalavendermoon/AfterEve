@@ -2479,6 +2479,14 @@ PrefabInstance:
       value: event:/Ambient/SpiritPlaneAmbient
       objectReference: {fileID: 0}
     - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: backSkeletonData
+      value: 
+      objectReference: {fileID: 11400000, guid: 52364387746ff044fab3684b99138347, type: 2}
+    - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: frontSkeletonData
+      value: 
+      objectReference: {fileID: 11400000, guid: dac63935c5dd4ed4f8c0d8e9584659df, type: 2}
+    - target: {fileID: 851332104908032602, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: chariotPulsePrefab
       value: 
       objectReference: {fileID: 297153201300601196, guid: 0fc842c534a08cc43bc5e45e8a66f9f2, type: 3}
@@ -2526,6 +2534,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1960957068752877385, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: backSkeletonData
+      value: 
+      objectReference: {fileID: 11400000, guid: 52364387746ff044fab3684b99138347, type: 2}
+    - target: {fileID: 1960957068752877385, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: frontSkeletonData
+      value: 
+      objectReference: {fileID: 11400000, guid: dac63935c5dd4ed4f8c0d8e9584659df, type: 2}
     - target: {fileID: 2086849141670054534, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Name
       value: Player - Cyrus
@@ -2605,6 +2621,10 @@ PrefabInstance:
     - target: {fileID: 6367495914211181961, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555157076438026817, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: _animationName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6555157076438026817, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: skeletonDataAsset

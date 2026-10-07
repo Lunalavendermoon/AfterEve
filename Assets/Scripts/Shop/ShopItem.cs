@@ -41,7 +41,12 @@ public class ShopItem : MonoBehaviour
         SetButtonAvailable();
     }
 
-    public void PurchaseItem()
+    public void OnClicked()
+    {
+        ShopManager.instance.InitializeConfirmMenu(this);
+    }
+
+    public void ConfirmPurchaseItem()
     {
         if (purchased[tarotType] || PlayerController.instance.GetCoins() < price)
         {
@@ -67,7 +72,6 @@ public class ShopItem : MonoBehaviour
 
     public void TogglePastFuture()
     {
-        // TODO - can past cards stack? if not, then we should disable button if past card of this arcana is purchased
         if (tarotType == TarotCard.TarotType.Future)
         {
             tarotType = TarotCard.TarotType.Past;
@@ -88,6 +92,12 @@ public class ShopItem : MonoBehaviour
     {
         if (purchased[tarotType])
         {
+            purchaseButton.enabled = false;
+            return;
+        }
+        if (tarotType == TarotCard.TarotType.Past && StaticGameManager.pastCards.Contains(arcana))
+        {
+            // past cards cannot stack, disable purchase button if player already has this arcana
             purchaseButton.enabled = false;
             return;
         }

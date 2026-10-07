@@ -22,6 +22,7 @@ public class ShopManager : MonoBehaviour
     public TMP_Text luckText;
     public Button skillSlotButton;
     public TMP_Text skillSlotText;
+    public GameObject confirmMenu;
 
     public List<GameObject> shopStock = new();
 
@@ -40,6 +41,7 @@ public class ShopManager : MonoBehaviour
     int currentLuckCost = 0;
 
     bool openedFromStory;
+    ShopItem currentShopItem;
 
     void Awake()
     {
@@ -89,6 +91,7 @@ public class ShopManager : MonoBehaviour
             PlayerController.OnCoinsChange -= SetButtonsAvailable;
         }
 
+        confirmMenu.SetActive(false);
         shopUi.SetActive(enabled);
 
         if (firstInteraction)
@@ -249,5 +252,23 @@ public class ShopManager : MonoBehaviour
         {
             go.GetComponent<ShopItem>().SetButtonAvailable();
         }
+    }
+
+    public void InitializeConfirmMenu(ShopItem shopItem)
+    {
+        confirmMenu.SetActive(true);
+        currentShopItem = shopItem;
+        // TODO set tarot sprite in UI
+    }
+
+    public void OnConfirm()
+    {
+        currentShopItem.ConfirmPurchaseItem();
+        confirmMenu.SetActive(false);
+    }
+
+    public void OnDecline()
+    {
+        confirmMenu.SetActive(false);
     }
 }

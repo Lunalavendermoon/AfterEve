@@ -4464,6 +4464,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &1201374317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5238844829484732887, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+  m_PrefabInstance: {fileID: 1868283991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1240546670
 GameObject:
   m_ObjectHideFlags: 0
@@ -5163,6 +5168,10 @@ PrefabInstance:
       propertyPath: toggleText
       value: 
       objectReference: {fileID: 1868283995}
+    - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
+      propertyPath: confirmMenu
+      value: 
+      objectReference: {fileID: 1201374317}
     - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
       propertyPath: refreshText
       value: 
@@ -6680,33 +6689,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 410989857}
     m_Modifications:
-    - target: {fileID: 1120167006141597829, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1424728490}
-    - target: {fileID: 1120167006141597829, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RefreshStock
-      objectReference: {fileID: 0}
     - target: {fileID: 1428136348101495287, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_Name
       value: Shop UI
       objectReference: {fileID: 0}
-    - target: {fileID: 1766029728170341541, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+    - target: {fileID: 2708180987480016550, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1424728490}
-    - target: {fileID: 1766029728170341541, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+    - target: {fileID: 2708180987480016550, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuyLuckCoin
+      value: OnDecline
       objectReference: {fileID: 0}
-    - target: {fileID: 4176397422504371848, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+    - target: {fileID: 4690703010813611392, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1424728490}
-    - target: {fileID: 4176397422504371848, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+    - target: {fileID: 4690703010813611392, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TogglePastFuture
+      value: OnConfirm
       objectReference: {fileID: 0}
     - target: {fileID: 6365238946846207529, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_Pivot.x
@@ -6787,22 +6788,6 @@ PrefabInstance:
     - target: {fileID: 6365238946846207529, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517444920090821202, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1424728490}
-    - target: {fileID: 6517444920090821202, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DisableShopUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 7089049817958635029, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1424728490}
-    - target: {fileID: 7089049817958635029, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuySkillSlot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

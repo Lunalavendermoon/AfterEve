@@ -176,7 +176,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2008948981545519518}
         m_TargetAssemblyTypeName: ShopItem, Assembly-CSharp
-        m_MethodName: PurchaseItem
+        m_MethodName: OnClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -41,7 +41,7 @@ public class ShopManager : MonoBehaviour
     int currentLuckCost = 0;
 
     bool openedFromStory;
-    ShopItem currentShopItem;
+    Action purchaseItemAction;
 
     void Awake()
     {
@@ -170,14 +170,20 @@ public class ShopManager : MonoBehaviour
 
     public void BuyLuckCoin()
     {
-        ++StaticGameManager.luckyCoins;
-        PlayerController.instance.ChangeCoins(-GetLuckCost());
+        InitializeConfirmMenu(() =>
+        {
+            ++StaticGameManager.luckyCoins;
+            PlayerController.instance.ChangeCoins(-GetLuckCost());
+        });
     }
 
     public void BuySkillSlot()
     {
-        PlayerController.instance.GainFutureSkillSlot(1);
-        skillSlotText.text = $"Skill Slot ({GetSkillSlotCost()})";
+        InitializeConfirmMenu(() =>
+        {
+            PlayerController.instance.GainFutureSkillSlot(1);
+            skillSlotText.text = $"Skill Slot ({GetSkillSlotCost()})";
+        });
     }
 
     int GetIndexFromRoomCount()
@@ -254,16 +260,16 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void InitializeConfirmMenu(ShopItem shopItem)
+    public void InitializeConfirmMenu(Action purchaseItemAction)
     {
         confirmMenu.SetActive(true);
-        currentShopItem = shopItem;
+        this.purchaseItemAction = purchaseItemAction;
         // TODO set tarot sprite in UI
     }
 
     public void OnConfirm()
     {
-        currentShopItem.ConfirmPurchaseItem();
+        purchaseItemAction();
         confirmMenu.SetActive(false);
     }
 

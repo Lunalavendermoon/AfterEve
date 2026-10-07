@@ -43,10 +43,10 @@ public class ShopItem : MonoBehaviour
 
     public void OnClicked()
     {
-        ShopManager.instance.InitializeConfirmMenu(this);
+        ShopManager.instance.InitializeConfirmMenu(() => ConfirmPurchaseItem());
     }
 
-    public void ConfirmPurchaseItem()
+    void ConfirmPurchaseItem()
     {
         if (purchased[tarotType] || PlayerController.instance.GetCoins() < price)
         {

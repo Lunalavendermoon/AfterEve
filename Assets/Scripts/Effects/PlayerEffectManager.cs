@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
@@ -252,6 +253,29 @@ public class PlayerEffectManager : EffectManager
         //         iconInstances[qtype] = go;
         //     }
         // }
+    }
+
+    /// <summary>
+    /// Clears all negative effects (debuffs) from the player.
+    /// Called when the boss is defeated to give the player a moment of relief.
+    /// </summary>
+    public void ClearAllNegativeEffects()
+    {
+        // Get a copy of debuff keys to avoid modifying dictionary while iterating
+        var debuffKeys = debuffs.Keys.ToList();
+        
+        foreach (var key in debuffKeys)
+        {
+            // Get a copy of the effects to avoid modifying collection while iterating
+            var effectsToRemove = debuffs[key].ToList();
+            
+            foreach (var effectInstance in effectsToRemove)
+            {
+                RemoveEffect(effectInstance);
+            }
+        }
+
+        Debug.Log("All negative effects cleared!");
     }
 
     Sprite getIconSprite(Effects.IconType type)

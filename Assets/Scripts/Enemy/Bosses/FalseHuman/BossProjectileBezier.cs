@@ -110,8 +110,11 @@ public class BossProjectileBezier: MonoBehaviour
     }
     private void OnReachTarget()
     {
-        //if (PlayerController.instance != null)
-        //    PlayerController.instance.TakeDamage(SpiritualDamageAmount, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+        if (hasDealtDamage) return; // ? Don't deal damage twice
+        
+        if (PlayerController.instance != null)
+            PlayerController.instance.TakeDamage(_spiritualDamageAmount, DamageInstance.DamageSource.Enemy, DamageInstance.DamageType.Spiritual);
+        
         if (target != null) Destroy(target);
         Destroy(gameObject);
     }

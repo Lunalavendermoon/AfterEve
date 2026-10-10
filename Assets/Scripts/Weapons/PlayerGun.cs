@@ -7,6 +7,9 @@ public class PlayerGun : MonoBehaviour
     Transform firingPoint;
 
     [SerializeField]
+    Animator gunSpriteAnimator;
+
+    [SerializeField]
     GameObject projectilePrefab;
 
     private float firingSpeed;
@@ -37,9 +40,11 @@ public class PlayerGun : MonoBehaviour
     // Clones projectile and sets projectile stats
     bool ShootDamage(int damage)
     {
+        
         firingSpeed = 1/PlayerController.instance.playerAttributes.attackPerSec;
         if(lastTimeShot + firingSpeed <= Time.time)
         {
+            gunSpriteAnimator.SetTrigger("ShotFired");
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0f;
             Vector2 dir = (mouseWorldPos - firingPoint.position).normalized;
@@ -53,11 +58,6 @@ public class PlayerGun : MonoBehaviour
                 float currentAngle = startAngle + spread * i;
 
                 Quaternion projectileRotation = Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread));
-
-                // Nick: this current method of multiplying by the firingPoint's rotation works, because the projectile
-                // determines its direction based on the XY pos of the forward vector. This is confusing and convoluted,
-                // at least to me, and I think it should be changed.
-                projectileRotation *= firingPoint.rotation;
 
                 GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, projectileRotation);
                 

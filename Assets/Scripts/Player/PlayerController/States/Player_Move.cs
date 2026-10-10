@@ -39,6 +39,12 @@ public class Player_Move : IPlayerState
 
     public void UpdateState(PlayerController player)
     {
+        // Do rotation animation
+        //Vector2 input = new Vector2(player.horizontalInput, player.verticalInput);
+        //var angles = PlayerController.instance.transform.localEulerAngles;
+        //angles.z = Mathf.Rad2Deg * Mathf.Atan2(input.y, input.x);
+        //PlayerController.instance.transform.localEulerAngles = angles;
+
         PlayerMovementUI.Instance.SetMoveUIDirection(player.horizontalInput, player.verticalInput);
     }
 

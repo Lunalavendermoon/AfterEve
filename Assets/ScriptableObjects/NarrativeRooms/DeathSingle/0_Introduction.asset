@@ -18,3 +18,5 @@ MonoBehaviour:
   deathCount: 0
   dialogueNode: Act1_Introduction
   startsNewPath: 1
+  cgList:
+  - {fileID: 21300000, guid: ad11f941092e38c43a44acf21f47360f, type: 3}

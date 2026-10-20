@@ -9,6 +9,7 @@
 : [i]But one, the Hierophant, tipped these scales in their pursuit of absolute order.[/i]
 : [i]Now your mission begins.[/i]
 
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge default>>
 ???: Hello?
 <<set_portrait YarnManager Judge defaultTalk>>
@@ -47,6 +48,7 @@ The Judge: Look, you want humanity to continue, right? So do we.
 The Judge: Well, Justice does. I just work here.
 <<set_portrait YarnManager Judge defaultTalk>>
 The Judge: So I’d love to stand here and explain the metaphysics of divine politics, but we’re really on a schedule. Off you go!
+<<clear_cg YarnManager fade>>
 
 <<player_respawn YarnManager>>
 ===
@@ -54,6 +56,7 @@ The Judge: So I’d love to stand here and explain the metaphysics of divine pol
 
 title: Act1_EveIntro_PreCombat_P1N1
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Eve shock>>
 ???: Oh good, you’re awake!
 <<set_portrait YarnManager Eve defaultTalk>>
@@ -62,7 +65,7 @@ title: Act1_EveIntro_PreCombat_P1N1
 Eve: I’m Eve. What’s your name, if you don’t mind?
 
 <<set_portrait YarnManager Cyrus surprised>>
-shopkeeper: ...
+Cyrus: ...
 <<set_portrait YarnManager Cyrus surprisedSpeak>>
 Cyrus: This is the second time I’ve woken up in five minutes.
 
@@ -77,6 +80,8 @@ Eve: Nice to meet you, Cyrus. Or not nice? Given the circumstances. Are you hurt
 
 <<set_portrait YarnManager Cyrus default>>
 Cyrus: [i]What’s happening? That girl earlier... I can’t seem to remember anything beyond my own name. Best to play along for now.[/i]
+
+<<clear_cg YarnManager fade>>
 
 <<clear_portrait YarnManager>>
 : [i]An inhuman roar. (TODO play sound)[/i]

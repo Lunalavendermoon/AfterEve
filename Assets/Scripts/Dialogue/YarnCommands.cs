@@ -73,7 +73,7 @@ public class YarnCommands : MonoBehaviour
             }
             else
             {
-                PortraitManager.instance.SetCG(NarrativeRoomManager.instance.currentRoom.cgList[cgNum], StringToTransitionType(anim));
+                PortraitManager.instance.SetCG(DeathDialogueManager.instance.currentSpecialRoom.cgList[cgNum], StringToTransitionType(anim));
             }
         }
     }

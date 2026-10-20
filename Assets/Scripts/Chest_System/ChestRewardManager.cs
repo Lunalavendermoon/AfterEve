@@ -12,6 +12,12 @@ public class ChestRewardManager : MonoBehaviour
     public List<Image> cardUI;
 
     public List<GameObject> tarotButtons;
+
+    [Tooltip("Title text for each reward choice, in the same order as tarotButtons.")]
+    public List<TMP_Text> tarotTitleTexts = new();
+
+    [Tooltip("Description text for each reward choice, in the same order as tarotButtons.")]
+    public List<TMP_Text> tarotDescriptionTexts = new();
     TarotCard.Arcana[] cards = new TarotCard.Arcana[3];
     int[] quantities = new int[3];
 
@@ -62,6 +68,20 @@ public class ChestRewardManager : MonoBehaviour
                 if (tarotIcons != null)
                 {
                     cardUI[i].sprite = tarotIcons.GetSprite(cards[i], TarotCard.TarotType.Present);
+                }
+
+                TarotCard card = TarotCard.GetCardFromData(cards[i], TarotCard.TarotType.Present, quantities[i]);
+
+                if (i < tarotTitleTexts.Count && tarotTitleTexts[i] != null)
+                {
+                    // Split names such as HighPriestess into HIGH PRIESTESS.
+                    tarotTitleTexts[i].text = System.Text.RegularExpressions.Regex.Replace(
+                        cards[i].ToString(), "([a-z])([A-Z])", "$1 $2").ToUpperInvariant();
+                }
+
+                if (i < tarotDescriptionTexts.Count && tarotDescriptionTexts[i] != null)
+                {
+                    tarotDescriptionTexts[i].text = card != null ? card.GetDescription() : string.Empty;
                 }
             }
         }

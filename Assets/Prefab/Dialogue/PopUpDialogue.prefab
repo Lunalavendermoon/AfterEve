@@ -143,8 +143,8 @@ MonoBehaviour:
   m_text: I am saying a lot of words that might have meaning. I will say some more
     words to test character length.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f257625918fdb3448b93e312a9bf1d87, type: 2}
+  m_sharedMaterial: {fileID: 3600349426238830025, guid: f257625918fdb3448b93e312a9bf1d87, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.1
+  m_fontSize: 20.15
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -47,13 +47,34 @@ public class YarnCommands : MonoBehaviour
     [YarnCommand("set_cg")]
     public void SetYarnSpinnerCG(int cgNum, string anim = "fade")
     {
-        if (NarrativeRoomManager.instance.currentRoom.cgList.Count <= cgNum)
+        if (NarrativeRoomManager.instance != null)
         {
-            Debug.LogWarning($"CG number {cgNum} does not exist, skipping");
+            // We are in main game loop
+            if (NarrativeRoomManager.instance.currentRoom.cgList.Count <= cgNum)
+            {
+                Debug.LogWarning($"CG number {cgNum} does not exist, skipping");
+            }
+            else
+            {
+                PortraitManager.instance.SetCG(NarrativeRoomManager.instance.currentRoom.cgList[cgNum], StringToTransitionType(anim));
+            }
         }
         else
         {
-            PortraitManager.instance.SetCG(NarrativeRoomManager.instance.currentRoom.cgList[cgNum], StringToTransitionType(anim));
+            // We are on the death screen
+            if (DeathDialogueManager.instance.currentSpecialRoom == null)
+            {
+                // TODO finish this lol
+                Debug.LogWarning($"TODO: We don't support CGs for repeat death dialogue yet.");
+            }
+            else if (DeathDialogueManager.instance.currentSpecialRoom.cgList.Count <= cgNum)
+            {
+                Debug.LogWarning($"CG number {cgNum} does not exist, skipping");
+            }
+            else
+            {
+                PortraitManager.instance.SetCG(NarrativeRoomManager.instance.currentRoom.cgList[cgNum], StringToTransitionType(anim));
+            }
         }
     }
 

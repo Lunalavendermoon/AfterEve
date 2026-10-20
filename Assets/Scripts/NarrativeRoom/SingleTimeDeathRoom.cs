@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "SingleTimeDeathRoom", menuName = "Scriptable Objects/Narrative/SingleTimeDeathRoom")]
 public class SingleTimeDeathRoom : ScriptableObject
@@ -15,6 +16,7 @@ public class SingleTimeDeathRoom : ScriptableObject
     public int deathCount;
     public string dialogueNode;
     public bool startsNewPath;
+    public List<Sprite> cgList;
 
     public bool CanTrigger()
     {

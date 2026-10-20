@@ -4,11 +4,12 @@ using Yarn.Unity;
 
 public class DeathDialogueManager : MonoBehaviour
 {
+    public static DeathDialogueManager instance;
     public DeathRooms rooms;
 
     DialogueRunner runner;
 
-    SingleTimeDeathRoom currentSpecialRoom = null;
+    [HideInInspector] public SingleTimeDeathRoom currentSpecialRoom = null;
 
     void Awake()
     {
@@ -22,6 +23,8 @@ public class DeathDialogueManager : MonoBehaviour
 
     void Start()
     {
+        if (instance == null) instance = this;
+
         StaticGameManager.PreloadPlayableScene();
 
         string dialogueNode = null;

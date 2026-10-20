@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384b3176d75834f3eb965d9de6a3a783, type: 3}
   m_Name: DeathRepeat
   m_EditorClassIdentifier: Assembly-CSharp::RepeatDeathRooms
+  deathScreenCg: {fileID: 21300000, guid: ad11f941092e38c43a44acf21f47360f, type: 3}
   dialoguePools:
   - cause: 1
     dialogueNodes:

@@ -2578,6 +2578,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2735677821670354486, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735677821670354486, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2944911087073282626, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
       propertyPath: m_Layer
       value: 3

@@ -58,6 +58,9 @@ public abstract class StandardEnemyBase : EnemyBase
 
     private void Update()
     {
+        if (!IsAlive())
+            return;
+
         if (lockRotation)
         {
             var e = transform.eulerAngles;

@@ -682,7 +682,7 @@ public class PlayerController : MonoBehaviour
         while (TryAddFutureSkill())
         {
         }
-        // TODO: if empty future skill slots have specific visual, call TarotManager.instance.DisplayHand();
+        TarotManager.instance.DisplayHand();
     }
 
     void ClearFutureSkills()

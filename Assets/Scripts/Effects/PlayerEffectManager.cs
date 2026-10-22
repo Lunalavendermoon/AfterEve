@@ -64,7 +64,6 @@ public class PlayerEffectManager : EffectManager
             switch (effect.effectStat)
             {
                 //Speed
-                //TODO: is haste the same as speed?
                 case Effects.Stat.Haste:
                     vfx.EnableSpeed();
                     break;

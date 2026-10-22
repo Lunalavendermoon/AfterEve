@@ -113,7 +113,7 @@ public abstract class TarotCard
 
     protected virtual void GetLocalizedDesc()
     {
-        // TODO - override this for each tarot card
+        // Override this for each tarot card
     }
 
     protected abstract void SetTableEntries(string cardName);

@@ -16,10 +16,8 @@ public class InventoryUIScript : MonoBehaviour
     public GameObject itemPrefab;
 
     public Image sidebarImage;
+    public TMP_Text sidebarTitle;
     public TMP_Text sidebarDesc;
-
-    public Color futureTextColor;
-    public Color defaultTextColor;
 
     // 0 = past, 1 = present, 2 = future
     int state;
@@ -137,20 +135,15 @@ public class InventoryUIScript : MonoBehaviour
     {
         sidebarImage.enabled = true;
         sidebarImage.sprite = cardSprite;
+        sidebarTitle.text = System.Text.RegularExpressions.Regex.Replace(
+            card.arcana.ToString(), "([a-z])([A-Z])", "$1 $2").ToUpperInvariant();
         sidebarDesc.text = card.GetDescription();
-        if (state == 2)
-        {
-            sidebarDesc.color = futureTextColor;
-        }
-        else
-        {
-            sidebarDesc.color = defaultTextColor;
-        }
     }
 
     public void SetEmptySidebar()
     {
         sidebarImage.enabled = false;
+        sidebarTitle.text = "";
         sidebarDesc.text = "";
     }
 }

@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour
 
         interactPrompt.gameObject.SetActive(false);
 
-        TarotManager.instance.RestorePastTarots();
+        TarotManager.instance.ApplyPastTarotEffects();
     }
 
     void Update()

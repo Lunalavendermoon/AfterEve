@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -173,6 +174,16 @@ public class Projectile : MonoBehaviour
             {
                 float dist = Vector3.Distance(transform.position, firingPoint);
                 AddPhysicalDamage((int)(PlayerController.instance.playerAttributes.damage * dist * Hermit_Past.dmgBonusPerUnit));
+            }
+            if (PlayerController.instance.playerAttributes.emperorPresent)
+            {
+                Vector2 disp = other.gameObject.transform.position - PlayerController.instance.transform.position;
+                disp.Normalize();
+
+                disp *= Emperor_Present.knockBackAmount;
+
+                AIBase ai = other.gameObject.GetComponent<AIBase>();
+                ai.Move(disp);
             }
 
             // Check if bullet is hitting a weakpoint

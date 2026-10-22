@@ -87,7 +87,7 @@ public class TarotManager : MonoBehaviour
         ClearAllCards(keepPast: true);
     }
 
-    public void RestorePastTarots()
+    public void ApplyPastTarotEffects()
     {
         bool hasFool = false;
         foreach (TarotCard.Arcana arcana in StaticGameManager.pastCards)

@@ -37,6 +37,7 @@ public class PlayerAttributes : EntityAttributes
     public bool magicianPastBonusCoin;
     public bool empressPast;
     public bool hermitPast;
+    public bool emperorPresent;
 
 
     // Player Formulas

@@ -81,7 +81,7 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
         Invoke(nameof(DisableAttack), 0.35f);
     }
 
-    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint)
     {
         if (dmgType == DamageInstance.DamageType.Spiritual && weakPointHitBySpiritualDamage)
         {
@@ -92,7 +92,7 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
                 enemyEffectManager.AddEffect(new Paralyze_Effect(3f), enemyAttributes);
             }
         }
-        base.TakeDamage(amount, dmgSource, dmgType);
+        base.TakeDamage(amount, dmgSource, dmgType, hitWeakPoint);
     }
 
     public override void EnemyUpdate()

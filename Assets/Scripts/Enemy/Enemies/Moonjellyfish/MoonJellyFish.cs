@@ -59,9 +59,9 @@ public class MoonJellyFish : StandardEnemyBase
         Invoke(nameof(DisableAttack), 0.3f); // 0.3 is temp 
     }
 
-    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint)
     {
-        base.TakeDamage(amount, dmgSource, dmgType);
+        base.TakeDamage(amount, dmgSource, dmgType, hitWeakPoint);
         if (isDying) return;
         skeletonAnimation.AnimationState.SetAnimation(0, "Hit", false);
         skeletonAnimation.AnimationState.AddAnimation(0, "Idle", true, 0f);

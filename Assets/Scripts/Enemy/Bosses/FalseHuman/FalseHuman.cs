@@ -163,7 +163,7 @@ public class FalseHuman : BossBehaviourBase
     }
 
 
-    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint)
     {
         if (enemyAttributes == null)
             return;

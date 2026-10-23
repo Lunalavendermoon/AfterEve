@@ -211,12 +211,11 @@ public class Projectile : MonoBehaviour
             OnEnemyHitWithDamage?.Invoke(enemy, finalPhysicalDamage, finalSpiritualDamage);
 
             if (finalPhysicalDamage > 0)
-                enemy.TakeDamage(finalPhysicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical);
+                enemy.TakeDamage(finalPhysicalDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Physical, hitWeakpoint);
 
             if (finalSpiritualDamage > 0)
             {
-                //Debug.Log("Spiritual Damage Dealt");
-                enemy.TakeDamage(finalSpiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual);
+                enemy.TakeDamage(finalSpiritualDamage, DamageInstance.DamageSource.Player, DamageInstance.DamageType.Spiritual, hitWeakpoint);
             }
 
             if (enemy.TryGetComponent(out EffectManager effectManager) && bulletEffects != null)

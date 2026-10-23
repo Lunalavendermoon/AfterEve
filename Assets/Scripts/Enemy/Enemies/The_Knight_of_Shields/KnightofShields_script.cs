@@ -4,7 +4,7 @@ public class KnightofShields_script : StandardEnemyBase, IKnightWithWeakPoint
 {
     [SerializeField] private float wanderRadius = 7.5f;
     [SerializeField] private float wanderTime = 3f;
-    [Tooltip("Child in front of the knight (e.g. Shield). Used as the forward direction for the 180° block.")]
+    [Tooltip("Child in front of the knight (e.g. Shield). Used as the forward direction for the 180ï¿½ block.")]
     [SerializeField] private Transform shieldFrontReference;
 
     private bool weakPointHitBySpiritualDamage;
@@ -54,7 +54,7 @@ public class KnightofShields_script : StandardEnemyBase, IKnightWithWeakPoint
 
     }
 
-    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint)
     {
         if (enemyAttributes == null)
             return;
@@ -74,7 +74,7 @@ public class KnightofShields_script : StandardEnemyBase, IKnightWithWeakPoint
         {
             return;
         }
-        base.TakeDamage(amount, dmgSource, dmgType);
+        base.TakeDamage(amount, dmgSource, dmgType, hitWeakPoint);
     }
     private bool IsDamageSourceInShieldedFrontArc()
     {

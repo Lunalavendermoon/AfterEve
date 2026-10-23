@@ -278,7 +278,7 @@ public class FalseHuman : BossBehaviourBase
             if (cap != null)
             {
                 if (cap.IsActivated)
-                    TakeDamage(EmotionWaveDamageToBossPerCapsule, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual);
+                    TakeDamage(EmotionWaveDamageToBossPerCapsule, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual, false);
 
                 Destroy(cap.gameObject);
             }

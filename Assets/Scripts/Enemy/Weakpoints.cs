@@ -64,10 +64,6 @@ public class Weakpoints : MonoBehaviour
             {
                 knightWithWeakpoint.NotifyWeakPointHitBySpiritual();
             }
-            else
-            {
-                Debug.LogWarning("Parent does not implement IKnightWithWeakPoint interface.");
-            }
         }
     }
 

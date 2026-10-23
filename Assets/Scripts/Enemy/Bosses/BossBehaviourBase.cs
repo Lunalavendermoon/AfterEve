@@ -94,7 +94,7 @@ public abstract class BossBehaviourBase : EnemyBase
         isAttacking = false;
     }
 
-    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint = false)
     {
         int damageAfterReduction = enemyAttributes.DamageCalculation(amount, DamageInstance.ToEnemyDamageType(dmgType));
         health -= damageAfterReduction;

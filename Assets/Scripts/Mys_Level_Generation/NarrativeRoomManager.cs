@@ -263,13 +263,13 @@ public class NarrativeRoomManager : MonoBehaviour
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject go in enemies)
             {
-                go.GetComponent<EnemyBase>().Die();
+                go.GetComponent<EnemyBase>().TakeDamage(1000000000, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Spiritual);
             }
 
             GameObject[] boss = GameObject.FindGameObjectsWithTag("Boss");
             foreach (GameObject go in boss)
             {
-                go.GetComponent<BossBehaviourBase>().Die();
+                go.GetComponent<BossBehaviourBase>().TakeDamage(1000000000, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Spiritual);
             }
         }
     }

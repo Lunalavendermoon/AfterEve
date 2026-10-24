@@ -3382,6 +3382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &776173070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1004760359507714632, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+  m_PrefabInstance: {fileID: 1868283991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &818675742 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1446345918376659943, guid: 2cd9912a575feea4c82485d356bef718, type: 3}
@@ -5526,7 +5531,7 @@ PrefabInstance:
     - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
       propertyPath: shopLayout
       value: 
-      objectReference: {fileID: 1868283997}
+      objectReference: {fileID: 776173070}
     - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
       propertyPath: toggleText
       value: 
@@ -7339,11 +7344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!1 &1868283997 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1344948121266274404, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-  m_PrefabInstance: {fileID: 1868283991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1887565281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5576521030371721608, guid: ad930e60a4817094cbbe2978b3eeede5, type: 3}
@@ -9397,7 +9397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 223498588323547198, guid: 29c1c5ea0f2158642a97b0a373aa39d3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -36.06482
+      value: -36.06494
       objectReference: {fileID: 0}
     - target: {fileID: 250882950834199103, guid: 29c1c5ea0f2158642a97b0a373aa39d3, type: 3}
       propertyPath: m_IsActive

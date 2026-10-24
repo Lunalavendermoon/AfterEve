@@ -5,6 +5,16 @@ using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
+    public enum ShopItemType
+    {
+        Tarot,
+        LuckyCoin,
+        SkillSlot
+    }
+    ShopItemType shopItemType;
+
+    public TarotIcon tarotIcons;
+
     TarotCard.Arcana arcana;
     TarotCard.TarotType tarotType;
     int price;
@@ -12,12 +22,13 @@ public class ShopItem : MonoBehaviour
 
     Dictionary<TarotCard.TarotType, bool> purchased = new();
 
-    public TMP_Text itemName;
+    public Image itemSprite;
     public Button purchaseButton;
     public TMP_Text purchaseButtonText;
 
     public void InitializeShopItem(TarotCard.Arcana arcana, TarotCard.TarotType tarotType, int price, int quantity)
     {
+        shopItemType = ShopItemType.Tarot;
         this.arcana = arcana;
         this.tarotType = tarotType;
         this.price = price;
@@ -34,16 +45,39 @@ public class ShopItem : MonoBehaviour
         ResetDisplay();
     }
 
+    public void InitializeShopItem(ShopItemType shopItemType, int price)
+    {
+        this.shopItemType = shopItemType;
+        this.price = price;
+
+        // Cannot purchast Past or Present cards beyond stack limit
+        purchased[TarotCard.TarotType.Past] = TarotManager.instance.pastTarot.ContainsKey(arcana);
+
+        purchased[TarotCard.TarotType.Present] = TarotManager.instance.presentTarot.ContainsKey(arcana) &&
+            TarotManager.instance.presentTarot[arcana].level >= 4; // zero-indexed level 5
+
+        purchased[TarotCard.TarotType.Future] = false;
+
+        ResetDisplay();
+    }
+
     void ResetDisplay()
     {
-        itemName.text = $"{arcana} {tarotType} ({quantity}) - {price} coins";
-        purchaseButtonText.text = purchased[tarotType] ? "(Purchased)" : "Buy";
+        if (shopItemType == ShopItemType.Tarot)
+        {
+            itemSprite.sprite = tarotIcons.GetSprite(arcana, tarotType);
+        }
+        else
+        {
+            // TODO
+        }
+        purchaseButtonText.text = $"{price}";
         SetButtonAvailable();
     }
 
     public void OnClicked()
     {
-        ShopManager.instance.InitializeConfirmMenu(() => ConfirmPurchaseItem());
+        ShopManager.instance.InitializeConfirmMenu(() => ConfirmPurchaseItem(), price, shopItemType, arcana, tarotType);
     }
 
     void ConfirmPurchaseItem()
@@ -54,11 +88,12 @@ public class ShopItem : MonoBehaviour
         }
 
         PlayerController.instance.ChangeCoins(-price, true);
+        ShopManager.instance.RefreshCurrentCoinsText();
 
         purchased[tarotType] = true;
 
         purchaseButton.enabled = false;
-        purchaseButtonText.text = "(Purchased)";
+        purchaseButtonText.text = "--";
 
         TarotCard card = TarotCard.GetCardFromData(arcana, tarotType, quantity);
 

@@ -23,8 +23,11 @@ public class ShopItem : MonoBehaviour
     Dictionary<TarotCard.TarotType, bool> purchased = new();
 
     public Image itemSprite;
+    public TMP_Text arcanaText;
     public Button purchaseButton;
     public TMP_Text purchaseButtonText;
+
+    TarotCard dummyTarotForDescription;
 
     public void InitializeShopItem(TarotCard.Arcana arcana, TarotCard.TarotType tarotType, int price, int quantity)
     {
@@ -33,6 +36,9 @@ public class ShopItem : MonoBehaviour
         this.tarotType = tarotType;
         this.price = price;
         this.quantity = quantity;
+
+        arcanaText.text = TarotCard.GetLocalizedArcanaName(arcana);
+        dummyTarotForDescription = TarotCard.GetCardFromData(arcana, tarotType);
 
         // Cannot purchast Past or Present cards beyond stack limit
         purchased[TarotCard.TarotType.Past] = TarotManager.instance.pastTarot.ContainsKey(arcana);
@@ -49,6 +55,8 @@ public class ShopItem : MonoBehaviour
     {
         this.shopItemType = shopItemType;
         this.price = price;
+
+        arcanaText.text = "";
 
         // Cannot purchast Past or Present cards beyond stack limit
         purchased[TarotCard.TarotType.Past] = TarotManager.instance.pastTarot.ContainsKey(arcana);
@@ -77,7 +85,10 @@ public class ShopItem : MonoBehaviour
 
     public void OnClicked()
     {
-        ShopManager.instance.InitializeConfirmMenu(() => ConfirmPurchaseItem(), price, shopItemType, arcana, tarotType);
+        ShopManager.instance.InitializeConfirmMenu(() => ConfirmPurchaseItem(), price,
+            tarotIcons.GetSprite(arcana, tarotType),
+            TarotCard.GetLocalizedArcanaName(arcana),
+            dummyTarotForDescription.GetDescription());
     }
 
     void ConfirmPurchaseItem()
@@ -128,14 +139,17 @@ public class ShopItem : MonoBehaviour
         if (purchased[tarotType])
         {
             purchaseButton.enabled = false;
+            purchaseButtonText.text = "--";
             return;
         }
         if (tarotType == TarotCard.TarotType.Past && StaticGameManager.pastCards.Contains(arcana))
         {
             // past cards cannot stack, disable purchase button if player already has this arcana
             purchaseButton.enabled = false;
+            purchaseButtonText.text = "--";
             return;
         }
         purchaseButton.enabled = PlayerController.instance.GetCoins() >= price;
+        purchaseButtonText.text = $"{price}";
     }
 }

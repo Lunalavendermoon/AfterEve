@@ -273,13 +273,12 @@ public class ShopManager : MonoBehaviour
 
     public void InitializeConfirmMenu(Action purchaseItemAction, int price, ShopItem.ShopItemType shopItemType)
     {
-        confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, shopItemType);
+        // TODO add localization table mapping for lucky coin and future skill slot
+        confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, null, "", "");
     }
 
-    public void InitializeConfirmMenu(Action purchaseItemAction, int price, ShopItem.ShopItemType shopItemType,
-                                        TarotCard.Arcana arcana,
-                                        TarotCard.TarotType tarotType)
+    public void InitializeConfirmMenu(Action purchaseItemAction, int price, Sprite itemSprite, string arcanaText, string descriptionText)
     {
-        confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, shopItemType, arcana, tarotType);
+        confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, itemSprite, arcanaText, descriptionText);
     }
 }

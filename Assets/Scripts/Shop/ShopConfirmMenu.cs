@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ShopConfirmMenu : MonoBehaviour
 {
-    public TarotIcon tarotIcons;
+    public TMP_Text arcanaText;
+    public TMP_Text descriptionText;
     public TMP_Text priceText;
     public TMP_Text priceSubtractText;
     public TMP_Text priceSubtractResult;
@@ -13,9 +14,7 @@ public class ShopConfirmMenu : MonoBehaviour
 
     Action purchaseItemAction;
 
-    public void InitializeConfirmMenu(Action purchaseItemAction, int price, ShopItem.ShopItemType shopItemType,
-                                        TarotCard.Arcana arcana = TarotCard.Arcana.Fool,
-                                        TarotCard.TarotType tarotType = TarotCard.TarotType.Present)
+    public void InitializeConfirmMenu(Action purchaseItemAction, int price, Sprite itemSprite, string itemTitle, string itemDescription)
     {
         gameObject.SetActive(true);
         this.purchaseItemAction = purchaseItemAction;
@@ -23,14 +22,13 @@ public class ShopConfirmMenu : MonoBehaviour
         priceSubtractText.text = $"-{price}";
         priceSubtractResult.text = $"{PlayerController.instance.GetCoins() - price}";
 
-        if (shopItemType == ShopItem.ShopItemType.Tarot)
+        if (itemSprite != null)
         {
-            selectedItem.sprite = tarotIcons.GetSprite(arcana, tarotType);
+            // TODO remove null check once all sprites are imported
+            selectedItem.sprite = itemSprite;
         }
-        else
-        {
-            // TODO
-        }
+        arcanaText.text = itemTitle;
+        descriptionText.text = itemDescription;
     }
 
     public void HideConfirmMenu()

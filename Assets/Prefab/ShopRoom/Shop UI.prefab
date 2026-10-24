@@ -2014,6 +2014,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a243ba2c5872c4ee0a11fdddc2c635db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopConfirmMenu
+  tarotIcons: {fileID: 11400000, guid: a41496080438ad94b998a3513eafd9cb, type: 2}
+  priceText: {fileID: 3622241600410423720}
+  priceSubtractText: {fileID: 2547444161840938475}
+  priceSubtractResult: {fileID: 3188378853715749806}
+  selectedItem: {fileID: 5475981276695062383}
 --- !u!1 &5309543847469229794
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,7 +77,7 @@ public class ShopItem : MonoBehaviour
 
     public void OnClicked()
     {
-        ShopManager.instance.InitializeConfirmMenu(() => ConfirmPurchaseItem());
+        ShopManager.instance.InitializeConfirmMenu(() => ConfirmPurchaseItem(), price, shopItemType, arcana, tarotType);
     }
 
     void ConfirmPurchaseItem()
@@ -88,11 +88,12 @@ public class ShopItem : MonoBehaviour
         }
 
         PlayerController.instance.ChangeCoins(-price, true);
+        ShopManager.instance.RefreshCurrentCoinsText();
 
         purchased[tarotType] = true;
 
         purchaseButton.enabled = false;
-        purchaseButtonText.text = "(Purchased)";
+        purchaseButtonText.text = "--";
 
         TarotCard card = TarotCard.GetCardFromData(arcana, tarotType, quantity);
 

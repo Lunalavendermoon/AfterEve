@@ -8,6 +8,7 @@ public class ShopManager : MonoBehaviour
 {
     public static ShopManager instance;
     public int shopSize;
+    public TMP_Text currentCoinsText;
 
     public GameObject shopUi;
 
@@ -24,7 +25,7 @@ public class ShopManager : MonoBehaviour
     public TMP_Text skillSlotText;
     public ShopConfirmMenu confirmMenu;
 
-    public List<GameObject> shopStock = new();
+    [HideInInspector] public List<GameObject> shopStock = new();
 
     int refreshCount;
 
@@ -68,10 +69,16 @@ public class ShopManager : MonoBehaviour
         SetShopEnabled(enabled, false);
     }
 
+    public void RefreshCurrentCoinsText()
+    {
+        currentCoinsText.text = $"{PlayerController.instance.GetCoins()}";
+    }
+
     public void SetShopEnabled(bool enabled, bool fromStory)
     {
         if (enabled)
         {
+            RefreshCurrentCoinsText();
             openedFromStory = fromStory;
             if (!fromStory)
             {
@@ -155,6 +162,7 @@ public class ShopManager : MonoBehaviour
         if (refreshCount > 0)
         {
             PlayerController.instance.ChangeCoins(-GetRefreshCost());
+            RefreshCurrentCoinsText();
         }
     }
 
@@ -165,6 +173,7 @@ public class ShopManager : MonoBehaviour
             go.GetComponent<ShopItem>().TogglePastFuture();
         }
         PlayerController.instance.ChangeCoins(-GetToggleCost());
+        RefreshCurrentCoinsText();
     }
 
     public void BuyLuckCoin()
@@ -173,7 +182,8 @@ public class ShopManager : MonoBehaviour
         {
             ++StaticGameManager.luckyCoins;
             PlayerController.instance.ChangeCoins(-GetLuckCost());
-        });
+            RefreshCurrentCoinsText();
+        }, GetLuckCost(), ShopItem.ShopItemType.LuckyCoin);
     }
 
     public void BuySkillSlot()
@@ -182,7 +192,9 @@ public class ShopManager : MonoBehaviour
         {
             PlayerController.instance.GainFutureSkillSlot(1);
             skillSlotText.text = $"Skill Slot ({GetSkillSlotCost()})";
-        });
+            PlayerController.instance.ChangeCoins(-GetSkillSlotCost());
+            RefreshCurrentCoinsText();
+        }, GetSkillSlotCost(), ShopItem.ShopItemType.SkillSlot);
     }
 
     int GetIndexFromRoomCount()
@@ -259,8 +271,15 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void InitializeConfirmMenu(Action purchaseItemAction)
+    public void InitializeConfirmMenu(Action purchaseItemAction, int price, ShopItem.ShopItemType shopItemType)
     {
-        confirmMenu.InitializeConfirmMenu(purchaseItemAction);
+        confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, shopItemType);
+    }
+
+    public void InitializeConfirmMenu(Action purchaseItemAction, int price, ShopItem.ShopItemType shopItemType,
+                                        TarotCard.Arcana arcana,
+                                        TarotCard.TarotType tarotType)
+    {
+        confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, shopItemType, arcana, tarotType);
     }
 }

@@ -142,4 +142,13 @@ public abstract class TarotCard
     {
         return Mathf.RoundToInt(amount);
     }
+
+    public static string GetLocalizedArcanaName(Arcana arcana)
+    {
+        return new LocalizedString
+        {
+            TableReference = "CapitalizedTarotName",
+            TableEntryReference = arcana.ToString()
+        }.GetLocalizedString();
+    }
 }

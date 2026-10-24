@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-zh-Hans
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a05e239c51c9c4b48904f52c1545a1b8
+    m_Address: CapitalizedTarotName_zh-Hans
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh-Hans
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e20c4d92598eb482eb836a52e6b56f7d
     m_Address: FutureTarotTable_zh-Hans
     m_ReadOnly: 1

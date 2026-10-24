@@ -74,9 +74,7 @@ public class ChestRewardManager : MonoBehaviour
 
                 if (i < tarotTitleTexts.Count && tarotTitleTexts[i] != null)
                 {
-                    // Split names such as HighPriestess into HIGH PRIESTESS.
-                    tarotTitleTexts[i].text = System.Text.RegularExpressions.Regex.Replace(
-                        cards[i].ToString(), "([a-z])([A-Z])", "$1 $2").ToUpperInvariant();
+                    tarotTitleTexts[i].text = TarotCard.GetLocalizedArcanaName(card.arcana);
                 }
 
                 if (i < tarotDescriptionTexts.Count && tarotDescriptionTexts[i] != null)

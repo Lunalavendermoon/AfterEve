@@ -20,8 +20,7 @@ public class InventoryItemUI : MonoBehaviour
 
         Sprite sprite = icons.GetSprite(card);
         image.sprite = sprite;
-        cardNameText.text = System.Text.RegularExpressions.Regex.Replace(
-            card.arcana.ToString(), "([a-z])([A-Z])", "$1 $2").ToUpperInvariant();
+        cardNameText.text = TarotCard.GetLocalizedArcanaName(card.arcana);
 
         if (setSidebar)
         {

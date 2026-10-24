@@ -141,8 +141,7 @@ public class InventoryUIScript : MonoBehaviour
     {
         sidebarImage.enabled = true;
         sidebarImage.sprite = cardSprite;
-        sidebarTitle.text = System.Text.RegularExpressions.Regex.Replace(
-            card.arcana.ToString(), "([a-z])([A-Z])", "$1 $2").ToUpperInvariant();
+        sidebarTitle.text = TarotCard.GetLocalizedArcanaName(card.arcana);
         sidebarDesc.text = card.GetDescription();
     }
 

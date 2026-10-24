@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // player attributes
-    int coins = 6767; // JUST FOR TESTING - revert this
+    int coins = 0;
     public PlayerAttributes playerAttributes;
 
     // Authoritative runtime health (do not store in PlayerAttributes, since effects rebuild attributes)

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SingleNarrativeRoom
   nodeType: 0
   roomEnemyGenSetting: 0
-  roomCount: 1
+  roomCount: 5
   visitCount: 1
   roomPrefab: {fileID: 0}
   itemPrefab: {fileID: 0}

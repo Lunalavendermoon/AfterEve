@@ -189,7 +189,7 @@ public class LunaBehaviour : BossBehaviourBase
     }
 
 
-    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint)
     {
         int damageAfterReduction = enemyAttributes.DamageCalculation(amount, DamageInstance.ToEnemyDamageType(dmgType));
         if (isInvulnerable)
@@ -219,8 +219,7 @@ public class LunaBehaviour : BossBehaviourBase
         Debug.Log($"{gameObject.name} took {amount} damage, remaining health: {health}");
         if (health <= 0)
         {
-            // TODO: set hitWeakPoint to true/false depending on whether weak point was hit with the current attack
-            //OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction), this);
+            //OnEnemyDeath?.Invoke(new DamageInstance(dmgSource, dmgType, amount, damageAfterReduction, hitWeakPoint), this);
             Die();
         }
     }

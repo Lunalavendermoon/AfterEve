@@ -26,11 +26,10 @@ MonoBehaviour:
       m_Items:
       - rid: 1636043013058461923
   - m_Id: 2032310026231808
-    m_Localized: 'Bullets bounce off enemies and walls {0} times. After each bounce,
-      its damage is reduced by {1}%.
+    m_Localized: 'Bullets bounce off enemies and walls {0} times. Each bounce reduces
+      DMG by {1}%.
 
-      If this card has higher level than the
-      Strength Present card, this effect takes priority.'
+'
     m_Metadata:
       m_Items:
       - rid: 1636043013058461923
@@ -54,19 +53,17 @@ MonoBehaviour:
       m_Items:
       - rid: 1636043013058461923
   - m_Id: 2032945379401728
-    m_Localized: After hitting an enemy, chain up to {0} closest enemies within a
-      radius of {1} for {2} seconds. Chained enemies receive {3}% of the damage received
-      by the initially hit enemy. Generate {4}% MAX HP SHIELD for each chained enemy
-      (doubles if the enemy was hit by SPIRITUAL DMG, max once per {5} second). Chained
-      enemies cannot be chained again until the effect is over.
+    m_Localized: Chain up to {0} nearby enemies within {1} radius for {2}s. Chained
+      enemies take {3}% of the initial target's received damage. Gain {4}% MAX HP
+      SHIELD per chained enemy (x2 on SPIRITUAL DMG, once per {5}s). Enemies cannot
+      be rechained until the effect ends.
     m_Metadata:
       m_Items:
       - rid: 1636043013058461923
   - m_Id: 2033049150676992
-    m_Localized: Gain a small summon (does not have the buffs Cyrus has). The summon
-      throws out bombs that deal {0}% of weapon dmg as basic dmg and {1}% of weapon
-      dmg as spiritual dmg. Hit enemies are marked for {2} secs. When hitting a marked
-      enemy, gain {3}% STRENGTH.
+    m_Localized: Gain a small summon without Cyrus's buffs. It throws bombs dealing
+      {0}% weapon DMG as BASIC DMG and {1}% as SPIRITUAL DMG, marking enemies for
+      {2}s. Hitting marked enemies grants {3}% STRENGTH.
     m_Metadata:
       m_Items:
       - rid: 1636043013058461923
@@ -78,24 +75,19 @@ MonoBehaviour:
       m_Items:
       - rid: 1636043013058461923
   - m_Id: 2033155283345408
-    m_Localized: 'Bullets pierce through enemies. Each time a bullet passes through
-      an enemy, its damage is reduced by {0}%. Destroyed when damage reduced is over
-      {1}%.
+    m_Localized: 'Bullets pierce enemies, losing {0}% damage per target pierced.
+      Bullets are destroyed once total damage reduction exceeds {1}%.
 
-      If this card has the same or higher level than the Magician Present
-      card, this effect takes priority.
-
-      Hold down attack button for {2} or
-      more seconds to unleash a charged attack that applies {3}% SUNDERED for {4}
-      seconds on hit, and deals additional damage equal to {5}% weapon base DAMAGE.'
+      Hold
+      for at least {2}s to charge an attack that applies {3}% SUNDERED for {4}s and
+      deals an additional {5}% weapon base DAMAGE.'
     m_Metadata:
       m_Items:
       - rid: 1636043013058461923
   - m_Id: 2033210291642368
-    m_Localized: Decrease current AMMO CAPACITY by {0}% and FIRE RATE by {1}%, but
-      deal additional basic damage equal to {2}% weapon base DAMAGE (sniper). When
-      hitting an enemy's weak point, deal {3}% increased damage, and deal splash
-      damage to enemies behind.
+    m_Localized: Reduce AMMO CAPACITY by {0}% and FIRE RATE by {1}%, but deal an
+      additional {2}% weapon base DAMAGE as BASIC DMG. Weak point hits deal {3}%
+      increased damage and splash damage to enemies behind the target.
     m_Metadata:
       m_Items:
       - rid: 1636043013058461923

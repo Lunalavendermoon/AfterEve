@@ -1023,6 +1023,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a9ee617d0ca3448b2e07093a7f67a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
+  backSkeletonData: {fileID: 0}
+  frontSkeletonData: {fileID: 0}
+  backRunAnimationName: Walk
+  frontRunAnimationName: animation
 --- !u!114 &4039969869742749611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,7 +1148,7 @@ Transform:
   m_GameObject: {fileID: 2624750070031841171}
   serializedVersion: 2
   m_LocalRotation: {x: -0.122051895, y: -0, z: -0, w: 0.9925237}
-  m_LocalPosition: {x: -0.124, y: -1.203, z: 0}
+  m_LocalPosition: {x: -0.124, y: -1.7091774, z: -0.04040252}
   m_LocalScale: {x: 0.25309572, y: 0.27924618, z: 0.2198495}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3070,11 +3074,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e223671b779ba4545a3547ddfe969c08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.14782247
+      value: -0.6539999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e223671b779ba4545a3547ddfe969c08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.113402486
+      value: 0.07299996
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e223671b779ba4545a3547ddfe969c08, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3308,11 +3312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 258182182aaed974da326768324045cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.14782247
+      value: -0.654
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 258182182aaed974da326768324045cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.113402486
+      value: 0.073
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 258182182aaed974da326768324045cb, type: 3}
       propertyPath: m_LocalRotation.w

@@ -75,7 +75,7 @@ public class knightOfBlades : StandardEnemyBase, IKnightWithWeakPoint
     }
 
 
-    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint)
     {
         if (dmgType == DamageInstance.DamageType.Spiritual && weakPointHitBySpiritualDamage)
         {
@@ -86,6 +86,6 @@ public class knightOfBlades : StandardEnemyBase, IKnightWithWeakPoint
                 enemyEffectManager.AddEffect(new Paralyze_Effect(3f), enemyAttributes);
             }
         }
-        base.TakeDamage(amount, dmgSource, dmgType);
+        base.TakeDamage(amount, dmgSource, dmgType, hitWeakPoint);
     }
 }

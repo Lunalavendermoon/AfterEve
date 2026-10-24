@@ -22,7 +22,20 @@ public class PauseCanvus : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(toggleKey))
+        {
+            // The Input System may have already closed inventory earlier this frame.
+            if (toggleKey == KeyCode.Escape && InventoryUIScript.LastClosedFrame == Time.frameCount)
+                return;
+
+            InventoryUIScript inventory = FindFirstObjectByType<InventoryUIScript>();
+            if (toggleKey == KeyCode.Escape && inventory != null && inventory.IsOpen)
+            {
+                inventory.SetInventoryDisplay(false);
+                return;
+            }
+
             TogglePause();
+        }
     }
 
 //    void OnDisable()

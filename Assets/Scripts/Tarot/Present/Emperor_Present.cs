@@ -7,7 +7,7 @@ public class Emperor_Present : Present_TarotCard
     float[] fireRatePercent = {1.5f, 1.7f, 1.9f, 2.1f, 2.3f};
     int[] ammoCapaciityIncrease = {20, 30, 40, 50, 60};
     int[] basicDefenseIncrease = {50, 70, 90, 110, 130};
-    float knockBackAmount = 0.1f;
+    public const float knockBackAmount = 0.1f;
     string knockBackDisplay = "0.1";
     EffectManager effectManager = PlayerController.instance.gameObject.GetComponent<EffectManager>();
 
@@ -24,11 +24,6 @@ public class Emperor_Present : Present_TarotCard
 
         idleEi = Enumerable.Repeat<EffectInstance>(null, idleEffects.Count).ToList();
 
-        // TODO knockback effect
-        // Don't use Knockback_Effect here. It is a debuff that says the entity w/ this effect gets knocked away from damage sources
-        // should prob create a new buff effect, and code it so the entity w/ this effect knocks away other entities when dealing dmg
-        // effects.Add(new Knockback_Effect(-1));
-
         GetLocalizedDesc();
     }
 
@@ -37,6 +32,7 @@ public class Emperor_Present : Present_TarotCard
         idleEffects.Add(new FireRate_Effect(-1, fireRatePercent[level]));
         idleEffects.Add(new AmmoCapacity_FlatEffect(-1, ammoCapaciityIncrease[level]));
         idleEffects.Add(new Fortified_Additive_Effect(-1, basicDefenseIncrease[level]));
+        idleEffects.Add(new EmperorPresent_Effect());
     }
 
     public override void ApplyCard(TarotManager tarotManager)

@@ -1,5 +1,6 @@
 title: DeathRepeat_Fallback_1
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Hm. That’s not good.
 ===
@@ -7,6 +8,7 @@ The Judge: Hm. That’s not good.
 
 title: DeathRepeat_Fallback_2
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: No offense, but you humans die way too easily.
 ===
@@ -14,6 +16,7 @@ The Judge: No offense, but you humans die way too easily.
 
 title: DeathRepeat_Fallback_3
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: ...Oh! I didn’t know it was possible to die that way.
 ===
@@ -21,6 +24,7 @@ The Judge: ...Oh! I didn’t know it was possible to die that way.
 
 title: DeathRepeat_Monster_1
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Back so soon? C’mon. Up! You haven’t gotten to the good part yet!
 ===
@@ -28,6 +32,7 @@ The Judge: Back so soon? C’mon. Up! You haven’t gotten to the good part yet!
 
 title: DeathRepeat_Monster_2
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Aw, I was sure you had it that time. Maybe next round.
 ===
@@ -35,6 +40,7 @@ The Judge: Aw, I was sure you had it that time. Maybe next round.
 
 title: DeathRepeat_Monster_3
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Ahaha! The hotshot Hunter gets killed by a runty monster?
 The Judge: I expect better from an enforcer of Justice. Back you go~
@@ -43,6 +49,7 @@ The Judge: I expect better from an enforcer of Justice. Back you go~
 
 title: DeathRepeat_Monster_4
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Cyrus, I don’t know what memories you traded away while you were down there, but remember-
 The Judge: You’re supposed to [i]kill[/i] the monsters, not give them hugs. Okay?
@@ -51,6 +58,7 @@ The Judge: You’re supposed to [i]kill[/i] the monsters, not give them hugs. Ok
 
 title: DeathRepeat_Monster_5
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Ouch. I’m glad that wasn’t me. Let’s hope you get luckier on your next run~
 ===
@@ -58,6 +66,7 @@ The Judge: Ouch. I’m glad that wasn’t me. Let’s hope you get luckier on yo
 
 title: DeathRepeat_Monster_6
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: You have a very [i]unique[/i] fighting style.
 
@@ -71,6 +80,7 @@ The Judge: No, no, just an observation. Now get back in there and keep doing... 
 
 title: DeathRepeat_Monster_7
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Hello?
 The Judge: Hhhheeelllooo!
@@ -98,6 +108,7 @@ The Judge: Pff, just messing with you~ The look on your face was priceless!
 
 title: DeathRepeat_Monster_8
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Cyrus, Cyrus... Keep stalling like this, and Prism’s going to wind up the last world saved from the Assimilation.
 The Judge: Our current success rate is about... let’s see... six or seven percent.
@@ -107,6 +118,7 @@ The Judge: But that number’s going up every cycle, and [i]you’re[/i] getting
 
 title: DeathRepeat_FalseHuman_P1_1
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I’m still getting used to this whole dying over and over thing.
 
@@ -117,6 +129,7 @@ The Judge: If I can handle eons babysitting you enforcers, [i]you[/i] can handle
 
 title: DeathRepeat_FalseHuman_P1_2
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Cyrus>>
 Cyrus: I have to stop that monster. Send me back, now.
 
@@ -127,6 +140,7 @@ The Judge: Well, someone’s feeling heroic.
 
 title: DeathRepeat_FalseHuman_P1_3
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Is that thing even killable?!
 
@@ -138,6 +152,7 @@ The Judge: Well, I actually have no idea, but it’s worth a shot!
 
 title: DeathRepeat_FalseHuman_P2_1
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Having fun?
 
@@ -148,6 +163,7 @@ Cyrus: I wouldn’t call it [i]fun[/i].
 
 title: DeathRepeat_FalseHuman_P2_2
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Cyrus>>
 Cyrus: Tch. Need to dodge that attack next time...
 
@@ -158,6 +174,7 @@ The Judge: Yeah, yeah, whatever. Back to work!
 
 title: DeathRepeat_FalseHuman_P2_3
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Can’t you try something different next cycle? I’m getting bored of watching this bossfight.
 
@@ -171,6 +188,7 @@ The Judge: Eugh. That’s so... [i]Cyrus[/i] of you.
 
 title: DeathRepeat_Luna_P4_P5_1
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: That Luna girl is pretty strong, huh? A shame she’s not an enforcer of Justice, I bet [i]she[/i] could have fixed Prism’s timeline by now.
 
@@ -181,6 +199,7 @@ Cyrus: Wow, very encouraging.
 
 title: DeathRepeat_Luna_P4_P5_2
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: C’mon, Cyrus~ I didn’t lend you all that Justice power for you to waste it sparring with the cops.
 
@@ -191,6 +210,7 @@ Cyrus: You think I [i]want[/i] to- nevermind.
 
 title: DeathRepeat_Luna_P4_P5_3
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Okay, I know I said it was fun watching you die to a human instead of a monster, but this is getting ridiculous.
 The Judge: Jokes are only funny the first time around, you know~
@@ -199,6 +219,7 @@ The Judge: Jokes are only funny the first time around, you know~
 
 title: DeathRepeat_PossessedEve_P4_P5_1
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Hehe, told you Eve was trouble.
 ===
@@ -206,6 +227,7 @@ The Judge: Hehe, told you Eve was trouble.
 
 title: DeathRepeat_PossessedEve_P4_P5_2
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Judge>>
 The Judge: Ah, false humans~ always tormenting you poor enforcers of Justice.
 
@@ -219,6 +241,7 @@ The Judge: Hey, it’s for the greater good!
 
 title: DeathRepeat_PossessedEve_P4_P5_3
 ---
+<<set_cg YarnManager 0 fade>>
 <<set_portrait YarnManager Cyrus>>
 Cyrus: [i]Eve...[/i]
 Cyrus: [i]Is there really no other way?[/i]

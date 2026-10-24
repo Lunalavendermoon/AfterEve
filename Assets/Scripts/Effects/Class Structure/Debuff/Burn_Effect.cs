@@ -48,7 +48,7 @@ public class Burn_Effect : Flat_Effects
     {   
         if (increment && enemy != null)
         {
-            enemy.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical);
+            enemy.TakeDamage((int)effectRate, DamageInstance.DamageSource.Effect, DamageInstance.DamageType.Physical, false);
 
             // Debug.Log("Burn amount: " + effectRate);
             initialApplication = false;

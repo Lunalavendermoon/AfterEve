@@ -84,7 +84,7 @@ Cyrus: [i]What’s happening? That girl earlier... I can’t seem to remember an
 <<clear_cg YarnManager fade>>
 
 <<clear_portrait YarnManager>>
-: [i]An inhuman roar. (TODO play sound)[/i]
+: [i]An inhuman roar.[/i]
 
 <<set_portrait YarnManager Eve angry>>
 Eve: We need to go!
@@ -130,7 +130,7 @@ Eve: You actually did it. Are you a Hunter?
 Cyrus: Hunter?
 
 <<clear_portrait YarnManager>>
-: [i]A distant roar is heard. (TODO play sound)[/i]
+: [i]A distant roar.[/i]
 
 <<set_portrait YarnManager Eve angry>>
 Eve: We’d better head back to the city.

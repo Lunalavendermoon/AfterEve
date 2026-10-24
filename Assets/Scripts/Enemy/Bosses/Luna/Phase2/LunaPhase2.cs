@@ -541,7 +541,7 @@ public class LunaPhase2 : BossBehaviourBase
 
     #region Smoke Bomb and Interrupt Logic
 
-    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint)
     {
         if (untargetableDuringDash && dmgSource == DamageInstance.DamageSource.Player)
         {

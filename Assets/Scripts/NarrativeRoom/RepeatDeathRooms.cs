@@ -15,6 +15,7 @@ public class RepeatDeathRooms : ScriptableObject
         Fallback,
         ScriptedDeath
     }
+    public Sprite deathScreenCg;
     public List<RepeatDeathDialoguePool> dialoguePools;
 
     public List<string> GetPossibleNodes()

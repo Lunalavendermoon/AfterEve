@@ -64,8 +64,8 @@ public class YarnCommands : MonoBehaviour
             // We are on the death screen
             if (DeathDialogueManager.instance.currentSpecialRoom == null)
             {
-                // TODO finish this lol
-                Debug.LogWarning($"TODO: We don't support CGs for repeat death dialogue yet.");
+                // Only one possible CG for repeated death screen
+                PortraitManager.instance.SetCG(DeathDialogueManager.instance.rooms.repeats.deathScreenCg, StringToTransitionType(anim));
             }
             else if (DeathDialogueManager.instance.currentSpecialRoom.cgList.Count <= cgNum)
             {

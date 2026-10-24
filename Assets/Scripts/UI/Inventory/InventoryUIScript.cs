@@ -16,13 +16,14 @@ public class InventoryUIScript : MonoBehaviour
     public GameObject itemPrefab;
 
     public Image sidebarImage;
+    public TMP_Text sidebarTitle;
     public TMP_Text sidebarDesc;
-
-    public Color futureTextColor;
-    public Color defaultTextColor;
 
     // 0 = past, 1 = present, 2 = future
     int state;
+
+    public bool IsOpen => canvas != null && canvas.activeInHierarchy;
+    public static int LastClosedFrame { get; private set; } = -1;
 
     // void OnEnable()
     // {
@@ -43,7 +44,8 @@ public class InventoryUIScript : MonoBehaviour
 
     private void OnInventoryExited(InputAction.CallbackContext context)
     {
-        SetInventoryDisplay(false);
+        if (IsOpen)
+            SetInventoryDisplay(false);
     }
 
     void Start()
@@ -58,6 +60,8 @@ public class InventoryUIScript : MonoBehaviour
 
     public void SetInventoryDisplay(bool enabled)
     {
+        if (!enabled && IsOpen)
+            LastClosedFrame = Time.frameCount;
         canvas.SetActive(enabled);
 
         if (enabled)
@@ -137,20 +141,15 @@ public class InventoryUIScript : MonoBehaviour
     {
         sidebarImage.enabled = true;
         sidebarImage.sprite = cardSprite;
+        sidebarTitle.text = System.Text.RegularExpressions.Regex.Replace(
+            card.arcana.ToString(), "([a-z])([A-Z])", "$1 $2").ToUpperInvariant();
         sidebarDesc.text = card.GetDescription();
-        if (state == 2)
-        {
-            sidebarDesc.color = futureTextColor;
-        }
-        else
-        {
-            sidebarDesc.color = defaultTextColor;
-        }
     }
 
     public void SetEmptySidebar()
     {
         sidebarImage.enabled = false;
+        sidebarTitle.text = "";
         sidebarDesc.text = "";
     }
 }

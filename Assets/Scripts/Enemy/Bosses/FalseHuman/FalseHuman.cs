@@ -163,7 +163,7 @@ public class FalseHuman : BossBehaviourBase
     }
 
 
-    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType)
+    public override void TakeDamage(int amount, DamageInstance.DamageSource dmgSource, DamageInstance.DamageType dmgType, bool hitWeakPoint)
     {
         if (enemyAttributes == null)
             return;
@@ -278,7 +278,7 @@ public class FalseHuman : BossBehaviourBase
             if (cap != null)
             {
                 if (cap.IsActivated)
-                    TakeDamage(EmotionWaveDamageToBossPerCapsule, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual);
+                    TakeDamage(EmotionWaveDamageToBossPerCapsule, DamageInstance.DamageSource.Environment, DamageInstance.DamageType.Spiritual, false);
 
                 Destroy(cap.gameObject);
             }

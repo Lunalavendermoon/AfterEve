@@ -17,7 +17,7 @@ The Judge: No offense, but you humans die way too easily.
 title: DeathRepeat_Fallback_3
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge oh>>
 The Judge: ...Oh! I didn’t know it was possible to die that way.
 ===
 
@@ -25,7 +25,7 @@ The Judge: ...Oh! I didn’t know it was possible to die that way.
 title: DeathRepeat_Monster_1
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: Back so soon? C’mon. Up! You haven’t gotten to the good part yet!
 ===
 
@@ -33,7 +33,7 @@ The Judge: Back so soon? C’mon. Up! You haven’t gotten to the good part yet!
 title: DeathRepeat_Monster_2
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge tease>>
 The Judge: Aw, I was sure you had it that time. Maybe next round.
 ===
 
@@ -41,8 +41,9 @@ The Judge: Aw, I was sure you had it that time. Maybe next round.
 title: DeathRepeat_Monster_3
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge happy>>
 The Judge: Ahaha! The hotshot Hunter gets killed by a runty monster?
+<<set_portrait YarnManager Judge teehee>>
 The Judge: I expect better from an enforcer of Justice. Back you go~
 ===
 
@@ -50,7 +51,7 @@ The Judge: I expect better from an enforcer of Justice. Back you go~
 title: DeathRepeat_Monster_4
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: Cyrus, I don’t know what memories you traded away while you were down there, but remember-
 The Judge: You’re supposed to [i]kill[/i] the monsters, not give them hugs. Okay?
 ===
@@ -59,7 +60,7 @@ The Judge: You’re supposed to [i]kill[/i] the monsters, not give them hugs. Ok
 title: DeathRepeat_Monster_5
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge smug>>
 The Judge: Ouch. I’m glad that wasn’t me. Let’s hope you get luckier on your next run~
 ===
 
@@ -67,41 +68,41 @@ The Judge: Ouch. I’m glad that wasn’t me. Let’s hope you get luckier on yo
 title: DeathRepeat_Monster_6
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge oh>>
 The Judge: You have a very [i]unique[/i] fighting style.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
 Cyrus: Is that an insult or a compliment?
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: No, no, just an observation. Now get back in there and keep doing... whatever you’re doing.
 ===
 
 
 title: DeathRepeat_Monster_7
 ---
-<<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge default>>
 The Judge: Hello?
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: Hhhheeelllooo!
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus eyesclosed>>
 Cyrus: ...
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge oh>>
 The Judge: Oh! You’re finally awake.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
 Cyrus: ???
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: Alright, let’s do this slowly.
 The Judge: Name. Do you remember that muc-
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus surprisedQuestionmark>>
 Cyrus: ??????
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge teehee>>
 The Judge: Pff, just messing with you~ The look on your face was priceless!
 ===
 
@@ -109,9 +110,11 @@ The Judge: Pff, just messing with you~ The look on your face was priceless!
 title: DeathRepeat_Monster_8
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: Cyrus, Cyrus... Keep stalling like this, and Prism’s going to wind up the last world saved from the Assimilation.
+<<set_portrait YarnManager Judge oh>>
 The Judge: Our current success rate is about... let’s see... six or seven percent.
+<<set_portrait YarnManager Judge happyTalk>>
 The Judge: But that number’s going up every cycle, and [i]you’re[/i] getting left behind~
 ===
 
@@ -119,10 +122,10 @@ The Judge: But that number’s going up every cycle, and [i]you’re[/i] getting
 title: DeathRepeat_FalseHuman_P1_1
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: I’m still getting used to this whole dying over and over thing.
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: If I can handle eons babysitting you enforcers, [i]you[/i] can handle a few more centuries of this.
 ===
 
@@ -130,10 +133,10 @@ The Judge: If I can handle eons babysitting you enforcers, [i]you[/i] can handle
 title: DeathRepeat_FalseHuman_P1_2
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angrySpeak>>
 Cyrus: I have to stop that monster. Send me back, now.
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge oh>>
 The Judge: Well, someone’s feeling heroic.
 ===
 
@@ -141,11 +144,12 @@ The Judge: Well, someone’s feeling heroic.
 title: DeathRepeat_FalseHuman_P1_3
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angrySpeak>>
 Cyrus: Is that thing even killable?!
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: I wouldn’t be sending you down there otherwise, now would I?
+<<set_portrait YarnManager Judge tease>>
 The Judge: Well, I actually have no idea, but it’s worth a shot!
 ===
 
@@ -153,10 +157,10 @@ The Judge: Well, I actually have no idea, but it’s worth a shot!
 title: DeathRepeat_FalseHuman_P2_1
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge tease>>
 The Judge: Having fun?
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus default>>
 Cyrus: I wouldn’t call it [i]fun[/i].
 ===
 
@@ -164,10 +168,10 @@ Cyrus: I wouldn’t call it [i]fun[/i].
 title: DeathRepeat_FalseHuman_P2_2
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angry>>
 Cyrus: Tch. Need to dodge that attack next time...
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge defaultTalk>>
 The Judge: Yeah, yeah, whatever. Back to work!
 ===
 
@@ -175,17 +179,18 @@ The Judge: Yeah, yeah, whatever. Back to work!
 title: DeathRepeat_FalseHuman_P2_3
 ---
 <<set_cg YarnManager 0 fade>>
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge oh>>
 The Judge: Can’t you try something different next cycle? I’m getting bored of watching this bossfight.
 
-<<set_portrait YarnManager Cyrus>>
+<<set_portrait YarnManager Cyrus angry>>
 Cyrus: If Prismatic Security won’t listen to my report, I need to take matters into my own hands.
 
-<<set_portrait YarnManager Judge>>
+<<set_portrait YarnManager Judge pout>>
 The Judge: Eugh. That’s so... [i]Cyrus[/i] of you.
 ===
 
 
+// TODO: need to add expressions for these dialogues and beyond
 title: DeathRepeat_Luna_P4_P5_1
 ---
 <<set_cg YarnManager 0 fade>>

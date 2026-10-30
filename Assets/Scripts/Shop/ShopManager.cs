@@ -19,10 +19,6 @@ public class ShopManager : MonoBehaviour
     public TMP_Text toggleText;
     public Button refreshButton;
     public TMP_Text refreshText;
-    public Button luckButton;
-    public TMP_Text luckText;
-    public Button skillSlotButton;
-    public TMP_Text skillSlotText;
     public ShopConfirmMenu confirmMenu;
 
     [HideInInspector] public List<GameObject> shopStock = new();
@@ -110,8 +106,6 @@ public class ShopManager : MonoBehaviour
 
             refreshText.text = $"Refresh ({GetRefreshCost()})";
             toggleText.text = $"Swap Past-future ({GetToggleCost()})";
-            luckText.text = $"Luck Coin ({GetLuckCost()})";
-            skillSlotText.text = $"Skill Slot ({GetSkillSlotCost()})";
 
             SetButtonsAvailable();
         }
@@ -133,6 +127,18 @@ public class ShopManager : MonoBehaviour
         numbers.RemoveAt(index1);
         int index2 = UnityEngine.Random.Range(0, 5);
         int discount2 = numbers[index2];
+
+        if (StaticGameManager.luckyCoins < StaticGameManager.maxLuckyCoins)
+        {
+            GameObject go = Instantiate(shopItemPrefab, shopLayout.transform);
+            go.GetComponent<ShopItem>().InitializeShopItem(ShopItem.ShopItemType.LuckyCoin, GetLuckCost());
+        }
+
+        if (StaticGameManager.futureSkillSlots < StaticGameManager.maxSkillSlots)
+        {
+            GameObject go = Instantiate(shopItemPrefab, shopLayout.transform);
+            go.GetComponent<ShopItem>().InitializeShopItem(ShopItem.ShopItemType.SkillSlot, GetSkillSlotCost());
+        }
 
         for (int i = 0; i < shopSize; ++i)
         {
@@ -176,27 +182,6 @@ public class ShopManager : MonoBehaviour
         RefreshCurrentCoinsText();
     }
 
-    public void BuyLuckCoin()
-    {
-        InitializeConfirmMenu(() =>
-        {
-            ++StaticGameManager.luckyCoins;
-            PlayerController.instance.ChangeCoins(-GetLuckCost());
-            RefreshCurrentCoinsText();
-        }, GetLuckCost(), ShopItem.ShopItemType.LuckyCoin);
-    }
-
-    public void BuySkillSlot()
-    {
-        InitializeConfirmMenu(() =>
-        {
-            PlayerController.instance.GainFutureSkillSlot(1);
-            skillSlotText.text = $"Skill Slot ({GetSkillSlotCost()})";
-            PlayerController.instance.ChangeCoins(-GetSkillSlotCost());
-            RefreshCurrentCoinsText();
-        }, GetSkillSlotCost(), ShopItem.ShopItemType.SkillSlot);
-    }
-
     int GetIndexFromRoomCount()
     {
         int roomCount = StaticGameManager.roomCount;
@@ -231,12 +216,12 @@ public class ShopManager : MonoBehaviour
         return TrustDiscount(togglePrice[GetIndexFromRoomCount()]);
     }
 
-    int GetLuckCost()
+    public int GetLuckCost()
     {
         return TrustDiscount(currentLuckCost);
     }
 
-    int GetSkillSlotCost()
+    public int GetSkillSlotCost()
     {
         // Price = 2 ^ (current # skill slots)
         return TrustDiscount(1 << StaticGameManager.futureSkillSlots);
@@ -258,12 +243,6 @@ public class ShopManager : MonoBehaviour
         refreshButton.enabled = PlayerController.instance.GetCoins() >= GetRefreshCost();
         
         toggleButton.enabled = PlayerController.instance.GetCoins() >= GetToggleCost();
-        
-        luckButton.enabled = StaticGameManager.luckyCoins < StaticGameManager.maxLuckyCoins &&
-            PlayerController.instance.GetCoins() >= GetLuckCost();
-        
-        skillSlotButton.enabled = StaticGameManager.futureSkillSlots < StaticGameManager.maxSkillSlots &&
-            PlayerController.instance.GetCoins() >= GetSkillSlotCost();
 
         foreach (GameObject go in shopStock)
         {
@@ -273,7 +252,7 @@ public class ShopManager : MonoBehaviour
 
     public void InitializeConfirmMenu(Action purchaseItemAction, int price, ShopItem.ShopItemType shopItemType)
     {
-        // TODO add localization table mapping for lucky coin and future skill slot
+        // TODO maybe add localization table mapping for lucky coin and future skill slot?
         confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, null, "", "");
     }
 

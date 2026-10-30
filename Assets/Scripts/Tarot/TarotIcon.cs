@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TarotIcon", menuName = "Scriptable Objects/TarotIcon")]
 public class TarotIcon : ScriptableObject
 {
+    [SerializeField] private Sprite luckyCoin;
+    [SerializeField] private Sprite futureSkillSlot;
     [SerializeField] private Sprite[] fool;
     [SerializeField] private Sprite[] magician;
     [SerializeField] private Sprite[] highPriestess;
@@ -19,6 +21,22 @@ public class TarotIcon : ScriptableObject
     public Sprite GetFutureSkillSprite(TarotCard.Arcana arcana)
     {
         return GetSprite(arcana, TarotCard.TarotType.Future);
+    }
+
+    public Sprite GetSprite(ShopItem.ShopItemType shopItemType,
+                            TarotCard.Arcana arcana = TarotCard.Arcana.Fool,
+                            TarotCard.TarotType type = TarotCard.TarotType.Present)
+    {
+        switch(shopItemType)
+        {
+            case ShopItem.ShopItemType.LuckyCoin:
+                return luckyCoin;
+            case ShopItem.ShopItemType.SkillSlot:
+                return futureSkillSlot;
+            case ShopItem.ShopItemType.Tarot:
+                return GetSprite(arcana, type);
+        }
+        return luckyCoin; // fallback
     }
 
     public Sprite GetSprite(TarotCard card)

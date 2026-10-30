@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334477d26098f1a47ba982e967088791, type: 3}
   m_Name: TarotIcon
   m_EditorClassIdentifier: Assembly-CSharp::TarotIcon
+  luckyCoin: {fileID: -677693973, guid: 728c3fcb5271e46908761e4c52b9f1d7, type: 3}
+  futureSkillSlot: {fileID: 406535086, guid: 7ead57151c9864cdbb8f875aa715c6f4, type: 3}
   fool:
   - {fileID: 0}
   - {fileID: 738334382, guid: fe8392cce9769e74caf02dc7031c47d2, type: 3}

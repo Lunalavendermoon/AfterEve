@@ -15,8 +15,8 @@ public class ShopItem : MonoBehaviour
 
     public TarotIcon tarotIcons;
 
-    TarotCard.Arcana arcana;
-    TarotCard.TarotType tarotType;
+    TarotCard.Arcana arcana = TarotCard.Arcana.Fool;
+    TarotCard.TarotType tarotType = TarotCard.TarotType.Present;
     int price;
     int quantity;
 
@@ -58,27 +58,13 @@ public class ShopItem : MonoBehaviour
 
         arcanaText.text = "";
 
-        // Cannot purchast Past or Present cards beyond stack limit
-        purchased[TarotCard.TarotType.Past] = TarotManager.instance.pastTarot.ContainsKey(arcana);
-
-        purchased[TarotCard.TarotType.Present] = TarotManager.instance.presentTarot.ContainsKey(arcana) &&
-            TarotManager.instance.presentTarot[arcana].level >= 4; // zero-indexed level 5
-
-        purchased[TarotCard.TarotType.Future] = false;
-
         ResetDisplay();
     }
 
     void ResetDisplay()
     {
-        if (shopItemType == ShopItemType.Tarot)
-        {
-            itemSprite.sprite = tarotIcons.GetSprite(arcana, tarotType);
-        }
-        else
-        {
-            // TODO
-        }
+        itemSprite.sprite = tarotIcons.GetSprite(shopItemType, arcana, tarotType);
+
         purchaseButtonText.text = $"{price}";
         SetButtonAvailable();
     }
@@ -86,27 +72,48 @@ public class ShopItem : MonoBehaviour
     public void OnClicked()
     {
         ShopManager.instance.InitializeConfirmMenu(() => ConfirmPurchaseItem(), price,
-            tarotIcons.GetSprite(arcana, tarotType),
-            TarotCard.GetLocalizedArcanaName(arcana),
-            dummyTarotForDescription.GetDescription());
+            tarotIcons.GetSprite(shopItemType, arcana, tarotType),
+            shopItemType == ShopItemType.Tarot ? TarotCard.GetLocalizedArcanaName(arcana) : "",
+            shopItemType == ShopItemType.Tarot ? dummyTarotForDescription.GetDescription() : "");
     }
 
     void ConfirmPurchaseItem()
+    {
+        PlayerController.instance.ChangeCoins(-price, true);
+        ShopManager.instance.RefreshCurrentCoinsText();
+
+        if (shopItemType == ShopItemType.Tarot)
+        {
+            ConfirmPurchaseTarot();
+        }
+        else if (shopItemType == ShopItemType.LuckyCoin)
+        {
+            ++StaticGameManager.luckyCoins;
+            ShopManager.instance.RefreshLuckPrice();
+            price = ShopManager.instance.GetLuckCost();
+            ResetDisplay();
+        }
+        else
+        {
+            PlayerController.instance.GainFutureSkillSlot(1);
+            price = ShopManager.instance.GetSkillSlotCost();
+            ResetDisplay();
+        }
+    }
+
+    void ConfirmPurchaseTarot()
     {
         if (purchased[tarotType] || PlayerController.instance.GetCoins() < price)
         {
             return;
         }
 
-        PlayerController.instance.ChangeCoins(-price, true);
-        ShopManager.instance.RefreshCurrentCoinsText();
-
         purchased[tarotType] = true;
+
+        TarotCard card = TarotCard.GetCardFromData(arcana, tarotType, quantity);
 
         purchaseButton.enabled = false;
         purchaseButtonText.text = "--";
-
-        TarotCard card = TarotCard.GetCardFromData(arcana, tarotType, quantity);
 
         // TODO - can remove the null check after all tarot cards are implemented
         // currently return null as placeholder for unimplemented cards
@@ -136,19 +143,41 @@ public class ShopItem : MonoBehaviour
 
     public void SetButtonAvailable()
     {
-        if (purchased[tarotType])
+        if (shopItemType == ShopItemType.Tarot)
         {
-            purchaseButton.enabled = false;
-            purchaseButtonText.text = "--";
-            return;
+            if (purchased[tarotType])
+            {
+                purchaseButton.enabled = false;
+                purchaseButtonText.text = "--";
+                return;
+            }
+            if (tarotType == TarotCard.TarotType.Past && StaticGameManager.pastCards.Contains(arcana))
+            {
+                // past cards cannot stack, disable purchase button if player already has this arcana
+                purchaseButton.enabled = false;
+                purchaseButtonText.text = "--";
+                return;
+            }
         }
-        if (tarotType == TarotCard.TarotType.Past && StaticGameManager.pastCards.Contains(arcana))
+        else if (shopItemType == ShopItemType.LuckyCoin)
         {
-            // past cards cannot stack, disable purchase button if player already has this arcana
-            purchaseButton.enabled = false;
-            purchaseButtonText.text = "--";
-            return;
+            if (StaticGameManager.luckyCoins >= StaticGameManager.maxLuckyCoins)
+            {
+                purchaseButton.enabled = false;
+                purchaseButtonText.text = "--";
+                return;
+            }
         }
+        else if (shopItemType == ShopItemType.SkillSlot)
+        {
+            if (StaticGameManager.futureSkillSlots >= StaticGameManager.maxSkillSlots)
+            {
+                purchaseButton.enabled = false;
+                purchaseButtonText.text = "--";
+                return;
+            }
+        }
+
         purchaseButton.enabled = PlayerController.instance.GetCoins() >= price;
         purchaseButtonText.text = $"{price}";
     }

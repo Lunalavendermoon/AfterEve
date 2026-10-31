@@ -104,7 +104,7 @@ public class ShopManager : MonoBehaviour
             refreshCount = -1;
             RefreshStock();
 
-            refreshText.text = $"Refresh ({GetRefreshCost()})";
+            refreshText.text = $"{GetRefreshCost()}";
             toggleText.text = $"Swap Past-future ({GetToggleCost()})";
 
             SetButtonsAvailable();
@@ -163,7 +163,7 @@ public class ShopManager : MonoBehaviour
             go.GetComponent<ShopItem>().InitializeShopItem(card.Item1, card.Item2, price, quantity);
         }
 
-        refreshText.text = $"Refresh ({GetRefreshCost()})";
+        refreshText.text = $"{GetRefreshCost()}";
 
         if (refreshCount > 0)
         {

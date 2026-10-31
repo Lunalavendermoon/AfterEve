@@ -2294,17 +2294,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547922776}
   m_CullTransparentMesh: 1
---- !u!114 &570715822 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4943886021942069980, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-  m_PrefabInstance: {fileID: 1868283991}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &589808547 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4943235355954783827, guid: 29c1c5ea0f2158642a97b0a373aa39d3, type: 3}
@@ -4226,17 +4215,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901503228}
   m_CullTransparentMesh: 1
---- !u!114 &920412272 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1766029728170341541, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-  m_PrefabInstance: {fileID: 1868283991}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &963676746
 GameObject:
   m_ObjectHideFlags: 0
@@ -4964,17 +4942,6 @@ RectTransform:
   m_AnchoredPosition: {x: -650, y: 200}
   m_SizeDelta: {x: 250, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1270843941 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7089049817958635029, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-  m_PrefabInstance: {fileID: 1868283991}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &1272552094 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1009802618602946895, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
@@ -5529,11 +5496,11 @@ PrefabInstance:
     - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
       propertyPath: luckText
       value: 
-      objectReference: {fileID: 570715822}
+      objectReference: {fileID: 0}
     - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
       propertyPath: luckButton
       value: 
-      objectReference: {fileID: 920412272}
+      objectReference: {fileID: 0}
     - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
       propertyPath: shopLayout
       value: 
@@ -5561,11 +5528,11 @@ PrefabInstance:
     - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
       propertyPath: skillSlotText
       value: 
-      objectReference: {fileID: 1800930818}
+      objectReference: {fileID: 0}
     - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
       propertyPath: skillSlotButton
       value: 
-      objectReference: {fileID: 1270843941}
+      objectReference: {fileID: 0}
     - target: {fileID: 5687492118313131497, guid: 8f1cd4c3703374db79c9b653182ca84f, type: 3}
       propertyPath: currentCoinsText
       value: 
@@ -7071,17 +7038,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4079472734672816380, guid: dcf9b3d901f66c74dbc23387a806c00a, type: 3}
   m_PrefabInstance: {fileID: 1942846437982045489}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1800930818 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2148266436063424792, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
-  m_PrefabInstance: {fileID: 1868283991}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1813825161
 GameObject:
   m_ObjectHideFlags: 0
@@ -7317,7 +7273,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1868283993 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2378124451859786497, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 591848621370829564, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
   m_PrefabInstance: {fileID: 1868283991}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

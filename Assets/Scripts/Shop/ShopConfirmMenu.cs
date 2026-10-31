@@ -11,10 +11,11 @@ public class ShopConfirmMenu : MonoBehaviour
     public TMP_Text priceSubtractText;
     public TMP_Text priceSubtractResult;
     public Image selectedItem;
+    public Image cardBack;
 
     Action purchaseItemAction;
 
-    public void InitializeConfirmMenu(Action purchaseItemAction, int price, Sprite itemSprite, string itemTitle, string itemDescription)
+    public void InitializeConfirmMenu(Action purchaseItemAction, int price, Sprite itemSprite, Sprite cardBackSprite, string itemTitle, string itemDescription)
     {
         gameObject.SetActive(true);
         this.purchaseItemAction = purchaseItemAction;
@@ -27,6 +28,7 @@ public class ShopConfirmMenu : MonoBehaviour
             // TODO remove null check once all sprites are imported
             selectedItem.sprite = itemSprite;
         }
+        cardBack.sprite = cardBackSprite;
         arcanaText.text = itemTitle;
         descriptionText.text = itemDescription;
     }

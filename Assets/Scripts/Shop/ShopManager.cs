@@ -128,8 +128,10 @@ public class ShopManager : MonoBehaviour
         int index2 = UnityEngine.Random.Range(0, 5);
         int discount2 = numbers[index2];
 
+        bool isInitialRefresh = shopStock.Count == 0;
+
         GameObject luckyCoinItem = null;
-        if (StaticGameManager.luckyCoins < StaticGameManager.maxLuckyCoins && shopStock.Count < 1)
+        if (StaticGameManager.luckyCoins < StaticGameManager.maxLuckyCoins && isInitialRefresh)
         {
             // Create new ShopItem if not created already; otherwise, use preexisting one.
             luckyCoinItem = Instantiate(shopItemPrefab, shopLayout.transform);
@@ -137,7 +139,7 @@ public class ShopManager : MonoBehaviour
         }
 
         GameObject skillSlotItem = null;
-        if (StaticGameManager.futureSkillSlots < StaticGameManager.maxSkillSlots && shopStock.Count < 2)
+        if (StaticGameManager.futureSkillSlots < StaticGameManager.maxSkillSlots && isInitialRefresh)
         {
             skillSlotItem = Instantiate(shopItemPrefab, shopLayout.transform);
             skillSlotItem.GetComponent<ShopItem>().InitializeShopItem(ShopItem.ShopItemType.SkillSlot, GetSkillSlotCost());
@@ -154,7 +156,7 @@ public class ShopManager : MonoBehaviour
             int quantity = UnityEngine.Random.Range(1, 6);
 
             GameObject go;
-            if (shopStock.Count < shopSize)
+            if (isInitialRefresh)
             {
                 go = Instantiate(shopItemPrefab, shopLayout.transform);
                 shopStock.Add(go);
@@ -262,14 +264,8 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void InitializeConfirmMenu(Action purchaseItemAction, int price, ShopItem.ShopItemType shopItemType)
+    public void InitializeConfirmMenu(Action purchaseItemAction, int price, Sprite itemSprite, Sprite cardBackSprite, string arcanaText, string descriptionText)
     {
-        // TODO maybe add localization table mapping for lucky coin and future skill slot?
-        confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, null, "", "");
-    }
-
-    public void InitializeConfirmMenu(Action purchaseItemAction, int price, Sprite itemSprite, string arcanaText, string descriptionText)
-    {
-        confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, itemSprite, arcanaText, descriptionText);
+        confirmMenu.InitializeConfirmMenu(purchaseItemAction, price, itemSprite, cardBackSprite, arcanaText, descriptionText);
     }
 }

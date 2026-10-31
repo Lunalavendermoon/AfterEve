@@ -407,17 +407,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323771845556450544}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2542654, w: 0.9671345}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7129038139035084952}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 29.46}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: -226, y: -11}
+  m_SizeDelta: {x: 426.7342, y: 730}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6295179313530470292
 CanvasRenderer:
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 99ee9694cc741449e8e184a0e142f86d, type: 3}
+  m_Sprite: {fileID: 3590438, guid: c3413421397153646b84c0e1dd2d8320, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2092,7 +2092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6822451203802473552
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2134,6 +2134,7 @@ MonoBehaviour:
   priceSubtractText: {fileID: 2547444161840938475}
   priceSubtractResult: {fileID: 3188378853715749806}
   selectedItem: {fileID: 5475981276695062383}
+  cardBack: {fileID: 7434518682983804586}
 --- !u!1 &5309543847469229794
 GameObject:
   m_ObjectHideFlags: 0

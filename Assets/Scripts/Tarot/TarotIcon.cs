@@ -6,6 +6,7 @@ public class TarotIcon : ScriptableObject
 {
     [SerializeField] private Sprite luckyCoin;
     [SerializeField] private Sprite futureSkillSlot;
+    [SerializeField] private Sprite[] cardBack;
     [SerializeField] private Sprite[] fool;
     [SerializeField] private Sprite[] magician;
     [SerializeField] private Sprite[] highPriestess;
@@ -44,6 +45,23 @@ public class TarotIcon : ScriptableObject
         if(card is Present_TarotCard) return GetSprite(card.arcana, TarotCard.TarotType.Present);
         if(card is Future_TarotCard) return GetSprite(card.arcana, TarotCard.TarotType.Future);
         return GetSprite(card.arcana, TarotCard.TarotType.Present); // since past sprites do not exist
+    }
+
+    public Sprite GetCardBackSprite(ShopItem.ShopItemType shopItemType, TarotCard.TarotType tarotType = TarotCard.TarotType.Present)
+    {
+        if (shopItemType == ShopItem.ShopItemType.Tarot)
+        {
+            switch (tarotType)
+            {
+                case TarotCard.TarotType.Past:
+                    return cardBack[0];
+                case TarotCard.TarotType.Present:
+                    return cardBack[1];
+                case TarotCard.TarotType.Future:
+                    return cardBack[2];
+            }
+        }
+        return cardBack[3];
     }
 
     public Sprite GetSprite (TarotCard.Arcana arcana, TarotCard.TarotType type)

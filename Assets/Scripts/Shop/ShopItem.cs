@@ -73,6 +73,7 @@ public class ShopItem : MonoBehaviour
     {
         ShopManager.instance.InitializeConfirmMenu(() => ConfirmPurchaseItem(), price,
             tarotIcons.GetSprite(shopItemType, arcana, tarotType),
+            tarotIcons.GetCardBackSprite(shopItemType, tarotType),
             shopItemType == ShopItemType.Tarot ? TarotCard.GetLocalizedArcanaName(arcana) : "",
             shopItemType == ShopItemType.Tarot ? dummyTarotForDescription.GetDescription() : "");
     }

@@ -66,9 +66,6 @@ public class TarotIcon : ScriptableObject
 
     public Sprite GetSprite (TarotCard.Arcana arcana, TarotCard.TarotType type)
     {
-        // for now since past sprites do not exist
-        if(type == TarotCard.TarotType.Past) type = TarotCard.TarotType.Present;
-
         switch(arcana)
         {
             case TarotCard.Arcana.Fool:

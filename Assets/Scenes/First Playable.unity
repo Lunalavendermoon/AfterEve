@@ -7145,6 +7145,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RefreshStock
       objectReference: {fileID: 0}
+    - target: {fileID: 1326337220101171882, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1424728490}
+    - target: {fileID: 1326337220101171882, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TogglePastFuture
+      objectReference: {fileID: 0}
     - target: {fileID: 1428136348101495287, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
       propertyPath: m_Name
       value: Shop UI
@@ -7295,7 +7303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &1868283995 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4690664507350242225, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3394864202241316498, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
   m_PrefabInstance: {fileID: 1868283991}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -7306,7 +7314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &1868283996 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4176397422504371848, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1326337220101171882, guid: 931d346a4bac648f080bb82fdfc04d8b, type: 3}
   m_PrefabInstance: {fileID: 1868283991}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

@@ -105,7 +105,7 @@ public class ShopManager : MonoBehaviour
             RefreshStock();
 
             refreshText.text = $"{GetRefreshCost()}";
-            toggleText.text = $"Swap Past-future ({GetToggleCost()})";
+            toggleText.text = $"{GetToggleCost()}";
 
             SetButtonsAvailable();
         }

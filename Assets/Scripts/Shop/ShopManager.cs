@@ -128,16 +128,19 @@ public class ShopManager : MonoBehaviour
         int index2 = UnityEngine.Random.Range(0, 5);
         int discount2 = numbers[index2];
 
-        if (StaticGameManager.luckyCoins < StaticGameManager.maxLuckyCoins)
+        GameObject luckyCoinItem = null;
+        if (StaticGameManager.luckyCoins < StaticGameManager.maxLuckyCoins && shopStock.Count < 1)
         {
-            GameObject go = Instantiate(shopItemPrefab, shopLayout.transform);
-            go.GetComponent<ShopItem>().InitializeShopItem(ShopItem.ShopItemType.LuckyCoin, GetLuckCost());
+            // Create new ShopItem if not created already; otherwise, use preexisting one.
+            luckyCoinItem = Instantiate(shopItemPrefab, shopLayout.transform);
+            luckyCoinItem.GetComponent<ShopItem>().InitializeShopItem(ShopItem.ShopItemType.LuckyCoin, GetLuckCost());
         }
 
-        if (StaticGameManager.futureSkillSlots < StaticGameManager.maxSkillSlots)
+        GameObject skillSlotItem = null;
+        if (StaticGameManager.futureSkillSlots < StaticGameManager.maxSkillSlots && shopStock.Count < 2)
         {
-            GameObject go = Instantiate(shopItemPrefab, shopLayout.transform);
-            go.GetComponent<ShopItem>().InitializeShopItem(ShopItem.ShopItemType.SkillSlot, GetSkillSlotCost());
+            skillSlotItem = Instantiate(shopItemPrefab, shopLayout.transform);
+            skillSlotItem.GetComponent<ShopItem>().InitializeShopItem(ShopItem.ShopItemType.SkillSlot, GetSkillSlotCost());
         }
 
         for (int i = 0; i < shopSize; ++i)
@@ -161,6 +164,15 @@ public class ShopManager : MonoBehaviour
                 go = shopStock[i];
             }
             go.GetComponent<ShopItem>().InitializeShopItem(card.Item1, card.Item2, price, quantity);
+        }
+
+        if (luckyCoinItem != null)
+        {
+            shopStock.Add(luckyCoinItem);
+        }
+        if (skillSlotItem != null)
+        {
+            shopStock.Add(skillSlotItem);
         }
 
         refreshText.text = $"{GetRefreshCost()}";

@@ -28,6 +28,11 @@ public class EnemySpawnerScript : MonoBehaviour
     [Header("Enemies")]
     public List<GameObject> enemyPrefabs; // prefab pool
 
+    [Header("Spawn Position Jitter")]
+    [SerializeField] private float spawnJitterRadius = 1.25f;      // small random radius around SpawnPoint
+    [SerializeField] private int spawnJitterAttempts = 20;         // retry count
+    [SerializeField] private float spawnBlockCheckRadius = 0.35f;  // probe size for collision check
+
     // Runtime entries for the current generated map only
     public List<EnemyEntry> enemyList = new(); // entries of enemy + spawn point
     public List<EnemyBase> enemies = new(); // list Instantiated enemies in the scene
@@ -37,11 +42,16 @@ public class EnemySpawnerScript : MonoBehaviour
     private int pendingChestCoins;
     private int pendingTarotCards;
 
+    private int blockedSpawnMask;
+
     public static event System.Action OnAllEnemiesDefeated;
 
     void Awake()
     {
         if (instance == null) instance = this;
+
+        // Uses exactly these two layers
+        blockedSpawnMask = LayerMask.GetMask("VoidHole", "Obstacle");
     }
     void Start()
     {
@@ -72,7 +82,6 @@ public class EnemySpawnerScript : MonoBehaviour
 
     public void ProcessRoom(GameObject roomPrefab, int i)
     {
-        GameObject spawnedEnemy;
         // use List<GameObject> enemyPrefabs to assign enemies to SpawnPoints in level room/tiles
         if (enemyPrefabs == null || enemyPrefabs.Count == 0)
         {
@@ -80,12 +89,42 @@ public class EnemySpawnerScript : MonoBehaviour
             return;
         }
 
-        foreach(Transform child in roomPrefab.transform) {
-            if(child.gameObject.name == "SpawnPoint")
-            {
-                spawnedEnemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
-                AddEnemyEntry(spawnedEnemy, child);
-            }
+        // collect spawn points in this room
+        List<Transform> roomSpawnPoints = new();
+        foreach (Transform child in roomPrefab.transform)
+        {
+            if (child.gameObject.name == "SpawnPoint")
+                roomSpawnPoints.Add(child);
+        }
+
+        if (roomSpawnPoints.Count == 0)
+            return;
+
+        // shuffled copy = controlled randomness, no replacement
+        List<GameObject> shuffledEnemies = new(enemyPrefabs);
+        ShuffleInPlace(shuffledEnemies);
+
+        int spawnCount = Mathf.Min(roomSpawnPoints.Count, shuffledEnemies.Count);
+
+        for (int idx = 0; idx < spawnCount; idx++)
+        {
+            AddEnemyEntry(shuffledEnemies[idx], roomSpawnPoints[idx]);
+        }
+
+        if (roomSpawnPoints.Count > enemyPrefabs.Count)
+        {
+            Debug.LogWarning(
+                $"Room '{roomPrefab.name}' has {roomSpawnPoints.Count} spawn points but only {enemyPrefabs.Count} unique enemy prefabs. " +
+                "Extra spawn points were skipped to avoid duplicate enemy types in the same room.");
+        }
+    }
+
+    private void ShuffleInPlace<T>(List<T> list)
+    {
+        for (int n = list.Count - 1; n > 0; n--)
+        {
+            int k = Random.Range(0, n + 1);
+            (list[n], list[k]) = (list[k], list[n]);
         }
     }
 
@@ -103,9 +142,10 @@ public class EnemySpawnerScript : MonoBehaviour
 
         foreach (GameObject spawnedEnemy in enemies)
         {
-            foreach(Transform child in roomPrefab.transform) {
-                if(child.gameObject.name == "SpawnPoint") // might have a better way of doing this?
-                {   
+            foreach (Transform child in roomPrefab.transform)
+            {
+                if (child.gameObject.name == "SpawnPoint") // might have a better way of doing this?
+                {
                     AddEnemyEntry(spawnedEnemy, child);
                     break;
                 }
@@ -139,11 +179,18 @@ public class EnemySpawnerScript : MonoBehaviour
                 continue;
             }
 
+            Vector3 spawnPos;
+            if (!TryGetSpawnNearPoint(entry.spawnPoint, out spawnPos))
+            {
+                Debug.LogWarning($"Could not find valid spawn near '{entry.spawnPoint.name}' for '{entry.enemyPrefab.name}'.");
+                continue;
+            }
+
             GameObject enemyObj = Instantiate(
                 entry.enemyPrefab,
-                entry.spawnPoint.position,
-                Quaternion.Euler(new Vector3(0, 0, 0)
-            ));
+                spawnPos,
+                Quaternion.identity
+            );
 
             EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
             if (enemyObj.GetComponent<StandardEnemyBase>())
@@ -242,4 +289,29 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
 
+    private bool TryGetSpawnNearPoint(Transform spawnPoint, out Vector3 spawnPos)
+    {
+        spawnPos = spawnPoint.position;
+        spawnPos.z = 0f;
+
+        for (int i = 0; i < spawnJitterAttempts; i++)
+        {
+            Vector2 offset = Random.insideUnitCircle * spawnJitterRadius;
+            Vector3 candidate = spawnPoint.position + new Vector3(offset.x, offset.y, 0f);
+            candidate.z = 0f;
+
+            // Reject if candidate overlaps VoidHole or Obstacle
+            if (Physics2D.OverlapCircle(candidate, spawnBlockCheckRadius, blockedSpawnMask) != null)
+                continue;
+
+            spawnPos = candidate;
+            return true;
+        }
+
+        // fallback: exact spawn point if valid
+        if (Physics2D.OverlapCircle(spawnPos, spawnBlockCheckRadius, blockedSpawnMask) == null)
+            return true;
+
+        return false;
+    }
 }

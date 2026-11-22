@@ -25,6 +25,9 @@ public class YSort : MonoBehaviour
     [Tooltip("1 unit of Y = this many sorting order levels apart. 100 is usually fine.")]
     [SerializeField] private int precision = 100;
 
+    [Tooltip("Optional renderer that sorts immediately behind this renderer, such as a ground shadow.")]
+    [SerializeField] private Renderer rendererBehind;
+
     [Tooltip("For the player: assign the player root's BoxCollider2D. Uses bounds.min.y as feet position.")]
     [SerializeField] private Collider2D referenceCollider;
 
@@ -68,6 +71,12 @@ public class YSort : MonoBehaviour
     public void UpdateSortingOrder()
     {
         rend.sortingOrder = Mathf.RoundToInt(-GetSortY() * precision);
+
+        if (rendererBehind != null)
+        {
+            rendererBehind.sortingLayerID = rend.sortingLayerID;
+            rendererBehind.sortingOrder = rend.sortingOrder - 1;
+        }
     }
 
     private float GetSortY()

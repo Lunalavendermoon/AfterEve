@@ -1023,10 +1023,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a9ee617d0ca3448b2e07093a7f67a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
-  backSkeletonData: {fileID: 0}
-  frontSkeletonData: {fileID: 0}
+  backSkeletonData: {fileID: 11400000, guid: 52364387746ff044fab3684b99138347, type: 2}
+  frontSkeletonData: {fileID: 11400000, guid: dac63935c5dd4ed4f8c0d8e9584659df, type: 2}
   backRunAnimationName: Walk
   frontRunAnimationName: animation
+  aimingArmSprite: {fileID: 21300000, guid: 7dc26d0578982a64fbe3455e8c342034, type: 3}
+  backAimingArmSprite: {fileID: 21300000, guid: 5e68bede2dedeff4c8de0d95bec1fb7b, type: 3}
+  aimingArmHeight: 24
+  muzzleInSprite: {x: 0.26, y: 0.025}
+  muzzleInBackSprite: {x: 0.74, y: 0.025}
 --- !u!114 &4039969869742749611
 MonoBehaviour:
   m_ObjectHideFlags: 0

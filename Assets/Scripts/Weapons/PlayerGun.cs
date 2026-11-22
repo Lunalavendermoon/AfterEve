@@ -40,10 +40,21 @@ public class PlayerGun : MonoBehaviour
         firingSpeed = 1/PlayerController.instance.playerAttributes.attackPerSec;
         if(lastTimeShot + firingSpeed <= Time.time)
         {
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0f;
-            Vector2 dir = (mouseWorldPos - firingPoint.position).normalized;
-            float baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            PlayerAnimation animation = PlayerController.instance.playerAnimation;
+            Vector3 shotOrigin;
+            float baseAngle;
+            Quaternion forwardOffset = Quaternion.Euler(0f, 90f, 0f);
+            if (animation == null || !animation.TryGetArmShot(out shotOrigin, out baseAngle))
+            {
+                shotOrigin = firingPoint.position;
+                if (!PlayerAnimation.TryGetMouseWorldPosition(shotOrigin.z, out Vector3 mouseWorldPos))
+                    return false;
+
+                Vector2 direction = mouseWorldPos - shotOrigin;
+                baseAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                forwardOffset = firingPoint.rotation;
+            }
+
             float spread = 10f;
             int bulletCount = PlayerController.instance.playerAttributes.bullets;
 
@@ -54,12 +65,10 @@ public class PlayerGun : MonoBehaviour
 
                 Quaternion projectileRotation = Quaternion.Euler(0, 0, currentAngle + Random.Range(-PlayerController.instance.playerAttributes.bulletSpread, PlayerController.instance.playerAttributes.bulletSpread));
 
-                // Nick: this current method of multiplying by the firingPoint's rotation works, because the projectile
-                // determines its direction based on the XY pos of the forward vector. This is confusing and convoluted,
-                // at least to me, and I think it should be changed.
-                projectileRotation *= firingPoint.rotation;
+                // Projectile reads its 2D travel direction from the XY components of transform.forward.
+                projectileRotation *= forwardOffset;
 
-                GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, projectileRotation);
+                GameObject projectile = Instantiate(projectilePrefab, shotOrigin, projectileRotation);
                 
                 Projectile proj = projectile.GetComponent<Projectile>();
                 proj.SetBulletBounce(PlayerController.instance.playerAttributes.bulletBounces);

@@ -48,6 +48,7 @@ public class Player_Dash : IPlayerState
         dashDirection = new Vector3(input.x, input.y, 0f);
 
         dashActive = true;
+        player.playerAnimation?.PlayDashImpact(dashDuration);
         OnDash?.Invoke();
         dashStartTime = Time.time;
         PlayerMovementUI.Instance.triggerDashUsedUI();
@@ -58,7 +59,6 @@ public class Player_Dash : IPlayerState
     {
         if (Time.time - dashStartTime > dashDuration)
         {
-            dashActive = false;
             player.ChangeState(new Player_Idle());
         }
     }
@@ -76,12 +76,13 @@ public class Player_Dash : IPlayerState
         float dashUnitsPerSecond = dashPower / Mathf.Max(0.001f, dashDuration);
 
         Vector2 dashDelta = (Vector2)dashDirection * dashUnitsPerSecond * Time.fixedDeltaTime;
-        player.TryMove(dashDelta);
+        player.TryMove(dashDelta, passThroughEnemies: true);
 
         OnDisplaced?.Invoke();
     }
 
     public void ExitState(PlayerController player)
     {
+        dashActive = false;
     }
 }

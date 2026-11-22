@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     public static event System.Action OnCombatRoomClear;
 
     private Bounds? mapBounds;
+    private int nonNarrativeNodeNumber;
 
     //Audio
     public EventReference combatMusic;
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
 
     public void StartNewPlaythrough()
     {
+        nonNarrativeNodeNumber = 0;
         if (generateNarrativeRooms)
         {
             narrativeRoomManager.StartNewCycle();
@@ -131,6 +133,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        int nodeNumber = generateNarrativeRooms ? StaticGameManager.roomCount : ++nonNarrativeNodeNumber;
+
         // ---------- 1. Spawn FIRST tile at origin ----------
         Vector2Int startCell = Vector2Int.zero;
         GameObject startPrefab = GetRandomPrefab();
@@ -140,7 +144,7 @@ public class GameManager : MonoBehaviour
             Quaternion.identity,
             mapRoot
         );
-        EnemySpawnerScript.instance.ProcessRoom(startInstance, 0);
+        EnemySpawnerScript.instance.ProcessRoom(startInstance, nodeNumber);
 
         gridToInstance[startCell] = startInstance;
         occupiedCells.Add(startCell);
@@ -194,7 +198,7 @@ public class GameManager : MonoBehaviour
                 Quaternion.identity,
                 mapRoot
             );
-            EnemySpawnerScript.instance.ProcessRoom(newInstance, i);
+            EnemySpawnerScript.instance.ProcessRoom(newInstance, nodeNumber);
 
             // Get render sizes (world units)
             Vector3 baseSize = GetSpriteSize(baseInstance);

@@ -26,6 +26,8 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
     private float meleeCooldownTimer;
     private bool weakPointHitBySpiritualDamage;
 
+    protected override bool IsPursuing => combatActive;
+
     private sealed class NoopCombatState : IEnemyStates
     {
         public void EnterState(StandardEnemyBase enemy) { }
@@ -105,18 +107,16 @@ public class HighKnight : StandardEnemyBase, IKnightWithWeakPoint
                 agent.isStopped = true;
             return;
         }
-        if (!InRange(PlayerController.instance.transform))
-        {
-            if (combatActive)
-            {
-                combatActive = false;
-                ChangeState(new Enemy_Wander(wanderTime, wanderRadius));
-            }
-            return;
-        }
         if (!combatActive)
             return;
+
         Transform player = PlayerController.instance.transform;
+        if (!InPursuitRange(player))
+        {
+            combatActive = false;
+            ChangeState(new Enemy_Wander(wanderTime, wanderRadius));
+            return;
+        }
         float dist = Vector3.Distance(transform.position, player.position);
         if (dist > meleeModeMaxDistance)
         {

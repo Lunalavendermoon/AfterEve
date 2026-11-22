@@ -64,9 +64,11 @@ public class PlayerController : MonoBehaviour
 
     // Small skin so we don't end up exactly touching and jittering
     private const float CastSkin = 0.01f;
+    private int enemyLayer;
 
     private void Awake()
     {
+        enemyLayer = LayerMask.NameToLayer("Enemy");
         playerInput = new PlayerInput();
         toggleDialogueLog = playerInput.FindAction("ToggleDialogueLog", true);
 
@@ -312,7 +314,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Moves the player with collision using Rigidbody2D.Cast and MovePosition (prevents jitter and tunneling).
     /// </summary>
-    public void TryMove(Vector2 delta)
+    public void TryMove(Vector2 delta, bool passThroughEnemies = false)
     {
         // Nick: Refactored on June 19th 2026
 
@@ -343,8 +345,7 @@ public class PlayerController : MonoBehaviour
 
                 for (int i = 0; i < hitCount; i++)
                 {
-                    // Ignore triggers
-                    if (castResults[i].collider != null && castResults[i].collider.isTrigger)
+                    if (IgnoreMovementHit(castResults[i].collider, passThroughEnemies))
                         continue;
 
                     // Cast distance includes skin; we want to stop just before the wall
@@ -386,13 +387,13 @@ public class PlayerController : MonoBehaviour
 
                         hitCount = rb.Cast(current_pos + perp1 * width, 0, -hitNormal, castResults, 0.1f);
                         
-                        if (hitCount == 0 || castResults[0].normal != hitNormal)
+                        if (CornerIsClear(castResults, hitCount, hitNormal, passThroughEnemies))
                         {
                             newDir = perp1;
                         }
 
                         hitCount = rb.Cast(current_pos + perp2 * width, 0, -hitNormal, castResults, 0.1f);
-                        if (hitCount == 0 || castResults[0].normal != hitNormal)
+                        if (CornerIsClear(castResults, hitCount, hitNormal, passThroughEnemies))
                         {
                             newDir = perp2;
                         }
@@ -413,6 +414,27 @@ public class PlayerController : MonoBehaviour
         // I directly move the position here which avoids the player getting stuck on corners
         // rb.MovePosition sometimes fail in this case
         rb.position = current_pos;
+    }
+
+    private bool IgnoreMovementHit(Collider2D collider, bool passThroughEnemies)
+    {
+        return collider == null || collider.isTrigger ||
+            (passThroughEnemies && collider.gameObject.layer == enemyLayer);
+    }
+
+    private bool CornerIsClear(List<RaycastHit2D> hits, int count, Vector2 wallNormal,
+        bool passThroughEnemies)
+    {
+        if (!passThroughEnemies)
+            return count == 0 || hits[0].normal != wallNormal;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (!IgnoreMovementHit(hits[i].collider, true))
+                return hits[i].normal != wallNormal;
+        }
+
+        return true;
     }
 
     string BuildSkillDisplayString()

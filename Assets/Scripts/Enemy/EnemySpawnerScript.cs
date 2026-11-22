@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemySpawnerScript : MonoBehaviour
 {
+    private const int EarlyNodeCount = 4;
+    private const float EarlyMoonJellyfishChance = 0.7f;
+    private const float LaterMoonJellyfishChance = 0.5f;
+    private const int EnemiesPerSpawnPoint = 2;
+
     // make into singleton
     public static EnemySpawnerScript instance;
 
@@ -12,6 +17,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         public GameObject enemyPrefab;
         public Transform spawnPoint;
+        public bool isProceduralSpawn;
 
         public EnemyEntry(GameObject enemy, Transform spawn)
         {
@@ -80,7 +86,7 @@ public class EnemySpawnerScript : MonoBehaviour
         currentMapRoot = mapRoot;
     }
 
-    public void ProcessRoom(GameObject roomPrefab, int i)
+    public void ProcessRoom(GameObject roomPrefab, int nodeNumber)
     {
         // use List<GameObject> enemyPrefabs to assign enemies to SpawnPoints in level room/tiles
         if (enemyPrefabs == null || enemyPrefabs.Count == 0)
@@ -89,42 +95,40 @@ public class EnemySpawnerScript : MonoBehaviour
             return;
         }
 
-        // collect spawn points in this room
-        List<Transform> roomSpawnPoints = new();
-        foreach (Transform child in roomPrefab.transform)
+        GameObject moonJellyfish = null;
+        List<GameObject> otherEnemies = new();
+        foreach (GameObject prefab in enemyPrefabs)
         {
-            if (child.gameObject.name == "SpawnPoint")
-                roomSpawnPoints.Add(child);
+            if (prefab == null || prefab.TryGetComponent<Mystic_MirrorScript>(out _))
+                continue;
+
+            if (prefab.TryGetComponent<MoonJellyFish>(out _))
+                moonJellyfish = prefab;
+            else if (!otherEnemies.Contains(prefab))
+                otherEnemies.Add(prefab);
         }
 
-        if (roomSpawnPoints.Count == 0)
+        if (moonJellyfish == null && otherEnemies.Count == 0)
             return;
 
-        // shuffled copy = controlled randomness, no replacement
-        List<GameObject> shuffledEnemies = new(enemyPrefabs);
-        ShuffleInPlace(shuffledEnemies);
+        float moonJellyfishChance = nodeNumber <= EarlyNodeCount
+            ? EarlyMoonJellyfishChance
+            : LaterMoonJellyfishChance;
 
-        int spawnCount = Mathf.Min(roomSpawnPoints.Count, shuffledEnemies.Count);
-
-        for (int idx = 0; idx < spawnCount; idx++)
+        foreach (Transform child in roomPrefab.transform)
         {
-            AddEnemyEntry(shuffledEnemies[idx], roomSpawnPoints[idx]);
-        }
+            if (child.name != "SpawnPoint")
+                continue;
 
-        if (roomSpawnPoints.Count > enemyPrefabs.Count)
-        {
-            Debug.LogWarning(
-                $"Room '{roomPrefab.name}' has {roomSpawnPoints.Count} spawn points but only {enemyPrefabs.Count} unique enemy prefabs. " +
-                "Extra spawn points were skipped to avoid duplicate enemy types in the same room.");
-        }
-    }
-
-    private void ShuffleInPlace<T>(List<T> list)
-    {
-        for (int n = list.Count - 1; n > 0; n--)
-        {
-            int k = Random.Range(0, n + 1);
-            (list[n], list[k]) = (list[k], list[n]);
+            for (int i = 0; i < EnemiesPerSpawnPoint; i++)
+            {
+                bool spawnMoonJellyfish = moonJellyfish != null &&
+                    (otherEnemies.Count == 0 || Random.value < moonJellyfishChance);
+                GameObject prefab = spawnMoonJellyfish
+                    ? moonJellyfish
+                    : otherEnemies[Random.Range(0, otherEnemies.Count)];
+                enemyList.Add(new EnemyEntry(prefab, child) { isProceduralSpawn = true });
+            }
         }
     }
 
@@ -170,6 +174,7 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         enemies.Clear();
         numberOfEnemies = 0;
+        Dictionary<Transform, Vector3> firstSpawnPositions = new();
 
         foreach (var entry in enemyList)
         {
@@ -179,8 +184,11 @@ public class EnemySpawnerScript : MonoBehaviour
                 continue;
             }
 
-            Vector3 spawnPos;
-            if (!TryGetSpawnNearPoint(entry.spawnPoint, out spawnPos))
+            Vector3? firstSpawnPosition = null;
+            if (entry.isProceduralSpawn && firstSpawnPositions.TryGetValue(entry.spawnPoint, out Vector3 occupiedPosition))
+                firstSpawnPosition = occupiedPosition;
+
+            if (!TryGetSpawnNearPoint(entry.spawnPoint, firstSpawnPosition, out Vector3 spawnPos))
             {
                 Debug.LogWarning($"Could not find valid spawn near '{entry.spawnPoint.name}' for '{entry.enemyPrefab.name}'.");
                 continue;
@@ -193,10 +201,13 @@ public class EnemySpawnerScript : MonoBehaviour
             );
 
             EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
-            if (enemyObj.GetComponent<StandardEnemyBase>())
+            if (enemy is StandardEnemyBase standardEnemy)
             {
-                enemyObj.GetComponent<StandardEnemyBase>().chest = chest;
+                standardEnemy.chest = chest;
+                standardEnemy.ApproachFromOffscreen = entry.isProceduralSpawn;
             }
+            if (entry.isProceduralSpawn && !firstSpawnPosition.HasValue)
+                firstSpawnPositions.Add(entry.spawnPoint, spawnPos);
             enemy.spawner = this;
             enemies.Add(enemy);
 
@@ -289,7 +300,7 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
 
-    private bool TryGetSpawnNearPoint(Transform spawnPoint, out Vector3 spawnPos)
+    private bool TryGetSpawnNearPoint(Transform spawnPoint, Vector3? firstSpawnPosition, out Vector3 spawnPos)
     {
         spawnPos = spawnPoint.position;
         spawnPos.z = 0f;
@@ -301,7 +312,7 @@ public class EnemySpawnerScript : MonoBehaviour
             candidate.z = 0f;
 
             // Reject if candidate overlaps VoidHole or Obstacle
-            if (Physics2D.OverlapCircle(candidate, spawnBlockCheckRadius, blockedSpawnMask) != null)
+            if (!IsSpawnPositionClear(candidate, firstSpawnPosition))
                 continue;
 
             spawnPos = candidate;
@@ -309,9 +320,13 @@ public class EnemySpawnerScript : MonoBehaviour
         }
 
         // fallback: exact spawn point if valid
-        if (Physics2D.OverlapCircle(spawnPos, spawnBlockCheckRadius, blockedSpawnMask) == null)
-            return true;
+        return IsSpawnPositionClear(spawnPos, firstSpawnPosition);
+    }
 
-        return false;
+    private bool IsSpawnPositionClear(Vector3 position, Vector3? firstSpawnPosition)
+    {
+        return (!firstSpawnPosition.HasValue ||
+                Vector2.Distance(position, firstSpawnPosition.Value) >= 2f * spawnBlockCheckRadius) &&
+            Physics2D.OverlapCircle(position, spawnBlockCheckRadius, blockedSpawnMask) == null;
     }
 }

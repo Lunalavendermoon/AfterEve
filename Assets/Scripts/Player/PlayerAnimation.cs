@@ -69,6 +69,12 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnDisable()
     {
+        if (dashImpactPlaying)
+        {
+            transform.localScale = dashBaseScale;
+            dashImpactPlaying = false;
+        }
+
         skeletonAnimation.UpdateComplete -= HideAnimatedArm;
         if (aimingArm != null)
             aimingArm.enabled = false;
@@ -89,12 +95,56 @@ public class PlayerAnimation : MonoBehaviour
 
     private void LateUpdate()
     {
+        UpdateDashImpact();
+
         if (!TryGetArmShot(out _, out _))
             return;
 
         aimingArm.sortingLayerID = bodyRenderer.sortingLayerID;
         aimingArm.sortingOrder = bodyRenderer.sortingOrder + 1;
         aimingArm.enabled = true;
+    }
+
+    private static readonly Vector3 DashSquash = new Vector3(1.16f, 0.76f, 1f);
+    private static readonly Vector3 DashStretch = new Vector3(0.92f, 1.15f, 1f);
+    private const float DashSettleTime = 0.12f;
+    private Vector3 dashBaseScale;
+    private float dashImpactStart;
+    private float dashStretchTime;
+    private bool dashImpactPlaying;
+
+    public void PlayDashImpact(float dashDuration)
+    {
+        if (!isActiveAndEnabled)
+            return;
+
+        if (!dashImpactPlaying)
+            dashBaseScale = transform.localScale;
+
+        dashImpactPlaying = true;
+        dashImpactStart = Time.time;
+        dashStretchTime = Mathf.Clamp(dashDuration * 0.4f, 0.03f, 0.06f);
+        transform.localScale = Vector3.Scale(dashBaseScale, DashSquash);
+    }
+
+    private void UpdateDashImpact()
+    {
+        if (!dashImpactPlaying)
+            return;
+
+        float elapsed = Time.time - dashImpactStart;
+        if (elapsed >= dashStretchTime + DashSettleTime)
+        {
+            transform.localScale = dashBaseScale;
+            dashImpactPlaying = false;
+            return;
+        }
+
+        Vector3 scale = elapsed < dashStretchTime
+            ? Vector3.Lerp(DashSquash, DashStretch, elapsed / dashStretchTime)
+            : Vector3.Lerp(DashStretch, Vector3.one,
+                Mathf.SmoothStep(0f, 1f, (elapsed - dashStretchTime) / DashSettleTime));
+        transform.localScale = Vector3.Scale(dashBaseScale, scale);
     }
 
     //dir should be -1 or 1

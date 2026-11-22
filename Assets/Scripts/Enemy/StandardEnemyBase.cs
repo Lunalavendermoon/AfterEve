@@ -5,6 +5,12 @@ using UnityEngine;
 
 public abstract class StandardEnemyBase : EnemyBase
 {
+    private const float DetectionRadiusMultiplier = 1.25f;
+    private const float PursuitRadiusMultiplier = 1.5f;
+    private const float PursuitSpeedMultiplier = 1.1f;
+    private const float OffscreenPursuitSpeedMultiplier = 2.5f;
+    private const float ViewportMargin = 0.05f;
+
     public Chest_base chest;
 
 
@@ -36,6 +42,20 @@ public abstract class StandardEnemyBase : EnemyBase
 
     public bool elite = false;
 
+    protected virtual bool IsPursuing => current_enemy_state is Enemy_Chase;
+    public bool ApproachFromOffscreen { get; set; }
+
+    private bool IsOffscreen()
+    {
+        Camera camera = Camera.main;
+        if (camera == null)
+            return false;
+
+        Vector3 viewportPosition = camera.WorldToViewportPoint(transform.position);
+        return viewportPosition.z < 0f ||
+            viewportPosition.x < -ViewportMargin || viewportPosition.x > 1f + ViewportMargin ||
+            viewportPosition.y < -ViewportMargin || viewportPosition.y > 1f + ViewportMargin;
+    }
 
 
     //Initializing agent and its default state
@@ -83,7 +103,12 @@ public abstract class StandardEnemyBase : EnemyBase
             }
         }
 
-        agent.maxSpeed = speed;
+        float speedMultiplier = 1f;
+        if (IsPursuing)
+            speedMultiplier = ApproachFromOffscreen && IsOffscreen()
+                ? OffscreenPursuitSpeedMultiplier
+                : PursuitSpeedMultiplier;
+        agent.maxSpeed = speed * speedMultiplier;
 
         current_enemy_state?.UpdateState(this);
 
@@ -132,8 +157,19 @@ public abstract class StandardEnemyBase : EnemyBase
 
     public virtual bool InRange(Transform target)
     {
+        return WithinDetectionRadius(target, DetectionRadiusMultiplier) ||
+            (ApproachFromOffscreen && IsOffscreen());
+    }
+
+    protected bool InPursuitRange(Transform target)
+    {
+        return WithinDetectionRadius(target, PursuitRadiusMultiplier);
+    }
+
+    private bool WithinDetectionRadius(Transform target, float multiplier)
+    {
         float distance = Vector2.Distance(transform.position, target.position);
-        return distance <= enemyAttributes.detection_radius;
+        return distance <= enemyAttributes.detection_radius * multiplier;
     }
 
     public virtual bool InAttackRange(Transform target)

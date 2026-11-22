@@ -41,7 +41,7 @@ MonoBehaviour:
   totalStamina: 1
   staminaRegeneration: 1
   dashPower: 2
-  dashDuration: 0.1
+  dashDuration: 0.22
   dashCooldown: 1
   totalSpiritualVision: 5
   spiritualVisionRegeneration: 1

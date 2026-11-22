@@ -105,12 +105,11 @@ public class PlayerAnimation : MonoBehaviour
         aimingArm.enabled = true;
     }
 
-    private static readonly Vector3 DashSquash = new Vector3(1.16f, 0.76f, 1f);
-    private static readonly Vector3 DashStretch = new Vector3(0.92f, 1.15f, 1f);
+    private static readonly Vector3 DashSquash = new Vector3(1.16f, 0.65f, 1f);
     private const float DashSettleTime = 0.12f;
     private Vector3 dashBaseScale;
     private float dashImpactStart;
-    private float dashStretchTime;
+    private float dashRecoveryTime;
     private bool dashImpactPlaying;
 
     public void PlayDashImpact(float dashDuration)
@@ -123,7 +122,7 @@ public class PlayerAnimation : MonoBehaviour
 
         dashImpactPlaying = true;
         dashImpactStart = Time.time;
-        dashStretchTime = Mathf.Clamp(dashDuration * 0.4f, 0.03f, 0.06f);
+        dashRecoveryTime = Mathf.Clamp(dashDuration * 0.4f, 0.03f, 0.06f) + DashSettleTime;
         transform.localScale = Vector3.Scale(dashBaseScale, DashSquash);
     }
 
@@ -133,17 +132,15 @@ public class PlayerAnimation : MonoBehaviour
             return;
 
         float elapsed = Time.time - dashImpactStart;
-        if (elapsed >= dashStretchTime + DashSettleTime)
+        if (elapsed >= dashRecoveryTime)
         {
             transform.localScale = dashBaseScale;
             dashImpactPlaying = false;
             return;
         }
 
-        Vector3 scale = elapsed < dashStretchTime
-            ? Vector3.Lerp(DashSquash, DashStretch, elapsed / dashStretchTime)
-            : Vector3.Lerp(DashStretch, Vector3.one,
-                Mathf.SmoothStep(0f, 1f, (elapsed - dashStretchTime) / DashSettleTime));
+        float recovery = Mathf.SmoothStep(0f, 1f, elapsed / dashRecoveryTime);
+        Vector3 scale = Vector3.Lerp(DashSquash, Vector3.one, recovery);
         transform.localScale = Vector3.Scale(dashBaseScale, scale);
     }
 

@@ -15,6 +15,7 @@ public class Player_Dash : IPlayerState
     public static event Action OnDisplaced;
 
     private const float DashInputDeadzone = 0.01f;
+    private float dashElapsed;
 
     public void EnterState(PlayerController player)
     {
@@ -47,6 +48,7 @@ public class Player_Dash : IPlayerState
         if (input.sqrMagnitude > 1f) input = input.normalized;
         dashDirection = new Vector3(input.x, input.y, 0f);
 
+        dashElapsed = 0f;
         dashActive = true;
         player.playerAnimation?.PlayDashImpact(dashDuration);
         OnDash?.Invoke();
@@ -57,9 +59,17 @@ public class Player_Dash : IPlayerState
 
     public void CheckState(PlayerController player)
     {
-        if (Time.time - dashStartTime > dashDuration)
+        if (dashElapsed >= dashDuration)
         {
-            player.ChangeState(new Player_Idle());
+            if (new Vector2(player.horizontalInput, player.verticalInput).sqrMagnitude
+                >= DashInputDeadzone * DashInputDeadzone)
+            {
+                player.ChangeState(new Player_Move());
+            }
+            else
+            {
+                player.ChangeState(new Player_Idle());
+            }
         }
     }
 
@@ -69,13 +79,16 @@ public class Player_Dash : IPlayerState
 
     public void FixedUpdateState(PlayerController player)
     {
-        if (!dashActive) return;
+        if (!dashActive || dashElapsed >= dashDuration) return;
 
-        // Interpret dashPower as total dash distance (world units).
-        // This makes dash distance easy to tune and prevents "way too far" dashes.
-        float dashUnitsPerSecond = dashPower / Mathf.Max(0.001f, dashDuration);
+        float previousProgress = dashElapsed / dashDuration;
+        dashElapsed = Mathf.Min(dashElapsed + Time.fixedDeltaTime, dashDuration);
+        float progress = dashElapsed / dashDuration;
 
-        Vector2 dashDelta = (Vector2)dashDirection * dashUnitsPerSecond * Time.fixedDeltaTime;
+        // Blend linear motion with easing to keep the dash responsive at both ends.
+        float previousDistance = Mathf.Lerp(previousProgress, Mathf.SmoothStep(0f, 1f, previousProgress), 0.6f);
+        float distance = Mathf.Lerp(progress, Mathf.SmoothStep(0f, 1f, progress), 0.6f);
+        Vector2 dashDelta = (Vector2)dashDirection * (dashPower * (distance - previousDistance));
         player.TryMove(dashDelta, passThroughEnemies: true);
 
         OnDisplaced?.Invoke();
